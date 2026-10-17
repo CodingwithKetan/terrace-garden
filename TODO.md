@@ -1,0 +1,197 @@
+# TODO
+
+Single source of truth for implementation progress. Last updated: 2026-10-18.
+
+Legend: `[ ]` not started · `[~]` in progress · `[x]` completed (acceptance criteria met and checks run) · `[!]` blocked (reason given).
+Priority: **P0** must (MVP-critical) · **P1** should · **P2** could.
+Every phase ends with the **gate**: `dart format --output=none --set-exit-if-changed .` · `flutter analyze` · `flutter test` (+ integration tests and `flutter build apk --debug` at phase end), then update `docs/progress/*`.
+
+---
+
+## Phase 0: Discovery and research ✅
+
+- [x] **P0-01** Inspect workspace and toolchain. *Done:* empty directory; Flutter 3.44.8 / Dart 3.12.2; Android SDK 36 + emulator; licences not accepted (KI-002); git repo initialised.
+- [x] **P0-02** Competitor research → `docs/research/competitor-analysis.md`
+- [x] **P0-03** Gardening-domain research and source register → `docs/research/gardening-references.md`
+- [x] **P0-04** Opportunity analysis, personas, MVP scope → `docs/product/opportunity-analysis.md`
+- [x] **P0-05** PRD and roadmap → `docs/product/product-requirements.md`, `docs/product/roadmap.md`
+- [x] **P0-06** Design system and screen inventory → `docs/design/*`
+- [x] **P0-07** Architecture, technical decisions, data model, reusable components plan → `docs/architecture/*`
+- [x] **P0-08** Testing strategy and known issues → `docs/quality/*`
+- [x] **P0-09** CLAUDE.md, README.md, TODO.md, progress docs
+
+---
+
+## Phase 1: Foundation and design system
+
+- [x] **P1-01 · P0 · SDK decision.** *Done 2026-10-18:* user chose the local Flutter 3.44.8 / Dart 3.12.2; ADR-001 accepted with fallback package pins.
+- [!] **P1-02 · P0 · Accept Android licences.** *Blocked: user must run `flutter doctor --android-licenses` (interactive).*
+  - Acceptance: `flutter doctor` shows no Android toolchain issues.
+- [~] **P1-03 · P0 · Create Flutter project.** *Partly done:* project created and Phase 1 dependencies resolved; template counter app still to be replaced, and pubspec deps need sorting.
+  - Deps: P1-01.
+  - Steps: `flutter create --org <org> --platforms android,ios --project-name terrace_garden .`, preserving existing docs. Remove counter boilerplate. Apply the `material_ui` migration if the 3.47 template needs it.
+  - Acceptance: app launches on an Android emulator; `.gitignore` correct; first commit made (with user approval).
+  - Tests: default widget test replaced with an app smoke test.
+- [~] **P1-04 · P0 · Lints and codegen config.** *Partly done:* very_good_analysis enabled; riverpod_lint plugin and `build.yaml` pending.
+  - Work: `analysis_options.yaml` (very_good_analysis + riverpod_lint; exclusions for generated files); `build.yaml` generate_for globs.
+  - Acceptance: `flutter analyze` clean.
+- [ ] **P1-05 · P0 · Core primitives.**
+  - Work: `Result<T>`/`AppFailure`, `AppLogger`, `Clock`, `IdGenerator`, `LocalDate`, `Length`/`Area`/`UnitSystem` with formatting.
+  - Files: `lib/core/{errors,logging,time,ids,units}`.
+  - Tests: unit tests incl. unit round-trips (1e-6 tolerance) and display rounding.
+- [ ] **P1-06 · P0 · Theme.**
+  - Work: tokens (`AppColors`, `AppSpacing`, `AppRadii`, `AppMotion`), light/dark `ThemeData`, `ThemeExtension`s (care colours, canvas colours).
+  - Files: `lib/app/theme/`.
+  - Acceptance: matches design-system §2–5.
+  - Tests: contrast test for all text/background token pairs (≥ 4.5:1 body, ≥ 3:1 large/UI).
+- [ ] **P1-07 · P0 · Fonts.**
+  - Work: bundle Fraunces and Inter (OFL) and register their licences.
+  - Acceptance: fonts render offline; licences visible in the Flutter licences page.
+- [ ] **P1-08 · P0 · Localisation.**
+  - Work: gen-l10n setup (`l10n.yaml`, `lib/l10n/app_en.arb`).
+  - Acceptance: all shell strings come from ARB.
+- [ ] **P1-09 · P0 · Core widgets (first set).**
+  - Components: AppButton, AppCard, ImageCard, StatusChip, SelectableChipGroup, SectionHeader, EmptyState, ErrorState, Skeleton, AsyncStateView, ConfirmDialog, AppBottomSheet (see `reusable-components.md`).
+  - Tests: widget tests (states, semantics, ≥48dp targets, text scale 2.0); goldens for buttons/cards/chips in light and dark.
+- [ ] **P1-10 · P0 · Router and app shell.**
+  - Work: go_router with `StatefulShellRoute` (Today, Garden, Plants, Journal); responsive NavigationBar/NavigationRail; each tab shows its designed empty state with a real next action (no dead buttons); Settings route.
+  - Tests: widget tests for navigation and layout at 360/700/1200 widths.
+- [ ] **P1-11 · P0 · Database foundation.**
+  - Work: drift `AppDatabase` (empty schema v1 + migration test harness + schema dump); provider wiring.
+  - Acceptance: an in-memory DB test passes on Windows host (verifies sqlite3 build hooks, KI-005); Android debug build succeeds.
+- [ ] **P1-12 · P1 · Settings skeleton.**
+  - Work: SettingsRepository (SharedPreferencesAsync), theme mode and unit system working end to end; About screen listing licences.
+  - Tests: repository and view-model tests.
+- [ ] **P1-13 · P1 · Developer tooling.**
+  - Work: `tool/check.ps1` / `tool/check.sh` running the gate; README run/test instructions; optional GitHub Actions workflow file (not activated until a remote exists).
+- [ ] **P1-GATE** Phase 1 quality gate + docs update.
+
+## Phase 2: Garden setup and profile
+
+- [ ] **P2-01 · P0 · Garden domain and data.**
+  - Work: `Garden` entity and enums (data-model §3), `GardenRepository` interface + drift implementation (tables, DAO, migration v2), validation (`GardenDraft`).
+  - Tests: repository tests (create/read/update/delete/cascade), validation tests.
+- [ ] **P2-02 · P0 · Region mapping.**
+  - Work: offline Indian city list → `regionKey` (ADR-015); "Other / not listed" fallback.
+  - Tests: mapping tests.
+- [ ] **P2-03 · P0 · Onboarding flow (ONB-01..05).**
+  - Work: progressive and skippable; first-run redirect; "explore first".
+  - Acceptance: PRD FR-A.
+  - Tests: view-model tests; widget tests for validation.
+- [ ] **P2-04 · P0 · Garden overview (GDN-02) and edit profile (GDN-03).**
+  - Work: "Not set · Add" pattern; unsaved-changes prompt.
+  - Tests: widget tests.
+- [ ] **P2-05 · P0 · Photo storage service.**
+  - Work: pick (image_picker) → compress/strip EXIF → thumbnail → relative paths; delete files; `retrieveLostData`; `PhotoStorage` interface + fake.
+  - Tests: unit tests with a temp-dir fake; missing-file handling.
+- [ ] **P2-06 · P0 · Photo gallery and viewer (GDN-04/05).**
+  - Work: add/view/replace/delete/caption/tag/cover; permission-denied state.
+  - Acceptance: PRD FR-B.
+- [ ] **P2-07 · P1 · Environment notes and terrace checklist (GDN-06, FR-I).**
+  - Work: content only from `gardening-references.md` §3c, §4, §8, with source IDs.
+- [ ] **P2-08 · P0 · Integration test: onboarding → garden created → restart → garden visible.**
+- [ ] **P2-GATE**
+
+## Phase 3: Garden designer MVP
+
+- [ ] **P3-01 · P0 · Geometry domain.**
+  - Work: Vec2, Size2, oriented rect, circle, polygon footprint, containment, overlap (SAT; circle/rect), distance to boundary, grid/edge snapping, rotation snapping.
+  - Tests: ≥ 90% coverage, incl. rotated cases.
+- [ ] **P3-02 · P0 · CanvasTransform.**
+  - Work: fit-to-viewport, zoom about focal point, pan clamp, world↔screen.
+  - Tests: round-trip tests at multiple zoom levels and offsets.
+- [ ] **P3-03 · P0 · Layout document model.**
+  - Work: element kinds, container presets (grow bag sizes 12×12, 15×15, 18×9, 24×18, 24×24 in; pot diameters), derived area/volume.
+  - Tests: unit tests.
+- [ ] **P3-04 · P0 · LayoutValidator.**
+  - Work: errors (out of bounds, container overlap); warnings (crowding, shallow container placeholder hook for Phase 4).
+  - Tests: unit tests.
+- [ ] **P3-05 · P0 · Command stack.**
+  - Work: add/move/resize/rotate/delete/duplicate commands; undo/redo (≥ 50); redo cleared on new command.
+  - Tests: unit tests.
+- [ ] **P3-06 · P0 · Layout persistence.**
+  - Work: tables `layouts`, `layout_elements`; repository; debounced autosave in a transaction; save status.
+  - Tests: repository tests + autosave controller tests (fake clock).
+- [ ] **P3-07 · P0 · Canvas rendering.**
+  - Work: painter for grid, boundary, elements, labels, selection, invalid states; cached static layer.
+  - Tests: golden tests for fixed layouts.
+- [ ] **P3-08 · P0 · Gestures.**
+  - Work: pan/zoom, tap-select, drag-move, handle resize/rotate, haptics, snapping toggle.
+  - Tests: widget tests driving gestures.
+- [ ] **P3-09 · P0 · Palette (DSN-02) and inspector (DSN-03).**
+  - Work: precise numeric edits via DimensionField; bottom sheet on compact, side panel on expanded.
+- [ ] **P3-10 · P0 · Objects list (DSN-04).** Accessible alternative with full edit parity.
+- [ ] **P3-11 · P0 · Space summary (DSN-05).** Area used/free, counts, soil volume, warnings.
+- [ ] **P3-12 · P0 · Integration test: PRD FR-C acceptance scenario** (3 m × 1.2 m balcony, 3 pots + grow bag, rotate, overlap error, undo/redo, restart, layout intact).
+- [ ] **P3-GATE**
+
+## Phase 4: Plant catalogue and recommendations
+
+- [ ] **P4-DATA-01 · P0 · Catalogue schema.**
+  - Work: JSON schema + validation test (required fields, ranges, every `sourceId` resolves to `gardening-references.md` §1, unverified fields are null).
+- [ ] **P4-DATA-02 · P0 · Author ~30 species.**
+  - Work: from `gardening-references.md` §2 (Indian names, region windows, container data, care templates, safety). Use proxy/unverified flags honestly.
+- [ ] **P4-DATA-03 · P1 · Resolve research gaps** KI-010..KI-013 (IIHR/KVK bulletins, TN kit manual, ASPCA checks, SS re-verification). *Blocks public release, not MVP development.*
+- [ ] **P4-DATA-04 · P1 · Licensed plant images.**
+  - Work: CC0/CC BY or own photos, WebP ≤ 150KB, `assets/images/ATTRIBUTION.md`; fallback illustrations.
+- [ ] **P4-01 · P0 · Catalogue import.**
+  - Work: versioned import into drift (species, names, care templates, sources); FTS5 search index.
+  - Tests: import idempotency and version-bump tests.
+- [ ] **P4-02 · P0 · Catalogue UI (PLT-01) + plant detail (PLT-02).**
+  - Work: search, filters, "Not documented" states, sources section, confidence badges.
+- [ ] **P4-03 · P0 · RecommendationEngine (pure).**
+  - Work: sun, season/region, container depth, goals/style, effort; reasons and caveats; unknown-input handling.
+  - Tests: exhaustive unit tests (PRD FR-E).
+- [ ] **P4-04 · P0 · Recommendations UI (REC-01) + shortlist (REC-03).**
+- [ ] **P4-05 · P1 · Compare (REC-02).**
+- [ ] **P4-06 · P0 · Plantings.**
+  - Work: add flow (PLT-05) assigning species to a container on the layout or unassigned; fit and crowding warnings shared with the designer; My plants (PLT-03); planting detail (PLT-04).
+  - Tests: repository and rule tests.
+- [ ] **P4-GATE**
+
+## Phase 5: Care tracking
+
+- [ ] **P5-01 · P0 · Recurrence engine.**
+  - Work: from-completion, fixed-calendar, weekly, seasonal window, one-off (ADR-009).
+  - Tests: exhaustive unit tests incl. month ends and DST-zone cases.
+- [ ] **P5-02 · P0 · CarePlanner.**
+  - Work: instantiate rules from templates + stage + container modifiers (gardening-references §4c, §5, §6, §9); check-first guidance; sources.
+  - Tests: unit tests.
+- [ ] **P5-03 · P0 · Task materialiser.**
+  - Work: rolling window; unique (ruleId, dueOn); idempotent regeneration.
+  - Tests: unit + repository tests.
+- [ ] **P5-04 · P0 · Task actions.**
+  - Work: complete (note/photo), skip (reason), reschedule; recalculation per anchor.
+  - Tests: unit tests (PRD FR-F).
+- [ ] **P5-05 · P0 · Today agenda (HOME-01).** Overdue/today/upcoming, grouping, bulk "watered all".
+- [ ] **P5-06 · P1 · Calendar view (CARE-02)** and per-planting care plan editor (CARE-04).
+- [ ] **P5-07 · P0 · NotificationPlanner (pure) + scheduler adapter.**
+  - Work: daily digest; optional per-task reminders; quiet hours; cap 50; diff apply (ADR-008).
+  - Tests: unit tests (no duplicates, cancellation, digest time change).
+- [ ] **P5-08 · P0 · Notification permission flow (CARE-05)** and Android channels; deep link on tap.
+- [ ] **P5-09 · P0 · Integration test:** add plant → care plan → complete task → next task recalculated → notification planned.
+- [ ] **P5-GATE**
+
+## Phase 6: Progress and refinement
+
+- [ ] **P6-01 · P0 · Journal entries (JRN-01/02)** with photos, notes, milestones; completed tasks in the timeline.
+- [ ] **P6-02 · P1 · Photo comparison (JRN-03)** and stats/achievements (JRN-04).
+- [ ] **P6-03 · P1 · Data export** (ZIP JSON + photos) and **P0** delete all data.
+- [ ] **P6-04 · P1 · "Start from a kit" preset** (S1). Requires KI-014 verification.
+- [ ] **P6-05 · P0 · Accessibility audit.** Semantics, text scale 200%, contrast, tap targets; canvas list parity.
+- [ ] **P6-06 · P0 · Responsive pass** (medium/expanded layouts) and motion polish with reduced-motion support.
+- [ ] **P6-07 · P0 · Performance profiling.** Cold start, canvas fps with 100 objects, image grids.
+- [ ] **P6-08 · P0 · End-to-end integration suite** across all critical journeys.
+- [ ] **P6-09 · P1 · User-testing kit.** Script and assumptions from opportunity-analysis §7; build distribution.
+- [ ] **P6-GATE** MVP ready for user feedback.
+
+## Phase 7: Advanced (each needs value, cost and plan before starting)
+
+- [ ] P7-01 Weather-aware care via `WeatherService` (Open-Meteo; licence/commercial check, ADR-020)
+- [ ] P7-02 Hindi localisation (UI + catalogue names)
+- [ ] P7-03 Cloud sync and accounts (Supabase, optional PowerSync; tombstones/owner migration; ADR-013)
+- [ ] P7-04 AI diagnosis/identification via server proxy (ADR-019)
+- [ ] P7-05 Photo-assisted layout (trace over photo, user calibration); AI concept renders labelled "not to scale"
+- [ ] P7-06 Shopping list / bill of materials, partner nurseries
+- [ ] P7-07 Non-rectangular boundaries; companion-planting hints (sourced)
+- [ ] P7-08 Household sharing; Care Share-style plant-sitter mode
