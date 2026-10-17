@@ -44,7 +44,14 @@ flutter test
 flutter test integration_test           # needs a running Android emulator
 flutter emulators --launch <id>         # list emulators with: flutter emulators
 flutter build apk --debug
+flutter test test/goldens --update-goldens   # regenerate golden images after intended UI changes
+dart run drift_dev make-migrations      # after changing the DB schema (bump schemaVersion first)
+bash tool/check.sh                      # full gate (or: powershell -File tool/check.ps1)
 ```
+
+Notes:
+- **Routes:** every route uses `appPage(state, screen)` (ADR-004), never go_router's default `builder:`.
+- **This machine's network:** a TLS-inspecting proxy breaks curl revocation checks, Java/Gradle downloads and GitHub pushes (KI-006, KI-007). PowerShell `Invoke-WebRequest` works for downloads.
 
 Project SDK: **Flutter 3.44.8 / Dart 3.12.2** (ADR-001). In a Claude Code **cloud** session, Flutter is installed by the environment setup script at `/opt/flutter` (see `docs/progress/current-status.md` → "Working in a Claude Code cloud session"). Use `/opt/flutter/bin/flutter`. Android builds and integration tests run locally only.
 

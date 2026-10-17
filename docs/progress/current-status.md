@@ -4,18 +4,56 @@ Last updated: 2026-10-18
 
 ## Phase
 
-**Phase 0 (discovery and research): complete.** Phase 1 (foundation) in progress. SDK decided: local Flutter 3.44.8 (ADR-001).
+**Phase 1 (foundation and design system): complete (2026-10-18).** Phase 0 is complete. Next: Phase 2 (garden setup and profile).
 
-## State of the repository (handoff point, 2026-10-18)
+## State of the repository
 
-- Flutter project created (`flutter create --org com.terracegarden --project-name terrace_garden --platforms android,ios`). The **template counter app is still in `lib/main.dart` and `test/widget_test.dart`**; P1-03 replaces it.
-- Phase 1 dependencies added and resolved for Flutter 3.44.8 (see `pubspec.yaml` / `pubspec.lock`): flutter_riverpod 3.2.1, riverpod_annotation 4.0.2, go_router 18.1.0, drift 2.31.0, drift_flutter 0.2.8, shared_preferences, freezed_annotation 3.1.0, json_annotation 4.11.0, path_provider, path, uuid, intl, material_symbols_icons, flutter_localizations. Dev: build_runner 2.15.1, riverpod_generator 4.0.3, riverpod_lint 3.1.3, drift_dev 2.31.0, freezed 3.2.5, json_serializable 6.13.0, mocktail 1.0.5, very_good_analysis 10.3.0, alchemist 0.14.0. `cupertino_icons` from the template remains.
-- `analysis_options.yaml` uses very_good_analysis; riverpod_lint plugin config is still a TODO (P1-04).
-- Git: repository on `main`. See the session log for commit status.
+- **App:** runs on the local Flutter 3.44.8 (ADR-001).
+  - Riverpod 3 bootstrap, go_router shell with four tabs (Today, Garden, Plants, Journal) and an adaptive NavigationBar/NavigationRail.
+  - A working Settings screen: theme and units, persisted; licences page.
+  - Tabs show honest empty states; features arrive in Phases 2–6.
+- **Design system in code** (`lib/app/theme/`): tokens, light/dark colour schemes, `CareColors` extension, component themes, bundled Inter + Fraunces fonts.
+- **Core** (`lib/core/`):
+  - `Result`/`AppFailure`, `AppLogger`, `Clock`, `IdGenerator`, `LocalDate`, `Length`/`Area`/`Volume` + formatter;
+  - 11 shared widgets (`lib/core/widgets/`);
+  - drift `AppDatabase` v1 (no tables yet) with schema snapshot.
+- **Localisation:** gen-l10n, `lib/l10n/app_en.arb`.
+- **Git:** `main`. Phase 0 is pushed to GitHub (`CodingwithKetan/terrace-garden`). **Phase 1 is committed locally but not pushed**: pushes fail on this network (KI-006), so push from another network.
 
-## Working in a Claude Code cloud session
+## Toolchain (verified 2026-10-18)
 
-Cloud sessions start from the repo only; conversation history does not carry over, so this file, `TODO.md` and `CLAUDE.md` are the handoff. The environment is Ubuntu with no Flutter or Android SDK preinstalled. Add this as the environment **setup script** at claude.ai/code. It pins the project SDK per ADR-001:
+| Item | Value |
+|---|---|
+| Project SDK | Flutter 3.44.8 / Dart 3.12.2 (local, chosen by user). Latest stable 3.47.7 noted for a future upgrade |
+| Android | SDK 36, emulator `gsrtc_emulator` (Android 16). Debug builds work (KI-007 resolved via `GRADLE_OPTS`). Licences still not accepted (KI-002; only needed to install SDK packages). Play Services overlays on this emulator (KI-009) |
+| iOS | Not buildable on this Windows machine |
+| Network | Corporate TLS inspection: curl revocation checks and Java trust fail; PowerShell downloads work; GitHub pushes from this network fail (KI-006) |
+
+## Last completed tasks
+
+P1-03 → P1-13 and the Phase 1 gate. Only P1-02 (user accepts licences) remains open, and it is non-blocking.
+
+## Exact next steps
+
+1. **Phase 2:**
+   - P2-01: garden domain model, drift tables (schema v2 + generated migration test), repository.
+   - P2-02: offline city → region map.
+   - P2-03: onboarding flow.
+
+## Checks run (latest, 2026-10-18, Windows host)
+
+- `bash tool/check.sh`:
+  - build_runner: OK.
+  - `dart format --set-exit-if-changed`: 0 changed.
+  - `flutter analyze`: **no issues**.
+  - `flutter test`: **149 passed**. Covers core units, dates, Result, IDs/clock, 77 theme contrast checks, settings repository and controller, app navigation and responsive layouts at 360/700/1200 with 200% text, core widgets, 2 alchemist CI goldens, and the in-memory drift DB.
+- `dart analyze`: no issues (after removing the non-loading riverpod_lint plugin, KI-008).
+- `flutter build apk --debug`: **passed** (after the KI-007 fix; first build 502s, 185 MB debug APK).
+- Emulator (Android 16): installed and launched. Verified Today screen, Settings dark theme, setting kept after a cold start, two cold starts open on Today. Integration tests: none exist yet (P2-08).
+
+## Working in a Claude Code cloud session (optional)
+
+The user has paused the cloud move. If it's resumed, add this as the environment setup script at claude.ai/code:
 
 ```bash
 #!/bin/bash
@@ -27,38 +65,4 @@ fi
 /opt/flutter/bin/flutter precache --universal --no-android --no-ios || true
 ```
 
-In the session, use `/opt/flutter/bin/flutter` (or prepend `/opt/flutter/bin` to `PATH`). Format, analyse, unit, widget and golden tests work there. **Android builds, emulator and integration tests do not** (no Android SDK); run those locally on Windows.
-
-## Toolchain (verified 2026-10-18)
-
-| Item | Value |
-|---|---|
-| Flutter (installed, global) | 3.44.8 stable, Dart 3.12.2 (`C:\src\flutter`) |
-| Project SDK | **3.44.8 (local, chosen by user)**; latest stable 3.47.7 noted for a future upgrade |
-| Android | SDK 36 (platform android-37), build-tools 36, emulator `gsrtc_emulator` available; **licences not accepted** |
-| Java | OpenJDK 25 (Android Studio JBR) |
-| iOS | Not buildable on this Windows machine |
-
-## Last completed task
-
-P1-01: SDK decision (local 3.44.8). P1-03 and P1-04 are partly done: project created, dependencies resolved, base lints configured.
-
-## Exact next steps
-
-1. P1-03: replace the template counter app with a minimal `App` bootstrap (`ProviderScope` + `MaterialApp.router`) and an app smoke test; sort pubspec dependencies (lint `sort_pub_dependencies`).
-2. P1-04: configure the riverpod_lint 3.1.3 plugin and `build.yaml` generate_for globs; make `flutter analyze` report zero issues.
-3. Continue P1-05 → P1-11 in TODO order.
-
-## Next actionable tasks
-
-1. **P1-02:** user runs `flutter doctor --android-licenses` (needed for Android builds only).
-2. **P1-03 → P1-11:** create the project, lints, core primitives, theme, fonts, l10n, core widgets, router shell, DB foundation.
-
-## Checks run this phase
-
-- `flutter --version`, `flutter doctor -v`, `flutter devices`, `flutter emulators`: results recorded above.
-- Dependency resolution experiments (research agent, scratch projects): the full candidate set resolves on 3.44.8 only with older pins; the 3.47.7 resolution was still being confirmed when Phase 0 closed (see ADR-001).
-- After project creation and dependency setup (Flutter 3.44.8, Windows):
-  - `dart format --output=none --set-exit-if-changed .`: pass (0 changed).
-  - `flutter test`: pass (1 template smoke test).
-  - `flutter analyze`: **3 infos** (template `lib/main.dart` required-param order, `test/widget_test.dart` closure type, `pubspec.yaml` dependency sort order). To be fixed in P1-03/P1-04.
+Use `/opt/flutter/bin/flutter`. Android builds and integration tests stay local.

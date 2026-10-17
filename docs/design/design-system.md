@@ -23,7 +23,8 @@ Nature-inspired, warm neutrals with a deep green primary. All text/background pa
 | `onFernContainer` | `#0F2A17` | Text on fernContainer |
 | `terracotta` (secondary) | `#A4532F` | Containers/pots on canvas, secondary emphasis |
 | `terracottaContainer` | `#F6DCCD` | Secondary tonal surfaces |
-| `marigold` (tertiary) | `#C98A1C` | Sun, harvest, achievements (never body text on light) |
+| `marigold` | `#C98A1C` | Decorative only: sun, harvest highlights, illustrations (≈2.9:1 on paper, so never text or icons) |
+| `marigoldDeep` (tertiary) | `#855B00` | Tertiary role: text and icons on light surfaces (≈6:1 with white) |
 | `marigoldContainer` | `#FBE7BF` | Tertiary tonal surfaces |
 | `paper` (surface) | `#F7F5EF` | App background |
 | `paperBright` | `#FFFFFF` | Cards, sheets |
@@ -48,7 +49,7 @@ Care categories get a consistent colour + icon pair everywhere (calendar, task t
 | Repot | `#A4532F` | `potted_plant` |
 | Inspect (pests/disease) | `#9A6B00` | `search` / `bug_report` |
 | Sow | `#3F7D5B` | `grass` |
-| Harvest | `#C98A1C` | `nutrition` |
+| Harvest | `#A8700F` | `nutrition` |
 | Success | `#2E7D4F` | `check_circle` |
 | Warning | `#9A6B00` | `warning` |
 
@@ -75,16 +76,17 @@ Strategy: `ThemeMode.system` by default, user override in Settings. Images get a
 
 Two bundled font families (both SIL Open Font License, shipped as assets, so no runtime font download):
 
-- **Display / headings:** *Fraunces* (variable serif). Editorial character for screen titles, plant names, empty-state headlines.
+- **Display / headings:** *Fraunces* (static 72pt optical size; Regular 400 and SemiBold 600 bundled). Editorial character for screen titles, plant names, empty-state headlines.
+- Static font files are bundled (Inter 18pt Regular, Italic, Medium, SemiBold; Fraunces 72pt Regular, SemiBold). Use only these weights. Contrast for every token pair is enforced by `test/app/theme/contrast_test.dart`.
 - **UI / body:** *Inter* (variable sans). High legibility at small sizes, good numerals for dimensions.
 
 Scientific names are rendered in Inter italic.
 
 | Role (M3 TextTheme) | Family | Size / line height | Weight |
 |---|---|---|---|
-| displaySmall | Fraunces | 36 / 44 | 500 |
-| headlineMedium | Fraunces | 28 / 36 | 500 |
-| headlineSmall | Fraunces | 24 / 32 | 500 |
+| displaySmall | Fraunces | 36 / 44 | 400 |
+| headlineMedium | Fraunces | 28 / 36 | 400 |
+| headlineSmall | Fraunces | 24 / 32 | 400 |
 | titleLarge | Inter | 20 / 28 | 600 |
 | titleMedium | Inter | 16 / 24 | 600 |
 | titleSmall | Inter | 14 / 20 | 600 |
@@ -92,8 +94,8 @@ Scientific names are rendered in Inter italic.
 | bodyMedium | Inter | 14 / 20 | 400 |
 | bodySmall | Inter | 12 / 16 | 400 |
 | labelLarge | Inter | 14 / 20 | 600 |
-| labelMedium | Inter | 12 / 16 | 600 |
-| labelSmall | Inter | 11 / 16 | 600 |
+| labelMedium | Inter | 12 / 16 | 500 |
+| labelSmall | Inter | 11 / 16 | 500 |
 
 Rules: body text is never below 12sp. Layouts must survive text scaling to 200% (wrap rather than truncate on critical content). Measurement labels on the canvas use `labelMedium` with tabular figures (`FontFeature.tabularFigures()`).
 

@@ -1,6 +1,24 @@
 # Reusable Components
 
-Status: v0.1 (Phase 0): a **plan**. Components are built in the phase listed, and this document is updated with each component's actual public API when it ships. Styles come from `docs/design/design-system.md`; components must use theme tokens only (no raw colours or sizes).
+Status: v0.2 (2026-10-18). **Phase 1 components are built** in `lib/core/widgets/` and tested in `test/core/widgets/` and `test/goldens/`. Later rows are still a plan.
+
+## Built (Phase 1): public APIs
+
+| Component | File | API summary |
+|---|---|---|
+| `AppButton` | `app_button.dart` | `AppButton(label:, onPressed:, icon?, isLoading, expand)` plus `.secondary`, `.text`, `.destructive`. `onPressed: null` disables. Loading ignores taps but keeps the label |
+| `AppCard` | `app_card.dart` | `AppCard(child:, onTap?, padding, semanticLabel?)` |
+| `ImageCard` | `image_card.dart` | `ImageCard(title:, image?, subtitle?, onTap?, aspectRatio = 4/3, placeholderIcon, imageSemanticLabel?)`. Placeholder when the image is null or fails |
+| `StatusChip` | `status_chip.dart` | `StatusChip(label:, icon:, color:)`. 12% tint, coloured icon, onSurface text |
+| `SelectableChipGroup<T>` | `selectable_chip_group.dart` | `options: List<ChipOption<T>>, selected: Set<T>, onChanged, multiSelect = true, allowEmpty = true` |
+| `SectionHeader` | `section_header.dart` | `SectionHeader(title:, actionLabel?, onAction?)`. Semantic header |
+| `EmptyState` | `empty_state.dart` | `EmptyState(icon:, title:, body:, actionLabel?, onAction?, badge?)`. Action only when it works |
+| `ErrorState` | `error_state.dart` | `ErrorState(failure?, onRetry?)`. `ErrorState.messageFor(l10n, failure)` maps `AppFailure` to copy |
+| `SkeletonBox` / `SkeletonList` | `skeleton.dart` | Pulse disabled under reduced motion. The list announces `semanticLabel` once |
+| `AsyncStateView<T>` | `async_state_view.dart` | `AsyncStateView(value: AsyncValue<T>, data:, loading?, onRetry?)`. Keeps previous data during refresh |
+| Dialogs | `dialogs.dart` | `showConfirmDialog(...) → Future<bool>` (dismiss = false). `showAppBottomSheet<T>(title:, builder:)` (max 90% height) |
+
+Theme access helpers: `context.careColors` (`app/theme/care_colors.dart`) and `context.l10n` (`l10n/l10n.dart`). Styles come from `docs/design/design-system.md`; components must use theme tokens only (no raw colours or sizes).
 
 ## Guidelines
 

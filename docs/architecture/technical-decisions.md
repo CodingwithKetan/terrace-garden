@@ -44,6 +44,7 @@ Change process: add a new ADR (or mark one *Superseded by ADR-0xx*) instead of s
   - Route constants and path params; no codegen initially.
   - Notification taps deep-link (e.g. `/tasks/:taskId`).
 - **Notes:** go_router is first-party and "feature-complete" (bug-fix mode), which we treat as stability.
+- **Material page caveat (Flutter 3.44):** go_router 18 depends on the standalone `material_ui` package and detects Material apps by *that* package's `MaterialApp` type. Our app uses the SDK's `package:flutter/material.dart`, so go_router's default `builder:` would fall back to pages with no transitions. **Rule:** every route uses `pageBuilder` via our `appPage()` helper, which returns the SDK `MaterialPage`. Revisit when migrating to `material_ui` with the SDK upgrade.
 - **Alternative:** auto_route (actively developed, but adds another code generator).
 
 ## ADR-005: Local persistence: drift (SQLite) + shared_preferences for settings
@@ -91,7 +92,8 @@ Change process: add a new ADR (or mark one *Superseded by ADR-0xx*) instead of s
 - **Decision:** `flutter_test`; fakes first; `mocktail ^1.0.5` when needed (no codegen); drift in-memory DB; `alchemist ^0.14.1` for goldens (CI-stable goldens, because rendering differs between Windows and Linux); `integration_test` for journeys; `patrol` later for native dialogs and notifications. A `Clock` abstraction (or `package:clock`) and an ID generator make tests deterministic. Details: `docs/quality/testing-strategy.md`.
 
 ## ADR-011: Lints: very_good_analysis + riverpod_lint
-- **Decision:** `very_good_analysis ^10.3.0` (11.x needs a newer SDK), with `public_member_api_docs` disabled for app code. Generated files are excluded. `riverpod_lint` is enabled as an analysis-server plugin. Any `// ignore:` needs a justification comment.
+- **Decision:** `very_good_analysis ^10.3.0` (11.x needs a newer SDK), with `public_member_api_docs` disabled for app code and `one_member_abstracts` disabled (deliberate single-method DI interfaces, ADR-018). Generated files are excluded. Any `// ignore:` needs a justification comment.
+- **riverpod_lint: deferred.** On Flutter 3.44 the analysis server needs `analysis_server_plugin ^0.3.8`, which riverpod_lint 3.1.3 (the newest compatible with the pinned codegen set) cannot satisfy. The plugin failed to load, so it was removed on 2026-10-18 rather than left silently inactive. Re-add it (`plugins: riverpod_lint: <version>`) with the SDK upgrade, and verify it with a deliberate violation (e.g. `runApp` without `ProviderScope`).
 
 ## ADR-012: Typography and icons: bundled fonts, Material Symbols
 - **Decision:**

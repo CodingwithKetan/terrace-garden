@@ -4,6 +4,27 @@ Newest first. Keep entries concise: goal, what was done, checks, next.
 
 ---
 
+## 2026-10-18: Session 1, part 2 (Phase 1: foundation)
+
+**Done:** P1-03 → P1-10, P1-12, P1-13; P1-11 partly. See TODO for per-task notes.
+
+**Decisions:**
+- Every route uses `appPage()` → SDK `MaterialPage`, because go_router 18 detects Material via the standalone `material_ui` package (ADR-004).
+- Palette contrast fixes: tertiary is `marigoldDeep` #855B00; harvest is #A8700F.
+- Static fonts: Fraunces 72pt 400/600; Inter 18pt.
+- Golden tests use alchemist CI goldens only, for cross-OS determinism.
+- Lint changes: `one_member_abstracts` disabled (DI seams); riverpod_lint removed because it can't load on Dart 3.12 (KI-008).
+
+**Environment findings:**
+- The corporate TLS proxy breaks curl revocation checks and Java/Gradle trust (KI-007); PowerShell downloads work.
+- `flutter build apk` fails at the Gradle wrapper download.
+
+**Checks:** `tool/check.sh` all green (format 0 changed, analyze clean, 149 tests pass); `dart analyze` clean. The APK build first failed (KI-007). With user approval, `GRADLE_OPTS` was set to the existing corporate trust store; the build then passed (502s) and the app was verified on the Android 16 emulator (KI-009 notes Play Services overlays).
+
+**Next:** Phase 2, starting with P2-01 (garden domain, schema v2, repository).
+
+---
+
 ## 2026-10-18: Session 1 (Phase 0: discovery and research)
 
 **Goal:** inspect the environment, research competitors and the gardening domain, define product direction and MVP, plan the architecture, and create continuity docs.

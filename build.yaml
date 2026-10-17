@@ -1,0 +1,29 @@
+# Limit each generator to the folders that use it, to keep builds fast (ADR-006).
+targets:
+  $default:
+    builders:
+      drift_dev:
+        generate_for:
+          - lib/core/database/**.dart
+          - lib/features/*/data/**.dart
+        options:
+          # Store DateTime as ISO-8601 text so values are readable and timezone-explicit.
+          store_date_time_values_as_text: true
+          # Used by `dart run drift_dev make-migrations` for schema snapshots.
+          databases:
+            app_database: lib/core/database/app_database.dart
+          schema_dir: drift_schemas/
+          test_dir: test/drift/
+      freezed:
+        generate_for:
+          - lib/core/**.dart
+          - lib/features/*/domain/**.dart
+          - lib/features/*/application/**.dart
+      json_serializable:
+        generate_for:
+          - lib/core/**.dart
+          - lib/features/*/domain/**.dart
+          - lib/features/*/data/**.dart
+      riverpod_generator:
+        generate_for:
+          - lib/**.dart

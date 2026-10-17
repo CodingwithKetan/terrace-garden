@@ -25,46 +25,46 @@ Every phase ends with the **gate**: `dart format --output=none --set-exit-if-cha
 ## Phase 1: Foundation and design system
 
 - [x] **P1-01 · P0 · SDK decision.** *Done 2026-10-18:* user chose the local Flutter 3.44.8 / Dart 3.12.2; ADR-001 accepted with fallback package pins.
-- [!] **P1-02 · P0 · Accept Android licences.** *Blocked: user must run `flutter doctor --android-licenses` (interactive).*
+- [!] **P1-02 · P1 · Accept Android licences.** *User action:* `flutter doctor --android-licenses`. Not blocking: builds work because the needed SDK components are installed, but licences are required to install or update SDK packages.
   - Acceptance: `flutter doctor` shows no Android toolchain issues.
-- [~] **P1-03 · P0 · Create Flutter project.** *Partly done:* project created and Phase 1 dependencies resolved; template counter app still to be replaced, and pubspec deps need sorting.
+- [x] **P1-03 · P0 · Create Flutter project.** *Done:* project created (`com.terracegarden`), template replaced by `ProviderScope` + `MaterialApp.router` bootstrap; pubspec cleaned and pinned. App smoke tests in `test/app/app_test.dart`. Android launch not yet verified (see P1-11, KI-007).
   - Deps: P1-01.
   - Steps: `flutter create --org <org> --platforms android,ios --project-name terrace_garden .`, preserving existing docs. Remove counter boilerplate. Apply the `material_ui` migration if the 3.47 template needs it.
   - Acceptance: app launches on an Android emulator; `.gitignore` correct; first commit made (with user approval).
   - Tests: default widget test replaced with an app smoke test.
-- [~] **P1-04 · P0 · Lints and codegen config.** *Partly done:* very_good_analysis enabled; riverpod_lint plugin and `build.yaml` pending.
+- [x] **P1-04 · P0 · Lints and codegen config.** *Done:* very_good_analysis 10.3.0 (+2 documented rule changes); `build.yaml` generate_for globs verified with build_runner. **riverpod_lint deferred** (incompatible plugin API on Dart 3.12; KI-008, ADR-011).
   - Work: `analysis_options.yaml` (very_good_analysis + riverpod_lint; exclusions for generated files); `build.yaml` generate_for globs.
   - Acceptance: `flutter analyze` clean.
-- [ ] **P1-05 · P0 · Core primitives.**
+- [x] **P1-05 · P0 · Core primitives.** *Done:* `Result`/`AppFailure`, `AppLogger`, `Clock`, `IdGenerator`, `LocalDate`, `Length`/`Area`/`Volume` + `MeasurementFormatter`; unit tests incl. round-trips and DST case.
   - Work: `Result<T>`/`AppFailure`, `AppLogger`, `Clock`, `IdGenerator`, `LocalDate`, `Length`/`Area`/`UnitSystem` with formatting.
   - Files: `lib/core/{errors,logging,time,ids,units}`.
   - Tests: unit tests incl. unit round-trips (1e-6 tolerance) and display rounding.
-- [ ] **P1-06 · P0 · Theme.**
+- [x] **P1-06 · P0 · Theme.** *Done:* tokens, light/dark schemes, `CareColors` extension, component themes; 77 contrast checks pass. Fixed two palette contrast failures (marigold → tertiary `marigoldDeep`; harvest colour).
   - Work: tokens (`AppColors`, `AppSpacing`, `AppRadii`, `AppMotion`), light/dark `ThemeData`, `ThemeExtension`s (care colours, canvas colours).
   - Files: `lib/app/theme/`.
   - Acceptance: matches design-system §2–5.
   - Tests: contrast test for all text/background token pairs (≥ 4.5:1 body, ≥ 3:1 large/UI).
-- [ ] **P1-07 · P0 · Fonts.**
+- [x] **P1-07 · P0 · Fonts.** *Done:* static Inter 18pt (400/400i/500/600) and Fraunces 72pt (400/600) bundled; OFL licences registered.
   - Work: bundle Fraunces and Inter (OFL) and register their licences.
   - Acceptance: fonts render offline; licences visible in the Flutter licences page.
-- [ ] **P1-08 · P0 · Localisation.**
+- [x] **P1-08 · P0 · Localisation.** *Done:* gen-l10n with `lib/l10n/app_en.arb`; all shell strings localised.
   - Work: gen-l10n setup (`l10n.yaml`, `lib/l10n/app_en.arb`).
   - Acceptance: all shell strings come from ARB.
-- [ ] **P1-09 · P0 · Core widgets (first set).**
+- [x] **P1-09 · P0 · Core widgets (first set).** *Done:* AppButton, AppCard, ImageCard, StatusChip, SelectableChipGroup, SectionHeader, EmptyState, ErrorState, Skeleton, AsyncStateView, dialogs; widget tests + alchemist CI goldens (light/dark).
   - Components: AppButton, AppCard, ImageCard, StatusChip, SelectableChipGroup, SectionHeader, EmptyState, ErrorState, Skeleton, AsyncStateView, ConfirmDialog, AppBottomSheet (see `reusable-components.md`).
   - Tests: widget tests (states, semantics, ≥48dp targets, text scale 2.0); goldens for buttons/cards/chips in light and dark.
-- [ ] **P1-10 · P0 · Router and app shell.**
+- [x] **P1-10 · P0 · Router and app shell.** *Done:* go_router `StatefulShellRoute` with 4 tabs, adaptive NavigationBar/Rail, settings route; empty states without dead buttons; tests at 360/700/1200 widths and 200% text.
   - Work: go_router with `StatefulShellRoute` (Today, Garden, Plants, Journal); responsive NavigationBar/NavigationRail; each tab shows its designed empty state with a real next action (no dead buttons); Settings route.
   - Tests: widget tests for navigation and layout at 360/700/1200 widths.
-- [ ] **P1-11 · P0 · Database foundation.**
+- [x] **P1-11 · P0 · Database foundation.** *Done:* drift `AppDatabase` v1, provider, FK pragma, schema snapshot (`drift_schemas/`); in-memory test passes on the Windows host; `flutter build apk --debug` succeeds and the app runs on the Android 16 emulator.
   - Work: drift `AppDatabase` (empty schema v1 + migration test harness + schema dump); provider wiring.
   - Acceptance: an in-memory DB test passes on Windows host (verifies sqlite3 build hooks, KI-005); Android debug build succeeds.
-- [ ] **P1-12 · P1 · Settings skeleton.**
+- [x] **P1-12 · P1 · Settings skeleton.** *Done:* SettingsRepository (SharedPreferencesAsync), optimistic controller with rollback, theme + units working end to end, licences page.
   - Work: SettingsRepository (SharedPreferencesAsync), theme mode and unit system working end to end; About screen listing licences.
   - Tests: repository and view-model tests.
-- [ ] **P1-13 · P1 · Developer tooling.**
+- [x] **P1-13 · P1 · Developer tooling.** *Done:* `tool/check.sh` and `tool/check.ps1`. CI workflow deferred until CI is wanted.
   - Work: `tool/check.ps1` / `tool/check.sh` running the gate; README run/test instructions; optional GitHub Actions workflow file (not activated until a remote exists).
-- [ ] **P1-GATE** Phase 1 quality gate + docs update.
+- [x] **P1-GATE** Phase 1 quality gate (2026-10-18). Format, `flutter analyze`, `dart analyze` and 149 tests pass. Debug APK built (502s first build) and verified on the emulator: Today screen, Settings dark theme, setting kept after a cold start, two clean cold starts open on Today. No integration tests yet (the first is P2-08).
 
 ## Phase 2: Garden setup and profile
 
@@ -179,6 +179,7 @@ Every phase ends with the **gate**: `dart format --output=none --set-exit-if-cha
 - [ ] **P6-03 · P1 · Data export** (ZIP JSON + photos) and **P0** delete all data.
 - [ ] **P6-04 · P1 · "Start from a kit" preset** (S1). Requires KI-014 verification.
 - [ ] **P6-05 · P0 · Accessibility audit.** Semantics, text scale 200%, contrast, tap targets; canvas list parity.
+- [ ] **P6-10 · P1 · Branding.** App name, launcher icon and splash screen (the default Flutter splash still shows at launch). Needs PD-001 (name).
 - [ ] **P6-06 · P0 · Responsive pass** (medium/expanded layouts) and motion polish with reduced-motion support.
 - [ ] **P6-07 · P0 · Performance profiling.** Cold start, canvas fps with 100 objects, image grids.
 - [ ] **P6-08 · P0 · End-to-end integration suite** across all critical journeys.
