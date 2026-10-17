@@ -6,6 +6,7 @@ import 'package:terrace_garden/features/care/presentation/today_screen.dart';
 import 'package:terrace_garden/features/garden/presentation/garden_home_screen.dart';
 import 'package:terrace_garden/features/journal/presentation/journal_screen.dart';
 import 'package:terrace_garden/features/plant_catalog/presentation/plants_home_screen.dart';
+import 'package:terrace_garden/features/settings/presentation/image_credits_screen.dart';
 import 'package:terrace_garden/features/settings/presentation/settings_screen.dart';
 
 part 'app_router.g.dart';
@@ -16,6 +17,7 @@ abstract final class AppRoutes {
   static const plants = '/plants';
   static const journal = '/journal';
   static const settings = '/settings';
+  static const imageCredits = '/settings/credits';
 }
 
 /// Wraps a screen in the SDK's [MaterialPage].
@@ -49,6 +51,14 @@ GoRouter appRouter(Ref ref) {
         path: AppRoutes.settings,
         parentNavigatorKey: _rootNavigatorKey,
         pageBuilder: (context, state) => appPage(state, const SettingsScreen()),
+        routes: [
+          GoRoute(
+            path: 'credits',
+            parentNavigatorKey: _rootNavigatorKey,
+            pageBuilder: (context, state) =>
+                appPage(state, const ImageCreditsScreen()),
+          ),
+        ],
       ),
     ],
   );

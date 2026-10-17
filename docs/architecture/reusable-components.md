@@ -17,6 +17,10 @@ Status: v0.2 (2026-10-18). **Phase 1 components are built** in `lib/core/widgets
 | `SkeletonBox` / `SkeletonList` | `skeleton.dart` | Pulse disabled under reduced motion. The list announces `semanticLabel` once |
 | `AsyncStateView<T>` | `async_state_view.dart` | `AsyncStateView(value: AsyncValue<T>, data:, loading?, onRetry?)`. Keeps previous data during refresh |
 | Dialogs | `dialogs.dart` | `showConfirmDialog(...) → Future<bool>` (dismiss = false). `showAppBottomSheet<T>(title:, builder:)` (max 90% height) |
+| `GlassPanel` | `glass_panel.dart` | `GlassPanel(child:, padding = 20, borderRadius = 28)`. Frosted surface; opaque under high contrast. Use only over photos (design-system §2.4) |
+| `GlassIconButton` | `glass_icon_button.dart` | `GlassIconButton(icon:, tooltip:, onPressed:)`. Round glass action over photos, 48dp target |
+| `PhotoBackdrop` | `photo_backdrop.dart` | `PhotoBackdrop(image:, child:, alignment)`. Full-bleed decorative photo, top scrim, light status bar |
+| `ImmersiveEmptyState` | `immersive_empty_state.dart` | `ImmersiveEmptyState(screenTitle:, image:, icon:, title:, body:, badge?, actionLabel?, onAction?, photoAlignment)`. Photo + title + glass message panel. Scrolls at large text sizes |
 
 Theme access helpers: `context.careColors` (`app/theme/care_colors.dart`) and `context.l10n` (`l10n/l10n.dart`). Styles come from `docs/design/design-system.md`; components must use theme tokens only (no raw colours or sizes).
 

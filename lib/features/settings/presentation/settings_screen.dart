@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:terrace_garden/app/router/app_router.dart';
 import 'package:terrace_garden/app/theme/app_tokens.dart';
 import 'package:terrace_garden/core/errors/result.dart';
 import 'package:terrace_garden/core/units/measurements.dart';
@@ -122,6 +124,14 @@ class _SettingsList extends ConsumerWidget {
             ),
             const SizedBox(height: AppSpacing.xxl),
             SectionHeader(title: l10n.settingsAbout),
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.photo_outlined),
+              title: Text(l10n.imageCreditsTitle),
+              subtitle: Text(l10n.imageCreditsSubtitle),
+              trailing: const Icon(Icons.chevron_right_rounded),
+              onTap: () => context.push(AppRoutes.imageCredits),
+            ),
             ListTile(
               contentPadding: EdgeInsets.zero,
               leading: const Icon(Icons.description_outlined),

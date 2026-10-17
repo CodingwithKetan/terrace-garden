@@ -21,6 +21,16 @@
   "journalEmptyBody": "Progress photos, notes and harvests will collect here once your garden is growing.",
   "comingSoonLabel": "Coming soon",
 
+  "greetingMorning": "Good morning",
+  "greetingAfternoon": "Good afternoon",
+  "greetingEvening": "Good evening",
+  "todayCareHeading": "Today's care",
+  "todayNoTasks": "No care tasks yet",
+  "tipWateringTitle": "Before you water",
+  "tipWateringBody": "Push a finger about 2–3 cm into the soil. Water only if it feels dry, then water slowly until it drains from the bottom of the pot.",
+  "tipWateringSource": "Source: Royal Horticultural Society",
+  "@tipWateringSource": { "description": "Provenance for the watering tip (gardening-references S5, S6)." },
+
   "settingsAppearance": "Appearance",
   "settingsTheme": "Theme",
   "themeSystem": "System",
@@ -32,6 +42,10 @@
   "settingsAbout": "About",
   "settingsLicences": "Open-source licences",
   "settingsLicencesSubtitle": "Fonts and software used in this app",
+  "imageCreditsTitle": "Image credits",
+  "imageCreditsSubtitle": "Photographers and licences for the photos in this app",
+  "imageCreditsBy": "Photo by {author}",
+  "@imageCreditsBy": { "placeholders": { "author": { "type": "String" } } },
   "settingsVersion": "Version {version}",
   "@settingsVersion": { "placeholders": { "version": { "type": "String" } } },
 

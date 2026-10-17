@@ -12,7 +12,7 @@ Last updated: 2026-10-18
   - Riverpod 3 bootstrap, go_router shell with four tabs (Today, Garden, Plants, Journal) and an adaptive NavigationBar/NavigationRail.
   - A working Settings screen: theme and units, persisted; licences page.
   - Tabs show honest empty states; features arrive in Phases 2–6.
-- **Design system in code** (`lib/app/theme/`): tokens, light/dark colour schemes, `CareColors` extension, component themes, bundled Inter + Fraunces fonts.
+- **Design system in code** (`lib/app/theme/`): tokens, light/dark colour schemes, `CareColors` and `GlassTheme` extensions, component themes, bundled Inter + Fraunces fonts. **Visual direction v0.2 "real, modern, translucent"**: photo backdrops, glass panels, floating glass navigation (design-system §2.4). Awaiting user feedback before Phase 2.
 - **Core** (`lib/core/`):
   - `Result`/`AppFailure`, `AppLogger`, `Clock`, `IdGenerator`, `LocalDate`, `Length`/`Area`/`Volume` + formatter;
   - 11 shared widgets (`lib/core/widgets/`);

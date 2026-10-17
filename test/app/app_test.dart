@@ -67,6 +67,16 @@ void main() {
     expect(find.text('Your garden day starts here'), findsOneWidget);
   });
 
+  testWidgets('image credits are reachable from settings', (tester) async {
+    await pumpApp(tester);
+    await tester.tap(find.byTooltip('Settings'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Image credits'));
+    await tester.pumpAndSettle();
+    expect(find.text('Photo by Suresh Khole'), findsWidgets);
+  });
+
   testWidgets('shows an error message when saving a setting fails', (
     tester,
   ) async {

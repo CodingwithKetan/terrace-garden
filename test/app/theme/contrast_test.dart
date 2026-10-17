@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:terrace_garden/app/theme/app_colors.dart';
 import 'package:terrace_garden/app/theme/care_colors.dart';
+import 'package:terrace_garden/app/theme/glass_theme.dart';
 
 /// WCAG 2.x contrast ratio between two opaque colours.
 double contrastRatio(Color a, Color b) {
@@ -96,6 +97,40 @@ void main() {
       }
     });
   }
+
+  group('glass surfaces', () {
+    // Glass sits over arbitrary photos, so text must pass over the tint
+    // composited on both extremes: a pure black and a pure white backdrop.
+    for (final (name, scheme, glass) in [
+      ('light', AppColorSchemes.light, GlassTheme.light),
+      ('dark', AppColorSchemes.dark, GlassTheme.dark),
+    ]) {
+      for (final (backdropName, backdrop) in [
+        ('black', Colors.black),
+        ('white', Colors.white),
+      ]) {
+        test(
+          '$name: onSurface on glass over $backdropName meets $bodyText:1',
+          () {
+            final surface = Color.alphaBlend(glass.tint, backdrop);
+            expect(
+              contrastRatio(scheme.onSurface, surface),
+              greaterThanOrEqualTo(bodyText),
+            );
+          },
+        );
+      }
+
+      test('$name: text on photos over the scrim meets 4.5:1 '
+          '(worst case: white photo)', () {
+        final scrimmed = Color.alphaBlend(glass.photoScrim, Colors.white);
+        expect(
+          contrastRatio(glass.onPhoto, scrimmed),
+          greaterThanOrEqualTo(bodyText),
+        );
+      });
+    }
+  });
 
   test('decorative marigold is not used for text on light surfaces', () {
     // Guard against regressions: if marigold ever becomes a text colour it

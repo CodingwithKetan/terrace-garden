@@ -1,10 +1,16 @@
 # Design System
 
-Status: v0.1 (Phase 0 draft). This is the single source of truth for visual and interaction decisions. It will be implemented in `lib/app/theme/` (Phase 1) as a Material 3 `ThemeData` plus `ThemeExtension`s for garden-specific tokens. Screens must not use raw colours, font sizes or magic spacing numbers.
+Status: v0.2 (2026-10-18). Implemented in `lib/app/theme/` as a Material 3 `ThemeData` plus `ThemeExtension`s (`CareColors`, `GlassTheme`). Screens must not use raw colours, font sizes or magic spacing numbers.
+
+**Visual direction (v0.2, requested by the product owner): "real, modern, translucent."**
+- Top-level screens sit on **real garden photography**: full-bleed, sharp, licensed.
+- Content floats on **frosted-glass panels** (§2.4), and navigation is a floating glass pill.
+- Detail and form screens (e.g. Settings) stay on solid surfaces for readability and performance.
+- This replaces the v0.1 caution against glass effects, under the guard-rails in §2.4.
 
 ## 1. Design principles
 
-1. **Calm and editorial.** Generous whitespace, a restrained palette, a serif display face and real plant photography. The product should feel like a good gardening magazine, not a dashboard.
+1. **Real, modern, translucent.** Real photos of terraces, balconies and plants set the mood; glass panels keep content readable on top of them. Serif display type gives an editorial feel; generous rounding and space keep it modern. It should feel like a premium gardening magazine, not a dashboard.
 2. **Practical first.** Every screen answers "what should I do next?" Decoration never competes with the task, the plant, or the garden canvas.
 3. **Honest about certainty.** Estimates, AI concepts and schedules are visibly labelled as guidance ("Check the soil first"). Confidence and provenance are part of the UI, not hidden.
 4. **Touch-native canvas.** The garden designer is a primary surface. It gets the most space, the clearest affordances and the largest touch targets.
@@ -71,6 +77,25 @@ Dark theme is a first-class theme, not an inversion. Surfaces are deep forest to
 | `outlineVariant` | `#3A453F` |
 
 Strategy: `ThemeMode.system` by default, user override in Settings. Images get a subtle 8% scrim in dark mode only when text overlays them.
+
+### 2.4 Glass and photography (`GlassTheme`, `GlassPanel`, `PhotoBackdrop`)
+
+| Token | Light | Dark | Purpose |
+|---|---|---|---|
+| `tint` | white @ 66% (`#A8FFFFFF`) | forest @ 72% (`#B8121815`) | Fill over the blurred backdrop |
+| `border` | white @ 55% | white @ 12% | Hairline edge that defines the glass |
+| `blurSigma` | 20 | 20 | Backdrop blur |
+| `photoScrim` | black @ 55% | black @ 62% | Top-of-photo gradient behind white text |
+| `onPhoto` | white | white | Text and icons placed directly on photos |
+
+Rules (guard-rails):
+1. **Glass only over photography.** Over flat colour the blur costs performance and adds nothing; use solid surfaces there.
+2. **Text on glass uses `onSurface` only.** Hierarchy comes from size and weight, not grey text: `onSurfaceVariant` drops to about 2.7:1 over dark photo regions. The tint opacity is tested so `onSurface` keeps at least 4.5:1 even over pure black or pure white backdrops.
+3. **Text directly on photos** sits in the top scrim zone and uses `onPhoto`. It is tested at at least 4.5:1 over a white photo plus scrim.
+4. **High contrast:** when the platform requests it, `GlassPanel` renders an opaque surface without blur.
+5. **Budget:** at most about 4 blurred panels visible at once (each `BackdropFilter` is a GPU pass). Profile on a mid-range device in P6-07.
+6. **Radii:** panels 28, navigation pill 32, round glass buttons 24.
+7. **Layouts with photos must scroll** when content exceeds the screen (200% text), never overflow. Tested in `glass_widgets_test.dart`.
 
 ## 3. Typography
 
@@ -180,8 +205,10 @@ Every data-driven screen implements all applicable states explicitly using share
 
 ## 11. Imagery
 
-- Real plant photography for catalogue and empty states, bundled at controlled resolution (WebP, ≤ 1200px long edge, ≤ ~150KB).
-- **Licensing:** only images with a licence that permits bundling in an app (own photos, CC0, CC BY with attribution, or licences such as Unsplash/Pexels after review). Every bundled image has an entry in `assets/images/ATTRIBUTION.md` (source, author, licence). No competitor assets.
+- **Screen backdrops (full-bleed):** portrait crops at 3:5, max 1440×2400, JPEG quality ~78 (≈400–700 KB each). Sharpness matters: never stretch a landscape photo to fill a portrait screen (a 1300 px landscape image upscaled about 3× looked soft and was rejected in v0.2).
+- **Cards and catalogue thumbnails:** ≤ 1200px long edge, ≤ ~150 KB (WebP or JPEG).
+- **Subjects:** real terraces, balconies, containers and edible plants. Prefer scenes that resemble Indian terraces (grow bags, terracotta, concrete parapets) as the library grows. No people in backdrops.
+- **Licensing:** own photos, CC0/public domain, CC BY, or CC BY-SA (crops of BY-SA images are BY-SA). Every bundled image has an entry in `assets/images/ATTRIBUTION.md` **and** in `photoCredits` (shown in Settings → Image credits). No competitor assets. Openverse and Wikimedia Commons are the sourcing tools used so far.
 - Fallback: a tasteful category illustration/placeholder when a plant has no licensed photo.
 - User photos are shown with `BoxFit.cover`, rounded `shapeMd`, and are never upscaled beyond their resolution.
 

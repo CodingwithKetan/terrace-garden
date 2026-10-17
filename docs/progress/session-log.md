@@ -4,6 +4,29 @@ Newest first. Keep entries concise: goal, what was done, checks, next.
 
 ---
 
+## 2026-10-18: Session 1, part 3 (visual refresh before Phase 2)
+
+**Request:** the user found the flat design "not good" and asked for a "realistic, modern and transparent" look in line with the product idea.
+
+**Done:**
+- New direction in design-system v0.2 "real, modern, translucent": full-bleed photography, frosted-glass panels, floating glass navigation pill.
+- New tokens: `GlassTheme`. New components: `GlassPanel`, `GlassIconButton`, `PhotoBackdrop`, `ImmersiveEmptyState`.
+- Today: date and greeting over the photo, a glass "Today's care" card, and a sourced watering tip (RHS S5/S6).
+- Garden, Plants and Journal use immersive photo screens.
+- Image credits screen (Settings → Image credits) for the CC BY-SA licences.
+- Photos: the first pass (rawpixel CC0, 1300 px landscape) looked soft when stretched to portrait and was replaced. Four Wikimedia Commons originals (3× CC BY-SA 4.0, 1× public domain) were cropped to portrait at 1440×2400 (about 2.1 MB in total).
+
+**Bugs found by the new tests:**
+- The immersive panel overflowed at 200% text on small phones. Fixed: the layout now scrolls when needed and the badge wraps under the icon.
+
+**Checks:**
+- Analyze clean; 162 tests pass (adds glass contrast tests over black and white backdrops, a high-contrast fallback test and a credits navigation test).
+- Verified on the emulator: all four tabs, screenshots reviewed.
+
+**Note:** the stored theme on the emulator had changed from Dark to System and the app once opened on Journal; most likely manual taps in the emulator window (KI-009).
+
+---
+
 ## 2026-10-18: Session 1, part 2 (Phase 1: foundation)
 
 **Done:** P1-03 → P1-10, P1-12, P1-13; P1-11 partly. See TODO for per-task notes.

@@ -61,6 +61,31 @@ class AppLocalizationsEn extends AppLocalizations {
   String get comingSoonLabel => 'Coming soon';
 
   @override
+  String get greetingMorning => 'Good morning';
+
+  @override
+  String get greetingAfternoon => 'Good afternoon';
+
+  @override
+  String get greetingEvening => 'Good evening';
+
+  @override
+  String get todayCareHeading => 'Today\'s care';
+
+  @override
+  String get todayNoTasks => 'No care tasks yet';
+
+  @override
+  String get tipWateringTitle => 'Before you water';
+
+  @override
+  String get tipWateringBody =>
+      'Push a finger about 2–3 cm into the soil. Water only if it feels dry, then water slowly until it drains from the bottom of the pot.';
+
+  @override
+  String get tipWateringSource => 'Source: Royal Horticultural Society';
+
+  @override
   String get settingsAppearance => 'Appearance';
 
   @override
@@ -92,6 +117,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsLicencesSubtitle => 'Fonts and software used in this app';
+
+  @override
+  String get imageCreditsTitle => 'Image credits';
+
+  @override
+  String get imageCreditsSubtitle =>
+      'Photographers and licences for the photos in this app';
+
+  @override
+  String imageCreditsBy(String author) {
+    return 'Photo by $author';
+  }
 
   @override
   String settingsVersion(String version) {

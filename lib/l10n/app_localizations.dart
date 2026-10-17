@@ -190,6 +190,54 @@ abstract class AppLocalizations {
   /// **'Coming soon'**
   String get comingSoonLabel;
 
+  /// No description provided for @greetingMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Good morning'**
+  String get greetingMorning;
+
+  /// No description provided for @greetingAfternoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Good afternoon'**
+  String get greetingAfternoon;
+
+  /// No description provided for @greetingEvening.
+  ///
+  /// In en, this message translates to:
+  /// **'Good evening'**
+  String get greetingEvening;
+
+  /// No description provided for @todayCareHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s care'**
+  String get todayCareHeading;
+
+  /// No description provided for @todayNoTasks.
+  ///
+  /// In en, this message translates to:
+  /// **'No care tasks yet'**
+  String get todayNoTasks;
+
+  /// No description provided for @tipWateringTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Before you water'**
+  String get tipWateringTitle;
+
+  /// No description provided for @tipWateringBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Push a finger about 2–3 cm into the soil. Water only if it feels dry, then water slowly until it drains from the bottom of the pot.'**
+  String get tipWateringBody;
+
+  /// Provenance for the watering tip (gardening-references S5, S6).
+  ///
+  /// In en, this message translates to:
+  /// **'Source: Royal Horticultural Society'**
+  String get tipWateringSource;
+
   /// No description provided for @settingsAppearance.
   ///
   /// In en, this message translates to:
@@ -255,6 +303,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Fonts and software used in this app'**
   String get settingsLicencesSubtitle;
+
+  /// No description provided for @imageCreditsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Image credits'**
+  String get imageCreditsTitle;
+
+  /// No description provided for @imageCreditsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Photographers and licences for the photos in this app'**
+  String get imageCreditsSubtitle;
+
+  /// No description provided for @imageCreditsBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo by {author}'**
+  String imageCreditsBy(String author);
 
   /// No description provided for @settingsVersion.
   ///

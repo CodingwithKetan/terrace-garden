@@ -3,15 +3,22 @@ import 'package:terrace_garden/app/theme/app_colors.dart';
 import 'package:terrace_garden/app/theme/app_tokens.dart';
 import 'package:terrace_garden/app/theme/app_typography.dart';
 import 'package:terrace_garden/app/theme/care_colors.dart';
+import 'package:terrace_garden/app/theme/glass_theme.dart';
 
 /// Builds the light and dark themes from design tokens
 /// (design-system.md §7 component rules).
 abstract final class AppTheme {
-  static ThemeData light() => _build(AppColorSchemes.light, CareColors.light);
+  static ThemeData light() =>
+      _build(AppColorSchemes.light, CareColors.light, GlassTheme.light);
 
-  static ThemeData dark() => _build(AppColorSchemes.dark, CareColors.dark);
+  static ThemeData dark() =>
+      _build(AppColorSchemes.dark, CareColors.dark, GlassTheme.dark);
 
-  static ThemeData _build(ColorScheme colors, CareColors careColors) {
+  static ThemeData _build(
+    ColorScheme colors,
+    CareColors careColors,
+    GlassTheme glass,
+  ) {
     final text = AppTypography.textTheme(colors);
     const pill = StadiumBorder();
     const buttonSize = Size(64, AppSizes.buttonHeight);
@@ -23,7 +30,7 @@ abstract final class AppTheme {
       textTheme: text,
       fontFamily: AppTypography.ui,
       scaffoldBackgroundColor: colors.surface,
-      extensions: [careColors],
+      extensions: [careColors, glass],
       visualDensity: VisualDensity.standard,
       materialTapTargetSize: MaterialTapTargetSize.padded,
       appBarTheme: AppBarTheme(
