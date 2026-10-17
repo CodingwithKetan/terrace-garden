@@ -7,6 +7,7 @@ Last updated: 2026-10-18 (Phase 0).
 | ID | Issue | Impact | Resolution |
 |---|---|---|---|
 | ~~KI-001~~ | **Resolved 2026-10-18:** stay on local Flutter 3.44.8 with fallback pins (ADR-001) | Some packages are a few minor versions behind | Plan an SDK upgrade with 3.50 |
+| KI-006 | **Pushing to GitHub fails on this machine:** `git push` to `github.com/CodingwithKetan/terrace-garden` gets "curl 55 Connection was reset" (reads such as `ls-remote` work; the pack is only 178 KB). Likely a corporate network/security control (Axis Security client present) | Can't push or use cloud sessions from this machine | Push from a network/machine where personal GitHub uploads are allowed, or check with IT. Remote `origin` is already configured |
 | KI-002 | **Android SDK licences not accepted** (`flutter doctor`) | Android builds will fail | User runs `flutter doctor --android-licenses` (interactive) |
 
 ## Environment limitations
