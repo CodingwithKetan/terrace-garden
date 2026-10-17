@@ -605,6 +605,207 @@ class AppLocalizationsEn extends AppLocalizations {
       'Sources: Royal Horticultural Society; University of Maryland Extension';
 
   @override
+  String get designOpen => 'Design your layout';
+
+  @override
+  String get designOpenSubtitle => 'Arrange pots, grow bags and beds to scale';
+
+  @override
+  String layoutObjectCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count objects in your layout',
+      one: '1 object in your layout',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get designerTitle => 'Layout';
+
+  @override
+  String get designerAdd => 'Add';
+
+  @override
+  String get designerUndo => 'Undo';
+
+  @override
+  String get designerRedo => 'Redo';
+
+  @override
+  String get designerObjects => 'Objects';
+
+  @override
+  String get designerSummary => 'Space summary';
+
+  @override
+  String get designerSnap => 'Snap';
+
+  @override
+  String get designerFit => 'Fit to screen';
+
+  @override
+  String get designerSaved => 'Saved';
+
+  @override
+  String get designerSaving => 'Saving…';
+
+  @override
+  String get designerNotSaved => 'Not saved yet';
+
+  @override
+  String get designerSaveFailed =>
+      'Couldn\'t save. Your changes are kept and will be saved again.';
+
+  @override
+  String get designerEmptyHint =>
+      'Tap Add to place pots, grow bags, beds and more.';
+
+  @override
+  String get designerNeedsSizeTitle => 'Add your garden\'s size';
+
+  @override
+  String get designerNeedsSizeBody =>
+      'The layout uses real measurements, so it needs the length and width of the usable floor.';
+
+  @override
+  String get designerStart => 'Start designing';
+
+  @override
+  String designerProblems(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count problems',
+      one: '1 problem',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String designerCanvasLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count objects',
+      one: '1 object',
+      zero: 'no objects',
+    );
+    return 'Garden layout, $_temp0. Use the Objects list to review and edit them.';
+  }
+
+  @override
+  String get issueOutOfBounds => 'Outside the garden';
+
+  @override
+  String get issueOverlap => 'Overlaps another object';
+
+  @override
+  String get issueOnPath => 'Standing on a path';
+
+  @override
+  String get paletteContainers => 'Containers';
+
+  @override
+  String get paletteStructures => 'Structures';
+
+  @override
+  String get paletteOther => 'Other';
+
+  @override
+  String get kindRoundPot => 'Round pot';
+
+  @override
+  String get kindRectPlanter => 'Planter box';
+
+  @override
+  String get kindGrowBag => 'Grow bag';
+
+  @override
+  String get kindRaisedBed => 'Raised bed';
+
+  @override
+  String get kindVerticalPlanter => 'Vertical planter';
+
+  @override
+  String get kindWall => 'Wall';
+
+  @override
+  String get kindRailing => 'Railing';
+
+  @override
+  String get kindPath => 'Path';
+
+  @override
+  String get kindWaterPoint => 'Water tap';
+
+  @override
+  String get inspectorTitle => 'Edit object';
+
+  @override
+  String get fieldDiameter => 'Diameter';
+
+  @override
+  String get fieldDepth => 'Soil depth';
+
+  @override
+  String get fieldRotation => 'Rotation';
+
+  @override
+  String get fieldLabel => 'Label (optional)';
+
+  @override
+  String get fieldLabelHint => 'e.g. Tomatoes';
+
+  @override
+  String degreesValue(int degrees) {
+    return '$degrees°';
+  }
+
+  @override
+  String get actionRotate => 'Rotate 90°';
+
+  @override
+  String get actionDuplicate => 'Duplicate';
+
+  @override
+  String get actionDone => 'Done';
+
+  @override
+  String get unitCmShort => 'cm';
+
+  @override
+  String get unitInShort => 'in';
+
+  @override
+  String get objectsEmpty => 'No objects yet';
+
+  @override
+  String get summaryGardenArea => 'Garden area';
+
+  @override
+  String get summaryContainerArea => 'Covered by containers';
+
+  @override
+  String summaryContainerShare(int percent) {
+    return '$percent% of the floor';
+  }
+
+  @override
+  String get summaryWalkway => 'Paths';
+
+  @override
+  String get summarySoil => 'Soil needed';
+
+  @override
+  String get summaryCounts => 'Objects';
+
+  @override
+  String get summaryNote =>
+      'Soil is each container\'s footprint × the soil depth you entered. Fill grow bags to about three quarters (Kerala Agricultural University) and check the weight guidance in the terrace checklist.';
+
+  @override
   String get settingsAppearance => 'Appearance';
 
   @override

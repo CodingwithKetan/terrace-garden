@@ -22,6 +22,7 @@ import 'package:terrace_garden/features/garden/domain/garden_photo.dart';
 import 'package:terrace_garden/features/garden/presentation/garden_labels.dart';
 import 'package:terrace_garden/features/garden/presentation/photo_actions.dart';
 import 'package:terrace_garden/features/garden/presentation/widgets/garden_cover.dart';
+import 'package:terrace_garden/features/garden_designer/data/designer_providers.dart';
 import 'package:terrace_garden/features/settings/application/settings_controller.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
@@ -169,6 +170,8 @@ class _Overview extends ConsumerWidget {
             children: [
               Text(subtitle, style: theme.textTheme.titleMedium),
               const SizedBox(height: AppSpacing.lg),
+              _DesignCard(garden: garden),
+              const SizedBox(height: AppSpacing.xl),
               _Section(
                 title: l10n.gardenSectionSpace,
                 children: [
@@ -478,6 +481,66 @@ class _AddPhotoTile extends StatelessWidget {
               Icon(Icons.add_a_photo_outlined, color: colors.primary),
               const SizedBox(height: AppSpacing.xs),
               Text(label, style: Theme.of(context).textTheme.labelMedium),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _DesignCard extends ConsumerWidget {
+  const _DesignCard({required this.garden});
+
+  final Garden garden;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
+    final theme = Theme.of(context);
+    final count = ref.watch(layoutElementsProvider(garden.id)).value?.length;
+    final subtitle = (count == null || count == 0)
+        ? l10n.designOpenSubtitle
+        : l10n.layoutObjectCount(count);
+
+    return Material(
+      color: theme.colorScheme.primaryContainer,
+      borderRadius: AppRadii.mdAll,
+      child: InkWell(
+        borderRadius: AppRadii.mdAll,
+        onTap: () => context.push(AppRoutes.gardenDesign(garden.id)),
+        child: Padding(
+          padding: const EdgeInsets.all(AppSpacing.lg),
+          child: Row(
+            children: [
+              Icon(
+                Icons.dashboard_customize_outlined,
+                color: theme.colorScheme.onPrimaryContainer,
+              ),
+              const SizedBox(width: AppSpacing.lg),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      l10n.designOpen,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        color: theme.colorScheme.onPrimaryContainer,
+                      ),
+                    ),
+                    Text(
+                      subtitle,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: theme.colorScheme.onPrimaryContainer,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(
+                Icons.chevron_right_rounded,
+                color: theme.colorScheme.onPrimaryContainer,
+              ),
             ],
           ),
         ),

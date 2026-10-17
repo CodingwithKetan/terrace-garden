@@ -1720,16 +1720,685 @@ class GardenPhotosCompanion extends UpdateCompanion<GardenPhotoRow> {
   }
 }
 
+class $LayoutElementsTable extends LayoutElements
+    with TableInfo<$LayoutElementsTable, LayoutElementRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $LayoutElementsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _gardenIdMeta = const VerificationMeta(
+    'gardenId',
+  );
+  @override
+  late final GeneratedColumn<String> gardenId = GeneratedColumn<String>(
+    'garden_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES gardens (id) ON DELETE CASCADE',
+    ),
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<ElementKind, String> kind =
+      GeneratedColumn<String>(
+        'kind',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: true,
+      ).withConverter<ElementKind>($LayoutElementsTable.$converterkind);
+  static const VerificationMeta _centerXMeta = const VerificationMeta(
+    'centerX',
+  );
+  @override
+  late final GeneratedColumn<double> centerX = GeneratedColumn<double>(
+    'center_x',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _centerYMeta = const VerificationMeta(
+    'centerY',
+  );
+  @override
+  late final GeneratedColumn<double> centerY = GeneratedColumn<double>(
+    'center_y',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _widthMeta = const VerificationMeta('width');
+  @override
+  late final GeneratedColumn<double> width = GeneratedColumn<double>(
+    'width',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _heightMeta = const VerificationMeta('height');
+  @override
+  late final GeneratedColumn<double> height = GeneratedColumn<double>(
+    'height',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _rotationDegMeta = const VerificationMeta(
+    'rotationDeg',
+  );
+  @override
+  late final GeneratedColumn<double> rotationDeg = GeneratedColumn<double>(
+    'rotation_deg',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _depthCmMeta = const VerificationMeta(
+    'depthCm',
+  );
+  @override
+  late final GeneratedColumn<double> depthCm = GeneratedColumn<double>(
+    'depth_cm',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _labelMeta = const VerificationMeta('label');
+  @override
+  late final GeneratedColumn<String> label = GeneratedColumn<String>(
+    'label',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _zIndexMeta = const VerificationMeta('zIndex');
+  @override
+  late final GeneratedColumn<int> zIndex = GeneratedColumn<int>(
+    'z_index',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    gardenId,
+    kind,
+    centerX,
+    centerY,
+    width,
+    height,
+    rotationDeg,
+    depthCm,
+    label,
+    zIndex,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'layout_elements';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<LayoutElementRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('garden_id')) {
+      context.handle(
+        _gardenIdMeta,
+        gardenId.isAcceptableOrUnknown(data['garden_id']!, _gardenIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_gardenIdMeta);
+    }
+    if (data.containsKey('center_x')) {
+      context.handle(
+        _centerXMeta,
+        centerX.isAcceptableOrUnknown(data['center_x']!, _centerXMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_centerXMeta);
+    }
+    if (data.containsKey('center_y')) {
+      context.handle(
+        _centerYMeta,
+        centerY.isAcceptableOrUnknown(data['center_y']!, _centerYMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_centerYMeta);
+    }
+    if (data.containsKey('width')) {
+      context.handle(
+        _widthMeta,
+        width.isAcceptableOrUnknown(data['width']!, _widthMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_widthMeta);
+    }
+    if (data.containsKey('height')) {
+      context.handle(
+        _heightMeta,
+        height.isAcceptableOrUnknown(data['height']!, _heightMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_heightMeta);
+    }
+    if (data.containsKey('rotation_deg')) {
+      context.handle(
+        _rotationDegMeta,
+        rotationDeg.isAcceptableOrUnknown(
+          data['rotation_deg']!,
+          _rotationDegMeta,
+        ),
+      );
+    }
+    if (data.containsKey('depth_cm')) {
+      context.handle(
+        _depthCmMeta,
+        depthCm.isAcceptableOrUnknown(data['depth_cm']!, _depthCmMeta),
+      );
+    }
+    if (data.containsKey('label')) {
+      context.handle(
+        _labelMeta,
+        label.isAcceptableOrUnknown(data['label']!, _labelMeta),
+      );
+    }
+    if (data.containsKey('z_index')) {
+      context.handle(
+        _zIndexMeta,
+        zIndex.isAcceptableOrUnknown(data['z_index']!, _zIndexMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_zIndexMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  LayoutElementRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return LayoutElementRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      gardenId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}garden_id'],
+      )!,
+      kind: $LayoutElementsTable.$converterkind.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}kind'],
+        )!,
+      ),
+      centerX: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}center_x'],
+      )!,
+      centerY: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}center_y'],
+      )!,
+      width: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}width'],
+      )!,
+      height: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}height'],
+      )!,
+      rotationDeg: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}rotation_deg'],
+      )!,
+      depthCm: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}depth_cm'],
+      ),
+      label: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}label'],
+      ),
+      zIndex: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}z_index'],
+      )!,
+    );
+  }
+
+  @override
+  $LayoutElementsTable createAlias(String alias) {
+    return $LayoutElementsTable(attachedDatabase, alias);
+  }
+
+  static JsonTypeConverter2<ElementKind, String, String> $converterkind =
+      const EnumNameConverter<ElementKind>(ElementKind.values);
+}
+
+class LayoutElementRow extends DataClass
+    implements Insertable<LayoutElementRow> {
+  final String id;
+  final String gardenId;
+  final ElementKind kind;
+  final double centerX;
+  final double centerY;
+  final double width;
+  final double height;
+  final double rotationDeg;
+  final double? depthCm;
+  final String? label;
+
+  /// Drawing order: higher draws on top.
+  final int zIndex;
+  const LayoutElementRow({
+    required this.id,
+    required this.gardenId,
+    required this.kind,
+    required this.centerX,
+    required this.centerY,
+    required this.width,
+    required this.height,
+    required this.rotationDeg,
+    this.depthCm,
+    this.label,
+    required this.zIndex,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['garden_id'] = Variable<String>(gardenId);
+    {
+      map['kind'] = Variable<String>(
+        $LayoutElementsTable.$converterkind.toSql(kind),
+      );
+    }
+    map['center_x'] = Variable<double>(centerX);
+    map['center_y'] = Variable<double>(centerY);
+    map['width'] = Variable<double>(width);
+    map['height'] = Variable<double>(height);
+    map['rotation_deg'] = Variable<double>(rotationDeg);
+    if (!nullToAbsent || depthCm != null) {
+      map['depth_cm'] = Variable<double>(depthCm);
+    }
+    if (!nullToAbsent || label != null) {
+      map['label'] = Variable<String>(label);
+    }
+    map['z_index'] = Variable<int>(zIndex);
+    return map;
+  }
+
+  LayoutElementsCompanion toCompanion(bool nullToAbsent) {
+    return LayoutElementsCompanion(
+      id: Value(id),
+      gardenId: Value(gardenId),
+      kind: Value(kind),
+      centerX: Value(centerX),
+      centerY: Value(centerY),
+      width: Value(width),
+      height: Value(height),
+      rotationDeg: Value(rotationDeg),
+      depthCm: depthCm == null && nullToAbsent
+          ? const Value.absent()
+          : Value(depthCm),
+      label: label == null && nullToAbsent
+          ? const Value.absent()
+          : Value(label),
+      zIndex: Value(zIndex),
+    );
+  }
+
+  factory LayoutElementRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return LayoutElementRow(
+      id: serializer.fromJson<String>(json['id']),
+      gardenId: serializer.fromJson<String>(json['gardenId']),
+      kind: $LayoutElementsTable.$converterkind.fromJson(
+        serializer.fromJson<String>(json['kind']),
+      ),
+      centerX: serializer.fromJson<double>(json['centerX']),
+      centerY: serializer.fromJson<double>(json['centerY']),
+      width: serializer.fromJson<double>(json['width']),
+      height: serializer.fromJson<double>(json['height']),
+      rotationDeg: serializer.fromJson<double>(json['rotationDeg']),
+      depthCm: serializer.fromJson<double?>(json['depthCm']),
+      label: serializer.fromJson<String?>(json['label']),
+      zIndex: serializer.fromJson<int>(json['zIndex']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'gardenId': serializer.toJson<String>(gardenId),
+      'kind': serializer.toJson<String>(
+        $LayoutElementsTable.$converterkind.toJson(kind),
+      ),
+      'centerX': serializer.toJson<double>(centerX),
+      'centerY': serializer.toJson<double>(centerY),
+      'width': serializer.toJson<double>(width),
+      'height': serializer.toJson<double>(height),
+      'rotationDeg': serializer.toJson<double>(rotationDeg),
+      'depthCm': serializer.toJson<double?>(depthCm),
+      'label': serializer.toJson<String?>(label),
+      'zIndex': serializer.toJson<int>(zIndex),
+    };
+  }
+
+  LayoutElementRow copyWith({
+    String? id,
+    String? gardenId,
+    ElementKind? kind,
+    double? centerX,
+    double? centerY,
+    double? width,
+    double? height,
+    double? rotationDeg,
+    Value<double?> depthCm = const Value.absent(),
+    Value<String?> label = const Value.absent(),
+    int? zIndex,
+  }) => LayoutElementRow(
+    id: id ?? this.id,
+    gardenId: gardenId ?? this.gardenId,
+    kind: kind ?? this.kind,
+    centerX: centerX ?? this.centerX,
+    centerY: centerY ?? this.centerY,
+    width: width ?? this.width,
+    height: height ?? this.height,
+    rotationDeg: rotationDeg ?? this.rotationDeg,
+    depthCm: depthCm.present ? depthCm.value : this.depthCm,
+    label: label.present ? label.value : this.label,
+    zIndex: zIndex ?? this.zIndex,
+  );
+  LayoutElementRow copyWithCompanion(LayoutElementsCompanion data) {
+    return LayoutElementRow(
+      id: data.id.present ? data.id.value : this.id,
+      gardenId: data.gardenId.present ? data.gardenId.value : this.gardenId,
+      kind: data.kind.present ? data.kind.value : this.kind,
+      centerX: data.centerX.present ? data.centerX.value : this.centerX,
+      centerY: data.centerY.present ? data.centerY.value : this.centerY,
+      width: data.width.present ? data.width.value : this.width,
+      height: data.height.present ? data.height.value : this.height,
+      rotationDeg: data.rotationDeg.present
+          ? data.rotationDeg.value
+          : this.rotationDeg,
+      depthCm: data.depthCm.present ? data.depthCm.value : this.depthCm,
+      label: data.label.present ? data.label.value : this.label,
+      zIndex: data.zIndex.present ? data.zIndex.value : this.zIndex,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('LayoutElementRow(')
+          ..write('id: $id, ')
+          ..write('gardenId: $gardenId, ')
+          ..write('kind: $kind, ')
+          ..write('centerX: $centerX, ')
+          ..write('centerY: $centerY, ')
+          ..write('width: $width, ')
+          ..write('height: $height, ')
+          ..write('rotationDeg: $rotationDeg, ')
+          ..write('depthCm: $depthCm, ')
+          ..write('label: $label, ')
+          ..write('zIndex: $zIndex')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    gardenId,
+    kind,
+    centerX,
+    centerY,
+    width,
+    height,
+    rotationDeg,
+    depthCm,
+    label,
+    zIndex,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is LayoutElementRow &&
+          other.id == this.id &&
+          other.gardenId == this.gardenId &&
+          other.kind == this.kind &&
+          other.centerX == this.centerX &&
+          other.centerY == this.centerY &&
+          other.width == this.width &&
+          other.height == this.height &&
+          other.rotationDeg == this.rotationDeg &&
+          other.depthCm == this.depthCm &&
+          other.label == this.label &&
+          other.zIndex == this.zIndex);
+}
+
+class LayoutElementsCompanion extends UpdateCompanion<LayoutElementRow> {
+  final Value<String> id;
+  final Value<String> gardenId;
+  final Value<ElementKind> kind;
+  final Value<double> centerX;
+  final Value<double> centerY;
+  final Value<double> width;
+  final Value<double> height;
+  final Value<double> rotationDeg;
+  final Value<double?> depthCm;
+  final Value<String?> label;
+  final Value<int> zIndex;
+  final Value<int> rowid;
+  const LayoutElementsCompanion({
+    this.id = const Value.absent(),
+    this.gardenId = const Value.absent(),
+    this.kind = const Value.absent(),
+    this.centerX = const Value.absent(),
+    this.centerY = const Value.absent(),
+    this.width = const Value.absent(),
+    this.height = const Value.absent(),
+    this.rotationDeg = const Value.absent(),
+    this.depthCm = const Value.absent(),
+    this.label = const Value.absent(),
+    this.zIndex = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  LayoutElementsCompanion.insert({
+    required String id,
+    required String gardenId,
+    required ElementKind kind,
+    required double centerX,
+    required double centerY,
+    required double width,
+    required double height,
+    this.rotationDeg = const Value.absent(),
+    this.depthCm = const Value.absent(),
+    this.label = const Value.absent(),
+    required int zIndex,
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       gardenId = Value(gardenId),
+       kind = Value(kind),
+       centerX = Value(centerX),
+       centerY = Value(centerY),
+       width = Value(width),
+       height = Value(height),
+       zIndex = Value(zIndex);
+  static Insertable<LayoutElementRow> custom({
+    Expression<String>? id,
+    Expression<String>? gardenId,
+    Expression<String>? kind,
+    Expression<double>? centerX,
+    Expression<double>? centerY,
+    Expression<double>? width,
+    Expression<double>? height,
+    Expression<double>? rotationDeg,
+    Expression<double>? depthCm,
+    Expression<String>? label,
+    Expression<int>? zIndex,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (gardenId != null) 'garden_id': gardenId,
+      if (kind != null) 'kind': kind,
+      if (centerX != null) 'center_x': centerX,
+      if (centerY != null) 'center_y': centerY,
+      if (width != null) 'width': width,
+      if (height != null) 'height': height,
+      if (rotationDeg != null) 'rotation_deg': rotationDeg,
+      if (depthCm != null) 'depth_cm': depthCm,
+      if (label != null) 'label': label,
+      if (zIndex != null) 'z_index': zIndex,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  LayoutElementsCompanion copyWith({
+    Value<String>? id,
+    Value<String>? gardenId,
+    Value<ElementKind>? kind,
+    Value<double>? centerX,
+    Value<double>? centerY,
+    Value<double>? width,
+    Value<double>? height,
+    Value<double>? rotationDeg,
+    Value<double?>? depthCm,
+    Value<String?>? label,
+    Value<int>? zIndex,
+    Value<int>? rowid,
+  }) {
+    return LayoutElementsCompanion(
+      id: id ?? this.id,
+      gardenId: gardenId ?? this.gardenId,
+      kind: kind ?? this.kind,
+      centerX: centerX ?? this.centerX,
+      centerY: centerY ?? this.centerY,
+      width: width ?? this.width,
+      height: height ?? this.height,
+      rotationDeg: rotationDeg ?? this.rotationDeg,
+      depthCm: depthCm ?? this.depthCm,
+      label: label ?? this.label,
+      zIndex: zIndex ?? this.zIndex,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (gardenId.present) {
+      map['garden_id'] = Variable<String>(gardenId.value);
+    }
+    if (kind.present) {
+      map['kind'] = Variable<String>(
+        $LayoutElementsTable.$converterkind.toSql(kind.value),
+      );
+    }
+    if (centerX.present) {
+      map['center_x'] = Variable<double>(centerX.value);
+    }
+    if (centerY.present) {
+      map['center_y'] = Variable<double>(centerY.value);
+    }
+    if (width.present) {
+      map['width'] = Variable<double>(width.value);
+    }
+    if (height.present) {
+      map['height'] = Variable<double>(height.value);
+    }
+    if (rotationDeg.present) {
+      map['rotation_deg'] = Variable<double>(rotationDeg.value);
+    }
+    if (depthCm.present) {
+      map['depth_cm'] = Variable<double>(depthCm.value);
+    }
+    if (label.present) {
+      map['label'] = Variable<String>(label.value);
+    }
+    if (zIndex.present) {
+      map['z_index'] = Variable<int>(zIndex.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('LayoutElementsCompanion(')
+          ..write('id: $id, ')
+          ..write('gardenId: $gardenId, ')
+          ..write('kind: $kind, ')
+          ..write('centerX: $centerX, ')
+          ..write('centerY: $centerY, ')
+          ..write('width: $width, ')
+          ..write('height: $height, ')
+          ..write('rotationDeg: $rotationDeg, ')
+          ..write('depthCm: $depthCm, ')
+          ..write('label: $label, ')
+          ..write('zIndex: $zIndex, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
   late final $GardensTable gardens = $GardensTable(this);
   late final $GardenPhotosTable gardenPhotos = $GardenPhotosTable(this);
+  late final $LayoutElementsTable layoutElements = $LayoutElementsTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [gardens, gardenPhotos];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [
+    gardens,
+    gardenPhotos,
+    layoutElements,
+  ];
   @override
   StreamQueryUpdateRules get streamUpdateRules => const StreamQueryUpdateRules([
     WritePropagation(
@@ -1738,6 +2407,13 @@ abstract class _$AppDatabase extends GeneratedDatabase {
         limitUpdateKind: UpdateKind.delete,
       ),
       result: [TableUpdate('garden_photos', kind: UpdateKind.delete)],
+    ),
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
+        'gardens',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('layout_elements', kind: UpdateKind.delete)],
     ),
   ]);
   @override
@@ -1811,6 +2487,24 @@ final class $$GardensTableReferences
     ).filter((f) => f.gardenId.id.sqlEquals($_itemColumn<String>('id')!));
 
     final cache = $_typedResult.readTableOrNull(_gardenPhotosRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<$LayoutElementsTable, List<LayoutElementRow>>
+  _layoutElementsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.layoutElements,
+    aliasName: $_aliasNameGenerator(db.gardens.id, db.layoutElements.gardenId),
+  );
+
+  $$LayoutElementsTableProcessedTableManager get layoutElementsRefs {
+    final manager = $$LayoutElementsTableTableManager(
+      $_db,
+      $_db.layoutElements,
+    ).filter((f) => f.gardenId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_layoutElementsRefsTable($_db));
     return ProcessedTableManager(
       manager.$state.copyWith(prefetchedData: cache),
     );
@@ -1952,6 +2646,31 @@ class $$GardensTableFilterComposer
           }) => $$GardenPhotosTableFilterComposer(
             $db: $db,
             $table: $db.gardenPhotos,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> layoutElementsRefs(
+    Expression<bool> Function($$LayoutElementsTableFilterComposer f) f,
+  ) {
+    final $$LayoutElementsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.layoutElements,
+      getReferencedColumn: (t) => t.gardenId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$LayoutElementsTableFilterComposer(
+            $db: $db,
+            $table: $db.layoutElements,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
@@ -2173,6 +2892,31 @@ class $$GardensTableAnnotationComposer
     );
     return f(composer);
   }
+
+  Expression<T> layoutElementsRefs<T extends Object>(
+    Expression<T> Function($$LayoutElementsTableAnnotationComposer a) f,
+  ) {
+    final $$LayoutElementsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.layoutElements,
+      getReferencedColumn: (t) => t.gardenId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$LayoutElementsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.layoutElements,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
 }
 
 class $$GardensTableTableManager
@@ -2188,7 +2932,10 @@ class $$GardensTableTableManager
           $$GardensTableUpdateCompanionBuilder,
           (GardenRow, $$GardensTableReferences),
           GardenRow,
-          PrefetchHooks Function({bool gardenPhotosRefs})
+          PrefetchHooks Function({
+            bool gardenPhotosRefs,
+            bool layoutElementsRefs,
+          })
         > {
   $$GardensTableTableManager(_$AppDatabase db, $GardensTable table)
     : super(
@@ -2301,35 +3048,63 @@ class $$GardensTableTableManager
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({gardenPhotosRefs = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [if (gardenPhotosRefs) db.gardenPhotos],
-              addJoins: null,
-              getPrefetchedDataCallback: (items) async {
-                return [
-                  if (gardenPhotosRefs)
-                    await $_getPrefetchedData<
-                      GardenRow,
-                      $GardensTable,
-                      GardenPhotoRow
-                    >(
-                      currentTable: table,
-                      referencedTable: $$GardensTableReferences
-                          ._gardenPhotosRefsTable(db),
-                      managerFromTypedResult: (p0) => $$GardensTableReferences(
-                        db,
-                        table,
-                        p0,
-                      ).gardenPhotosRefs,
-                      referencedItemsForCurrentItem: (item, referencedItems) =>
-                          referencedItems.where((e) => e.gardenId == item.id),
-                      typedResults: items,
-                    ),
-                ];
+          prefetchHooksCallback:
+              ({gardenPhotosRefs = false, layoutElementsRefs = false}) {
+                return PrefetchHooks(
+                  db: db,
+                  explicitlyWatchedTables: [
+                    if (gardenPhotosRefs) db.gardenPhotos,
+                    if (layoutElementsRefs) db.layoutElements,
+                  ],
+                  addJoins: null,
+                  getPrefetchedDataCallback: (items) async {
+                    return [
+                      if (gardenPhotosRefs)
+                        await $_getPrefetchedData<
+                          GardenRow,
+                          $GardensTable,
+                          GardenPhotoRow
+                        >(
+                          currentTable: table,
+                          referencedTable: $$GardensTableReferences
+                              ._gardenPhotosRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$GardensTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).gardenPhotosRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.gardenId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                      if (layoutElementsRefs)
+                        await $_getPrefetchedData<
+                          GardenRow,
+                          $GardensTable,
+                          LayoutElementRow
+                        >(
+                          currentTable: table,
+                          referencedTable: $$GardensTableReferences
+                              ._layoutElementsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$GardensTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).layoutElementsRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.gardenId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                    ];
+                  },
+                );
               },
-            );
-          },
         ),
       );
 }
@@ -2346,7 +3121,7 @@ typedef $$GardensTableProcessedTableManager =
       $$GardensTableUpdateCompanionBuilder,
       (GardenRow, $$GardensTableReferences),
       GardenRow,
-      PrefetchHooks Function({bool gardenPhotosRefs})
+      PrefetchHooks Function({bool gardenPhotosRefs, bool layoutElementsRefs})
     >;
 typedef $$GardenPhotosTableCreateCompanionBuilder =
     GardenPhotosCompanion Function({
@@ -2747,6 +3522,450 @@ typedef $$GardenPhotosTableProcessedTableManager =
       GardenPhotoRow,
       PrefetchHooks Function({bool gardenId})
     >;
+typedef $$LayoutElementsTableCreateCompanionBuilder =
+    LayoutElementsCompanion Function({
+      required String id,
+      required String gardenId,
+      required ElementKind kind,
+      required double centerX,
+      required double centerY,
+      required double width,
+      required double height,
+      Value<double> rotationDeg,
+      Value<double?> depthCm,
+      Value<String?> label,
+      required int zIndex,
+      Value<int> rowid,
+    });
+typedef $$LayoutElementsTableUpdateCompanionBuilder =
+    LayoutElementsCompanion Function({
+      Value<String> id,
+      Value<String> gardenId,
+      Value<ElementKind> kind,
+      Value<double> centerX,
+      Value<double> centerY,
+      Value<double> width,
+      Value<double> height,
+      Value<double> rotationDeg,
+      Value<double?> depthCm,
+      Value<String?> label,
+      Value<int> zIndex,
+      Value<int> rowid,
+    });
+
+final class $$LayoutElementsTableReferences
+    extends
+        BaseReferences<_$AppDatabase, $LayoutElementsTable, LayoutElementRow> {
+  $$LayoutElementsTableReferences(
+    super.$_db,
+    super.$_table,
+    super.$_typedResult,
+  );
+
+  static $GardensTable _gardenIdTable(_$AppDatabase db) =>
+      db.gardens.createAlias(
+        $_aliasNameGenerator(db.layoutElements.gardenId, db.gardens.id),
+      );
+
+  $$GardensTableProcessedTableManager get gardenId {
+    final $_column = $_itemColumn<String>('garden_id')!;
+
+    final manager = $$GardensTableTableManager(
+      $_db,
+      $_db.gardens,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_gardenIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$LayoutElementsTableFilterComposer
+    extends Composer<_$AppDatabase, $LayoutElementsTable> {
+  $$LayoutElementsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<ElementKind, ElementKind, String> get kind =>
+      $composableBuilder(
+        column: $table.kind,
+        builder: (column) => ColumnWithTypeConverterFilters(column),
+      );
+
+  ColumnFilters<double> get centerX => $composableBuilder(
+    column: $table.centerX,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get centerY => $composableBuilder(
+    column: $table.centerY,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get width => $composableBuilder(
+    column: $table.width,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get height => $composableBuilder(
+    column: $table.height,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get rotationDeg => $composableBuilder(
+    column: $table.rotationDeg,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get depthCm => $composableBuilder(
+    column: $table.depthCm,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get label => $composableBuilder(
+    column: $table.label,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get zIndex => $composableBuilder(
+    column: $table.zIndex,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$GardensTableFilterComposer get gardenId {
+    final $$GardensTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.gardenId,
+      referencedTable: $db.gardens,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$GardensTableFilterComposer(
+            $db: $db,
+            $table: $db.gardens,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$LayoutElementsTableOrderingComposer
+    extends Composer<_$AppDatabase, $LayoutElementsTable> {
+  $$LayoutElementsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get centerX => $composableBuilder(
+    column: $table.centerX,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get centerY => $composableBuilder(
+    column: $table.centerY,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get width => $composableBuilder(
+    column: $table.width,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get height => $composableBuilder(
+    column: $table.height,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get rotationDeg => $composableBuilder(
+    column: $table.rotationDeg,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get depthCm => $composableBuilder(
+    column: $table.depthCm,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get label => $composableBuilder(
+    column: $table.label,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get zIndex => $composableBuilder(
+    column: $table.zIndex,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$GardensTableOrderingComposer get gardenId {
+    final $$GardensTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.gardenId,
+      referencedTable: $db.gardens,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$GardensTableOrderingComposer(
+            $db: $db,
+            $table: $db.gardens,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$LayoutElementsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $LayoutElementsTable> {
+  $$LayoutElementsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<ElementKind, String> get kind =>
+      $composableBuilder(column: $table.kind, builder: (column) => column);
+
+  GeneratedColumn<double> get centerX =>
+      $composableBuilder(column: $table.centerX, builder: (column) => column);
+
+  GeneratedColumn<double> get centerY =>
+      $composableBuilder(column: $table.centerY, builder: (column) => column);
+
+  GeneratedColumn<double> get width =>
+      $composableBuilder(column: $table.width, builder: (column) => column);
+
+  GeneratedColumn<double> get height =>
+      $composableBuilder(column: $table.height, builder: (column) => column);
+
+  GeneratedColumn<double> get rotationDeg => $composableBuilder(
+    column: $table.rotationDeg,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get depthCm =>
+      $composableBuilder(column: $table.depthCm, builder: (column) => column);
+
+  GeneratedColumn<String> get label =>
+      $composableBuilder(column: $table.label, builder: (column) => column);
+
+  GeneratedColumn<int> get zIndex =>
+      $composableBuilder(column: $table.zIndex, builder: (column) => column);
+
+  $$GardensTableAnnotationComposer get gardenId {
+    final $$GardensTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.gardenId,
+      referencedTable: $db.gardens,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$GardensTableAnnotationComposer(
+            $db: $db,
+            $table: $db.gardens,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$LayoutElementsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $LayoutElementsTable,
+          LayoutElementRow,
+          $$LayoutElementsTableFilterComposer,
+          $$LayoutElementsTableOrderingComposer,
+          $$LayoutElementsTableAnnotationComposer,
+          $$LayoutElementsTableCreateCompanionBuilder,
+          $$LayoutElementsTableUpdateCompanionBuilder,
+          (LayoutElementRow, $$LayoutElementsTableReferences),
+          LayoutElementRow,
+          PrefetchHooks Function({bool gardenId})
+        > {
+  $$LayoutElementsTableTableManager(
+    _$AppDatabase db,
+    $LayoutElementsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$LayoutElementsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$LayoutElementsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$LayoutElementsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> gardenId = const Value.absent(),
+                Value<ElementKind> kind = const Value.absent(),
+                Value<double> centerX = const Value.absent(),
+                Value<double> centerY = const Value.absent(),
+                Value<double> width = const Value.absent(),
+                Value<double> height = const Value.absent(),
+                Value<double> rotationDeg = const Value.absent(),
+                Value<double?> depthCm = const Value.absent(),
+                Value<String?> label = const Value.absent(),
+                Value<int> zIndex = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => LayoutElementsCompanion(
+                id: id,
+                gardenId: gardenId,
+                kind: kind,
+                centerX: centerX,
+                centerY: centerY,
+                width: width,
+                height: height,
+                rotationDeg: rotationDeg,
+                depthCm: depthCm,
+                label: label,
+                zIndex: zIndex,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String gardenId,
+                required ElementKind kind,
+                required double centerX,
+                required double centerY,
+                required double width,
+                required double height,
+                Value<double> rotationDeg = const Value.absent(),
+                Value<double?> depthCm = const Value.absent(),
+                Value<String?> label = const Value.absent(),
+                required int zIndex,
+                Value<int> rowid = const Value.absent(),
+              }) => LayoutElementsCompanion.insert(
+                id: id,
+                gardenId: gardenId,
+                kind: kind,
+                centerX: centerX,
+                centerY: centerY,
+                width: width,
+                height: height,
+                rotationDeg: rotationDeg,
+                depthCm: depthCm,
+                label: label,
+                zIndex: zIndex,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $$LayoutElementsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({gardenId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (gardenId) {
+                      state =
+                          state.withJoin(
+                                currentTable: table,
+                                currentColumn: table.gardenId,
+                                referencedTable: $$LayoutElementsTableReferences
+                                    ._gardenIdTable(db),
+                                referencedColumn:
+                                    $$LayoutElementsTableReferences
+                                        ._gardenIdTable(db)
+                                        .id,
+                              )
+                              as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$LayoutElementsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $LayoutElementsTable,
+      LayoutElementRow,
+      $$LayoutElementsTableFilterComposer,
+      $$LayoutElementsTableOrderingComposer,
+      $$LayoutElementsTableAnnotationComposer,
+      $$LayoutElementsTableCreateCompanionBuilder,
+      $$LayoutElementsTableUpdateCompanionBuilder,
+      (LayoutElementRow, $$LayoutElementsTableReferences),
+      LayoutElementRow,
+      PrefetchHooks Function({bool gardenId})
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -2755,4 +3974,6 @@ class $AppDatabaseManager {
       $$GardensTableTableManager(_db, _db.gardens);
   $$GardenPhotosTableTableManager get gardenPhotos =>
       $$GardenPhotosTableTableManager(_db, _db.gardenPhotos);
+  $$LayoutElementsTableTableManager get layoutElements =>
+      $$LayoutElementsTableTableManager(_db, _db.layoutElements);
 }

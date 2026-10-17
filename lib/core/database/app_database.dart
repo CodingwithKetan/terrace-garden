@@ -4,6 +4,8 @@ import 'package:terrace_garden/core/database/app_database.steps.dart';
 import 'package:terrace_garden/features/garden/data/garden_tables.dart';
 import 'package:terrace_garden/features/garden/domain/garden_enums.dart';
 import 'package:terrace_garden/features/garden/domain/region.dart';
+import 'package:terrace_garden/features/garden_designer/data/layout_tables.dart';
+import 'package:terrace_garden/features/garden_designer/domain/layout.dart';
 
 part 'app_database.g.dart';
 
@@ -14,7 +16,7 @@ part 'app_database.g.dart';
 /// step to [migration], and is snapshotted with
 /// `dart run drift_dev make-migrations` (schemas in `drift_schemas/`,
 /// generated tests in `test/drift/`).
-@DriftDatabase(tables: [Gardens, GardenPhotos])
+@DriftDatabase(tables: [Gardens, GardenPhotos, LayoutElements])
 class AppDatabase extends _$AppDatabase {
   /// Use [AppDatabase.open] in the app; tests pass an in-memory executor.
   AppDatabase(super.e);
@@ -23,7 +25,7 @@ class AppDatabase extends _$AppDatabase {
       AppDatabase(driftDatabase(name: 'terrace_garden'));
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 3;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -32,6 +34,9 @@ class AppDatabase extends _$AppDatabase {
       from1To2: (m, schema) async {
         await m.createTable(schema.gardens);
         await m.createTable(schema.gardenPhotos);
+      },
+      from2To3: (m, schema) async {
+        await m.createTable(schema.layoutElements);
       },
     ),
     beforeOpen: (details) async {

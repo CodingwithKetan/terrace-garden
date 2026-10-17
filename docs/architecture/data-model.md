@@ -70,6 +70,9 @@ units (`metric`/`imperial`), themeMode, locale, experience, notification prefere
 | kind | enum `setup, progress` | progress photos may also link to a planting |
 
 ### Layout (garden design)
+
+> **As built (Phase 3, 2026-10-18):** one layout per garden, stored only as `layout_elements` rows (FK `gardenId`, cascade). There is no `layouts` table: the boundary is the garden's own `lengthCm × widthCm` (single source of truth), and the grid step follows the unit setting (5 cm metric, 2 in imperial). The fields below remain the target model for multiple layouts per garden.
+
 | Field | Type | Notes |
 |---|---|---|
 | id, gardenId | String | MVP: one active layout per garden; model allows many (versions/alternatives) |

@@ -13,6 +13,7 @@ class DimensionField extends StatefulWidget {
     required this.value,
     required this.onChanged,
     this.errorText,
+    this.fine = false,
     super.key,
   });
 
@@ -27,24 +28,37 @@ class DimensionField extends StatefulWidget {
   final ValueChanged<Length?> onChanged;
   final String? errorText;
 
+  /// Small objects: centimetres (metric) or inches (imperial) instead of
+  /// metres or feet.
+  final bool fine;
+
   /// Parses user input in [system] units; accepts "." or "," as decimal mark.
-  static Length? parse(String text, UnitSystem system) {
+  static Length? parse(String text, UnitSystem system, {bool fine = false}) {
     final normalised = text.trim().replaceAll(',', '.');
     if (normalised.isEmpty) return null;
     final number = double.tryParse(normalised);
     if (number == null) return null;
-    return switch (system) {
-      UnitSystem.metric => Length.metres(number),
-      UnitSystem.imperial => Length.feet(number),
+    return switch ((system, fine)) {
+      (UnitSystem.metric, false) => Length.metres(number),
+      (UnitSystem.metric, true) => Length.cm(number),
+      (UnitSystem.imperial, false) => Length.feet(number),
+      (UnitSystem.imperial, true) => Length.inches(number),
     };
   }
 
   /// Formats [length] for editing (no unit, up to 2 decimals).
-  static String format(Length? length, UnitSystem system, String locale) {
+  static String format(
+    Length? length,
+    UnitSystem system,
+    String locale, {
+    bool fine = false,
+  }) {
     if (length == null) return '';
-    final value = switch (system) {
-      UnitSystem.metric => length.metres,
-      UnitSystem.imperial => length.feet,
+    final value = switch ((system, fine)) {
+      (UnitSystem.metric, false) => length.metres,
+      (UnitSystem.metric, true) => length.cm,
+      (UnitSystem.imperial, false) => length.feet,
+      (UnitSystem.imperial, true) => length.inches,
     };
     return NumberFormat('0.##', locale).format(value);
   }
@@ -78,6 +92,7 @@ class _DimensionFieldState extends State<DimensionField> {
       widget.value,
       widget.unitSystem,
       Localizations.localeOf(context).toLanguageTag(),
+      fine: widget.fine,
     );
   }
 
@@ -98,8 +113,9 @@ class _DimensionFieldState extends State<DimensionField> {
         suffixText: widget.unitLabel,
         errorText: widget.errorText,
       ),
-      onChanged: (text) =>
-          widget.onChanged(DimensionField.parse(text, widget.unitSystem)),
+      onChanged: (text) => widget.onChanged(
+        DimensionField.parse(text, widget.unitSystem, fine: widget.fine),
+      ),
     );
   }
 }

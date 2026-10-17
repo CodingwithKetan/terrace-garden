@@ -9,6 +9,7 @@ import 'package:terrace_garden/features/garden/presentation/garden_overview_scre
 import 'package:terrace_garden/features/garden/presentation/photo_gallery_screen.dart';
 import 'package:terrace_garden/features/garden/presentation/photo_viewer_screen.dart';
 import 'package:terrace_garden/features/garden/presentation/terrace_checklist_screen.dart';
+import 'package:terrace_garden/features/garden_designer/presentation/designer_screen.dart';
 import 'package:terrace_garden/features/journal/presentation/journal_screen.dart';
 import 'package:terrace_garden/features/onboarding/presentation/onboarding_screen.dart';
 import 'package:terrace_garden/features/plant_catalog/presentation/plants_home_screen.dart';
@@ -40,6 +41,7 @@ abstract final class AppRoutes {
   // Full screen.
   static const gardenNew = '/gardens/new';
   static String gardenEdit(String id) => '/gardens/$id/edit';
+  static String gardenDesign(String id) => '/gardens/$id/design';
   static String gardenPhoto(String id, String photoId) =>
       '/gardens/$id/photos/$photoId';
 }
@@ -127,6 +129,11 @@ GoRouter appRouter(Ref ref) {
         path: '/gardens/:gardenId/edit',
         pageBuilder: (context, state) =>
             appPage(state, GardenFormScreen(gardenId: _gardenId(state))),
+      ),
+      GoRoute(
+        path: '/gardens/:gardenId/design',
+        pageBuilder: (context, state) =>
+            appPage(state, DesignerScreen(gardenId: _gardenId(state))),
       ),
       GoRoute(
         path: '/gardens/:gardenId/photos/:photoId',

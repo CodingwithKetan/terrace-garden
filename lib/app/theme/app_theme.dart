@@ -2,22 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:terrace_garden/app/theme/app_colors.dart';
 import 'package:terrace_garden/app/theme/app_tokens.dart';
 import 'package:terrace_garden/app/theme/app_typography.dart';
+import 'package:terrace_garden/app/theme/canvas_colors.dart';
 import 'package:terrace_garden/app/theme/care_colors.dart';
 import 'package:terrace_garden/app/theme/glass_theme.dart';
 
 /// Builds the light and dark themes from design tokens
 /// (design-system.md §7 component rules).
 abstract final class AppTheme {
-  static ThemeData light() =>
-      _build(AppColorSchemes.light, CareColors.light, GlassTheme.light);
+  static ThemeData light() => _build(
+    AppColorSchemes.light,
+    CareColors.light,
+    GlassTheme.light,
+    CanvasColors.light,
+  );
 
-  static ThemeData dark() =>
-      _build(AppColorSchemes.dark, CareColors.dark, GlassTheme.dark);
+  static ThemeData dark() => _build(
+    AppColorSchemes.dark,
+    CareColors.dark,
+    GlassTheme.dark,
+    CanvasColors.dark,
+  );
 
   static ThemeData _build(
     ColorScheme colors,
     CareColors careColors,
     GlassTheme glass,
+    CanvasColors canvas,
   ) {
     final text = AppTypography.textTheme(colors);
     const pill = StadiumBorder();
@@ -30,7 +40,7 @@ abstract final class AppTheme {
       textTheme: text,
       fontFamily: AppTypography.ui,
       scaffoldBackgroundColor: colors.surface,
-      extensions: [careColors, glass],
+      extensions: [careColors, glass, canvas],
       visualDensity: VisualDensity.standard,
       materialTapTargetSize: MaterialTapTargetSize.padded,
       appBarTheme: AppBarTheme(

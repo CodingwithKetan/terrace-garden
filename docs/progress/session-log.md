@@ -4,6 +4,35 @@ Newest first. Keep entries concise: goal, what was done, checks, next.
 
 ---
 
+## 2026-10-18: Session 1, part 5 (Phase 3: garden designer)
+
+**Done (P3-01 → P3-12):**
+- Pure-Dart geometry: oriented rectangles, circles, SAT overlap, snapping.
+- `CanvasTransform` mapping world cm to screen pixels.
+- Layout model, validator and summary.
+- Undo/redo history and `LayoutEditorController` with debounced autosave.
+- `layout_elements` table, schema v3 with migration test.
+- Painter with light/dark `CanvasColors`.
+- Gesture canvas.
+- Palette, inspector, objects list and space summary.
+- Designer route plus a "Design your layout" card on the garden overview, which shows a live object count.
+
+**Bugs found and fixed:**
+1. **Gesture slop:** Flutter's scale gesture reports its start after ~36 px of movement, so hit-testing used the wrong point; dragging a small pot panned the canvas instead. The canvas now hit-tests the touch-down point (`Listener`).
+2. **Handles drawn in the wrong place** (seen on the device): handle positions were already in screen space but were transformed again. Fixed, and a canvas golden test was added.
+3. **Handle priority:** on small objects, resize-handle touch areas covered the body. A touch inside the body that is nearer the centre now moves the object.
+4. **Delayed taps:** the double-tap-to-fit gesture held every tap for ~300 ms. It was removed; "Fit to screen" is a button.
+
+**Checks:**
+- Format clean, `flutter analyze` clean, 257 host tests pass.
+- These cover geometry (19), layout, validator, history and summary (15), the controller including autosave via fake_async, and repository round-trips.
+- 4 designer journeys use real gestures, including the FR-C scenario, plus the canvas golden.
+- Verified on the Android 16 emulator: handles, labels, distance guides, persistence across reinstall.
+
+**Next:** Phase 4, the plant catalogue and recommendations (P4-DATA-01 catalogue schema first).
+
+---
+
 ## 2026-10-18: Session 1, part 4 (Phase 2: garden setup and profile)
 
 **Context:** the user asked to complete all remaining sections without asking permission. Work proceeds phase by phase with local commits (pushing is blocked on this network).

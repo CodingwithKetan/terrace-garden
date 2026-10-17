@@ -4,11 +4,11 @@ Last updated: 2026-10-18
 
 ## Phase
 
-**Phase 2 (garden setup and profile): complete (2026-10-18).** Phases 0–1 are complete, plus the v0.2 visual refresh. Next: Phase 3 (garden designer).
+**Phase 3 (garden designer): complete (2026-10-18).** Phases 0–2 are complete, plus the v0.2 visual refresh. Next: Phase 4 (plant catalogue and recommendations).
 
 ## State of the repository
 
-- **App:** runs on the local Flutter 3.44.8 (ADR-001). Phase 2 adds onboarding, gardens (create, edit, delete), garden photos and the terrace checklist, stored in drift schema v2.
+- **App:** runs on the local Flutter 3.44.8 (ADR-001). Phase 2 added onboarding, gardens, photos and the terrace checklist. Phase 3 added the dimension-aware layout designer (drift schema v3).
   - Riverpod 3 bootstrap, go_router shell with four tabs (Today, Garden, Plants, Journal) and an adaptive NavigationBar/NavigationRail.
   - A working Settings screen: theme and units, persisted; licences page.
   - Tabs show honest empty states; features arrive in Phases 2–6.
@@ -31,23 +31,23 @@ Last updated: 2026-10-18
 
 ## Last completed tasks
 
-P2-01 → P2-08 and the Phase 2 gate. Still open from earlier: P1-02 (Android licences; non-blocking).
+P3-01 → P3-12 and the Phase 3 gate. Still open from earlier: P1-02 (Android licences; non-blocking).
 
 ## Exact next steps
 
-1. **Phase 3 (garden designer):**
-   - P3-01: geometry domain (oriented rects, circles, overlap, containment, snapping).
-   - P3-02: CanvasTransform (world cm ↔ screen).
-   - P3-03 → P3-05: layout document, validator, undo/redo command stack.
+1. **Phase 4 (catalogue and recommendations):**
+   - P4-DATA-01: catalogue JSON schema and validation test (every sourceId resolves).
+   - P4-DATA-02: author ~30 species from gardening-references §2.
+   - P4-01 → P4-06: import, catalogue UI, recommendation engine, plantings.
 
 ## Checks run (latest, 2026-10-18, Windows host)
 
-- Quality gate (Phase 2):
-  - build_runner: OK.
+- Quality gate (Phase 3):
   - `dart format --set-exit-if-changed`: 0 changed.
   - `flutter analyze`: **no issues**.
-  - `flutter test`: **200 passed** (adds garden domain, repository, photo storage, migration v1→v2, and onboarding and garden flow tests).
-  - Integration test on the Android 16 emulator: `integration_test/garden_setup_test.dart` **passed**.
+  - `flutter test`: **257 passed** (adds designer geometry, layout, history, controller, repository, 4 designer journeys with real gestures, and a canvas golden).
+  - Phase 2 integration test on the emulator: passed at the end of Phase 2; **not re-run** after the Phase 3 changes (run it again at the next device session).
+  - Designer verified manually on the emulator.
 - `dart analyze`: no issues (after removing the non-loading riverpod_lint plugin, KI-008).
 - `flutter build apk --debug`: **passed** (after the KI-007 fix; first build 502s, 185 MB debug APK).
 - Emulator (Android 16): installed and launched. Verified Today screen, Settings dark theme, setting kept after a cold start, two cold starts open on Today. Integration tests: none exist yet (P2-08).

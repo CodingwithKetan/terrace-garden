@@ -1204,6 +1204,342 @@ abstract class AppLocalizations {
   /// **'Sources: Royal Horticultural Society; University of Maryland Extension'**
   String get checkHeatSources;
 
+  /// No description provided for @designOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Design your layout'**
+  String get designOpen;
+
+  /// No description provided for @designOpenSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrange pots, grow bags and beds to scale'**
+  String get designOpenSubtitle;
+
+  /// No description provided for @layoutObjectCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 object in your layout} other{{count} objects in your layout}}'**
+  String layoutObjectCount(int count);
+
+  /// No description provided for @designerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Layout'**
+  String get designerTitle;
+
+  /// No description provided for @designerAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get designerAdd;
+
+  /// No description provided for @designerUndo.
+  ///
+  /// In en, this message translates to:
+  /// **'Undo'**
+  String get designerUndo;
+
+  /// No description provided for @designerRedo.
+  ///
+  /// In en, this message translates to:
+  /// **'Redo'**
+  String get designerRedo;
+
+  /// No description provided for @designerObjects.
+  ///
+  /// In en, this message translates to:
+  /// **'Objects'**
+  String get designerObjects;
+
+  /// No description provided for @designerSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Space summary'**
+  String get designerSummary;
+
+  /// No description provided for @designerSnap.
+  ///
+  /// In en, this message translates to:
+  /// **'Snap'**
+  String get designerSnap;
+
+  /// No description provided for @designerFit.
+  ///
+  /// In en, this message translates to:
+  /// **'Fit to screen'**
+  String get designerFit;
+
+  /// No description provided for @designerSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get designerSaved;
+
+  /// No description provided for @designerSaving.
+  ///
+  /// In en, this message translates to:
+  /// **'Saving…'**
+  String get designerSaving;
+
+  /// No description provided for @designerNotSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Not saved yet'**
+  String get designerNotSaved;
+
+  /// No description provided for @designerSaveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t save. Your changes are kept and will be saved again.'**
+  String get designerSaveFailed;
+
+  /// No description provided for @designerEmptyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap Add to place pots, grow bags, beds and more.'**
+  String get designerEmptyHint;
+
+  /// No description provided for @designerNeedsSizeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your garden\'s size'**
+  String get designerNeedsSizeTitle;
+
+  /// No description provided for @designerNeedsSizeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The layout uses real measurements, so it needs the length and width of the usable floor.'**
+  String get designerNeedsSizeBody;
+
+  /// No description provided for @designerStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start designing'**
+  String get designerStart;
+
+  /// No description provided for @designerProblems.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 problem} other{{count} problems}}'**
+  String designerProblems(int count);
+
+  /// No description provided for @designerCanvasLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Garden layout, {count, plural, =0{no objects} =1{1 object} other{{count} objects}}. Use the Objects list to review and edit them.'**
+  String designerCanvasLabel(int count);
+
+  /// No description provided for @issueOutOfBounds.
+  ///
+  /// In en, this message translates to:
+  /// **'Outside the garden'**
+  String get issueOutOfBounds;
+
+  /// No description provided for @issueOverlap.
+  ///
+  /// In en, this message translates to:
+  /// **'Overlaps another object'**
+  String get issueOverlap;
+
+  /// No description provided for @issueOnPath.
+  ///
+  /// In en, this message translates to:
+  /// **'Standing on a path'**
+  String get issueOnPath;
+
+  /// No description provided for @paletteContainers.
+  ///
+  /// In en, this message translates to:
+  /// **'Containers'**
+  String get paletteContainers;
+
+  /// No description provided for @paletteStructures.
+  ///
+  /// In en, this message translates to:
+  /// **'Structures'**
+  String get paletteStructures;
+
+  /// No description provided for @paletteOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get paletteOther;
+
+  /// No description provided for @kindRoundPot.
+  ///
+  /// In en, this message translates to:
+  /// **'Round pot'**
+  String get kindRoundPot;
+
+  /// No description provided for @kindRectPlanter.
+  ///
+  /// In en, this message translates to:
+  /// **'Planter box'**
+  String get kindRectPlanter;
+
+  /// No description provided for @kindGrowBag.
+  ///
+  /// In en, this message translates to:
+  /// **'Grow bag'**
+  String get kindGrowBag;
+
+  /// No description provided for @kindRaisedBed.
+  ///
+  /// In en, this message translates to:
+  /// **'Raised bed'**
+  String get kindRaisedBed;
+
+  /// No description provided for @kindVerticalPlanter.
+  ///
+  /// In en, this message translates to:
+  /// **'Vertical planter'**
+  String get kindVerticalPlanter;
+
+  /// No description provided for @kindWall.
+  ///
+  /// In en, this message translates to:
+  /// **'Wall'**
+  String get kindWall;
+
+  /// No description provided for @kindRailing.
+  ///
+  /// In en, this message translates to:
+  /// **'Railing'**
+  String get kindRailing;
+
+  /// No description provided for @kindPath.
+  ///
+  /// In en, this message translates to:
+  /// **'Path'**
+  String get kindPath;
+
+  /// No description provided for @kindWaterPoint.
+  ///
+  /// In en, this message translates to:
+  /// **'Water tap'**
+  String get kindWaterPoint;
+
+  /// No description provided for @inspectorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit object'**
+  String get inspectorTitle;
+
+  /// No description provided for @fieldDiameter.
+  ///
+  /// In en, this message translates to:
+  /// **'Diameter'**
+  String get fieldDiameter;
+
+  /// No description provided for @fieldDepth.
+  ///
+  /// In en, this message translates to:
+  /// **'Soil depth'**
+  String get fieldDepth;
+
+  /// No description provided for @fieldRotation.
+  ///
+  /// In en, this message translates to:
+  /// **'Rotation'**
+  String get fieldRotation;
+
+  /// No description provided for @fieldLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Label (optional)'**
+  String get fieldLabel;
+
+  /// No description provided for @fieldLabelHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Tomatoes'**
+  String get fieldLabelHint;
+
+  /// No description provided for @degreesValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{degrees}°'**
+  String degreesValue(int degrees);
+
+  /// No description provided for @actionRotate.
+  ///
+  /// In en, this message translates to:
+  /// **'Rotate 90°'**
+  String get actionRotate;
+
+  /// No description provided for @actionDuplicate.
+  ///
+  /// In en, this message translates to:
+  /// **'Duplicate'**
+  String get actionDuplicate;
+
+  /// No description provided for @actionDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get actionDone;
+
+  /// No description provided for @unitCmShort.
+  ///
+  /// In en, this message translates to:
+  /// **'cm'**
+  String get unitCmShort;
+
+  /// No description provided for @unitInShort.
+  ///
+  /// In en, this message translates to:
+  /// **'in'**
+  String get unitInShort;
+
+  /// No description provided for @objectsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No objects yet'**
+  String get objectsEmpty;
+
+  /// No description provided for @summaryGardenArea.
+  ///
+  /// In en, this message translates to:
+  /// **'Garden area'**
+  String get summaryGardenArea;
+
+  /// No description provided for @summaryContainerArea.
+  ///
+  /// In en, this message translates to:
+  /// **'Covered by containers'**
+  String get summaryContainerArea;
+
+  /// No description provided for @summaryContainerShare.
+  ///
+  /// In en, this message translates to:
+  /// **'{percent}% of the floor'**
+  String summaryContainerShare(int percent);
+
+  /// No description provided for @summaryWalkway.
+  ///
+  /// In en, this message translates to:
+  /// **'Paths'**
+  String get summaryWalkway;
+
+  /// No description provided for @summarySoil.
+  ///
+  /// In en, this message translates to:
+  /// **'Soil needed'**
+  String get summarySoil;
+
+  /// No description provided for @summaryCounts.
+  ///
+  /// In en, this message translates to:
+  /// **'Objects'**
+  String get summaryCounts;
+
+  /// No description provided for @summaryNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Soil is each container\'s footprint × the soil depth you entered. Fill grow bags to about three quarters (Kerala Agricultural University) and check the weight guidance in the terrace checklist.'**
+  String get summaryNote;
+
   /// No description provided for @settingsAppearance.
   ///
   /// In en, this message translates to:

@@ -33,6 +33,7 @@ Last updated: 2026-10-18 (Phase 0).
 | KI-015 | Content licensing: RHS non-commercial; UC IPM educational reproduction only; state facts with attribution, never copy text | gardening-references §11 |
 | KI-016 | Plant images: no licensed image set yet | design-system §11 |
 | KI-017 | No sourced sowing-window region for west, central and east Indian cities (Mumbai, Pune, Ahmedabad, Indore, Kolkata, etc.). They are selectable but have no `GrowingRegion`, so season fit will be reported as unknown | `lib/features/garden/domain/region.dart`; gardening-references §2c |
+| KI-018 | Inspector edits record one undo step per keystroke (typing "60" creates two steps). Harmless but noisy | `designer_sheets.dart`; coalesce edits per field focus in a later polish task |
 
 ## Research evidence gaps
 

@@ -94,36 +94,36 @@ Every phase ends with the **gate**: `dart format --output=none --set-exit-if-cha
 
 ## Phase 3: Garden designer MVP
 
-- [ ] **P3-01 · P0 · Geometry domain.**
+- [x] **P3-01 · P0 · Geometry domain.** *Done:* `Vec2`, `RectShape` (oriented), `CircleShape`, SAT overlap with touch tolerance, containment, edge distances, grid/edge/angle snapping; 19 tests incl. rotated cases.
   - Work: Vec2, Size2, oriented rect, circle, polygon footprint, containment, overlap (SAT; circle/rect), distance to boundary, grid/edge snapping, rotation snapping.
   - Tests: ≥ 90% coverage, incl. rotated cases.
-- [ ] **P3-02 · P0 · CanvasTransform.**
+- [x] **P3-02 · P0 · CanvasTransform.** *Done:* fit, focal zoom with clamps, pan, world↔screen round-trip tests.
   - Work: fit-to-viewport, zoom about focal point, pan clamp, world↔screen.
   - Tests: round-trip tests at multiple zoom levels and offsets.
-- [ ] **P3-03 · P0 · Layout document model.**
+- [x] **P3-03 · P0 · Layout document model.** *Done:* `ElementKind` (role, defaults, round), `LayoutElement` (shape, soil litres), `LayoutDocument` (boundary from garden size), `LayoutSummary`.
   - Work: element kinds, container presets (grow bag sizes 12×12, 15×15, 18×9, 24×18, 24×24 in; pot diameters), derived area/volume.
   - Tests: unit tests.
-- [ ] **P3-04 · P0 · LayoutValidator.**
+- [x] **P3-04 · P0 · LayoutValidator.** *Done:* out of bounds and solid overlaps = error; container on path = warning; markers ignored.
   - Work: errors (out of bounds, container overlap); warnings (crowding, shallow container placeholder hook for Phase 4).
   - Tests: unit tests.
-- [ ] **P3-05 · P0 · Command stack.**
+- [x] **P3-05 · P0 · Command stack.** *Done:* `LayoutHistory` (snapshots, 50 max) and `LayoutEditorController` (one undo point per gesture, duplicate, delete, inspector edits).
   - Work: add/move/resize/rotate/delete/duplicate commands; undo/redo (≥ 50); redo cleared on new command.
   - Tests: unit tests.
-- [ ] **P3-06 · P0 · Layout persistence.**
+- [x] **P3-06 · P0 · Layout persistence.** *Done:* `layout_elements` table, schema v3 + migration test, `DriftLayoutRepository` (+ live `watchElements`), debounced autosave with status and flush on exit.
   - Work: tables `layouts`, `layout_elements`; repository; debounced autosave in a transaction; save status.
   - Tests: repository tests + autosave controller tests (fake clock).
-- [ ] **P3-07 · P0 · Canvas rendering.**
+- [x] **P3-07 · P0 · Canvas rendering.** *Done:* `GardenCanvasPainter` (grid by unit system, styles by role, error/warning outlines + badges, handles, size and edge-distance labels, light/dark `CanvasColors`); golden `designer_canvas.png`.
   - Work: painter for grid, boundary, elements, labels, selection, invalid states; cached static layer.
   - Tests: golden tests for fixed layouts.
-- [ ] **P3-08 · P0 · Gestures.**
+- [x] **P3-08 · P0 · Gestures.** *Done:* tap select, drag move, corner resize, rotate handle, pan, pinch zoom; hit-tests the touch-down point (gesture slop fix); body beats handles on small objects; no double-tap delay.
   - Work: pan/zoom, tap-select, drag-move, handle resize/rotate, haptics, snapping toggle.
   - Tests: widget tests driving gestures.
-- [ ] **P3-09 · P0 · Palette (DSN-02) and inspector (DSN-03).**
+- [x] **P3-09 · P0 · Palette (DSN-02) and inspector (DSN-03).** *Done:* grouped palette; inspector with size (cm/in), soil depth, rotation slider, label; live edits.
   - Work: precise numeric edits via DimensionField; bottom sheet on compact, side panel on expanded.
-- [ ] **P3-10 · P0 · Objects list (DSN-04).** Accessible alternative with full edit parity.
-- [ ] **P3-11 · P0 · Space summary (DSN-05).** Area used/free, counts, soil volume, warnings.
-- [ ] **P3-12 · P0 · Integration test: PRD FR-C acceptance scenario** (3 m × 1.2 m balcony, 3 pots + grow bag, rotate, overlap error, undo/redo, restart, layout intact).
-- [ ] **P3-GATE**
+- [x] **P3-10 · P0 · Objects list (DSN-04).** *Done:* list with sizes and problems, edit (opens inspector) and delete without dragging.
+- [x] **P3-11 · P0 · Space summary (DSN-05).** *Done:* garden area, container area and share, paths, soil litres, counts by kind, sourced note.
+- [x] **P3-12 · P0 · FR-C acceptance scenario.** *Done (host widget test, real gestures):* 3 m × 1.2 m balcony, 3 pots + grow bag, overlap error and fix by drag, rotate, undo/redo, autosave, reopen intact. Verified on the emulator (handles, labels, persistence across app restart).
+- [x] **P3-GATE** (2026-10-18). Format clean, analyze clean, 257 host tests.
 
 ## Phase 4: Plant catalogue and recommendations
 

@@ -227,6 +227,9 @@ void main() {
         300,
         scrollable: find.byType(Scrollable).first,
       );
+      // Lift the card clear of the floating navigation bar before tapping.
+      await tester.drag(find.byType(Scrollable).first, const Offset(0, -300));
+      await tester.pumpAndSettle();
       await tester.tap(find.text('Terrace care checklist'));
       await tester.pumpAndSettle();
 

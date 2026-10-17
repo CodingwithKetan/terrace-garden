@@ -1,0 +1,7 @@
+include: ../analysis_options.yaml
+
+linter:
+  rules:
+    # In tests, a sequence of separate statements reads more clearly than a
+    # long cascade (arrange / act / assert), so this style rule is off here.
+    cascade_invocations: false
