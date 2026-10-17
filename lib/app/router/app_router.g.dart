@@ -8,13 +8,20 @@ part of 'app_router.dart';
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
+/// Built once settings have loaded (see `TerraceGardenApp`), so the first
+/// screen is known: onboarding on first launch, otherwise Today.
 
 @ProviderFor(appRouter)
 final appRouterProvider = AppRouterProvider._();
 
+/// Built once settings have loaded (see `TerraceGardenApp`), so the first
+/// screen is known: onboarding on first launch, otherwise Today.
+
 final class AppRouterProvider
     extends $FunctionalProvider<GoRouter, GoRouter, GoRouter>
     with $Provider<GoRouter> {
+  /// Built once settings have loaded (see `TerraceGardenApp`), so the first
+  /// screen is known: onboarding on first launch, otherwise Today.
   AppRouterProvider._()
     : super(
         from: null,
@@ -48,4 +55,4 @@ final class AppRouterProvider
   }
 }
 
-String _$appRouterHash() => r'563092e7b917b0fc31d12c7f08d5447253ec136b';
+String _$appRouterHash() => r'bfbae9cf85c81647f2c79f3c5cc0da53bdae4563';

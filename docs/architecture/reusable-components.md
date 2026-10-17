@@ -22,6 +22,22 @@ Status: v0.2 (2026-10-18). **Phase 1 components are built** in `lib/core/widgets
 | `PhotoBackdrop` | `photo_backdrop.dart` | `PhotoBackdrop(image:, child:, alignment)`. Full-bleed decorative photo, top scrim, light status bar |
 | `ImmersiveEmptyState` | `immersive_empty_state.dart` | `ImmersiveEmptyState(screenTitle:, image:, icon:, title:, body:, badge?, actionLabel?, onAction?, photoAlignment)`. Photo + title + glass message panel. Scrolls at large text sizes |
 
+## Built (Phase 2)
+
+| Component | File | API summary |
+|---|---|---|
+| `DimensionField` | `core/widgets/dimension_field.dart` | `DimensionField(label:, unitSystem:, unitLabel:, value: Length?, onChanged:, errorText?)`. Input in m or ft, "." or "," decimals, empty = null. `parse` and `format` are static and tested |
+| `InfoRow` | `core/widgets/info_row.dart` | `InfoRow(icon:, label:, value: String?, notSetLabel:, onTap?)`. Null value shows "Not set · Add" in the primary colour |
+| `StoredPhotoImage` | `core/widgets/stored_photo_image.dart` | `StoredPhotoImage(relativePath:, fit, cacheWidth?, semanticLabel?)`. Resolves against `photoRootProvider`; a missing file shows a placeholder |
+| Garden form sections | `features/garden/presentation/widgets/garden_form_sections.dart` | `GardenSpaceSection`, `GardenLightSection`, `GardenGoalsSection`, `GardenNotesSection`, each `(draft:, onEdit: ValueChanged<DraftEdit>)`. **Edits, not drafts**: two changes in one frame can't overwrite each other |
+| `showCityPicker` | `.../widgets/city_picker_sheet.dart` | Offline searchable list → `CityChoice?` (`city` null = "No city") |
+| `GardenCover` | `.../widgets/garden_cover.dart` | The user's cover photo, or the bundled terrace photo |
+| Photo flow | `.../photo_actions.dart` | `showPhotoSourceSheet`, `addGardenPhotos(context, ref, gardenId)` |
+
+Rules learned in Phase 2:
+- `showAppBottomSheet` opens on the **root navigator**, so sheets are never covered by the floating navigation bar.
+- `GlassPanel` wraps its child in a transparent `Material`, so `InkWell` and `ListTile` ripples show on glass.
+
 Theme access helpers: `context.careColors` (`app/theme/care_colors.dart`) and `context.l10n` (`l10n/l10n.dart`). Styles come from `docs/design/design-system.md`; components must use theme tokens only (no raw colours or sizes).
 
 ## Guidelines

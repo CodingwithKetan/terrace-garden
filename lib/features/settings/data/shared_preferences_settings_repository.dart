@@ -12,6 +12,7 @@ final class SharedPreferencesSettingsRepository implements SettingsRepository {
 
   static const themeKey = 'settings.themePreference';
   static const unitsKey = 'settings.unitSystem';
+  static const onboardingKey = 'settings.onboardingCompleted';
 
   final SharedPreferencesAsync _prefs;
   final AppLogger _logger;
@@ -21,6 +22,7 @@ final class SharedPreferencesSettingsRepository implements SettingsRepository {
     try {
       final theme = await _prefs.getString(themeKey);
       final units = await _prefs.getString(unitsKey);
+      final onboarded = await _prefs.getBool(onboardingKey);
       return AppSettings(
         themePreference: _byName(
           ThemePreference.values,
@@ -32,6 +34,7 @@ final class SharedPreferencesSettingsRepository implements SettingsRepository {
           units,
           AppSettings.defaults.unitSystem,
         ),
+        onboardingCompleted: onboarded ?? false,
       );
     } on Object catch (error, stackTrace) {
       _logger.error(
@@ -50,6 +53,23 @@ final class SharedPreferencesSettingsRepository implements SettingsRepository {
   @override
   Future<Result<void>> saveUnitSystem(UnitSystem unitSystem) =>
       _write(unitsKey, unitSystem.name);
+
+  @override
+  Future<Result<void>> saveOnboardingCompleted({
+    required bool completed,
+  }) async {
+    try {
+      await _prefs.setBool(onboardingKey, completed);
+      return const Ok(null);
+    } on Object catch (error, stackTrace) {
+      _logger.error(
+        'Failed to save onboarding state',
+        error: error,
+        stackTrace: stackTrace,
+      );
+      return Err(StorageFailure(error));
+    }
+  }
 
   Future<Result<void>> _write(String key, String value) async {
     try {

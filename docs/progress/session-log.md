@@ -4,6 +4,32 @@ Newest first. Keep entries concise: goal, what was done, checks, next.
 
 ---
 
+## 2026-10-18: Session 1, part 4 (Phase 2: garden setup and profile)
+
+**Context:** the user asked to complete all remaining sections without asking permission. Work proceeds phase by phase with local commits (pushing is blocked on this network).
+
+**Done (P2-01 → P2-08):**
+- Garden domain and data with drift schema v2 and a generated migration test.
+- Offline city → region map, sourced regions only.
+- Onboarding with welcome, 3 skippable steps and "explore first".
+- Garden list, overview, create/edit form and delete.
+- Photos: picker, compression with EXIF stripped, thumbnails, gallery, viewer.
+- Terrace checklist citing only verified sources.
+- Emulator integration test covering a restart.
+
+**Bugs found by tests and fixed:**
+1. `ListTile` and `InkWell` on glass: ripples were hidden. `GlassPanel` now adds a transparent `Material`.
+2. Bottom sheets opened inside a tab sat under the floating navigation bar, so the last option couldn't be tapped. Sheets now use the root navigator.
+3. Lost update in forms: a second change within the same frame (seen on the device as a lost garden name) overwrote the first. Sections now send `DraftEdit` functions applied to the latest draft. Regression tests on host and device.
+4. Form loading via `watch().first` didn't resolve under the test clock; added `GardenRepository.find`.
+- Also: full-screen pages (forms, photo viewer) moved to top-level `/gardens/...` routes. An initial suspicion of a go_router back-navigation bug was **not** confirmed; the failing test lacked a frame. The structure was kept because it is cleaner.
+
+**Checks:** format clean, `flutter analyze` clean, 200 host tests pass, `integration_test/garden_setup_test.dart` passes on the Android 16 emulator.
+
+**Next:** Phase 3, the garden designer (P3-01 geometry domain first).
+
+---
+
 ## 2026-10-18: Session 1, part 3 (visual refresh before Phase 2)
 
 **Request:** the user found the flat design "not good" and asked for a "realistic, modern and transparent" look in line with the product idea.

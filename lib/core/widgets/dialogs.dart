@@ -50,6 +50,9 @@ Future<T?> showAppBottomSheet<T>(
 }) {
   return showModalBottomSheet<T>(
     context: context,
+    // Above the floating navigation bar; inside a tab the bar would cover
+    // the bottom of the sheet.
+    useRootNavigator: true,
     isScrollControlled: true,
     useSafeArea: true,
     constraints: BoxConstraints(

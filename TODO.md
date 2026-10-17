@@ -68,29 +68,29 @@ Every phase ends with the **gate**: `dart format --output=none --set-exit-if-cha
 
 ## Phase 2: Garden setup and profile
 
-- [ ] **P2-01 · P0 · Garden domain and data.**
+- [x] **P2-01 · P0 · Garden domain and data.** *Done:* `Garden`, `GardenDraft` (validation), enums with explicit unknowns; drift `gardens` + `garden_photos` tables, schema v2 with generated migration test; `DriftGardenRepository` (+ `find`), cascade deletes.
   - Work: `Garden` entity and enums (data-model §3), `GardenRepository` interface + drift implementation (tables, DAO, migration v2), validation (`GardenDraft`).
   - Tests: repository tests (create/read/update/delete/cascade), validation tests.
-- [ ] **P2-02 · P0 · Region mapping.**
+- [x] **P2-02 · P0 · Region mapping.** *Done:* `GrowingRegion` (North/South India, Telangana, Tamil Nadu, Kerala) per sourced tables; 49 cities offline; west/central/east cities have no region yet (KI-017).
   - Work: offline Indian city list → `regionKey` (ADR-015); "Other / not listed" fallback.
   - Tests: mapping tests.
-- [ ] **P2-03 · P0 · Onboarding flow (ONB-01..05).**
+- [x] **P2-03 · P0 · Onboarding flow (ONB-01..05).** *Done:* welcome over photo, 3 steps (only name required, steps skippable), ready summary; "explore first"; first-run routing via `onboardingCompleted` setting.
   - Work: progressive and skippable; first-run redirect; "explore first".
   - Acceptance: PRD FR-A.
   - Tests: view-model tests; widget tests for validation.
-- [ ] **P2-04 · P0 · Garden overview (GDN-02) and edit profile (GDN-03).**
+- [x] **P2-04 · P0 · Garden overview (GDN-02) and edit profile (GDN-03).** *Done:* cover photo header, "Not set · Add" rows, delete with confirm; shared form sections; unsaved-changes guard (tested with system back).
   - Work: "Not set · Add" pattern; unsaved-changes prompt.
   - Tests: widget tests.
-- [ ] **P2-05 · P0 · Photo storage service.**
+- [x] **P2-05 · P0 · Photo storage service.** *Done:* `PhotoPicker` (image_picker) and `PhotoStorage` (compress, EXIF/GPS stripped, thumbnails, relative paths, cleanup on failure); `GardenPhotoRepository`; `GardenService.deleteGarden` removes files.
   - Work: pick (image_picker) → compress/strip EXIF → thumbnail → relative paths; delete files; `retrieveLostData`; `PhotoStorage` interface + fake.
   - Tests: unit tests with a temp-dir fake; missing-file handling.
-- [ ] **P2-06 · P0 · Photo gallery and viewer (GDN-04/05).**
+- [x] **P2-06 · P0 · Photo gallery and viewer (GDN-04/05).** *Done:* grid, add (camera/gallery), zoomable viewer with caption, cover, replace, delete; missing-file placeholder.
   - Work: add/view/replace/delete/caption/tag/cover; permission-denied state.
   - Acceptance: PRD FR-B.
-- [ ] **P2-07 · P1 · Environment notes and terrace checklist (GDN-06, FR-I).**
+- [x] **P2-07 · P1 · Environment notes and terrace checklist (GDN-06, FR-I).** *Done:* wind and water fields in the profile; checklist of 6 items citing only verified sources (S2, S4–S6, S11, S12, S42); never claims structural safety.
   - Work: content only from `gardening-references.md` §3c, §4, §8, with source IDs.
-- [ ] **P2-08 · P0 · Integration test: onboarding → garden created → restart → garden visible.**
-- [ ] **P2-GATE**
+- [x] **P2-08 · P0 · Integration test: onboarding → garden created → restart → garden visible.** *Done:* `integration_test/garden_setup_test.dart` passes on the Android 16 emulator (run after `adb shell pm clear com.terracegarden.terrace_garden`).
+- [x] **P2-GATE** (2026-10-18). Format clean, analyze clean, 200 host tests, integration test on emulator.
 
 ## Phase 3: Garden designer MVP
 

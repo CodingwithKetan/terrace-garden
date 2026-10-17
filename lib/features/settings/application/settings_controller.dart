@@ -33,6 +33,12 @@ class SettingsController extends _$SettingsController {
     (repository) => repository.saveUnitSystem(unitSystem),
   );
 
+  /// Marks onboarding as finished (or skipped) so it is not shown again.
+  Future<Result<void>> completeOnboarding() => _update(
+    (settings) => settings.copyWith(onboardingCompleted: true),
+    (repository) => repository.saveOnboardingCompleted(completed: true),
+  );
+
   Future<Result<void>> _update(
     AppSettings Function(AppSettings) change,
     Future<Result<void>> Function(SettingsRepository) save,

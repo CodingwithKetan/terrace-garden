@@ -3,21 +3,45 @@ import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:terrace_garden/app/router/app_shell.dart';
 import 'package:terrace_garden/features/care/presentation/today_screen.dart';
+import 'package:terrace_garden/features/garden/presentation/garden_form_screen.dart';
 import 'package:terrace_garden/features/garden/presentation/garden_home_screen.dart';
+import 'package:terrace_garden/features/garden/presentation/garden_overview_screen.dart';
+import 'package:terrace_garden/features/garden/presentation/photo_gallery_screen.dart';
+import 'package:terrace_garden/features/garden/presentation/photo_viewer_screen.dart';
+import 'package:terrace_garden/features/garden/presentation/terrace_checklist_screen.dart';
 import 'package:terrace_garden/features/journal/presentation/journal_screen.dart';
+import 'package:terrace_garden/features/onboarding/presentation/onboarding_screen.dart';
 import 'package:terrace_garden/features/plant_catalog/presentation/plants_home_screen.dart';
+import 'package:terrace_garden/features/settings/application/settings_controller.dart';
 import 'package:terrace_garden/features/settings/presentation/image_credits_screen.dart';
 import 'package:terrace_garden/features/settings/presentation/settings_screen.dart';
 
 part 'app_router.g.dart';
 
+/// Route paths. Screens inside a tab (keeping the navigation bar) live under
+/// the tab's path, e.g. `/garden/...`. Full-screen pages (forms, viewers)
+/// are top-level routes, e.g. `/gardens/...`, so they sit on the root
+/// navigator and system back always targets them rather than the tab's
+/// navigator underneath. Tested in garden_flows_test ("Discard changes?").
 abstract final class AppRoutes {
+  static const onboarding = '/onboarding';
   static const today = '/today';
   static const garden = '/garden';
   static const plants = '/plants';
   static const journal = '/journal';
   static const settings = '/settings';
   static const imageCredits = '/settings/credits';
+
+  // In the Garden tab.
+  static String gardenDetail(String id) => '/garden/$id';
+  static String gardenPhotos(String id) => '/garden/$id/photos';
+  static String gardenChecklist(String id) => '/garden/$id/checklist';
+
+  // Full screen.
+  static const gardenNew = '/gardens/new';
+  static String gardenEdit(String id) => '/gardens/$id/edit';
+  static String gardenPhoto(String id, String photoId) =>
+      '/gardens/$id/photos/$photoId';
 }
 
 /// Wraps a screen in the SDK's [MaterialPage].
@@ -31,30 +55,95 @@ Page<void> appPage(GoRouterState state, Widget child) =>
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
+/// Built once settings have loaded (see `TerraceGardenApp`), so the first
+/// screen is known: onboarding on first launch, otherwise Today.
 @Riverpod(keepAlive: true)
 GoRouter appRouter(Ref ref) {
+  bool onboarded() =>
+      ref.read(settingsControllerProvider).value?.onboardingCompleted ?? true;
+
   final router = GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: AppRoutes.today,
+    initialLocation: onboarded() ? AppRoutes.today : AppRoutes.onboarding,
+    redirect: (context, state) {
+      final atOnboarding = state.matchedLocation == AppRoutes.onboarding;
+      if (!onboarded() && !atOnboarding) return AppRoutes.onboarding;
+      return null;
+    },
     routes: [
+      GoRoute(
+        path: AppRoutes.onboarding,
+        pageBuilder: (context, state) =>
+            appPage(state, const OnboardingScreen()),
+      ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) =>
             AppShell(navigationShell: navigationShell),
         branches: [
           _branch(AppRoutes.today, const TodayScreen()),
-          _branch(AppRoutes.garden, const GardenHomeScreen()),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.garden,
+                pageBuilder: (context, state) =>
+                    appPage(state, const GardenHomeScreen()),
+                routes: [
+                  GoRoute(
+                    path: ':gardenId',
+                    pageBuilder: (context, state) => appPage(
+                      state,
+                      GardenOverviewScreen(gardenId: _gardenId(state)),
+                    ),
+                    routes: [
+                      GoRoute(
+                        path: 'photos',
+                        pageBuilder: (context, state) => appPage(
+                          state,
+                          PhotoGalleryScreen(gardenId: _gardenId(state)),
+                        ),
+                      ),
+                      GoRoute(
+                        path: 'checklist',
+                        pageBuilder: (context, state) =>
+                            appPage(state, const TerraceChecklistScreen()),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
           _branch(AppRoutes.plants, const PlantsHomeScreen()),
           _branch(AppRoutes.journal, const JournalScreen()),
         ],
       ),
+      // Full-screen pages (see AppRoutes for why they are top-level).
+      GoRoute(
+        path: AppRoutes.gardenNew,
+        pageBuilder: (context, state) =>
+            appPage(state, const GardenFormScreen()),
+      ),
+      GoRoute(
+        path: '/gardens/:gardenId/edit',
+        pageBuilder: (context, state) =>
+            appPage(state, GardenFormScreen(gardenId: _gardenId(state))),
+      ),
+      GoRoute(
+        path: '/gardens/:gardenId/photos/:photoId',
+        pageBuilder: (context, state) => appPage(
+          state,
+          PhotoViewerScreen(
+            gardenId: _gardenId(state),
+            photoId: state.pathParameters['photoId']!,
+          ),
+        ),
+      ),
       GoRoute(
         path: AppRoutes.settings,
-        parentNavigatorKey: _rootNavigatorKey,
         pageBuilder: (context, state) => appPage(state, const SettingsScreen()),
         routes: [
           GoRoute(
             path: 'credits',
-            parentNavigatorKey: _rootNavigatorKey,
             pageBuilder: (context, state) =>
                 appPage(state, const ImageCreditsScreen()),
           ),
@@ -65,6 +154,8 @@ GoRouter appRouter(Ref ref) {
   ref.onDispose(router.dispose);
   return router;
 }
+
+String _gardenId(GoRouterState state) => state.pathParameters['gardenId']!;
 
 StatefulShellBranch _branch(String path, Widget screen) => StatefulShellBranch(
   routes: [

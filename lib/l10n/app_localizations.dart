@@ -157,7 +157,7 @@ abstract class AppLocalizations {
   /// No description provided for @gardenEmptyBody.
   ///
   /// In en, this message translates to:
-  /// **'Garden setup is coming in the next update. You\'ll describe your space, add photos and arrange pots and grow bags to scale.'**
+  /// **'Describe your space, add photos and keep everything about your terrace in one place.'**
   String get gardenEmptyBody;
 
   /// No description provided for @plantsEmptyTitle.
@@ -237,6 +237,972 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Source: Royal Horticultural Society'**
   String get tipWateringSource;
+
+  /// No description provided for @onbWelcomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Grow a garden that suits your terrace'**
+  String get onbWelcomeTitle;
+
+  /// No description provided for @onbBenefitPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan your real space with pots and grow bags to scale'**
+  String get onbBenefitPlan;
+
+  /// No description provided for @onbBenefitSeason.
+  ///
+  /// In en, this message translates to:
+  /// **'Plant ideas for your city and season'**
+  String get onbBenefitSeason;
+
+  /// No description provided for @onbBenefitCare.
+  ///
+  /// In en, this message translates to:
+  /// **'Care reminders that ask you to check the soil first'**
+  String get onbBenefitCare;
+
+  /// No description provided for @onbStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Set up my garden'**
+  String get onbStart;
+
+  /// No description provided for @onbExplore.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'ll explore first'**
+  String get onbExplore;
+
+  /// No description provided for @onbStepOf.
+  ///
+  /// In en, this message translates to:
+  /// **'Step {step} of {total}'**
+  String onbStepOf(int step, int total);
+
+  /// No description provided for @onbSpaceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us about your space'**
+  String get onbSpaceTitle;
+
+  /// No description provided for @onbLightTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Light and location'**
+  String get onbLightTitle;
+
+  /// No description provided for @onbOptionalHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Everything here is optional. Choose \"Not sure\" if you don\'t know.'**
+  String get onbOptionalHint;
+
+  /// No description provided for @onbGoalsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What would you like to grow?'**
+  String get onbGoalsTitle;
+
+  /// No description provided for @onbReadyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready to create your garden'**
+  String get onbReadyTitle;
+
+  /// No description provided for @onbReadyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You can add photos, measurements and plants at any time.'**
+  String get onbReadyBody;
+
+  /// No description provided for @onbCreateGarden.
+  ///
+  /// In en, this message translates to:
+  /// **'Create my garden'**
+  String get onbCreateGarden;
+
+  /// No description provided for @actionContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get actionContinue;
+
+  /// No description provided for @actionSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get actionSkip;
+
+  /// No description provided for @actionSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get actionSave;
+
+  /// No description provided for @actionEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get actionEdit;
+
+  /// No description provided for @actionAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get actionAdd;
+
+  /// No description provided for @seeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'See all'**
+  String get seeAll;
+
+  /// No description provided for @notSure.
+  ///
+  /// In en, this message translates to:
+  /// **'Not sure'**
+  String get notSure;
+
+  /// No description provided for @notSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set'**
+  String get notSet;
+
+  /// No description provided for @notSetAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set · Add'**
+  String get notSetAdd;
+
+  /// No description provided for @fieldGardenName.
+  ///
+  /// In en, this message translates to:
+  /// **'Garden name'**
+  String get fieldGardenName;
+
+  /// No description provided for @defaultGardenName.
+  ///
+  /// In en, this message translates to:
+  /// **'My terrace'**
+  String get defaultGardenName;
+
+  /// No description provided for @fieldSpaceType.
+  ///
+  /// In en, this message translates to:
+  /// **'Type of space'**
+  String get fieldSpaceType;
+
+  /// No description provided for @spaceTerrace.
+  ///
+  /// In en, this message translates to:
+  /// **'Terrace'**
+  String get spaceTerrace;
+
+  /// No description provided for @spaceBalcony.
+  ///
+  /// In en, this message translates to:
+  /// **'Balcony'**
+  String get spaceBalcony;
+
+  /// No description provided for @spaceRooftop.
+  ///
+  /// In en, this message translates to:
+  /// **'Rooftop'**
+  String get spaceRooftop;
+
+  /// No description provided for @spaceWindowsill.
+  ///
+  /// In en, this message translates to:
+  /// **'Windowsill'**
+  String get spaceWindowsill;
+
+  /// No description provided for @spaceCourtyard.
+  ///
+  /// In en, this message translates to:
+  /// **'Courtyard'**
+  String get spaceCourtyard;
+
+  /// No description provided for @spaceOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get spaceOther;
+
+  /// No description provided for @fieldDimensions.
+  ///
+  /// In en, this message translates to:
+  /// **'Size (optional)'**
+  String get fieldDimensions;
+
+  /// No description provided for @fieldDimensionsHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Measure the usable floor area. You can add this later.'**
+  String get fieldDimensionsHelp;
+
+  /// No description provided for @fieldLength.
+  ///
+  /// In en, this message translates to:
+  /// **'Length'**
+  String get fieldLength;
+
+  /// No description provided for @fieldWidth.
+  ///
+  /// In en, this message translates to:
+  /// **'Width'**
+  String get fieldWidth;
+
+  /// No description provided for @unitMetresShort.
+  ///
+  /// In en, this message translates to:
+  /// **'m'**
+  String get unitMetresShort;
+
+  /// No description provided for @unitFeetShort.
+  ///
+  /// In en, this message translates to:
+  /// **'ft'**
+  String get unitFeetShort;
+
+  /// No description provided for @fieldCity.
+  ///
+  /// In en, this message translates to:
+  /// **'City'**
+  String get fieldCity;
+
+  /// No description provided for @cityChoose.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your city'**
+  String get cityChoose;
+
+  /// No description provided for @citySearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search city or state'**
+  String get citySearchHint;
+
+  /// No description provided for @cityNoResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No matching city. You can leave this blank.'**
+  String get cityNoResults;
+
+  /// No description provided for @cityClear.
+  ///
+  /// In en, this message translates to:
+  /// **'No city'**
+  String get cityClear;
+
+  /// No description provided for @cityNoRegion.
+  ///
+  /// In en, this message translates to:
+  /// **'Sowing calendars for this city aren\'t available yet. Everything else works normally.'**
+  String get cityNoRegion;
+
+  /// No description provided for @fieldSun.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct sun per day'**
+  String get fieldSun;
+
+  /// No description provided for @sunLessThan3.
+  ///
+  /// In en, this message translates to:
+  /// **'Under 3 hours'**
+  String get sunLessThan3;
+
+  /// No description provided for @sun3To6.
+  ///
+  /// In en, this message translates to:
+  /// **'3–6 hours'**
+  String get sun3To6;
+
+  /// No description provided for @sunMoreThan6.
+  ///
+  /// In en, this message translates to:
+  /// **'6+ hours'**
+  String get sunMoreThan6;
+
+  /// No description provided for @fieldFacing.
+  ///
+  /// In en, this message translates to:
+  /// **'Which way does it face?'**
+  String get fieldFacing;
+
+  /// No description provided for @facingNorth.
+  ///
+  /// In en, this message translates to:
+  /// **'North'**
+  String get facingNorth;
+
+  /// No description provided for @facingNorthEast.
+  ///
+  /// In en, this message translates to:
+  /// **'North-east'**
+  String get facingNorthEast;
+
+  /// No description provided for @facingEast.
+  ///
+  /// In en, this message translates to:
+  /// **'East'**
+  String get facingEast;
+
+  /// No description provided for @facingSouthEast.
+  ///
+  /// In en, this message translates to:
+  /// **'South-east'**
+  String get facingSouthEast;
+
+  /// No description provided for @facingSouth.
+  ///
+  /// In en, this message translates to:
+  /// **'South'**
+  String get facingSouth;
+
+  /// No description provided for @facingSouthWest.
+  ///
+  /// In en, this message translates to:
+  /// **'South-west'**
+  String get facingSouthWest;
+
+  /// No description provided for @facingWest.
+  ///
+  /// In en, this message translates to:
+  /// **'West'**
+  String get facingWest;
+
+  /// No description provided for @facingNorthWest.
+  ///
+  /// In en, this message translates to:
+  /// **'North-west'**
+  String get facingNorthWest;
+
+  /// No description provided for @fieldWind.
+  ///
+  /// In en, this message translates to:
+  /// **'Wind'**
+  String get fieldWind;
+
+  /// No description provided for @windSheltered.
+  ///
+  /// In en, this message translates to:
+  /// **'Sheltered'**
+  String get windSheltered;
+
+  /// No description provided for @windModerate.
+  ///
+  /// In en, this message translates to:
+  /// **'Some wind'**
+  String get windModerate;
+
+  /// No description provided for @windExposed.
+  ///
+  /// In en, this message translates to:
+  /// **'Very windy'**
+  String get windExposed;
+
+  /// No description provided for @fieldWater.
+  ///
+  /// In en, this message translates to:
+  /// **'Water source'**
+  String get fieldWater;
+
+  /// No description provided for @waterTapNearby.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap nearby'**
+  String get waterTapNearby;
+
+  /// No description provided for @waterCarried.
+  ///
+  /// In en, this message translates to:
+  /// **'Carried in buckets'**
+  String get waterCarried;
+
+  /// No description provided for @fieldGoals.
+  ///
+  /// In en, this message translates to:
+  /// **'Goals'**
+  String get fieldGoals;
+
+  /// No description provided for @goalVegetables.
+  ///
+  /// In en, this message translates to:
+  /// **'Vegetables'**
+  String get goalVegetables;
+
+  /// No description provided for @goalHerbs.
+  ///
+  /// In en, this message translates to:
+  /// **'Herbs'**
+  String get goalHerbs;
+
+  /// No description provided for @goalFlowers.
+  ///
+  /// In en, this message translates to:
+  /// **'Flowers'**
+  String get goalFlowers;
+
+  /// No description provided for @goalOrnamental.
+  ///
+  /// In en, this message translates to:
+  /// **'Ornamental plants'**
+  String get goalOrnamental;
+
+  /// No description provided for @goalFruit.
+  ///
+  /// In en, this message translates to:
+  /// **'Fruit'**
+  String get goalFruit;
+
+  /// No description provided for @fieldStyle.
+  ///
+  /// In en, this message translates to:
+  /// **'Garden style (optional)'**
+  String get fieldStyle;
+
+  /// No description provided for @styleModernMinimalist.
+  ///
+  /// In en, this message translates to:
+  /// **'Modern minimalist'**
+  String get styleModernMinimalist;
+
+  /// No description provided for @styleTropical.
+  ///
+  /// In en, this message translates to:
+  /// **'Tropical'**
+  String get styleTropical;
+
+  /// No description provided for @styleEdibleKitchen.
+  ///
+  /// In en, this message translates to:
+  /// **'Edible kitchen garden'**
+  String get styleEdibleKitchen;
+
+  /// No description provided for @styleIndianTerraceVegetable.
+  ///
+  /// In en, this message translates to:
+  /// **'Indian terrace vegetable garden'**
+  String get styleIndianTerraceVegetable;
+
+  /// No description provided for @styleHerbGarden.
+  ///
+  /// In en, this message translates to:
+  /// **'Herb garden'**
+  String get styleHerbGarden;
+
+  /// No description provided for @styleFlowerGarden.
+  ///
+  /// In en, this message translates to:
+  /// **'Flower garden'**
+  String get styleFlowerGarden;
+
+  /// No description provided for @styleLowMaintenance.
+  ///
+  /// In en, this message translates to:
+  /// **'Low-maintenance'**
+  String get styleLowMaintenance;
+
+  /// No description provided for @styleVerticalSpaceSaving.
+  ///
+  /// In en, this message translates to:
+  /// **'Vertical and space-saving'**
+  String get styleVerticalSpaceSaving;
+
+  /// No description provided for @fieldExperience.
+  ///
+  /// In en, this message translates to:
+  /// **'Gardening experience'**
+  String get fieldExperience;
+
+  /// No description provided for @experienceBeginner.
+  ///
+  /// In en, this message translates to:
+  /// **'Beginner'**
+  String get experienceBeginner;
+
+  /// No description provided for @experienceIntermediate.
+  ///
+  /// In en, this message translates to:
+  /// **'Some experience'**
+  String get experienceIntermediate;
+
+  /// No description provided for @experienceExperienced.
+  ///
+  /// In en, this message translates to:
+  /// **'Experienced'**
+  String get experienceExperienced;
+
+  /// No description provided for @fieldWeeklyTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Time per week'**
+  String get fieldWeeklyTime;
+
+  /// No description provided for @weeklyUnderOneHour.
+  ///
+  /// In en, this message translates to:
+  /// **'Under 1 hour'**
+  String get weeklyUnderOneHour;
+
+  /// No description provided for @weeklyOneToThree.
+  ///
+  /// In en, this message translates to:
+  /// **'1–3 hours'**
+  String get weeklyOneToThree;
+
+  /// No description provided for @weeklyMoreThanThree.
+  ///
+  /// In en, this message translates to:
+  /// **'More than 3 hours'**
+  String get weeklyMoreThanThree;
+
+  /// No description provided for @fieldBudget.
+  ///
+  /// In en, this message translates to:
+  /// **'Budget'**
+  String get fieldBudget;
+
+  /// No description provided for @budgetLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Low'**
+  String get budgetLow;
+
+  /// No description provided for @budgetMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get budgetMedium;
+
+  /// No description provided for @budgetHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'High'**
+  String get budgetHigh;
+
+  /// No description provided for @fieldNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get fieldNotes;
+
+  /// No description provided for @fieldNotesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Anything worth remembering about this space'**
+  String get fieldNotesHint;
+
+  /// No description provided for @errNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Give your garden a name'**
+  String get errNameRequired;
+
+  /// No description provided for @errNameTooLong.
+  ///
+  /// In en, this message translates to:
+  /// **'Use 60 characters or fewer'**
+  String get errNameTooLong;
+
+  /// No description provided for @errDimension.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a size above 0 and up to 200 m (656 ft)'**
+  String get errDimension;
+
+  /// No description provided for @regionNorthIndia.
+  ///
+  /// In en, this message translates to:
+  /// **'North India'**
+  String get regionNorthIndia;
+
+  /// No description provided for @regionSouthIndia.
+  ///
+  /// In en, this message translates to:
+  /// **'South India'**
+  String get regionSouthIndia;
+
+  /// No description provided for @regionTelangana.
+  ///
+  /// In en, this message translates to:
+  /// **'Telangana'**
+  String get regionTelangana;
+
+  /// No description provided for @regionTamilNadu.
+  ///
+  /// In en, this message translates to:
+  /// **'Tamil Nadu'**
+  String get regionTamilNadu;
+
+  /// No description provided for @regionKerala.
+  ///
+  /// In en, this message translates to:
+  /// **'Kerala'**
+  String get regionKerala;
+
+  /// No description provided for @gardensTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your gardens'**
+  String get gardensTitle;
+
+  /// No description provided for @gardenCreateAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Create your garden'**
+  String get gardenCreateAction;
+
+  /// No description provided for @gardenNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New garden'**
+  String get gardenNew;
+
+  /// No description provided for @gardenEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit garden'**
+  String get gardenEditTitle;
+
+  /// No description provided for @gardenSectionSpace.
+  ///
+  /// In en, this message translates to:
+  /// **'Your space'**
+  String get gardenSectionSpace;
+
+  /// No description provided for @gardenSectionLight.
+  ///
+  /// In en, this message translates to:
+  /// **'Light and weather'**
+  String get gardenSectionLight;
+
+  /// No description provided for @gardenSectionGoals.
+  ///
+  /// In en, this message translates to:
+  /// **'Goals and style'**
+  String get gardenSectionGoals;
+
+  /// No description provided for @gardenSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Size'**
+  String get gardenSize;
+
+  /// No description provided for @gardenArea.
+  ///
+  /// In en, this message translates to:
+  /// **'Area'**
+  String get gardenArea;
+
+  /// No description provided for @gardenSizeValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{length} × {width}'**
+  String gardenSizeValue(String length, String width);
+
+  /// No description provided for @gardenLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get gardenLocation;
+
+  /// No description provided for @gardenRegion.
+  ///
+  /// In en, this message translates to:
+  /// **'Growing region'**
+  String get gardenRegion;
+
+  /// No description provided for @gardenPhotos.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos'**
+  String get gardenPhotos;
+
+  /// No description provided for @gardenPhotosEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Add photos of your space from a few angles. Photos are for your records; measurements always come from what you enter.'**
+  String get gardenPhotosEmpty;
+
+  /// No description provided for @gardenDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete garden'**
+  String get gardenDelete;
+
+  /// No description provided for @gardenDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete {name}?'**
+  String gardenDeleteTitle(String name);
+
+  /// No description provided for @gardenDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This removes the garden, its photos and everything recorded for it. This can\'t be undone.'**
+  String get gardenDeleteBody;
+
+  /// No description provided for @gardenDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Garden deleted'**
+  String get gardenDeleted;
+
+  /// No description provided for @gardenSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Garden saved'**
+  String get gardenSaved;
+
+  /// No description provided for @unsavedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Discard changes?'**
+  String get unsavedTitle;
+
+  /// No description provided for @unsavedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your changes to this garden haven\'t been saved.'**
+  String get unsavedBody;
+
+  /// No description provided for @unsavedDiscard.
+  ///
+  /// In en, this message translates to:
+  /// **'Discard'**
+  String get unsavedDiscard;
+
+  /// No description provided for @moreActions.
+  ///
+  /// In en, this message translates to:
+  /// **'More actions'**
+  String get moreActions;
+
+  /// No description provided for @photosTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos'**
+  String get photosTitle;
+
+  /// No description provided for @photoAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add photo'**
+  String get photoAdd;
+
+  /// No description provided for @photoTake.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a photo'**
+  String get photoTake;
+
+  /// No description provided for @photoChoose.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from gallery'**
+  String get photoChoose;
+
+  /// No description provided for @photoCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Caption'**
+  String get photoCaption;
+
+  /// No description provided for @photoCaptionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. View from the north corner'**
+  String get photoCaptionHint;
+
+  /// No description provided for @photoSetCover.
+  ///
+  /// In en, this message translates to:
+  /// **'Use as cover'**
+  String get photoSetCover;
+
+  /// No description provided for @photoIsCover.
+  ///
+  /// In en, this message translates to:
+  /// **'Cover photo'**
+  String get photoIsCover;
+
+  /// No description provided for @photoReplace.
+  ///
+  /// In en, this message translates to:
+  /// **'Replace photo'**
+  String get photoReplace;
+
+  /// No description provided for @photoDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete photo'**
+  String get photoDelete;
+
+  /// No description provided for @photoDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This photo will be removed from your garden.'**
+  String get photoDeleteBody;
+
+  /// No description provided for @photoCoverUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Cover photo updated'**
+  String get photoCoverUpdated;
+
+  /// No description provided for @photoMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'This photo is no longer on your device'**
+  String get photoMissing;
+
+  /// No description provided for @photoPermission.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow camera or photo access for Terrace Garden in your phone\'s settings, or choose a photo from your gallery instead.'**
+  String get photoPermission;
+
+  /// No description provided for @photoAdding.
+  ///
+  /// In en, this message translates to:
+  /// **'Adding photo…'**
+  String get photoAdding;
+
+  /// No description provided for @photoCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No photos} =1{1 photo} other{{count} photos}}'**
+  String photoCount(int count);
+
+  /// No description provided for @checklistTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Terrace care checklist'**
+  String get checklistTitle;
+
+  /// No description provided for @checklistSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight, drainage, waterproofing, monsoon and heat'**
+  String get checklistSubtitle;
+
+  /// No description provided for @checklistIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Practical points for terraces and balconies. This is general guidance, not a structural assessment of your building.'**
+  String get checklistIntro;
+
+  /// No description provided for @checkLoadTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Check the roof can take the weight'**
+  String get checkLoadTitle;
+
+  /// No description provided for @checkLoadBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Under the Indian loading code, a flat roof you can walk on is designed for about 150 kg per square metre of people and objects. Wet soil, pots and stored water add up quickly. Ask a structural engineer before adding raised beds, large planters or water tanks.'**
+  String get checkLoadBody;
+
+  /// No description provided for @checkLoadSources.
+  ///
+  /// In en, this message translates to:
+  /// **'Sources: IS 875 (Part 2), Bureau of Indian Standards; ICAR Indian Horticulture'**
+  String get checkLoadSources;
+
+  /// No description provided for @checkWallsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep heavy containers over walls'**
+  String get checkWallsTitle;
+
+  /// No description provided for @checkWallsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Place grow bags and heavy pots where there is a wall underneath, not in the middle of an open span.'**
+  String get checkWallsBody;
+
+  /// No description provided for @checkWallsSources.
+  ///
+  /// In en, this message translates to:
+  /// **'Source: Kerala Agricultural University'**
+  String get checkWallsSources;
+
+  /// No description provided for @checkDrainTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep water draining'**
+  String get checkDrainTitle;
+
+  /// No description provided for @checkDrainBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Every container needs drainage holes. Raise pots on bricks or pot feet so water runs away, empty saucers after watering, and keep the roof outlets clear.'**
+  String get checkDrainBody;
+
+  /// No description provided for @checkDrainSources.
+  ///
+  /// In en, this message translates to:
+  /// **'Sources: University of Maryland Extension; Kerala Agricultural University'**
+  String get checkDrainSources;
+
+  /// No description provided for @checkWaterproofTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Protect the waterproofing'**
+  String get checkWaterproofTitle;
+
+  /// No description provided for @checkWaterproofBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Make sure the roof is waterproofed with a root- and rot-resistant layer before planting. After each crop, shift bags and bricks slightly so no patch of roof stays permanently wet.'**
+  String get checkWaterproofBody;
+
+  /// No description provided for @checkWaterproofSources.
+  ///
+  /// In en, this message translates to:
+  /// **'Sources: ICAR Indian Horticulture; Kerala Agricultural University'**
+  String get checkWaterproofSources;
+
+  /// No description provided for @checkMonsoonTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prepare for the monsoon'**
+  String get checkMonsoonTitle;
+
+  /// No description provided for @checkMonsoonBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Overwatering is the most common cause of container plant loss. In very wet spells, move pots under cover, remove saucers, and check the soil before watering even after rain.'**
+  String get checkMonsoonBody;
+
+  /// No description provided for @checkMonsoonSources.
+  ///
+  /// In en, this message translates to:
+  /// **'Sources: Royal Horticultural Society'**
+  String get checkMonsoonSources;
+
+  /// No description provided for @checkHeatTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Protect plants from summer heat'**
+  String get checkHeatTitle;
+
+  /// No description provided for @checkHeatBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Small, dark and metal pots heat up and dry out fast, and south- and west-facing spots dry quickest. Group pots together, mulch the soil, and water early in the morning.'**
+  String get checkHeatBody;
+
+  /// No description provided for @checkHeatSources.
+  ///
+  /// In en, this message translates to:
+  /// **'Sources: Royal Horticultural Society; University of Maryland Extension'**
+  String get checkHeatSources;
 
   /// No description provided for @settingsAppearance.
   ///
@@ -321,12 +1287,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Photo by {author}'**
   String imageCreditsBy(String author);
-
-  /// No description provided for @settingsVersion.
-  ///
-  /// In en, this message translates to:
-  /// **'Version {version}'**
-  String settingsVersion(String version);
 
   /// No description provided for @errorGenericTitle.
   ///

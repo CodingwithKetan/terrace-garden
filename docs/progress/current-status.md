@@ -4,21 +4,21 @@ Last updated: 2026-10-18
 
 ## Phase
 
-**Phase 1 (foundation and design system): complete (2026-10-18).** Phase 0 is complete. Next: Phase 2 (garden setup and profile).
+**Phase 2 (garden setup and profile): complete (2026-10-18).** Phases 0–1 are complete, plus the v0.2 visual refresh. Next: Phase 3 (garden designer).
 
 ## State of the repository
 
-- **App:** runs on the local Flutter 3.44.8 (ADR-001).
+- **App:** runs on the local Flutter 3.44.8 (ADR-001). Phase 2 adds onboarding, gardens (create, edit, delete), garden photos and the terrace checklist, stored in drift schema v2.
   - Riverpod 3 bootstrap, go_router shell with four tabs (Today, Garden, Plants, Journal) and an adaptive NavigationBar/NavigationRail.
   - A working Settings screen: theme and units, persisted; licences page.
   - Tabs show honest empty states; features arrive in Phases 2–6.
-- **Design system in code** (`lib/app/theme/`): tokens, light/dark colour schemes, `CareColors` and `GlassTheme` extensions, component themes, bundled Inter + Fraunces fonts. **Visual direction v0.2 "real, modern, translucent"**: photo backdrops, glass panels, floating glass navigation (design-system §2.4). Awaiting user feedback before Phase 2.
+- **Design system in code** (`lib/app/theme/`): tokens, light/dark colour schemes, `CareColors` and `GlassTheme` extensions, component themes, bundled Inter + Fraunces fonts. **Visual direction v0.2 "real, modern, translucent"**: photo backdrops, glass panels, floating glass navigation (design-system §2.4).
 - **Core** (`lib/core/`):
   - `Result`/`AppFailure`, `AppLogger`, `Clock`, `IdGenerator`, `LocalDate`, `Length`/`Area`/`Volume` + formatter;
   - 11 shared widgets (`lib/core/widgets/`);
   - drift `AppDatabase` v1 (no tables yet) with schema snapshot.
 - **Localisation:** gen-l10n, `lib/l10n/app_en.arb`.
-- **Git:** `main`. Phase 0 is pushed to GitHub (`CodingwithKetan/terrace-garden`). **Phase 1 is committed locally but not pushed**: pushes fail on this network (KI-006), so push from another network.
+- **Git:** `main`. Phase 0 is on GitHub (`CodingwithKetan/terrace-garden`). **Later commits are local only**: pushes fail on this network (KI-006), so push from another network.
 
 ## Toolchain (verified 2026-10-18)
 
@@ -31,22 +31,23 @@ Last updated: 2026-10-18
 
 ## Last completed tasks
 
-P1-03 → P1-13 and the Phase 1 gate. Only P1-02 (user accepts licences) remains open, and it is non-blocking.
+P2-01 → P2-08 and the Phase 2 gate. Still open from earlier: P1-02 (Android licences; non-blocking).
 
 ## Exact next steps
 
-1. **Phase 2:**
-   - P2-01: garden domain model, drift tables (schema v2 + generated migration test), repository.
-   - P2-02: offline city → region map.
-   - P2-03: onboarding flow.
+1. **Phase 3 (garden designer):**
+   - P3-01: geometry domain (oriented rects, circles, overlap, containment, snapping).
+   - P3-02: CanvasTransform (world cm ↔ screen).
+   - P3-03 → P3-05: layout document, validator, undo/redo command stack.
 
 ## Checks run (latest, 2026-10-18, Windows host)
 
-- `bash tool/check.sh`:
+- Quality gate (Phase 2):
   - build_runner: OK.
   - `dart format --set-exit-if-changed`: 0 changed.
   - `flutter analyze`: **no issues**.
-  - `flutter test`: **149 passed**. Covers core units, dates, Result, IDs/clock, 77 theme contrast checks, settings repository and controller, app navigation and responsive layouts at 360/700/1200 with 200% text, core widgets, 2 alchemist CI goldens, and the in-memory drift DB.
+  - `flutter test`: **200 passed** (adds garden domain, repository, photo storage, migration v1→v2, and onboarding and garden flow tests).
+  - Integration test on the Android 16 emulator: `integration_test/garden_setup_test.dart` **passed**.
 - `dart analyze`: no issues (after removing the non-loading riverpod_lint plugin, KI-008).
 - `flutter build apk --debug`: **passed** (after the KI-007 fix; first build 502s, 185 MB debug APK).
 - Emulator (Android 16): installed and launched. Verified Today screen, Settings dark theme, setting kept after a cold start, two cold starts open on Today. Integration tests: none exist yet (P2-08).

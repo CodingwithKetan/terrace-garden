@@ -32,6 +32,7 @@ Last updated: 2026-10-18 (Phase 0).
 | KI-014 | TN DIY kit contents/price vary by source; verify before shipping a kit preset | competitor-analysis Part D |
 | KI-015 | Content licensing: RHS non-commercial; UC IPM educational reproduction only; state facts with attribution, never copy text | gardening-references §11 |
 | KI-016 | Plant images: no licensed image set yet | design-system §11 |
+| KI-017 | No sourced sowing-window region for west, central and east Indian cities (Mumbai, Pune, Ahmedabad, Indore, Kolkata, etc.). They are selectable but have no `GrowingRegion`, so season fit will be reported as unknown | `lib/features/garden/domain/region.dart`; gardening-references §2c |
 
 ## Research evidence gaps
 

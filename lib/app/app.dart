@@ -11,21 +11,32 @@ class TerraceGardenApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // Until settings load (a few milliseconds), follow the system theme.
-    final preference =
-        ref.watch(settingsControllerProvider).value?.themePreference ??
-        ThemePreference.system;
+    final settings = ref.watch(settingsControllerProvider);
+    final themeMode = switch (settings.value?.themePreference) {
+      ThemePreference.light => ThemeMode.light,
+      ThemePreference.dark => ThemeMode.dark,
+      _ => ThemeMode.system,
+    };
+
+    // Settings decide the first screen (onboarding or Today). Loading them
+    // takes milliseconds; until then show a plain surface instead of
+    // flashing the wrong screen.
+    if (!settings.hasValue) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.light(),
+        darkTheme: AppTheme.dark(),
+        themeMode: themeMode,
+        home: const Scaffold(),
+      );
+    }
 
     return MaterialApp.router(
       onGenerateTitle: (context) => context.l10n.appTitle,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light(),
       darkTheme: AppTheme.dark(),
-      themeMode: switch (preference) {
-        ThemePreference.system => ThemeMode.system,
-        ThemePreference.light => ThemeMode.light,
-        ThemePreference.dark => ThemeMode.dark,
-      },
+      themeMode: themeMode,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       routerConfig: ref.watch(appRouterProvider),

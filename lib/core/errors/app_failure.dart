@@ -2,7 +2,7 @@
 ///
 /// Unexpected programming errors are not modelled here; they are caught at
 /// boundaries, logged, and mapped to [UnexpectedFailure].
-sealed class AppFailure {
+sealed class AppFailure implements Exception {
   const AppFailure([this.cause]);
 
   /// The underlying error, kept for logging only (never shown to users).

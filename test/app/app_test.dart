@@ -1,28 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:terrace_garden/app/app.dart';
 import 'package:terrace_garden/core/units/measurements.dart';
-import 'package:terrace_garden/features/settings/application/settings_controller.dart';
 import 'package:terrace_garden/features/settings/domain/app_settings.dart';
 
 import '../helpers/fake_settings_repository.dart';
 import '../helpers/pump_app.dart';
+import '../helpers/test_app.dart';
 
 void main() {
+  late TestApp app;
   late FakeSettingsRepository settings;
 
-  setUp(() => settings = FakeSettingsRepository());
+  setUp(() {
+    app = TestApp();
+    settings = app.settings;
+  });
 
-  Future<void> pumpApp(WidgetTester tester) async {
-    await tester.pumpWidget(
-      ProviderScope(
-        overrides: [settingsRepositoryProvider.overrideWithValue(settings)],
-        child: const TerraceGardenApp(),
-      ),
-    );
-    await tester.pumpAndSettle();
-  }
+  Future<void> pumpApp(WidgetTester tester) => app.pump(tester);
 
   testWidgets('opens on Today and navigates between the four tabs', (
     tester,

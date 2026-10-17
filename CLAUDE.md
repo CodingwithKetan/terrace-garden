@@ -41,7 +41,8 @@ dart run build_runner watch -d          # during development
 dart format --output=none --set-exit-if-changed .
 flutter analyze
 flutter test
-flutter test integration_test           # needs a running Android emulator
+adb shell pm clear com.terracegarden.terrace_garden   # fresh state: onboarding shows only on first launch
+flutter test integration_test -d emulator-5554       # needs a running Android emulator
 flutter emulators --launch <id>         # list emulators with: flutter emulators
 flutter build apk --debug
 flutter test test/goldens --update-goldens   # regenerate golden images after intended UI changes

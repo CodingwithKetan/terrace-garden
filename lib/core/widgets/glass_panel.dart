@@ -35,7 +35,14 @@ class GlassPanel extends StatelessWidget {
         borderRadius: borderRadius,
         border: Border.all(color: glass.border),
       ),
-      child: Padding(padding: padding, child: child),
+      // A transparent Material above the tint so ink ripples from InkWell and
+      // ListTile children paint on top of the glass instead of under it.
+      child: Material(
+        type: MaterialType.transparency,
+        borderRadius: borderRadius,
+        clipBehavior: Clip.antiAlias,
+        child: Padding(padding: padding, child: child),
+      ),
     );
 
     if (highContrast) return panel;

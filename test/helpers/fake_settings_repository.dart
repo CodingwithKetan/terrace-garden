@@ -22,6 +22,15 @@ class FakeSettingsRepository implements SettingsRepository {
   }
 
   @override
+  Future<Result<void>> saveOnboardingCompleted({
+    required bool completed,
+  }) async {
+    if (failSaves) return const Err(StorageFailure());
+    stored = stored.copyWith(onboardingCompleted: completed);
+    return const Ok(null);
+  }
+
+  @override
   Future<Result<void>> saveUnitSystem(UnitSystem unitSystem) async {
     if (failSaves) return const Err(StorageFailure());
     stored = stored.copyWith(unitSystem: unitSystem);

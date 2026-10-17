@@ -10,4 +10,6 @@ abstract interface class SettingsRepository {
   Future<Result<void>> saveThemePreference(ThemePreference preference);
 
   Future<Result<void>> saveUnitSystem(UnitSystem unitSystem);
+
+  Future<Result<void>> saveOnboardingCompleted({required bool completed});
 }

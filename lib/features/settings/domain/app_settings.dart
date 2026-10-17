@@ -11,6 +11,7 @@ final class AppSettings {
   const AppSettings({
     this.themePreference = ThemePreference.system,
     this.unitSystem = UnitSystem.metric,
+    this.onboardingCompleted = false,
   });
 
   /// Defaults for a first launch. Metric suits the India-first audience.
@@ -19,20 +20,27 @@ final class AppSettings {
   final ThemePreference themePreference;
   final UnitSystem unitSystem;
 
+  /// True once the user finished or skipped onboarding ("explore first").
+  final bool onboardingCompleted;
+
   AppSettings copyWith({
     ThemePreference? themePreference,
     UnitSystem? unitSystem,
+    bool? onboardingCompleted,
   }) => AppSettings(
     themePreference: themePreference ?? this.themePreference,
     unitSystem: unitSystem ?? this.unitSystem,
+    onboardingCompleted: onboardingCompleted ?? this.onboardingCompleted,
   );
 
   @override
   bool operator ==(Object other) =>
       other is AppSettings &&
       other.themePreference == themePreference &&
-      other.unitSystem == unitSystem;
+      other.unitSystem == unitSystem &&
+      other.onboardingCompleted == onboardingCompleted;
 
   @override
-  int get hashCode => Object.hash(themePreference, unitSystem);
+  int get hashCode =>
+      Object.hash(themePreference, unitSystem, onboardingCompleted);
 }
