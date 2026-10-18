@@ -41,7 +41,8 @@ Last updated: 2026-10-18 (Phase 4).
 
 | ID | Issue | Plan |
 |---|---|---|
-| KI-025 | **Cross-feature imports break the CLAUDE.md rule** ("features never import another feature's data or presentation"). The garden overview embeds designer and plantings widgets; the catalogue, plantings and care screens import each other's providers and sheets; care tables reference the plantings table. This began in Phase 3 | Phase 6: give each feature a small public API file, move composition into `lib/app`, and add an import-boundary check to `tool/check` |
+| ~~KI-025~~ | **Resolved 2026-10-18 (ADR-023).** Cross-feature imports now go through per-feature public API files, enforced by an architecture test | |
+| KI-029 | **Performance is measured on the host only.** Debug-mode budget tests (`test/perf/`): validating 100 layout objects 1.2 ms, painting them 4.2 ms, ranking the catalogue 0.17 ms, creating tasks for 50 plantings 69 ms. No profile-mode run on a device yet, because the emulator here is too overloaded to give meaningful numbers (KI-009) | Profile cold start, canvas fps and image grids with `flutter run --profile` on a real phone before release |
 | KI-026 | The Android notification channel name and description are hardcoded in English | Localise when Hindi ships (PD-003) |
 | KI-027 | Editing a planting (date or start type) doesn't re-plan its existing care rules; only new plantings get plans, so transplant and harvest dates can go stale | Re-plan on edit, keeping rules the user has customised |
 | KI-028 | No month calendar (CARE-02) yet; Today lists the next 7 days. Notification taps open the app on Today (no deep link to a specific task) | P1 polish |

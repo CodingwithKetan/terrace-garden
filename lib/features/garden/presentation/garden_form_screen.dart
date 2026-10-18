@@ -14,7 +14,7 @@ import 'package:terrace_garden/core/widgets/section_header.dart';
 import 'package:terrace_garden/features/garden/data/garden_providers.dart';
 import 'package:terrace_garden/features/garden/domain/garden_draft.dart';
 import 'package:terrace_garden/features/garden/presentation/widgets/garden_form_sections.dart';
-import 'package:terrace_garden/features/settings/application/settings_controller.dart';
+import 'package:terrace_garden/features/settings/settings.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
 /// GDN-03. Creates a garden ([gardenId] null) or edits one. All fields are

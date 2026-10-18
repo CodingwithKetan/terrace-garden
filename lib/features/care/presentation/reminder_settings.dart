@@ -5,8 +5,8 @@ import 'package:terrace_garden/core/errors/result.dart';
 import 'package:terrace_garden/core/widgets/error_state.dart';
 import 'package:terrace_garden/core/widgets/section_header.dart';
 import 'package:terrace_garden/features/care/data/care_providers.dart';
-import 'package:terrace_garden/features/settings/application/settings_controller.dart';
 import 'package:terrace_garden/features/settings/domain/app_settings.dart';
+import 'package:terrace_garden/features/settings/settings.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
 /// CARE-05. The daily digest switch and time. Permission is asked only when

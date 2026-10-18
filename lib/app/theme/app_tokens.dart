@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 /// Spacing scale in logical pixels (design-system.md §4).
@@ -18,6 +20,14 @@ abstract final class AppSpacing {
     < AppBreakpoints.expanded => xl,
     _ => xxl,
   };
+
+  /// Horizontal padding that keeps list content at a readable width
+  /// ([AppBreakpoints.readableMaxWidth]) centred on wide windows, and never
+  /// less than the gutter.
+  static double contentInsetFor(double width) => math.max(
+    gutterFor(width),
+    (width - AppBreakpoints.readableMaxWidth) / 2,
+  );
 }
 
 /// Material 3 window size classes.
@@ -39,6 +49,7 @@ abstract final class AppRadii {
 
   static const BorderRadius smAll = BorderRadius.all(Radius.circular(sm));
   static const BorderRadius mdAll = BorderRadius.all(Radius.circular(md));
+  static const BorderRadius fullAll = BorderRadius.all(Radius.circular(full));
   static const BorderRadius lgTop = BorderRadius.vertical(
     top: Radius.circular(lg),
   );

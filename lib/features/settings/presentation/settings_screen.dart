@@ -10,7 +10,7 @@ import 'package:terrace_garden/core/widgets/async_state_view.dart';
 import 'package:terrace_garden/core/widgets/dialogs.dart';
 import 'package:terrace_garden/core/widgets/error_state.dart';
 import 'package:terrace_garden/core/widgets/section_header.dart';
-import 'package:terrace_garden/features/care/presentation/reminder_settings.dart';
+import 'package:terrace_garden/features/care/care.dart';
 import 'package:terrace_garden/features/settings/application/settings_controller.dart';
 import 'package:terrace_garden/features/settings/domain/app_settings.dart';
 import 'package:terrace_garden/l10n/l10n.dart';

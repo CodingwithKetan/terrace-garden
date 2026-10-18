@@ -11,16 +11,16 @@ import 'package:terrace_garden/core/units/measurements.dart';
 import 'package:terrace_garden/core/widgets/app_button.dart';
 import 'package:terrace_garden/core/widgets/dimension_field.dart';
 import 'package:terrace_garden/core/widgets/error_state.dart';
-import 'package:terrace_garden/features/garden/data/garden_providers.dart';
 import 'package:terrace_garden/features/garden/domain/garden.dart';
 import 'package:terrace_garden/features/garden/domain/garden_draft.dart';
+import 'package:terrace_garden/features/garden/garden.dart';
 import 'package:terrace_garden/features/garden_designer/application/layout_editor_controller.dart';
 import 'package:terrace_garden/features/garden_designer/data/designer_providers.dart';
 import 'package:terrace_garden/features/garden_designer/domain/layout.dart';
 import 'package:terrace_garden/features/garden_designer/presentation/designer_canvas.dart';
 import 'package:terrace_garden/features/garden_designer/presentation/designer_labels.dart';
 import 'package:terrace_garden/features/garden_designer/presentation/designer_sheets.dart';
-import 'package:terrace_garden/features/settings/application/settings_controller.dart';
+import 'package:terrace_garden/features/settings/settings.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
 /// DSN-01. Loads the garden and its saved layout, asks for the garden's size

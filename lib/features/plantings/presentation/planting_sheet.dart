@@ -12,16 +12,16 @@ import 'package:terrace_garden/core/widgets/app_button.dart';
 import 'package:terrace_garden/core/widgets/dialogs.dart';
 import 'package:terrace_garden/core/widgets/error_state.dart';
 import 'package:terrace_garden/core/widgets/selectable_chip_group.dart';
-import 'package:terrace_garden/features/garden/data/garden_providers.dart';
 import 'package:terrace_garden/features/garden/domain/garden.dart';
-import 'package:terrace_garden/features/garden_designer/data/designer_providers.dart';
+import 'package:terrace_garden/features/garden/garden.dart';
+import 'package:terrace_garden/features/garden_designer/garden_designer.dart';
 import 'package:terrace_garden/features/plant_catalog/domain/plant_species.dart';
-import 'package:terrace_garden/features/plant_catalog/presentation/plant_labels.dart';
+import 'package:terrace_garden/features/plant_catalog/plant_catalog.dart';
 import 'package:terrace_garden/features/plantings/data/planting_providers.dart';
 import 'package:terrace_garden/features/plantings/domain/planting.dart';
 import 'package:terrace_garden/features/plantings/domain/planting_fit.dart';
 import 'package:terrace_garden/features/plantings/presentation/planting_labels.dart';
-import 'package:terrace_garden/features/settings/application/settings_controller.dart';
+import 'package:terrace_garden/features/settings/settings.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
 /// PLT-05. Adds [species] to a garden (or edits [existing]), optionally in a

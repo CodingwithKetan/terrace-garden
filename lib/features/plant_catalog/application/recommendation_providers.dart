@@ -1,8 +1,8 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:terrace_garden/app/di/core_providers.dart';
-import 'package:terrace_garden/features/garden/data/garden_providers.dart';
-import 'package:terrace_garden/features/garden_designer/data/designer_providers.dart';
+import 'package:terrace_garden/features/garden/garden.dart';
 import 'package:terrace_garden/features/garden_designer/domain/layout.dart';
+import 'package:terrace_garden/features/garden_designer/garden_designer.dart';
 import 'package:terrace_garden/features/plant_catalog/data/catalogue_providers.dart';
 import 'package:terrace_garden/features/plant_catalog/domain/recommendation_engine.dart';
 

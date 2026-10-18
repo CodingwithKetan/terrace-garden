@@ -15,7 +15,7 @@ import 'package:terrace_garden/features/garden/data/garden_providers.dart';
 import 'package:terrace_garden/features/garden/domain/garden.dart';
 import 'package:terrace_garden/features/garden/presentation/garden_labels.dart';
 import 'package:terrace_garden/features/garden/presentation/widgets/garden_cover.dart';
-import 'package:terrace_garden/features/settings/application/settings_controller.dart';
+import 'package:terrace_garden/features/settings/settings.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
 /// GDN-01. The user's gardens, or an invitation to create the first one.
@@ -57,7 +57,9 @@ class _GardenList extends ConsumerWidget {
     final l10n = context.l10n;
     final theme = Theme.of(context);
     final insets = MediaQuery.paddingOf(context);
-    final gutter = AppSpacing.gutterFor(MediaQuery.sizeOf(context).width);
+    final gutter = AppSpacing.contentInsetFor(
+      MediaQuery.sizeOf(context).width,
+    );
 
     return PhotoBackdrop(
       image: const AssetImage(AppPhotos.gardenTerrace),

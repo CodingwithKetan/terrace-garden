@@ -13,15 +13,14 @@ import 'package:terrace_garden/core/time/local_date.dart';
 import 'package:terrace_garden/core/widgets/app_button.dart';
 import 'package:terrace_garden/core/widgets/error_state.dart';
 import 'package:terrace_garden/core/widgets/selectable_chip_group.dart';
-import 'package:terrace_garden/features/garden/data/garden_providers.dart';
-import 'package:terrace_garden/features/garden/presentation/photo_actions.dart';
+import 'package:terrace_garden/features/garden/garden.dart';
 import 'package:terrace_garden/features/journal/data/drift_journal_repository.dart';
 import 'package:terrace_garden/features/journal/data/journal_providers.dart';
 import 'package:terrace_garden/features/journal/domain/journal_entry.dart';
 import 'package:terrace_garden/features/journal/presentation/journal_labels.dart';
-import 'package:terrace_garden/features/plant_catalog/data/catalogue_providers.dart';
-import 'package:terrace_garden/features/plantings/data/planting_providers.dart';
+import 'package:terrace_garden/features/plant_catalog/plant_catalog.dart';
 import 'package:terrace_garden/features/plantings/domain/planting.dart';
+import 'package:terrace_garden/features/plantings/plantings.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
 /// JRN-02. A dated note with optional photos, plant, milestone and harvest.

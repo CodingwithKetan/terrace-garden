@@ -14,16 +14,15 @@ import 'package:terrace_garden/core/widgets/glass_panel.dart';
 import 'package:terrace_garden/core/widgets/immersive_empty_state.dart';
 import 'package:terrace_garden/core/widgets/photo_backdrop.dart';
 import 'package:terrace_garden/core/widgets/stored_photo_image.dart';
-import 'package:terrace_garden/features/care/data/care_providers.dart';
-import 'package:terrace_garden/features/care/presentation/care_labels.dart';
-import 'package:terrace_garden/features/garden/data/garden_providers.dart';
+import 'package:terrace_garden/features/care/care.dart';
 import 'package:terrace_garden/features/garden/domain/garden.dart';
+import 'package:terrace_garden/features/garden/garden.dart';
 import 'package:terrace_garden/features/journal/data/journal_providers.dart';
 import 'package:terrace_garden/features/journal/domain/journal_entry.dart';
 import 'package:terrace_garden/features/journal/domain/timeline.dart';
 import 'package:terrace_garden/features/journal/presentation/journal_labels.dart';
-import 'package:terrace_garden/features/plant_catalog/data/catalogue_providers.dart';
-import 'package:terrace_garden/features/plantings/data/planting_providers.dart';
+import 'package:terrace_garden/features/plant_catalog/plant_catalog.dart';
+import 'package:terrace_garden/features/plantings/plantings.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
 /// JRN-01. Entries and completed care, day by day, filterable by garden
@@ -172,12 +171,25 @@ class _JournalScreenState extends ConsumerState<JournalScreen> {
                       top: AppSpacing.md,
                       bottom: AppSpacing.sm,
                     ),
-                    child: Text(
-                      DateFormat.yMMMMEEEEd(
-                        locale,
-                      ).format(day.date.toLocalDateTime()),
-                      style: theme.textTheme.titleSmall?.copyWith(
-                        color: context.glass.onPhoto,
+                    // A glass pill keeps small text readable over any part
+                    // of the photo (found by the contrast guideline test).
+                    child: Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: GlassPanel(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppSpacing.md,
+                          vertical: AppSpacing.xs,
+                        ),
+                        borderRadius: AppRadii.fullAll,
+                        child: Semantics(
+                          header: true,
+                          child: Text(
+                            DateFormat.yMMMMEEEEd(
+                              locale,
+                            ).format(day.date.toLocalDateTime()),
+                            style: theme.textTheme.titleSmall,
+                          ),
+                        ),
                       ),
                     ),
                   ),

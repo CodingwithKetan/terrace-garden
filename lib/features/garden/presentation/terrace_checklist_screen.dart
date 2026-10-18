@@ -14,7 +14,9 @@ class TerraceChecklistScreen extends StatelessWidget {
     final l10n = context.l10n;
     final theme = Theme.of(context);
     final insets = MediaQuery.paddingOf(context);
-    final gutter = AppSpacing.gutterFor(MediaQuery.sizeOf(context).width);
+    final gutter = AppSpacing.contentInsetFor(
+      MediaQuery.sizeOf(context).width,
+    );
     final items = [
       (
         Icons.scale_outlined,

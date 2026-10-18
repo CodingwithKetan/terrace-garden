@@ -161,16 +161,17 @@ Every phase ends with the **gate**: `dart format --output=none --set-exit-if-cha
 
 ## Phase 6: Progress and refinement
 
-- [ ] **P6-01 · P0 · Journal entries (JRN-01/02)** with photos, notes, milestones; completed tasks in the timeline.
+- [x] **P6-01 · P0 · Journal entries (JRN-01/02).** *Done:* entries with up to 6 photos (stored in the garden's photo folder), note, plant, milestone and harvest amount (schema v6). The timeline merges entries with completed care by day and filters by garden and plant. Entries can be deleted with their files and added from My plants. Not done: editing an entry, and a photo on task completion.
 - [ ] **P6-02 · P1 · Photo comparison (JRN-03)** and stats/achievements (JRN-04).
-- [ ] **P6-03 · P1 · Data export** (ZIP JSON + photos) and **P0** delete all data.
+- [~] **P6-03 · P1 · Data export** (ZIP JSON + photos) and **P0** delete all data. *Done (P0):* Settings → Your data → Delete all data. It cancels notifications, deletes all rows and photo files, resets settings and returns to onboarding. *Open (P1):* export, which needs an archive or share dependency.
 - [ ] **P6-04 · P1 · "Start from a kit" preset** (S1). Requires KI-014 verification.
-- [ ] **P6-05 · P0 · Accessibility audit.** Semantics, text scale 200%, contrast, tap targets; canvas list parity.
+- [x] **P6-05 · P0 · Accessibility audit.** *Done:* `test/a11y/accessibility_test.dart` runs Flutter's guidelines on every main screen with realistic data, in light and dark: Android and iOS tap targets, labelled tap targets, text contrast. There is also a 200%-text overflow walk on a 360 dp phone. It found two contrast issues, both fixed: journal date headers on the photo, and the garden title over a shorter header. Canvas parity: the objects list (P3-10).
 - [ ] **P6-10 · P1 · Branding.** App name, launcher icon and splash screen (the default Flutter splash still shows at launch). Needs PD-001 (name).
-- [ ] **P6-06 · P0 · Responsive pass** (medium/expanded layouts) and motion polish with reduced-motion support.
-- [ ] **P6-07 · P0 · Performance profiling.** Cold start, canvas fps with 100 objects, image grids.
-- [ ] **P6-08 · P0 · End-to-end integration suite** across all critical journeys.
+- [x] **P6-06 · P0 · Responsive pass.** *Done:* `test/app/responsive_test.dart` at 840×1180, 1280×800 and 800×360: navigation rail, no layout errors, and list content centred at a readable width (`AppSpacing.contentInsetFor`). Photo headers are capped at 40% of the height, a fix for landscape phones found by the test. No custom motion exists beyond Material defaults, so reduced motion follows the platform.
+- [~] **P6-07 · P0 · Performance profiling.** *Done (host):* budget tests in `test/perf/` with the numbers recorded in KI-029. *Open:* a profile-mode run on a real device.
+- [ ] **P6-08 · P0 · End-to-end integration suite** across all critical journeys. *Partly:* the device test covers onboarding → garden → plant → care → notification → restart.
 - [ ] **P6-09 · P1 · User-testing kit.** Script and assumptions from opportunity-analysis §7; build distribution.
+- [x] **P6-11 · P0 · Import boundaries (KI-025).** *Done (ADR-023):* per-feature public API files, with an architecture test that also checks domain purity.
 - [ ] **P6-GATE** MVP ready for user feedback.
 
 ## Phase 7: Advanced (each needs value, cost and plan before starting)

@@ -5,10 +5,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:terrace_garden/app/di/core_providers.dart';
 import 'package:terrace_garden/features/care/application/care_sync.dart';
 import 'package:terrace_garden/features/care/data/care_providers.dart';
-import 'package:terrace_garden/features/garden/data/garden_providers.dart';
-import 'package:terrace_garden/features/plant_catalog/data/catalogue_providers.dart';
-import 'package:terrace_garden/features/plantings/data/planting_providers.dart';
-import 'package:terrace_garden/features/settings/application/settings_controller.dart';
+import 'package:terrace_garden/features/garden/garden.dart';
+import 'package:terrace_garden/features/plant_catalog/plant_catalog.dart';
+import 'package:terrace_garden/features/plantings/plantings.dart';
+import 'package:terrace_garden/features/settings/settings.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
 part 'care_controllers.g.dart';

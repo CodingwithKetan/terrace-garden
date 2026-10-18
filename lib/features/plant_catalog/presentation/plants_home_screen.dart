@@ -8,7 +8,7 @@ import 'package:terrace_garden/app/theme/glass_theme.dart';
 import 'package:terrace_garden/core/widgets/async_state_view.dart';
 import 'package:terrace_garden/core/widgets/glass_panel.dart';
 import 'package:terrace_garden/core/widgets/photo_backdrop.dart';
-import 'package:terrace_garden/features/garden/data/garden_providers.dart';
+import 'package:terrace_garden/features/garden/garden.dart';
 import 'package:terrace_garden/features/plant_catalog/data/catalogue_providers.dart';
 import 'package:terrace_garden/features/plant_catalog/domain/plant_species.dart';
 import 'package:terrace_garden/features/plant_catalog/presentation/plant_labels.dart';
@@ -46,7 +46,9 @@ class _PlantsHomeScreenState extends ConsumerState<PlantsHomeScreen> {
     final l10n = context.l10n;
     final theme = Theme.of(context);
     final insets = MediaQuery.paddingOf(context);
-    final gutter = AppSpacing.gutterFor(MediaQuery.sizeOf(context).width);
+    final gutter = AppSpacing.contentInsetFor(
+      MediaQuery.sizeOf(context).width,
+    );
     final gardens = ref.watch(gardensProvider).value ?? const [];
     final results = catalogue.search(query: _query, category: _category);
 

@@ -60,6 +60,8 @@ void main() {
     await tester.tap(find.text('Plants'));
     await tester.pumpAndSettle();
 
+    await tester.ensureVisible(find.widgetWithText(FilterChip, 'Herbs'));
+    await tester.pumpAndSettle();
     await tester.tap(find.widgetWithText(FilterChip, 'Herbs'));
     await tester.pumpAndSettle();
     expect(find.text('Coriander'), findsOneWidget);

@@ -1,7 +1,7 @@
 import 'package:terrace_garden/core/units/measurement_formatter.dart';
 import 'package:terrace_garden/core/units/measurements.dart';
 import 'package:terrace_garden/features/garden_designer/domain/layout.dart';
-import 'package:terrace_garden/features/garden_designer/presentation/designer_labels.dart';
+import 'package:terrace_garden/features/garden_designer/garden_designer.dart';
 import 'package:terrace_garden/features/plantings/domain/planting_fit.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 

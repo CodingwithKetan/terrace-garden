@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:terrace_garden/app/theme/care_colors.dart';
-import 'package:terrace_garden/features/garden/presentation/garden_labels.dart';
+import 'package:terrace_garden/features/garden/garden.dart';
 import 'package:terrace_garden/features/plant_catalog/domain/plant_species.dart';
 import 'package:terrace_garden/features/plant_catalog/domain/recommendation_engine.dart';
 import 'package:terrace_garden/features/plantings/domain/planting.dart';

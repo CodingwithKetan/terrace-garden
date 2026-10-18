@@ -21,11 +21,11 @@ import 'package:terrace_garden/features/care/data/care_providers.dart';
 import 'package:terrace_garden/features/care/domain/care.dart';
 import 'package:terrace_garden/features/care/presentation/care_labels.dart';
 import 'package:terrace_garden/features/care/presentation/care_sheets.dart';
-import 'package:terrace_garden/features/garden/data/garden_providers.dart';
-import 'package:terrace_garden/features/plant_catalog/data/catalogue_providers.dart';
+import 'package:terrace_garden/features/garden/garden.dart';
 import 'package:terrace_garden/features/plant_catalog/domain/plant_species.dart';
-import 'package:terrace_garden/features/plantings/data/planting_providers.dart';
+import 'package:terrace_garden/features/plant_catalog/plant_catalog.dart';
 import 'package:terrace_garden/features/plantings/domain/planting.dart';
+import 'package:terrace_garden/features/plantings/plantings.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
 /// HOME-01 (P5-05). The day's care: overdue, today, done today and the week

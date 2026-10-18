@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -22,9 +24,9 @@ import 'package:terrace_garden/features/garden/domain/garden_photo.dart';
 import 'package:terrace_garden/features/garden/presentation/garden_labels.dart';
 import 'package:terrace_garden/features/garden/presentation/photo_actions.dart';
 import 'package:terrace_garden/features/garden/presentation/widgets/garden_cover.dart';
-import 'package:terrace_garden/features/garden_designer/data/designer_providers.dart';
-import 'package:terrace_garden/features/plantings/presentation/my_plants_section.dart';
-import 'package:terrace_garden/features/settings/application/settings_controller.dart';
+import 'package:terrace_garden/features/garden_designer/garden_designer.dart';
+import 'package:terrace_garden/features/plantings/plantings.dart';
+import 'package:terrace_garden/features/settings/settings.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
 /// GDN-02. Everything about one garden; unknown details invite completion.
@@ -92,7 +94,9 @@ class _Overview extends ConsumerWidget {
     );
     final photos = ref.watch(gardenPhotosProvider(garden.id)).value ?? const [];
     final insets = MediaQuery.paddingOf(context);
-    final gutter = AppSpacing.gutterFor(MediaQuery.sizeOf(context).width);
+    final gutter = AppSpacing.contentInsetFor(
+      MediaQuery.sizeOf(context).width,
+    );
     void edit() => context.push(AppRoutes.gardenEdit(garden.id));
 
     String? known<T>(T value, T unknown, String Function(T) label) =>
@@ -108,7 +112,11 @@ class _Overview extends ConsumerWidget {
         SliverAppBar(
           pinned: true,
           stretch: true,
-          expandedHeight: 300,
+          // At most 40% of the height, so landscape phones still show content.
+          expandedHeight: math.min(
+            300,
+            MediaQuery.sizeOf(context).height * 0.4,
+          ),
           foregroundColor: Colors.white,
           actions: [
             IconButton(
@@ -150,9 +158,10 @@ class _Overview extends ConsumerWidget {
                       colors: [
                         Color(0x99000000),
                         Color(0x00000000),
-                        Color(0xB3000000),
+                        // Dark enough under the title at any header height.
+                        Color(0xD9000000),
                       ],
-                      stops: [0, 0.45, 1],
+                      stops: [0, 0.35, 1],
                     ),
                   ),
                 ),

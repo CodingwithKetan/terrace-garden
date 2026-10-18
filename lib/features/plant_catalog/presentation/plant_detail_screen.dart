@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:terrace_garden/app/theme/app_imagery.dart';
@@ -11,12 +13,12 @@ import 'package:terrace_garden/core/widgets/async_state_view.dart';
 import 'package:terrace_garden/core/widgets/empty_state.dart';
 import 'package:terrace_garden/core/widgets/section_header.dart';
 import 'package:terrace_garden/core/widgets/status_chip.dart';
-import 'package:terrace_garden/features/garden/presentation/garden_labels.dart';
+import 'package:terrace_garden/features/garden/garden.dart';
 import 'package:terrace_garden/features/plant_catalog/data/catalogue_providers.dart';
 import 'package:terrace_garden/features/plant_catalog/domain/plant_species.dart';
 import 'package:terrace_garden/features/plant_catalog/presentation/plant_labels.dart';
-import 'package:terrace_garden/features/plantings/presentation/planting_sheet.dart';
-import 'package:terrace_garden/features/settings/application/settings_controller.dart';
+import 'package:terrace_garden/features/plantings/plantings.dart';
+import 'package:terrace_garden/features/settings/settings.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
 /// PLT-02. Everything the catalogue knows about one plant, each fact with
@@ -82,7 +84,9 @@ class _Detail extends ConsumerWidget {
     final l10n = context.l10n;
     final theme = Theme.of(context);
     final insets = MediaQuery.paddingOf(context);
-    final gutter = AppSpacing.gutterFor(MediaQuery.sizeOf(context).width);
+    final gutter = AppSpacing.contentInsetFor(
+      MediaQuery.sizeOf(context).width,
+    );
     final units =
         ref.watch(settingsControllerProvider).value?.unitSystem ??
         UnitSystem.metric;
@@ -102,7 +106,10 @@ class _Detail extends ConsumerWidget {
       slivers: [
         SliverAppBar(
           pinned: true,
-          expandedHeight: 220,
+          expandedHeight: math.min(
+            220,
+            MediaQuery.sizeOf(context).height * 0.4,
+          ),
           foregroundColor: Colors.white,
           flexibleSpace: FlexibleSpaceBar(
             titlePadding: const EdgeInsetsDirectional.only(

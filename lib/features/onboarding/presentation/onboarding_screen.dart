@@ -10,10 +10,9 @@ import 'package:terrace_garden/core/widgets/app_button.dart';
 import 'package:terrace_garden/core/widgets/error_state.dart';
 import 'package:terrace_garden/core/widgets/glass_panel.dart';
 import 'package:terrace_garden/core/widgets/photo_backdrop.dart';
-import 'package:terrace_garden/features/garden/presentation/garden_labels.dart';
-import 'package:terrace_garden/features/garden/presentation/widgets/garden_form_sections.dart';
+import 'package:terrace_garden/features/garden/garden.dart';
 import 'package:terrace_garden/features/onboarding/application/onboarding_controller.dart';
-import 'package:terrace_garden/features/settings/application/settings_controller.dart';
+import 'package:terrace_garden/features/settings/settings.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
 /// ONB-01..05.

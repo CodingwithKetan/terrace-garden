@@ -9,13 +9,12 @@ import 'package:terrace_garden/core/widgets/app_card.dart';
 import 'package:terrace_garden/core/widgets/async_state_view.dart';
 import 'package:terrace_garden/core/widgets/error_state.dart';
 import 'package:terrace_garden/core/widgets/section_header.dart';
-import 'package:terrace_garden/features/garden/data/garden_providers.dart';
 import 'package:terrace_garden/features/garden/domain/garden_enums.dart';
+import 'package:terrace_garden/features/garden/garden.dart';
 import 'package:terrace_garden/features/plant_catalog/application/recommendation_providers.dart';
 import 'package:terrace_garden/features/plant_catalog/domain/recommendation_engine.dart';
 import 'package:terrace_garden/features/plant_catalog/presentation/plant_labels.dart';
-import 'package:terrace_garden/features/plantings/data/planting_providers.dart';
-import 'package:terrace_garden/features/plantings/presentation/planting_sheet.dart';
+import 'package:terrace_garden/features/plantings/plantings.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
 /// REC-01 and REC-03. Ranked plant ideas for one garden with the reasons
@@ -59,7 +58,9 @@ class _RecommendationsScreenState extends ConsumerState<RecommendationsScreen> {
     final shortlist =
         ref.watch(shortlistProvider(widget.gardenId)).value ?? const {};
     final insets = MediaQuery.paddingOf(context);
-    final gutter = AppSpacing.gutterFor(MediaQuery.sizeOf(context).width);
+    final gutter = AppSpacing.contentInsetFor(
+      MediaQuery.sizeOf(context).width,
+    );
     final month = ref.watch(clockProvider).now().month;
     final list = _shortlistOnly
         ? all.where((r) => shortlist.contains(r.species.id)).toList()

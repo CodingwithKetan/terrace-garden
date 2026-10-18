@@ -183,3 +183,12 @@ Change process: add a new ADR (or mark one *Superseded by ADR-0xx*) instead of s
   - It also back-fills plantings created before Phase 5.
   - Editing a planting's date does not re-plan existing rules (KI-027).
 - **Notifications:** a daily digest only, at a user-chosen time (default 07:00), and off until the user turns it on. `NotificationPlanner` is pure. `NotificationSync` diffs against the `scheduled_notifications` table and applies the changes through `NotificationScheduler`, implemented by `LocalNotificationScheduler` (flutter_local_notifications 22, inexact, no exact-alarm permission). Per-task reminders and quiet hours are not built; the digest time is the only notification time.
+
+## ADR-023: Feature public APIs and an enforced import boundary (Phase 6)
+- **Context:** from Phase 3 onwards, features imported each other's `data`, `application` and `presentation` files directly (38 imports; KI-025), against the CLAUDE.md rule. Features genuinely compose: the garden overview shows My plants, Today needs plant names, and the catalogue opens the add-planting sheet.
+- **Decision:** each feature that others use has a public API file, `lib/features/<f>/<f>.dart`, exporting its providers, label extensions and shared widgets or sheets.
+  - Other features may import only that file or the feature's `domain/`.
+  - Drift table files may reference other features' table files, for foreign keys.
+  - `lib/app` is the composition root and may import anything.
+  - `test/architecture/import_boundaries_test.dart` enforces this. It also enforces "domain is pure Dart" (no Flutter, drift, Riverpod or plugins).
+- **Consequences:** cross-feature dependencies are explicit and reviewable in six small files. Internal files can move freely. The dependency graph still has cycles at the API level (e.g. garden ↔ plantings via the overview); they are acceptable in Dart and visible in the API files.

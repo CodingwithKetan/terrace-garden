@@ -2,10 +2,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:terrace_garden/core/errors/app_failure.dart';
 import 'package:terrace_garden/core/errors/result.dart';
-import 'package:terrace_garden/features/garden/data/garden_providers.dart';
 import 'package:terrace_garden/features/garden/domain/garden.dart';
 import 'package:terrace_garden/features/garden/domain/garden_draft.dart';
-import 'package:terrace_garden/features/settings/application/settings_controller.dart';
+import 'package:terrace_garden/features/garden/garden.dart';
+import 'package:terrace_garden/features/settings/settings.dart';
 
 part 'onboarding_controller.freezed.dart';
 part 'onboarding_controller.g.dart';

@@ -60,7 +60,7 @@ Project SDK: **Flutter 3.44.8 / Dart 3.12.2** (ADR-001). In a Claude Code **clou
 
 - Feature-first modules: `lib/features/<f>/{domain,data,application,presentation}`, plus `lib/app` (router, theme, DI) and `lib/core` (cross-cutting).
 - `domain` is pure Dart: no Flutter, drift or plugins.
-- Features never import another feature's `data` or `presentation`.
+- Features use each other only through the other feature's public API file (`features/<f>/<f>.dart`) or its `domain/` (ADR-023). `test/architecture/import_boundaries_test.dart` enforces this.
 - State and DI use Riverpod 3 with codegen. The canvas uses a `ChangeNotifier` controller. Routing uses go_router. Persistence uses drift, plus SharedPreferencesAsync for settings.
 - Widgets render and forward intents; business rules live in domain and application code.
 - Repositories return `Result<T>`. Never call `DateTime.now()` in domain code; inject `Clock`. IDs come from `IdGenerator`.
