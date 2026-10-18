@@ -2089,4 +2089,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String recReadyIn(int min, int max) {
     return 'Ready in $min–$max days';
   }
+
+  @override
+  String get journalThenNow => 'Then and now';
+
+  @override
+  String journalThenNowLabel(String date) {
+    return 'Photo from $date';
+  }
+
+  @override
+  String get journalEntryShort => 'Entry';
 }

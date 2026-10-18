@@ -28,6 +28,7 @@ void main() {
       // A first debug launch on a busy emulator can take a while.
       timeout: const Duration(minutes: 2),
     );
+    await tester.scrollUntilVisible(find.text('Set up my garden'), 200);
     await tester.tap(find.text('Set up my garden'));
     await tester.pumpAndSettle();
 
@@ -68,6 +69,9 @@ void main() {
     // schedules the next one (from completion).
     await pumpUntilFound(tester, find.text('Check the soil'));
     await tester.tap(find.byTooltip('Mark done').first);
+    // The soil check asks what the user found.
+    await pumpUntilFound(tester, find.text('It was dry, I watered'));
+    await tester.tap(find.text('It was dry, I watered'));
     await pumpUntilFound(tester, find.text('Done today'));
 
     // Turning on the daily digest reaches the real platform scheduler.
@@ -90,7 +94,7 @@ void main() {
     await tester.pageBack();
     await tester.pumpAndSettle();
 
-    await tester.tap(find.text('Garden'));
+    // The garden name on Today opens the garden.
     await pumpUntilFound(tester, find.text('Rooftop test'));
     await tester.tap(find.text('Rooftop test'));
     // My plants is further down a lazily built list, so scroll to it.

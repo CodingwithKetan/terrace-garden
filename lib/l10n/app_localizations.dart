@@ -3621,6 +3621,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Ready in {min}–{max} days'**
   String recReadyIn(int min, int max);
+
+  /// No description provided for @journalThenNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Then and now'**
+  String get journalThenNow;
+
+  /// No description provided for @journalThenNowLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo from {date}'**
+  String journalThenNowLabel(String date);
+
+  /// No description provided for @journalEntryShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Entry'**
+  String get journalEntryShort;
 }
 
 class _AppLocalizationsDelegate

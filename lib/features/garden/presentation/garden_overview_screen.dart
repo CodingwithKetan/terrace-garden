@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -25,6 +23,7 @@ import 'package:terrace_garden/features/garden/presentation/garden_labels.dart';
 import 'package:terrace_garden/features/garden/presentation/photo_actions.dart';
 import 'package:terrace_garden/features/garden/presentation/widgets/garden_cover.dart';
 import 'package:terrace_garden/features/garden_designer/garden_designer.dart';
+import 'package:terrace_garden/features/plant_catalog/plant_catalog.dart';
 import 'package:terrace_garden/features/plantings/plantings.dart';
 import 'package:terrace_garden/features/settings/settings.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
@@ -111,13 +110,11 @@ class _Overview extends ConsumerWidget {
       slivers: [
         SliverAppBar(
           pinned: true,
-          stretch: true,
-          // At most 40% of the height, so landscape phones still show content.
-          expandedHeight: math.min(
-            300,
-            MediaQuery.sizeOf(context).height * 0.4,
+          title: Text(
+            garden.name,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
-          foregroundColor: Colors.white,
           actions: [
             IconButton(
               tooltip: l10n.actionEdit,
@@ -134,40 +131,6 @@ class _Overview extends ConsumerWidget {
               ],
             ),
           ],
-          flexibleSpace: FlexibleSpaceBar(
-            titlePadding: const EdgeInsetsDirectional.only(
-              start: 56,
-              bottom: 14,
-              end: 96,
-            ),
-            title: Text(
-              garden.name,
-              style: theme.textTheme.titleLarge?.copyWith(color: Colors.white),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            background: Stack(
-              fit: StackFit.expand,
-              children: [
-                GardenCover(garden: garden),
-                const DecoratedBox(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Color(0x99000000),
-                        Color(0x00000000),
-                        // Dark enough under the title at any header height.
-                        Color(0xD9000000),
-                      ],
-                      stops: [0, 0.35, 1],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
         ),
         SliverPadding(
           padding: EdgeInsets.fromLTRB(
@@ -178,6 +141,8 @@ class _Overview extends ConsumerWidget {
           ),
           sliver: SliverList.list(
             children: [
+              _Hero(garden: garden),
+              const SizedBox(height: AppSpacing.md),
               Text(subtitle, style: theme.textTheme.titleMedium),
               const SizedBox(height: AppSpacing.lg),
               _DesignCard(garden: garden),
@@ -555,6 +520,89 @@ class _DesignCard extends ConsumerWidget {
                 color: theme.colorScheme.onPrimaryContainer,
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// The garden drawn from its layout with its plants (Living Terrace); the
+/// cover photo until a layout exists.
+class _Hero extends ConsumerWidget {
+  const _Hero({required this.garden});
+
+  final Garden garden;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
+    final elements =
+        ref.watch(layoutElementsProvider(garden.id)).value ?? const [];
+    if (!garden.hasDimensions || elements.isEmpty) {
+      return ConstrainedBox(
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.sizeOf(context).height * .3,
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(AppRadii.lg),
+          child: AspectRatio(
+            aspectRatio: 16 / 9,
+            child: GardenCover(garden: garden),
+          ),
+        ),
+      );
+    }
+    final plantings =
+        ref.watch(gardenPlantingsProvider(garden.id)).value ?? const [];
+    final catalogue = ref.watch(plantCatalogueProvider).value;
+    final containers = layoutContainers(elements);
+    final items = [
+      for (final e in elements)
+        if (!e.kind.isContainer)
+          PlanItem(element: e)
+        else
+          () {
+            final here = [
+              for (final p in plantings)
+                if (p.elementId == e.id) p,
+            ];
+            final names = [
+              for (final p in here)
+                catalogue?.byId(p.speciesId)?.commonName ??
+                    l10n.plantingUnknownSpecies,
+            ];
+            final name = containerName(l10n, e, containers);
+            return PlanItem(
+              element: e,
+              plants: [
+                for (final p in here)
+                  PlantArtSpec.of(
+                    p.speciesId,
+                    category: catalogue?.byId(p.speciesId)?.category,
+                  ),
+              ],
+              tag: names.isEmpty ? name : names.first,
+              semanticLabel: [...names, name].join(', '),
+            );
+          }(),
+    ];
+    final aspect = (garden.length!.cm / garden.width!.cm).clamp(.9, 3.0);
+    // Gives way on short screens so the details stay in reach.
+    return Center(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.sizeOf(context).height * .35,
+        ),
+        child: AspectRatio(
+          aspectRatio: aspect,
+          child: TerracePlan(
+            lengthCm: garden.length!.cm,
+            widthCm: garden.width!.cm,
+            items: items,
+            dusk: Theme.of(context).brightness == Brightness.dark,
+            semanticLabel: l10n.todayPlanLabel(garden.name),
+            onTapItem: (_) => context.push(AppRoutes.gardenDesign(garden.id)),
           ),
         ),
       ),

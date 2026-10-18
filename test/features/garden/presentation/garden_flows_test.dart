@@ -22,6 +22,8 @@ void main() {
         find.text('Grow a garden that suits your terrace'),
         findsOneWidget,
       );
+      await tester.scrollUntilVisible(find.text("I'll explore first"), 200);
+      await tester.pumpAndSettle();
       await tester.tap(find.text("I'll explore first"));
       await tester.pumpAndSettle();
 
@@ -34,6 +36,8 @@ void main() {
       final app = TestApp(settings: AppSettings.defaults);
       await app.pump(tester);
 
+      await tester.scrollUntilVisible(find.text('Set up my garden'), 200);
+      await tester.pumpAndSettle();
       await tester.tap(find.text('Set up my garden'));
       await tester.pumpAndSettle();
       expect(find.text('Step 1 of 3'), findsOneWidget);
@@ -70,6 +74,8 @@ void main() {
     testWidgets('keeps both edits made within the same frame', (tester) async {
       final app = TestApp(settings: AppSettings.defaults);
       await app.pump(tester);
+      await tester.scrollUntilVisible(find.text('Set up my garden'), 200);
+      await tester.pumpAndSettle();
       await tester.tap(find.text('Set up my garden'));
       await tester.pumpAndSettle();
 
@@ -92,6 +98,8 @@ void main() {
     testWidgets('requires a name before continuing', (tester) async {
       final app = TestApp(settings: AppSettings.defaults);
       await app.pump(tester);
+      await tester.scrollUntilVisible(find.text('Set up my garden'), 200);
+      await tester.pumpAndSettle();
       await tester.tap(find.text('Set up my garden'));
       await tester.pumpAndSettle();
 

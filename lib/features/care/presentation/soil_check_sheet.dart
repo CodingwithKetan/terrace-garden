@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terrace_garden/app/theme/app_tokens.dart';
+import 'package:terrace_garden/app/theme/care_colors.dart';
 import 'package:terrace_garden/core/widgets/dialogs.dart';
 import 'package:terrace_garden/features/care/domain/care.dart';
 import 'package:terrace_garden/features/care/presentation/care_labels.dart';
@@ -31,6 +32,12 @@ Future<SoilCheckAnswer?> showSoilCheckSheet(
     builder: (context) {
       final theme = Theme.of(context);
       final colors = theme.colorScheme;
+      final water = context.careColors.water;
+      // Readable text whichever theme supplies the water colour.
+      final onWater =
+          ThemeData.estimateBrightnessForColor(water) == Brightness.dark
+          ? Colors.white
+          : colors.inverseSurface;
       return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -69,8 +76,8 @@ Future<SoilCheckAnswer?> showSoilCheckSheet(
           FilledButton.icon(
             style: FilledButton.styleFrom(
               minimumSize: const Size.fromHeight(56),
-              backgroundColor: const Color(0xFF2E6FB0),
-              foregroundColor: Colors.white,
+              backgroundColor: water,
+              foregroundColor: onWater,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(18),
               ),

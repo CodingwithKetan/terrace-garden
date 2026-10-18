@@ -681,5 +681,9 @@
   "recSowIn": "Sow in {months}",
   "@recSowIn": { "placeholders": { "months": { "type": "String" } } },
   "recReadyIn": "Ready in {min}–{max} days",
-  "@recReadyIn": { "placeholders": { "min": { "type": "int" }, "max": { "type": "int" } } }
+  "@recReadyIn": { "placeholders": { "min": { "type": "int" }, "max": { "type": "int" } } },
+  "journalThenNow": "Then and now",
+  "journalThenNowLabel": "Photo from {date}",
+  "@journalThenNowLabel": { "placeholders": { "date": { "type": "String" } } },
+  "journalEntryShort": "Entry"
 }
