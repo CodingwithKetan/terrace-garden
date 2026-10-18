@@ -211,6 +211,11 @@ void main() {
       200,
       scrollable: find.byType(Scrollable).last,
     );
+    await Scrollable.ensureVisible(
+      tester.element(find.text('Delete all data')),
+      alignment: .5,
+    );
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Delete all data'));
     await tester.pumpAndSettle();
     expect(find.text('Delete everything?'), findsOneWidget);

@@ -43,13 +43,16 @@ Last updated: 2026-10-18 (Phase 4).
 |---|---|---|
 | ~~KI-025~~ | **Resolved 2026-10-18 (ADR-023).** Cross-feature imports now go through per-feature public API files, enforced by an architecture test | |
 | KI-029 | **Performance is measured on the host only.** Debug-mode budget tests (`test/perf/`): validating 100 layout objects 1.2 ms, painting them 4.2 ms, ranking the catalogue 0.17 ms, creating tasks for 50 plantings 69 ms. No profile-mode run on a device yet, because the emulator here is too overloaded to give meaningful numbers (KI-009) | Profile cold start, canvas fps and image grids with `flutter run --profile` on a real phone before release |
-| KI-026 | The Android notification channel name and description are hardcoded in English | Localise when Hindi ships (PD-003) |
+| KI-026 | The Android notification channel name and description are hardcoded in English (the digest text itself now follows the app language) | Localise the channel when the scheduler is next touched |
 | ~~KI-027~~ | **Resolved 2026-10-18:** reconcile now re-plans transplant, harvest and pruning rules after an edit, keeping user switches and repeating checks. Earlier: editing a planting (date or start type) doesn't re-plan its existing care rules; only new plantings get plans, so transplant and harvest dates can go stale | Re-plan on edit, keeping rules the user has customised |
 | KI-028 | Notification taps open the app on Today; there is no deep link to a specific task. (The month calendar was added 2026-10-18.) | P1 polish |
 | KI-030 | The garden chosen with the Today switcher (ADR-026) is kept in memory only; after a restart Today shows the first garden again | Persist in settings if users with several gardens find it annoying |
 | KI-031 | Perf budget tests failed intermittently when the full suite ran in parallel (a preempted run skewed the mean). They now use the **median** of 21 runs; the 16 ms budget is unchanged (2026-10-18) | Watch for recurrence; a device profile run is still open (KI-029) |
 | KI-032 | Widget tests do not decode file images, so journal photos and garden covers appear blank in test renders; their layout is verified, their pixels only on device | Check photos during the device session and user tests |
 | KI-033 | The Living Terrace art (`PlantArtSpec`) is stylised, not botanical reference: shapes and colours suggest each plant but are not identification aids | Keep the plant name beside every drawing; a horticulturist can review with R2 |
+| KI-034 | In Hindi, catalogue prose (care notes; container, harvest and pet notes) is still shown in English; only UI strings and plant names are translated | Add per-language note text to the catalogue (same `names`-style maps), translated and reviewed |
+| KI-035 | The Hindi UI translation (595 strings) has not been reviewed by a native speaker. It follows a glossary, and a test checks placeholders, but wording and tone need a human check | Native review before release; include Hindi users in the moderated tests |
+| KI-036 | Catalogue gaps after the 2026-10-18 research: no sourced container size for curry leaf, lemongrass, marigold, hibiscus, jasmine, aloe vera, money plant or snake plant; no sowing or planting calendar for hibiscus, rose or the houseplants. Pet safety unassessed for 14 species (no ASPCA or NC State statement), so the pet-friendly filter shows only 4 plants | Keep searching first-party sources (ICAR-DFR, state horticulture departments); never fill from blogs or nurseries |
 
 ## Research evidence gaps
 
@@ -66,4 +69,4 @@ Last updated: 2026-10-18 (Phase 4).
 |---|---|---|
 | PD-001 | Product name and application ID | Working name "Terrace Garden"; final name and app ID to be confirmed before first store upload |
 | PD-002 | Monetisation | MVP free; explore commerce/partnerships and premium weather/AI later |
-| PD-003 | First non-English language | Hindi |
+| PD-003 | First non-English language | Hindi: **shipped 2026-10-18** (ADR-027) |

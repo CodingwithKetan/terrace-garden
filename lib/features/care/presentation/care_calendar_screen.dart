@@ -60,7 +60,7 @@ class _CareCalendarScreenState extends ConsumerState<CareCalendarScreen> {
           .where((p) => p.id == plantingId)
           .firstOrNull
           ?.speciesId;
-      return catalogue?.byId(speciesId ?? '')?.commonName ??
+      return catalogue?.byId(speciesId ?? '')?.name(l10n) ??
           l10n.plantingUnknownSpecies;
     }
 

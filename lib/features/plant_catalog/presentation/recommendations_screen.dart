@@ -312,7 +312,7 @@ class RecommendationCard extends StatelessWidget {
             ),
           ],
         ),
-        Text(s.commonName, style: theme.textTheme.headlineSmall),
+        Text(s.name(l10n), style: theme.textTheme.headlineSmall),
         Text(
           [...s.localNames, s.category.label(l10n)].join(' · '),
           style: theme.textTheme.bodySmall,
@@ -367,7 +367,7 @@ class RecommendationCard extends StatelessWidget {
       padding: EdgeInsets.zero,
       onTap: () =>
           context.push(AppRoutes.plantDetail(s.id, gardenId: gardenId)),
-      semanticLabel: s.commonName,
+      semanticLabel: s.name(l10n),
       child: LayoutBuilder(
         builder: (context, box) {
           const pad = EdgeInsetsDirectional.fromSTEB(
@@ -420,6 +420,7 @@ class _IdeaTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final theme = Theme.of(context);
     final r = recommendation;
     final s = r.species;
@@ -431,7 +432,7 @@ class _IdeaTile extends StatelessWidget {
       padding: EdgeInsets.zero,
       onTap: () =>
           context.push(AppRoutes.plantDetail(s.id, gardenId: gardenId)),
-      semanticLabel: s.commonName,
+      semanticLabel: s.name(l10n),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -460,7 +461,7 @@ class _IdeaTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  s.commonName,
+                  s.name(l10n),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.titleLarge?.copyWith(

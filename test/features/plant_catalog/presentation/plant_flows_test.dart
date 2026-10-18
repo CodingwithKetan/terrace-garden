@@ -39,13 +39,15 @@ void main() {
     await tester.tap(find.text('Okra'));
     await tester.pumpAndSettle();
     expect(find.text('Abelmoschus esculentus'), findsOneWidget);
-    // No verified container figure: shown honestly, not guessed.
+    // Okra's container depth has no source: shown honestly, not guessed.
     await tester.scrollUntilVisible(
-      find.text('Size not documented'),
+      find.text(
+        'One plant per 5–7 gallon (19–26 L) container. No depth was given.',
+      ),
       200,
       scrollable: detailScroll(),
     );
-    expect(find.text('Size not documented'), findsOneWidget);
+    expect(find.text('Not documented'), findsWidgets);
     await tester.scrollUntilVisible(
       find.text('TNAU Agritech: Bhendi (okra)'),
       200,
@@ -60,12 +62,37 @@ void main() {
     await tester.tap(find.text('Plants'));
     await tester.pumpAndSettle();
 
-    await tester.ensureVisible(find.widgetWithText(FilterChip, 'Herbs'));
+    await tester.scrollUntilVisible(
+      find.widgetWithText(FilterChip, 'Herbs'),
+      100,
+      scrollable: find
+          .byWidgetPredicate(
+            (w) => w is Scrollable && w.axisDirection == AxisDirection.right,
+          )
+          .last,
+    );
     await tester.pumpAndSettle();
     await tester.tap(find.widgetWithText(FilterChip, 'Herbs'));
     await tester.pumpAndSettle();
     expect(find.text('Coriander'), findsOneWidget);
     expect(find.text('Tomato'), findsNothing);
+  });
+
+  testWidgets('pet-friendly shows only plants a source lists as non-toxic', (
+    tester,
+  ) async {
+    final app = TestApp();
+    await app.pump(tester);
+    await tester.tap(find.text('Plants'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byKey(const Key('petFriendlyFilter')));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('left out, not assumed safe'), findsOneWidget);
+    expect(find.text('Jasmine'), findsOneWidget);
+    // Toxic (ASPCA) and unassessed plants are both hidden.
+    expect(find.text('Tomato'), findsNothing);
+    expect(find.text('Aloe vera'), findsNothing);
   });
 
   group('ideas and plantings', () {

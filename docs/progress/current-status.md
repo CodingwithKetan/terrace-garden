@@ -4,7 +4,7 @@ Last updated: 2026-10-18
 
 ## Phase
 
-**Phase 6 done except a device profile run (P6-07). Living Terrace redesign built (R-01..R-07, ADR-025/026; 2026-10-18); ready for moderated user testing of the new design.** Phases 0–5 are complete. Open: P6-07 device profiling; P6-04 kit preset (needs KI-014 verification); P6-10 branding (needs the app name, PD-001).
+**Phase 6 done except a device profile run (P6-07). The app is in English and Hindi, with a pet-friendly filter and a fuller catalogue (2026-10-18). Living Terrace redesign built (R-01..R-07, ADR-025/026; 2026-10-18); ready for moderated user testing of the new design.** Phases 0–5 are complete. Open: P6-07 device profiling; P6-04 kit preset (needs KI-014 verification); P6-10 branding (needs the app name, PD-001).
 
 ## State of the repository
 
@@ -30,7 +30,7 @@ Last updated: 2026-10-18
 
 ## Last completed tasks
 
-**Living Terrace redesign (R-01..R-07):** foundation, plant art, terrace plan, navigation + Today + soil-check sheet + Seasons, plant detail with sourced journey, ideas shelf, container picker on the plan, journal, welcome and garden overview. Before that: P6-01, P6-03 (delete all data), P6-05, P6-06, P6-07 (host part), P6-08, P6-09 and P6-11 (import boundaries, ADR-023). Earlier deferrals: P4-05, P4-DATA-03, P4-DATA-04, P5-06 calendar. Still open from earlier: P1-02 (Android licences; non-blocking).
+**Hindi, pet-friendly filter and catalogue completion (L-01..L-03, ADR-027).** Before that, the **Living Terrace redesign (R-01..R-07):** foundation, plant art, terrace plan, navigation + Today + soil-check sheet + Seasons, plant detail with sourced journey, ideas shelf, container picker on the plan, journal, welcome and garden overview. Before that: P6-01, P6-03 (delete all data), P6-05, P6-06, P6-07 (host part), P6-08, P6-09 and P6-11 (import boundaries, ADR-023). Earlier deferrals: P4-05, P4-DATA-03, P4-DATA-04, P5-06 calendar. Still open from earlier: P1-02 (Android licences; non-blocking).
 
 ## Exact next steps
 
@@ -41,6 +41,8 @@ Last updated: 2026-10-18
 4. **P1 backlog:** plant comparison (P4-05), importing an export (ADR-024), notification deep links (KI-028), photo on task completion.
 
 ## Checks run (latest, 2026-10-18, Windows host)
+
+- **Hindi / pet filter / catalogue gate (2026-10-18):** format 0 changed; analyze no issues; `flutter test` **460 passed**. The device test was not re-run for this batch (the host suite covers it); re-run at the next device session.
 
 - **Living Terrace redesign gate (2026-10-18):**
   - `dart format --set-exit-if-changed`: 0 changed. `flutter analyze`: no issues.

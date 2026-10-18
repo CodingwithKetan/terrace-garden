@@ -51,6 +51,7 @@ abstract final class CatalogueParser {
       id: id,
       commonName: _string(r, 'commonName', id),
       localNames: _list(r, 'localNames', id).cast<String>(),
+      names: _names(r, id),
       scientificName: _string(r, 'scientificName', id),
       category: _enum(PlantCategory.values, r, 'category', id),
       lifecycle: _enum(PlantLifecycle.values, r, 'lifecycle', id),
@@ -203,6 +204,22 @@ abstract final class CatalogueParser {
   ) {
     final value = o[key];
     return value == null ? null : parse(_object(value, '$id.$key'));
+  }
+
+  /// Optional `names`: language code to name, all non-empty strings.
+  static Map<String, String> _names(Map<String, Object?> r, String id) {
+    final raw = r['names'];
+    if (raw == null) return const {};
+    if (raw is! Map<String, Object?>) {
+      throw FormatException('$id: names must be an object');
+    }
+    return {
+      for (final MapEntry(:key, :value) in raw.entries)
+        if (value is String && value.trim().isNotEmpty)
+          key: value
+        else
+          key: throw FormatException('$id: names.$key must be text'),
+    };
   }
 
   static List<Object?> _list(Map<String, Object?> o, String key, String id) {

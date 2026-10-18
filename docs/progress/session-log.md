@@ -4,6 +4,49 @@ Newest first. Keep entries concise: goal, what was done, checks, next.
 
 ---
 
+## 2026-10-18: Session 1, part 10 (Hindi, pet-friendly filter, catalogue completion)
+
+**Goal:** the user asked for Hindi support, proper information for all the plants, and a pet-friendly filter.
+
+**Done:**
+- **Pet-friendly filter** on Plants. It shows only plants a source lists as non-toxic; unassessed plants are left out, with a note saying so.
+- **Catalogue research.**
+  - Four parallel research agents returned only quoted, first-party findings. I spot-checked 8 pages by hand, and all matched.
+  - Merged with sources S48–S74 and registered all of them as "F".
+  - Before → after across the 25 species:
+
+    | Field | Before | After |
+    |---|---|---|
+    | Sun | 14 | 25 |
+    | Care notes | 13 | 25 |
+    | Propagation | 16 | 25 |
+    | Sowing windows | 36 | 58 |
+    | Days to harvest | 14 | 17 |
+    | Container sizes | 15 | 17 |
+    | Pet status | 8 | 11 |
+
+  - Data left out on purpose: weak sources, single-state stand-ins and high-altitude seasons (listed in gardening-references §1d).
+- **Hindi.**
+  - 595 strings translated in five parallel chunks with a shared glossary, then validated by script and by a new coverage test.
+  - Language setting (Phone / English / हिन्दी), applied to notifications too.
+  - Hindi plant names (`names` map) shown in the UI and matched by search.
+
+**Checks:**
+- Format clean, analyze clean, 460 host tests pass.
+- New tests: pet-friendly filter, translation coverage and placeholders, Hindi switch-and-save, Hindi at 200% text.
+
+**Failures met and fixed:**
+- the regex in the coverage test lost its backslashes in a shell edit (caught by a deliberate broken placeholder);
+- `pageBack()` relies on the English "Back" tooltip;
+- rose cited S8, which wasn't in `sources.json`;
+- old spot-check tests expected gaps that are now filled.
+
+**Next:**
+- native Hindi review (KI-035);
+- catalogue prose in Hindi (KI-034);
+- remaining data gaps (KI-036);
+- moderated tests with Hindi users.
+
 ## 2026-10-18: Session 1, part 9 (Living Terrace redesign)
 
 **Goal:** the user found the photo-and-glass UI generic ("looks like AI generated"). After three rounds of mockups they chose direction C, "Living Terrace", and asked to build it.

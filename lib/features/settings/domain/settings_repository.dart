@@ -11,6 +11,8 @@ abstract interface class SettingsRepository {
 
   Future<Result<void>> saveUnitSystem(UnitSystem unitSystem);
 
+  Future<Result<void>> saveLanguage(AppLanguage language);
+
   Future<Result<void>> saveOnboardingCompleted({required bool completed});
 
   Future<Result<void>> saveReminder({

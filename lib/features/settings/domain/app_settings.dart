@@ -5,6 +5,19 @@ import 'package:terrace_garden/core/units/measurements.dart';
 /// stays pure Dart.
 enum ThemePreference { system, light, dark }
 
+/// App language: follow the phone, or a fixed choice. Kept independent of
+/// Flutter's `Locale` so the domain layer stays pure Dart.
+enum AppLanguage {
+  system(null),
+  english('en'),
+  hindi('hi');
+
+  const AppLanguage(this.code);
+
+  /// The language code, or null to follow the phone.
+  final String? code;
+}
+
 /// User-level preferences stored on the device.
 @immutable
 final class AppSettings {
@@ -14,6 +27,7 @@ final class AppSettings {
     this.onboardingCompleted = false,
     this.reminderEnabled = false,
     this.reminderMinutes = defaultReminderMinutes,
+    this.language = AppLanguage.system,
   });
 
   /// Defaults for a first launch. Metric suits the India-first audience.
@@ -36,18 +50,22 @@ final class AppSettings {
   /// Digest time as minutes after local midnight.
   final int reminderMinutes;
 
+  final AppLanguage language;
+
   AppSettings copyWith({
     ThemePreference? themePreference,
     UnitSystem? unitSystem,
     bool? onboardingCompleted,
     bool? reminderEnabled,
     int? reminderMinutes,
+    AppLanguage? language,
   }) => AppSettings(
     themePreference: themePreference ?? this.themePreference,
     unitSystem: unitSystem ?? this.unitSystem,
     onboardingCompleted: onboardingCompleted ?? this.onboardingCompleted,
     reminderEnabled: reminderEnabled ?? this.reminderEnabled,
     reminderMinutes: reminderMinutes ?? this.reminderMinutes,
+    language: language ?? this.language,
   );
 
   @override
@@ -57,7 +75,8 @@ final class AppSettings {
       other.unitSystem == unitSystem &&
       other.onboardingCompleted == onboardingCompleted &&
       other.reminderEnabled == reminderEnabled &&
-      other.reminderMinutes == reminderMinutes;
+      other.reminderMinutes == reminderMinutes &&
+      other.language == language;
 
   @override
   int get hashCode => Object.hash(
@@ -66,5 +85,6 @@ final class AppSettings {
     onboardingCompleted,
     reminderEnabled,
     reminderMinutes,
+    language,
   );
 }

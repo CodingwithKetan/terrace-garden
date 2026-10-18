@@ -51,6 +51,13 @@ class FakeSettingsRepository implements SettingsRepository {
   }
 
   @override
+  Future<Result<void>> saveLanguage(AppLanguage language) async {
+    if (failSaves) return const Err(StorageFailure());
+    stored = stored.copyWith(language: language);
+    return const Ok(null);
+  }
+
+  @override
   Future<Result<void>> saveUnitSystem(UnitSystem unitSystem) async {
     if (failSaves) return const Err(StorageFailure());
     stored = stored.copyWith(unitSystem: unitSystem);

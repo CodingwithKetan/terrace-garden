@@ -187,6 +187,13 @@ User feedback on the photo-and-glass look: "looks like an AI generated app". Dir
 - [x] **R-07 · Docs.** ADR-025, ADR-026, design-system v0.3, screen inventory, known issues KI-030..KI-033.
 - [ ] **R-08 · Follow-ups (P1).** Persist the selected garden (KI-030); evening headline naming the plant still waiting; vertical current-month band in the Seasons almanac; plant names in TerracePlan tags for long names; moderated user test of the new design.
 
+## Hindi, pet-friendly filter, catalogue completion (2026-10-18)
+
+- [x] **L-01 · P1 · Hindi (PD-003, ADR-027).** All 595 UI strings in Hindi; Settings → Language (Phone / English / हिन्दी), saved; notifications follow it; Hindi plant names in the catalogue and in search. Tests: translation coverage + placeholders, switch-and-save, 200% Hindi text on a small phone. *Open:* native review (KI-035), catalogue prose in Hindi (KI-034).
+- [x] **L-02 · P1 · Pet-friendly filter.** Plants chip that shows only species a source lists as non-toxic to dogs and cats (now coriander, carrot, jasmine, rose); unassessed plants are left out with a note, never assumed safe. Paw icon on catalogue rows.
+- [x] **L-03 · P0 · Catalogue completion.** Research across ASPCA, NC State, RHS, UMD, Alabama Extension, PAU, KAU and TNAU (27 new sources, S48–S74, all registered "F"). Now all 25 species have sun, propagation and care notes; sowing windows 36→58; days to harvest 14→17; containers 15→17; pet status 8→11. Remaining gaps in KI-036.
+- [ ] **L-04 · P1 · Catalogue prose in Hindi** (KI-034) and native review of the UI translation (KI-035).
+
 ## Phase 7: Advanced (each needs value, cost and plan before starting)
 
 - [ ] P7-01 Weather-aware care via `WeatherService` (Open-Meteo; licence/commercial check, ADR-020)

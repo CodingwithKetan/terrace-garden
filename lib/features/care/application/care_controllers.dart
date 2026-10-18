@@ -45,9 +45,14 @@ void careAutomation(Ref ref) {
     final tasks = ref.read(pendingTasksProvider).value;
     final settings = ref.read(settingsControllerProvider).value;
     if (tasks == null || settings == null) return;
-    // Notifications are built outside any widget, so look strings up for
-    // the app's single supported locale.
-    final l10n = lookupAppLocalizations(const Locale('en'));
+    // Notifications are built outside any widget: use the chosen language,
+    // or the phone's when it is supported, else English.
+    final l10n = lookupAppLocalizations(
+      appLocaleFor(
+        settings.language.code,
+        WidgetsBinding.instance.platformDispatcher.locale,
+      ),
+    );
     unawaited(
       ref
           .read(notificationSyncProvider)

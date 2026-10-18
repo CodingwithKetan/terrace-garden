@@ -199,6 +199,7 @@ final class PlantSpecies {
     required this.petSafety,
     required this.dataStatus,
     this.localNames = const [],
+    this.names = const {},
     this.sun,
     this.daysToHarvest,
     this.sowing = const [],
@@ -210,6 +211,13 @@ final class PlantSpecies {
   final String id;
   final String commonName;
   final List<String> localNames;
+
+  /// The plant's name in other app languages, by language code (e.g.
+  /// `hi`). Falls back to [commonName].
+  final Map<String, String> names;
+
+  /// The name to show in [languageCode].
+  String nameIn(String languageCode) => names[languageCode] ?? commonName;
   final String scientificName;
   final PlantCategory category;
   final PlantLifecycle lifecycle;
@@ -262,7 +270,8 @@ final class PlantSpecies {
     if (q.isEmpty) return true;
     return commonName.toLowerCase().contains(q) ||
         scientificName.toLowerCase().contains(q) ||
-        localNames.any((n) => n.toLowerCase().contains(q));
+        localNames.any((n) => n.toLowerCase().contains(q)) ||
+        names.values.any((n) => n.toLowerCase().contains(q));
   }
 }
 
@@ -283,9 +292,21 @@ final class PlantCatalogue {
   PlantSpecies? byId(String id) => species.where((s) => s.id == id).firstOrNull;
 
   /// Species matching [query] and, when given, [category], by common name.
-  List<PlantSpecies> search({String query = '', PlantCategory? category}) =>
+  /// Species matching [query] and [category]. With [petFriendlyOnly], only
+  /// species a source lists as non-toxic to pets; unassessed ones are left
+  /// out rather than assumed safe.
+  List<PlantSpecies> search({
+    String query = '',
+    PlantCategory? category,
+    bool petFriendlyOnly = false,
+  }) =>
       species
           .where((s) => category == null || s.category == category)
+          .where(
+            (s) =>
+                !petFriendlyOnly ||
+                s.petSafety.status == PetSafetyStatus.nonToxic,
+          )
           .where((s) => s.matches(query))
           .toList()
         ..sort((a, b) => a.commonName.compareTo(b.commonName));

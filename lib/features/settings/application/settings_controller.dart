@@ -33,6 +33,11 @@ class SettingsController extends _$SettingsController {
     (repository) => repository.saveUnitSystem(unitSystem),
   );
 
+  Future<Result<void>> setLanguage(AppLanguage language) => _update(
+    (settings) => settings.copyWith(language: language),
+    (repository) => repository.saveLanguage(language),
+  );
+
   /// Marks onboarding as finished (or skipped) so it is not shown again.
   Future<Result<void>> completeOnboarding() => _update(
     (settings) => settings.copyWith(onboardingCompleted: true),

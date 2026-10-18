@@ -91,8 +91,16 @@ void main() {
         {6, 7, 8, 11, 12},
       );
       final okra = catalogue.byId('okra')!;
-      expect(okra.container.status, EvidenceStatus.unverified);
-      expect(okra.container.minVolumeL, isNull);
+      expect(okra.container.minVolumeL, closeTo(18.9, 0.1));
+      expect(okra.container.sources, ['S53']);
+      // No sourced pot size: shown as not documented, never guessed.
+      final curryLeaf = catalogue.byId('curryLeaf')!;
+      expect(curryLeaf.container.status, EvidenceStatus.unverified);
+      expect(curryLeaf.container.minVolumeL, isNull);
+      expect(
+        catalogue.byId('coriander')!.petSafety.status,
+        PetSafetyStatus.nonToxic,
+      );
       expect(
         catalogue.byId('jasmine')!.petSafety.status,
         PetSafetyStatus.nonToxic,
@@ -116,7 +124,7 @@ void main() {
 
     test('returns null when neither state nor macro data exists', () {
       final coriander = catalogue.byId('coriander')!;
-      expect(coriander.sowingFor(GrowingRegion.northIndia), isNull);
+      expect(coriander.sowingFor(GrowingRegion.telangana), isNull);
       expect(coriander.sowingFor(GrowingRegion.kerala), isNull);
     });
   });

@@ -889,6 +889,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get plantsFilterAll => 'All';
 
   @override
+  String get settingsLanguage => 'Language';
+
+  @override
+  String get languageSystem => 'Phone';
+
+  @override
+  String get plantsFilterPetFriendly => 'Pet-friendly';
+
+  @override
+  String get plantsPetFriendlyNote =>
+      'Plants a source (ASPCA) lists as non-toxic to dogs and cats. Plants nobody has assessed are left out, not assumed safe. Call a vet if a pet eats a plant.';
+
+  @override
   String get categoryVegetable => 'Vegetables';
 
   @override

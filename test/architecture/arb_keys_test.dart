@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -17,4 +18,31 @@ void main() {
       expect(duplicates, isEmpty, reason: file.path);
     }
   });
+
+  test(
+    'translations cover every English string with the same placeholders',
+    () {
+      Map<String, dynamic> read(String path) =>
+          jsonDecode(File(path).readAsStringSync()) as Map<String, dynamic>;
+      final en = read('lib/l10n/app_en.arb');
+      final names = RegExp(r'\{([A-Za-z_]\w*)(?=[,}])');
+      Set<String> placeholders(Object? s) => {
+        for (final m in names.allMatches(s! as String)) m.group(1)!,
+      };
+      for (final file in Directory('lib/l10n').listSync().whereType<File>()) {
+        if (!file.path.endsWith('.arb') || file.path.endsWith('app_en.arb')) {
+          continue;
+        }
+        final other = read(file.path);
+        for (final key in en.keys.where((k) => !k.startsWith('@'))) {
+          expect(other, contains(key), reason: '${file.path} lacks $key');
+          expect(
+            placeholders(other[key]),
+            placeholders(en[key]),
+            reason: '${file.path} $key',
+          );
+        }
+      }
+    },
+  );
 }

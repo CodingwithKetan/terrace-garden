@@ -230,7 +230,7 @@ class _TodayData {
       catalogue?.byId(planting(plantingId)?.speciesId ?? '');
 
   String plantName(String plantingId) =>
-      species(plantingId)?.commonName ?? l10n.plantingUnknownSpecies;
+      species(plantingId)?.name(l10n) ?? l10n.plantingUnknownSpecies;
 
   LayoutElement? container(String plantingId) {
     final id = planting(plantingId)?.elementId;
@@ -398,7 +398,7 @@ class _PlanSection extends ConsumerWidget {
           : PlanBadge.none;
       final names = [
         for (final p in here)
-          data.catalogue?.byId(p.speciesId)?.commonName ??
+          data.catalogue?.byId(p.speciesId)?.name(l10n) ??
               l10n.plantingUnknownSpecies,
       ];
       final name = containerName(l10n, e, data.containers);

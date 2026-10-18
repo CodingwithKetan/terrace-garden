@@ -39,8 +39,8 @@ Future<void> showPlantingSheet(
   final saved = await showAppBottomSheet<(Planting, String)>(
     context,
     title: existing == null
-        ? l10n.plantingAddTitle(species.commonName)
-        : l10n.plantingEditTitle(species.commonName),
+        ? l10n.plantingAddTitle(species.name(l10n))
+        : l10n.plantingEditTitle(species.name(l10n)),
     builder: (context) => PlantingForm(
       species: species,
       gardenId: existing?.gardenId ?? gardenId,
@@ -50,7 +50,7 @@ Future<void> showPlantingSheet(
   if (saved == null || existing != null) return;
   final (_, gardenName) = saved;
   messenger.showSnackBar(
-    SnackBar(content: Text(l10n.plantingAdded(species.commonName, gardenName))),
+    SnackBar(content: Text(l10n.plantingAdded(species.name(l10n), gardenName))),
   );
 }
 
@@ -354,10 +354,10 @@ class _ContainerPicker extends ConsumerWidget {
         ? null
         : format.length(Length.cm(need.minDepthCm!));
     final needs = switch ((volume, depth)) {
-      (final v?, final d?) => l10n.plantingNeedsBoth(species.commonName, v, d),
-      (final v?, null) => l10n.plantingNeedsVolume(species.commonName, v),
-      (null, final d?) => l10n.plantingNeedsDepth(species.commonName, d),
-      (null, null) => l10n.plantingNeedsUnknown(species.commonName),
+      (final v?, final d?) => l10n.plantingNeedsBoth(species.name(l10n), v, d),
+      (final v?, null) => l10n.plantingNeedsVolume(species.name(l10n), v),
+      (null, final d?) => l10n.plantingNeedsDepth(species.name(l10n), d),
+      (null, null) => l10n.plantingNeedsUnknown(species.name(l10n)),
     };
 
     final items = <PlanItem>[];
@@ -382,7 +382,7 @@ class _ContainerPicker extends ConsumerWidget {
       final name = containerName(l10n, e, containers);
       final neighbour = here
           .where((p) => p.speciesId != species.id)
-          .map((p) => catalogue?.byId(p.speciesId)?.commonName)
+          .map((p) => catalogue?.byId(p.speciesId)?.name(l10n))
           .nonNulls
           .firstOrNull;
       final litres = e.soilLitres == null

@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.dart';
+import 'app_localizations_hi.dart';
 
 // ignore_for_file: type=lint
 
@@ -92,7 +93,10 @@ abstract class AppLocalizations {
       ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('en')];
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('en'),
+    Locale('hi'),
+  ];
 
   /// Working product name shown in the app bar and task switcher.
   ///
@@ -1695,6 +1699,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'All'**
   String get plantsFilterAll;
+
+  /// No description provided for @settingsLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get settingsLanguage;
+
+  /// No description provided for @languageSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get languageSystem;
+
+  /// No description provided for @plantsFilterPetFriendly.
+  ///
+  /// In en, this message translates to:
+  /// **'Pet-friendly'**
+  String get plantsFilterPetFriendly;
+
+  /// No description provided for @plantsPetFriendlyNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Plants a source (ASPCA) lists as non-toxic to dogs and cats. Plants nobody has assessed are left out, not assumed safe. Call a vet if a pet eats a plant.'**
+  String get plantsPetFriendlyNote;
 
   /// No description provided for @categoryVegetable.
   ///
@@ -3652,7 +3680,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en'].contains(locale.languageCode);
+      <String>['en', 'hi'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -3663,6 +3691,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   switch (locale.languageCode) {
     case 'en':
       return AppLocalizationsEn();
+    case 'hi':
+      return AppLocalizationsHi();
   }
 
   throw FlutterError(

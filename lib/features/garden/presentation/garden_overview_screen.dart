@@ -569,7 +569,7 @@ class _Hero extends ConsumerWidget {
             ];
             final names = [
               for (final p in here)
-                catalogue?.byId(p.speciesId)?.commonName ??
+                catalogue?.byId(p.speciesId)?.name(l10n) ??
                     l10n.plantingUnknownSpecies,
             ];
             final name = containerName(l10n, e, containers);

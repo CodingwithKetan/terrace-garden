@@ -222,3 +222,13 @@ Change process: add a new ADR (or mark one *Superseded by ADR-0xx*) instead of s
   - Deleting a garden returns to Today.
 - **Why:** most visits are "what does my terrace need today", which Today now answers with the plan itself. The garden's details are a step away, not a tab.
 - **Consequences:** the selected garden is not persisted across restarts (first garden by default). Tests reach gardens through Today or `TestApp.open`.
+
+## ADR-027: Hindi and per-language plant names (2026-10-18)
+- **Decision:** the app ships in English and Hindi (PD-003).
+  - `lib/l10n/app_hi.arb` translates every UI string into simple, everyday Devanagari Hindi, using a fixed glossary (बगीचा, गमला, मिट्टी की जाँच, देखभाल, डायरी…). Brand and organisation names, units and Western digits stay as they are.
+  - Settings → Language offers Phone / English / हिन्दी (`AppLanguage`, saved with the other settings). "Phone" follows the device and falls back to English. The language names are written in their own script.
+  - Notifications use the same choice (`appLocaleFor`).
+  - Plant names: the catalogue has an optional `names` map (`{"hi": "टमाटर"}`). The UI shows `species.name(l10n)`, and search matches names in every language.
+  - `test/architecture/arb_keys_test.dart` fails if a translation misses a key or changes a placeholder, and if any ARB file repeats a key.
+- **Not translated yet:** catalogue prose (care notes, container, harvest and pet notes) is still English inside the Hindi UI (KI-034). The translations need a native-speaker review before release (KI-035).
+- **Why a map, not a `hindiName` field:** further languages (Tamil, Telugu, Kannada…) can be added as data without a schema change.

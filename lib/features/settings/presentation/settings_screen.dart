@@ -162,6 +162,35 @@ class _SettingsList extends ConsumerWidget {
                 () => controller.setUnitSystem(selection.single),
               ),
             ),
+            const SizedBox(height: AppSpacing.xl),
+            Text(l10n.settingsLanguage, style: theme.textTheme.titleSmall),
+            const SizedBox(height: AppSpacing.sm),
+            SegmentedButton<AppLanguage>(
+              key: const Key('languagePicker'),
+              showSelectedIcon: false,
+              segments: [
+                ButtonSegment(
+                  value: AppLanguage.system,
+                  label: Text(l10n.languageSystem),
+                  icon: const Icon(Icons.phone_android_outlined),
+                ),
+                // Each language is named in its own script, so people can
+                // find theirs whatever the app is showing.
+                const ButtonSegment(
+                  value: AppLanguage.english,
+                  label: Text('English'),
+                ),
+                const ButtonSegment(
+                  value: AppLanguage.hindi,
+                  label: Text('हिन्दी'),
+                ),
+              ],
+              selected: {settings.language},
+              onSelectionChanged: (selection) => _apply(
+                context,
+                () => controller.setLanguage(selection.single),
+              ),
+            ),
             const SizedBox(height: AppSpacing.xxl),
             ReminderSettingsSection(settings: settings),
             const SizedBox(height: AppSpacing.xxl),

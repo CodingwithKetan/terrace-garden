@@ -174,7 +174,7 @@ class _Detail extends ConsumerWidget {
             children: [
               Semantics(
                 header: true,
-                child: Text(s.commonName, style: theme.textTheme.displaySmall),
+                child: Text(s.name(l10n), style: theme.textTheme.displaySmall),
               ),
               const SizedBox(height: AppSpacing.xxs),
               Text(
@@ -436,7 +436,7 @@ class _Hero extends StatelessWidget {
                       size: box.biggest.shortestSide,
                       pot: pot,
                       semanticLabel: context.l10n.plantArtLabel(
-                        species.commonName,
+                        species.name(context.l10n),
                       ),
                     ),
                   ),
@@ -517,7 +517,7 @@ class _JourneyCard extends StatelessWidget {
     return Semantics(
       container: true,
       label: l10n.journeyLabel(
-        species.commonName,
+        species.name(l10n),
         [
           for (final m in journey.milestones) '${label(m.kind)} ${when(m)}',
         ].join(', '),

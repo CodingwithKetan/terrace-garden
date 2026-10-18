@@ -217,7 +217,7 @@ class _NowCard extends StatelessWidget {
               children: [
                 for (final s in species)
                   ActionChip(
-                    label: Text(s.commonName),
+                    label: Text(s.name(l10n)),
                     labelStyle: theme.textTheme.labelLarge?.copyWith(
                       color: fg,
                     ),
@@ -314,6 +314,7 @@ class _AlmanacRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final theme = Theme.of(context);
     final colors = theme.colorScheme;
     final window = sowing?.window.months;
@@ -323,7 +324,7 @@ class _AlmanacRow extends StatelessWidget {
 
     return Semantics(
       container: true,
-      label: '${species.commonName}: $summary',
+      label: '${species.name(l10n)}: $summary',
       child: ExcludeSemantics(
         child: InkWell(
           borderRadius: BorderRadius.circular(8),
@@ -354,7 +355,7 @@ class _AlmanacRow extends StatelessWidget {
                       const SizedBox(width: AppSpacing.sm),
                       Expanded(
                         child: Text(
-                          species.commonName,
+                          species.name(l10n),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: theme.textTheme.titleSmall?.copyWith(

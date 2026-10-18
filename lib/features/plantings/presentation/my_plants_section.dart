@@ -191,7 +191,7 @@ class _PlantingTile extends ConsumerWidget {
       locale: Localizations.localeOf(context).toLanguageTag(),
     );
     final s = species;
-    final name = s?.commonName ?? l10n.plantingUnknownSpecies;
+    final name = s?.name(l10n) ?? l10n.plantingUnknownSpecies;
     final containers = layoutContainers(elements);
     final container = containers
         .where((c) => c.id == planting.elementId)

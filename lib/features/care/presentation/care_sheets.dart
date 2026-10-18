@@ -14,6 +14,7 @@ import 'package:terrace_garden/features/care/domain/care_planner.dart';
 import 'package:terrace_garden/features/care/domain/recurrence.dart';
 import 'package:terrace_garden/features/care/presentation/care_labels.dart';
 import 'package:terrace_garden/features/plant_catalog/domain/plant_species.dart';
+import 'package:terrace_garden/features/plant_catalog/plant_catalog.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
 /// Source IDs behind a task's guide, using species data where it applies.
@@ -45,7 +46,7 @@ Future<void> showTaskGuide(
     context,
     title: species == null
         ? type.label(l10n)
-        : '${type.label(l10n)} · ${species.commonName}',
+        : '${type.label(l10n)} · ${species.name(l10n)}',
     builder: (context) {
       final theme = Theme.of(context);
       return Column(

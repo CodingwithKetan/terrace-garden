@@ -127,7 +127,7 @@ Facts are not copyrightable, so the app can state facts with attribution. **Do n
 | S5 | RHS: How to water containers | https://www.rhs.org.uk/container-gardening/how-to-water-containers | RHS | Finger test a third of the way down; terracotta and metal dry or heat; larger pots hold moisture longer; aspect | A | F | as S4 |
 | S6 | RHS: Watering (garden jobs) | https://www.rhs.org.uk/garden-jobs/watering | RHS | Water when dry 2–3 cm below surface; morning best; avoid midday | A | F | as S4 |
 | S7 | RHS: Vegetables in containers | https://www.rhs.org.uk/vegetables/containers | RHS | ≥45 cm depth and width recommendation; sterile peat-free compost; feeding | A | SS | as S4 |
-| S8 | RHS: Roses, growing in containers | https://www.rhs.org.uk/plants/roses/growing-in-containers | RHS | Rose pot depths, feeding, watering | A | SS | as S4 |
+| S8 | RHS: Roses, growing in containers | https://www.rhs.org.uk/plants/roses/growing-in-containers | RHS | Rose pot depths, feeding, watering | A | F (2026-10-18) | as S4 |
 | S9 | RHS: Roof gardens and balconies | https://www.rhs.org.uk/garden-design/roof-gardens-balconies | RHS | Consult a chartered structural engineer; heavy pots over load-bearing walls or beams; lightweight materials | A | SS | as S4 |
 | S44 | FAO: Microgardens | https://www.fao.org/agriculture/crops/thematic-sitemap/theme/hort-indust-crops/microgardens/en/ | FAO | Container micro-garden concept; substrates; rooftop rainwater harvesting (20 m² roof collects 2,000 L per 100 mm rain) | A | F | FAO content is generally reusable for non-commercial purposes with attribution (check FAO copyright page). |
 | S45 | FAO (2012) *Growing greener cities in Africa* (ISBN 978-92-5-107286-8) | https://www.fao.org/urban-food-actions/resources/resources-detail/zh/c/1043596/ | FAO | Urban horticulture context (Africa); not container-specific | B | SS | as S44 |
@@ -150,6 +150,42 @@ Facts are not copyrightable, so the app can state facts with attribution. **Do n
 | D7 | Kew terms of use; POWO about | https://www.kew.org/node/2426 ; https://powo.science.kew.org/about | SS (POWO terms page 403) |
 
 ---
+
+### 1d. Added 2026-10-18 (catalogue completion)
+
+Found by research agents that read each page or PDF and returned exact quotes; spot-checked by hand against the live pages (Alabama okra, UMD carrot and mint, RHS coriander, sansevieria and roses, TNAU marigold and commercial rose: all matched). Values taken: see `plants.json`. Left out on purpose: the Telangana "growing tips" table as a sowing calendar, a single-state Bihar marigold article as "North India", Kerala high-range seasons (carrot, French bean), category-level pot sizes, a Master Gardener blog pot size for lemongrass, and an undated mint harvest figure. Indian university texts (PAU, KAU, TNAU) are copyright: cite facts, don't copy text.
+
+| ID | Source | URL | Publisher | Good for | Rel. | Ver. | Licensing / reuse notes |
+|---|---|---|---|---|---|---|---|
+| S48 | Package of Practices for Cultivation of Vegetables 2021 | https://www.pau.edu/content/ccil/pf/pp_veg.pdf | Punjab Agricultural University | Punjab sowing months (coriander, chilli nursery), nutrition-garden staking, staggered sowing, chilli waterlogging | A | F | Cite facts |
+| S49 | Package of Practices for Crops of Punjab, Rabi 2025-26 | https://pau.edu/content/ccil/pf/pp_rabi.pdf | Punjab Agricultural University | Mint planting months (Punjab) | A | F | Cite facts |
+| S50 | Package of Practices Recommendations: Crops 2016 (15th ed.) | https://intranet.kau.in/sites/default/files/documents/pop2016.pdf | Kerala Agricultural University | Kerala planting months (chilli, brinjal, tomato, gourds, amaranth, curry leaf, lemongrass), tulsi harvest, staking, pandals, fruit-fly bagging | A | F | Cite facts |
+| S51 | Crop Production Guide: Horticulture Crops 2020 | https://agritech.tnau.ac.in/pdf/HORTICULTURE.pdf | Tamil Nadu Agricultural University | Tamil Nadu sowing seasons (tomato, brinjal, gourds, carrot plains, French bean plains, amaranth), amaranth thinning and direct sowing, methi thinning and nipping | A | F | Cite facts |
+| S52 | Extension Gardener Handbook, Ch. 18: Plants Grown in Containers (Table 18–1) | https://content.ces.ncsu.edu/extension-gardener-handbook/18-plants-grown-in-containers | NC State Extension | Minimum container size and depth per vegetable (peppers 2 gal, 12–16 in) | A | F | Cite |
+| S53 | Grow More Okra | https://www.aces.edu/blog/topics/lawn-garden/grow-more-okra/ | Alabama Cooperative Extension System | Okra full sun 6–8 h, 1 plant per 5–7 gal, dwarf varieties, harvest every 2–3 days | A | F | Cite |
+| S54 | Growing Carrots in a Home Garden | https://extension.umd.edu/resource/growing-carrots-home-garden | University of Maryland Extension | Carrot full sun ≥6 h, thinning by snipping, short varieties for containers, ease watering near harvest | A | F | Cite |
+| S55 | Growing Mint in a Home Garden | https://extension.umd.edu/resource/mint | University of Maryland Extension | Mint full sun to part shade, own pot (12–16 in), cut runners | A | F | Cite |
+| S56 | How to grow coriander | https://www.rhs.org.uk/herbs/coriander/grow-your-own | RHS | Remove flower stems; dislikes transplanting; suits containers | A | F | as S4 |
+| S57 | How to grow mint | https://www.rhs.org.uk/herbs/mint/grow-your-own | RHS | Divide and repot container mint every few years | A | F | as S4 |
+| S58 | How to grow lemongrass | https://www.rhs.org.uk/herbs/lemongrass/grow-your-own | RHS | Keep container compost evenly moist; extra feeding (no dose) | A | F | as S4 |
+| S59 | Hibiscus rosa-sinensis growing guide | https://www.rhs.org.uk/plants/hibiscus/growing-guide | RHS | Propagation by cuttings; trim tips for bushiness | A | F | as S4 |
+| S60 | How to grow epipremnum | https://www.rhs.org.uk/plants/epipremnum/growing-guide | RHS | Money plant light, watering, repotting one size up, cuttings | A | F | as S4 |
+| S61 | How to grow sansevierias | https://www.rhs.org.uk/plants/sansevieria/growing-guide | RHS | Snake plant overwatering, pot choice, light, propagation | A | F | as S4 |
+| S62 | Aloe vera (plant profile) | https://www.rhs.org.uk/plants/981/aloe-vera/details | RHS | Offsets; gritty cactus compost; full sun | A | F | as S4 |
+| S63 | Ocimum tenuiflorum, holy basil (plant profile) | https://www.rhs.org.uk/Plants/86595/wd/Details | RHS | Pinch flower heads | A | F | as S4 |
+| S64 | Bergera koenigii (syn. Murraya koenigii), curry tree (plant profile) | https://www.rhs.org.uk/plants/354374/wd/details | RHS | Full sun or partial shade; compost; pests | A | F | as S4 |
+| S65 | Rose pruning: general tips | https://www.rhs.org.uk/plants/roses/pruning-guide | RHS | Pruning cuts | A | F | as S4 |
+| S66 | Jasmine (Jasminum sambac), KAU Agri-Infotech Portal | https://old.celkau.in/Crops/Ornamental%20Crops/jasmine.aspx | Kerala Agricultural University | Full sun to partial shade; prune, flowers on new wood | A | F | Cite facts |
+| S67 | TNAU Agritech: Commercial rose | https://agritech.tnau.ac.in/horticulture/horti_flower%20crops_commercial%20rose.html | TNAU | ≥6 h bright sun; propagation by cuttings; pruning | A | F | Cite facts |
+| S68 | TNAU Agritech: Types of garden (roof gardening) | https://agritech.tnau.ac.in/horticulture/horti_Landscaping_types%20of%20garden.html | TNAU | Roof-garden crop table (amaranth first harvest 25–30 days) | A | F | Cite facts |
+| S69 | TNAU Agritech: Lemongrass | https://agritech.tnau.ac.in/horticulture/horti_aromatic%20crops_lemongrass.html | TNAU | Planting months; first harvest 90 days | A | F | Cite facts |
+| S70 | TNAU Agritech: Mint | https://agritech.tnau.ac.in/horticulture/horti_aromatic%20crops_mint.html | TNAU | Propagation by cuttings and suckers; planting June–July | A | F | Cite facts |
+| S71 | TNAU Agritech: Tulsi | https://agritech.tnau.ac.in/horticulture/horti_medicinal%20crops_tulsi.html | TNAU | Cuttings planted October–December | A | F | Cite facts |
+| S72 | TNAU Agritech: Marigold | https://agritech.tnau.ac.in/horticulture/horti_flower%20crops_marigold.html | TNAU | Sown year-round; transplant after four weeks; pinch at 30 days | A | F | Cite facts |
+| S73 | Marigolds: From Folklore to the Home Garden | https://extension.psu.edu/marigolds-from-folklore-to-the-home-garden | Penn State Extension | Marigolds in containers: spacing, watering | A | F | Cite |
+| S74 | How to grow jasmine | https://www.rhs.org.uk/plants/jasmine/growing-guide | RHS | Containers need regular watering in the growing season | A | F | as S4 |
+
+Pet safety (2026-10-18, S39/S40): coriander (cilantro) and garden carrot are listed as non-toxic by ASPCA; brinjal is flagged as a problem for dogs, cats and horses by NC State (leaves, flowers, stems, roots). Not assessed: chilli, okra, palak, leaf amaranth (ASPCA lists only *A. hypochondriacus*), methi, curry leaf, tulsi (ASPCA's basil page is *O. basilicum*), gourds, French bean, radish, lettuce, marigold (ASPCA's "marigold" pages are *Calendula*), hibiscus (ASPCA's page is *H. syriacus*).
 
 ## 2. Container guidance per crop
 

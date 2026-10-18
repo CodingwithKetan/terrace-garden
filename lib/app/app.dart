@@ -42,6 +42,11 @@ class TerraceGardenApp extends ConsumerWidget {
       themeMode: themeMode,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+      // Null follows the phone (falling back to English if unsupported).
+      locale: switch (settings.value?.language.code) {
+        final code? => Locale(code),
+        null => null,
+      },
       routerConfig: ref.watch(appRouterProvider),
     );
   }

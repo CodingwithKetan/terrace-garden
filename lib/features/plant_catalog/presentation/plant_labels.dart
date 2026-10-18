@@ -209,3 +209,9 @@ extension FitStyle on Fit {
 extension RegionalSowingLabel on RegionalSowing {
   String regionLabel(AppLocalizations l10n) => window.region.label(l10n);
 }
+
+extension PlantSpeciesName on PlantSpecies {
+  /// The plant's name in the app's language (English when the catalogue
+  /// has no name for it).
+  String name(AppLocalizations l10n) => nameIn(l10n.localeName);
+}

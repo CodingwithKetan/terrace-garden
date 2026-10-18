@@ -218,7 +218,7 @@ class _JournalEntryScreenState extends ConsumerState<JournalEntryScreen> {
                             ChipOption(
                               value: p.id,
                               label:
-                                  catalogue?.byId(p.speciesId)?.commonName ??
+                                  catalogue?.byId(p.speciesId)?.name(l10n) ??
                                   l10n.plantingUnknownSpecies,
                             ),
                         ],

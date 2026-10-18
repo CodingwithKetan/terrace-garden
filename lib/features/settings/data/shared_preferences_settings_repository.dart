@@ -15,6 +15,7 @@ final class SharedPreferencesSettingsRepository implements SettingsRepository {
   static const onboardingKey = 'settings.onboardingCompleted';
   static const reminderEnabledKey = 'settings.reminderEnabled';
   static const reminderMinutesKey = 'settings.reminderMinutes';
+  static const languageKey = 'settings.language';
 
   final SharedPreferencesAsync _prefs;
   final AppLogger _logger;
@@ -27,6 +28,7 @@ final class SharedPreferencesSettingsRepository implements SettingsRepository {
       final onboarded = await _prefs.getBool(onboardingKey);
       final reminder = await _prefs.getBool(reminderEnabledKey);
       final minutes = await _prefs.getInt(reminderMinutesKey);
+      final language = await _prefs.getString(languageKey);
       return AppSettings(
         themePreference: _byName(
           ThemePreference.values,
@@ -43,6 +45,11 @@ final class SharedPreferencesSettingsRepository implements SettingsRepository {
         reminderMinutes: (minutes != null && minutes >= 0 && minutes < 24 * 60)
             ? minutes
             : AppSettings.defaultReminderMinutes,
+        language: _byName(
+          AppLanguage.values,
+          language,
+          AppSettings.defaults.language,
+        ),
       );
     } on Object catch (error, stackTrace) {
       _logger.error(
@@ -57,6 +64,10 @@ final class SharedPreferencesSettingsRepository implements SettingsRepository {
   @override
   Future<Result<void>> saveThemePreference(ThemePreference preference) =>
       _write(themeKey, preference.name);
+
+  @override
+  Future<Result<void>> saveLanguage(AppLanguage language) =>
+      _write(languageKey, language.name);
 
   @override
   Future<Result<void>> saveUnitSystem(UnitSystem unitSystem) =>
@@ -108,6 +119,7 @@ final class SharedPreferencesSettingsRepository implements SettingsRepository {
           onboardingKey,
           reminderEnabledKey,
           reminderMinutesKey,
+          languageKey,
         },
       );
       return const Ok(null);

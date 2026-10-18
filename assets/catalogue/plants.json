@@ -6,6 +6,7 @@
       "id": "tomato",
       "commonName": "Tomato",
       "localNames": ["Tamatar"],
+      "names": { "hi": "टमाटर" },
       "scientificName": "Solanum lycopersicum",
       "category": "vegetable",
       "lifecycle": "annual",
@@ -15,10 +16,12 @@
       "sowing": [
         { "region": "northIndia", "months": [6, 7, 8, 11, 12], "source": "S11" },
         { "region": "southIndia", "months": [1, 2, 6, 7, 10, 11], "source": "S11" },
-        { "region": "telangana", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S13" }
+        { "region": "telangana", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S13" },
+        { "region": "tamilNadu", "months": [5, 6, 11, 12], "source": "S51" },
+        { "region": "kerala", "months": [10, 11], "source": "S50" }
       ],
       "propagation": { "method": "transplant", "nurseryDaysMin": 25, "nurseryDaysMax": 30, "sources": ["S11"] },
-      "careNotes": [],
+      "careNotes": [{ "text": "Stake or cage the plant; a heavy pot keeps a top-heavy tomato from blowing over.", "sources": ["S3"] }],
       "petSafety": { "status": "toxic", "note": "The plant is toxic to dogs, cats and horses (solanine); ripe fruit is non-toxic.", "sources": ["S39"] },
       "dataStatus": "verified"
     },
@@ -26,17 +29,24 @@
       "id": "chilli",
       "commonName": "Chilli",
       "localNames": ["Mirchi"],
+      "names": { "hi": "मिर्च" },
       "scientificName": "Capsicum annuum",
       "category": "vegetable",
       "lifecycle": "annual",
       "sun": { "level": "full", "minHours": 6, "sources": ["S3"] },
-      "container": { "status": "proxy", "minVolumeL": 18.9, "recommendedVolumeL": 37.9, "minDepthCm": 30, "recommendedDepthCm": 41, "plantsPerContainer": 1, "note": "Uses pepper data (same genus): 1–2 plants per 5-gallon (19 L) container; large class 8–10 gallons.", "sources": ["S1", "S2"] },
+      "container": { "status": "verified", "minVolumeL": 7.6, "recommendedVolumeL": 18.9, "minDepthCm": 30, "recommendedDepthCm": 41, "plantsPerContainer": 1, "note": "Peppers: at least a 2-gallon (7.6 L) container 12–16 in (30–41 cm) deep, one plant each; 5-gallon (19 L) containers suit most fruiting crops best.", "sources": ["S52", "S1"] },
       "daysToHarvest": { "min": 90, "max": 120, "note": "Pepper figure from seed (proxy for chilli).", "sources": ["S1"] },
       "sowing": [
-        { "region": "tamilNadu", "months": [1, 2, 6, 7, 9, 10], "source": "S19" }
+        { "region": "northIndia", "months": [10, 11], "source": "S48" },
+        { "region": "tamilNadu", "months": [1, 2, 6, 7, 9, 10], "source": "S19" },
+        { "region": "kerala", "months": [5, 6, 9, 10], "source": "S50" }
       ],
-      "propagation": null,
-      "careNotes": [],
+      "propagation": { "method": "transplant", "nurseryDaysMin": 25, "nurseryDaysMax": 30, "sources": ["S11"] },
+      "careNotes": [
+        { "text": "Stake plants if they need support.", "sources": ["S50"] },
+        { "text": "Chilli cannot stand waterlogged soil for more than a day: use a free-draining mix and a pot with drainage holes.", "sources": ["S48"] },
+        { "text": "Shade newly transplanted seedlings for three or four days in summer.", "sources": ["S50"] }
+      ],
       "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
       "dataStatus": "partial"
     },
@@ -44,6 +54,7 @@
       "id": "brinjal",
       "commonName": "Brinjal",
       "localNames": ["Baingan"],
+      "names": { "hi": "बैंगन" },
       "scientificName": "Solanum melongena",
       "category": "vegetable",
       "lifecycle": "annual",
@@ -53,22 +64,25 @@
       "sowing": [
         { "region": "northIndia", "months": [2, 3, 5, 6, 10], "source": "S11" },
         { "region": "southIndia", "months": [1, 2, 10], "source": "S11" },
-        { "region": "telangana", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S13" }
+        { "region": "telangana", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S13" },
+        { "region": "tamilNadu", "months": [1, 5, 6, 12], "source": "S51" },
+        { "region": "kerala", "months": [5, 6, 9, 10], "source": "S50" }
       ],
       "propagation": { "method": "transplant", "nurseryDaysMin": 25, "nurseryDaysMax": 30, "sources": ["S11"] },
-      "careNotes": [],
-      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "careNotes": [{ "text": "Stake plants if they need support.", "sources": ["S50"] }],
+      "petSafety": { "status": "toxic", "note": "Flagged as a problem for dogs, cats and horses: leaves, flowers, stems and roots contain solanine-type alkaloids. The fruit is not listed as a poison part.", "sources": ["S40"] },
       "dataStatus": "verified"
     },
     {
       "id": "okra",
       "commonName": "Okra",
       "localNames": ["Bhindi"],
+      "names": { "hi": "भिंडी" },
       "scientificName": "Abelmoschus esculentus",
       "category": "vegetable",
       "lifecycle": "annual",
-      "sun": null,
-      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No extension figure for container size was found.", "sources": [] },
+      "sun": { "level": "full", "minHours": 6, "sources": ["S53"] },
+      "container": { "status": "verified", "minVolumeL": 18.9, "recommendedVolumeL": 26.5, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": 1, "note": "One plant per 5–7 gallon (19–26 L) container. No depth was given.", "sources": ["S53"] },
       "daysToHarvest": { "min": 50, "max": 60, "note": null, "sources": ["S11"] },
       "sowing": [
         { "region": "northIndia", "months": [2, 3, 6, 7], "source": "S11" },
@@ -77,7 +91,10 @@
         { "region": "tamilNadu", "months": [2, 6, 7, 8], "source": "S14" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S11"] },
-      "careNotes": [],
+      "careNotes": [
+        { "text": "Choose dwarf varieties for containers; they are less likely to fall over.", "sources": ["S53"] },
+        { "text": "Pick pods at 5–10 cm (2–4 in) long, then every 2–3 days.", "sources": ["S53"] }
+      ],
       "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
       "dataStatus": "partial"
     },
@@ -85,6 +102,7 @@
       "id": "palak",
       "commonName": "Palak (spinach)",
       "localNames": ["Palak"],
+      "names": { "hi": "पालक" },
       "scientificName": "Spinacia oleracea",
       "category": "leafyGreen",
       "lifecycle": "annual",
@@ -105,17 +123,23 @@
       "id": "amaranth",
       "commonName": "Amaranth",
       "localNames": ["Chaulai", "Keerai"],
+      "names": { "hi": "चौलाई" },
       "scientificName": "Amaranthus spp.",
       "category": "leafyGreen",
       "lifecycle": "annual",
-      "sun": null,
+      "sun": { "level": "partial", "minHours": null, "sources": ["S40"] },
       "container": { "status": "proxy", "minVolumeL": 3.8, "recommendedVolumeL": 11.4, "minDepthCm": 10, "recommendedDepthCm": 15, "plantsPerContainer": null, "note": "Uses the small class for salad and Asian greens: 1–3 gallons, 4–6 in deep.", "sources": ["S2"] },
-      "daysToHarvest": null,
+      "daysToHarvest": { "min": 25, "max": 30, "note": "First harvest after sowing, from TNAU's roof-garden table.", "sources": ["S68"] },
       "sowing": [
-        { "region": "telangana", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S13" }
+        { "region": "telangana", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S13" },
+        { "region": "tamilNadu", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S51" },
+        { "region": "kerala", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S50" }
       ],
-      "propagation": null,
-      "careNotes": [],
+      "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S51"] },
+      "careNotes": [
+        { "text": "Thin seedlings to 12–15 cm apart after germination.", "sources": ["S51"] },
+        { "text": "Avoid sowing red-leaved varieties during heavy rain.", "sources": ["S50"] }
+      ],
       "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
       "dataStatus": "partial"
     },
@@ -123,33 +147,47 @@
       "id": "coriander",
       "commonName": "Coriander",
       "localNames": ["Dhania"],
+      "names": { "hi": "धनिया" },
       "scientificName": "Coriandrum sativum",
       "category": "herb",
       "lifecycle": "annual",
-      "sun": null,
+      "sun": { "level": "partial", "minHours": null, "sources": ["S40"] },
       "container": { "status": "verified", "minVolumeL": 3.8, "recommendedVolumeL": 11.4, "minDepthCm": 10, "recommendedDepthCm": 15, "plantsPerContainer": null, "note": "Small class: 1–3 gallons, 4–6 in deep.", "sources": ["S2"] },
       "daysToHarvest": { "min": 30, "max": 40, "note": "For greens.", "sources": ["S16"] },
       "sowing": [
+        { "region": "northIndia", "months": [10, 11, 12], "source": "S48" },
         { "region": "tamilNadu", "months": [6, 7, 10, 11], "source": "S16" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S16"] },
-      "careNotes": [{ "text": "Split the seeds before sowing; whole seeds will not germinate.", "sources": ["S16"] }],
-      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "careNotes": [
+        { "text": "Split the seeds before sowing; whole seeds will not germinate.", "sources": ["S16"] },
+        { "text": "Remove flower stems as soon as they appear to keep the leaves coming.", "sources": ["S56"] },
+        { "text": "Sow where it will grow: coriander dislikes being transplanted, and it does well in free-draining containers.", "sources": ["S56"] },
+        { "text": "Runs to seed (bolts) easily in hot weather.", "sources": ["S40"] }
+      ],
+      "petSafety": { "status": "nonToxic", "note": "Cilantro (Coriandrum sativum) is listed as non-toxic to dogs, cats and horses.", "sources": ["S39"] },
       "dataStatus": "partial"
     },
     {
       "id": "mint",
       "commonName": "Mint",
       "localNames": ["Pudina"],
+      "names": { "hi": "पुदीना" },
       "scientificName": "Mentha spp.",
       "category": "herb",
       "lifecycle": "perennial",
-      "sun": null,
+      "sun": { "level": "partial", "minHours": null, "sources": ["S55"] },
       "container": { "status": "verified", "minVolumeL": 3.8, "recommendedVolumeL": 11.4, "minDepthCm": 10, "recommendedDepthCm": 15, "plantsPerContainer": null, "note": "Small class: 1–3 gallons, 4–6 in deep.", "sources": ["S2"] },
       "daysToHarvest": null,
-      "sowing": [],
-      "propagation": null,
-      "careNotes": [],
+      "sowing": [
+        { "region": "northIndia", "months": [1, 2], "source": "S49" },
+        { "region": "tamilNadu", "months": [6, 7], "source": "S70" }
+      ],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S70"] },
+      "careNotes": [
+        { "text": "Spreads fast by runners: give it a pot of its own and cut runners that creep out.", "sources": ["S55"] },
+        { "text": "Divide and repot every few years.", "sources": ["S57"] }
+      ],
       "petSafety": { "status": "toxic", "note": "Toxic to dogs, cats and horses (essential oils); vomiting and diarrhoea mainly with large amounts.", "sources": ["S39"] },
       "dataStatus": "partial"
     },
@@ -157,18 +195,22 @@
       "id": "methi",
       "commonName": "Methi (fenugreek)",
       "localNames": ["Methi"],
+      "names": { "hi": "मेथी" },
       "scientificName": "Trigonella foenum-graecum",
       "category": "leafyGreen",
       "lifecycle": "annual",
-      "sun": null,
+      "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
       "container": { "status": "proxy", "minVolumeL": 3.8, "recommendedVolumeL": 11.4, "minDepthCm": 10, "recommendedDepthCm": 15, "plantsPerContainer": null, "note": "Uses the small class for greens: 1–3 gallons, 4–6 in deep.", "sources": ["S2"] },
       "daysToHarvest": { "min": 20, "max": 25, "note": "For greens; 90–100 days for grain.", "sources": ["S17"] },
       "sowing": [
-        { "region": "tamilNadu", "months": [6, 7, 10, 11], "source": "S17" },
-        { "region": "telangana", "months": [1, 2, 6, 7, 8, 10, 11, 12], "source": "S13" }
+        { "region": "telangana", "months": [1, 2, 6, 7, 8, 10, 11, 12], "source": "S13" },
+        { "region": "tamilNadu", "months": [6, 7, 10, 11], "source": "S17" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S17"] },
-      "careNotes": [],
+      "careNotes": [
+        { "text": "Thin to 10–15 cm apart at 20–25 days. Nip young shoots 4–5 cm above the soil; take more cuttings about 15 days later.", "sources": ["S51"] },
+        { "text": "Sow a small batch every two weeks for a steady supply.", "sources": ["S48"] }
+      ],
       "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
       "dataStatus": "partial"
     },
@@ -176,17 +218,23 @@
       "id": "curryLeaf",
       "commonName": "Curry leaf",
       "localNames": ["Kadi patta"],
+      "names": { "hi": "करी पत्ता" },
       "scientificName": "Murraya koenigii",
       "category": "herb",
       "lifecycle": "perennial",
-      "sun": null,
+      "sun": { "level": "partial", "minHours": null, "sources": ["S64"] },
       "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": 1, "note": "A perennial shrub; no container size was found in the sources.", "sources": [] },
-      "daysToHarvest": { "min": 300, "max": 365, "note": "First harvest 10–12 months after planting, then every few months.", "sources": ["S15"] },
+      "daysToHarvest": { "min": 300, "max": 365, "note": "The first harvest starts ten to twelve months after planting.", "sources": ["S15"] },
       "sowing": [
-        { "region": "tamilNadu", "months": [7, 8], "source": "S15" }
+        { "region": "tamilNadu", "months": [7, 8], "source": "S15" },
+        { "region": "kerala", "months": [5, 6], "source": "S50" }
       ],
       "propagation": { "method": "seed", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S15"] },
-      "careNotes": [{ "text": "At about 1 m tall, cut the top bud and keep 5–6 branches.", "sources": ["S15"] }, { "text": "Seed is available in July–August and should be sown within days of collection.", "sources": ["S15"] }],
+      "careNotes": [
+        { "text": "At about 1 m tall, cut the top bud and keep 5–6 branches.", "sources": ["S15"] },
+        { "text": "Seed is available in July–August and should be sown within days of collection.", "sources": ["S15"] },
+        { "text": "Use moisture-retentive but well-drained compost. Watch for red spider mite, scale insects and mealybugs.", "sources": ["S64"] }
+      ],
       "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
       "dataStatus": "partial"
     },
@@ -194,15 +242,23 @@
       "id": "tulsi",
       "commonName": "Tulsi (holy basil)",
       "localNames": ["Tulsi"],
+      "names": { "hi": "तुलसी" },
       "scientificName": "Ocimum tenuiflorum",
       "category": "herb",
       "lifecycle": "perennial",
       "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
       "container": { "status": "proxy", "minVolumeL": 3.8, "recommendedVolumeL": 11.4, "minDepthCm": 10, "recommendedDepthCm": 15, "plantsPerContainer": null, "note": "Uses basil in the small class: 1–3 gallons, 4–6 in deep.", "sources": ["S2"] },
-      "daysToHarvest": null,
-      "sowing": [],
+      "daysToHarvest": { "min": 90, "max": 95, "note": "After planting out; a field-crop figure.", "sources": ["S50"] },
+      "sowing": [
+        { "region": "tamilNadu", "months": [10, 11, 12], "source": "S71" }
+      ],
       "propagation": { "method": "seed", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S40"] },
-      "careNotes": [{ "text": "Avoid waterlogged soil. It reseeds readily.", "sources": ["S40"] }],
+      "careNotes": [
+        { "text": "Avoid waterlogged soil. It reseeds readily.", "sources": ["S40"] },
+        { "text": "Pinch out flower heads as they appear to keep leaves coming.", "sources": ["S63"] },
+        { "text": "Needs well-drained soil; it cannot tolerate waterlogging.", "sources": ["S50"] },
+        { "text": "Self-seeds readily; a container helps keep it in check.", "sources": ["S40"] }
+      ],
       "petSafety": { "status": "notAssessed", "note": "Basil (Ocimum basilicum) is listed as non-toxic; tulsi itself has not been assessed.", "sources": ["S39"] },
       "dataStatus": "partial"
     },
@@ -210,15 +266,23 @@
       "id": "lemongrass",
       "commonName": "Lemongrass",
       "localNames": ["Gavati chaha"],
+      "names": { "hi": "लेमनग्रास" },
       "scientificName": "Cymbopogon citratus",
       "category": "herb",
       "lifecycle": "perennial",
       "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
       "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "Suitable for containers; no size was given.", "sources": ["S40"] },
-      "daysToHarvest": null,
-      "sowing": [],
+      "daysToHarvest": { "min": 90, "max": 90, "note": "First leaf harvest after planting, then every 75–90 days.", "sources": ["S69"] },
+      "sowing": [
+        { "region": "tamilNadu", "months": [6, 7, 10, 11], "source": "S69" },
+        { "region": "kerala", "months": [6, 7], "source": "S50" }
+      ],
       "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S40"] },
-      "careNotes": [{ "text": "In containers, do not let it dry out.", "sources": ["S40"] }],
+      "careNotes": [
+        { "text": "In containers, do not let it dry out.", "sources": ["S40"] },
+        { "text": "In a pot, check the compost often in warm weather and keep it evenly moist.", "sources": ["S58"] },
+        { "text": "Container plants benefit from extra feeding in the growing season.", "sources": ["S58"] }
+      ],
       "petSafety": { "status": "toxic", "note": "Toxic to dogs, cats and horses (essential oils, cyanogenic glycosides).", "sources": ["S39"] },
       "watering": { "mode": "keepMoist", "sources": ["S40"] },
       "dataStatus": "partial"
@@ -227,19 +291,25 @@
       "id": "bitterGourd",
       "commonName": "Bitter gourd",
       "localNames": ["Karela"],
+      "names": { "hi": "करेला" },
       "scientificName": "Momordica charantia",
       "category": "climber",
       "lifecycle": "annual",
-      "sun": null,
+      "sun": { "level": "partial", "minHours": null, "sources": ["S40"] },
       "container": { "status": "proxy", "minVolumeL": 30.3, "recommendedVolumeL": 37.9, "minDepthCm": 30, "recommendedDepthCm": 41, "plantsPerContainer": null, "note": "Uses vining cucurbits in the large class: 8–10 gallons, 12–16 in deep. Vining crops need considerably more space and a trellis.", "sources": ["S1", "S2"] },
       "daysToHarvest": { "min": 55, "max": 60, "note": null, "sources": ["S11"] },
       "sowing": [
         { "region": "northIndia", "months": [2, 3, 6, 7], "source": "S11" },
         { "region": "southIndia", "months": [1, 6, 7, 11, 12], "source": "S11" },
-        { "region": "telangana", "months": [2, 3, 4, 5, 7, 8, 9, 10], "source": "S13" }
+        { "region": "telangana", "months": [2, 3, 4, 5, 7, 8, 9, 10], "source": "S13" },
+        { "region": "tamilNadu", "months": [1, 7], "source": "S51" },
+        { "region": "kerala", "months": [1, 2, 3, 9, 10, 11, 12], "source": "S50" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S11"] },
-      "careNotes": [],
+      "careNotes": [
+        { "text": "Give the vine a trellis or pandal once it starts to climb.", "sources": ["S50"] },
+        { "text": "In home gardens, cover young fruits with paper or cloth bags against fruit fly.", "sources": ["S50"] }
+      ],
       "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
       "dataStatus": "partial"
     },
@@ -247,18 +317,24 @@
       "id": "bottleGourd",
       "commonName": "Bottle gourd",
       "localNames": ["Lauki"],
+      "names": { "hi": "लौकी" },
       "scientificName": "Lagenaria siceraria",
       "category": "climber",
       "lifecycle": "annual",
-      "sun": null,
+      "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
       "container": { "status": "proxy", "minVolumeL": 30.3, "recommendedVolumeL": 37.9, "minDepthCm": 30, "recommendedDepthCm": 41, "plantsPerContainer": null, "note": "Uses vining cucurbits in the large class: 8–10 gallons, 12–16 in deep. Vining crops need considerably more space and a trellis.", "sources": ["S1", "S2"] },
       "daysToHarvest": { "min": 55, "max": 60, "note": null, "sources": ["S11"] },
       "sowing": [
         { "region": "northIndia", "months": [2, 3, 6, 7], "source": "S11" },
-        { "region": "southIndia", "months": [1, 6, 7, 11, 12], "source": "S11" }
+        { "region": "southIndia", "months": [1, 6, 7, 11, 12], "source": "S11" },
+        { "region": "tamilNadu", "months": [1, 7], "source": "S51" },
+        { "region": "kerala", "months": [1, 2, 3, 9, 10, 11, 12], "source": "S50" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S11"] },
-      "careNotes": [],
+      "careNotes": [
+        { "text": "The stems are weak: train the vine upwards on ropes or a trellis.", "sources": ["S48"] },
+        { "text": "Keep moisture steady, and support the vine so fruits do not lie on the floor.", "sources": ["S40"] }
+      ],
       "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
       "dataStatus": "partial"
     },
@@ -266,6 +342,7 @@
       "id": "frenchBean",
       "commonName": "French bean",
       "localNames": ["Beans"],
+      "names": { "hi": "फ्रेंच बीन" },
       "scientificName": "Phaseolus vulgaris",
       "category": "vegetable",
       "lifecycle": "annual",
@@ -275,10 +352,11 @@
       "sowing": [
         { "region": "northIndia", "months": [2, 3], "source": "S11" },
         { "region": "southIndia", "months": [1, 2, 3], "source": "S11" },
-        { "region": "telangana", "months": [10, 11], "source": "S13" }
+        { "region": "telangana", "months": [10, 11], "source": "S13" },
+        { "region": "tamilNadu", "months": [10, 11], "source": "S51" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S11"] },
-      "careNotes": [],
+      "careNotes": [{ "text": "Climbing types need a support 1–1.5 m tall; put it in when you sow.", "sources": ["S50"] }],
       "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
       "dataStatus": "verified"
     },
@@ -286,6 +364,7 @@
       "id": "radish",
       "commonName": "Radish",
       "localNames": ["Mooli"],
+      "names": { "hi": "मूली" },
       "scientificName": "Raphanus sativus",
       "category": "vegetable",
       "lifecycle": "annual",
@@ -306,26 +385,33 @@
       "id": "carrot",
       "commonName": "Carrot",
       "localNames": ["Gajar"],
+      "names": { "hi": "गाजर" },
       "scientificName": "Daucus carota",
       "category": "vegetable",
       "lifecycle": "annual",
-      "sun": null,
+      "sun": { "level": "full", "minHours": 6, "sources": ["S54"] },
       "container": { "status": "verified", "minVolumeL": 3.8, "recommendedVolumeL": 22.7, "minDepthCm": 20, "recommendedDepthCm": 30, "plantsPerContainer": 2, "note": "2–3 plants per gallon in a pot 2 in (5 cm) deeper than the carrot's length; Maryland lists carrots in the medium class (4–6 gallons, 8–12 in deep).", "sources": ["S1", "S2"] },
       "daysToHarvest": { "min": 75, "max": 80, "note": null, "sources": ["S11"] },
       "sowing": [
         { "region": "northIndia", "months": [8, 9, 10], "source": "S11" },
         { "region": "southIndia", "months": [8, 9, 10, 11], "source": "S11" },
-        { "region": "telangana", "months": [6, 7, 8, 9, 10, 11], "source": "S13" }
+        { "region": "telangana", "months": [6, 7, 8, 9, 10, 11], "source": "S13" },
+        { "region": "tamilNadu", "months": [8], "source": "S51" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S11"] },
-      "careNotes": [],
-      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "careNotes": [
+        { "text": "Use a pot about 5 cm (2 in) deeper than the carrots will grow.", "sources": ["S1"] },
+        { "text": "Thin seedlings when about 5 cm tall, snipping rather than pulling so the rest are not disturbed.", "sources": ["S54"] },
+        { "text": "Short, stump-rooted or round varieties suit containers. Ease off watering near harvest, as excess moisture can crack roots.", "sources": ["S54"] }
+      ],
+      "petSafety": { "status": "nonToxic", "note": "Garden carrot is listed as non-toxic to dogs, cats and horses; the plant contains psoralens that can irritate skin.", "sources": ["S39"] },
       "dataStatus": "partial"
     },
     {
       "id": "lettuce",
       "commonName": "Lettuce",
       "localNames": [],
+      "names": { "hi": "लेट्यूस" },
       "scientificName": "Lactuca sativa",
       "category": "leafyGreen",
       "lifecycle": "annual",
@@ -345,15 +431,24 @@
       "id": "marigold",
       "commonName": "Marigold",
       "localNames": ["Genda"],
+      "names": { "hi": "गेंदा" },
       "scientificName": "Tagetes erecta",
       "category": "flower",
       "lifecycle": "annual",
       "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
       "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "Recommended for containers; no size was given. Grows 1–4 ft tall and 1–2 ft wide.", "sources": ["S40"] },
       "daysToHarvest": null,
-      "sowing": [],
-      "propagation": null,
-      "careNotes": [{ "text": "Remove spent flowers promptly; heavy heads can snap stems.", "sources": ["S40"] }, { "text": "Appreciates light afternoon shade; dislikes full shade.", "sources": ["S40"] }],
+      "sowing": [
+        { "region": "tamilNadu", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S72" }
+      ],
+      "propagation": { "method": "transplant", "nurseryDaysMin": 28, "nurseryDaysMax": 28, "sources": ["S72"] },
+      "careNotes": [
+        { "text": "Remove spent flowers promptly; heavy heads can snap stems.", "sources": ["S40"] },
+        { "text": "Appreciates light afternoon shade; dislikes full shade.", "sources": ["S40"] },
+        { "text": "Pinch out the growing tip about 30 days after transplanting to make the plant branch.", "sources": ["S72"] },
+        { "text": "Deadhead spent flowers promptly; tall types may need staking or shelter from wind and heavy rain.", "sources": ["S40"] },
+        { "text": "In containers, do not crowd plants. Let the soil dry slightly, then water thoroughly.", "sources": ["S73"] }
+      ],
       "petSafety": { "status": "notAssessed", "note": "ASPCA has not assessed Tagetes. NC State rates it low: the sap can irritate skin in sunlight.", "sources": ["S40"] },
       "dataStatus": "partial"
     },
@@ -361,6 +456,7 @@
       "id": "hibiscus",
       "commonName": "Hibiscus",
       "localNames": ["Gudhal"],
+      "names": { "hi": "गुड़हल" },
       "scientificName": "Hibiscus rosa-sinensis",
       "category": "flower",
       "lifecycle": "perennial",
@@ -368,8 +464,13 @@
       "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": 1, "note": "Grown in large containers; no size was given.", "sources": ["S40"] },
       "daysToHarvest": null,
       "sowing": [],
-      "propagation": null,
-      "careNotes": [{ "text": "Keep the roots moist and protect from wind; moving the plant can cause leaf and bud drop.", "sources": ["S40"] }],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S59", "S40"] },
+      "careNotes": [
+        { "text": "Keep the roots moist and protect from wind; moving the plant can cause leaf and bud drop.", "sources": ["S40"] },
+        { "text": "Flowers form on new growth; cut back by about half to keep it compact, and trim tips of young plants to make them bushy.", "sources": ["S40", "S59"] },
+        { "text": "Avoid moving the pot around: changes can make it drop leaves and buds.", "sources": ["S40"] },
+        { "text": "Keep the roots moist in rich, well-drained soil.", "sources": ["S40"] }
+      ],
       "petSafety": { "status": "notAssessed", "note": "ASPCA lists Hibiscus syriacus as non-toxic; the common Indian H. rosa-sinensis has not been assessed.", "sources": ["S39"] },
       "watering": { "mode": "keepMoist", "sources": ["S40"] },
       "dataStatus": "partial"
@@ -378,17 +479,22 @@
       "id": "jasmine",
       "commonName": "Jasmine",
       "localNames": ["Mogra", "Malligai"],
+      "names": { "hi": "मोगरा" },
       "scientificName": "Jasminum sambac",
       "category": "flower",
       "lifecycle": "perennial",
-      "sun": null,
+      "sun": { "level": "partial", "minHours": null, "sources": ["S66"] },
       "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": 1, "note": "No container size was found in the sources.", "sources": [] },
       "daysToHarvest": null,
       "sowing": [
         { "region": "tamilNadu", "months": [6, 7, 8, 9, 10, 11], "source": "S18" }
       ],
       "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S18"] },
-      "careNotes": [{ "text": "In Tamil Nadu, prune back to about 50 cm in the last week of November; flowering begins in March–April.", "sources": ["S18"] }],
+      "careNotes": [
+        { "text": "In Tamil Nadu, prune back to about 50 cm in the last week of November; flowering begins in March–April.", "sources": ["S18"] },
+        { "text": "Prune regularly to keep it bushy; flowers form on new wood.", "sources": ["S66"] },
+        { "text": "Plants in containers need regular watering through the growing season.", "sources": ["S74"] }
+      ],
       "petSafety": { "status": "nonToxic", "note": "Jasminum species are listed as non-toxic to dogs, cats and horses.", "sources": ["S39"] },
       "dataStatus": "partial"
     },
@@ -396,31 +502,41 @@
       "id": "rose",
       "commonName": "Rose",
       "localNames": ["Gulab"],
+      "names": { "hi": "गुलाब" },
       "scientificName": "Rosa spp.",
       "category": "flower",
       "lifecycle": "perennial",
-      "sun": null,
-      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": 1, "note": "Container sizes for roses were found only in an unverified source.", "sources": [] },
+      "sun": { "level": "full", "minHours": 6, "sources": ["S67"] },
+      "container": { "status": "verified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": 23, "recommendedDepthCm": 35, "plantsPerContainer": 1, "note": "Patio and miniature roses suit containers: fairly small but deep pots, 23–35 cm. Compact climbers need at least 30–45 cm. Few roses tolerate containers, because their roots run deep.", "sources": ["S8"] },
       "daysToHarvest": null,
       "sowing": [],
-      "propagation": null,
-      "careNotes": [],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S67"] },
+      "careNotes": [
+        { "text": "Do not let a container rose dry out, or it becomes prone to powdery mildew. Shade the pot, not the plant.", "sources": ["S8"] },
+        { "text": "Feed with a rose fertiliser as the label directs; every second year replace the top 5 cm of compost.", "sources": ["S8"] },
+        { "text": "When pruning, cut about 5 mm above an outward-facing bud, and remove dead, diseased, spindly and crossing stems.", "sources": ["S65"] }
+      ],
       "petSafety": { "status": "nonToxic", "note": "Non-toxic to dogs, cats and horses; thorns are a physical hazard.", "sources": ["S39"] },
-      "dataStatus": "unverified"
+      "dataStatus": "partial"
     },
     {
       "id": "aloeVera",
       "commonName": "Aloe vera",
       "localNames": ["Ghritkumari"],
+      "names": { "hi": "एलोवेरा" },
       "scientificName": "Aloe vera",
       "category": "ornamental",
       "lifecycle": "perennial",
       "sun": { "level": "partial", "minHours": 2, "sources": ["S40"] },
-      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": 1, "note": "Use a pot with several drainage holes; clay pots work best.", "sources": ["S40"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": 1, "note": "No size was given. Use a pot with several drainage holes (clay is best) and free-draining cactus or gritty compost.", "sources": ["S40", "S62"] },
       "daysToHarvest": null,
       "sowing": [],
-      "propagation": null,
-      "careNotes": [{ "text": "Use a very well-drained succulent mix and let the soil dry completely between waterings.", "sources": ["S40"] }],
+      "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S62"] },
+      "careNotes": [
+        { "text": "Use a very well-drained succulent mix and let the soil dry completely between waterings.", "sources": ["S40"] },
+        { "text": "Let the soil dry completely between waterings; overwatering rots the roots.", "sources": ["S40"] },
+        { "text": "Use free-draining gritty compost in full light; aloes do poorly in constantly wet compost or shade.", "sources": ["S62"] }
+      ],
       "petSafety": { "status": "toxic", "note": "Toxic to dogs, cats and horses (saponins, anthraquinones).", "sources": ["S39"] },
       "watering": { "mode": "dryBetween", "sources": ["S40"] },
       "dataStatus": "partial"
@@ -429,15 +545,22 @@
       "id": "moneyPlant",
       "commonName": "Money plant (pothos)",
       "localNames": ["Money plant"],
+      "names": { "hi": "मनी प्लांट" },
       "scientificName": "Epipremnum aureum",
       "category": "ornamental",
       "lifecycle": "perennial",
       "sun": { "level": "indirect", "minHours": 0, "sources": ["S40"] },
-      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "Grows in containers or hanging baskets.", "sources": ["S40"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No size was given. Move up one size only when roots crowd the pot; a much larger pot stays wet and risks root rot.", "sources": ["S60"] },
       "daysToHarvest": null,
       "sowing": [],
-      "propagation": null,
-      "careNotes": [{ "text": "Prefers bright indirect light and survives long periods of low light.", "sources": ["S40"] }, { "text": "Let the mix dry between waterings; overwatering causes root rot.", "sources": ["S40"] }],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S60"] },
+      "careNotes": [
+        { "text": "Prefers bright indirect light and survives long periods of low light.", "sources": ["S40"] },
+        { "text": "Let the mix dry between waterings; overwatering causes root rot.", "sources": ["S40"] },
+        { "text": "Give bright, indirect light; direct summer sun scorches the leaves.", "sources": ["S60"] },
+        { "text": "Water only when the compost is nearly dry (test with a finger), and do not leave the pot standing in water.", "sources": ["S60"] },
+        { "text": "Cut back long stems just above a leaf to make it bushier.", "sources": ["S60"] }
+      ],
       "petSafety": { "status": "toxic", "note": "Toxic to dogs and cats (insoluble calcium oxalates). NC State rates it medium for people: all parts.", "sources": ["S39", "S40"] },
       "watering": { "mode": "dryBetween", "sources": ["S40"] },
       "dataStatus": "partial"
@@ -446,15 +569,20 @@
       "id": "snakePlant",
       "commonName": "Snake plant",
       "localNames": [],
+      "names": { "hi": "स्नेक प्लांट" },
       "scientificName": "Dracaena trifasciata",
       "category": "ornamental",
       "lifecycle": "perennial",
       "sun": { "level": "partial", "minHours": 2, "sources": ["S40"] },
-      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": 1, "note": "Commonly grown in containers; needs good drainage.", "sources": ["S40"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": 1, "note": "No size was given. Use a pot with plenty of drainage holes, only slightly larger than the last; spare compost stays damp and invites root rot.", "sources": ["S61"] },
       "daysToHarvest": null,
       "sowing": [],
-      "propagation": null,
-      "careNotes": [{ "text": "Tolerates very low light. Let it dry between waterings; overwatering is the main risk.", "sources": ["S40"] }],
+      "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S61"] },
+      "careNotes": [
+        { "text": "Tolerates very low light. Let it dry between waterings; overwatering is the main risk.", "sources": ["S40"] },
+        { "text": "Overwatering is the most common cause of trouble: water only once the compost has dried out, and empty the saucer.", "sources": ["S61"] },
+        { "text": "Prefers a bright, lightly shaded spot; keep it out of harsh midday summer sun.", "sources": ["S61"] }
+      ],
       "petSafety": { "status": "toxic", "note": "Toxic to dogs and cats (saponins).", "sources": ["S39"] },
       "watering": { "mode": "dryBetween", "sources": ["S40"] },
       "dataStatus": "partial"
