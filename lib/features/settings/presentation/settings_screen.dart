@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:terrace_garden/app/data/data_export_service.dart';
 import 'package:terrace_garden/app/data/data_reset_service.dart';
 import 'package:terrace_garden/app/router/app_router.dart';
 import 'package:terrace_garden/app/theme/app_tokens.dart';
@@ -52,6 +53,22 @@ class _SettingsList extends ConsumerWidget {
       messenger.showSnackBar(
         SnackBar(content: Text(ErrorState.messageFor(l10n, failure))),
       );
+    }
+  }
+
+  Future<void> _export(BuildContext context, WidgetRef ref) async {
+    final l10n = context.l10n;
+    final messenger = ScaffoldMessenger.of(context)
+      ..showSnackBar(SnackBar(content: Text(l10n.exportPreparing)));
+    final result = await ref.read(dataExportServiceProvider).buildArchive();
+    messenger.hideCurrentSnackBar();
+    switch (result) {
+      case Ok(:final value):
+        await ref
+            .read(fileSharerProvider)
+            .shareFile(value, subject: l10n.exportSubject);
+      case Err():
+        messenger.showSnackBar(SnackBar(content: Text(l10n.exportFailed)));
     }
   }
 
@@ -149,6 +166,13 @@ class _SettingsList extends ConsumerWidget {
             ReminderSettingsSection(settings: settings),
             const SizedBox(height: AppSpacing.xxl),
             SectionHeader(title: l10n.settingsData),
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.ios_share_outlined),
+              title: Text(l10n.exportData),
+              subtitle: Text(l10n.exportDataSubtitle),
+              onTap: () => _export(context, ref),
+            ),
             ListTile(
               contentPadding: EdgeInsets.zero,
               leading: Icon(

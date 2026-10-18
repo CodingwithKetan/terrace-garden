@@ -7,7 +7,7 @@ Last updated: 2026-10-18 (Phase 4).
 | ID | Issue | Impact | Resolution |
 |---|---|---|---|
 | ~~KI-001~~ | **Resolved 2026-10-18:** stay on local Flutter 3.44.8 with fallback pins (ADR-001) | Some packages are a few minor versions behind | Plan an SDK upgrade with 3.50 |
-| KI-006 | **Pushing to GitHub fails on this machine:** `git push` to `github.com/CodingwithKetan/terrace-garden` gets "curl 55 Connection was reset" (reads such as `ls-remote` work; the pack is only 178 KB). Likely a corporate network/security control (Axis Security client present) | Can't push or use cloud sessions from this machine | Push from a network/machine where personal GitHub uploads are allowed, or check with IT. Remote `origin` is already configured |
+| ~~KI-006~~ | **Resolved 2026-10-18:** `git push` of Phases 1–6 (`8032f46..57ef65a`) succeeded from this machine. Earlier: **pushing to GitHub failed on this machine:** `git push` to `github.com/CodingwithKetan/terrace-garden` gets "curl 55 Connection was reset" (reads such as `ls-remote` work; the pack is only 178 KB). Likely a corporate network/security control (Axis Security client present) | Can't push or use cloud sessions from this machine | Push from a network/machine where personal GitHub uploads are allowed, or check with IT. Remote `origin` is already configured |
 | KI-002 | **Android SDK licences not accepted** (`flutter doctor`) | Android builds will fail | User runs `flutter doctor --android-licenses` (interactive) |
 
 ## Environment limitations
@@ -44,8 +44,8 @@ Last updated: 2026-10-18 (Phase 4).
 | ~~KI-025~~ | **Resolved 2026-10-18 (ADR-023).** Cross-feature imports now go through per-feature public API files, enforced by an architecture test | |
 | KI-029 | **Performance is measured on the host only.** Debug-mode budget tests (`test/perf/`): validating 100 layout objects 1.2 ms, painting them 4.2 ms, ranking the catalogue 0.17 ms, creating tasks for 50 plantings 69 ms. No profile-mode run on a device yet, because the emulator here is too overloaded to give meaningful numbers (KI-009) | Profile cold start, canvas fps and image grids with `flutter run --profile` on a real phone before release |
 | KI-026 | The Android notification channel name and description are hardcoded in English | Localise when Hindi ships (PD-003) |
-| KI-027 | Editing a planting (date or start type) doesn't re-plan its existing care rules; only new plantings get plans, so transplant and harvest dates can go stale | Re-plan on edit, keeping rules the user has customised |
-| KI-028 | No month calendar (CARE-02) yet; Today lists the next 7 days. Notification taps open the app on Today (no deep link to a specific task) | P1 polish |
+| ~~KI-027~~ | **Resolved 2026-10-18:** reconcile now re-plans transplant, harvest and pruning rules after an edit, keeping user switches and repeating checks. Earlier: editing a planting (date or start type) doesn't re-plan its existing care rules; only new plantings get plans, so transplant and harvest dates can go stale | Re-plan on edit, keeping rules the user has customised |
+| KI-028 | Notification taps open the app on Today; there is no deep link to a specific task. (The month calendar was added 2026-10-18.) | P1 polish |
 
 ## Research evidence gaps
 

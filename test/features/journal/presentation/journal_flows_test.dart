@@ -1,5 +1,7 @@
+import 'package:drift/drift.dart' show Value;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:terrace_garden/core/database/app_database.dart';
 import 'package:terrace_garden/core/ids/id_generator.dart';
 import 'package:terrace_garden/core/logging/app_logger.dart';
 import 'package:terrace_garden/core/time/clock.dart';
@@ -140,6 +142,61 @@ void main() {
     await openJournal(tester);
     expect(find.text('1 care task done'), findsOneWidget);
     expect(find.text('Check the soil · Tomato'), findsOneWidget);
+  });
+
+  testWidgets('stats sum harvests; two photos can be compared', (
+    tester,
+  ) async {
+    await seed();
+    final gardenId =
+        (await app.database.select(app.database.gardens).getSingle()).id;
+    for (final (i, day) in [today.addDays(-14), today].indexed) {
+      await app.database
+          .into(app.database.journalEntries)
+          .insert(
+            JournalEntriesCompanion.insert(
+              id: 'e$i',
+              gardenId: gardenId,
+              date: day.toIso8601(),
+              milestone: const Value(Milestone.harvest),
+              harvestQuantity: const Value(100),
+              harvestUnit: const Value(HarvestUnit.grams),
+              createdAt: now,
+            ),
+          );
+      await app.database
+          .into(app.database.journalPhotos)
+          .insert(
+            JournalPhotosCompanion.insert(
+              id: 'ph$i',
+              entryId: 'e$i',
+              relativePath: 'photos/$gardenId/journal/e$i/ph$i.jpg',
+              thumbnailPath: 'photos/$gardenId/journal/e$i/thumbs/ph$i.jpg',
+              position: 0,
+            ),
+          );
+    }
+    await app.pump(tester);
+    await openJournal(tester);
+
+    expect(find.text('Your progress'), findsOneWidget);
+    expect(find.text('Harvested: 200 g'), findsOneWidget);
+    await tester.tap(find.text('Compare photos'));
+    await tester.pumpAndSettle();
+    expect(
+      find.text('Choose two photos to see them side by side.'),
+      findsOneWidget,
+    );
+
+    await tester.tap(find.bySemanticsLabel('Oct 4, 2026'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.bySemanticsLabel('Oct 18, 2026'));
+    await tester.pumpAndSettle();
+    expect(find.text('Choose other photos'), findsOneWidget);
+    // Oldest first.
+    final first = tester.getTopLeft(find.text('Oct 4, 2026'));
+    final second = tester.getTopLeft(find.text('Oct 18, 2026'));
+    expect(first.dy < second.dy || first.dx < second.dx, isTrue);
   });
 
   testWidgets('delete all data returns to onboarding', (tester) async {

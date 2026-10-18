@@ -17,7 +17,7 @@ Last updated: 2026-10-18
   - 11 shared widgets (`lib/core/widgets/`);
   - drift `AppDatabase` v6 (gardens, garden_photos, layout_elements, plantings, shortlist_entries, care_rules, care_tasks, scheduled_notifications, journal_entries, journal_photos) with schema snapshots and migration tests.
 - **Localisation:** gen-l10n, `lib/l10n/app_en.arb`.
-- **Git:** `main`. Phase 0 is on GitHub (`CodingwithKetan/terrace-garden`). **Later commits are local only**: pushes fail on this network (KI-006), so push from another network.
+- **Git:** `main`. Phase 0 is on GitHub (`CodingwithKetan/terrace-garden`). Pushed to GitHub up to `57ef65a` (2026-10-18).
 
 ## Toolchain (verified 2026-10-18)
 

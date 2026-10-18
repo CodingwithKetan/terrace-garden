@@ -222,6 +222,17 @@ void main() {
     await expectGuidelines(tester);
   });
 
+  testWidgets('care calendar on a 360 dp phone', (tester) async {
+    tester.view.physicalSize =
+        const Size(360, 780) * tester.view.devicePixelRatio;
+    addTearDown(tester.view.resetPhysicalSize);
+    final app = await seeded();
+    await app.pump(tester);
+    await tester.tap(find.byTooltip('Care calendar'));
+    await tester.pumpAndSettle();
+    await expectGuidelines(tester);
+  });
+
   testWidgets('Settings', (tester) async {
     final app = await seeded();
     await app.pump(tester);

@@ -192,3 +192,15 @@ Change process: add a new ADR (or mark one *Superseded by ADR-0xx*) instead of s
   - `lib/app` is the composition root and may import anything.
   - `test/architecture/import_boundaries_test.dart` enforces this. It also enforces "domain is pure Dart" (no Flutter, drift, Riverpod or plugins).
 - **Consequences:** cross-feature dependencies are explicit and reviewable in six small files. Internal files can move freely. The dependency graph still has cycles at the API level (e.g. garden ↔ plantings via the overview); they are acceptable in Dart and visible in the API files.
+
+## ADR-024: Data export format (Phase 6)
+- **Decision:** "Export my data" writes `terrace-garden-export-<timestamp>.zip` containing:
+  - `data.json`: `{format: "terrace-garden-export", formatVersion: 1, schemaVersion, exportedAt, tables: {gardens, gardenPhotos, layoutElements, plantings, shortlistEntries, careRules, careTasks, journalEntries, journalPhotos}}`;
+  - the `photos/` folder with its paths unchanged.
+- Rows use drift's default JSON serialisation:
+  - enum columns as names;
+  - calendar dates as `yyyy-MM-dd` text;
+  - timestamps as epoch milliseconds.
+- Scheduled-notification bookkeeping is device-specific and left out.
+- The file goes to the system share sheet (`share_plus`), so the user chooses where it goes. The app uploads nothing.
+- **Not yet:** importing an export. `formatVersion` and `schemaVersion` are there so an importer can migrate older files later.

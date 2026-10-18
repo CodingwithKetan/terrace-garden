@@ -61,6 +61,23 @@ final class DriftCareRepository implements CareRepository {
   }
 
   @override
+  Future<List<CareRule>> rulesFor(String plantingId) async =>
+      (await (_db.select(
+            _db.careRules,
+          )..where((r) => r.plantingId.equals(plantingId))).get())
+          .map(_ruleOf)
+          .toList();
+
+  @override
+  Future<Result<void>> deleteRule(String ruleId) =>
+      _guard('delete care rule', () async {
+        final deleted = await (_db.delete(
+          _db.careRules,
+        )..where((r) => r.id.equals(ruleId))).go();
+        if (deleted == 0) throw const NotFoundFailure();
+      });
+
+  @override
   Future<Set<String>> plantingIdsWithRules() async {
     final query = _db.selectOnly(_db.careRules, distinct: true)
       ..addColumns([_db.careRules.plantingId]);

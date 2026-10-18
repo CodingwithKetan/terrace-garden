@@ -543,6 +543,12 @@ class _Header extends StatelessWidget {
         ),
         const SizedBox(width: AppSpacing.md),
         GlassIconButton(
+          icon: Icons.calendar_month_outlined,
+          tooltip: context.l10n.calendarTitle,
+          onPressed: () => context.push(AppRoutes.careCalendar),
+        ),
+        const SizedBox(width: AppSpacing.sm),
+        GlassIconButton(
           icon: Icons.settings_outlined,
           tooltip: context.l10n.settingsTooltip,
           onPressed: onSettings,

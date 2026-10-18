@@ -5,6 +5,7 @@ import 'package:terrace_garden/core/logging/app_logger.dart';
 import 'package:terrace_garden/core/time/clock.dart';
 import 'package:terrace_garden/core/time/local_date.dart';
 import 'package:terrace_garden/features/care/domain/care.dart';
+import 'package:terrace_garden/features/care/presentation/care_calendar_screen.dart';
 import 'package:terrace_garden/features/garden/data/drift_garden_repository.dart';
 import 'package:terrace_garden/features/garden/domain/garden_draft.dart';
 import 'package:terrace_garden/features/plantings/data/drift_planting_repository.dart';
@@ -178,6 +179,55 @@ void main() {
     final digest = app.notifications.scheduled[20261018]!;
     expect(digest.digest.fireAt, DateTime(2026, 10, 18, 7));
     expect(digest.body, startsWith('2 care tasks are due'));
+  });
+
+  testWidgets("the calendar shows counts per day and the day's tasks", (
+    tester,
+  ) async {
+    await seed();
+    await app.pump(tester);
+    Finder dayCell(String label) => find.byWidgetPredicate(
+      (w) => w is Semantics && w.properties.label == label,
+    );
+
+    Finder calendarList() => find
+        .descendant(
+          of: find.byType(CareCalendarScreen),
+          matching: find.byType(Scrollable),
+        )
+        .first;
+
+    await tester.tap(find.byTooltip('Care calendar'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('October 2026'), findsOneWidget);
+    // Today (18th) has the soil and pest checks.
+    expect(dayCell('October 18, 2 tasks'), findsOneWidget);
+    await tester.scrollUntilVisible(
+      find.text('Look for pests · Tomato'),
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
+    expect(find.text('Check the soil · Tomato'), findsOneWidget);
+    expect(find.text('Look for pests · Tomato'), findsOneWidget);
+
+    await tester.scrollUntilVisible(
+      dayCell('October 20'),
+      -200,
+      scrollable: calendarList(),
+    );
+    await tester.tap(dayCell('October 20'));
+    await tester.pumpAndSettle();
+    expect(find.text('Nothing scheduled on this day.'), findsOneWidget);
+
+    await tester.scrollUntilVisible(
+      find.byTooltip('Next month'),
+      -200,
+      scrollable: calendarList(),
+    );
+    await tester.tap(find.byTooltip('Next month'));
+    await tester.pumpAndSettle();
+    expect(find.text('November 2026'), findsOneWidget);
   });
 
   testWidgets('the care plan can switch a check off', (tester) async {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:terrace_garden/app/router/app_shell.dart';
+import 'package:terrace_garden/features/care/presentation/care_calendar_screen.dart';
 import 'package:terrace_garden/features/care/presentation/today_screen.dart';
 import 'package:terrace_garden/features/garden/presentation/garden_form_screen.dart';
 import 'package:terrace_garden/features/garden/presentation/garden_home_screen.dart';
@@ -12,6 +13,7 @@ import 'package:terrace_garden/features/garden/presentation/terrace_checklist_sc
 import 'package:terrace_garden/features/garden_designer/presentation/designer_screen.dart';
 import 'package:terrace_garden/features/journal/presentation/journal_entry_screen.dart';
 import 'package:terrace_garden/features/journal/presentation/journal_screen.dart';
+import 'package:terrace_garden/features/journal/presentation/photo_compare_screen.dart';
 import 'package:terrace_garden/features/onboarding/presentation/onboarding_screen.dart';
 import 'package:terrace_garden/features/plant_catalog/presentation/plant_detail_screen.dart';
 import 'package:terrace_garden/features/plant_catalog/presentation/plants_home_screen.dart';
@@ -48,6 +50,17 @@ abstract final class AppRoutes {
   static String gardenPhoto(String id, String photoId) =>
       '/gardens/$id/photos/$photoId';
   static String gardenIdeas(String id) => '/gardens/$id/ideas';
+
+  static const careCalendar = '/care-calendar';
+
+  /// Photo comparison, limited to a garden or plant when given.
+  static String journalCompare({String? gardenId, String? plantingId}) => Uri(
+    path: '/journal-compare',
+    queryParameters: {
+      'garden': ?gardenId,
+      'planting': ?plantingId,
+    },
+  ).toString();
 
   /// New journal entry, optionally preselecting a garden and plant.
   static String journalNew({String? gardenId, String? plantingId}) => Uri(
@@ -159,6 +172,21 @@ GoRouter appRouter(Ref ref) {
         pageBuilder: (context, state) => appPage(
           state,
           RecommendationsScreen(gardenId: _gardenId(state)),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.careCalendar,
+        pageBuilder: (context, state) =>
+            appPage(state, const CareCalendarScreen()),
+      ),
+      GoRoute(
+        path: '/journal-compare',
+        pageBuilder: (context, state) => appPage(
+          state,
+          PhotoCompareScreen(
+            gardenId: state.uri.queryParameters['garden'],
+            plantingId: state.uri.queryParameters['planting'],
+          ),
         ),
       ),
       GoRoute(

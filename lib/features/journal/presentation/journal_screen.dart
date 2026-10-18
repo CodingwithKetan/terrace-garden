@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:terrace_garden/app/di/core_providers.dart';
 import 'package:terrace_garden/app/router/app_router.dart';
 import 'package:terrace_garden/app/theme/app_imagery.dart';
 import 'package:terrace_garden/app/theme/app_tokens.dart';
 import 'package:terrace_garden/app/theme/glass_theme.dart';
 import 'package:terrace_garden/core/errors/result.dart';
+import 'package:terrace_garden/core/time/local_date.dart';
 import 'package:terrace_garden/core/widgets/dialogs.dart';
 import 'package:terrace_garden/core/widgets/error_state.dart';
 import 'package:terrace_garden/core/widgets/glass_icon_button.dart';
@@ -19,6 +21,7 @@ import 'package:terrace_garden/features/garden/domain/garden.dart';
 import 'package:terrace_garden/features/garden/garden.dart';
 import 'package:terrace_garden/features/journal/data/journal_providers.dart';
 import 'package:terrace_garden/features/journal/domain/journal_entry.dart';
+import 'package:terrace_garden/features/journal/domain/journal_stats.dart';
 import 'package:terrace_garden/features/journal/domain/timeline.dart';
 import 'package:terrace_garden/features/journal/presentation/journal_labels.dart';
 import 'package:terrace_garden/features/plant_catalog/plant_catalog.dart';
@@ -163,6 +166,26 @@ class _JournalScreenState extends ConsumerState<JournalScreen> {
                         ),
                     ],
                   ),
+                _StatsPanel(
+                  stats: JournalStats.of(
+                    entries: [
+                      for (final d in days) ...d.entries,
+                    ],
+                    doneTasks: [
+                      for (final d in days) ...d.doneTasks,
+                    ],
+                    today: LocalDate.fromDateTime(
+                      ref.watch(clockProvider).now(),
+                    ),
+                  ),
+                  onCompare: () => context.push(
+                    AppRoutes.journalCompare(
+                      gardenId: _gardenId,
+                      plantingId: _plantingId,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: AppSpacing.sm),
                 if (days.isEmpty)
                   GlassPanel(child: Text(l10n.journalNoMatches)),
                 for (final day in days) ...[
@@ -361,6 +384,81 @@ class _EntryCard extends ConsumerWidget {
               ),
             ),
           ],
+        ],
+      ),
+    );
+  }
+}
+
+class _StatsPanel extends StatelessWidget {
+  const _StatsPanel({required this.stats, required this.onCompare});
+
+  final JournalStats stats;
+  final VoidCallback onCompare;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final theme = Theme.of(context);
+    final locale = Localizations.localeOf(context).toLanguageTag();
+    final number = NumberFormat.decimalPattern(locale);
+    final harvest = [
+      for (final MapEntry(key: unit, value: total) in stats.harvests.entries)
+        switch (unit) {
+          HarvestUnit.grams => l10n.journalHarvestGrams(number.format(total)),
+          HarvestUnit.pieces => l10n.journalHarvestPieces(number.format(total)),
+          HarvestUnit.bunches => l10n.journalHarvestBunches(
+            number.format(total),
+          ),
+        },
+    ].join(' · ');
+
+    Widget stat(String label, String value) => SizedBox(
+      width: 132,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(value, style: theme.textTheme.titleLarge),
+          Text(label, style: theme.textTheme.bodySmall),
+        ],
+      ),
+    );
+
+    return GlassPanel(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Semantics(
+            header: true,
+            child: Text(l10n.statsTitle, style: theme.textTheme.titleSmall),
+          ),
+          const SizedBox(height: AppSpacing.sm),
+          Wrap(
+            spacing: AppSpacing.md,
+            runSpacing: AppSpacing.sm,
+            children: [
+              stat(l10n.statTasks, number.format(stats.tasksDone)),
+              stat(l10n.statStreak, number.format(stats.streakDays)),
+              stat(l10n.statEntries, number.format(stats.entries)),
+              stat(l10n.statPhotos, number.format(stats.photos)),
+            ],
+          ),
+          if (harvest.isNotEmpty) ...[
+            const SizedBox(height: AppSpacing.sm),
+            Text(
+              '${l10n.statHarvested}: $harvest',
+              style: theme.textTheme.bodyMedium,
+            ),
+          ],
+          if (stats.photos >= 2)
+            Align(
+              alignment: AlignmentDirectional.centerEnd,
+              child: TextButton.icon(
+                icon: const Icon(Icons.compare_outlined),
+                label: Text(l10n.compareAction),
+                onPressed: onCompare,
+              ),
+            ),
         ],
       ),
     );

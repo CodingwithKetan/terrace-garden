@@ -8,6 +8,7 @@ import 'package:terrace_garden/features/care/domain/notification_planner.dart';
 import 'package:terrace_garden/features/care/domain/notification_scheduler.dart';
 import 'package:terrace_garden/features/garden/domain/garden_repository.dart';
 import 'package:terrace_garden/features/plant_catalog/domain/catalogue_repository.dart';
+import 'package:terrace_garden/features/plantings/domain/planting.dart';
 import 'package:terrace_garden/features/plantings/domain/planting_repository.dart';
 
 /// Keeps care plans and tasks in step with plantings (P5-02, P5-03).
@@ -59,21 +60,25 @@ final class CareSync {
       final catalogue = await _catalogue.load();
       final planned = await _care.plantingIdsWithRules();
       for (final planting in await _plantings.all()) {
-        if (planned.contains(planting.id)) continue;
         final species = catalogue.byId(planting.speciesId);
         if (species == null) continue;
         final garden = await _gardens.find(planting.gardenId);
-        await _care.addRules(
-          gardenId: planting.gardenId,
-          plantingId: planting.id,
-          drafts: CarePlanner.plan(
-            planting: planting,
-            species: species,
-            region: garden?.region,
-            today: today,
-          ),
-          createdOn: today,
+        final drafts = CarePlanner.plan(
+          planting: planting,
+          species: species,
+          region: garden?.region,
+          today: today,
         );
+        if (planned.contains(planting.id)) {
+          await _syncDatedRules(planting, drafts, today);
+        } else {
+          await _care.addRules(
+            gardenId: planting.gardenId,
+            plantingId: planting.id,
+            drafts: drafts,
+            createdOn: today,
+          );
+        }
       }
       await _care.materialize(today);
     } on Object catch (error, stackTrace) {
@@ -84,6 +89,47 @@ final class CareSync {
       );
     }
   }
+
+  /// Keeps date-based rules in step with the planting and garden after an
+  /// edit (KI-027): the transplant and harvest dates follow the planting
+  /// date and start type, and jasmine pruning follows the garden region.
+  /// Repeating checks are left alone so the user's interval changes stay.
+  /// A rule the user switched off keeps its switch.
+  Future<void> _syncDatedRules(
+    Planting planting,
+    List<CareRuleDraft> drafts,
+    LocalDate today,
+  ) async {
+    final rules = await _care.rulesFor(planting.id);
+    for (final type in _datedTypes) {
+      final draft = drafts.where((d) => d.type == type).firstOrNull;
+      final existing = rules.where((r) => r.type == type).toList();
+      if (draft == null) {
+        for (final rule in existing) {
+          await _care.deleteRule(rule.id);
+        }
+      } else if (existing.isEmpty) {
+        await _care.addRules(
+          gardenId: planting.gardenId,
+          plantingId: planting.id,
+          drafts: [draft],
+          createdOn: today,
+        );
+      } else if (type != CareTaskType.prune &&
+          existing.first.recurrence != draft.recurrence) {
+        await _care.updateRule(
+          existing.first.copyWith(recurrence: draft.recurrence),
+          today: today,
+        );
+      }
+    }
+  }
+
+  static const List<CareTaskType> _datedTypes = [
+    CareTaskType.transplant,
+    CareTaskType.harvest,
+    CareTaskType.prune,
+  ];
 }
 
 /// Mirrors pending tasks into daily digest notifications (P5-07).

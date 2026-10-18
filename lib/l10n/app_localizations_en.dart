@@ -1527,6 +1527,33 @@ class AppLocalizationsEn extends AppLocalizations {
   String get intervalLonger => 'Longer interval';
 
   @override
+  String get calendarTitle => 'Care calendar';
+
+  @override
+  String get calendarNote =>
+      'Shows scheduled tasks. Repeating checks appear on their next due date.';
+
+  @override
+  String get calendarNoTasks => 'Nothing scheduled on this day.';
+
+  @override
+  String get calendarPrevMonth => 'Previous month';
+
+  @override
+  String get calendarNextMonth => 'Next month';
+
+  @override
+  String calendarTasksOn(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count tasks',
+      one: '1 task',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get settingsReminders => 'Reminders';
 
   @override
@@ -1681,7 +1708,60 @@ class AppLocalizationsEn extends AppLocalizations {
   String get journalAddForPlant => 'Add journal entry';
 
   @override
+  String get statsTitle => 'Your progress';
+
+  @override
+  String get statTasks => 'Care tasks done';
+
+  @override
+  String get statStreak => 'Day streak';
+
+  @override
+  String get statEntries => 'Journal entries';
+
+  @override
+  String get statPhotos => 'Photos';
+
+  @override
+  String get statHarvested => 'Harvested';
+
+  @override
+  String get compareAction => 'Compare photos';
+
+  @override
+  String get compareTitle => 'Compare photos';
+
+  @override
+  String get compareHint => 'Choose two photos to see them side by side.';
+
+  @override
+  String get compareNeedTwo => 'Add at least two photos to compare progress.';
+
+  @override
+  String get compareAgain => 'Choose other photos';
+
+  @override
+  String get compareSelected => 'Selected';
+
+  @override
   String get settingsData => 'Your data';
+
+  @override
+  String get exportData => 'Export my data';
+
+  @override
+  String get exportDataSubtitle =>
+      'A ZIP file with your gardens, plants, care history, journal and photos';
+
+  @override
+  String get exportPreparing => 'Preparing your export…';
+
+  @override
+  String get exportFailed =>
+      'The export could not be created. Please try again.';
+
+  @override
+  String get exportSubject => 'Terrace Garden data export';
 
   @override
   String get deleteAllData => 'Delete all data';

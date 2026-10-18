@@ -10,6 +10,7 @@ import 'package:terrace_garden/core/time/local_date.dart';
 import 'package:terrace_garden/features/care/application/care_sync.dart';
 import 'package:terrace_garden/features/care/data/drift_care_repository.dart';
 import 'package:terrace_garden/features/care/domain/care.dart';
+import 'package:terrace_garden/features/care/domain/recurrence.dart';
 import 'package:terrace_garden/features/garden/data/drift_garden_repository.dart';
 import 'package:terrace_garden/features/garden/domain/garden_draft.dart';
 import 'package:terrace_garden/features/garden/domain/region.dart';
@@ -114,6 +115,82 @@ void main() {
     await Future.wait([sync.reconcile(), sync.reconcile(), sync.reconcile()]);
     final rules = await care.watchRules(okra).first;
     expect(rules.where((r) => r.type == CareTaskType.checkSoil), hasLength(1));
+  });
+
+  group('after a planting edit (KI-027)', () {
+    Future<Map<CareTaskType, CareRule>> rulesOf(String id) async => {
+      for (final r in await care.rulesFor(id)) r.type: r,
+    };
+
+    test('moving the planting date moves transplant and harvest', () async {
+      final tomato = await plant('tomato');
+      await sync.reconcile();
+      final before = await rulesOf(tomato);
+      expect(
+        before[CareTaskType.transplant]!.recurrence,
+        Once(today.addDays(25)),
+      );
+
+      final planting = (await plantings.find(tomato))!;
+      await plantings.update(
+        tomato,
+        PlantingDraft.of(planting).copyWith(plantedOn: today.addDays(-10)),
+      );
+      await sync.reconcile();
+      final after = await rulesOf(tomato);
+      expect(
+        after[CareTaskType.transplant]!.recurrence,
+        Once(today.addDays(15)),
+      );
+      expect(after[CareTaskType.harvest]!.recurrence, Once(today.addDays(80)));
+      // Repeating checks are untouched.
+      expect(
+        after[CareTaskType.checkSoil]!.id,
+        before[CareTaskType.checkSoil]!.id,
+      );
+    });
+
+    test('switching to a seedling removes the transplant task', () async {
+      final tomato = await plant('tomato');
+      await sync.reconcile();
+      final planting = (await plantings.find(tomato))!;
+      await plantings.update(
+        tomato,
+        PlantingDraft.of(
+          planting,
+        ).copyWith(startedFrom: PlantingStart.seedling),
+      );
+      await sync.reconcile();
+      expect(
+        (await rulesOf(tomato)).keys,
+        isNot(contains(CareTaskType.transplant)),
+      );
+      expect(
+        (await care.watchPending().first).where(
+          (t) => t.type == CareTaskType.transplant,
+        ),
+        isEmpty,
+      );
+    });
+
+    test(
+      'a rule the user switched off stays off when its date moves',
+      () async {
+        final tomato = await plant('tomato');
+        await sync.reconcile();
+        final harvest = (await rulesOf(tomato))[CareTaskType.harvest]!;
+        await care.updateRule(harvest.copyWith(enabled: false), today: today);
+        final planting = (await plantings.find(tomato))!;
+        await plantings.update(
+          tomato,
+          PlantingDraft.of(planting).copyWith(plantedOn: today.addDays(-5)),
+        );
+        await sync.reconcile();
+        final after = (await rulesOf(tomato))[CareTaskType.harvest]!;
+        expect(after.enabled, isFalse);
+        expect(after.recurrence, Once(today.addDays(85)));
+      },
+    );
   });
 
   group('NotificationSync', () {

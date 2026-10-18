@@ -2716,6 +2716,42 @@ abstract class AppLocalizations {
   /// **'Longer interval'**
   String get intervalLonger;
 
+  /// No description provided for @calendarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Care calendar'**
+  String get calendarTitle;
+
+  /// No description provided for @calendarNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Shows scheduled tasks. Repeating checks appear on their next due date.'**
+  String get calendarNote;
+
+  /// No description provided for @calendarNoTasks.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing scheduled on this day.'**
+  String get calendarNoTasks;
+
+  /// No description provided for @calendarPrevMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous month'**
+  String get calendarPrevMonth;
+
+  /// No description provided for @calendarNextMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Next month'**
+  String get calendarNextMonth;
+
+  /// No description provided for @calendarTasksOn.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 task} other{{count} tasks}}'**
+  String calendarTasksOn(int count);
+
   /// No description provided for @settingsReminders.
   ///
   /// In en, this message translates to:
@@ -2980,11 +3016,113 @@ abstract class AppLocalizations {
   /// **'Add journal entry'**
   String get journalAddForPlant;
 
+  /// No description provided for @statsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your progress'**
+  String get statsTitle;
+
+  /// No description provided for @statTasks.
+  ///
+  /// In en, this message translates to:
+  /// **'Care tasks done'**
+  String get statTasks;
+
+  /// No description provided for @statStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Day streak'**
+  String get statStreak;
+
+  /// No description provided for @statEntries.
+  ///
+  /// In en, this message translates to:
+  /// **'Journal entries'**
+  String get statEntries;
+
+  /// No description provided for @statPhotos.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos'**
+  String get statPhotos;
+
+  /// No description provided for @statHarvested.
+  ///
+  /// In en, this message translates to:
+  /// **'Harvested'**
+  String get statHarvested;
+
+  /// No description provided for @compareAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Compare photos'**
+  String get compareAction;
+
+  /// No description provided for @compareTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Compare photos'**
+  String get compareTitle;
+
+  /// No description provided for @compareHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose two photos to see them side by side.'**
+  String get compareHint;
+
+  /// No description provided for @compareNeedTwo.
+  ///
+  /// In en, this message translates to:
+  /// **'Add at least two photos to compare progress.'**
+  String get compareNeedTwo;
+
+  /// No description provided for @compareAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose other photos'**
+  String get compareAgain;
+
+  /// No description provided for @compareSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected'**
+  String get compareSelected;
+
   /// No description provided for @settingsData.
   ///
   /// In en, this message translates to:
   /// **'Your data'**
   String get settingsData;
+
+  /// No description provided for @exportData.
+  ///
+  /// In en, this message translates to:
+  /// **'Export my data'**
+  String get exportData;
+
+  /// No description provided for @exportDataSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A ZIP file with your gardens, plants, care history, journal and photos'**
+  String get exportDataSubtitle;
+
+  /// No description provided for @exportPreparing.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing your export…'**
+  String get exportPreparing;
+
+  /// No description provided for @exportFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'The export could not be created. Please try again.'**
+  String get exportFailed;
+
+  /// No description provided for @exportSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Terrace Garden data export'**
+  String get exportSubject;
 
   /// No description provided for @deleteAllData.
   ///

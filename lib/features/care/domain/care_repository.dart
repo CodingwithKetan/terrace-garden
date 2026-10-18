@@ -19,6 +19,12 @@ abstract interface class CareRepository {
 
   Stream<List<CareRule>> watchRules(String plantingId);
 
+  /// A planting's rules, as a one-off read.
+  Future<List<CareRule>> rulesFor(String plantingId);
+
+  /// Deletes a rule and its tasks.
+  Future<Result<void>> deleteRule(String ruleId);
+
   /// Plantings that already have a care plan.
   Future<Set<String>> plantingIdsWithRules();
 
