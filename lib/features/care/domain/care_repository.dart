@@ -14,6 +14,9 @@ abstract interface class CareRepository {
   /// Every pending task (for notification planning).
   Stream<List<CareTask>> watchPending();
 
+  /// Tasks marked done, newest first (for the journal timeline).
+  Stream<List<CareTask>> watchDone();
+
   Stream<List<CareRule>> watchRules(String plantingId);
 
   /// Plantings that already have a care plan.

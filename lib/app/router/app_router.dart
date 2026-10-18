@@ -10,6 +10,7 @@ import 'package:terrace_garden/features/garden/presentation/photo_gallery_screen
 import 'package:terrace_garden/features/garden/presentation/photo_viewer_screen.dart';
 import 'package:terrace_garden/features/garden/presentation/terrace_checklist_screen.dart';
 import 'package:terrace_garden/features/garden_designer/presentation/designer_screen.dart';
+import 'package:terrace_garden/features/journal/presentation/journal_entry_screen.dart';
 import 'package:terrace_garden/features/journal/presentation/journal_screen.dart';
 import 'package:terrace_garden/features/onboarding/presentation/onboarding_screen.dart';
 import 'package:terrace_garden/features/plant_catalog/presentation/plant_detail_screen.dart';
@@ -47,6 +48,15 @@ abstract final class AppRoutes {
   static String gardenPhoto(String id, String photoId) =>
       '/gardens/$id/photos/$photoId';
   static String gardenIdeas(String id) => '/gardens/$id/ideas';
+
+  /// New journal entry, optionally preselecting a garden and plant.
+  static String journalNew({String? gardenId, String? plantingId}) => Uri(
+    path: '/journal-entry/new',
+    queryParameters: {
+      'garden': ?gardenId,
+      'planting': ?plantingId,
+    },
+  ).toString();
 
   /// Plant detail; [gardenId] preselects that garden when adding a planting.
   static String plantDetail(String speciesId, {String? gardenId}) => Uri(
@@ -149,6 +159,16 @@ GoRouter appRouter(Ref ref) {
         pageBuilder: (context, state) => appPage(
           state,
           RecommendationsScreen(gardenId: _gardenId(state)),
+        ),
+      ),
+      GoRoute(
+        path: '/journal-entry/new',
+        pageBuilder: (context, state) => appPage(
+          state,
+          JournalEntryScreen(
+            gardenId: state.uri.queryParameters['garden'],
+            plantingId: state.uri.queryParameters['planting'],
+          ),
         ),
       ),
       GoRoute(

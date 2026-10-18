@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:terrace_garden/app/data/data_reset_service.dart';
 import 'package:terrace_garden/app/router/app_router.dart';
 import 'package:terrace_garden/app/theme/app_tokens.dart';
 import 'package:terrace_garden/core/errors/result.dart';
 import 'package:terrace_garden/core/units/measurements.dart';
 import 'package:terrace_garden/core/widgets/async_state_view.dart';
+import 'package:terrace_garden/core/widgets/dialogs.dart';
 import 'package:terrace_garden/core/widgets/error_state.dart';
 import 'package:terrace_garden/core/widgets/section_header.dart';
 import 'package:terrace_garden/features/care/presentation/reminder_settings.dart';
@@ -51,6 +53,26 @@ class _SettingsList extends ConsumerWidget {
         SnackBar(content: Text(ErrorState.messageFor(l10n, failure))),
       );
     }
+  }
+
+  Future<void> _deleteEverything(BuildContext context, WidgetRef ref) async {
+    final l10n = context.l10n;
+    final messenger = ScaffoldMessenger.of(context);
+    final router = GoRouter.of(context);
+    final confirmed = await showConfirmDialog(
+      context,
+      title: l10n.deleteAllTitle,
+      message: l10n.deleteAllBody,
+      confirmLabel: l10n.deleteAllConfirm,
+      destructive: true,
+    );
+    if (!confirmed) return;
+    final result = await ref.read(dataResetServiceProvider).deleteEverything();
+    if (result case Err()) {
+      messenger.showSnackBar(SnackBar(content: Text(l10n.deleteAllFailed)));
+      return;
+    }
+    router.go(AppRoutes.onboarding);
   }
 
   @override
@@ -125,6 +147,18 @@ class _SettingsList extends ConsumerWidget {
             ),
             const SizedBox(height: AppSpacing.xxl),
             ReminderSettingsSection(settings: settings),
+            const SizedBox(height: AppSpacing.xxl),
+            SectionHeader(title: l10n.settingsData),
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: Icon(
+                Icons.delete_forever_outlined,
+                color: theme.colorScheme.error,
+              ),
+              title: Text(l10n.deleteAllData),
+              subtitle: Text(l10n.deleteAllDataSubtitle),
+              onTap: () => _deleteEverything(context, ref),
+            ),
             const SizedBox(height: AppSpacing.xxl),
             SectionHeader(title: l10n.settingsAbout),
             ListTile(

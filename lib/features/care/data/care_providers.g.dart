@@ -184,6 +184,45 @@ final class PendingTasksProvider
 
 String _$pendingTasksHash() => r'be1dc985281b677f4fc3976f51af7b73481153f5';
 
+@ProviderFor(doneTasks)
+final doneTasksProvider = DoneTasksProvider._();
+
+final class DoneTasksProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<CareTask>>,
+          List<CareTask>,
+          Stream<List<CareTask>>
+        >
+    with $FutureModifier<List<CareTask>>, $StreamProvider<List<CareTask>> {
+  DoneTasksProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'doneTasksProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$doneTasksHash();
+
+  @$internal
+  @override
+  $StreamProviderElement<List<CareTask>> $createElement(
+    $ProviderPointer pointer,
+  ) => $StreamProviderElement(pointer);
+
+  @override
+  Stream<List<CareTask>> create(Ref ref) {
+    return doneTasks(ref);
+  }
+}
+
+String _$doneTasksHash() => r'b4ba97e60cc30f1c7fcd75db07883a89af32e7fc';
+
 @ProviderFor(plantingRules)
 final plantingRulesProvider = PlantingRulesFamily._();
 

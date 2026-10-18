@@ -8,6 +8,8 @@ import 'package:terrace_garden/features/garden/domain/garden_enums.dart';
 import 'package:terrace_garden/features/garden/domain/region.dart';
 import 'package:terrace_garden/features/garden_designer/data/layout_tables.dart';
 import 'package:terrace_garden/features/garden_designer/domain/layout.dart';
+import 'package:terrace_garden/features/journal/data/journal_tables.dart';
+import 'package:terrace_garden/features/journal/domain/journal_entry.dart';
 import 'package:terrace_garden/features/plantings/data/planting_tables.dart';
 import 'package:terrace_garden/features/plantings/domain/planting.dart';
 
@@ -30,6 +32,8 @@ part 'app_database.g.dart';
     CareRules,
     CareTasks,
     ScheduledNotifications,
+    JournalEntries,
+    JournalPhotos,
   ],
 )
 class AppDatabase extends _$AppDatabase {
@@ -40,7 +44,7 @@ class AppDatabase extends _$AppDatabase {
       AppDatabase(driftDatabase(name: 'terrace_garden'));
 
   @override
-  int get schemaVersion => 5;
+  int get schemaVersion => 6;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -61,6 +65,10 @@ class AppDatabase extends _$AppDatabase {
         await m.createTable(schema.careRules);
         await m.createTable(schema.careTasks);
         await m.createTable(schema.scheduledNotifications);
+      },
+      from5To6: (m, schema) async {
+        await m.createTable(schema.journalEntries);
+        await m.createTable(schema.journalPhotos);
       },
     ),
     beforeOpen: (details) async {

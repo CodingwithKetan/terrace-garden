@@ -48,6 +48,13 @@ class SettingsController extends _$SettingsController {
     (repository) => repository.saveReminder(enabled: enabled, minutes: minutes),
   );
 
+  /// Clears stored settings and returns to first-launch defaults.
+  Future<Result<void>> reset() async {
+    final result = await ref.read(settingsRepositoryProvider).clear();
+    if (result case Ok()) state = const AsyncData(AppSettings.defaults);
+    return result;
+  }
+
   Future<Result<void>> _update(
     AppSettings Function(AppSettings) change,
     Future<Result<void>> Function(SettingsRepository) save,

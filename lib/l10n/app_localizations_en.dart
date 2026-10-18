@@ -51,9 +51,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'Progress photos, notes and harvests will collect here once your garden is growing.';
 
   @override
-  String get comingSoonLabel => 'Coming soon';
-
-  @override
   String get greetingMorning => 'Good morning';
 
   @override
@@ -1550,4 +1547,160 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get reminderNote =>
       'Reminders can arrive a few minutes late. The Today screen is always up to date.';
+
+  @override
+  String get journalTitle => 'Journal';
+
+  @override
+  String get journalAddEntry => 'New entry';
+
+  @override
+  String get journalNewTitle => 'New journal entry';
+
+  @override
+  String get journalFilterAll => 'All';
+
+  @override
+  String get journalWholeGarden => 'Whole garden';
+
+  @override
+  String get milestoneGerminated => 'Germinated';
+
+  @override
+  String get milestoneTransplanted => 'Transplanted';
+
+  @override
+  String get milestoneFlowering => 'Flowering';
+
+  @override
+  String get milestoneFirstFruit => 'First fruit';
+
+  @override
+  String get milestoneHarvest => 'Harvest';
+
+  @override
+  String get milestoneOther => 'Other';
+
+  @override
+  String get journalGarden => 'Garden';
+
+  @override
+  String get journalPlant => 'Plant';
+
+  @override
+  String get journalDate => 'Date';
+
+  @override
+  String get journalMilestone => 'Milestone (optional)';
+
+  @override
+  String get journalNote => 'Note';
+
+  @override
+  String get journalNoteHint => 'What did you notice?';
+
+  @override
+  String get journalPhotos => 'Photos';
+
+  @override
+  String get journalAddPhoto => 'Add photo';
+
+  @override
+  String get journalRemovePhoto => 'Remove photo';
+
+  @override
+  String journalPhotoLimit(int max) {
+    return 'Up to $max photos per entry';
+  }
+
+  @override
+  String get journalHarvestAmount => 'Harvest amount';
+
+  @override
+  String get unitGrams => 'Grams';
+
+  @override
+  String get unitPieces => 'Pieces';
+
+  @override
+  String get unitBunches => 'Bunches';
+
+  @override
+  String journalHarvestGrams(String amount) {
+    return '$amount g';
+  }
+
+  @override
+  String journalHarvestPieces(String amount) {
+    return '$amount pieces';
+  }
+
+  @override
+  String journalHarvestBunches(String amount) {
+    return '$amount bunches';
+  }
+
+  @override
+  String get journalSave => 'Save entry';
+
+  @override
+  String get journalSaved => 'Entry saved';
+
+  @override
+  String get journalEmptyError => 'Add a note, a milestone or a photo.';
+
+  @override
+  String get journalQuantityError =>
+      'Enter an amount above zero and choose a unit.';
+
+  @override
+  String journalCareDone(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count care tasks done',
+      one: '1 care task done',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get journalDeleteTitle => 'Delete this entry?';
+
+  @override
+  String get journalDeleteBody =>
+      'Its photos will be deleted from this device too.';
+
+  @override
+  String get journalDeleted => 'Entry deleted';
+
+  @override
+  String get journalNoMatches => 'Nothing here for this filter yet.';
+
+  @override
+  String get journalAddForPlant => 'Add journal entry';
+
+  @override
+  String get settingsData => 'Your data';
+
+  @override
+  String get deleteAllData => 'Delete all data';
+
+  @override
+  String get deleteAllDataSubtitle =>
+      'Gardens, plants, care history, journal and photos on this device';
+
+  @override
+  String get deleteAllTitle => 'Delete everything?';
+
+  @override
+  String get deleteAllBody =>
+      'This permanently removes every garden, plant, care task, journal entry and photo stored by this app, and resets your settings. It can\'t be undone.';
+
+  @override
+  String get deleteAllConfirm => 'Delete everything';
+
+  @override
+  String get deleteAllFailed =>
+      'Some data could not be deleted. Please try again.';
 }

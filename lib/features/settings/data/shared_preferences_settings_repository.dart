@@ -98,6 +98,29 @@ final class SharedPreferencesSettingsRepository implements SettingsRepository {
     }
   }
 
+  @override
+  Future<Result<void>> clear() async {
+    try {
+      await _prefs.clear(
+        allowList: {
+          themeKey,
+          unitsKey,
+          onboardingKey,
+          reminderEnabledKey,
+          reminderMinutesKey,
+        },
+      );
+      return const Ok(null);
+    } on Object catch (error, stackTrace) {
+      _logger.error(
+        'Failed to clear settings',
+        error: error,
+        stackTrace: stackTrace,
+      );
+      return Err(StorageFailure(error));
+    }
+  }
+
   Future<Result<void>> _write(String key, String value) async {
     try {
       await _prefs.setString(key, value);

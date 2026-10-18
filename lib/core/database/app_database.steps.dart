@@ -1131,11 +1131,322 @@ i1.GeneratedColumn<int> _column_59(String aliasedName) =>
       type: i1.DriftSqlType.int,
       $customConstraints: 'NOT NULL',
     );
+
+final class Schema6 extends i0.VersionedSchema {
+  Schema6({required super.database}) : super(version: 6);
+  @override
+  late final List<i1.DatabaseSchemaEntity> entities = [
+    gardens,
+    gardenPhotos,
+    layoutElements,
+    plantings,
+    shortlistEntries,
+    careRules,
+    careTasks,
+    scheduledNotifications,
+    journalEntries,
+    journalPhotos,
+  ];
+  late final Shape0 gardens = Shape0(
+    source: i0.VersionedTable(
+      entityName: 'gardens',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_4,
+        _column_5,
+        _column_6,
+        _column_7,
+        _column_8,
+        _column_9,
+        _column_10,
+        _column_11,
+        _column_12,
+        _column_13,
+        _column_14,
+        _column_15,
+        _column_16,
+        _column_17,
+        _column_18,
+        _column_19,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape1 gardenPhotos = Shape1(
+    source: i0.VersionedTable(
+      entityName: 'garden_photos',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_20,
+        _column_21,
+        _column_22,
+        _column_23,
+        _column_24,
+        _column_25,
+        _column_26,
+        _column_18,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape2 layoutElements = Shape2(
+    source: i0.VersionedTable(
+      entityName: 'layout_elements',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_20,
+        _column_27,
+        _column_28,
+        _column_29,
+        _column_30,
+        _column_31,
+        _column_32,
+        _column_33,
+        _column_34,
+        _column_35,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape3 plantings = Shape3(
+    source: i0.VersionedTable(
+      entityName: 'plantings',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_20,
+        _column_36,
+        _column_37,
+        _column_38,
+        _column_39,
+        _column_40,
+        _column_17,
+        _column_18,
+        _column_19,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape4 shortlistEntries = Shape4(
+    source: i0.VersionedTable(
+      entityName: 'shortlist_entries',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(garden_id, species_id)'],
+      columns: [_column_20, _column_36, _column_18],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape5 careRules = Shape5(
+    source: i0.VersionedTable(
+      entityName: 'care_rules',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_20,
+        _column_41,
+        _column_42,
+        _column_27,
+        _column_43,
+        _column_44,
+        _column_45,
+        _column_46,
+        _column_47,
+        _column_48,
+        _column_49,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape6 careTasks = Shape6(
+    source: i0.VersionedTable(
+      entityName: 'care_tasks',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)', 'UNIQUE(rule_id, due_on)'],
+      columns: [
+        _column_0,
+        _column_50,
+        _column_20,
+        _column_41,
+        _column_42,
+        _column_51,
+        _column_52,
+        _column_53,
+        _column_54,
+        _column_55,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape7 scheduledNotifications = Shape7(
+    source: i0.VersionedTable(
+      entityName: 'scheduled_notifications',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [_column_56, _column_57, _column_58, _column_59],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape8 journalEntries = Shape8(
+    source: i0.VersionedTable(
+      entityName: 'journal_entries',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_20,
+        _column_60,
+        _column_61,
+        _column_54,
+        _column_62,
+        _column_63,
+        _column_64,
+        _column_18,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape9 journalPhotos = Shape9(
+    source: i0.VersionedTable(
+      entityName: 'journal_photos',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [_column_0, _column_65, _column_21, _column_22, _column_66],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+}
+
+class Shape8 extends i0.VersionedTable {
+  Shape8({required super.source, required super.alias}) : super.aliased();
+  i1.GeneratedColumn<String> get id =>
+      columnsByName['id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get gardenId =>
+      columnsByName['garden_id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get plantingId =>
+      columnsByName['planting_id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get date =>
+      columnsByName['date']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get note =>
+      columnsByName['note']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get milestone =>
+      columnsByName['milestone']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<double> get harvestQuantity =>
+      columnsByName['harvest_quantity']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<String> get harvestUnit =>
+      columnsByName['harvest_unit']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get createdAt =>
+      columnsByName['created_at']! as i1.GeneratedColumn<String>;
+}
+
+i1.GeneratedColumn<String> _column_60(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'planting_id',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NULL REFERENCES plantings(id)ON DELETE SET NULL',
+    );
+i1.GeneratedColumn<String> _column_61(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'date',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<String> _column_62(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'milestone',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NULL',
+    );
+i1.GeneratedColumn<double> _column_63(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'harvest_quantity',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NULL',
+    );
+i1.GeneratedColumn<String> _column_64(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'harvest_unit',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NULL',
+    );
+
+class Shape9 extends i0.VersionedTable {
+  Shape9({required super.source, required super.alias}) : super.aliased();
+  i1.GeneratedColumn<String> get id =>
+      columnsByName['id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get entryId =>
+      columnsByName['entry_id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get relativePath =>
+      columnsByName['relative_path']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get thumbnailPath =>
+      columnsByName['thumbnail_path']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<int> get position =>
+      columnsByName['position']! as i1.GeneratedColumn<int>;
+}
+
+i1.GeneratedColumn<String> _column_65(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'entry_id',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.string,
+      $customConstraints:
+          'NOT NULL REFERENCES journal_entries(id)ON DELETE CASCADE',
+    );
+i1.GeneratedColumn<int> _column_66(String aliasedName) =>
+    i1.GeneratedColumn<int>(
+      'position',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.int,
+      $customConstraints: 'NOT NULL',
+    );
 i0.MigrationStepWithVersion migrationSteps({
   required Future<void> Function(i1.Migrator m, Schema2 schema) from1To2,
   required Future<void> Function(i1.Migrator m, Schema3 schema) from2To3,
   required Future<void> Function(i1.Migrator m, Schema4 schema) from3To4,
   required Future<void> Function(i1.Migrator m, Schema5 schema) from4To5,
+  required Future<void> Function(i1.Migrator m, Schema6 schema) from5To6,
 }) {
   return (currentVersion, database) async {
     switch (currentVersion) {
@@ -1159,6 +1470,11 @@ i0.MigrationStepWithVersion migrationSteps({
         final migrator = i1.Migrator(database, schema);
         await from4To5(migrator, schema);
         return 5;
+      case 5:
+        final schema = Schema6(database: database);
+        final migrator = i1.Migrator(database, schema);
+        await from5To6(migrator, schema);
+        return 6;
       default:
         throw ArgumentError.value('Unknown migration from $currentVersion');
     }
@@ -1170,11 +1486,13 @@ i1.OnUpgrade stepByStep({
   required Future<void> Function(i1.Migrator m, Schema3 schema) from2To3,
   required Future<void> Function(i1.Migrator m, Schema4 schema) from3To4,
   required Future<void> Function(i1.Migrator m, Schema5 schema) from4To5,
+  required Future<void> Function(i1.Migrator m, Schema6 schema) from5To6,
 }) => i0.VersionedSchema.stepByStepHelper(
   step: migrationSteps(
     from1To2: from1To2,
     from2To3: from2To3,
     from3To4: from3To4,
     from4To5: from4To5,
+    from5To6: from5To6,
   ),
 );

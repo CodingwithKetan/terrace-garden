@@ -17,4 +17,7 @@ abstract interface class SettingsRepository {
     required bool enabled,
     required int minutes,
   });
+
+  /// Removes every stored setting, so the next load returns defaults.
+  Future<Result<void>> clear();
 }

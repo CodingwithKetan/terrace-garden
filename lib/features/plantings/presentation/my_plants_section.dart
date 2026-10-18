@@ -253,6 +253,15 @@ class _PlantingTile extends ConsumerWidget {
         tooltip: l10n.moreActions,
         itemBuilder: (_) => [
           PopupMenuItem(
+            onTap: () => context.push(
+              AppRoutes.journalNew(
+                gardenId: planting.gardenId,
+                plantingId: planting.id,
+              ),
+            ),
+            child: Text(l10n.journalAddForPlant),
+          ),
+          PopupMenuItem(
             onTap: () => showCarePlanSheet(
               context,
               plantingId: planting.id,

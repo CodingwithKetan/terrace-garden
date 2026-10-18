@@ -46,6 +46,14 @@ final class DriftCareRepository implements CareRepository {
   }
 
   @override
+  Stream<List<CareTask>> watchDone() {
+    final query = _db.select(_db.careTasks)
+      ..where((t) => t.status.equalsValue(TaskStatus.done))
+      ..orderBy([(t) => OrderingTerm.desc(t.completedOn)]);
+    return query.watch().map((rows) => rows.map(_taskOf).toList());
+  }
+
+  @override
   Stream<List<CareRule>> watchRules(String plantingId) {
     final query = _db.select(_db.careRules)
       ..where((r) => r.plantingId.equals(plantingId));

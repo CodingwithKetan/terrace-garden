@@ -172,12 +172,6 @@ abstract class AppLocalizations {
   /// **'Progress photos, notes and harvests will collect here once your garden is growing.'**
   String get journalEmptyBody;
 
-  /// No description provided for @comingSoonLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Coming soon'**
-  String get comingSoonLabel;
-
   /// No description provided for @greetingMorning.
   ///
   /// In en, this message translates to:
@@ -2757,6 +2751,276 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reminders can arrive a few minutes late. The Today screen is always up to date.'**
   String get reminderNote;
+
+  /// No description provided for @journalTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Journal'**
+  String get journalTitle;
+
+  /// No description provided for @journalAddEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'New entry'**
+  String get journalAddEntry;
+
+  /// No description provided for @journalNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New journal entry'**
+  String get journalNewTitle;
+
+  /// No description provided for @journalFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get journalFilterAll;
+
+  /// No description provided for @journalWholeGarden.
+  ///
+  /// In en, this message translates to:
+  /// **'Whole garden'**
+  String get journalWholeGarden;
+
+  /// No description provided for @milestoneGerminated.
+  ///
+  /// In en, this message translates to:
+  /// **'Germinated'**
+  String get milestoneGerminated;
+
+  /// No description provided for @milestoneTransplanted.
+  ///
+  /// In en, this message translates to:
+  /// **'Transplanted'**
+  String get milestoneTransplanted;
+
+  /// No description provided for @milestoneFlowering.
+  ///
+  /// In en, this message translates to:
+  /// **'Flowering'**
+  String get milestoneFlowering;
+
+  /// No description provided for @milestoneFirstFruit.
+  ///
+  /// In en, this message translates to:
+  /// **'First fruit'**
+  String get milestoneFirstFruit;
+
+  /// No description provided for @milestoneHarvest.
+  ///
+  /// In en, this message translates to:
+  /// **'Harvest'**
+  String get milestoneHarvest;
+
+  /// No description provided for @milestoneOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get milestoneOther;
+
+  /// No description provided for @journalGarden.
+  ///
+  /// In en, this message translates to:
+  /// **'Garden'**
+  String get journalGarden;
+
+  /// No description provided for @journalPlant.
+  ///
+  /// In en, this message translates to:
+  /// **'Plant'**
+  String get journalPlant;
+
+  /// No description provided for @journalDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get journalDate;
+
+  /// No description provided for @journalMilestone.
+  ///
+  /// In en, this message translates to:
+  /// **'Milestone (optional)'**
+  String get journalMilestone;
+
+  /// No description provided for @journalNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Note'**
+  String get journalNote;
+
+  /// No description provided for @journalNoteHint.
+  ///
+  /// In en, this message translates to:
+  /// **'What did you notice?'**
+  String get journalNoteHint;
+
+  /// No description provided for @journalPhotos.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos'**
+  String get journalPhotos;
+
+  /// No description provided for @journalAddPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Add photo'**
+  String get journalAddPhoto;
+
+  /// No description provided for @journalRemovePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove photo'**
+  String get journalRemovePhoto;
+
+  /// No description provided for @journalPhotoLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'Up to {max} photos per entry'**
+  String journalPhotoLimit(int max);
+
+  /// No description provided for @journalHarvestAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Harvest amount'**
+  String get journalHarvestAmount;
+
+  /// No description provided for @unitGrams.
+  ///
+  /// In en, this message translates to:
+  /// **'Grams'**
+  String get unitGrams;
+
+  /// No description provided for @unitPieces.
+  ///
+  /// In en, this message translates to:
+  /// **'Pieces'**
+  String get unitPieces;
+
+  /// No description provided for @unitBunches.
+  ///
+  /// In en, this message translates to:
+  /// **'Bunches'**
+  String get unitBunches;
+
+  /// No description provided for @journalHarvestGrams.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} g'**
+  String journalHarvestGrams(String amount);
+
+  /// No description provided for @journalHarvestPieces.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} pieces'**
+  String journalHarvestPieces(String amount);
+
+  /// No description provided for @journalHarvestBunches.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} bunches'**
+  String journalHarvestBunches(String amount);
+
+  /// No description provided for @journalSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save entry'**
+  String get journalSave;
+
+  /// No description provided for @journalSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Entry saved'**
+  String get journalSaved;
+
+  /// No description provided for @journalEmptyError.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a note, a milestone or a photo.'**
+  String get journalEmptyError;
+
+  /// No description provided for @journalQuantityError.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter an amount above zero and choose a unit.'**
+  String get journalQuantityError;
+
+  /// No description provided for @journalCareDone.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 care task done} other{{count} care tasks done}}'**
+  String journalCareDone(int count);
+
+  /// No description provided for @journalDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this entry?'**
+  String get journalDeleteTitle;
+
+  /// No description provided for @journalDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Its photos will be deleted from this device too.'**
+  String get journalDeleteBody;
+
+  /// No description provided for @journalDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Entry deleted'**
+  String get journalDeleted;
+
+  /// No description provided for @journalNoMatches.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing here for this filter yet.'**
+  String get journalNoMatches;
+
+  /// No description provided for @journalAddForPlant.
+  ///
+  /// In en, this message translates to:
+  /// **'Add journal entry'**
+  String get journalAddForPlant;
+
+  /// No description provided for @settingsData.
+  ///
+  /// In en, this message translates to:
+  /// **'Your data'**
+  String get settingsData;
+
+  /// No description provided for @deleteAllData.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete all data'**
+  String get deleteAllData;
+
+  /// No description provided for @deleteAllDataSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gardens, plants, care history, journal and photos on this device'**
+  String get deleteAllDataSubtitle;
+
+  /// No description provided for @deleteAllTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete everything?'**
+  String get deleteAllTitle;
+
+  /// No description provided for @deleteAllBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This permanently removes every garden, plant, care task, journal entry and photo stored by this app, and resets your settings. It can\'t be undone.'**
+  String get deleteAllBody;
+
+  /// No description provided for @deleteAllConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete everything'**
+  String get deleteAllConfirm;
+
+  /// No description provided for @deleteAllFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Some data could not be deleted. Please try again.'**
+  String get deleteAllFailed;
 }
 
 class _AppLocalizationsDelegate

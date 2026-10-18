@@ -39,5 +39,9 @@ Stream<List<CareTask>> pendingTasks(Ref ref) =>
     ref.watch(careRepositoryProvider).watchPending();
 
 @riverpod
+Stream<List<CareTask>> doneTasks(Ref ref) =>
+    ref.watch(careRepositoryProvider).watchDone();
+
+@riverpod
 Stream<List<CareRule>> plantingRules(Ref ref, String plantingId) =>
     ref.watch(careRepositoryProvider).watchRules(plantingId);
