@@ -38,6 +38,46 @@ final class PlantingIssue {
   final int? capacity;
 }
 
+/// A one-word answer to "does this plant go in this container?", for the
+/// add-plant picker on the terrace plan.
+enum ContainerVerdict {
+  /// Documented figures are met and nothing else grows there.
+  fits,
+
+  /// Figures are met; another plant already grows there.
+  fitsShared,
+
+  /// Less soil than the documented minimum.
+  tooSmall,
+
+  /// Shallower than the documented minimum.
+  tooShallow,
+
+  /// More plants than the rough capacity estimate.
+  full,
+
+  /// Nothing to check against: no documented size, or no depth recorded.
+  unknown;
+
+  /// The verdict for [issues] from [PlantingFit.check] on [species].
+  static ContainerVerdict of(
+    List<PlantingIssue> issues, {
+    required PlantSpecies species,
+  }) {
+    final kinds = {for (final i in issues) i.kind};
+    if (kinds.contains(PlantingIssueKind.lowVolume)) return tooSmall;
+    if (kinds.contains(PlantingIssueKind.shallow)) return tooShallow;
+    if (kinds.contains(PlantingIssueKind.crowded)) return full;
+    if (kinds.contains(PlantingIssueKind.noDepth) ||
+        !species.container.hasSize) {
+      return unknown;
+    }
+    return kinds.contains(PlantingIssueKind.shared) ? fitsShared : fits;
+  }
+
+  bool get suitable => this == fits || this == fitsShared;
+}
+
 /// Checks a planting against its container (P4-06), using only figures the
 /// catalogue documents. With no documented size the check returns nothing
 /// rather than guessing.

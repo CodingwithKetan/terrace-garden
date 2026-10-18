@@ -3417,6 +3417,210 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Some data could not be deleted. Please try again.'**
   String get deleteAllFailed;
+
+  /// No description provided for @plantSoilCheckDue.
+  ///
+  /// In en, this message translates to:
+  /// **'Soil check due'**
+  String get plantSoilCheckDue;
+
+  /// No description provided for @journeyDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Day {day}'**
+  String journeyDay(int day);
+
+  /// No description provided for @journeyStartsOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Starts {date}'**
+  String journeyStartsOn(String date);
+
+  /// No description provided for @journeySown.
+  ///
+  /// In en, this message translates to:
+  /// **'Sown'**
+  String get journeySown;
+
+  /// No description provided for @journeyPlanted.
+  ///
+  /// In en, this message translates to:
+  /// **'Planted'**
+  String get journeyPlanted;
+
+  /// No description provided for @journeyTransplant.
+  ///
+  /// In en, this message translates to:
+  /// **'Transplant'**
+  String get journeyTransplant;
+
+  /// No description provided for @journeyHarvest.
+  ///
+  /// In en, this message translates to:
+  /// **'Harvest may start'**
+  String get journeyHarvest;
+
+  /// No description provided for @journeyVaries.
+  ///
+  /// In en, this message translates to:
+  /// **'Varieties and weather differ.'**
+  String get journeyVaries;
+
+  /// No description provided for @journeyUndocumented.
+  ///
+  /// In en, this message translates to:
+  /// **'Our sources don\'t document the next steps for this plant yet.'**
+  String get journeyUndocumented;
+
+  /// No description provided for @journeyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{plant} journey: {steps}'**
+  String journeyLabel(String plant, String steps);
+
+  /// No description provided for @careRhythm.
+  ///
+  /// In en, this message translates to:
+  /// **'Care rhythm'**
+  String get careRhythm;
+
+  /// No description provided for @rhythmToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get rhythmToday;
+
+  /// No description provided for @rhythmTomorrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Tomorrow'**
+  String get rhythmTomorrow;
+
+  /// No description provided for @rhythmInDays.
+  ///
+  /// In en, this message translates to:
+  /// **'In {count} days'**
+  String rhythmInDays(int count);
+
+  /// No description provided for @factSoil.
+  ///
+  /// In en, this message translates to:
+  /// **'{volume}+ of soil'**
+  String factSoil(String volume);
+
+  /// No description provided for @plantArtLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Illustration of {plant}'**
+  String plantArtLabel(String plant);
+
+  /// No description provided for @plantSourcesCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 source} other{{count} sources}}'**
+  String plantSourcesCount(int count);
+
+  /// No description provided for @plantingWhichContainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Which container?'**
+  String get plantingWhichContainer;
+
+  /// No description provided for @plantingNeedsBoth.
+  ///
+  /// In en, this message translates to:
+  /// **'{plant} needs at least {volume} and {depth} of soil.'**
+  String plantingNeedsBoth(String plant, String volume, String depth);
+
+  /// No description provided for @plantingNeedsVolume.
+  ///
+  /// In en, this message translates to:
+  /// **'{plant} needs at least {volume} of soil.'**
+  String plantingNeedsVolume(String plant, String volume);
+
+  /// No description provided for @plantingNeedsDepth.
+  ///
+  /// In en, this message translates to:
+  /// **'{plant} needs soil at least {depth} deep.'**
+  String plantingNeedsDepth(String plant, String depth);
+
+  /// No description provided for @plantingNeedsUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Our sources don\'t give a container size for {plant}, so we can\'t check the fit.'**
+  String plantingNeedsUnknown(String plant);
+
+  /// No description provided for @plantingPlanLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a container on the plan of {garden}'**
+  String plantingPlanLabel(String garden);
+
+  /// No description provided for @plantingSaveIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Plant in {container}'**
+  String plantingSaveIn(String container);
+
+  /// No description provided for @fitFits.
+  ///
+  /// In en, this message translates to:
+  /// **'fits'**
+  String get fitFits;
+
+  /// No description provided for @fitTooSmall.
+  ///
+  /// In en, this message translates to:
+  /// **'too small'**
+  String get fitTooSmall;
+
+  /// No description provided for @fitTooShallow.
+  ///
+  /// In en, this message translates to:
+  /// **'too shallow'**
+  String get fitTooShallow;
+
+  /// No description provided for @fitFull.
+  ///
+  /// In en, this message translates to:
+  /// **'full'**
+  String get fitFull;
+
+  /// No description provided for @fitUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'not checked'**
+  String get fitUnknown;
+
+  /// No description provided for @fitHas.
+  ///
+  /// In en, this message translates to:
+  /// **'has {plant}'**
+  String fitHas(String plant);
+
+  /// No description provided for @recBestMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Best match'**
+  String get recBestMatch;
+
+  /// No description provided for @recSowNowFilter.
+  ///
+  /// In en, this message translates to:
+  /// **'All ideas'**
+  String get recSowNowFilter;
+
+  /// No description provided for @recSowIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sow in {months}'**
+  String recSowIn(String months);
+
+  /// No description provided for @recReadyIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready in {min}–{max} days'**
+  String recReadyIn(int min, int max);
 }
 
 class _AppLocalizationsDelegate

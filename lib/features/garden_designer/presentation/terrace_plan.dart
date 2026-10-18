@@ -476,7 +476,7 @@ class TerracePlanPainter extends CustomPainter {
         textScaler: textScaler.clamp(maxScaleFactor: 1.3),
         maxLines: 1,
         ellipsis: '…',
-      )..layout(maxWidth: math.max(60, box.width + 40));
+      )..layout(maxWidth: math.max(76, box.width + 48));
       final pill = Rect.fromCenter(
         center: Offset(box.center.dx, box.bottom + tp.height / 2 + 7),
         width: tp.width + 16,

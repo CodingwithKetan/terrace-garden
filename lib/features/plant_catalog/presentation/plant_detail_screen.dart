@@ -1,10 +1,10 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:terrace_garden/app/theme/app_imagery.dart';
+import 'package:intl/intl.dart';
+import 'package:terrace_garden/app/di/core_providers.dart';
 import 'package:terrace_garden/app/theme/app_tokens.dart';
 import 'package:terrace_garden/app/theme/care_colors.dart';
+import 'package:terrace_garden/core/time/local_date.dart';
 import 'package:terrace_garden/core/units/measurement_formatter.dart';
 import 'package:terrace_garden/core/units/measurements.dart';
 import 'package:terrace_garden/core/widgets/app_button.dart';
@@ -13,16 +13,24 @@ import 'package:terrace_garden/core/widgets/async_state_view.dart';
 import 'package:terrace_garden/core/widgets/empty_state.dart';
 import 'package:terrace_garden/core/widgets/section_header.dart';
 import 'package:terrace_garden/core/widgets/status_chip.dart';
+import 'package:terrace_garden/features/care/care.dart';
+import 'package:terrace_garden/features/care/domain/care.dart';
 import 'package:terrace_garden/features/garden/garden.dart';
+import 'package:terrace_garden/features/garden_designer/domain/layout.dart';
+import 'package:terrace_garden/features/garden_designer/garden_designer.dart';
 import 'package:terrace_garden/features/plant_catalog/data/catalogue_providers.dart';
 import 'package:terrace_garden/features/plant_catalog/domain/plant_species.dart';
+import 'package:terrace_garden/features/plant_catalog/presentation/art/plant_art.dart';
 import 'package:terrace_garden/features/plant_catalog/presentation/plant_labels.dart';
+import 'package:terrace_garden/features/plantings/domain/plant_journey.dart';
 import 'package:terrace_garden/features/plantings/plantings.dart';
 import 'package:terrace_garden/features/settings/settings.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
 /// PLT-02. Everything the catalogue knows about one plant, each fact with
-/// its source, and "Not documented" where no verified source exists.
+/// its source, and "Not documented" where no verified source exists. When
+/// the user grows it, the page opens with its sourced journey and care
+/// rhythm (Living Terrace).
 class PlantDetailScreen extends ConsumerWidget {
   const PlantDetailScreen({required this.speciesId, this.gardenId, super.key});
 
@@ -84,9 +92,8 @@ class _Detail extends ConsumerWidget {
     final l10n = context.l10n;
     final theme = Theme.of(context);
     final insets = MediaQuery.paddingOf(context);
-    final gutter = AppSpacing.contentInsetFor(
-      MediaQuery.sizeOf(context).width,
-    );
+    final size = MediaQuery.sizeOf(context);
+    final gutter = AppSpacing.contentInsetFor(size.width);
     final units =
         ref.watch(settingsControllerProvider).value?.unitSystem ??
         UnitSystem.metric;
@@ -94,92 +101,133 @@ class _Detail extends ConsumerWidget {
       units,
       locale: Localizations.localeOf(context).toLanguageTag(),
     );
+    final today = LocalDate.fromDateTime(ref.watch(clockProvider).now());
     final s = species;
     final c = s.container;
+
+    // The user's own plant of this species, in the garden they came from.
+    final garden = gardenId ?? ref.watch(currentGardenProvider)?.id;
+    final planting = garden == null
+        ? null
+        : (ref.watch(gardenPlantingsProvider(garden)).value ?? const [])
+              .where((p) => p.speciesId == s.id)
+              .firstOrNull;
+    final elements = garden == null
+        ? const <LayoutElement>[]
+        : ref.watch(layoutElementsProvider(garden)).value ??
+              const <LayoutElement>[];
+    final containers = layoutContainers(elements);
+    final container = containers
+        .where((e) => e.id == planting?.elementId)
+        .firstOrNull;
+    final pending = ref.watch(pendingTasksProvider).value ?? const <CareTask>[];
+    final tasks = [
+      for (final t in pending)
+        if (planting != null && t.plantingId == planting.id) t,
+    ];
+    final soilDue = tasks.any(
+      (t) => t.type == CareTaskType.checkSoil && !t.dueOn.isAfter(today),
+    );
+    final cited = _refs(s.citedSources.toList());
+    final publishers = cited.map((r) => r.publisher).toSet().join(', ');
+
     final subtitle = [
       ...s.localNames,
-      s.category.label(l10n),
-      s.lifecycle.label(l10n),
+      if (container != null)
+        containerName(l10n, container, containers)
+      else ...[
+        s.category.label(l10n),
+        s.lifecycle.label(l10n),
+      ],
     ].join(' · ');
 
     return CustomScrollView(
       slivers: [
         SliverAppBar(
           pinned: true,
-          expandedHeight: math.min(
-            220,
-            MediaQuery.sizeOf(context).height * 0.4,
+          expandedHeight: (size.height * .42).clamp(220, 340),
+          backgroundColor: theme.colorScheme.surface,
+          surfaceTintColor: Colors.transparent,
+          leading: const Padding(
+            padding: EdgeInsets.all(AppSpacing.xs),
+            child: _RoundBackButton(),
           ),
-          foregroundColor: Colors.white,
           flexibleSpace: FlexibleSpaceBar(
-            titlePadding: const EdgeInsetsDirectional.only(
-              start: 56,
-              bottom: 14,
-              end: AppSpacing.lg,
-            ),
-            title: Text(
-              s.commonName,
-              style: theme.textTheme.titleLarge?.copyWith(color: Colors.white),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            background: Stack(
-              fit: StackFit.expand,
-              children: [
-                Image.asset(
-                  AppPhotos.plantsTerrace,
-                  fit: BoxFit.cover,
-                  excludeFromSemantics: true,
-                  cacheWidth: 1080,
-                ),
-                const DecoratedBox(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [Color(0x99000000), Color(0xCC000000)],
-                    ),
-                  ),
-                ),
-              ],
+            collapseMode: CollapseMode.pin,
+            background: _Hero(
+              species: s,
+              pot: container?.kind == ElementKind.growBag
+                  ? PotStyle.growBag
+                  : PotStyle.terracotta,
+              badge: soilDue ? l10n.plantSoilCheckDue : null,
             ),
           ),
         ),
         SliverPadding(
           padding: EdgeInsets.fromLTRB(
             gutter,
-            AppSpacing.lg,
+            AppSpacing.md,
             gutter,
             insets.bottom + AppSpacing.xxl,
           ),
           sliver: SliverList.list(
             children: [
+              Semantics(
+                header: true,
+                child: Text(s.commonName, style: theme.textTheme.displaySmall),
+              ),
+              const SizedBox(height: AppSpacing.xxs),
               Text(
                 s.scientificName,
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontStyle: FontStyle.italic,
+                  color: theme.colorScheme.onSurfaceVariant,
                 ),
               ),
-              const SizedBox(height: AppSpacing.xxs),
               Text(subtitle, style: theme.textTheme.bodyMedium),
-              const SizedBox(height: AppSpacing.md),
-              Wrap(
-                spacing: AppSpacing.sm,
-                runSpacing: AppSpacing.sm,
-                children: [
-                  StatusChip(
-                    label: s.dataStatus.label(l10n),
-                    icon: s.dataStatus.icon,
-                    color: s.dataStatus.color(context.careColors),
+              if (planting != null) ...[
+                const SizedBox(height: AppSpacing.lg),
+                _JourneyCard(
+                  species: s,
+                  journey: PlantJourney.of(
+                    planting: planting,
+                    species: s,
+                    today: today,
                   ),
-                  if (s.petSafety.status == PetSafetyStatus.toxic)
-                    StatusChip(
-                      label: l10n.petToxic,
-                      icon: Icons.pets_outlined,
-                      color: theme.colorScheme.error,
+                  sources: sources,
+                ),
+                if (tasks.isNotEmpty) ...[
+                  const SizedBox(height: AppSpacing.lg),
+                  Semantics(
+                    header: true,
+                    child: Text(
+                      l10n.careRhythm,
+                      style: theme.textTheme.titleLarge,
                     ),
+                  ),
+                  const SizedBox(height: AppSpacing.sm),
+                  _Rhythm(tasks: tasks, today: today),
                 ],
-              ),
+              ],
+              const SizedBox(height: AppSpacing.lg),
+              _QuickFacts(species: s, format: format),
+              if (cited.isNotEmpty) ...[
+                const SizedBox(height: AppSpacing.sm),
+                Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: l10n.plantSourcesCount(cited.length),
+                        style: const TextStyle(fontWeight: FontWeight.w700),
+                      ),
+                      TextSpan(
+                        text: ' · $publishers',
+                      ),
+                    ],
+                  ),
+                  style: theme.textTheme.bodySmall,
+                ),
+              ],
               const SizedBox(height: AppSpacing.lg),
               AppButton(
                 label: l10n.plantAddToGarden,
@@ -322,7 +370,7 @@ class _Detail extends ConsumerWidget {
                   _Note(l10n.petScopeNote),
                 ],
               ),
-              _SourcesSection(sources: _refs(s.citedSources.toList())),
+              _SourcesSection(sources: cited),
             ],
           ),
         ),
@@ -333,6 +381,427 @@ class _Detail extends ConsumerWidget {
   List<SourceRef> _refs(List<String>? ids) => [
     for (final id in {...?ids}) ?sources[id],
   ];
+}
+
+class _RoundBackButton extends StatelessWidget {
+  const _RoundBackButton();
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: colors.surfaceContainerLowest,
+        shape: BoxShape.circle,
+      ),
+      child: BackButton(color: colors.onSurface),
+    );
+  }
+}
+
+/// The plant drawn large in its pot on a soft limestone ground.
+class _Hero extends StatelessWidget {
+  const _Hero({required this.species, required this.pot, this.badge});
+
+  final PlantSpecies species;
+  final PotStyle pot;
+  final String? badge;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [colors.surfaceContainerHigh, colors.surface],
+        ),
+      ),
+      child: SafeArea(
+        bottom: false,
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: Padding(
+                padding: const EdgeInsets.only(top: AppSpacing.xl),
+                child: LayoutBuilder(
+                  builder: (context, box) => Center(
+                    child: PlantSideArt(
+                      spec: PlantArtSpec.of(
+                        species.id,
+                        category: species.category,
+                      ),
+                      size: box.biggest.shortestSide,
+                      pot: pot,
+                      semanticLabel: context.l10n.plantArtLabel(
+                        species.commonName,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            if (badge case final text?)
+              PositionedDirectional(
+                start: AppSpacing.lg,
+                bottom: AppSpacing.md,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: colors.surfaceContainerLowest,
+                    borderRadius: AppRadii.fullAll,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.md,
+                      vertical: AppSpacing.xs,
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.water_drop,
+                          size: 14,
+                          color: context.careColors.water,
+                        ),
+                        const SizedBox(width: AppSpacing.xs),
+                        Text(text, style: theme.textTheme.labelLarge),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// "Day 30": the planting date, then only the steps the sources document,
+/// on a line with today's position.
+class _JourneyCard extends StatelessWidget {
+  const _JourneyCard({
+    required this.species,
+    required this.journey,
+    required this.sources,
+  });
+
+  final PlantSpecies species;
+  final PlantJourney journey;
+  final Map<String, SourceRef> sources;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final theme = Theme.of(context);
+    final locale = Localizations.localeOf(context).toLanguageTag();
+    String date(LocalDate d) =>
+        DateFormat.MMMd(locale).format(d.toLocalDateTime());
+    String when(JourneyMilestone m) =>
+        m.isRange ? '${date(m.from)} – ${date(m.to)}' : date(m.from);
+    String label(MilestoneKind k) => switch (k) {
+      MilestoneKind.sown => l10n.journeySown,
+      MilestoneKind.planted => l10n.journeyPlanted,
+      MilestoneKind.transplant => l10n.journeyTransplant,
+      MilestoneKind.harvest => l10n.journeyHarvest,
+    };
+    final day = journey.day;
+    final first = journey.milestones.first;
+    final last = journey.milestones.length - 1;
+    final publishers = {
+      for (final id in journey.sources) ?sources[id]?.publisher,
+    };
+
+    return Semantics(
+      container: true,
+      label: l10n.journeyLabel(
+        species.commonName,
+        [
+          for (final m in journey.milestones) '${label(m.kind)} ${when(m)}',
+        ].join(', '),
+      ),
+      child: ExcludeSemantics(
+        child: AppCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      day == null
+                          ? l10n.journeyStartsOn(date(first.from))
+                          : l10n.journeyDay(day),
+                      style: theme.textTheme.titleMedium,
+                    ),
+                  ),
+                  Text(
+                    '${label(first.kind)} ${date(first.from)}',
+                    style: theme.textTheme.bodySmall,
+                  ),
+                ],
+              ),
+              if (journey.hasSourcedSteps) ...[
+                const SizedBox(height: AppSpacing.md),
+                SizedBox(
+                  height: 24,
+                  child: CustomPaint(
+                    painter: _JourneyPainter(
+                      journey: journey,
+                      line: theme.colorScheme.outlineVariant,
+                      done: theme.colorScheme.primary,
+                      harvest: context.careColors.fertilise,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: AppSpacing.sm),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    for (final (i, m) in journey.milestones.indexed)
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: i == 0
+                              ? CrossAxisAlignment.start
+                              : i == last
+                              ? CrossAxisAlignment.end
+                              : CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              label(m.kind),
+                              textAlign: i == last
+                                  ? TextAlign.end
+                                  : TextAlign.start,
+                              style: theme.textTheme.labelLarge,
+                            ),
+                            Text(when(m), style: theme.textTheme.bodySmall),
+                          ],
+                        ),
+                      ),
+                  ],
+                ),
+                const SizedBox(height: AppSpacing.sm),
+                Text(
+                  '${publishers.join(' · ')}. ${l10n.journeyVaries}',
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ] else ...[
+                const SizedBox(height: AppSpacing.xs),
+                Text(
+                  l10n.journeyUndocumented,
+                  style: theme.textTheme.bodySmall,
+                ),
+              ],
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _JourneyPainter extends CustomPainter {
+  const _JourneyPainter({
+    required this.journey,
+    required this.line,
+    required this.done,
+    required this.harvest,
+  });
+
+  final PlantJourney journey;
+  final Color line;
+  final Color done;
+  final Color harvest;
+
+  static const _inset = 8.0;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final y = size.height / 2;
+    final span = size.width - 2 * _inset;
+    final total = journey.start.daysUntil(journey.end);
+    double x(LocalDate d) => total <= 0
+        ? size.width - _inset
+        : _inset + span * journey.start.daysUntil(d) / total;
+    final now = _inset + span * journey.progress;
+    final track = Paint()
+      ..strokeWidth = 5
+      ..strokeCap = StrokeCap.round;
+    canvas
+      ..drawLine(
+        Offset(_inset, y),
+        Offset(size.width - _inset, y),
+        track..color = line,
+      )
+      ..drawLine(Offset(_inset, y), Offset(now, y), track..color = done);
+    for (final m in journey.milestones) {
+      if (m.kind == MilestoneKind.harvest) {
+        // The harvest window as a striped band.
+        final band = Paint()
+          ..color = harvest
+          ..strokeWidth = 8;
+        final end = x(m.to);
+        for (var px = x(m.from); px < end; px += 7) {
+          canvas.drawLine(
+            Offset(px, y),
+            Offset(px + 4 > end ? end : px + 4, y),
+            band,
+          );
+        }
+      } else if (m.isRange) {
+        canvas.drawLine(
+          Offset(x(m.from), y),
+          Offset(x(m.to), y),
+          Paint()
+            ..color = done.withValues(alpha: .45)
+            ..strokeWidth = 9
+            ..strokeCap = StrokeCap.round,
+        );
+      } else {
+        canvas.drawCircle(Offset(x(m.from), y), 7, Paint()..color = done);
+      }
+    }
+    // Today.
+    canvas
+      ..drawLine(
+        Offset(now, 0),
+        Offset(now, size.height),
+        Paint()
+          ..color = done
+          ..strokeWidth = 3,
+      )
+      ..drawCircle(Offset(now, y), 5, Paint()..color = done);
+  }
+
+  @override
+  bool shouldRepaint(_JourneyPainter oldDelegate) =>
+      oldDelegate.journey != journey || oldDelegate.line != line;
+}
+
+/// The next pending task of each kind for this plant.
+class _Rhythm extends StatelessWidget {
+  const _Rhythm({required this.tasks, required this.today});
+
+  final List<CareTask> tasks;
+  final LocalDate today;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final theme = Theme.of(context);
+    final locale = Localizations.localeOf(context).toLanguageTag();
+    String date(LocalDate d) =>
+        DateFormat.MMMd(locale).format(d.toLocalDateTime());
+    final next = <CareTaskType, CareTask>{};
+    for (final t in [...tasks]..sort((a, b) => a.dueOn.compareTo(b.dueOn))) {
+      next.putIfAbsent(t.type, () => t);
+    }
+    String when(LocalDate d) => switch (today.daysUntil(d)) {
+      < 0 => l10n.dueSince(date(d)),
+      0 => l10n.rhythmToday,
+      1 => l10n.rhythmTomorrow,
+      final n when n < 7 => l10n.rhythmInDays(n),
+      _ => date(d),
+    };
+    return Wrap(
+      spacing: AppSpacing.sm,
+      runSpacing: AppSpacing.sm,
+      children: [
+        for (final t in next.values)
+          Container(
+            constraints: const BoxConstraints(minWidth: 104),
+            padding: const EdgeInsets.all(AppSpacing.md),
+            decoration: BoxDecoration(
+              color: theme.colorScheme.surfaceContainerLowest,
+              borderRadius: AppRadii.mdAll,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  t.type.icon,
+                  size: 16,
+                  color: t.type.color(context.careColors),
+                ),
+                const SizedBox(height: AppSpacing.sm),
+                Text(t.type.label(l10n), style: theme.textTheme.titleSmall),
+                Text(when(t.dueOn), style: theme.textTheme.bodySmall),
+              ],
+            ),
+          ),
+      ],
+    );
+  }
+}
+
+/// Sun, soil and pet facts as chips, only where the catalogue has them.
+class _QuickFacts extends StatelessWidget {
+  const _QuickFacts({required this.species, required this.format});
+
+  final PlantSpecies species;
+  final MeasurementFormatter format;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
+    final s = species;
+    // Pills that wrap long sourced phrases instead of clipping them.
+    Widget chip(String label, IconData icon, {bool warn = false}) {
+      final fg = warn ? colors.onErrorContainer : colors.onSurface;
+      return Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.md,
+          vertical: AppSpacing.sm,
+        ),
+        decoration: BoxDecoration(
+          color: warn ? colors.errorContainer : colors.surfaceContainerHigh,
+          borderRadius: AppRadii.mdAll,
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, size: 16, color: fg),
+            const SizedBox(width: AppSpacing.sm),
+            Flexible(
+              child: Text(
+                label,
+                style: theme.textTheme.labelLarge?.copyWith(color: fg),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    return Wrap(
+      spacing: AppSpacing.sm,
+      runSpacing: AppSpacing.sm,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: [
+        if (s.sun?.label(l10n) case final sun?)
+          chip(sun, Icons.wb_sunny_outlined),
+        if (s.container.minVolumeL case final litres?)
+          chip(
+            l10n.factSoil(format.volume(Volume.litres(litres))),
+            Icons.inventory_2_outlined,
+          ),
+        if (s.petSafety.status == PetSafetyStatus.toxic)
+          chip(l10n.petToxic, Icons.pets_outlined, warn: true),
+        StatusChip(
+          label: s.dataStatus.label(l10n),
+          icon: s.dataStatus.icon,
+          color: s.dataStatus.color(context.careColors),
+        ),
+      ],
+    );
+  }
 }
 
 class _FactSection extends StatelessWidget {

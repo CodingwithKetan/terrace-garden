@@ -1948,4 +1948,145 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get deleteAllFailed =>
       'Some data could not be deleted. Please try again.';
+
+  @override
+  String get plantSoilCheckDue => 'Soil check due';
+
+  @override
+  String journeyDay(int day) {
+    return 'Day $day';
+  }
+
+  @override
+  String journeyStartsOn(String date) {
+    return 'Starts $date';
+  }
+
+  @override
+  String get journeySown => 'Sown';
+
+  @override
+  String get journeyPlanted => 'Planted';
+
+  @override
+  String get journeyTransplant => 'Transplant';
+
+  @override
+  String get journeyHarvest => 'Harvest may start';
+
+  @override
+  String get journeyVaries => 'Varieties and weather differ.';
+
+  @override
+  String get journeyUndocumented =>
+      'Our sources don\'t document the next steps for this plant yet.';
+
+  @override
+  String journeyLabel(String plant, String steps) {
+    return '$plant journey: $steps';
+  }
+
+  @override
+  String get careRhythm => 'Care rhythm';
+
+  @override
+  String get rhythmToday => 'Today';
+
+  @override
+  String get rhythmTomorrow => 'Tomorrow';
+
+  @override
+  String rhythmInDays(int count) {
+    return 'In $count days';
+  }
+
+  @override
+  String factSoil(String volume) {
+    return '$volume+ of soil';
+  }
+
+  @override
+  String plantArtLabel(String plant) {
+    return 'Illustration of $plant';
+  }
+
+  @override
+  String plantSourcesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count sources',
+      one: '1 source',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get plantingWhichContainer => 'Which container?';
+
+  @override
+  String plantingNeedsBoth(String plant, String volume, String depth) {
+    return '$plant needs at least $volume and $depth of soil.';
+  }
+
+  @override
+  String plantingNeedsVolume(String plant, String volume) {
+    return '$plant needs at least $volume of soil.';
+  }
+
+  @override
+  String plantingNeedsDepth(String plant, String depth) {
+    return '$plant needs soil at least $depth deep.';
+  }
+
+  @override
+  String plantingNeedsUnknown(String plant) {
+    return 'Our sources don\'t give a container size for $plant, so we can\'t check the fit.';
+  }
+
+  @override
+  String plantingPlanLabel(String garden) {
+    return 'Choose a container on the plan of $garden';
+  }
+
+  @override
+  String plantingSaveIn(String container) {
+    return 'Plant in $container';
+  }
+
+  @override
+  String get fitFits => 'fits';
+
+  @override
+  String get fitTooSmall => 'too small';
+
+  @override
+  String get fitTooShallow => 'too shallow';
+
+  @override
+  String get fitFull => 'full';
+
+  @override
+  String get fitUnknown => 'not checked';
+
+  @override
+  String fitHas(String plant) {
+    return 'has $plant';
+  }
+
+  @override
+  String get recBestMatch => 'Best match';
+
+  @override
+  String get recSowNowFilter => 'All ideas';
+
+  @override
+  String recSowIn(String months) {
+    return 'Sow in $months';
+  }
+
+  @override
+  String recReadyIn(int min, int max) {
+    return 'Ready in $min–$max days';
+  }
 }

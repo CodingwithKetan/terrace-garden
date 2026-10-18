@@ -171,28 +171,39 @@ void main() {
       await seed();
       await app.pump(tester);
       await openIdeas(tester);
+      final semantics = tester.ensureSemantics();
 
+      await tester.ensureVisible(find.text('Add to a garden').first);
+      await tester.pumpAndSettle();
       await tester.tap(find.text('Add to a garden').first);
       await tester.pumpAndSettle();
       expect(find.text('Add Tomato'), findsOneWidget);
+      expect(find.text('Which container?'), findsOneWidget);
 
-      // The small pot fails both documented minimums.
-      await tester.tap(find.textContaining('Round pot'));
+      // Picked on the plan: the small pot fails both documented minimums.
+      expect(
+        find.bySemanticsLabel('Round pot, too small, 6.3 L'),
+        findsOneWidget,
+      );
+      await tester.tap(find.bySemanticsLabel(RegExp('^Round pot')));
       await tester.pumpAndSettle();
       expect(find.textContaining('holds about 6.3 L'), findsOneWidget);
       expect(find.textContaining('is 20 cm deep'), findsOneWidget);
 
-      await tester.tap(find.textContaining('Grow bag'));
+      await tester.tap(find.bySemanticsLabel('Grow bag, fits, 81 L'));
       await tester.pumpAndSettle();
-      expect(find.textContaining('needs at least'), findsNothing);
+      expect(find.textContaining('holds about'), findsNothing);
 
+      await tester.ensureVisible(find.byTooltip('More'));
+      await tester.pumpAndSettle();
       await tester.tap(find.byTooltip('More'));
       await tester.pumpAndSettle();
-      await tester.ensureVisible(find.text('Add planting'));
+      await tester.ensureVisible(find.text('Plant in Grow bag'));
       await tester.pumpAndSettle();
-      await tester.tap(find.text('Add planting'));
+      await tester.tap(find.text('Plant in Grow bag'));
       await tester.pumpAndSettle();
       expect(find.text('Tomato added to Terrace'), findsOneWidget);
+      semantics.dispose();
 
       // A one-off read; drift stream queries don't complete under the
       // test's fake clock.
@@ -213,6 +224,8 @@ void main() {
       await seed();
       await app.pump(tester);
       await openIdeas(tester);
+      await tester.ensureVisible(find.text('Add to a garden').first);
+      await tester.pumpAndSettle();
       await tester.tap(find.text('Add to a garden').first);
       await tester.pumpAndSettle();
       await tester.ensureVisible(find.text('Add planting'));

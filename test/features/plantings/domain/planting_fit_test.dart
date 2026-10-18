@@ -140,4 +140,58 @@ void main() {
     expect(PlantingFit.estimatedCapacity(need, 11), 4);
     expect(PlantingFit.estimatedCapacity(need, null), isNull);
   });
+
+  group('ContainerVerdict', () {
+    ContainerVerdict verdict(
+      PlantSpecies species,
+      LayoutElement container, {
+      List<Planting> others = const [],
+      int quantity = 1,
+    }) => ContainerVerdict.of(
+      PlantingFit.check(
+        species: species,
+        container: container,
+        quantity: quantity,
+        othersInContainer: others,
+      ),
+      species: species,
+    );
+
+    test('fits when documented figures are met and the pot is free', () {
+      expect(verdict(_species(), _planter()), ContainerVerdict.fits);
+    });
+
+    test('fits, shared, when another species grows there', () {
+      expect(
+        verdict(_species(), _planter(), others: [_planting('mint', 1)]),
+        ContainerVerdict.fitsShared,
+      );
+    });
+
+    test('too small, too shallow and full, in that order', () {
+      final deep = _species(minVolumeL: 100, minDepthCm: 40);
+      expect(verdict(deep, _planter()), ContainerVerdict.tooSmall);
+      expect(
+        verdict(_species(minDepthCm: 30), _planter()),
+        ContainerVerdict.tooShallow,
+      );
+      expect(
+        verdict(_species(), _planter(), quantity: 9),
+        ContainerVerdict.full,
+      );
+    });
+
+    test('unknown without a documented size or a recorded depth', () {
+      expect(
+        verdict(_species(minVolumeL: null, minDepthCm: null), _planter()),
+        ContainerVerdict.unknown,
+      );
+      expect(
+        verdict(_species(), _planter(depth: null)),
+        ContainerVerdict.unknown,
+      );
+      expect(ContainerVerdict.unknown.suitable, isFalse);
+      expect(ContainerVerdict.fitsShared.suitable, isTrue);
+    });
+  });
 }

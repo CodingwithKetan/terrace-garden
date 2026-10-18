@@ -14,6 +14,7 @@ import 'package:terrace_garden/core/widgets/error_state.dart';
 import 'package:terrace_garden/core/widgets/selectable_chip_group.dart';
 import 'package:terrace_garden/features/garden/domain/garden.dart';
 import 'package:terrace_garden/features/garden/garden.dart';
+import 'package:terrace_garden/features/garden_designer/domain/layout.dart';
 import 'package:terrace_garden/features/garden_designer/garden_designer.dart';
 import 'package:terrace_garden/features/plant_catalog/domain/plant_species.dart';
 import 'package:terrace_garden/features/plant_catalog/plant_catalog.dart';
@@ -204,23 +205,39 @@ class _PlantingFormState extends ConsumerState<PlantingForm> {
           ),
           const SizedBox(height: AppSpacing.lg),
         ],
-        _Label(l10n.plantingContainer),
-        SelectableChipGroup<String>(
-          multiSelect: false,
-          allowEmpty: false,
-          options: [
-            ChipOption(value: '', label: l10n.plantingNotPlaced),
-            for (final c in containers)
-              ChipOption(
-                value: c.id,
-                label: containerDescription(l10n, format, c, containers),
-              ),
-          ],
-          selected: {container?.id ?? ''},
-          onChanged: (ids) => setState(
-            () => _elementId = ids.first.isEmpty ? null : ids.first,
+        if (garden.hasDimensions && containers.isNotEmpty)
+          _ContainerPicker(
+            garden: garden,
+            species: widget.species,
+            elements: elements,
+            plantings: [
+              for (final p in plantings)
+                if (p.id != widget.existing?.id) p,
+            ],
+            quantity: _quantity,
+            selectedId: container?.id,
+            format: format,
+            onChanged: (id) => setState(() => _elementId = id),
+          )
+        else ...[
+          _Label(l10n.plantingContainer),
+          SelectableChipGroup<String>(
+            multiSelect: false,
+            allowEmpty: false,
+            options: [
+              ChipOption(value: '', label: l10n.plantingNotPlaced),
+              for (final c in containers)
+                ChipOption(
+                  value: c.id,
+                  label: containerDescription(l10n, format, c, containers),
+                ),
+            ],
+            selected: {container?.id ?? ''},
+            onChanged: (ids) => setState(
+              () => _elementId = ids.first.isEmpty ? null : ids.first,
+            ),
           ),
-        ),
+        ],
         for (final issue in issues)
           Padding(
             padding: const EdgeInsets.only(top: AppSpacing.sm),
@@ -285,11 +302,157 @@ class _PlantingFormState extends ConsumerState<PlantingForm> {
         ),
         const SizedBox(height: AppSpacing.md),
         AppButton(
-          label: widget.existing == null
+          label: widget.existing != null
+              ? l10n.plantingUpdate
+              : container == null
               ? l10n.plantingSave
-              : l10n.plantingUpdate,
+              : l10n.plantingSaveIn(containerName(l10n, container, containers)),
           icon: Icons.check,
           onPressed: _saving ? null : () => _save(garden),
+        ),
+      ],
+    );
+  }
+}
+
+/// "Which container?": the garden's plan with each container marked by
+/// whether this plant fits, from documented figures only (Living Terrace).
+class _ContainerPicker extends ConsumerWidget {
+  const _ContainerPicker({
+    required this.garden,
+    required this.species,
+    required this.elements,
+    required this.plantings,
+    required this.quantity,
+    required this.selectedId,
+    required this.format,
+    required this.onChanged,
+  });
+
+  final Garden garden;
+  final PlantSpecies species;
+  final List<LayoutElement> elements;
+
+  /// The garden's other plantings (the one being edited left out).
+  final List<Planting> plantings;
+  final int quantity;
+  final String? selectedId;
+  final MeasurementFormatter format;
+  final ValueChanged<String?> onChanged;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
+    final theme = Theme.of(context);
+    final catalogue = ref.watch(plantCatalogueProvider).value;
+    final containers = layoutContainers(elements);
+    final need = species.container;
+    final volume = need.minVolumeL == null
+        ? null
+        : format.volume(Volume.litres(need.minVolumeL!));
+    final depth = need.minDepthCm == null
+        ? null
+        : format.length(Length.cm(need.minDepthCm!));
+    final needs = switch ((volume, depth)) {
+      (final v?, final d?) => l10n.plantingNeedsBoth(species.commonName, v, d),
+      (final v?, null) => l10n.plantingNeedsVolume(species.commonName, v),
+      (null, final d?) => l10n.plantingNeedsDepth(species.commonName, d),
+      (null, null) => l10n.plantingNeedsUnknown(species.commonName),
+    };
+
+    final items = <PlanItem>[];
+    for (final e in elements) {
+      if (!e.kind.isContainer) {
+        items.add(PlanItem(element: e));
+        continue;
+      }
+      final here = [
+        for (final p in plantings)
+          if (p.elementId == e.id) p,
+      ];
+      final verdict = ContainerVerdict.of(
+        PlantingFit.check(
+          species: species,
+          container: e,
+          quantity: quantity,
+          othersInContainer: here,
+        ),
+        species: species,
+      );
+      final name = containerName(l10n, e, containers);
+      final neighbour = here
+          .where((p) => p.speciesId != species.id)
+          .map((p) => catalogue?.byId(p.speciesId)?.commonName)
+          .nonNulls
+          .firstOrNull;
+      final litres = e.soilLitres == null
+          ? null
+          : format.volume(Volume.litres(e.soilLitres!));
+      final status = [
+        switch (verdict) {
+          ContainerVerdict.fits || ContainerVerdict.fitsShared => l10n.fitFits,
+          ContainerVerdict.tooSmall => l10n.fitTooSmall,
+          ContainerVerdict.tooShallow => l10n.fitTooShallow,
+          ContainerVerdict.full => l10n.fitFull,
+          ContainerVerdict.unknown => l10n.fitUnknown,
+        },
+        if (neighbour != null) l10n.fitHas(neighbour),
+      ];
+      items.add(
+        PlanItem(
+          element: e,
+          plants: [
+            for (final p in here)
+              PlantArtSpec.of(
+                p.speciesId,
+                category: catalogue?.byId(p.speciesId)?.category,
+              ),
+          ],
+          // Status first: container names are long for small pots, and the
+          // chosen one is named on the save button.
+          tag: switch (verdict) {
+            ContainerVerdict.fits => [l10n.fitFits, ?litres].join(' · '),
+            ContainerVerdict.fitsShared => status.last,
+            ContainerVerdict.unknown => name,
+            _ => status.first,
+          },
+          fit: switch (verdict) {
+            ContainerVerdict.fits => PlanFit.fits,
+            ContainerVerdict.fitsShared => PlanFit.fitsShared,
+            ContainerVerdict.unknown => PlanFit.none,
+            _ => PlanFit.unsuitable,
+          },
+          semanticLabel: [name, ...status, ?litres].join(', '),
+        ),
+      );
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(l10n.plantingWhichContainer, style: theme.textTheme.titleLarge),
+        const SizedBox(height: AppSpacing.xxs),
+        Text(needs, style: theme.textTheme.bodyMedium),
+        const SizedBox(height: AppSpacing.md),
+        AspectRatio(
+          aspectRatio: (garden.length!.cm / garden.width!.cm).clamp(.9, 3),
+          child: TerracePlan(
+            lengthCm: garden.length!.cm,
+            widthCm: garden.width!.cm,
+            items: items,
+            selectedId: selectedId,
+            semanticLabel: l10n.plantingPlanLabel(garden.name),
+            onTapItem: (item) => onChanged(item.element.id),
+          ),
+        ),
+        const SizedBox(height: AppSpacing.sm),
+        Align(
+          alignment: AlignmentDirectional.centerStart,
+          child: ChoiceChip(
+            label: Text(l10n.plantingNotPlaced),
+            selected: selectedId == null,
+            onSelected: (_) => onChanged(null),
+          ),
         ),
       ],
     );

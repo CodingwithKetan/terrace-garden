@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:terrace_garden/app/router/app_router.dart';
 import 'package:terrace_garden/core/ids/id_generator.dart';
 import 'package:terrace_garden/core/logging/app_logger.dart';
 import 'package:terrace_garden/core/time/clock.dart';
@@ -142,6 +143,22 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.widgetWithText(TextButton, other), findsOneWidget);
     expect(find.widgetWithText(TextButton, shown), findsNothing);
+  });
+
+  testWidgets('plant detail shows the sourced journey and care rhythm', (
+    tester,
+  ) async {
+    final id = await garden('Terrace');
+    await plant(id, elementId: 'bag');
+    await app.pump(tester);
+    await app.open(tester, AppRoutes.plantDetail('tomato', gardenId: id));
+
+    expect(find.text('Tomato'), findsOneWidget);
+    expect(find.text('Day 1'), findsOneWidget);
+    expect(find.text('Harvest may start'), findsOneWidget);
+    expect(find.textContaining('Varieties and weather differ.'), findsOne);
+    expect(find.text('Care rhythm'), findsOneWidget);
+    expect(find.text('Soil check due'), findsOneWidget);
   });
 
   testWidgets('Seasons shows the month and an almanac for my plants', (
