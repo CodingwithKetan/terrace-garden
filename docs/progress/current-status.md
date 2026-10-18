@@ -4,7 +4,7 @@ Last updated: 2026-10-18
 
 ## Phase
 
-**Phase 6 (progress and refinement): all P0 tasks done except a device profile run (P6-07); ready for moderated user testing (2026-10-18).** Phases 0–5 are complete. Open: P6-07 device profiling, and P1 items (export, photo comparison and stats, kit preset, branding).
+**Phase 6 (progress and refinement): all P0 tasks done except a device profile run (P6-07); ready for moderated user testing (2026-10-18).** Phases 0–5 are complete. Open: P6-07 device profiling; P6-04 kit preset (needs KI-014 verification); P6-10 branding (needs the app name, PD-001).
 
 ## State of the repository
 
@@ -17,7 +17,7 @@ Last updated: 2026-10-18
   - 11 shared widgets (`lib/core/widgets/`);
   - drift `AppDatabase` v6 (gardens, garden_photos, layout_elements, plantings, shortlist_entries, care_rules, care_tasks, scheduled_notifications, journal_entries, journal_photos) with schema snapshots and migration tests.
 - **Localisation:** gen-l10n, `lib/l10n/app_en.arb`.
-- **Git:** `main`. Phase 0 is on GitHub (`CodingwithKetan/terrace-garden`). Pushed to GitHub up to `57ef65a` (2026-10-18).
+- **Git:** `main`. Phase 0 is on GitHub (`CodingwithKetan/terrace-garden`). Pushed to GitHub up to `aa87482` (2026-10-18).
 
 ## Toolchain (verified 2026-10-18)
 
@@ -37,15 +37,14 @@ P6-01, P6-03 (delete all data), P6-05, P6-06, P6-07 (host part), P6-08, P6-09 an
 1. **Run moderated user tests** with `docs/product/user-testing-kit.md` (5–8 participants).
 2. **P6-07:** profile on a real Android phone (`flutter run --profile`): cold start, designer fps with 100 objects, journal image grid.
 3. **Before public release:** horticulturist review (R2), research gaps KI-010..KI-013, plant images (KI-016), product name and branding (PD-001, P6-10), signing, iOS build (KI-003).
-4. **P1 backlog:** data export (P6-03), photo comparison and stats (P6-02), month calendar (KI-028), re-plan on planting edit (KI-027).
-5. **Push** the local commits from a network that allows GitHub (KI-006).
+4. **P1 backlog:** plant comparison (P4-05), importing an export (ADR-024), notification deep links (KI-028), photo on task completion.
 
 ## Checks run (latest, 2026-10-18, Windows host)
 
 - Quality gate (Phase 6):
   - `dart format --set-exit-if-changed`: 0 changed.
   - `flutter analyze`: **no issues**.
-  - `flutter test`: **424 passed**. Phase 6 added tests for:
+  - `flutter test`: **437 passed** (after the export, stats, comparison, calendar and re-plan additions; earlier 424). Phase 6 added tests for:
     - the journal repository, timeline and flows;
     - delete all data;
     - accessibility guidelines on every main screen (light and dark) and a 200%-text walk;
@@ -53,6 +52,7 @@ P6-01, P6-03 (delete all data), P6-05, P6-06, P6-07 (host part), P6-08, P6-09 an
     - performance budgets;
     - architecture boundaries.
   - End-to-end device test (Android 16 emulator, after a cold boot): **passed** (21 s) through onboarding, plant, restart, care, notification, designer and journal. Two earlier runs failed because of test assumptions: no garden size, and the first idea not being Tomato. The test was corrected.
+  - The device test was **not re-run** after the last batch (export, stats, calendar, re-plan); the host suite covers those changes. Re-run at the next device session.
 - Phase 5 gate (earlier):
   - `flutter test`: **388 passed**. New tests cover:
     - the recurrence engine (month ends, leap days, rollover);

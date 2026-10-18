@@ -24,6 +24,11 @@ Newest first. Keep entries concise: goal, what was done, checks, next.
 
 **Next:** moderated user tests, then P6-07 profiling on a real phone, then the release prerequisites (see current-status).
 
+**Follow-up (same session, after the user asked to push and continue):**
+- **Push:** worked from this machine (KI-006 resolved).
+- **Added:** data export (ADR-024), journal stats and two-photo comparison, the month care calendar (with a 48 dp tap-target check on phones), and re-planning dated rules after a planting edit (KI-027).
+- **Checks:** 437 host tests pass. Pushed `aa87482`.
+
 ---
 
 ## 2026-10-18: Session 1, part 7 (Phase 5: care tracking)
