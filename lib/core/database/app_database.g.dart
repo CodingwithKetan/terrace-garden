@@ -2384,12 +2384,910 @@ class LayoutElementsCompanion extends UpdateCompanion<LayoutElementRow> {
   }
 }
 
+class $PlantingsTable extends Plantings
+    with TableInfo<$PlantingsTable, PlantingRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $PlantingsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _gardenIdMeta = const VerificationMeta(
+    'gardenId',
+  );
+  @override
+  late final GeneratedColumn<String> gardenId = GeneratedColumn<String>(
+    'garden_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES gardens (id) ON DELETE CASCADE',
+    ),
+  );
+  static const VerificationMeta _speciesIdMeta = const VerificationMeta(
+    'speciesId',
+  );
+  @override
+  late final GeneratedColumn<String> speciesId = GeneratedColumn<String>(
+    'species_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _elementIdMeta = const VerificationMeta(
+    'elementId',
+  );
+  @override
+  late final GeneratedColumn<String> elementId = GeneratedColumn<String>(
+    'element_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _quantityMeta = const VerificationMeta(
+    'quantity',
+  );
+  @override
+  late final GeneratedColumn<int> quantity = GeneratedColumn<int>(
+    'quantity',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _plantedOnMeta = const VerificationMeta(
+    'plantedOn',
+  );
+  @override
+  late final GeneratedColumn<String> plantedOn = GeneratedColumn<String>(
+    'planted_on',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<PlantingStart, String>
+  startedFrom = GeneratedColumn<String>(
+    'started_from',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  ).withConverter<PlantingStart>($PlantingsTable.$converterstartedFrom);
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+    'notes',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    gardenId,
+    speciesId,
+    elementId,
+    quantity,
+    plantedOn,
+    startedFrom,
+    notes,
+    createdAt,
+    updatedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'plantings';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<PlantingRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('garden_id')) {
+      context.handle(
+        _gardenIdMeta,
+        gardenId.isAcceptableOrUnknown(data['garden_id']!, _gardenIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_gardenIdMeta);
+    }
+    if (data.containsKey('species_id')) {
+      context.handle(
+        _speciesIdMeta,
+        speciesId.isAcceptableOrUnknown(data['species_id']!, _speciesIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_speciesIdMeta);
+    }
+    if (data.containsKey('element_id')) {
+      context.handle(
+        _elementIdMeta,
+        elementId.isAcceptableOrUnknown(data['element_id']!, _elementIdMeta),
+      );
+    }
+    if (data.containsKey('quantity')) {
+      context.handle(
+        _quantityMeta,
+        quantity.isAcceptableOrUnknown(data['quantity']!, _quantityMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_quantityMeta);
+    }
+    if (data.containsKey('planted_on')) {
+      context.handle(
+        _plantedOnMeta,
+        plantedOn.isAcceptableOrUnknown(data['planted_on']!, _plantedOnMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_plantedOnMeta);
+    }
+    if (data.containsKey('notes')) {
+      context.handle(
+        _notesMeta,
+        notes.isAcceptableOrUnknown(data['notes']!, _notesMeta),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_createdAtMeta);
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_updatedAtMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  PlantingRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return PlantingRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      gardenId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}garden_id'],
+      )!,
+      speciesId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}species_id'],
+      )!,
+      elementId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}element_id'],
+      ),
+      quantity: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}quantity'],
+      )!,
+      plantedOn: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}planted_on'],
+      )!,
+      startedFrom: $PlantingsTable.$converterstartedFrom.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}started_from'],
+        )!,
+      ),
+      notes: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}notes'],
+      ),
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+    );
+  }
+
+  @override
+  $PlantingsTable createAlias(String alias) {
+    return $PlantingsTable(attachedDatabase, alias);
+  }
+
+  static JsonTypeConverter2<PlantingStart, String, String>
+  $converterstartedFrom = const EnumNameConverter<PlantingStart>(
+    PlantingStart.values,
+  );
+}
+
+class PlantingRow extends DataClass implements Insertable<PlantingRow> {
+  final String id;
+  final String gardenId;
+  final String speciesId;
+  final String? elementId;
+  final int quantity;
+
+  /// `yyyy-MM-dd` (a calendar date, not an instant).
+  final String plantedOn;
+  final PlantingStart startedFrom;
+  final String? notes;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  const PlantingRow({
+    required this.id,
+    required this.gardenId,
+    required this.speciesId,
+    this.elementId,
+    required this.quantity,
+    required this.plantedOn,
+    required this.startedFrom,
+    this.notes,
+    required this.createdAt,
+    required this.updatedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['garden_id'] = Variable<String>(gardenId);
+    map['species_id'] = Variable<String>(speciesId);
+    if (!nullToAbsent || elementId != null) {
+      map['element_id'] = Variable<String>(elementId);
+    }
+    map['quantity'] = Variable<int>(quantity);
+    map['planted_on'] = Variable<String>(plantedOn);
+    {
+      map['started_from'] = Variable<String>(
+        $PlantingsTable.$converterstartedFrom.toSql(startedFrom),
+      );
+    }
+    if (!nullToAbsent || notes != null) {
+      map['notes'] = Variable<String>(notes);
+    }
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    return map;
+  }
+
+  PlantingsCompanion toCompanion(bool nullToAbsent) {
+    return PlantingsCompanion(
+      id: Value(id),
+      gardenId: Value(gardenId),
+      speciesId: Value(speciesId),
+      elementId: elementId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(elementId),
+      quantity: Value(quantity),
+      plantedOn: Value(plantedOn),
+      startedFrom: Value(startedFrom),
+      notes: notes == null && nullToAbsent
+          ? const Value.absent()
+          : Value(notes),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+    );
+  }
+
+  factory PlantingRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return PlantingRow(
+      id: serializer.fromJson<String>(json['id']),
+      gardenId: serializer.fromJson<String>(json['gardenId']),
+      speciesId: serializer.fromJson<String>(json['speciesId']),
+      elementId: serializer.fromJson<String?>(json['elementId']),
+      quantity: serializer.fromJson<int>(json['quantity']),
+      plantedOn: serializer.fromJson<String>(json['plantedOn']),
+      startedFrom: $PlantingsTable.$converterstartedFrom.fromJson(
+        serializer.fromJson<String>(json['startedFrom']),
+      ),
+      notes: serializer.fromJson<String?>(json['notes']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'gardenId': serializer.toJson<String>(gardenId),
+      'speciesId': serializer.toJson<String>(speciesId),
+      'elementId': serializer.toJson<String?>(elementId),
+      'quantity': serializer.toJson<int>(quantity),
+      'plantedOn': serializer.toJson<String>(plantedOn),
+      'startedFrom': serializer.toJson<String>(
+        $PlantingsTable.$converterstartedFrom.toJson(startedFrom),
+      ),
+      'notes': serializer.toJson<String?>(notes),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+    };
+  }
+
+  PlantingRow copyWith({
+    String? id,
+    String? gardenId,
+    String? speciesId,
+    Value<String?> elementId = const Value.absent(),
+    int? quantity,
+    String? plantedOn,
+    PlantingStart? startedFrom,
+    Value<String?> notes = const Value.absent(),
+    DateTime? createdAt,
+    DateTime? updatedAt,
+  }) => PlantingRow(
+    id: id ?? this.id,
+    gardenId: gardenId ?? this.gardenId,
+    speciesId: speciesId ?? this.speciesId,
+    elementId: elementId.present ? elementId.value : this.elementId,
+    quantity: quantity ?? this.quantity,
+    plantedOn: plantedOn ?? this.plantedOn,
+    startedFrom: startedFrom ?? this.startedFrom,
+    notes: notes.present ? notes.value : this.notes,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+  );
+  PlantingRow copyWithCompanion(PlantingsCompanion data) {
+    return PlantingRow(
+      id: data.id.present ? data.id.value : this.id,
+      gardenId: data.gardenId.present ? data.gardenId.value : this.gardenId,
+      speciesId: data.speciesId.present ? data.speciesId.value : this.speciesId,
+      elementId: data.elementId.present ? data.elementId.value : this.elementId,
+      quantity: data.quantity.present ? data.quantity.value : this.quantity,
+      plantedOn: data.plantedOn.present ? data.plantedOn.value : this.plantedOn,
+      startedFrom: data.startedFrom.present
+          ? data.startedFrom.value
+          : this.startedFrom,
+      notes: data.notes.present ? data.notes.value : this.notes,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('PlantingRow(')
+          ..write('id: $id, ')
+          ..write('gardenId: $gardenId, ')
+          ..write('speciesId: $speciesId, ')
+          ..write('elementId: $elementId, ')
+          ..write('quantity: $quantity, ')
+          ..write('plantedOn: $plantedOn, ')
+          ..write('startedFrom: $startedFrom, ')
+          ..write('notes: $notes, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    gardenId,
+    speciesId,
+    elementId,
+    quantity,
+    plantedOn,
+    startedFrom,
+    notes,
+    createdAt,
+    updatedAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is PlantingRow &&
+          other.id == this.id &&
+          other.gardenId == this.gardenId &&
+          other.speciesId == this.speciesId &&
+          other.elementId == this.elementId &&
+          other.quantity == this.quantity &&
+          other.plantedOn == this.plantedOn &&
+          other.startedFrom == this.startedFrom &&
+          other.notes == this.notes &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt);
+}
+
+class PlantingsCompanion extends UpdateCompanion<PlantingRow> {
+  final Value<String> id;
+  final Value<String> gardenId;
+  final Value<String> speciesId;
+  final Value<String?> elementId;
+  final Value<int> quantity;
+  final Value<String> plantedOn;
+  final Value<PlantingStart> startedFrom;
+  final Value<String?> notes;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<int> rowid;
+  const PlantingsCompanion({
+    this.id = const Value.absent(),
+    this.gardenId = const Value.absent(),
+    this.speciesId = const Value.absent(),
+    this.elementId = const Value.absent(),
+    this.quantity = const Value.absent(),
+    this.plantedOn = const Value.absent(),
+    this.startedFrom = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  PlantingsCompanion.insert({
+    required String id,
+    required String gardenId,
+    required String speciesId,
+    this.elementId = const Value.absent(),
+    required int quantity,
+    required String plantedOn,
+    required PlantingStart startedFrom,
+    this.notes = const Value.absent(),
+    required DateTime createdAt,
+    required DateTime updatedAt,
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       gardenId = Value(gardenId),
+       speciesId = Value(speciesId),
+       quantity = Value(quantity),
+       plantedOn = Value(plantedOn),
+       startedFrom = Value(startedFrom),
+       createdAt = Value(createdAt),
+       updatedAt = Value(updatedAt);
+  static Insertable<PlantingRow> custom({
+    Expression<String>? id,
+    Expression<String>? gardenId,
+    Expression<String>? speciesId,
+    Expression<String>? elementId,
+    Expression<int>? quantity,
+    Expression<String>? plantedOn,
+    Expression<String>? startedFrom,
+    Expression<String>? notes,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (gardenId != null) 'garden_id': gardenId,
+      if (speciesId != null) 'species_id': speciesId,
+      if (elementId != null) 'element_id': elementId,
+      if (quantity != null) 'quantity': quantity,
+      if (plantedOn != null) 'planted_on': plantedOn,
+      if (startedFrom != null) 'started_from': startedFrom,
+      if (notes != null) 'notes': notes,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  PlantingsCompanion copyWith({
+    Value<String>? id,
+    Value<String>? gardenId,
+    Value<String>? speciesId,
+    Value<String?>? elementId,
+    Value<int>? quantity,
+    Value<String>? plantedOn,
+    Value<PlantingStart>? startedFrom,
+    Value<String?>? notes,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<int>? rowid,
+  }) {
+    return PlantingsCompanion(
+      id: id ?? this.id,
+      gardenId: gardenId ?? this.gardenId,
+      speciesId: speciesId ?? this.speciesId,
+      elementId: elementId ?? this.elementId,
+      quantity: quantity ?? this.quantity,
+      plantedOn: plantedOn ?? this.plantedOn,
+      startedFrom: startedFrom ?? this.startedFrom,
+      notes: notes ?? this.notes,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (gardenId.present) {
+      map['garden_id'] = Variable<String>(gardenId.value);
+    }
+    if (speciesId.present) {
+      map['species_id'] = Variable<String>(speciesId.value);
+    }
+    if (elementId.present) {
+      map['element_id'] = Variable<String>(elementId.value);
+    }
+    if (quantity.present) {
+      map['quantity'] = Variable<int>(quantity.value);
+    }
+    if (plantedOn.present) {
+      map['planted_on'] = Variable<String>(plantedOn.value);
+    }
+    if (startedFrom.present) {
+      map['started_from'] = Variable<String>(
+        $PlantingsTable.$converterstartedFrom.toSql(startedFrom.value),
+      );
+    }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('PlantingsCompanion(')
+          ..write('id: $id, ')
+          ..write('gardenId: $gardenId, ')
+          ..write('speciesId: $speciesId, ')
+          ..write('elementId: $elementId, ')
+          ..write('quantity: $quantity, ')
+          ..write('plantedOn: $plantedOn, ')
+          ..write('startedFrom: $startedFrom, ')
+          ..write('notes: $notes, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $ShortlistEntriesTable extends ShortlistEntries
+    with TableInfo<$ShortlistEntriesTable, ShortlistRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $ShortlistEntriesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _gardenIdMeta = const VerificationMeta(
+    'gardenId',
+  );
+  @override
+  late final GeneratedColumn<String> gardenId = GeneratedColumn<String>(
+    'garden_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES gardens (id) ON DELETE CASCADE',
+    ),
+  );
+  static const VerificationMeta _speciesIdMeta = const VerificationMeta(
+    'speciesId',
+  );
+  @override
+  late final GeneratedColumn<String> speciesId = GeneratedColumn<String>(
+    'species_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [gardenId, speciesId, createdAt];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'shortlist_entries';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<ShortlistRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('garden_id')) {
+      context.handle(
+        _gardenIdMeta,
+        gardenId.isAcceptableOrUnknown(data['garden_id']!, _gardenIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_gardenIdMeta);
+    }
+    if (data.containsKey('species_id')) {
+      context.handle(
+        _speciesIdMeta,
+        speciesId.isAcceptableOrUnknown(data['species_id']!, _speciesIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_speciesIdMeta);
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_createdAtMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {gardenId, speciesId};
+  @override
+  ShortlistRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return ShortlistRow(
+      gardenId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}garden_id'],
+      )!,
+      speciesId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}species_id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+    );
+  }
+
+  @override
+  $ShortlistEntriesTable createAlias(String alias) {
+    return $ShortlistEntriesTable(attachedDatabase, alias);
+  }
+}
+
+class ShortlistRow extends DataClass implements Insertable<ShortlistRow> {
+  final String gardenId;
+  final String speciesId;
+  final DateTime createdAt;
+  const ShortlistRow({
+    required this.gardenId,
+    required this.speciesId,
+    required this.createdAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['garden_id'] = Variable<String>(gardenId);
+    map['species_id'] = Variable<String>(speciesId);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    return map;
+  }
+
+  ShortlistEntriesCompanion toCompanion(bool nullToAbsent) {
+    return ShortlistEntriesCompanion(
+      gardenId: Value(gardenId),
+      speciesId: Value(speciesId),
+      createdAt: Value(createdAt),
+    );
+  }
+
+  factory ShortlistRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return ShortlistRow(
+      gardenId: serializer.fromJson<String>(json['gardenId']),
+      speciesId: serializer.fromJson<String>(json['speciesId']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'gardenId': serializer.toJson<String>(gardenId),
+      'speciesId': serializer.toJson<String>(speciesId),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+    };
+  }
+
+  ShortlistRow copyWith({
+    String? gardenId,
+    String? speciesId,
+    DateTime? createdAt,
+  }) => ShortlistRow(
+    gardenId: gardenId ?? this.gardenId,
+    speciesId: speciesId ?? this.speciesId,
+    createdAt: createdAt ?? this.createdAt,
+  );
+  ShortlistRow copyWithCompanion(ShortlistEntriesCompanion data) {
+    return ShortlistRow(
+      gardenId: data.gardenId.present ? data.gardenId.value : this.gardenId,
+      speciesId: data.speciesId.present ? data.speciesId.value : this.speciesId,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ShortlistRow(')
+          ..write('gardenId: $gardenId, ')
+          ..write('speciesId: $speciesId, ')
+          ..write('createdAt: $createdAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(gardenId, speciesId, createdAt);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is ShortlistRow &&
+          other.gardenId == this.gardenId &&
+          other.speciesId == this.speciesId &&
+          other.createdAt == this.createdAt);
+}
+
+class ShortlistEntriesCompanion extends UpdateCompanion<ShortlistRow> {
+  final Value<String> gardenId;
+  final Value<String> speciesId;
+  final Value<DateTime> createdAt;
+  final Value<int> rowid;
+  const ShortlistEntriesCompanion({
+    this.gardenId = const Value.absent(),
+    this.speciesId = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  ShortlistEntriesCompanion.insert({
+    required String gardenId,
+    required String speciesId,
+    required DateTime createdAt,
+    this.rowid = const Value.absent(),
+  }) : gardenId = Value(gardenId),
+       speciesId = Value(speciesId),
+       createdAt = Value(createdAt);
+  static Insertable<ShortlistRow> custom({
+    Expression<String>? gardenId,
+    Expression<String>? speciesId,
+    Expression<DateTime>? createdAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (gardenId != null) 'garden_id': gardenId,
+      if (speciesId != null) 'species_id': speciesId,
+      if (createdAt != null) 'created_at': createdAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  ShortlistEntriesCompanion copyWith({
+    Value<String>? gardenId,
+    Value<String>? speciesId,
+    Value<DateTime>? createdAt,
+    Value<int>? rowid,
+  }) {
+    return ShortlistEntriesCompanion(
+      gardenId: gardenId ?? this.gardenId,
+      speciesId: speciesId ?? this.speciesId,
+      createdAt: createdAt ?? this.createdAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (gardenId.present) {
+      map['garden_id'] = Variable<String>(gardenId.value);
+    }
+    if (speciesId.present) {
+      map['species_id'] = Variable<String>(speciesId.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ShortlistEntriesCompanion(')
+          ..write('gardenId: $gardenId, ')
+          ..write('speciesId: $speciesId, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
   late final $GardensTable gardens = $GardensTable(this);
   late final $GardenPhotosTable gardenPhotos = $GardenPhotosTable(this);
   late final $LayoutElementsTable layoutElements = $LayoutElementsTable(this);
+  late final $PlantingsTable plantings = $PlantingsTable(this);
+  late final $ShortlistEntriesTable shortlistEntries = $ShortlistEntriesTable(
+    this,
+  );
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -2398,6 +3296,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     gardens,
     gardenPhotos,
     layoutElements,
+    plantings,
+    shortlistEntries,
   ];
   @override
   StreamQueryUpdateRules get streamUpdateRules => const StreamQueryUpdateRules([
@@ -2414,6 +3314,20 @@ abstract class _$AppDatabase extends GeneratedDatabase {
         limitUpdateKind: UpdateKind.delete,
       ),
       result: [TableUpdate('layout_elements', kind: UpdateKind.delete)],
+    ),
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
+        'gardens',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('plantings', kind: UpdateKind.delete)],
+    ),
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
+        'gardens',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('shortlist_entries', kind: UpdateKind.delete)],
     ),
   ]);
   @override
@@ -2505,6 +3419,47 @@ final class $$GardensTableReferences
     ).filter((f) => f.gardenId.id.sqlEquals($_itemColumn<String>('id')!));
 
     final cache = $_typedResult.readTableOrNull(_layoutElementsRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<$PlantingsTable, List<PlantingRow>>
+  _plantingsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.plantings,
+    aliasName: $_aliasNameGenerator(db.gardens.id, db.plantings.gardenId),
+  );
+
+  $$PlantingsTableProcessedTableManager get plantingsRefs {
+    final manager = $$PlantingsTableTableManager(
+      $_db,
+      $_db.plantings,
+    ).filter((f) => f.gardenId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_plantingsRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<$ShortlistEntriesTable, List<ShortlistRow>>
+  _shortlistEntriesRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.shortlistEntries,
+    aliasName: $_aliasNameGenerator(
+      db.gardens.id,
+      db.shortlistEntries.gardenId,
+    ),
+  );
+
+  $$ShortlistEntriesTableProcessedTableManager get shortlistEntriesRefs {
+    final manager = $$ShortlistEntriesTableTableManager(
+      $_db,
+      $_db.shortlistEntries,
+    ).filter((f) => f.gardenId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _shortlistEntriesRefsTable($_db),
+    );
     return ProcessedTableManager(
       manager.$state.copyWith(prefetchedData: cache),
     );
@@ -2671,6 +3626,56 @@ class $$GardensTableFilterComposer
           }) => $$LayoutElementsTableFilterComposer(
             $db: $db,
             $table: $db.layoutElements,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> plantingsRefs(
+    Expression<bool> Function($$PlantingsTableFilterComposer f) f,
+  ) {
+    final $$PlantingsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.plantings,
+      getReferencedColumn: (t) => t.gardenId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PlantingsTableFilterComposer(
+            $db: $db,
+            $table: $db.plantings,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> shortlistEntriesRefs(
+    Expression<bool> Function($$ShortlistEntriesTableFilterComposer f) f,
+  ) {
+    final $$ShortlistEntriesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.shortlistEntries,
+      getReferencedColumn: (t) => t.gardenId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ShortlistEntriesTableFilterComposer(
+            $db: $db,
+            $table: $db.shortlistEntries,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
@@ -2917,6 +3922,56 @@ class $$GardensTableAnnotationComposer
     );
     return f(composer);
   }
+
+  Expression<T> plantingsRefs<T extends Object>(
+    Expression<T> Function($$PlantingsTableAnnotationComposer a) f,
+  ) {
+    final $$PlantingsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.plantings,
+      getReferencedColumn: (t) => t.gardenId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PlantingsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.plantings,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<T> shortlistEntriesRefs<T extends Object>(
+    Expression<T> Function($$ShortlistEntriesTableAnnotationComposer a) f,
+  ) {
+    final $$ShortlistEntriesTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.shortlistEntries,
+      getReferencedColumn: (t) => t.gardenId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ShortlistEntriesTableAnnotationComposer(
+            $db: $db,
+            $table: $db.shortlistEntries,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
 }
 
 class $$GardensTableTableManager
@@ -2935,6 +3990,8 @@ class $$GardensTableTableManager
           PrefetchHooks Function({
             bool gardenPhotosRefs,
             bool layoutElementsRefs,
+            bool plantingsRefs,
+            bool shortlistEntriesRefs,
           })
         > {
   $$GardensTableTableManager(_$AppDatabase db, $GardensTable table)
@@ -3049,12 +4106,19 @@ class $$GardensTableTableManager
               )
               .toList(),
           prefetchHooksCallback:
-              ({gardenPhotosRefs = false, layoutElementsRefs = false}) {
+              ({
+                gardenPhotosRefs = false,
+                layoutElementsRefs = false,
+                plantingsRefs = false,
+                shortlistEntriesRefs = false,
+              }) {
                 return PrefetchHooks(
                   db: db,
                   explicitlyWatchedTables: [
                     if (gardenPhotosRefs) db.gardenPhotos,
                     if (layoutElementsRefs) db.layoutElements,
+                    if (plantingsRefs) db.plantings,
+                    if (shortlistEntriesRefs) db.shortlistEntries,
                   ],
                   addJoins: null,
                   getPrefetchedDataCallback: (items) async {
@@ -3101,6 +4165,48 @@ class $$GardensTableTableManager
                               ),
                           typedResults: items,
                         ),
+                      if (plantingsRefs)
+                        await $_getPrefetchedData<
+                          GardenRow,
+                          $GardensTable,
+                          PlantingRow
+                        >(
+                          currentTable: table,
+                          referencedTable: $$GardensTableReferences
+                              ._plantingsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$GardensTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).plantingsRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.gardenId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                      if (shortlistEntriesRefs)
+                        await $_getPrefetchedData<
+                          GardenRow,
+                          $GardensTable,
+                          ShortlistRow
+                        >(
+                          currentTable: table,
+                          referencedTable: $$GardensTableReferences
+                              ._shortlistEntriesRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$GardensTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).shortlistEntriesRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.gardenId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
                     ];
                   },
                 );
@@ -3121,7 +4227,12 @@ typedef $$GardensTableProcessedTableManager =
       $$GardensTableUpdateCompanionBuilder,
       (GardenRow, $$GardensTableReferences),
       GardenRow,
-      PrefetchHooks Function({bool gardenPhotosRefs, bool layoutElementsRefs})
+      PrefetchHooks Function({
+        bool gardenPhotosRefs,
+        bool layoutElementsRefs,
+        bool plantingsRefs,
+        bool shortlistEntriesRefs,
+      })
     >;
 typedef $$GardenPhotosTableCreateCompanionBuilder =
     GardenPhotosCompanion Function({
@@ -3966,6 +5077,712 @@ typedef $$LayoutElementsTableProcessedTableManager =
       LayoutElementRow,
       PrefetchHooks Function({bool gardenId})
     >;
+typedef $$PlantingsTableCreateCompanionBuilder =
+    PlantingsCompanion Function({
+      required String id,
+      required String gardenId,
+      required String speciesId,
+      Value<String?> elementId,
+      required int quantity,
+      required String plantedOn,
+      required PlantingStart startedFrom,
+      Value<String?> notes,
+      required DateTime createdAt,
+      required DateTime updatedAt,
+      Value<int> rowid,
+    });
+typedef $$PlantingsTableUpdateCompanionBuilder =
+    PlantingsCompanion Function({
+      Value<String> id,
+      Value<String> gardenId,
+      Value<String> speciesId,
+      Value<String?> elementId,
+      Value<int> quantity,
+      Value<String> plantedOn,
+      Value<PlantingStart> startedFrom,
+      Value<String?> notes,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<int> rowid,
+    });
+
+final class $$PlantingsTableReferences
+    extends BaseReferences<_$AppDatabase, $PlantingsTable, PlantingRow> {
+  $$PlantingsTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static $GardensTable _gardenIdTable(_$AppDatabase db) => db.gardens
+      .createAlias($_aliasNameGenerator(db.plantings.gardenId, db.gardens.id));
+
+  $$GardensTableProcessedTableManager get gardenId {
+    final $_column = $_itemColumn<String>('garden_id')!;
+
+    final manager = $$GardensTableTableManager(
+      $_db,
+      $_db.gardens,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_gardenIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$PlantingsTableFilterComposer
+    extends Composer<_$AppDatabase, $PlantingsTable> {
+  $$PlantingsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get speciesId => $composableBuilder(
+    column: $table.speciesId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get elementId => $composableBuilder(
+    column: $table.elementId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get quantity => $composableBuilder(
+    column: $table.quantity,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get plantedOn => $composableBuilder(
+    column: $table.plantedOn,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<PlantingStart, PlantingStart, String>
+  get startedFrom => $composableBuilder(
+    column: $table.startedFrom,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  ColumnFilters<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$GardensTableFilterComposer get gardenId {
+    final $$GardensTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.gardenId,
+      referencedTable: $db.gardens,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$GardensTableFilterComposer(
+            $db: $db,
+            $table: $db.gardens,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$PlantingsTableOrderingComposer
+    extends Composer<_$AppDatabase, $PlantingsTable> {
+  $$PlantingsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get speciesId => $composableBuilder(
+    column: $table.speciesId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get elementId => $composableBuilder(
+    column: $table.elementId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get quantity => $composableBuilder(
+    column: $table.quantity,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get plantedOn => $composableBuilder(
+    column: $table.plantedOn,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get startedFrom => $composableBuilder(
+    column: $table.startedFrom,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$GardensTableOrderingComposer get gardenId {
+    final $$GardensTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.gardenId,
+      referencedTable: $db.gardens,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$GardensTableOrderingComposer(
+            $db: $db,
+            $table: $db.gardens,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$PlantingsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $PlantingsTable> {
+  $$PlantingsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get speciesId =>
+      $composableBuilder(column: $table.speciesId, builder: (column) => column);
+
+  GeneratedColumn<String> get elementId =>
+      $composableBuilder(column: $table.elementId, builder: (column) => column);
+
+  GeneratedColumn<int> get quantity =>
+      $composableBuilder(column: $table.quantity, builder: (column) => column);
+
+  GeneratedColumn<String> get plantedOn =>
+      $composableBuilder(column: $table.plantedOn, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<PlantingStart, String> get startedFrom =>
+      $composableBuilder(
+        column: $table.startedFrom,
+        builder: (column) => column,
+      );
+
+  GeneratedColumn<String> get notes =>
+      $composableBuilder(column: $table.notes, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  $$GardensTableAnnotationComposer get gardenId {
+    final $$GardensTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.gardenId,
+      referencedTable: $db.gardens,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$GardensTableAnnotationComposer(
+            $db: $db,
+            $table: $db.gardens,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$PlantingsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $PlantingsTable,
+          PlantingRow,
+          $$PlantingsTableFilterComposer,
+          $$PlantingsTableOrderingComposer,
+          $$PlantingsTableAnnotationComposer,
+          $$PlantingsTableCreateCompanionBuilder,
+          $$PlantingsTableUpdateCompanionBuilder,
+          (PlantingRow, $$PlantingsTableReferences),
+          PlantingRow,
+          PrefetchHooks Function({bool gardenId})
+        > {
+  $$PlantingsTableTableManager(_$AppDatabase db, $PlantingsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$PlantingsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$PlantingsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$PlantingsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> gardenId = const Value.absent(),
+                Value<String> speciesId = const Value.absent(),
+                Value<String?> elementId = const Value.absent(),
+                Value<int> quantity = const Value.absent(),
+                Value<String> plantedOn = const Value.absent(),
+                Value<PlantingStart> startedFrom = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => PlantingsCompanion(
+                id: id,
+                gardenId: gardenId,
+                speciesId: speciesId,
+                elementId: elementId,
+                quantity: quantity,
+                plantedOn: plantedOn,
+                startedFrom: startedFrom,
+                notes: notes,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String gardenId,
+                required String speciesId,
+                Value<String?> elementId = const Value.absent(),
+                required int quantity,
+                required String plantedOn,
+                required PlantingStart startedFrom,
+                Value<String?> notes = const Value.absent(),
+                required DateTime createdAt,
+                required DateTime updatedAt,
+                Value<int> rowid = const Value.absent(),
+              }) => PlantingsCompanion.insert(
+                id: id,
+                gardenId: gardenId,
+                speciesId: speciesId,
+                elementId: elementId,
+                quantity: quantity,
+                plantedOn: plantedOn,
+                startedFrom: startedFrom,
+                notes: notes,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $$PlantingsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({gardenId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (gardenId) {
+                      state =
+                          state.withJoin(
+                                currentTable: table,
+                                currentColumn: table.gardenId,
+                                referencedTable: $$PlantingsTableReferences
+                                    ._gardenIdTable(db),
+                                referencedColumn: $$PlantingsTableReferences
+                                    ._gardenIdTable(db)
+                                    .id,
+                              )
+                              as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$PlantingsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $PlantingsTable,
+      PlantingRow,
+      $$PlantingsTableFilterComposer,
+      $$PlantingsTableOrderingComposer,
+      $$PlantingsTableAnnotationComposer,
+      $$PlantingsTableCreateCompanionBuilder,
+      $$PlantingsTableUpdateCompanionBuilder,
+      (PlantingRow, $$PlantingsTableReferences),
+      PlantingRow,
+      PrefetchHooks Function({bool gardenId})
+    >;
+typedef $$ShortlistEntriesTableCreateCompanionBuilder =
+    ShortlistEntriesCompanion Function({
+      required String gardenId,
+      required String speciesId,
+      required DateTime createdAt,
+      Value<int> rowid,
+    });
+typedef $$ShortlistEntriesTableUpdateCompanionBuilder =
+    ShortlistEntriesCompanion Function({
+      Value<String> gardenId,
+      Value<String> speciesId,
+      Value<DateTime> createdAt,
+      Value<int> rowid,
+    });
+
+final class $$ShortlistEntriesTableReferences
+    extends
+        BaseReferences<_$AppDatabase, $ShortlistEntriesTable, ShortlistRow> {
+  $$ShortlistEntriesTableReferences(
+    super.$_db,
+    super.$_table,
+    super.$_typedResult,
+  );
+
+  static $GardensTable _gardenIdTable(_$AppDatabase db) =>
+      db.gardens.createAlias(
+        $_aliasNameGenerator(db.shortlistEntries.gardenId, db.gardens.id),
+      );
+
+  $$GardensTableProcessedTableManager get gardenId {
+    final $_column = $_itemColumn<String>('garden_id')!;
+
+    final manager = $$GardensTableTableManager(
+      $_db,
+      $_db.gardens,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_gardenIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$ShortlistEntriesTableFilterComposer
+    extends Composer<_$AppDatabase, $ShortlistEntriesTable> {
+  $$ShortlistEntriesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get speciesId => $composableBuilder(
+    column: $table.speciesId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$GardensTableFilterComposer get gardenId {
+    final $$GardensTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.gardenId,
+      referencedTable: $db.gardens,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$GardensTableFilterComposer(
+            $db: $db,
+            $table: $db.gardens,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ShortlistEntriesTableOrderingComposer
+    extends Composer<_$AppDatabase, $ShortlistEntriesTable> {
+  $$ShortlistEntriesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get speciesId => $composableBuilder(
+    column: $table.speciesId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$GardensTableOrderingComposer get gardenId {
+    final $$GardensTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.gardenId,
+      referencedTable: $db.gardens,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$GardensTableOrderingComposer(
+            $db: $db,
+            $table: $db.gardens,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ShortlistEntriesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $ShortlistEntriesTable> {
+  $$ShortlistEntriesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get speciesId =>
+      $composableBuilder(column: $table.speciesId, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  $$GardensTableAnnotationComposer get gardenId {
+    final $$GardensTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.gardenId,
+      referencedTable: $db.gardens,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$GardensTableAnnotationComposer(
+            $db: $db,
+            $table: $db.gardens,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ShortlistEntriesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $ShortlistEntriesTable,
+          ShortlistRow,
+          $$ShortlistEntriesTableFilterComposer,
+          $$ShortlistEntriesTableOrderingComposer,
+          $$ShortlistEntriesTableAnnotationComposer,
+          $$ShortlistEntriesTableCreateCompanionBuilder,
+          $$ShortlistEntriesTableUpdateCompanionBuilder,
+          (ShortlistRow, $$ShortlistEntriesTableReferences),
+          ShortlistRow,
+          PrefetchHooks Function({bool gardenId})
+        > {
+  $$ShortlistEntriesTableTableManager(
+    _$AppDatabase db,
+    $ShortlistEntriesTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$ShortlistEntriesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$ShortlistEntriesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$ShortlistEntriesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> gardenId = const Value.absent(),
+                Value<String> speciesId = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => ShortlistEntriesCompanion(
+                gardenId: gardenId,
+                speciesId: speciesId,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String gardenId,
+                required String speciesId,
+                required DateTime createdAt,
+                Value<int> rowid = const Value.absent(),
+              }) => ShortlistEntriesCompanion.insert(
+                gardenId: gardenId,
+                speciesId: speciesId,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $$ShortlistEntriesTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({gardenId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (gardenId) {
+                      state =
+                          state.withJoin(
+                                currentTable: table,
+                                currentColumn: table.gardenId,
+                                referencedTable:
+                                    $$ShortlistEntriesTableReferences
+                                        ._gardenIdTable(db),
+                                referencedColumn:
+                                    $$ShortlistEntriesTableReferences
+                                        ._gardenIdTable(db)
+                                        .id,
+                              )
+                              as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$ShortlistEntriesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $ShortlistEntriesTable,
+      ShortlistRow,
+      $$ShortlistEntriesTableFilterComposer,
+      $$ShortlistEntriesTableOrderingComposer,
+      $$ShortlistEntriesTableAnnotationComposer,
+      $$ShortlistEntriesTableCreateCompanionBuilder,
+      $$ShortlistEntriesTableUpdateCompanionBuilder,
+      (ShortlistRow, $$ShortlistEntriesTableReferences),
+      ShortlistRow,
+      PrefetchHooks Function({bool gardenId})
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -3976,4 +5793,8 @@ class $AppDatabaseManager {
       $$GardenPhotosTableTableManager(_db, _db.gardenPhotos);
   $$LayoutElementsTableTableManager get layoutElements =>
       $$LayoutElementsTableTableManager(_db, _db.layoutElements);
+  $$PlantingsTableTableManager get plantings =>
+      $$PlantingsTableTableManager(_db, _db.plantings);
+  $$ShortlistEntriesTableTableManager get shortlistEntries =>
+      $$ShortlistEntriesTableTableManager(_db, _db.shortlistEntries);
 }

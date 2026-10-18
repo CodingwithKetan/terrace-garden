@@ -158,3 +158,12 @@ Change process: add a new ADR (or mark one *Superseded by ADR-0xx*) instead of s
 
 ## ADR-020: Weather (future): Open-Meteo behind `WeatherService`
 - **Decision:** use Open-Meteo for development and any free, ad-free distribution, with CC BY 4.0 attribution. Its free API terms forbid commercial use (subscriptions or ads), so budget for its paid plan or proxy it through an Edge Function with caching before monetising. Coarse, city-level location only.
+
+## ADR-021: Plant catalogue bundled as validated JSON, read into memory (Phase 4)
+- **Context:** the plan (P4-01) was a versioned import into drift with an FTS5 index. The MVP catalogue has 25 species (~40 KB), is read-only, and every fact must cite a verified source.
+- **Decision:** ship the catalogue as `assets/catalogue/plants.json` and `sources.json`, parse it with a strict `CatalogueParser`, and hold it in memory (`plantCatalogueProvider`, keep-alive). Search is a case-insensitive match on common, local and scientific names.
+  - Strict parsing rejects: unknown enum values, duplicate ids, citations missing from `sources.json`, facts without sources, figures on records marked unverified, months outside 1–12 and reversed ranges.
+  - `catalogue_test` validates the real assets in CI. Every cited source must be in the provenance register (`gardening-references.md` §1) with fetch status F.
+  - User data that refers to species (`plantings`, `shortlist_entries`) stores the species id as plain text; there is no catalogue table to join.
+- **Consequences:** no import, versioning or migration code for catalogue content; an update is an app release. Revisit with the drift import plus FTS5 when the catalogue exceeds a few hundred species, needs remote updates, or needs localised name search (Hindi names).
+- **Unknown data:** null values mean "Not documented" in the UI and "unknown" in recommendations, never a default.

@@ -44,13 +44,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'Describe your space, add photos and keep everything about your terrace in one place.';
 
   @override
-  String get plantsEmptyTitle => 'Plants that suit your space';
-
-  @override
-  String get plantsEmptyBody =>
-      'A catalogue of container plants for Indian terraces is on its way, with sources for every recommendation.';
-
-  @override
   String get journalEmptyTitle => 'Watch your garden grow';
 
   @override
@@ -885,4 +878,445 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get loadingLabel => 'Loading';
+
+  @override
+  String get plantsTitle => 'Plants';
+
+  @override
+  String get plantsSearchHint => 'Search, e.g. bhindi or tulsi';
+
+  @override
+  String get plantsFilterAll => 'All';
+
+  @override
+  String get categoryVegetable => 'Vegetables';
+
+  @override
+  String get categoryLeafyGreen => 'Leafy greens';
+
+  @override
+  String get categoryHerb => 'Herbs';
+
+  @override
+  String get categoryClimber => 'Climbers';
+
+  @override
+  String get categoryFlower => 'Flowers';
+
+  @override
+  String get categoryOrnamental => 'Ornamentals';
+
+  @override
+  String get plantsNoResults => 'No plants match your search';
+
+  @override
+  String get plantsNoResultsBody =>
+      'Try a common name, a local name or a different category.';
+
+  @override
+  String get plantsCatalogueNote =>
+      'Every fact is linked to its source. Anything not documented is shown as such, never guessed.';
+
+  @override
+  String plantsIdeasFor(String garden) {
+    return 'Ideas for $garden';
+  }
+
+  @override
+  String get plantsIdeasSubtitle =>
+      'Ranked for your space, season and containers';
+
+  @override
+  String get lifecycleAnnual => 'Annual';
+
+  @override
+  String get lifecyclePerennial => 'Perennial';
+
+  @override
+  String get dataStatusVerified => 'Well sourced';
+
+  @override
+  String get dataStatusPartial => 'Partly documented';
+
+  @override
+  String get dataStatusUnverified => 'Few sourced facts';
+
+  @override
+  String get notDocumented => 'Not documented';
+
+  @override
+  String get plantSectionSun => 'Sunlight';
+
+  @override
+  String get sunFull => 'Full sun';
+
+  @override
+  String sunFullHours(int hours) {
+    return 'Full sun, at least $hours hours a day';
+  }
+
+  @override
+  String get sunPartial => 'Tolerates partial shade';
+
+  @override
+  String sunPartialHours(int hours) {
+    return 'Sun or partial shade, at least $hours hours of direct sun';
+  }
+
+  @override
+  String get sunIndirect => 'Bright indirect light';
+
+  @override
+  String get plantSectionContainer => 'Container';
+
+  @override
+  String get containerMinSoil => 'Minimum soil';
+
+  @override
+  String get containerRecommendedSoil => 'Recommended soil';
+
+  @override
+  String get containerMinDepth => 'Minimum depth';
+
+  @override
+  String get containerRecommendedDepth => 'Recommended depth';
+
+  @override
+  String get containerPlantsPer => 'Plants per minimum container';
+
+  @override
+  String get evidenceVerified => 'Sourced';
+
+  @override
+  String get evidenceProxy => 'Based on a similar crop';
+
+  @override
+  String get evidenceUnverified => 'Size not documented';
+
+  @override
+  String get plantSectionHarvest => 'Time to first harvest';
+
+  @override
+  String harvestDays(int min, int max) {
+    return '$min–$max days';
+  }
+
+  @override
+  String harvestDaysSingle(int days) {
+    return 'About $days days';
+  }
+
+  @override
+  String get plantSectionSowing => 'Sowing or planting months';
+
+  @override
+  String get sowingYearRound => 'All year';
+
+  @override
+  String sowingFallback(String state, String region) {
+    return 'No $state table for this plant; showing $region months.';
+  }
+
+  @override
+  String get sowingNone => 'No sourced sowing calendar for this plant.';
+
+  @override
+  String get plantSectionPropagation => 'How to start';
+
+  @override
+  String get propagationTransplant => 'Raise seedlings, then transplant';
+
+  @override
+  String get propagationDirect => 'Sow directly in the container';
+
+  @override
+  String get propagationSeed => 'From seed';
+
+  @override
+  String get propagationDivision => 'By dividing a clump';
+
+  @override
+  String get propagationCutting => 'From cuttings';
+
+  @override
+  String propagationNursery(int min, int max) {
+    return 'Transplant after $min–$max days in a nursery tray';
+  }
+
+  @override
+  String get plantSectionCare => 'Care notes';
+
+  @override
+  String get plantSectionPets => 'Pets';
+
+  @override
+  String get petToxic => 'Toxic to pets';
+
+  @override
+  String get petNonToxic => 'Listed as non-toxic to pets';
+
+  @override
+  String get petNotAssessed => 'Not assessed';
+
+  @override
+  String get petScopeNote =>
+      'Pet data is from the ASPCA and does not cover children. If a person or pet eats a plant, contact a doctor or vet.';
+
+  @override
+  String get plantSectionSources => 'Sources';
+
+  @override
+  String get plantSourcesNote =>
+      'Facts are summarised from these publications.';
+
+  @override
+  String get plantAddToGarden => 'Add to a garden';
+
+  @override
+  String get plantNotFound => 'This plant is no longer in the catalogue.';
+
+  @override
+  String get recTitle => 'Plant ideas';
+
+  @override
+  String recSubtitle(String garden, String month) {
+    return 'For $garden in $month';
+  }
+
+  @override
+  String get recDisclaimer =>
+      'Ranked from your garden profile and sourced plant data. A starting point, not a promise of success.';
+
+  @override
+  String get recCompleteProfile =>
+      'Add your sun hours and city to sharpen these ideas.';
+
+  @override
+  String get recGroupGoodNow => 'Good choices now';
+
+  @override
+  String get recGroupLater => 'Good fit, sow later';
+
+  @override
+  String get recGroupNotSuited => 'Not a good fit here';
+
+  @override
+  String get recSunMatches => 'Light suits your space';
+
+  @override
+  String get recSunNeedsMore => 'Needs 6+ hours of sun; your space gets 3–6';
+
+  @override
+  String get recSunTooShady => 'Your space gets under 3 hours of sun';
+
+  @override
+  String get recSunPrefersIndirect =>
+      'Prefers bright indirect light to strong sun';
+
+  @override
+  String get recSunGardenUnknown => 'Add your sun hours to check light';
+
+  @override
+  String get recSunSpeciesUnknown => 'Light needs not documented';
+
+  @override
+  String get recSowNow => 'Sow now';
+
+  @override
+  String recSowSoon(String month) {
+    return 'Sow from $month';
+  }
+
+  @override
+  String recSowLater(String month) {
+    return 'Next sowing: $month';
+  }
+
+  @override
+  String get recNoRegion => 'No sourced sowing calendar for your city yet';
+
+  @override
+  String get recNoSeasonData => 'No sowing data for your region';
+
+  @override
+  String recContainerFits(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count of your containers are big enough',
+      one: '1 of your containers is big enough',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get recContainerTooSmall =>
+      'None of your containers is big enough yet';
+
+  @override
+  String get recNoContainers => 'Add containers in the designer to check size';
+
+  @override
+  String get recContainerUnknown => 'Container size not documented';
+
+  @override
+  String get recGoalMatch => 'Matches your goals';
+
+  @override
+  String get caveatContainerProxy => 'Container size from a similar crop';
+
+  @override
+  String get caveatRegionFallback => 'Uses broader regional sowing data';
+
+  @override
+  String get caveatPetToxic => 'Toxic to pets';
+
+  @override
+  String get caveatIncomplete => 'Some details not documented';
+
+  @override
+  String get recShortlistAdd => 'Save to shortlist';
+
+  @override
+  String get recShortlistRemove => 'Remove from shortlist';
+
+  @override
+  String get recShortlistOnly => 'Shortlist';
+
+  @override
+  String get recShortlistEmpty =>
+      'Nothing shortlisted yet. Tap the bookmark on any idea to save it.';
+
+  @override
+  String plantingAddTitle(String plant) {
+    return 'Add $plant';
+  }
+
+  @override
+  String plantingEditTitle(String plant) {
+    return 'Edit $plant';
+  }
+
+  @override
+  String get plantingGarden => 'Garden';
+
+  @override
+  String get plantingContainer => 'Container';
+
+  @override
+  String get plantingNotPlaced => 'Not placed yet';
+
+  @override
+  String get plantingQuantity => 'Number of plants';
+
+  @override
+  String get plantingPlantedOn => 'Planted on';
+
+  @override
+  String get plantingStartedFrom => 'Started from';
+
+  @override
+  String get startSeed => 'Seed';
+
+  @override
+  String get startSeedling => 'Seedling';
+
+  @override
+  String get startCutting => 'Cutting';
+
+  @override
+  String get startPlant => 'Grown plant';
+
+  @override
+  String get plantingNotes => 'Notes (optional)';
+
+  @override
+  String get plantingSave => 'Add planting';
+
+  @override
+  String get plantingUpdate => 'Save changes';
+
+  @override
+  String plantingAdded(String plant, String garden) {
+    return '$plant added to $garden';
+  }
+
+  @override
+  String get plantingNoGardens =>
+      'Create a garden first, then add plants to it.';
+
+  @override
+  String plantingIssueLowVolume(String actual, String required) {
+    return 'This container holds about $actual; this plant needs at least $required.';
+  }
+
+  @override
+  String plantingIssueShallow(String actual, String required) {
+    return 'This container is $actual deep; this plant needs at least $required.';
+  }
+
+  @override
+  String plantingIssueCrowded(int capacity) {
+    return 'Rough guide: about $capacity of these plants fit this container (scaled from the source\'s per-container figure).';
+  }
+
+  @override
+  String plantingIssueShared(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count other plantings already use this container.',
+      one: '1 other planting already uses this container.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get plantingIssueNoDepth =>
+      'Set this container\'s soil depth in the designer to check its size.';
+
+  @override
+  String get quantityDecrease => 'Fewer';
+
+  @override
+  String get quantityIncrease => 'More';
+
+  @override
+  String get myPlantsTitle => 'My plants';
+
+  @override
+  String get myPlantsEmpty => 'No plants yet. Find ideas that suit this space.';
+
+  @override
+  String plantingSummary(int count, String date) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count plants',
+      one: '1 plant',
+    );
+    return '$_temp0 · since $date';
+  }
+
+  @override
+  String get plantingContainerMissing =>
+      'Its container was removed from the layout';
+
+  @override
+  String get plantingRemove => 'Remove planting';
+
+  @override
+  String plantingRemoveTitle(String plant) {
+    return 'Remove $plant?';
+  }
+
+  @override
+  String get plantingRemoveBody =>
+      'This removes the planting from this garden.';
+
+  @override
+  String get plantingRemoved => 'Planting removed';
+
+  @override
+  String get plantingUnknownSpecies => 'Unknown plant';
 }

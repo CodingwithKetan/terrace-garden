@@ -4,11 +4,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:terrace_garden/app/app.dart';
 
-/// P2-08: onboarding → garden created → app restarted → garden still there.
+/// P2-08 + P4: onboarding → garden created → plant added from the ideas
+/// screen → app restarted → garden and planting still there.
 ///
-/// Runs against the real database and storage on a device or emulator.
-/// Start from a clean install (`adb shell pm clear <package>`), because
-/// onboarding only appears on first launch.
+/// Runs against the real database, storage and bundled catalogue on a device
+/// or emulator. Onboarding only appears on first launch, so the app must not
+/// already be installed with data (e.g. from `flutter run`); uninstall it
+/// first. `flutter test` removes the app after each run.
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
@@ -24,7 +26,13 @@ void main() {
     await tester.pumpAndSettle();
 
     await tester.enterText(find.byType(TextFormField).first, 'Rooftop test');
+    // Close the keyboard so it doesn't cover the space-type chips.
+    FocusManager.instance.primaryFocus?.unfocus();
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.text('Rooftop'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Rooftop'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Continue'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Skip'));
@@ -34,6 +42,16 @@ void main() {
     await tester.tap(find.text('Create my garden'));
     await pumpUntilFound(tester, find.text('Your space'));
 
+    // P4: the bundled catalogue loads on the device and a planting saves.
+    await tester.tap(find.text('Plant ideas').first);
+    await pumpUntilFound(tester, find.text('Good choices now'));
+    await tester.tap(find.text('Add to a garden').first);
+    await pumpUntilFound(tester, find.text('Add planting'));
+    await tester.ensureVisible(find.text('Add planting'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Add planting'));
+    await pumpUntilFound(tester, find.textContaining('added to Rooftop test'));
+
     // "Restart": dispose the whole app (closing the database), then start a
     // fresh instance that must read everything back from disk.
     await tester.pumpWidget(const SizedBox());
@@ -42,6 +60,15 @@ void main() {
     await pumpUntilFound(tester, find.text('Your garden day starts here'));
     await tester.tap(find.text('Garden'));
     await pumpUntilFound(tester, find.text('Rooftop test'));
+    await tester.tap(find.text('Rooftop test'));
+    // My plants is further down a lazily built list, so scroll to it.
+    await pumpUntilFound(tester, find.text('Plant ideas'));
+    await tester.scrollUntilVisible(
+      find.textContaining('1 plant · since'),
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
+    expect(find.textContaining('1 plant · since'), findsOneWidget);
   });
 }
 

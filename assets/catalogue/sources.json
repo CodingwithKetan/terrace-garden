@@ -1,0 +1,23 @@
+{
+  "accessed": "2026-10-18",
+  "sources": [
+    { "id": "S1", "title": "Vegetable Gardening in Containers (HORT-PU-090)", "publisher": "Texas A&M AgriLife Extension", "url": "https://cdn-de.agrilife.org/extension/departments/hort/hort-pu-090/publications/files/Vegetable-gardening-in-containers.pdf" },
+    { "id": "S2", "title": "Types of Containers for Growing Vegetables", "publisher": "University of Maryland Extension", "url": "https://extension.umd.edu/resource/types-containers-growing-vegetables" },
+    { "id": "S3", "title": "Container Vegetable Gardening: Four Keys to Success", "publisher": "Penn State Extension", "url": "https://extension.psu.edu/container-vegetable-gardening-four-keys-to-success" },
+    { "id": "S4", "title": "Container maintenance", "publisher": "Royal Horticultural Society", "url": "https://www.rhs.org.uk/container-gardening/maintenance" },
+    { "id": "S5", "title": "How to water containers", "publisher": "Royal Horticultural Society", "url": "https://www.rhs.org.uk/container-gardening/how-to-water-containers" },
+    { "id": "S6", "title": "Watering (garden jobs)", "publisher": "Royal Horticultural Society", "url": "https://www.rhs.org.uk/garden-jobs/watering" },
+    { "id": "S10", "title": "Watering Raised Beds, Berms, Containers, and Houseplants (MF2805)", "publisher": "Kansas State University Research & Extension", "url": "https://bookstore.ksre.ksu.edu/download/watering-raised-beds-berms-containers-and-houseplants_MF2805" },
+    { "id": "S11", "title": "Rooftop gardening: Avenue for healthy living (Indian Horticulture)", "publisher": "ICAR", "url": "https://epubs.icar.org.in/index.php/IndHort/article/view/119872" },
+    { "id": "S12", "title": "Adhoc Package of Practices Recommendations for Organic Farming", "publisher": "Kerala Agricultural University", "url": "https://keralaagriculture.gov.in/wp-content/uploads/2018/12/package_2015.pdf" },
+    { "id": "S13", "title": "Urban Farming: Horticulture crops, season-wise details", "publisher": "Department of Horticulture, Government of Telangana", "url": "https://horticulture.tg.nic.in/UFarming/cropinfo.html" },
+    { "id": "S14", "title": "TNAU Agritech: Bhendi (okra)", "publisher": "Tamil Nadu Agricultural University", "url": "https://agritech.tnau.ac.in/horticulture/horti_vegetables_bhendi_sowing.html" },
+    { "id": "S15", "title": "TNAU Agritech: Curry leaf", "publisher": "Tamil Nadu Agricultural University", "url": "https://agritech.tnau.ac.in/horticulture/horti_vegetables_curry%20leaf.html" },
+    { "id": "S16", "title": "TNAU Agritech: Coriander", "publisher": "Tamil Nadu Agricultural University", "url": "https://agritech.tnau.ac.in/horticulture/horti_spice%20crops_corinader.html" },
+    { "id": "S17", "title": "TNAU Agritech: Fenugreek", "publisher": "Tamil Nadu Agricultural University", "url": "https://agritech.tnau.ac.in/horticulture/horti_spice%20crops_fenugreek.html" },
+    { "id": "S18", "title": "TNAU Agritech: Malligai (Jasminum sambac)", "publisher": "Tamil Nadu Agricultural University", "url": "https://agritech.tnau.ac.in/horticulture/horti_flower%20crops_malligai.html" },
+    { "id": "S19", "title": "TNAU Agritech: Chilli season and sowing", "publisher": "Tamil Nadu Agricultural University", "url": "https://agritech.tnau.ac.in/horticulture/horti_vegetables_chili_season_sowing.html" },
+    { "id": "S39", "title": "Toxic and Non-Toxic Plants", "publisher": "ASPCA Animal Poison Control Center", "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants" },
+    { "id": "S40", "title": "Extension Gardener Plant Toolbox", "publisher": "NC State Extension", "url": "https://plants.ces.ncsu.edu/" }
+  ]
+}

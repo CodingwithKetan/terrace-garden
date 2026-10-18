@@ -1,6 +1,6 @@
 # Known Issues, Risks and Blockers
 
-Last updated: 2026-10-18 (Phase 0).
+Last updated: 2026-10-18 (Phase 4).
 
 ## Blockers
 
@@ -18,7 +18,7 @@ Last updated: 2026-10-18 (Phase 0).
 | KI-004 | Golden image rendering differs between Windows and Linux | Flaky golden tests | alchemist CI goldens; generate goldens in one environment (ADR-010) |
 | KI-005 | SQLite on host and devices. On Flutter 3.44, drift resolved to sqlite3 2.9.4 (no build hooks) | **Host part resolved 2026-10-18:** the in-memory DB test passes on Windows. Android not yet verified (KI-007) | Verify on the emulator once Android builds work |
 | ~~KI-007~~ | **Resolved 2026-10-18.** The Gradle wrapper failed with "PKIX path building failed". The user's existing trust store (`%USERPROFILE%\.android-jbr-truststore\cacerts`, contains `emr-root-ca`) was only applied to the Gradle daemon via `org.gradle.jvmargs`, not to the wrapper JVM that downloads Gradle | | With user approval, set the user environment variable `GRADLE_OPTS=-Djavax.net.ssl.trustStore=C:/Users/ketan.ghori/.android-jbr-truststore/cacerts -Djavax.net.ssl.trustStorePassword=changeit`. Terminals opened before this change need restarting |
-| KI-009 | **Emulator Play Services overlays.** `gsrtc_emulator` repeatedly opens Google "add account / Something went wrong" screens (it can't reach google.com through the proxy), covering the app under test. Once the app opened on the Journal tab, and later the stored theme was "system" instead of "dark"; neither reproduced in controlled runs. Most likely manual taps in the visible emulator window | Unreliable manual and screenshot checks on this emulator | For UI verification, check the top activity and accessibility tree, or create an AVD without Google Play (AOSP image). Revisit the Journal start if it ever recurs |
+| KI-009 | **Emulator Play Services overlays.** `gsrtc_emulator` repeatedly opens Google "add account / Something went wrong" screens (it can't reach google.com through the proxy), covering the app under test. Once the app opened on the Journal tab, and later the stored theme was "system" instead of "dark"; neither reproduced in controlled runs. Most likely manual taps in the visible emulator window  2026-10-18 (Phase 4): during a manual check the emulator reached a load average of ~22 and showed an ANR dialog; system_server itself skipped frames, so the slowdown was emulator-wide. In the same session the onboarding state changed without a garden being created during a long idle gap (again likely stray input). | Unreliable manual and screenshot checks on this emulator | For UI verification, check the top activity and accessibility tree, or create an AVD without Google Play (AOSP image). Revisit the Journal start if it ever recurs |
 | KI-008 | **riverpod_lint not active.** 3.1.3 can't load as an analysis-server plugin on Dart 3.12 (needs `analysis_server_plugin ^0.3.8`); newer versions need a newer riverpod than the Flutter 3.44 codegen pins allow | Riverpod-specific mistakes aren't caught by lint | Re-enable with the SDK upgrade (ADR-011). Until then, rely on code review and tests |
 
 ## Data and content gaps (must resolve before public release)
@@ -34,6 +34,8 @@ Last updated: 2026-10-18 (Phase 0).
 | KI-016 | Plant images: no licensed image set yet | design-system §11 |
 | KI-017 | No sourced sowing-window region for west, central and east Indian cities (Mumbai, Pune, Ahmedabad, Indore, Kolkata, etc.). They are selectable but have no `GrowingRegion`, so season fit will be reported as unknown | `lib/features/garden/domain/region.dart`; gardening-references §2c |
 | KI-018 | Inspector edits record one undo step per keystroke (typing "60" creates two steps). Harmless but noisy | `designer_sheets.dart`; coalesce edits per field focus in a later polish task |
+| KI-019 | Catalogue has 25 species (plan: ~30), no water-need, difficulty or spacing fields, and no plant photos. Recommendations therefore ignore experience, weekly time and style; no source gives a per-species effort rating | `assets/catalogue/plants.json`; ADR-021 |
+| KI-024 | Planting crowding is an estimate: the source's "N plants per minimum container" scaled by how many minimum volumes fit. The UI labels it "rough guide" | `planting_fit.dart`; S1 |
 
 ## Research evidence gaps
 

@@ -8,6 +8,8 @@ import 'generated/schema.dart';
 
 import 'generated/schema_v1.dart' as v1;
 import 'generated/schema_v2.dart' as v2;
+import 'generated/schema_v3.dart' as v3;
+import 'generated/schema_v4.dart' as v4;
 
 void main() {
   driftRuntimeOptions.dontWarnAboutMultipleDatabases = true;
@@ -48,6 +50,53 @@ void main() {
       openTestedDatabase: AppDatabase.new,
       createItems: (batch, oldDb) {},
       validateItems: (newDb) async {},
+    );
+  });
+
+  test('migration from v3 to v4 keeps gardens and layouts', () async {
+    await verifier.testWithDataIntegrity(
+      oldVersion: 3,
+      newVersion: 4,
+      createOld: v3.DatabaseAtV3.new,
+      createNew: v4.DatabaseAtV4.new,
+      openTestedDatabase: AppDatabase.new,
+      createItems: (batch, oldDb) {
+        batch
+          ..insert(
+            oldDb.gardens,
+            v3.GardensCompanion.insert(
+              id: 'g1',
+              name: 'Terrace',
+              spaceType: 'terrace',
+              sun: 'unknown',
+              facing: 'unknown',
+              wind: 'unknown',
+              water: 'unknown',
+              weeklyTime: 'unknown',
+              budget: 'unknown',
+              createdAt: '2026-10-18T00:00:00.000Z',
+              updatedAt: '2026-10-18T00:00:00.000Z',
+            ),
+          )
+          ..insert(
+            oldDb.layoutElements,
+            v3.LayoutElementsCompanion.insert(
+              id: 'e1',
+              gardenId: 'g1',
+              kind: 'roundPot',
+              centerX: 50,
+              centerY: 50,
+              width: 30,
+              height: 30,
+              zIndex: 0,
+            ),
+          );
+      },
+      validateItems: (newDb) async {
+        expect(await newDb.select(newDb.gardens).get(), hasLength(1));
+        expect(await newDb.select(newDb.layoutElements).get(), hasLength(1));
+        expect(await newDb.select(newDb.plantings).get(), isEmpty);
+      },
     );
   });
 }

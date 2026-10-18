@@ -127,27 +127,18 @@ Every phase ends with the **gate**: `dart format --output=none --set-exit-if-cha
 
 ## Phase 4: Plant catalogue and recommendations
 
-- [ ] **P4-DATA-01 · P0 · Catalogue schema.**
-  - Work: JSON schema + validation test (required fields, ranges, every `sourceId` resolves to `gardening-references.md` §1, unverified fields are null).
-- [ ] **P4-DATA-02 · P0 · Author ~30 species.**
-  - Work: from `gardening-references.md` §2 (Indian names, region windows, container data, care templates, safety). Use proxy/unverified flags honestly.
+- [x] **P4-DATA-01 · P0 · Catalogue schema.** *Done:* `CatalogueParser` (strict) + `catalogue_test` on the real assets: unique ids, ranges, every citation in `sources.json` and in the provenance register with fetch status F, unverified records carry no figures, no fact without a source.
+- [x] **P4-DATA-02 · P0 · Author species.** *Done (25 of ~30):* `assets/catalogue/plants.json` from gardening-references §2b/§2c/§7, verified (F) sources only. 5 records "verified", 19 "partial", 1 "unverified"; proxies and gaps flagged (KI-010..KI-012 still apply). Chilli propagation left null (its transplant age is SS-only).
 - [ ] **P4-DATA-03 · P1 · Resolve research gaps** KI-010..KI-013 (IIHR/KVK bulletins, TN kit manual, ASPCA checks, SS re-verification). *Blocks public release, not MVP development.*
 - [ ] **P4-DATA-04 · P1 · Licensed plant images.**
-  - Work: CC0/CC BY or own photos, WebP ≤ 150KB, `assets/images/ATTRIBUTION.md`; fallback illustrations.
-- [ ] **P4-01 · P0 · Catalogue import.**
-  - Work: versioned import into drift (species, names, care templates, sources); FTS5 search index.
-  - Tests: import idempotency and version-bump tests.
-- [ ] **P4-02 · P0 · Catalogue UI (PLT-01) + plant detail (PLT-02).**
-  - Work: search, filters, "Not documented" states, sources section, confidence badges.
-- [ ] **P4-03 · P0 · RecommendationEngine (pure).**
-  - Work: sun, season/region, container depth, goals/style, effort; reasons and caveats; unknown-input handling.
-  - Tests: exhaustive unit tests (PRD FR-E).
-- [ ] **P4-04 · P0 · Recommendations UI (REC-01) + shortlist (REC-03).**
-- [ ] **P4-05 · P1 · Compare (REC-02).**
-- [ ] **P4-06 · P0 · Plantings.**
-  - Work: add flow (PLT-05) assigning species to a container on the layout or unassigned; fit and crowding warnings shared with the designer; My plants (PLT-03); planting detail (PLT-04).
-  - Tests: repository and rule tests.
-- [ ] **P4-GATE**
+  - Work: CC0/CC BY or own photos, WebP ≤ 150KB, `assets/images/ATTRIBUTION.md`; fallback illustrations. *Interim:* category icons and the terrace header photo.
+- [x] **P4-01 · P0 · Catalogue loading.** *Done differently (ADR-021):* bundled JSON parsed into memory; no drift import or FTS5 for 25 species. Revisit at a few hundred species or for Hindi search.
+- [x] **P4-02 · P0 · Catalogue UI (PLT-01) + plant detail (PLT-02).** *Done:* search by common/local/scientific name, category chips, "Ideas for <garden>" entries; detail with sun, container (evidence badge), harvest, 12-month sowing strips per region, propagation, care notes, pets (ASPCA scope note), sources list, "Not documented" states.
+- [x] **P4-03 · P0 · RecommendationEngine (pure).** *Done:* sun, season (state → macro fallback, wraps December), container fit against layout containers, goals; structured reasons and caveats; unknown never counts for or against. *Not used:* effort/experience and style, because no source supports a per-species effort rating.
+- [x] **P4-04 · P0 · Recommendations UI (REC-01) + shortlist (REC-03).** *Done:* grouped (good now / sow later / not a good fit), reasons with fit icons, caveat chips, profile-completion prompt, shortlist toggle and filter.
+- [ ] **P4-05 · P1 · Compare (REC-02).** Deferred: the reasons on each card cover the MVP need.
+- [x] **P4-06 · P0 · Plantings.** *Done:* `plantings` and `shortlist_entries` tables (schema v4, migration tests), add/edit sheet (garden, container from the layout or "not placed", quantity, planted on, started from, notes) with live fit warnings (`PlantingFit`: volume, depth, rough capacity, shared container); My plants on the garden overview with edit/remove. Planting detail (PLT-04) is the plant page plus the edit sheet.
+- [x] **P4-GATE** (2026-10-18). Format clean, analyze clean, 323 host tests.
 
 ## Phase 5: Care tracking
 

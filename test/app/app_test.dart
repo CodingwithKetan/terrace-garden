@@ -30,7 +30,7 @@ void main() {
 
     await tester.tap(find.text('Plants'));
     await tester.pumpAndSettle();
-    expect(find.text('Plants that suit your space'), findsOneWidget);
+    expect(find.text('Search, e.g. bhindi or tulsi'), findsOneWidget);
 
     await tester.tap(find.text('Journal'));
     await tester.pumpAndSettle();

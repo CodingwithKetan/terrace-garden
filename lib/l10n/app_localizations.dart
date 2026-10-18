@@ -160,18 +160,6 @@ abstract class AppLocalizations {
   /// **'Describe your space, add photos and keep everything about your terrace in one place.'**
   String get gardenEmptyBody;
 
-  /// No description provided for @plantsEmptyTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Plants that suit your space'**
-  String get plantsEmptyTitle;
-
-  /// No description provided for @plantsEmptyBody.
-  ///
-  /// In en, this message translates to:
-  /// **'A catalogue of container plants for Indian terraces is on its way, with sources for every recommendation.'**
-  String get plantsEmptyBody;
-
   /// No description provided for @journalEmptyTitle.
   ///
   /// In en, this message translates to:
@@ -1689,6 +1677,744 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Loading'**
   String get loadingLabel;
+
+  /// No description provided for @plantsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Plants'**
+  String get plantsTitle;
+
+  /// No description provided for @plantsSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search, e.g. bhindi or tulsi'**
+  String get plantsSearchHint;
+
+  /// No description provided for @plantsFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get plantsFilterAll;
+
+  /// No description provided for @categoryVegetable.
+  ///
+  /// In en, this message translates to:
+  /// **'Vegetables'**
+  String get categoryVegetable;
+
+  /// No description provided for @categoryLeafyGreen.
+  ///
+  /// In en, this message translates to:
+  /// **'Leafy greens'**
+  String get categoryLeafyGreen;
+
+  /// No description provided for @categoryHerb.
+  ///
+  /// In en, this message translates to:
+  /// **'Herbs'**
+  String get categoryHerb;
+
+  /// No description provided for @categoryClimber.
+  ///
+  /// In en, this message translates to:
+  /// **'Climbers'**
+  String get categoryClimber;
+
+  /// No description provided for @categoryFlower.
+  ///
+  /// In en, this message translates to:
+  /// **'Flowers'**
+  String get categoryFlower;
+
+  /// No description provided for @categoryOrnamental.
+  ///
+  /// In en, this message translates to:
+  /// **'Ornamentals'**
+  String get categoryOrnamental;
+
+  /// No description provided for @plantsNoResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No plants match your search'**
+  String get plantsNoResults;
+
+  /// No description provided for @plantsNoResultsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Try a common name, a local name or a different category.'**
+  String get plantsNoResultsBody;
+
+  /// No description provided for @plantsCatalogueNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Every fact is linked to its source. Anything not documented is shown as such, never guessed.'**
+  String get plantsCatalogueNote;
+
+  /// No description provided for @plantsIdeasFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Ideas for {garden}'**
+  String plantsIdeasFor(String garden);
+
+  /// No description provided for @plantsIdeasSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ranked for your space, season and containers'**
+  String get plantsIdeasSubtitle;
+
+  /// No description provided for @lifecycleAnnual.
+  ///
+  /// In en, this message translates to:
+  /// **'Annual'**
+  String get lifecycleAnnual;
+
+  /// No description provided for @lifecyclePerennial.
+  ///
+  /// In en, this message translates to:
+  /// **'Perennial'**
+  String get lifecyclePerennial;
+
+  /// No description provided for @dataStatusVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Well sourced'**
+  String get dataStatusVerified;
+
+  /// No description provided for @dataStatusPartial.
+  ///
+  /// In en, this message translates to:
+  /// **'Partly documented'**
+  String get dataStatusPartial;
+
+  /// No description provided for @dataStatusUnverified.
+  ///
+  /// In en, this message translates to:
+  /// **'Few sourced facts'**
+  String get dataStatusUnverified;
+
+  /// No description provided for @notDocumented.
+  ///
+  /// In en, this message translates to:
+  /// **'Not documented'**
+  String get notDocumented;
+
+  /// No description provided for @plantSectionSun.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunlight'**
+  String get plantSectionSun;
+
+  /// No description provided for @sunFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Full sun'**
+  String get sunFull;
+
+  /// No description provided for @sunFullHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Full sun, at least {hours} hours a day'**
+  String sunFullHours(int hours);
+
+  /// No description provided for @sunPartial.
+  ///
+  /// In en, this message translates to:
+  /// **'Tolerates partial shade'**
+  String get sunPartial;
+
+  /// No description provided for @sunPartialHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Sun or partial shade, at least {hours} hours of direct sun'**
+  String sunPartialHours(int hours);
+
+  /// No description provided for @sunIndirect.
+  ///
+  /// In en, this message translates to:
+  /// **'Bright indirect light'**
+  String get sunIndirect;
+
+  /// No description provided for @plantSectionContainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Container'**
+  String get plantSectionContainer;
+
+  /// No description provided for @containerMinSoil.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimum soil'**
+  String get containerMinSoil;
+
+  /// No description provided for @containerRecommendedSoil.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended soil'**
+  String get containerRecommendedSoil;
+
+  /// No description provided for @containerMinDepth.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimum depth'**
+  String get containerMinDepth;
+
+  /// No description provided for @containerRecommendedDepth.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended depth'**
+  String get containerRecommendedDepth;
+
+  /// No description provided for @containerPlantsPer.
+  ///
+  /// In en, this message translates to:
+  /// **'Plants per minimum container'**
+  String get containerPlantsPer;
+
+  /// No description provided for @evidenceVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Sourced'**
+  String get evidenceVerified;
+
+  /// No description provided for @evidenceProxy.
+  ///
+  /// In en, this message translates to:
+  /// **'Based on a similar crop'**
+  String get evidenceProxy;
+
+  /// No description provided for @evidenceUnverified.
+  ///
+  /// In en, this message translates to:
+  /// **'Size not documented'**
+  String get evidenceUnverified;
+
+  /// No description provided for @plantSectionHarvest.
+  ///
+  /// In en, this message translates to:
+  /// **'Time to first harvest'**
+  String get plantSectionHarvest;
+
+  /// No description provided for @harvestDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{min}–{max} days'**
+  String harvestDays(int min, int max);
+
+  /// No description provided for @harvestDaysSingle.
+  ///
+  /// In en, this message translates to:
+  /// **'About {days} days'**
+  String harvestDaysSingle(int days);
+
+  /// No description provided for @plantSectionSowing.
+  ///
+  /// In en, this message translates to:
+  /// **'Sowing or planting months'**
+  String get plantSectionSowing;
+
+  /// No description provided for @sowingYearRound.
+  ///
+  /// In en, this message translates to:
+  /// **'All year'**
+  String get sowingYearRound;
+
+  /// No description provided for @sowingFallback.
+  ///
+  /// In en, this message translates to:
+  /// **'No {state} table for this plant; showing {region} months.'**
+  String sowingFallback(String state, String region);
+
+  /// No description provided for @sowingNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No sourced sowing calendar for this plant.'**
+  String get sowingNone;
+
+  /// No description provided for @plantSectionPropagation.
+  ///
+  /// In en, this message translates to:
+  /// **'How to start'**
+  String get plantSectionPropagation;
+
+  /// No description provided for @propagationTransplant.
+  ///
+  /// In en, this message translates to:
+  /// **'Raise seedlings, then transplant'**
+  String get propagationTransplant;
+
+  /// No description provided for @propagationDirect.
+  ///
+  /// In en, this message translates to:
+  /// **'Sow directly in the container'**
+  String get propagationDirect;
+
+  /// No description provided for @propagationSeed.
+  ///
+  /// In en, this message translates to:
+  /// **'From seed'**
+  String get propagationSeed;
+
+  /// No description provided for @propagationDivision.
+  ///
+  /// In en, this message translates to:
+  /// **'By dividing a clump'**
+  String get propagationDivision;
+
+  /// No description provided for @propagationCutting.
+  ///
+  /// In en, this message translates to:
+  /// **'From cuttings'**
+  String get propagationCutting;
+
+  /// No description provided for @propagationNursery.
+  ///
+  /// In en, this message translates to:
+  /// **'Transplant after {min}–{max} days in a nursery tray'**
+  String propagationNursery(int min, int max);
+
+  /// No description provided for @plantSectionCare.
+  ///
+  /// In en, this message translates to:
+  /// **'Care notes'**
+  String get plantSectionCare;
+
+  /// No description provided for @plantSectionPets.
+  ///
+  /// In en, this message translates to:
+  /// **'Pets'**
+  String get plantSectionPets;
+
+  /// No description provided for @petToxic.
+  ///
+  /// In en, this message translates to:
+  /// **'Toxic to pets'**
+  String get petToxic;
+
+  /// No description provided for @petNonToxic.
+  ///
+  /// In en, this message translates to:
+  /// **'Listed as non-toxic to pets'**
+  String get petNonToxic;
+
+  /// No description provided for @petNotAssessed.
+  ///
+  /// In en, this message translates to:
+  /// **'Not assessed'**
+  String get petNotAssessed;
+
+  /// No description provided for @petScopeNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Pet data is from the ASPCA and does not cover children. If a person or pet eats a plant, contact a doctor or vet.'**
+  String get petScopeNote;
+
+  /// No description provided for @plantSectionSources.
+  ///
+  /// In en, this message translates to:
+  /// **'Sources'**
+  String get plantSectionSources;
+
+  /// No description provided for @plantSourcesNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Facts are summarised from these publications.'**
+  String get plantSourcesNote;
+
+  /// No description provided for @plantAddToGarden.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to a garden'**
+  String get plantAddToGarden;
+
+  /// No description provided for @plantNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'This plant is no longer in the catalogue.'**
+  String get plantNotFound;
+
+  /// No description provided for @recTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Plant ideas'**
+  String get recTitle;
+
+  /// No description provided for @recSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'For {garden} in {month}'**
+  String recSubtitle(String garden, String month);
+
+  /// No description provided for @recDisclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'Ranked from your garden profile and sourced plant data. A starting point, not a promise of success.'**
+  String get recDisclaimer;
+
+  /// No description provided for @recCompleteProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your sun hours and city to sharpen these ideas.'**
+  String get recCompleteProfile;
+
+  /// No description provided for @recGroupGoodNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Good choices now'**
+  String get recGroupGoodNow;
+
+  /// No description provided for @recGroupLater.
+  ///
+  /// In en, this message translates to:
+  /// **'Good fit, sow later'**
+  String get recGroupLater;
+
+  /// No description provided for @recGroupNotSuited.
+  ///
+  /// In en, this message translates to:
+  /// **'Not a good fit here'**
+  String get recGroupNotSuited;
+
+  /// No description provided for @recSunMatches.
+  ///
+  /// In en, this message translates to:
+  /// **'Light suits your space'**
+  String get recSunMatches;
+
+  /// No description provided for @recSunNeedsMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs 6+ hours of sun; your space gets 3–6'**
+  String get recSunNeedsMore;
+
+  /// No description provided for @recSunTooShady.
+  ///
+  /// In en, this message translates to:
+  /// **'Your space gets under 3 hours of sun'**
+  String get recSunTooShady;
+
+  /// No description provided for @recSunPrefersIndirect.
+  ///
+  /// In en, this message translates to:
+  /// **'Prefers bright indirect light to strong sun'**
+  String get recSunPrefersIndirect;
+
+  /// No description provided for @recSunGardenUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your sun hours to check light'**
+  String get recSunGardenUnknown;
+
+  /// No description provided for @recSunSpeciesUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Light needs not documented'**
+  String get recSunSpeciesUnknown;
+
+  /// No description provided for @recSowNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Sow now'**
+  String get recSowNow;
+
+  /// No description provided for @recSowSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Sow from {month}'**
+  String recSowSoon(String month);
+
+  /// No description provided for @recSowLater.
+  ///
+  /// In en, this message translates to:
+  /// **'Next sowing: {month}'**
+  String recSowLater(String month);
+
+  /// No description provided for @recNoRegion.
+  ///
+  /// In en, this message translates to:
+  /// **'No sourced sowing calendar for your city yet'**
+  String get recNoRegion;
+
+  /// No description provided for @recNoSeasonData.
+  ///
+  /// In en, this message translates to:
+  /// **'No sowing data for your region'**
+  String get recNoSeasonData;
+
+  /// No description provided for @recContainerFits.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 of your containers is big enough} other{{count} of your containers are big enough}}'**
+  String recContainerFits(int count);
+
+  /// No description provided for @recContainerTooSmall.
+  ///
+  /// In en, this message translates to:
+  /// **'None of your containers is big enough yet'**
+  String get recContainerTooSmall;
+
+  /// No description provided for @recNoContainers.
+  ///
+  /// In en, this message translates to:
+  /// **'Add containers in the designer to check size'**
+  String get recNoContainers;
+
+  /// No description provided for @recContainerUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Container size not documented'**
+  String get recContainerUnknown;
+
+  /// No description provided for @recGoalMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Matches your goals'**
+  String get recGoalMatch;
+
+  /// No description provided for @caveatContainerProxy.
+  ///
+  /// In en, this message translates to:
+  /// **'Container size from a similar crop'**
+  String get caveatContainerProxy;
+
+  /// No description provided for @caveatRegionFallback.
+  ///
+  /// In en, this message translates to:
+  /// **'Uses broader regional sowing data'**
+  String get caveatRegionFallback;
+
+  /// No description provided for @caveatPetToxic.
+  ///
+  /// In en, this message translates to:
+  /// **'Toxic to pets'**
+  String get caveatPetToxic;
+
+  /// No description provided for @caveatIncomplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Some details not documented'**
+  String get caveatIncomplete;
+
+  /// No description provided for @recShortlistAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Save to shortlist'**
+  String get recShortlistAdd;
+
+  /// No description provided for @recShortlistRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from shortlist'**
+  String get recShortlistRemove;
+
+  /// No description provided for @recShortlistOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Shortlist'**
+  String get recShortlistOnly;
+
+  /// No description provided for @recShortlistEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing shortlisted yet. Tap the bookmark on any idea to save it.'**
+  String get recShortlistEmpty;
+
+  /// No description provided for @plantingAddTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add {plant}'**
+  String plantingAddTitle(String plant);
+
+  /// No description provided for @plantingEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit {plant}'**
+  String plantingEditTitle(String plant);
+
+  /// No description provided for @plantingGarden.
+  ///
+  /// In en, this message translates to:
+  /// **'Garden'**
+  String get plantingGarden;
+
+  /// No description provided for @plantingContainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Container'**
+  String get plantingContainer;
+
+  /// No description provided for @plantingNotPlaced.
+  ///
+  /// In en, this message translates to:
+  /// **'Not placed yet'**
+  String get plantingNotPlaced;
+
+  /// No description provided for @plantingQuantity.
+  ///
+  /// In en, this message translates to:
+  /// **'Number of plants'**
+  String get plantingQuantity;
+
+  /// No description provided for @plantingPlantedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Planted on'**
+  String get plantingPlantedOn;
+
+  /// No description provided for @plantingStartedFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Started from'**
+  String get plantingStartedFrom;
+
+  /// No description provided for @startSeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Seed'**
+  String get startSeed;
+
+  /// No description provided for @startSeedling.
+  ///
+  /// In en, this message translates to:
+  /// **'Seedling'**
+  String get startSeedling;
+
+  /// No description provided for @startCutting.
+  ///
+  /// In en, this message translates to:
+  /// **'Cutting'**
+  String get startCutting;
+
+  /// No description provided for @startPlant.
+  ///
+  /// In en, this message translates to:
+  /// **'Grown plant'**
+  String get startPlant;
+
+  /// No description provided for @plantingNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes (optional)'**
+  String get plantingNotes;
+
+  /// No description provided for @plantingSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Add planting'**
+  String get plantingSave;
+
+  /// No description provided for @plantingUpdate.
+  ///
+  /// In en, this message translates to:
+  /// **'Save changes'**
+  String get plantingUpdate;
+
+  /// No description provided for @plantingAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'{plant} added to {garden}'**
+  String plantingAdded(String plant, String garden);
+
+  /// No description provided for @plantingNoGardens.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a garden first, then add plants to it.'**
+  String get plantingNoGardens;
+
+  /// No description provided for @plantingIssueLowVolume.
+  ///
+  /// In en, this message translates to:
+  /// **'This container holds about {actual}; this plant needs at least {required}.'**
+  String plantingIssueLowVolume(String actual, String required);
+
+  /// No description provided for @plantingIssueShallow.
+  ///
+  /// In en, this message translates to:
+  /// **'This container is {actual} deep; this plant needs at least {required}.'**
+  String plantingIssueShallow(String actual, String required);
+
+  /// No description provided for @plantingIssueCrowded.
+  ///
+  /// In en, this message translates to:
+  /// **'Rough guide: about {capacity} of these plants fit this container (scaled from the source\'s per-container figure).'**
+  String plantingIssueCrowded(int capacity);
+
+  /// No description provided for @plantingIssueShared.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 other planting already uses this container.} other{{count} other plantings already use this container.}}'**
+  String plantingIssueShared(int count);
+
+  /// No description provided for @plantingIssueNoDepth.
+  ///
+  /// In en, this message translates to:
+  /// **'Set this container\'s soil depth in the designer to check its size.'**
+  String get plantingIssueNoDepth;
+
+  /// No description provided for @quantityDecrease.
+  ///
+  /// In en, this message translates to:
+  /// **'Fewer'**
+  String get quantityDecrease;
+
+  /// No description provided for @quantityIncrease.
+  ///
+  /// In en, this message translates to:
+  /// **'More'**
+  String get quantityIncrease;
+
+  /// No description provided for @myPlantsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My plants'**
+  String get myPlantsTitle;
+
+  /// No description provided for @myPlantsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No plants yet. Find ideas that suit this space.'**
+  String get myPlantsEmpty;
+
+  /// No description provided for @plantingSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 plant} other{{count} plants}} · since {date}'**
+  String plantingSummary(int count, String date);
+
+  /// No description provided for @plantingContainerMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'Its container was removed from the layout'**
+  String get plantingContainerMissing;
+
+  /// No description provided for @plantingRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove planting'**
+  String get plantingRemove;
+
+  /// No description provided for @plantingRemoveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {plant}?'**
+  String plantingRemoveTitle(String plant);
+
+  /// No description provided for @plantingRemoveBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This removes the planting from this garden.'**
+  String get plantingRemoveBody;
+
+  /// No description provided for @plantingRemoved.
+  ///
+  /// In en, this message translates to:
+  /// **'Planting removed'**
+  String get plantingRemoved;
+
+  /// No description provided for @plantingUnknownSpecies.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown plant'**
+  String get plantingUnknownSpecies;
 }
 
 class _AppLocalizationsDelegate

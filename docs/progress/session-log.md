@@ -4,6 +4,31 @@ Newest first. Keep entries concise: goal, what was done, checks, next.
 
 ---
 
+## 2026-10-18: Session 1, part 6 (Phase 4: plant catalogue and recommendations)
+
+**Done:**
+- **Catalogue:** 25 species in `assets/catalogue/plants.json` with per-fact citations to verified (F) sources only (`sources.json`). Breakdown: 5 verified, 19 partial, 1 unverified.
+- **Parsing and validation:** the strict `CatalogueParser`, plus a test on the real assets that cross-checks the provenance register.
+- **ADR-021:** the catalogue is held in memory; the drift import and FTS5 search are deferred.
+- **`RecommendationEngine`:** sun, season (state → macro fallback), container fit and goals. It produces structured reasons and caveats, and unknown data is never scored.
+- **Screens:** catalogue (search and categories), plant detail (sources, "Not documented" states, sowing strips), ideas screen (groups, reasons, shortlist).
+- **Plantings:** schema v4 with the `plantings` and `shortlist_entries` tables. The add/edit sheet shows live fit warnings, and My plants appears on the garden overview.
+
+**Data honesty fixes while authoring:**
+- Chilli: the transplant age was SS-only, so propagation is null.
+- Radish: the conflicting light guidance is shown as a care note.
+
+**Bug found and fixed:** on the emulator, the keyboard covered bottom-sheet content, so city results couldn't be tapped. `showAppBottomSheet` now pads for the keyboard; a regression test fails without the fix.
+
+**Checks:**
+- Format clean, analyze clean, 324 host tests pass.
+- Device integration test: first run failed (cause not captured, likely a stale install), then two runs passed.
+- Manual emulator review stopped because the emulator was overloaded (load ~22, KI-009).
+
+**Next:** Phase 5, care tracking (P5-01 recurrence engine).
+
+---
+
 ## 2026-10-18: Session 1, part 5 (Phase 3: garden designer)
 
 **Done (P3-01 → P3-12):**

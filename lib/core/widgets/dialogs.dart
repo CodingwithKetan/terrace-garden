@@ -58,34 +58,39 @@ Future<T?> showAppBottomSheet<T>(
     constraints: BoxConstraints(
       maxHeight: MediaQuery.sizeOf(context).height * 0.9,
     ),
-    builder: (context) => Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(
-            AppSpacing.xl,
-            0,
-            AppSpacing.xl,
-            AppSpacing.md,
-          ),
-          child: Semantics(
-            header: true,
-            child: Text(title, style: Theme.of(context).textTheme.titleLarge),
-          ),
-        ),
-        Flexible(
-          child: SingleChildScrollView(
+    // Lift the content above the on-screen keyboard; otherwise search
+    // results and text fields in the sheet sit behind it.
+    builder: (context) => Padding(
+      padding: EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(context).bottom),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
             padding: const EdgeInsets.fromLTRB(
               AppSpacing.xl,
               0,
               AppSpacing.xl,
-              AppSpacing.xl,
+              AppSpacing.md,
             ),
-            child: builder(context),
+            child: Semantics(
+              header: true,
+              child: Text(title, style: Theme.of(context).textTheme.titleLarge),
+            ),
           ),
-        ),
-      ],
+          Flexible(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(
+                AppSpacing.xl,
+                0,
+                AppSpacing.xl,
+                AppSpacing.xl,
+              ),
+              child: builder(context),
+            ),
+          ),
+        ],
+      ),
     ),
   );
 }

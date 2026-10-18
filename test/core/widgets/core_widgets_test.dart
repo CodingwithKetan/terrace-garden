@@ -301,6 +301,38 @@ void main() {
       expect(find.text('Add container'), findsOneWidget);
       expect(find.text('Grow bag 24 x 18 in'), findsOneWidget);
     });
+
+    // Regression: with the keyboard open, search results in the city picker
+    // were drawn behind it and could not be tapped (seen on the emulator).
+    testWidgets('bottom sheet content stays above the keyboard', (
+      tester,
+    ) async {
+      const keyboard = 300.0;
+      tester.view.viewInsets = FakeViewPadding(
+        bottom: keyboard * tester.view.devicePixelRatio,
+      );
+      addTearDown(tester.view.resetViewInsets);
+      await tester.pumpLocalized(
+        Builder(
+          builder: (context) => TextButton(
+            onPressed: () => showAppBottomSheet<void>(
+              context,
+              title: 'City',
+              builder: (_) => const Text('Delhi'),
+            ),
+            child: const Text('Open'),
+          ),
+        ),
+      );
+      await tester.tap(find.text('Open'));
+      await tester.pumpAndSettle();
+      final screenHeight =
+          tester.view.physicalSize.height / tester.view.devicePixelRatio;
+      expect(
+        tester.getBottomLeft(find.text('Delhi')).dy,
+        lessThanOrEqualTo(screenHeight - keyboard),
+      );
+    });
   });
 
   group('display components', () {

@@ -12,7 +12,9 @@ import 'package:terrace_garden/features/garden/presentation/terrace_checklist_sc
 import 'package:terrace_garden/features/garden_designer/presentation/designer_screen.dart';
 import 'package:terrace_garden/features/journal/presentation/journal_screen.dart';
 import 'package:terrace_garden/features/onboarding/presentation/onboarding_screen.dart';
+import 'package:terrace_garden/features/plant_catalog/presentation/plant_detail_screen.dart';
 import 'package:terrace_garden/features/plant_catalog/presentation/plants_home_screen.dart';
+import 'package:terrace_garden/features/plant_catalog/presentation/recommendations_screen.dart';
 import 'package:terrace_garden/features/settings/application/settings_controller.dart';
 import 'package:terrace_garden/features/settings/presentation/image_credits_screen.dart';
 import 'package:terrace_garden/features/settings/presentation/settings_screen.dart';
@@ -44,6 +46,13 @@ abstract final class AppRoutes {
   static String gardenDesign(String id) => '/gardens/$id/design';
   static String gardenPhoto(String id, String photoId) =>
       '/gardens/$id/photos/$photoId';
+  static String gardenIdeas(String id) => '/gardens/$id/ideas';
+
+  /// Plant detail; [gardenId] preselects that garden when adding a planting.
+  static String plantDetail(String speciesId, {String? gardenId}) => Uri(
+    path: '/catalogue/$speciesId',
+    queryParameters: gardenId == null ? null : {'garden': gardenId},
+  ).toString();
 }
 
 /// Wraps a screen in the SDK's [MaterialPage].
@@ -134,6 +143,23 @@ GoRouter appRouter(Ref ref) {
         path: '/gardens/:gardenId/design',
         pageBuilder: (context, state) =>
             appPage(state, DesignerScreen(gardenId: _gardenId(state))),
+      ),
+      GoRoute(
+        path: '/gardens/:gardenId/ideas',
+        pageBuilder: (context, state) => appPage(
+          state,
+          RecommendationsScreen(gardenId: _gardenId(state)),
+        ),
+      ),
+      GoRoute(
+        path: '/catalogue/:speciesId',
+        pageBuilder: (context, state) => appPage(
+          state,
+          PlantDetailScreen(
+            speciesId: state.pathParameters['speciesId']!,
+            gardenId: state.uri.queryParameters['garden'],
+          ),
+        ),
       ),
       GoRoute(
         path: '/gardens/:gardenId/photos/:photoId',

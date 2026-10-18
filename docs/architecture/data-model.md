@@ -100,6 +100,8 @@ units (`metric`/`imperial`), themeMode, locale, experience, notification prefere
 Derived (not stored): footprint polygon, area, container volume (litres ≈ footprint area × soil depth / 1000).
 
 ### PlantSpecies (catalogue, bundled read-only data, versioned)
+
+> **As built (Phase 4, 2026-10-18; ADR-021):** bundled JSON (`assets/catalogue/plants.json`, `sources.json`) parsed into memory; no drift tables. Fields per record: `id, commonName, localNames[], scientificName, category (vegetable, leafyGreen, herb, climber, flower, ornamental), lifecycle, sun {level full|partial|indirect, minHours?, sources}, container {status verified|proxy|unverified, minVolumeL?, recommendedVolumeL?, minDepthCm?, recommendedDepthCm?, plantsPerContainer?, note?, sources}, daysToHarvest {min, max, note?, sources}?, sowing [{region, months[], source}], propagation {method, nurseryDaysMin?, nurseryDaysMax?, sources}?, careNotes [{text, sources}], petSafety {status toxic|nonToxic|notAssessed, note?, sources}, dataStatus`. Sources are per fact. Not yet modelled: water need, difficulty, spacing, care templates (Phase 5), images (KI-016), localised names map.
 | Field | Type | Notes |
 |---|---|---|
 | id | String | stable slug, e.g. `tomato` |
@@ -123,6 +125,8 @@ Derived (not stored): footprint polygon, area, container volume (litres ≈ foot
 taskType (`water, fertilise, prune, repot, inspect, sow, harvest, support/stake`), stage applicability (`seed, seedling, vegetative, flowering, fruiting, established`), baseIntervalDays (nullable for one-off/seasonal), seasonal window, modifiers (container material, size, season/monsoon), instructions text key, `checkFirst` guidance (e.g. "Water when the top 2–3cm of soil is dry"), sourceIds.
 
 ### Planting (an instance of a species in a garden)
+
+> **As built (Phase 4):** table `plantings` (id, gardenId FK cascade, speciesId text, elementId text nullable and deliberately not a FK because layout saves replace element rows, quantity, plantedOn `yyyy-MM-dd`, startedFrom `seed|seedling|cutting|plant`, notes, createdAt, updatedAt). No status or stage yet; removing deletes the row. Table `shortlist_entries` (gardenId FK cascade, speciesId; PK both). Schema v4.
 | Field | Type | Notes |
 |---|---|---|
 | id, gardenId, speciesId | String | |

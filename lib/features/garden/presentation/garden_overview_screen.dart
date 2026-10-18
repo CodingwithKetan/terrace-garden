@@ -23,6 +23,7 @@ import 'package:terrace_garden/features/garden/presentation/garden_labels.dart';
 import 'package:terrace_garden/features/garden/presentation/photo_actions.dart';
 import 'package:terrace_garden/features/garden/presentation/widgets/garden_cover.dart';
 import 'package:terrace_garden/features/garden_designer/data/designer_providers.dart';
+import 'package:terrace_garden/features/plantings/presentation/my_plants_section.dart';
 import 'package:terrace_garden/features/settings/application/settings_controller.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
@@ -171,6 +172,8 @@ class _Overview extends ConsumerWidget {
               Text(subtitle, style: theme.textTheme.titleMedium),
               const SizedBox(height: AppSpacing.lg),
               _DesignCard(garden: garden),
+              const SizedBox(height: AppSpacing.md),
+              PlantIdeasCard(gardenId: garden.id),
               const SizedBox(height: AppSpacing.xl),
               _Section(
                 title: l10n.gardenSectionSpace,
@@ -267,6 +270,7 @@ class _Overview extends ConsumerWidget {
                   ),
                 ],
               ),
+              MyPlantsSection(gardenId: garden.id),
               _PhotosSection(garden: garden, photos: photos),
               _Section(
                 title: l10n.gardenSectionGoals,

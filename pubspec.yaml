@@ -59,6 +59,8 @@ flutter:
     - assets/fonts/Inter-OFL.txt
     - assets/fonts/Fraunces-OFL.txt
     - assets/images/photos/
+    # Sourced plant catalogue (ADR-021); validated by catalogue_test.
+    - assets/catalogue/
 
   # Bundled so typography works offline (ADR-012). SIL Open Font License 1.1.
   fonts:
