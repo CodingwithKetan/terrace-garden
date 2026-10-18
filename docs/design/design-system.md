@@ -1,16 +1,17 @@
 # Design System
 
-Status: v0.2 (2026-10-18). Implemented in `lib/app/theme/` as a Material 3 `ThemeData` plus `ThemeExtension`s (`CareColors`, `GlassTheme`). Screens must not use raw colours, font sizes or magic spacing numbers.
+Status: v0.3 "Living Terrace" (2026-10-18; ADR-025). Implemented in `lib/app/theme/` as a Material 3 `ThemeData` plus `ThemeExtension`s (`CareColors`, `GlassTheme`). Screens must not use raw colours, font sizes or magic spacing numbers. Mockups: `docs/design/redesign-living-terrace.pdf` (source `.html` alongside).
 
-**Visual direction (v0.2, requested by the product owner): "real, modern, translucent."**
-- Top-level screens sit on **real garden photography**: full-bleed, sharp, licensed.
-- Content floats on **frosted-glass panels** (§2.4), and navigation is a floating glass pill.
-- Detail and form screens (e.g. Settings) stay on solid surfaces for readability and performance.
-- This replaces the v0.1 caution against glass effects, under the guard-rails in §2.4.
+**Visual direction (v0.3): "Living Terrace."**
+- The user's **own terrace, drawn to scale from above**, is the hero: Today, the garden overview, the add-plant picker and the welcome step all use `TerracePlan`.
+- Plants are **botanical drawings in code** (`PlantTopArt`, `PlantSideArt`), one form per catalogue species, not photos or emoji.
+- Colours come from a terrace: limestone floor, neem leaves, terracotta pots, haldi, water. Content sits on **solid paper cards**; there is no glass or photo backdrop on top-level screens.
+- Serif headlines and plant names (like herbarium labels) over a clean grotesque UI face.
+- This replaces v0.2 "real, modern, translucent" (photo backdrops and glass), which user feedback found generic.
 
 ## 1. Design principles
 
-1. **Real, modern, translucent.** Real photos of terraces, balconies and plants set the mood; glass panels keep content readable on top of them. Serif display type gives an editorial feel; generous rounding and space keep it modern. It should feel like a premium gardening magazine, not a dashboard.
+1. **Your terrace, not a template.** Show the user's real space and plants wherever a decision is made: which plant needs a check, which container a new plant fits. It should feel like a gardener's notebook, not a dashboard.
 2. **Practical first.** Every screen answers "what should I do next?" Decoration never competes with the task, the plant, or the garden canvas.
 3. **Honest about certainty.** Estimates, AI concepts and schedules are visibly labelled as guidance ("Check the soil first"). Confidence and provenance are part of the UI, not hidden.
 4. **Touch-native canvas.** The garden designer is a primary surface. It gets the most space, the clearest affordances and the largest touch targets.
@@ -18,112 +19,105 @@ Status: v0.2 (2026-10-18). Implemented in `lib/app/theme/` as a Material 3 `Them
 
 ## 2. Colour
 
-Nature-inspired, warm neutrals with a deep green primary. All text/background pairs must meet WCAG 2.2 AA (4.5:1 body text, 3:1 large text and UI components). Ratios below are computed from sRGB relative luminance and must be re-verified by a test in Phase 1 (`test/app/theme/contrast_test.dart`).
+Warm limestone neutrals with neem-green text and a leaf-green primary. All text/background pairs must meet WCAG 2.2 AA (4.5:1 body text, 3:1 large text and UI components), enforced by `test/app/theme/contrast_test.dart`.
 
-### 2.1 Brand palette (light)
+### 2.1 Brand palette (light, `AppPalette`)
 
 | Token | Hex | Use |
 |---|---|---|
-| `fern` (primary) | `#2F5D3A` | Primary actions, selected nav, key accents |
-| `fernContainer` | `#CFE6D2` | Selected chips, tonal buttons, highlights |
-| `onFernContainer` | `#0F2A17` | Text on fernContainer |
-| `terracotta` (secondary) | `#A4532F` | Containers/pots on canvas, secondary emphasis |
-| `terracottaContainer` | `#F6DCCD` | Secondary tonal surfaces |
-| `marigold` | `#C98A1C` | Decorative only: sun, harvest highlights, illustrations (≈2.9:1 on paper, so never text or icons) |
-| `marigoldDeep` (tertiary) | `#855B00` | Tertiary role: text and icons on light surfaces (≈6:1 with white) |
-| `marigoldContainer` | `#FBE7BF` | Tertiary tonal surfaces |
-| `paper` (surface) | `#F7F5EF` | App background |
-| `paperBright` | `#FFFFFF` | Cards, sheets |
-| `paperDim` | `#ECE8DE` | Dividers' backgrounds, canvas outside garden bounds |
-| `ink` (onSurface) | `#1C2420` | Primary text |
-| `inkMuted` (onSurfaceVariant) | `#4E5A52` | Secondary text |
-| `outline` | `#7C877F` | Borders, input outlines |
-| `outlineVariant` | `#CBD1C9` | Hairlines, dividers |
+| `limestone` (surface) | `#F2F0EA` | App background |
+| `paper` (surfaceContainerLowest) | `#FBFAF7` | Cards, sheets, nav bar |
+| `stone` / `stoneDeep` | `#E7E4DA` / `#DDD8CC` | Chips, thumbnails, hairlines |
+| `neem` (onSurface) | `#17301F` | Primary text; inverse surfaces (the "this month" card) |
+| `neemMuted` (onSurfaceVariant) | `#4E5D52` | Secondary text (4.5:1 on `stoneDeep`) |
+| `leaf` (primary) | `#2B6530` | Primary actions, selected states, sowing windows |
+| `leafContainer` | `#D6E8D2` | Tonal surfaces |
+| `terracotta` | `#C2592B` | Decorative only: pots, accents |
+| `terracottaDeep` (secondary) | `#A4471F` | Secondary text and icons ("Best match") |
+| `haldi` | `#E3A21A` | Decorative only: sun, harvest band |
+| `haldiDeep` (tertiary) | `#855B00` | Tertiary text and icons; current month |
+| `water` | `#2E6FB0` | Soil checks, due pins, the "I watered" button |
+| `outline` | `#8C8472` | Input outlines |
 | `error` | `#B3261E` | Errors, destructive actions |
-
-Approximate contrast: `fern` on `paper` ≈ 7.0:1; white on `fern` ≈ 7.6:1; white on `terracotta` ≈ 5.2:1; `ink` on `paper` ≈ 15:1; `inkMuted` on `paper` ≈ 6.8:1.
 
 ### 2.2 Semantic / care colours
 
 Care categories get a consistent colour + icon pair everywhere (calendar, task tiles, chips, notifications). Colour is never the only signal: an icon and label always accompany it.
 
-| Category | Colour | Icon (Material Symbols Rounded) |
+| Category | Light | Dark |
 |---|---|---|
-| Water | `#2F6F9F` | `water_drop` |
-| Fertilise | `#6B7F2A` | `compost` |
-| Prune | `#7A5C99` | `content_cut` |
-| Repot | `#A4532F` | `potted_plant` |
-| Inspect (pests/disease) | `#9A6B00` | `search` / `bug_report` |
-| Sow | `#3F7D5B` | `grass` |
-| Harvest | `#A8700F` | `nutrition` |
-| Success | `#2E7D4F` | `check_circle` |
-| Warning | `#9A6B00` | `warning` |
+| Water / soil check | `#2E6FB0` | `#8EC1E8` |
+| Fertilise | `#855B00` | `#BCD07A` |
+| Prune | `#7A5C99` | `#CDB3E8` |
+| Repot | `#A4471F` | `#F0B394` |
+| Inspect (pests) | `#A4471F` | `#E9C46A` |
+| Sow | `#2B6530` | `#92D1AE` |
+| Harvest | `#A8700F` | `#F2C46B` |
+| Success | `#2B6530` | `#8FD4A8` |
+| Warning | `#855B00` | `#E9C46A` |
 
-### 2.3 Dark theme
+### 2.3 Dark theme ("evening")
 
-Dark theme is a first-class theme, not an inversion. Surfaces are deep forest tones rather than pure black, to keep photography warm.
+Dark theme is a first-class theme, not an inversion: deep neem greens rather than black, and the terrace plan gets a dusk overlay.
 
 | Token | Hex |
 |---|---|
-| `surface` | `#121815` |
-| `surfaceContainer` | `#1B231F` |
-| `surfaceContainerHigh` | `#242D28` |
-| `onSurface` | `#E4EAE4` |
-| `onSurfaceVariant` | `#B7C2BA` |
-| `primary` | `#9CD3A7` |
-| `onPrimary` | `#0F3A1D` |
+| `surface` (`dusk`) | `#0F2017` |
+| `surfaceContainerLowest` / `surfaceContainer` (`duskHigh`) | `#18301F` |
+| `surfaceContainerHigh` | `#1F3627` |
+| `surfaceContainerHighest` (`duskHighest`) | `#24402D` |
+| `onSurface` | `#ECE8DE` |
+| `onSurfaceVariant` | `#A9B7AD` |
+| `primary` | `#93CE8C` |
 | `secondary` | `#F0B394` |
 | `tertiary` | `#F2C46B` |
-| `outlineVariant` | `#3A453F` |
 
-Strategy: `ThemeMode.system` by default, user override in Settings. Images get a subtle 8% scrim in dark mode only when text overlays them.
+Strategy: `ThemeMode.system` by default, user override in Settings.
 
-### 2.4 Glass and photography (`GlassTheme`, `GlassPanel`, `PhotoBackdrop`)
+### 2.4 Surfaces (`GlassTheme`, `GlassPanel`, `PhotoBackdrop`)
 
-| Token | Light | Dark | Purpose |
-|---|---|---|---|
-| `tint` | white @ 66% (`#A8FFFFFF`) | forest @ 72% (`#B8121815`) | Fill over the blurred backdrop |
-| `border` | white @ 55% | white @ 12% | Hairline edge that defines the glass |
-| `blurSigma` | 20 | 20 | Backdrop blur |
-| `photoScrim` | black @ 55% | black @ 62% | Top-of-photo gradient behind white text |
-| `onPhoto` | white | white | Text and icons placed directly on photos |
+| Token | Light | Dark |
+|---|---|---|
+| `tint` | `#FBFAF7` (paper) | `#18301F` |
+| `border` | `#E5E1D6` | `#24402D` |
+| `blurSigma` | 0 | 0 |
+| `onPhoto` | `#17301F` | `#ECE8DE` |
 
-Rules (guard-rails):
-1. **Glass only over photography.** Over flat colour the blur costs performance and adds nothing; use solid surfaces there.
-2. **Text on glass uses `onSurface` only.** Hierarchy comes from size and weight, not grey text: `onSurfaceVariant` drops to about 2.7:1 over dark photo regions. The tint opacity is tested so `onSurface` keeps at least 4.5:1 even over pure black or pure white backdrops.
-3. **Text directly on photos** sits in the top scrim zone and uses `onPhoto`. It is tested at at least 4.5:1 over a white photo plus scrim.
-4. **High contrast:** when the platform requests it, `GlassPanel` renders an opaque surface without blur.
-5. **Budget:** at most about 4 blurred panels visible at once (each `BackdropFilter` is a GPU pass). Profile on a mid-range device in P6-07.
-6. **Radii:** panels 28, navigation pill 32, round glass buttons 24.
-7. **Layouts with photos must scroll** when content exceeds the screen (200% text), never overflow. Tested in `glass_widgets_test.dart`.
+Rules:
+1. **Solid paper by default.** `GlassPanel` draws a solid card; it only blurs when a theme sets `blurSigma > 0` (kept for possible future photo screens). `PhotoBackdrop` is a plain surface with the right status-bar style.
+2. **Photos are content, not backdrops:** garden cover (until a layout exists), journal entries and the then-and-now card.
+3. **High contrast:** `GlassPanel` never blurs when the platform requests high contrast.
+4. **Radii:** cards 22–24, the plan 26, pills full.
+5. **Illustrations give way** on short screens (capped at about 30–35% of the height) so actions stay in reach, and layouts scroll at 200% text.
 
 ## 3. Typography
 
-Two bundled font families (both SIL Open Font License, shipped as assets, so no runtime font download):
+Two bundled font families (both SIL Open Font License, shipped as assets with licences registered at start-up, so no runtime font download):
 
-- **Display / headings:** *Fraunces* (static 72pt optical size; Regular 400 and SemiBold 600 bundled). Editorial character for screen titles, plant names, empty-state headlines.
-- Static font files are bundled (Inter 18pt Regular, Italic, Medium, SemiBold; Fraunces 72pt Regular, SemiBold). Use only these weights. Contrast for every token pair is enforced by `test/app/theme/contrast_test.dart`.
-- **UI / body:** *Inter* (variable sans). High legibility at small sizes, good numerals for dimensions.
+- **Display, headings and plant names:** *Young Serif* (Regular 400). Screen titles, headlines, plant names in lists and cards.
+- **UI / body:** *Schibsted Grotesk* (Regular, Italic, Medium, SemiBold, Bold). High legibility at small sizes, good numerals for dimensions.
 
-Scientific names are rendered in Inter italic.
+Scientific names are rendered in Schibsted Grotesk italic.
 
 | Role (M3 TextTheme) | Family | Size / line height | Weight |
 |---|---|---|---|
-| displaySmall | Fraunces | 36 / 44 | 400 |
-| headlineMedium | Fraunces | 28 / 36 | 400 |
-| headlineSmall | Fraunces | 24 / 32 | 400 |
-| titleLarge | Inter | 20 / 28 | 600 |
-| titleMedium | Inter | 16 / 24 | 600 |
-| titleSmall | Inter | 14 / 20 | 600 |
-| bodyLarge | Inter | 16 / 24 | 400 |
-| bodyMedium | Inter | 14 / 20 | 400 |
-| bodySmall | Inter | 12 / 16 | 400 |
-| labelLarge | Inter | 14 / 20 | 600 |
-| labelMedium | Inter | 12 / 16 | 500 |
-| labelSmall | Inter | 11 / 16 | 500 |
+| displaySmall | Young Serif | 36 / 44 | 400 |
+| headlineLarge | Young Serif | 32 / 40 | 400 |
+| headlineMedium | Young Serif | 28 / 36 | 400 |
+| headlineSmall | Young Serif | 24 / 32 | 400 |
+| titleLarge | Schibsted Grotesk | 20 / 28 | 600 |
+| titleMedium | Schibsted Grotesk | 16 / 24 | 600 |
+| titleSmall | Schibsted Grotesk | 14 / 20 | 600 |
+| bodyLarge | Schibsted Grotesk | 16 / 24 | 400 |
+| bodyMedium | Schibsted Grotesk | 14 / 20 | 400 |
+| bodySmall | Schibsted Grotesk | 12 / 16 | 400 |
+| labelLarge | Schibsted Grotesk | 14 / 20 | 600 |
+| labelMedium | Schibsted Grotesk | 12 / 16 | 500 |
+| labelSmall | Schibsted Grotesk | 11 / 16 | 500 |
+
+Plant names in rows and cards use the display family at title sizes (weight 400).
 
 Rules: body text is never below 12sp. Layouts must survive text scaling to 200% (wrap rather than truncate on critical content). Measurement labels on the canvas use `labelMedium` with tabular figures (`FontFeature.tabularFigures()`).
-
 ## 4. Spacing, layout and responsiveness
 
 - **Spacing scale (dp):** `xxs 2 · xs 4 · sm 8 · md 12 · lg 16 · xl 24 · xxl 32 · xxxl 48 · huge 64`. Exposed as `AppSpacing` constants.
@@ -205,11 +199,12 @@ Every data-driven screen implements all applicable states explicitly using share
 
 ## 11. Imagery
 
-- **Screen backdrops (full-bleed):** portrait crops at 3:5, max 1440×2400, JPEG quality ~78 (≈400–700 KB each). Sharpness matters: never stretch a landscape photo to fill a portrait screen (a 1300 px landscape image upscaled about 3× looked soft and was rejected in v0.2).
+- **Plants are drawn, not photographed** (v0.3): `PlantArtSpec.of(speciesId)` gives each catalogue species a form (fruiting, palmate, rosette, root, cluster, grass, flowering, succulent, trailing) and colours; a new species needs an entry there or falls back to its category. Locked by the `plant_art` golden.
+- **Bundled photos** (garden cover fallback, empty states): ≤ 1440 px long edge, JPEG quality ~78. Never stretched or upscaled. They are no longer full-screen backdrops.
 - **Cards and catalogue thumbnails:** ≤ 1200px long edge, ≤ ~150 KB (WebP or JPEG).
 - **Subjects:** real terraces, balconies, containers and edible plants. Prefer scenes that resemble Indian terraces (grow bags, terracotta, concrete parapets) as the library grows. No people in backdrops.
 - **Licensing:** own photos, CC0/public domain, CC BY, or CC BY-SA (crops of BY-SA images are BY-SA). Every bundled image has an entry in `assets/images/ATTRIBUTION.md` **and** in `photoCredits` (shown in Settings → Image credits). No competitor assets. Openverse and Wikimedia Commons are the sourcing tools used so far.
-- Fallback: a tasteful category illustration/placeholder when a plant has no licensed photo.
+- Fallback: the category drawing when a species has no specific art.
 - User photos are shown with `BoxFit.cover`, rounded `shapeMd`, and are never upscaled beyond their resolution.
 
 ## 12. Garden canvas visual language

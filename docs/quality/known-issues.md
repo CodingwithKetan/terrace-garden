@@ -46,6 +46,10 @@ Last updated: 2026-10-18 (Phase 4).
 | KI-026 | The Android notification channel name and description are hardcoded in English | Localise when Hindi ships (PD-003) |
 | ~~KI-027~~ | **Resolved 2026-10-18:** reconcile now re-plans transplant, harvest and pruning rules after an edit, keeping user switches and repeating checks. Earlier: editing a planting (date or start type) doesn't re-plan its existing care rules; only new plantings get plans, so transplant and harvest dates can go stale | Re-plan on edit, keeping rules the user has customised |
 | KI-028 | Notification taps open the app on Today; there is no deep link to a specific task. (The month calendar was added 2026-10-18.) | P1 polish |
+| KI-030 | The garden chosen with the Today switcher (ADR-026) is kept in memory only; after a restart Today shows the first garden again | Persist in settings if users with several gardens find it annoying |
+| KI-031 | Perf budget tests failed intermittently when the full suite ran in parallel (a preempted run skewed the mean). They now use the **median** of 21 runs; the 16 ms budget is unchanged (2026-10-18) | Watch for recurrence; a device profile run is still open (KI-029) |
+| KI-032 | Widget tests do not decode file images, so journal photos and garden covers appear blank in test renders; their layout is verified, their pixels only on device | Check photos during the device session and user tests |
+| KI-033 | The Living Terrace art (`PlantArtSpec`) is stylised, not botanical reference: shapes and colours suggest each plant but are not identification aids | Keep the plant name beside every drawing; a horticulturist can review with R2 |
 
 ## Research evidence gaps
 

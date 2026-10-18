@@ -8,15 +8,17 @@ Status: v0.1 (Phase 0). Screen IDs are referenced from `TODO.md`. "Phase" is whe
 App launch
  ├─ First run → Onboarding (ONB-*)      (skippable after step 1)
  └─ App shell (bottom NavigationBar / NavigationRail)
-     ├─ Today        (HOME-01)          what to do now, garden snapshot
-     ├─ Garden       (GDN-*)            gardens, photos, profile, designer
-     ├─ Plants       (PLT-*, REC-*)     catalogue, recommendations, my plants
-     └─ Journal      (JRN-*)            progress photos, notes, milestones, stats
-     Settings (SET-*) is reached from the avatar/menu on Today.
+     ├─ Today        (HOME-01)          the day's job, your terrace plan, tasks by kind
+     ├─ Plants       (PLT-*)            catalogue, plant detail with journey
+     ├─ Seasons      (SEA-01)           sow this month, almanac for your plants
+     └─ Journal      (JRN-*)            then and now, progress, timeline
+     Gardens (GDN-*, /gardens/...) open from the garden name on Today; ideas (REC-*),
+     the designer and the add-plant picker are reached from a garden or a plant.
+     Settings (SET-*) and the care calendar are icons on Today.
 ```
 
 Navigation decisions:
-- Four top-level destinations keep the bar uncluttered; the care calendar lives inside **Today** (agenda) with a full calendar view (CARE-02) one tap away, because daily use is task-driven.
+- (2026-10, ADR-026) Gardens left the tab bar for Seasons: daily use starts on Today, which shows the garden itself. Four top-level destinations keep the bar uncluttered; the care calendar lives inside **Today** (agenda) with a full calendar view (CARE-02) one tap away, because daily use is task-driven.
 - The **designer** (DSN-01) is a full-screen route above the shell (no bottom bar) to maximise canvas space.
 - Deep links / notification taps open the relevant task (CARE-03) on top of the Today stack.
 
@@ -38,7 +40,9 @@ Notification permission is **not** requested during onboarding; it's requested i
 
 | ID | Screen | Purpose | Key content / actions | States |
 |---|---|---|---|---|
-| HOME-01 | Today | Daily hub | Greeting + date, season banner (if location known), today's/overdue tasks grouped by garden, quick complete/skip, garden snapshot card, "Check the soil before watering" guidance | Empty (no garden → create CTA; garden but no plants → add plants CTA), loading, error |
+| HOME-01 | Today | Daily hub | Garden name (opens the garden; switcher when there are several), date and city, a headline stating the day's job ("2 plants would like a soil check"), the terrace plan with due/done pins (tap → soil-check sheet, plant detail or ideas), tasks grouped by kind with plant art and "checked yesterday", Done today, Coming up | No garden → "Let's draw your terrace"; garden without layout → "Design your layout"; loading, error |
+| SEA-01 | Seasons | What to sow when | The current garden's region; "this month" card of sowable species; almanac rows (12 months, current month highlighted) for the user's plants and shortlist; species without a sourced window say so | No garden; garden without region |
+| CARE-SOIL | Soil-check sheet | Teach and record the check | Cutaway of the 2–3 cm finger test, species-adapted sourced guide, "It was dry, I watered" (done) / "Still moist, skip today" (skipped, reason recorded) | — |
 
 ### Garden (Phase 2–3)
 

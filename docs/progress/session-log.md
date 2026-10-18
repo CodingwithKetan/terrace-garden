@@ -4,6 +4,42 @@ Newest first. Keep entries concise: goal, what was done, checks, next.
 
 ---
 
+## 2026-10-18: Session 1, part 9 (Living Terrace redesign)
+
+**Goal:** the user found the photo-and-glass UI generic ("looks like AI generated"). After three rounds of mockups they chose direction C, "Living Terrace", and asked to build it.
+
+**Done** (ADR-025, ADR-026):
+- **Foundation, art, plan:**
+  - the Living Terrace palette, Young Serif and Schibsted Grotesk, and solid surfaces;
+  - `PlantArtSpec` drawings for all 25 species;
+  - `TerracePlan`, which draws the real layout to scale.
+- **Navigation:** the tabs are Today · Plants · Seasons · Journal. Gardens open from the garden name on Today, with a switcher when there are several.
+- **Today:** a headline that states the job, the plan with due/done pins, and tasks grouped by kind.
+- **Soil-check sheet:** a cutaway of the finger test and two answers ("dry, I watered" records done; "still moist" records a skip with that reason).
+- **Seasons:** sow-now card and almanac, from sourced windows only.
+- **Plant detail:** an illustrated hero, a sourced journey (`PlantJourney`, the same rules as the care planner) and the care rhythm.
+- **Ideas:** a seed-shop shelf with the best match featured.
+- **Adding a plant:** "Which container?" on the plan (`ContainerVerdict`).
+- **Journal:** then-and-now photos and a timeline rail.
+- **Welcome step:** a sample terrace.
+- **Garden overview:** its own plan as the hero.
+- **Fixed on the way:**
+  - white-on-limestone titles on the welcome and the collapsed garden bar;
+  - a duplicate ARB key that renamed the journal's "Harvest" chip (now guarded by a test);
+  - the soil sheet's raw colour;
+  - a flaky perf budget.
+
+**Checks:**
+- Format clean, analyze clean, 456 host tests pass.
+- Device journey passed on the third run (see current-status for the two test-setup failures).
+
+**Commits:** `6111502`, `2e58558`, `0525b90` (pushed), plus this docs commit.
+
+**Next:**
+- moderated user tests of the new design;
+- R-08 follow-ups;
+- P6-07 profiling on a real phone.
+
 ## 2026-10-18: Session 1, part 8 (Phase 6: progress and refinement)
 
 **Done:**

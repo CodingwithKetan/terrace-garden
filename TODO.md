@@ -1,6 +1,6 @@
 # TODO
 
-Single source of truth for implementation progress. Last updated: 2026-10-18.
+Single source of truth for implementation progress. Last updated: 2026-10-18 (Living Terrace redesign).
 
 Legend: `[ ]` not started · `[~]` in progress · `[x]` completed (acceptance criteria met and checks run) · `[!]` blocked (reason given).
 Priority: **P0** must (MVP-critical) · **P1** should · **P2** could.
@@ -173,6 +173,19 @@ Every phase ends with the **gate**: `dart format --output=none --set-exit-if-cha
 - [x] **P6-09 · P1 · User-testing kit.** *Done:* `docs/product/user-testing-kit.md` (recruiting, tasks mapped to assumptions A1–A6 and risks, debrief, measures). Distribution is a debug APK until signing and branding exist (P6-10).
 - [x] **P6-11 · P0 · Import boundaries (KI-025).** *Done (ADR-023):* per-feature public API files, with an architecture test that also checks domain purity.
 - [ ] **P6-GATE** MVP ready for user feedback. *Status 2026-10-18:* every P0 is done except the device half of P6-07 (profile-mode run on a real phone). The build is ready for **moderated** testing with the kit; the gate stays open until P6-07 is complete.
+
+## Redesign: Living Terrace (2026-10, ADR-025, ADR-026)
+
+User feedback on the photo-and-glass look: "looks like an AI generated app". Direction C, "Living Terrace", was chosen from mockups (`docs/design/redesign-living-terrace.pdf`) and built in steps.
+
+- [x] **R-01 · Foundation.** Palette (limestone, neem, leaf, terracotta, haldi, water, dusk), Young Serif + Schibsted Grotesk (bundled OFL), solid paper surfaces, solid navigation bar. Contrast tests updated. (`004e2af`)
+- [x] **R-02 · Plant art.** `PlantArtSpec` for all 25 species (top and side views, terracotta or grow-bag pot), with a golden. (`ce5833d`)
+- [x] **R-03 · Terrace plan.** `TerracePlan` draws the real layout to scale with plants, due/done badges, tags, fit states and a dusk mode; each container is a labelled 48 dp button. (`ce5833d`)
+- [x] **R-04 · Navigation, Today, soil check, Seasons.** Tabs Today · Plants · Seasons · Journal; gardens from Today with a switcher. Today: job headline, plan with pins, tasks grouped by kind. Soil-check sheet with "dry, I watered" / "still moist" answers. Seasons tab with sow-now card and almanac. (`6111502`)
+- [x] **R-05 · Plant detail, ideas, add plant.** Illustrated hero, sourced journey (`PlantJourney`), care rhythm; ideas shelf with a featured best match; "Which container?" picker on the plan (`ContainerVerdict`). ARB duplicate-key test added. (`2e58558`)
+- [x] **R-06 · Journal, welcome, garden overview.** Then-and-now photos, timeline rail; welcome with a sample terrace (fixed invisible title); garden overview with its own plan as hero (fixed collapsed white title). (`0525b90`)
+- [x] **R-07 · Docs.** ADR-025, ADR-026, design-system v0.3, screen inventory, known issues KI-030..KI-033.
+- [ ] **R-08 · Follow-ups (P1).** Persist the selected garden (KI-030); evening headline naming the plant still waiting; vertical current-month band in the Seasons almanac; plant names in TerracePlan tags for long names; moderated user test of the new design.
 
 ## Phase 7: Advanced (each needs value, cost and plan before starting)
 

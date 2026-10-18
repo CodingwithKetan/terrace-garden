@@ -130,6 +130,9 @@ void main() {
     await pumpUntilFound(tester, find.text('1 object in your layout'));
 
     // P6-01 on device: a journal entry saves and shows on the timeline.
+    // Gardens sit above the tabs (ADR-026): back to Today first.
+    await tester.pageBack();
+    await pumpUntilFound(tester, find.text('Journal'));
     await tester.tap(find.text('Journal'));
     await pumpUntilFound(tester, find.textContaining('Check the soil · '));
     await tester.tap(find.byTooltip('New entry'));

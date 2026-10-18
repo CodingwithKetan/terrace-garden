@@ -69,6 +69,16 @@ flutter test integration_test   # requires a running Android emulator
 flutter build apk --debug        # build sanity check
 ```
 
+Device test setup (Android 13+). `flutter test` uninstalls the app after each run, so grant the notification permission on a freshly installed build first. Otherwise the system dialog blocks the daily-digest step:
+
+```bash
+flutter build apk --debug
+adb install -r build/app/outputs/flutter-apk/app-debug.apk
+adb shell pm clear com.terracegarden.terrace_garden
+adb shell pm grant com.terracegarden.terrace_garden android.permission.POST_NOTIFICATIONS
+flutter test integration_test -d emulator-5554
+```
+
 Coverage target (guidance, not a vanity metric): ≥ 90% line coverage for `domain/` packages, ≥ 70% overall. Run with `flutter test --coverage`.
 
 Rules: no skipped tests without a linked `known-issues.md` entry; no weakened assertions to get green; lints are not disabled to hide problems (any `// ignore:` needs a reason comment).

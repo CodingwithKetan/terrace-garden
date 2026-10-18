@@ -96,6 +96,7 @@ Change process: add a new ADR (or mark one *Superseded by ADR-0xx*) instead of s
 - **riverpod_lint: deferred.** On Flutter 3.44 the analysis server needs `analysis_server_plugin ^0.3.8`, which riverpod_lint 3.1.3 (the newest compatible with the pinned codegen set) cannot satisfy. The plugin failed to load, so it was removed on 2026-10-18 rather than left silently inactive. Re-add it (`plugins: riverpod_lint: <version>`) with the SDK upgrade, and verify it with a deliberate violation (e.g. `runApp` without `ProviderScope`).
 
 ## ADR-012: Typography and icons: bundled fonts, Material Symbols
+- **Superseded in part by ADR-025 (2026-10):** the bundled fonts are now YoungSerif and Schibsted Grotesk; the "bundle, no runtime fetching" rule stands.
 - **Decision:**
   - Bundle *Fraunces* and *Inter* (OFL) as assets, declared in `pubspec.yaml` `fonts:`. No runtime font fetching, and no `google_fonts` dependency.
   - Register the font licences with `LicenseRegistry`.
@@ -204,3 +205,20 @@ Change process: add a new ADR (or mark one *Superseded by ADR-0xx*) instead of s
 - Scheduled-notification bookkeeping is device-specific and left out.
 - The file goes to the system share sheet (`share_plus`), so the user chooses where it goes. The app uploads nothing.
 - **Not yet:** importing an export. `formatVersion` and `schemaVersion` are there so an importer can migrate older files later.
+
+## ADR-025: Living Terrace visual system (redesign, 2026-10)
+- **Context:** user testing of the photo-and-glass look ("looks like an AI-generated app") asked for a distinctive, crafted design. Direction C, "Living Terrace", was chosen from three mockups (`docs/design/redesign-living-terrace.pdf`).
+- **Decision:**
+  - **Palette** (`AppPalette`): limestone/paper/stone grounds, neem green text, leaf primary, terracotta and haldi accents, water blue for soil checks, dusk greens for dark mode. Text colours are checked by `contrast_test.dart`.
+  - **Type:** YoungSerif for headlines and plant names, Schibsted Grotesk for UI. Both are bundled OFL fonts with licences registered at start-up; Inter and Fraunces were removed. This replaces ADR-012's font choice.
+  - **Surfaces:** solid paper cards. `GlassPanel` blurs only when a theme asks for it (`blurSigma > 0`); `PhotoBackdrop` is a plain surface. Stock photos remain only as the garden cover until a layout exists, and in empty states.
+  - **Illustration in code:** `PlantArtSpec` maps every catalogue species to a drawn form (top and side views). `TerracePlan` draws the user's real layout to scale and is reused on Today, the garden overview, the add-plant picker and the welcome step. Illustrations are decorative or carry semantic labels; they never show unsourced facts.
+- **Consequences:** no network images or icon packs; the art is testable with CI goldens (`living_terrace_art_golden_test.dart`). New screens should compose `TerracePlan`, `PlantTopArt` and `PlantSideArt` rather than photos.
+
+## ADR-026: Living Terrace navigation (redesign, 2026-10)
+- **Decision:** the tabs are **Today · Plants · Seasons · Journal**. Gardens are no longer a tab: `/gardens`, `/gardens/:id` and their sub-routes are top-level routes, opened from the garden name on Today. A switcher appears there when the user has more than one garden.
+  - `SelectedGardenId` (keep-alive, in memory) and `currentGarden` (the selected garden or the first) decide which garden Today and Seasons show.
+  - Seasons is a new tab: what can be sown this month in the current garden's region, and an almanac for the user's plants and shortlist, from sourced windows only.
+  - Deleting a garden returns to Today.
+- **Why:** most visits are "what does my terrace need today", which Today now answers with the plan itself. The garden's details are a step away, not a tab.
+- **Consequences:** the selected garden is not persisted across restarts (first garden by default). Tests reach gardens through Today or `TestApp.open`.
