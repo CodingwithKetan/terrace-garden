@@ -4,4 +4,5 @@
 library;
 
 export 'data/catalogue_providers.dart';
+export 'presentation/art/plant_art.dart';
 export 'presentation/plant_labels.dart';

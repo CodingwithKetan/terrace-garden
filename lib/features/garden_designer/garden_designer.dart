@@ -5,3 +5,4 @@ library;
 
 export 'data/designer_providers.dart';
 export 'presentation/designer_labels.dart';
+export 'presentation/terrace_plan.dart';
