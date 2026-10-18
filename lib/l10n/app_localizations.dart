@@ -2415,6 +2415,348 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unknown plant'**
   String get plantingUnknownSpecies;
+
+  /// No description provided for @digestTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your garden today'**
+  String get digestTitle;
+
+  /// No description provided for @digestBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 care task is due. Check the soil before you water.} other{{count} care tasks are due. Check the soil before you water.}}'**
+  String digestBody(int count);
+
+  /// No description provided for @taskCheckSoil.
+  ///
+  /// In en, this message translates to:
+  /// **'Check the soil'**
+  String get taskCheckSoil;
+
+  /// No description provided for @taskInspectPests.
+  ///
+  /// In en, this message translates to:
+  /// **'Look for pests'**
+  String get taskInspectPests;
+
+  /// No description provided for @taskFeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Feed'**
+  String get taskFeed;
+
+  /// No description provided for @taskTransplant.
+  ///
+  /// In en, this message translates to:
+  /// **'Transplant seedlings'**
+  String get taskTransplant;
+
+  /// No description provided for @taskHarvest.
+  ///
+  /// In en, this message translates to:
+  /// **'Harvest may start'**
+  String get taskHarvest;
+
+  /// No description provided for @taskPrune.
+  ///
+  /// In en, this message translates to:
+  /// **'Prune'**
+  String get taskPrune;
+
+  /// No description provided for @guideCheckSoil.
+  ///
+  /// In en, this message translates to:
+  /// **'Push a finger 2–3 cm into the soil, or about a third of the way down the pot. Water only if it feels dry, then water slowly until it drains from the bottom. Early morning is best; water the base, not the leaves.'**
+  String get guideCheckSoil;
+
+  /// No description provided for @guideCheckSoilDry.
+  ///
+  /// In en, this message translates to:
+  /// **'This plant should dry out between waterings (succulents completely). Check the soil and water only when it is dry; overwatering is the main risk.'**
+  String get guideCheckSoilDry;
+
+  /// No description provided for @guideCheckSoilMoist.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t let this plant\'s soil dry out. Check it and water if it is getting dry.'**
+  String get guideCheckSoilMoist;
+
+  /// No description provided for @guideInspectPests.
+  ///
+  /// In en, this message translates to:
+  /// **'Look under leaves and on new growth for aphids, mites and whitefly; aphids gather on the upwind side. Wash pests off with a strong jet of water early in the day. Avoid broad-spectrum sprays: they can make mites worse.'**
+  String get guideInspectPests;
+
+  /// No description provided for @guideFeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Feed every 2–4 weeks while the plant is growing, onto moist soil, at the amount on the product label. Feed less if plants turn tall and spindly or leaf edges look burnt.'**
+  String get guideFeed;
+
+  /// No description provided for @guideTransplant.
+  ///
+  /// In en, this message translates to:
+  /// **'Seedlings raised in trays are moved to their final container about 25–30 days after sowing; most vegetables are ready at 2–3 true leaves.'**
+  String get guideTransplant;
+
+  /// No description provided for @guideHarvest.
+  ///
+  /// In en, this message translates to:
+  /// **'By the sourced timeline this crop may be ready to start harvesting. Timing varies with variety and season and is counted from sowing, so plants started as seedlings may be ready sooner.'**
+  String get guideHarvest;
+
+  /// No description provided for @guidePrune.
+  ///
+  /// In en, this message translates to:
+  /// **'In Tamil Nadu, jasmine (Jasminum sambac) is cut back to about 50 cm in the last week of November.'**
+  String get guidePrune;
+
+  /// No description provided for @guideSources.
+  ///
+  /// In en, this message translates to:
+  /// **'Sources: {publishers}'**
+  String guideSources(String publishers);
+
+  /// No description provided for @todayOverdue.
+  ///
+  /// In en, this message translates to:
+  /// **'Overdue'**
+  String get todayOverdue;
+
+  /// No description provided for @todayDueToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get todayDueToday;
+
+  /// No description provided for @todayUpcoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Coming up'**
+  String get todayUpcoming;
+
+  /// No description provided for @todayDoneToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Done today'**
+  String get todayDoneToday;
+
+  /// No description provided for @todayAllDone.
+  ///
+  /// In en, this message translates to:
+  /// **'All done for today'**
+  String get todayAllDone;
+
+  /// No description provided for @todayAllDoneBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing else is due today. Upcoming tasks are below.'**
+  String get todayAllDoneBody;
+
+  /// No description provided for @todayTasksDue.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No tasks due today} =1{1 task due today} other{{count} tasks due today}}'**
+  String todayTasksDue(int count);
+
+  /// No description provided for @taskMarkAllDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark all done'**
+  String get taskMarkAllDone;
+
+  /// No description provided for @taskDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark done'**
+  String get taskDone;
+
+  /// No description provided for @taskSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get taskSkip;
+
+  /// No description provided for @taskMoveTomorrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Move to tomorrow'**
+  String get taskMoveTomorrow;
+
+  /// No description provided for @taskPickDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose another date'**
+  String get taskPickDate;
+
+  /// No description provided for @taskHowTo.
+  ///
+  /// In en, this message translates to:
+  /// **'How to'**
+  String get taskHowTo;
+
+  /// No description provided for @taskActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Task options'**
+  String get taskActions;
+
+  /// No description provided for @taskDueOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Due {date}'**
+  String taskDueOn(String date);
+
+  /// No description provided for @skipReasonTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Why skip it?'**
+  String get skipReasonTitle;
+
+  /// No description provided for @skipRained.
+  ///
+  /// In en, this message translates to:
+  /// **'It rained'**
+  String get skipRained;
+
+  /// No description provided for @skipSoilMoist.
+  ///
+  /// In en, this message translates to:
+  /// **'Soil is still moist'**
+  String get skipSoilMoist;
+
+  /// No description provided for @skipNotNeeded.
+  ///
+  /// In en, this message translates to:
+  /// **'Not needed'**
+  String get skipNotNeeded;
+
+  /// No description provided for @skipOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Another reason'**
+  String get skipOther;
+
+  /// No description provided for @taskCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Marked done'**
+  String get taskCompleted;
+
+  /// No description provided for @taskSkipped.
+  ///
+  /// In en, this message translates to:
+  /// **'Skipped'**
+  String get taskSkipped;
+
+  /// No description provided for @taskMoved.
+  ///
+  /// In en, this message translates to:
+  /// **'Moved to {date}'**
+  String taskMoved(String date);
+
+  /// No description provided for @carePlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Care plan'**
+  String get carePlan;
+
+  /// No description provided for @carePlanTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Care plan: {plant}'**
+  String carePlanTitle(String plant);
+
+  /// No description provided for @carePlanAfterDone.
+  ///
+  /// In en, this message translates to:
+  /// **'{days, plural, =1{Every day after the last one is done} other{Every {days} days after the last one is done}}'**
+  String carePlanAfterDone(int days);
+
+  /// No description provided for @carePlanEvery.
+  ///
+  /// In en, this message translates to:
+  /// **'{days, plural, =1{Every day} other{Every {days} days}}'**
+  String carePlanEvery(int days);
+
+  /// No description provided for @carePlanWeekly.
+  ///
+  /// In en, this message translates to:
+  /// **'Every week'**
+  String get carePlanWeekly;
+
+  /// No description provided for @carePlanOnce.
+  ///
+  /// In en, this message translates to:
+  /// **'Once, on {date}'**
+  String carePlanOnce(String date);
+
+  /// No description provided for @carePlanYearly.
+  ///
+  /// In en, this message translates to:
+  /// **'Every year on {date}'**
+  String carePlanYearly(String date);
+
+  /// No description provided for @carePlanNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Defaults come from the sources in each task\'s guide. Adjust them to your plants and weather; the soil check always comes first.'**
+  String get carePlanNote;
+
+  /// No description provided for @carePlanEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'The care plan appears a moment after the plant is added.'**
+  String get carePlanEmpty;
+
+  /// No description provided for @intervalShorter.
+  ///
+  /// In en, this message translates to:
+  /// **'Shorter interval'**
+  String get intervalShorter;
+
+  /// No description provided for @intervalLonger.
+  ///
+  /// In en, this message translates to:
+  /// **'Longer interval'**
+  String get intervalLonger;
+
+  /// No description provided for @settingsReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders'**
+  String get settingsReminders;
+
+  /// No description provided for @reminderDaily.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily care digest'**
+  String get reminderDaily;
+
+  /// No description provided for @reminderDailySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'One notification at {time} on days with tasks'**
+  String reminderDailySubtitle(String time);
+
+  /// No description provided for @reminderTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder time'**
+  String get reminderTime;
+
+  /// No description provided for @reminderPermissionDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications are turned off for this app. You can allow them in the system settings.'**
+  String get reminderPermissionDenied;
+
+  /// No description provided for @reminderNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders can arrive a few minutes late. The Today screen is always up to date.'**
+  String get reminderNote;
 }
 
 class _AppLocalizationsDelegate

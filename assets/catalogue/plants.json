@@ -220,6 +220,7 @@
       "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S40"] },
       "careNotes": [{ "text": "In containers, do not let it dry out.", "sources": ["S40"] }],
       "petSafety": { "status": "toxic", "note": "Toxic to dogs, cats and horses (essential oils, cyanogenic glycosides).", "sources": ["S39"] },
+      "watering": { "mode": "keepMoist", "sources": ["S40"] },
       "dataStatus": "partial"
     },
     {
@@ -370,6 +371,7 @@
       "propagation": null,
       "careNotes": [{ "text": "Keep the roots moist and protect from wind; moving the plant can cause leaf and bud drop.", "sources": ["S40"] }],
       "petSafety": { "status": "notAssessed", "note": "ASPCA lists Hibiscus syriacus as non-toxic; the common Indian H. rosa-sinensis has not been assessed.", "sources": ["S39"] },
+      "watering": { "mode": "keepMoist", "sources": ["S40"] },
       "dataStatus": "partial"
     },
     {
@@ -420,6 +422,7 @@
       "propagation": null,
       "careNotes": [{ "text": "Use a very well-drained succulent mix and let the soil dry completely between waterings.", "sources": ["S40"] }],
       "petSafety": { "status": "toxic", "note": "Toxic to dogs, cats and horses (saponins, anthraquinones).", "sources": ["S39"] },
+      "watering": { "mode": "dryBetween", "sources": ["S40"] },
       "dataStatus": "partial"
     },
     {
@@ -436,6 +439,7 @@
       "propagation": null,
       "careNotes": [{ "text": "Prefers bright indirect light and survives long periods of low light.", "sources": ["S40"] }, { "text": "Let the mix dry between waterings; overwatering causes root rot.", "sources": ["S40"] }],
       "petSafety": { "status": "toxic", "note": "Toxic to dogs and cats (insoluble calcium oxalates). NC State rates it medium for people: all parts.", "sources": ["S39", "S40"] },
+      "watering": { "mode": "dryBetween", "sources": ["S40"] },
       "dataStatus": "partial"
     },
     {
@@ -452,6 +456,7 @@
       "propagation": null,
       "careNotes": [{ "text": "Tolerates very low light. Let it dry between waterings; overwatering is the main risk.", "sources": ["S40"] }],
       "petSafety": { "status": "toxic", "note": "Toxic to dogs and cats (saponins).", "sources": ["S39"] },
+      "watering": { "mode": "dryBetween", "sources": ["S40"] },
       "dataStatus": "partial"
     }
   ]

@@ -1319,4 +1319,235 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get plantingUnknownSpecies => 'Unknown plant';
+
+  @override
+  String get digestTitle => 'Your garden today';
+
+  @override
+  String digestBody(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count care tasks are due. Check the soil before you water.',
+      one: '1 care task is due. Check the soil before you water.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get taskCheckSoil => 'Check the soil';
+
+  @override
+  String get taskInspectPests => 'Look for pests';
+
+  @override
+  String get taskFeed => 'Feed';
+
+  @override
+  String get taskTransplant => 'Transplant seedlings';
+
+  @override
+  String get taskHarvest => 'Harvest may start';
+
+  @override
+  String get taskPrune => 'Prune';
+
+  @override
+  String get guideCheckSoil =>
+      'Push a finger 2–3 cm into the soil, or about a third of the way down the pot. Water only if it feels dry, then water slowly until it drains from the bottom. Early morning is best; water the base, not the leaves.';
+
+  @override
+  String get guideCheckSoilDry =>
+      'This plant should dry out between waterings (succulents completely). Check the soil and water only when it is dry; overwatering is the main risk.';
+
+  @override
+  String get guideCheckSoilMoist =>
+      'Don\'t let this plant\'s soil dry out. Check it and water if it is getting dry.';
+
+  @override
+  String get guideInspectPests =>
+      'Look under leaves and on new growth for aphids, mites and whitefly; aphids gather on the upwind side. Wash pests off with a strong jet of water early in the day. Avoid broad-spectrum sprays: they can make mites worse.';
+
+  @override
+  String get guideFeed =>
+      'Feed every 2–4 weeks while the plant is growing, onto moist soil, at the amount on the product label. Feed less if plants turn tall and spindly or leaf edges look burnt.';
+
+  @override
+  String get guideTransplant =>
+      'Seedlings raised in trays are moved to their final container about 25–30 days after sowing; most vegetables are ready at 2–3 true leaves.';
+
+  @override
+  String get guideHarvest =>
+      'By the sourced timeline this crop may be ready to start harvesting. Timing varies with variety and season and is counted from sowing, so plants started as seedlings may be ready sooner.';
+
+  @override
+  String get guidePrune =>
+      'In Tamil Nadu, jasmine (Jasminum sambac) is cut back to about 50 cm in the last week of November.';
+
+  @override
+  String guideSources(String publishers) {
+    return 'Sources: $publishers';
+  }
+
+  @override
+  String get todayOverdue => 'Overdue';
+
+  @override
+  String get todayDueToday => 'Today';
+
+  @override
+  String get todayUpcoming => 'Coming up';
+
+  @override
+  String get todayDoneToday => 'Done today';
+
+  @override
+  String get todayAllDone => 'All done for today';
+
+  @override
+  String get todayAllDoneBody =>
+      'Nothing else is due today. Upcoming tasks are below.';
+
+  @override
+  String todayTasksDue(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count tasks due today',
+      one: '1 task due today',
+      zero: 'No tasks due today',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get taskMarkAllDone => 'Mark all done';
+
+  @override
+  String get taskDone => 'Mark done';
+
+  @override
+  String get taskSkip => 'Skip';
+
+  @override
+  String get taskMoveTomorrow => 'Move to tomorrow';
+
+  @override
+  String get taskPickDate => 'Choose another date';
+
+  @override
+  String get taskHowTo => 'How to';
+
+  @override
+  String get taskActions => 'Task options';
+
+  @override
+  String taskDueOn(String date) {
+    return 'Due $date';
+  }
+
+  @override
+  String get skipReasonTitle => 'Why skip it?';
+
+  @override
+  String get skipRained => 'It rained';
+
+  @override
+  String get skipSoilMoist => 'Soil is still moist';
+
+  @override
+  String get skipNotNeeded => 'Not needed';
+
+  @override
+  String get skipOther => 'Another reason';
+
+  @override
+  String get taskCompleted => 'Marked done';
+
+  @override
+  String get taskSkipped => 'Skipped';
+
+  @override
+  String taskMoved(String date) {
+    return 'Moved to $date';
+  }
+
+  @override
+  String get carePlan => 'Care plan';
+
+  @override
+  String carePlanTitle(String plant) {
+    return 'Care plan: $plant';
+  }
+
+  @override
+  String carePlanAfterDone(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: 'Every $days days after the last one is done',
+      one: 'Every day after the last one is done',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String carePlanEvery(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: 'Every $days days',
+      one: 'Every day',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get carePlanWeekly => 'Every week';
+
+  @override
+  String carePlanOnce(String date) {
+    return 'Once, on $date';
+  }
+
+  @override
+  String carePlanYearly(String date) {
+    return 'Every year on $date';
+  }
+
+  @override
+  String get carePlanNote =>
+      'Defaults come from the sources in each task\'s guide. Adjust them to your plants and weather; the soil check always comes first.';
+
+  @override
+  String get carePlanEmpty =>
+      'The care plan appears a moment after the plant is added.';
+
+  @override
+  String get intervalShorter => 'Shorter interval';
+
+  @override
+  String get intervalLonger => 'Longer interval';
+
+  @override
+  String get settingsReminders => 'Reminders';
+
+  @override
+  String get reminderDaily => 'Daily care digest';
+
+  @override
+  String reminderDailySubtitle(String time) {
+    return 'One notification at $time on days with tasks';
+  }
+
+  @override
+  String get reminderTime => 'Reminder time';
+
+  @override
+  String get reminderPermissionDenied =>
+      'Notifications are turned off for this app. You can allow them in the system settings.';
+
+  @override
+  String get reminderNote =>
+      'Reminders can arrive a few minutes late. The Today screen is always up to date.';
 }

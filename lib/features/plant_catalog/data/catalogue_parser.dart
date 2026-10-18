@@ -110,6 +110,15 @@ abstract final class CatalogueParser {
             ),
       ],
       petSafety: _petSafety(_object(r['petSafety'], '$id.petSafety'), id),
+      watering: _optionalObject(
+        r,
+        'watering',
+        id,
+        (o) => WateringNeed(
+          mode: _enum(WateringMode.values, o, 'mode', id),
+          sources: _sources(o, id, required: true),
+        ),
+      ),
       dataStatus: _enum(DataStatus.values, r, 'dataStatus', id),
     );
   }

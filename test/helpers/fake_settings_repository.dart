@@ -31,6 +31,19 @@ class FakeSettingsRepository implements SettingsRepository {
   }
 
   @override
+  Future<Result<void>> saveReminder({
+    required bool enabled,
+    required int minutes,
+  }) async {
+    if (failSaves) return const Err(StorageFailure());
+    stored = stored.copyWith(
+      reminderEnabled: enabled,
+      reminderMinutes: minutes,
+    );
+    return const Ok(null);
+  }
+
+  @override
   Future<Result<void>> saveUnitSystem(UnitSystem unitSystem) async {
     if (failSaves) return const Err(StorageFailure());
     stored = stored.copyWith(unitSystem: unitSystem);

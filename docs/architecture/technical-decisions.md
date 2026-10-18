@@ -167,3 +167,19 @@ Change process: add a new ADR (or mark one *Superseded by ADR-0xx*) instead of s
   - User data that refers to species (`plantings`, `shortlist_entries`) stores the species id as plain text; there is no catalogue table to join.
 - **Consequences:** no import, versioning or migration code for catalogue content; an update is an app release. Revisit with the drift import plus FTS5 when the catalogue exceeds a few hundred species, needs remote updates, or needs localised name search (Hindi names).
 - **Unknown data:** null values mean "Not documented" in the UI and "unknown" in recommendations, never a default.
+
+## ADR-022: Care plans from sourced defaults, kept in step by an idempotent reconcile (Phase 5)
+- **Defaults** (`CarePlanner`; every interval cites gardening-references):
+  - **Soil check, daily from completion.** "Monitor container gardens daily" (S10); daily checks in warm or windy weather (S4). The task is a check: water only if the finger test says dry (S5, S6). The guide adapts to a species' sourced `watering` mode: dry between waterings or keep moist (S40).
+  - **Pest check every 3 days from completion.** Aphids "at least twice a week when plants are growing rapidly" (S32).
+  - **Feed every 28 days from completion** for vegetables, leafy greens, climbers, herbs and flowers. This is the conservative end of "every 2–4 weeks" (S3, S4), because excess nitrogen favours aphids (S32). No dose is shown; the guide defers to the product label.
+  - **One-offs:**
+    - transplant after the documented nursery days, for seed-raised transplant crops (S11);
+    - "harvest may start" at the documented minimum days to harvest, for edibles.
+  - **Seasonal:** jasmine pruning on 24 November, in Tamil Nadu only (S18).
+  - The user can switch any rule off and change repeating intervals (CARE-04).
+- **Reconcile instead of hooks:** `CareSync.reconcile()` gives every planting without rules its default plan, then materialises tasks (30-day horizon for fixed schedules; one pending task for completion-based rules). It runs at start-up, on every plantings change and on app resume. Concurrent calls coalesce into one follow-up run.
+  - This keeps the plantings feature unaware of care.
+  - It also back-fills plantings created before Phase 5.
+  - Editing a planting's date does not re-plan existing rules (KI-027).
+- **Notifications:** a daily digest only, at a user-chosen time (default 07:00), and off until the user turns it on. `NotificationPlanner` is pure. `NotificationSync` diffs against the `scheduled_notifications` table and applies the changes through `NotificationScheduler`, implemented by `LocalNotificationScheduler` (flutter_local_notifications 22, inexact, no exact-alarm permission). Per-task reminders and quiet hours are not built; the digest time is the only notification time.

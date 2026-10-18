@@ -15,9 +15,11 @@ import 'package:terrace_garden/core/storage/photo_picker.dart';
 import 'package:terrace_garden/core/storage/photo_storage.dart';
 import 'package:terrace_garden/core/storage/storage_providers.dart';
 import 'package:terrace_garden/core/time/clock.dart';
+import 'package:terrace_garden/features/care/data/care_providers.dart';
 import 'package:terrace_garden/features/settings/application/settings_controller.dart';
 import 'package:terrace_garden/features/settings/domain/app_settings.dart';
 
+import 'fake_notification_scheduler.dart';
 import 'fake_settings_repository.dart';
 import 'test_images.dart';
 
@@ -57,6 +59,7 @@ class TestApp {
   final Directory photoRoot;
   final FakePhotoPicker picker;
   final CopyingImageCompressor compressor;
+  final FakeNotificationScheduler notifications = FakeNotificationScheduler();
 
   /// When set, the app clock is fixed at this time (e.g. for season checks).
   final DateTime? now;
@@ -69,6 +72,7 @@ class TestApp {
       FileSystemPhotoStorage(() async => photoRoot, compressor),
     ),
     photoPickerProvider.overrideWithValue(picker),
+    notificationSchedulerProvider.overrideWithValue(notifications),
     if (now != null) clockProvider.overrideWithValue(FixedClock(now!)),
   ];
 

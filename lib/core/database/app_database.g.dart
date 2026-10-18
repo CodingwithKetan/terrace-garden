@@ -3278,6 +3278,1661 @@ class ShortlistEntriesCompanion extends UpdateCompanion<ShortlistRow> {
   }
 }
 
+class $CareRulesTable extends CareRules
+    with TableInfo<$CareRulesTable, CareRuleRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $CareRulesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _gardenIdMeta = const VerificationMeta(
+    'gardenId',
+  );
+  @override
+  late final GeneratedColumn<String> gardenId = GeneratedColumn<String>(
+    'garden_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES gardens (id) ON DELETE CASCADE',
+    ),
+  );
+  static const VerificationMeta _plantingIdMeta = const VerificationMeta(
+    'plantingId',
+  );
+  @override
+  late final GeneratedColumn<String> plantingId = GeneratedColumn<String>(
+    'planting_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES plantings (id) ON DELETE CASCADE',
+    ),
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<CareTaskType, String> type =
+      GeneratedColumn<String>(
+        'type',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: true,
+      ).withConverter<CareTaskType>($CareRulesTable.$convertertype);
+  static const VerificationMeta _kindMeta = const VerificationMeta('kind');
+  @override
+  late final GeneratedColumn<String> kind = GeneratedColumn<String>(
+    'kind',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _daysMeta = const VerificationMeta('days');
+  @override
+  late final GeneratedColumn<int> days = GeneratedColumn<int>(
+    'days',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _startOnMeta = const VerificationMeta(
+    'startOn',
+  );
+  @override
+  late final GeneratedColumn<String> startOn = GeneratedColumn<String>(
+    'start_on',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _weekdaysMeta = const VerificationMeta(
+    'weekdays',
+  );
+  @override
+  late final GeneratedColumn<String> weekdays = GeneratedColumn<String>(
+    'weekdays',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _monthMeta = const VerificationMeta('month');
+  @override
+  late final GeneratedColumn<int> month = GeneratedColumn<int>(
+    'month',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _dayMeta = const VerificationMeta('day');
+  @override
+  late final GeneratedColumn<int> day = GeneratedColumn<int>(
+    'day',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _enabledMeta = const VerificationMeta(
+    'enabled',
+  );
+  @override
+  late final GeneratedColumn<bool> enabled = GeneratedColumn<bool>(
+    'enabled',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("enabled" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _createdOnMeta = const VerificationMeta(
+    'createdOn',
+  );
+  @override
+  late final GeneratedColumn<String> createdOn = GeneratedColumn<String>(
+    'created_on',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    gardenId,
+    plantingId,
+    type,
+    kind,
+    days,
+    startOn,
+    weekdays,
+    month,
+    day,
+    enabled,
+    createdOn,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'care_rules';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<CareRuleRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('garden_id')) {
+      context.handle(
+        _gardenIdMeta,
+        gardenId.isAcceptableOrUnknown(data['garden_id']!, _gardenIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_gardenIdMeta);
+    }
+    if (data.containsKey('planting_id')) {
+      context.handle(
+        _plantingIdMeta,
+        plantingId.isAcceptableOrUnknown(data['planting_id']!, _plantingIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_plantingIdMeta);
+    }
+    if (data.containsKey('kind')) {
+      context.handle(
+        _kindMeta,
+        kind.isAcceptableOrUnknown(data['kind']!, _kindMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_kindMeta);
+    }
+    if (data.containsKey('days')) {
+      context.handle(
+        _daysMeta,
+        days.isAcceptableOrUnknown(data['days']!, _daysMeta),
+      );
+    }
+    if (data.containsKey('start_on')) {
+      context.handle(
+        _startOnMeta,
+        startOn.isAcceptableOrUnknown(data['start_on']!, _startOnMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_startOnMeta);
+    }
+    if (data.containsKey('weekdays')) {
+      context.handle(
+        _weekdaysMeta,
+        weekdays.isAcceptableOrUnknown(data['weekdays']!, _weekdaysMeta),
+      );
+    }
+    if (data.containsKey('month')) {
+      context.handle(
+        _monthMeta,
+        month.isAcceptableOrUnknown(data['month']!, _monthMeta),
+      );
+    }
+    if (data.containsKey('day')) {
+      context.handle(
+        _dayMeta,
+        day.isAcceptableOrUnknown(data['day']!, _dayMeta),
+      );
+    }
+    if (data.containsKey('enabled')) {
+      context.handle(
+        _enabledMeta,
+        enabled.isAcceptableOrUnknown(data['enabled']!, _enabledMeta),
+      );
+    }
+    if (data.containsKey('created_on')) {
+      context.handle(
+        _createdOnMeta,
+        createdOn.isAcceptableOrUnknown(data['created_on']!, _createdOnMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_createdOnMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  CareRuleRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return CareRuleRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      gardenId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}garden_id'],
+      )!,
+      plantingId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}planting_id'],
+      )!,
+      type: $CareRulesTable.$convertertype.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}type'],
+        )!,
+      ),
+      kind: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}kind'],
+      )!,
+      days: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}days'],
+      ),
+      startOn: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}start_on'],
+      )!,
+      weekdays: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}weekdays'],
+      ),
+      month: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}month'],
+      ),
+      day: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}day'],
+      ),
+      enabled: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}enabled'],
+      )!,
+      createdOn: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}created_on'],
+      )!,
+    );
+  }
+
+  @override
+  $CareRulesTable createAlias(String alias) {
+    return $CareRulesTable(attachedDatabase, alias);
+  }
+
+  static JsonTypeConverter2<CareTaskType, String, String> $convertertype =
+      const EnumNameConverter<CareTaskType>(CareTaskType.values);
+}
+
+class CareRuleRow extends DataClass implements Insertable<CareRuleRow> {
+  final String id;
+  final String gardenId;
+  final String plantingId;
+  final CareTaskType type;
+
+  /// `fromCompletion`, `fixedInterval`, `weekly`, `yearly` or `once`.
+  final String kind;
+  final int? days;
+
+  /// Start, anchor or date (`yyyy-MM-dd`), depending on [kind].
+  final String startOn;
+
+  /// Comma-separated ISO weekdays for `weekly`.
+  final String? weekdays;
+  final int? month;
+  final int? day;
+  final bool enabled;
+  final String createdOn;
+  const CareRuleRow({
+    required this.id,
+    required this.gardenId,
+    required this.plantingId,
+    required this.type,
+    required this.kind,
+    this.days,
+    required this.startOn,
+    this.weekdays,
+    this.month,
+    this.day,
+    required this.enabled,
+    required this.createdOn,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['garden_id'] = Variable<String>(gardenId);
+    map['planting_id'] = Variable<String>(plantingId);
+    {
+      map['type'] = Variable<String>(
+        $CareRulesTable.$convertertype.toSql(type),
+      );
+    }
+    map['kind'] = Variable<String>(kind);
+    if (!nullToAbsent || days != null) {
+      map['days'] = Variable<int>(days);
+    }
+    map['start_on'] = Variable<String>(startOn);
+    if (!nullToAbsent || weekdays != null) {
+      map['weekdays'] = Variable<String>(weekdays);
+    }
+    if (!nullToAbsent || month != null) {
+      map['month'] = Variable<int>(month);
+    }
+    if (!nullToAbsent || day != null) {
+      map['day'] = Variable<int>(day);
+    }
+    map['enabled'] = Variable<bool>(enabled);
+    map['created_on'] = Variable<String>(createdOn);
+    return map;
+  }
+
+  CareRulesCompanion toCompanion(bool nullToAbsent) {
+    return CareRulesCompanion(
+      id: Value(id),
+      gardenId: Value(gardenId),
+      plantingId: Value(plantingId),
+      type: Value(type),
+      kind: Value(kind),
+      days: days == null && nullToAbsent ? const Value.absent() : Value(days),
+      startOn: Value(startOn),
+      weekdays: weekdays == null && nullToAbsent
+          ? const Value.absent()
+          : Value(weekdays),
+      month: month == null && nullToAbsent
+          ? const Value.absent()
+          : Value(month),
+      day: day == null && nullToAbsent ? const Value.absent() : Value(day),
+      enabled: Value(enabled),
+      createdOn: Value(createdOn),
+    );
+  }
+
+  factory CareRuleRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return CareRuleRow(
+      id: serializer.fromJson<String>(json['id']),
+      gardenId: serializer.fromJson<String>(json['gardenId']),
+      plantingId: serializer.fromJson<String>(json['plantingId']),
+      type: $CareRulesTable.$convertertype.fromJson(
+        serializer.fromJson<String>(json['type']),
+      ),
+      kind: serializer.fromJson<String>(json['kind']),
+      days: serializer.fromJson<int?>(json['days']),
+      startOn: serializer.fromJson<String>(json['startOn']),
+      weekdays: serializer.fromJson<String?>(json['weekdays']),
+      month: serializer.fromJson<int?>(json['month']),
+      day: serializer.fromJson<int?>(json['day']),
+      enabled: serializer.fromJson<bool>(json['enabled']),
+      createdOn: serializer.fromJson<String>(json['createdOn']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'gardenId': serializer.toJson<String>(gardenId),
+      'plantingId': serializer.toJson<String>(plantingId),
+      'type': serializer.toJson<String>(
+        $CareRulesTable.$convertertype.toJson(type),
+      ),
+      'kind': serializer.toJson<String>(kind),
+      'days': serializer.toJson<int?>(days),
+      'startOn': serializer.toJson<String>(startOn),
+      'weekdays': serializer.toJson<String?>(weekdays),
+      'month': serializer.toJson<int?>(month),
+      'day': serializer.toJson<int?>(day),
+      'enabled': serializer.toJson<bool>(enabled),
+      'createdOn': serializer.toJson<String>(createdOn),
+    };
+  }
+
+  CareRuleRow copyWith({
+    String? id,
+    String? gardenId,
+    String? plantingId,
+    CareTaskType? type,
+    String? kind,
+    Value<int?> days = const Value.absent(),
+    String? startOn,
+    Value<String?> weekdays = const Value.absent(),
+    Value<int?> month = const Value.absent(),
+    Value<int?> day = const Value.absent(),
+    bool? enabled,
+    String? createdOn,
+  }) => CareRuleRow(
+    id: id ?? this.id,
+    gardenId: gardenId ?? this.gardenId,
+    plantingId: plantingId ?? this.plantingId,
+    type: type ?? this.type,
+    kind: kind ?? this.kind,
+    days: days.present ? days.value : this.days,
+    startOn: startOn ?? this.startOn,
+    weekdays: weekdays.present ? weekdays.value : this.weekdays,
+    month: month.present ? month.value : this.month,
+    day: day.present ? day.value : this.day,
+    enabled: enabled ?? this.enabled,
+    createdOn: createdOn ?? this.createdOn,
+  );
+  CareRuleRow copyWithCompanion(CareRulesCompanion data) {
+    return CareRuleRow(
+      id: data.id.present ? data.id.value : this.id,
+      gardenId: data.gardenId.present ? data.gardenId.value : this.gardenId,
+      plantingId: data.plantingId.present
+          ? data.plantingId.value
+          : this.plantingId,
+      type: data.type.present ? data.type.value : this.type,
+      kind: data.kind.present ? data.kind.value : this.kind,
+      days: data.days.present ? data.days.value : this.days,
+      startOn: data.startOn.present ? data.startOn.value : this.startOn,
+      weekdays: data.weekdays.present ? data.weekdays.value : this.weekdays,
+      month: data.month.present ? data.month.value : this.month,
+      day: data.day.present ? data.day.value : this.day,
+      enabled: data.enabled.present ? data.enabled.value : this.enabled,
+      createdOn: data.createdOn.present ? data.createdOn.value : this.createdOn,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CareRuleRow(')
+          ..write('id: $id, ')
+          ..write('gardenId: $gardenId, ')
+          ..write('plantingId: $plantingId, ')
+          ..write('type: $type, ')
+          ..write('kind: $kind, ')
+          ..write('days: $days, ')
+          ..write('startOn: $startOn, ')
+          ..write('weekdays: $weekdays, ')
+          ..write('month: $month, ')
+          ..write('day: $day, ')
+          ..write('enabled: $enabled, ')
+          ..write('createdOn: $createdOn')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    gardenId,
+    plantingId,
+    type,
+    kind,
+    days,
+    startOn,
+    weekdays,
+    month,
+    day,
+    enabled,
+    createdOn,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is CareRuleRow &&
+          other.id == this.id &&
+          other.gardenId == this.gardenId &&
+          other.plantingId == this.plantingId &&
+          other.type == this.type &&
+          other.kind == this.kind &&
+          other.days == this.days &&
+          other.startOn == this.startOn &&
+          other.weekdays == this.weekdays &&
+          other.month == this.month &&
+          other.day == this.day &&
+          other.enabled == this.enabled &&
+          other.createdOn == this.createdOn);
+}
+
+class CareRulesCompanion extends UpdateCompanion<CareRuleRow> {
+  final Value<String> id;
+  final Value<String> gardenId;
+  final Value<String> plantingId;
+  final Value<CareTaskType> type;
+  final Value<String> kind;
+  final Value<int?> days;
+  final Value<String> startOn;
+  final Value<String?> weekdays;
+  final Value<int?> month;
+  final Value<int?> day;
+  final Value<bool> enabled;
+  final Value<String> createdOn;
+  final Value<int> rowid;
+  const CareRulesCompanion({
+    this.id = const Value.absent(),
+    this.gardenId = const Value.absent(),
+    this.plantingId = const Value.absent(),
+    this.type = const Value.absent(),
+    this.kind = const Value.absent(),
+    this.days = const Value.absent(),
+    this.startOn = const Value.absent(),
+    this.weekdays = const Value.absent(),
+    this.month = const Value.absent(),
+    this.day = const Value.absent(),
+    this.enabled = const Value.absent(),
+    this.createdOn = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  CareRulesCompanion.insert({
+    required String id,
+    required String gardenId,
+    required String plantingId,
+    required CareTaskType type,
+    required String kind,
+    this.days = const Value.absent(),
+    required String startOn,
+    this.weekdays = const Value.absent(),
+    this.month = const Value.absent(),
+    this.day = const Value.absent(),
+    this.enabled = const Value.absent(),
+    required String createdOn,
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       gardenId = Value(gardenId),
+       plantingId = Value(plantingId),
+       type = Value(type),
+       kind = Value(kind),
+       startOn = Value(startOn),
+       createdOn = Value(createdOn);
+  static Insertable<CareRuleRow> custom({
+    Expression<String>? id,
+    Expression<String>? gardenId,
+    Expression<String>? plantingId,
+    Expression<String>? type,
+    Expression<String>? kind,
+    Expression<int>? days,
+    Expression<String>? startOn,
+    Expression<String>? weekdays,
+    Expression<int>? month,
+    Expression<int>? day,
+    Expression<bool>? enabled,
+    Expression<String>? createdOn,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (gardenId != null) 'garden_id': gardenId,
+      if (plantingId != null) 'planting_id': plantingId,
+      if (type != null) 'type': type,
+      if (kind != null) 'kind': kind,
+      if (days != null) 'days': days,
+      if (startOn != null) 'start_on': startOn,
+      if (weekdays != null) 'weekdays': weekdays,
+      if (month != null) 'month': month,
+      if (day != null) 'day': day,
+      if (enabled != null) 'enabled': enabled,
+      if (createdOn != null) 'created_on': createdOn,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  CareRulesCompanion copyWith({
+    Value<String>? id,
+    Value<String>? gardenId,
+    Value<String>? plantingId,
+    Value<CareTaskType>? type,
+    Value<String>? kind,
+    Value<int?>? days,
+    Value<String>? startOn,
+    Value<String?>? weekdays,
+    Value<int?>? month,
+    Value<int?>? day,
+    Value<bool>? enabled,
+    Value<String>? createdOn,
+    Value<int>? rowid,
+  }) {
+    return CareRulesCompanion(
+      id: id ?? this.id,
+      gardenId: gardenId ?? this.gardenId,
+      plantingId: plantingId ?? this.plantingId,
+      type: type ?? this.type,
+      kind: kind ?? this.kind,
+      days: days ?? this.days,
+      startOn: startOn ?? this.startOn,
+      weekdays: weekdays ?? this.weekdays,
+      month: month ?? this.month,
+      day: day ?? this.day,
+      enabled: enabled ?? this.enabled,
+      createdOn: createdOn ?? this.createdOn,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (gardenId.present) {
+      map['garden_id'] = Variable<String>(gardenId.value);
+    }
+    if (plantingId.present) {
+      map['planting_id'] = Variable<String>(plantingId.value);
+    }
+    if (type.present) {
+      map['type'] = Variable<String>(
+        $CareRulesTable.$convertertype.toSql(type.value),
+      );
+    }
+    if (kind.present) {
+      map['kind'] = Variable<String>(kind.value);
+    }
+    if (days.present) {
+      map['days'] = Variable<int>(days.value);
+    }
+    if (startOn.present) {
+      map['start_on'] = Variable<String>(startOn.value);
+    }
+    if (weekdays.present) {
+      map['weekdays'] = Variable<String>(weekdays.value);
+    }
+    if (month.present) {
+      map['month'] = Variable<int>(month.value);
+    }
+    if (day.present) {
+      map['day'] = Variable<int>(day.value);
+    }
+    if (enabled.present) {
+      map['enabled'] = Variable<bool>(enabled.value);
+    }
+    if (createdOn.present) {
+      map['created_on'] = Variable<String>(createdOn.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CareRulesCompanion(')
+          ..write('id: $id, ')
+          ..write('gardenId: $gardenId, ')
+          ..write('plantingId: $plantingId, ')
+          ..write('type: $type, ')
+          ..write('kind: $kind, ')
+          ..write('days: $days, ')
+          ..write('startOn: $startOn, ')
+          ..write('weekdays: $weekdays, ')
+          ..write('month: $month, ')
+          ..write('day: $day, ')
+          ..write('enabled: $enabled, ')
+          ..write('createdOn: $createdOn, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $CareTasksTable extends CareTasks
+    with TableInfo<$CareTasksTable, CareTaskRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $CareTasksTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _ruleIdMeta = const VerificationMeta('ruleId');
+  @override
+  late final GeneratedColumn<String> ruleId = GeneratedColumn<String>(
+    'rule_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES care_rules (id) ON DELETE CASCADE',
+    ),
+  );
+  static const VerificationMeta _gardenIdMeta = const VerificationMeta(
+    'gardenId',
+  );
+  @override
+  late final GeneratedColumn<String> gardenId = GeneratedColumn<String>(
+    'garden_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES gardens (id) ON DELETE CASCADE',
+    ),
+  );
+  static const VerificationMeta _plantingIdMeta = const VerificationMeta(
+    'plantingId',
+  );
+  @override
+  late final GeneratedColumn<String> plantingId = GeneratedColumn<String>(
+    'planting_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES plantings (id) ON DELETE CASCADE',
+    ),
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<CareTaskType, String> type =
+      GeneratedColumn<String>(
+        'type',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: true,
+      ).withConverter<CareTaskType>($CareTasksTable.$convertertype);
+  static const VerificationMeta _dueOnMeta = const VerificationMeta('dueOn');
+  @override
+  late final GeneratedColumn<String> dueOn = GeneratedColumn<String>(
+    'due_on',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<TaskStatus, String> status =
+      GeneratedColumn<String>(
+        'status',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: true,
+      ).withConverter<TaskStatus>($CareTasksTable.$converterstatus);
+  static const VerificationMeta _completedOnMeta = const VerificationMeta(
+    'completedOn',
+  );
+  @override
+  late final GeneratedColumn<String> completedOn = GeneratedColumn<String>(
+    'completed_on',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _noteMeta = const VerificationMeta('note');
+  @override
+  late final GeneratedColumn<String> note = GeneratedColumn<String>(
+    'note',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<SkipReason?, String> skipReason =
+      GeneratedColumn<String>(
+        'skip_reason',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      ).withConverter<SkipReason?>($CareTasksTable.$converterskipReasonn);
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    ruleId,
+    gardenId,
+    plantingId,
+    type,
+    dueOn,
+    status,
+    completedOn,
+    note,
+    skipReason,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'care_tasks';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<CareTaskRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('rule_id')) {
+      context.handle(
+        _ruleIdMeta,
+        ruleId.isAcceptableOrUnknown(data['rule_id']!, _ruleIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_ruleIdMeta);
+    }
+    if (data.containsKey('garden_id')) {
+      context.handle(
+        _gardenIdMeta,
+        gardenId.isAcceptableOrUnknown(data['garden_id']!, _gardenIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_gardenIdMeta);
+    }
+    if (data.containsKey('planting_id')) {
+      context.handle(
+        _plantingIdMeta,
+        plantingId.isAcceptableOrUnknown(data['planting_id']!, _plantingIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_plantingIdMeta);
+    }
+    if (data.containsKey('due_on')) {
+      context.handle(
+        _dueOnMeta,
+        dueOn.isAcceptableOrUnknown(data['due_on']!, _dueOnMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_dueOnMeta);
+    }
+    if (data.containsKey('completed_on')) {
+      context.handle(
+        _completedOnMeta,
+        completedOn.isAcceptableOrUnknown(
+          data['completed_on']!,
+          _completedOnMeta,
+        ),
+      );
+    }
+    if (data.containsKey('note')) {
+      context.handle(
+        _noteMeta,
+        note.isAcceptableOrUnknown(data['note']!, _noteMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  List<Set<GeneratedColumn>> get uniqueKeys => [
+    {ruleId, dueOn},
+  ];
+  @override
+  CareTaskRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return CareTaskRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      ruleId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}rule_id'],
+      )!,
+      gardenId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}garden_id'],
+      )!,
+      plantingId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}planting_id'],
+      )!,
+      type: $CareTasksTable.$convertertype.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}type'],
+        )!,
+      ),
+      dueOn: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}due_on'],
+      )!,
+      status: $CareTasksTable.$converterstatus.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}status'],
+        )!,
+      ),
+      completedOn: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}completed_on'],
+      ),
+      note: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}note'],
+      ),
+      skipReason: $CareTasksTable.$converterskipReasonn.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}skip_reason'],
+        ),
+      ),
+    );
+  }
+
+  @override
+  $CareTasksTable createAlias(String alias) {
+    return $CareTasksTable(attachedDatabase, alias);
+  }
+
+  static JsonTypeConverter2<CareTaskType, String, String> $convertertype =
+      const EnumNameConverter<CareTaskType>(CareTaskType.values);
+  static JsonTypeConverter2<TaskStatus, String, String> $converterstatus =
+      const EnumNameConverter<TaskStatus>(TaskStatus.values);
+  static JsonTypeConverter2<SkipReason, String, String> $converterskipReason =
+      const EnumNameConverter<SkipReason>(SkipReason.values);
+  static JsonTypeConverter2<SkipReason?, String?, String?>
+  $converterskipReasonn = JsonTypeConverter2.asNullable($converterskipReason);
+}
+
+class CareTaskRow extends DataClass implements Insertable<CareTaskRow> {
+  final String id;
+  final String ruleId;
+  final String gardenId;
+  final String plantingId;
+  final CareTaskType type;
+  final String dueOn;
+  final TaskStatus status;
+  final String? completedOn;
+  final String? note;
+  final SkipReason? skipReason;
+  const CareTaskRow({
+    required this.id,
+    required this.ruleId,
+    required this.gardenId,
+    required this.plantingId,
+    required this.type,
+    required this.dueOn,
+    required this.status,
+    this.completedOn,
+    this.note,
+    this.skipReason,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['rule_id'] = Variable<String>(ruleId);
+    map['garden_id'] = Variable<String>(gardenId);
+    map['planting_id'] = Variable<String>(plantingId);
+    {
+      map['type'] = Variable<String>(
+        $CareTasksTable.$convertertype.toSql(type),
+      );
+    }
+    map['due_on'] = Variable<String>(dueOn);
+    {
+      map['status'] = Variable<String>(
+        $CareTasksTable.$converterstatus.toSql(status),
+      );
+    }
+    if (!nullToAbsent || completedOn != null) {
+      map['completed_on'] = Variable<String>(completedOn);
+    }
+    if (!nullToAbsent || note != null) {
+      map['note'] = Variable<String>(note);
+    }
+    if (!nullToAbsent || skipReason != null) {
+      map['skip_reason'] = Variable<String>(
+        $CareTasksTable.$converterskipReasonn.toSql(skipReason),
+      );
+    }
+    return map;
+  }
+
+  CareTasksCompanion toCompanion(bool nullToAbsent) {
+    return CareTasksCompanion(
+      id: Value(id),
+      ruleId: Value(ruleId),
+      gardenId: Value(gardenId),
+      plantingId: Value(plantingId),
+      type: Value(type),
+      dueOn: Value(dueOn),
+      status: Value(status),
+      completedOn: completedOn == null && nullToAbsent
+          ? const Value.absent()
+          : Value(completedOn),
+      note: note == null && nullToAbsent ? const Value.absent() : Value(note),
+      skipReason: skipReason == null && nullToAbsent
+          ? const Value.absent()
+          : Value(skipReason),
+    );
+  }
+
+  factory CareTaskRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return CareTaskRow(
+      id: serializer.fromJson<String>(json['id']),
+      ruleId: serializer.fromJson<String>(json['ruleId']),
+      gardenId: serializer.fromJson<String>(json['gardenId']),
+      plantingId: serializer.fromJson<String>(json['plantingId']),
+      type: $CareTasksTable.$convertertype.fromJson(
+        serializer.fromJson<String>(json['type']),
+      ),
+      dueOn: serializer.fromJson<String>(json['dueOn']),
+      status: $CareTasksTable.$converterstatus.fromJson(
+        serializer.fromJson<String>(json['status']),
+      ),
+      completedOn: serializer.fromJson<String?>(json['completedOn']),
+      note: serializer.fromJson<String?>(json['note']),
+      skipReason: $CareTasksTable.$converterskipReasonn.fromJson(
+        serializer.fromJson<String?>(json['skipReason']),
+      ),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'ruleId': serializer.toJson<String>(ruleId),
+      'gardenId': serializer.toJson<String>(gardenId),
+      'plantingId': serializer.toJson<String>(plantingId),
+      'type': serializer.toJson<String>(
+        $CareTasksTable.$convertertype.toJson(type),
+      ),
+      'dueOn': serializer.toJson<String>(dueOn),
+      'status': serializer.toJson<String>(
+        $CareTasksTable.$converterstatus.toJson(status),
+      ),
+      'completedOn': serializer.toJson<String?>(completedOn),
+      'note': serializer.toJson<String?>(note),
+      'skipReason': serializer.toJson<String?>(
+        $CareTasksTable.$converterskipReasonn.toJson(skipReason),
+      ),
+    };
+  }
+
+  CareTaskRow copyWith({
+    String? id,
+    String? ruleId,
+    String? gardenId,
+    String? plantingId,
+    CareTaskType? type,
+    String? dueOn,
+    TaskStatus? status,
+    Value<String?> completedOn = const Value.absent(),
+    Value<String?> note = const Value.absent(),
+    Value<SkipReason?> skipReason = const Value.absent(),
+  }) => CareTaskRow(
+    id: id ?? this.id,
+    ruleId: ruleId ?? this.ruleId,
+    gardenId: gardenId ?? this.gardenId,
+    plantingId: plantingId ?? this.plantingId,
+    type: type ?? this.type,
+    dueOn: dueOn ?? this.dueOn,
+    status: status ?? this.status,
+    completedOn: completedOn.present ? completedOn.value : this.completedOn,
+    note: note.present ? note.value : this.note,
+    skipReason: skipReason.present ? skipReason.value : this.skipReason,
+  );
+  CareTaskRow copyWithCompanion(CareTasksCompanion data) {
+    return CareTaskRow(
+      id: data.id.present ? data.id.value : this.id,
+      ruleId: data.ruleId.present ? data.ruleId.value : this.ruleId,
+      gardenId: data.gardenId.present ? data.gardenId.value : this.gardenId,
+      plantingId: data.plantingId.present
+          ? data.plantingId.value
+          : this.plantingId,
+      type: data.type.present ? data.type.value : this.type,
+      dueOn: data.dueOn.present ? data.dueOn.value : this.dueOn,
+      status: data.status.present ? data.status.value : this.status,
+      completedOn: data.completedOn.present
+          ? data.completedOn.value
+          : this.completedOn,
+      note: data.note.present ? data.note.value : this.note,
+      skipReason: data.skipReason.present
+          ? data.skipReason.value
+          : this.skipReason,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CareTaskRow(')
+          ..write('id: $id, ')
+          ..write('ruleId: $ruleId, ')
+          ..write('gardenId: $gardenId, ')
+          ..write('plantingId: $plantingId, ')
+          ..write('type: $type, ')
+          ..write('dueOn: $dueOn, ')
+          ..write('status: $status, ')
+          ..write('completedOn: $completedOn, ')
+          ..write('note: $note, ')
+          ..write('skipReason: $skipReason')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    ruleId,
+    gardenId,
+    plantingId,
+    type,
+    dueOn,
+    status,
+    completedOn,
+    note,
+    skipReason,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is CareTaskRow &&
+          other.id == this.id &&
+          other.ruleId == this.ruleId &&
+          other.gardenId == this.gardenId &&
+          other.plantingId == this.plantingId &&
+          other.type == this.type &&
+          other.dueOn == this.dueOn &&
+          other.status == this.status &&
+          other.completedOn == this.completedOn &&
+          other.note == this.note &&
+          other.skipReason == this.skipReason);
+}
+
+class CareTasksCompanion extends UpdateCompanion<CareTaskRow> {
+  final Value<String> id;
+  final Value<String> ruleId;
+  final Value<String> gardenId;
+  final Value<String> plantingId;
+  final Value<CareTaskType> type;
+  final Value<String> dueOn;
+  final Value<TaskStatus> status;
+  final Value<String?> completedOn;
+  final Value<String?> note;
+  final Value<SkipReason?> skipReason;
+  final Value<int> rowid;
+  const CareTasksCompanion({
+    this.id = const Value.absent(),
+    this.ruleId = const Value.absent(),
+    this.gardenId = const Value.absent(),
+    this.plantingId = const Value.absent(),
+    this.type = const Value.absent(),
+    this.dueOn = const Value.absent(),
+    this.status = const Value.absent(),
+    this.completedOn = const Value.absent(),
+    this.note = const Value.absent(),
+    this.skipReason = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  CareTasksCompanion.insert({
+    required String id,
+    required String ruleId,
+    required String gardenId,
+    required String plantingId,
+    required CareTaskType type,
+    required String dueOn,
+    required TaskStatus status,
+    this.completedOn = const Value.absent(),
+    this.note = const Value.absent(),
+    this.skipReason = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       ruleId = Value(ruleId),
+       gardenId = Value(gardenId),
+       plantingId = Value(plantingId),
+       type = Value(type),
+       dueOn = Value(dueOn),
+       status = Value(status);
+  static Insertable<CareTaskRow> custom({
+    Expression<String>? id,
+    Expression<String>? ruleId,
+    Expression<String>? gardenId,
+    Expression<String>? plantingId,
+    Expression<String>? type,
+    Expression<String>? dueOn,
+    Expression<String>? status,
+    Expression<String>? completedOn,
+    Expression<String>? note,
+    Expression<String>? skipReason,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (ruleId != null) 'rule_id': ruleId,
+      if (gardenId != null) 'garden_id': gardenId,
+      if (plantingId != null) 'planting_id': plantingId,
+      if (type != null) 'type': type,
+      if (dueOn != null) 'due_on': dueOn,
+      if (status != null) 'status': status,
+      if (completedOn != null) 'completed_on': completedOn,
+      if (note != null) 'note': note,
+      if (skipReason != null) 'skip_reason': skipReason,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  CareTasksCompanion copyWith({
+    Value<String>? id,
+    Value<String>? ruleId,
+    Value<String>? gardenId,
+    Value<String>? plantingId,
+    Value<CareTaskType>? type,
+    Value<String>? dueOn,
+    Value<TaskStatus>? status,
+    Value<String?>? completedOn,
+    Value<String?>? note,
+    Value<SkipReason?>? skipReason,
+    Value<int>? rowid,
+  }) {
+    return CareTasksCompanion(
+      id: id ?? this.id,
+      ruleId: ruleId ?? this.ruleId,
+      gardenId: gardenId ?? this.gardenId,
+      plantingId: plantingId ?? this.plantingId,
+      type: type ?? this.type,
+      dueOn: dueOn ?? this.dueOn,
+      status: status ?? this.status,
+      completedOn: completedOn ?? this.completedOn,
+      note: note ?? this.note,
+      skipReason: skipReason ?? this.skipReason,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (ruleId.present) {
+      map['rule_id'] = Variable<String>(ruleId.value);
+    }
+    if (gardenId.present) {
+      map['garden_id'] = Variable<String>(gardenId.value);
+    }
+    if (plantingId.present) {
+      map['planting_id'] = Variable<String>(plantingId.value);
+    }
+    if (type.present) {
+      map['type'] = Variable<String>(
+        $CareTasksTable.$convertertype.toSql(type.value),
+      );
+    }
+    if (dueOn.present) {
+      map['due_on'] = Variable<String>(dueOn.value);
+    }
+    if (status.present) {
+      map['status'] = Variable<String>(
+        $CareTasksTable.$converterstatus.toSql(status.value),
+      );
+    }
+    if (completedOn.present) {
+      map['completed_on'] = Variable<String>(completedOn.value);
+    }
+    if (note.present) {
+      map['note'] = Variable<String>(note.value);
+    }
+    if (skipReason.present) {
+      map['skip_reason'] = Variable<String>(
+        $CareTasksTable.$converterskipReasonn.toSql(skipReason.value),
+      );
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CareTasksCompanion(')
+          ..write('id: $id, ')
+          ..write('ruleId: $ruleId, ')
+          ..write('gardenId: $gardenId, ')
+          ..write('plantingId: $plantingId, ')
+          ..write('type: $type, ')
+          ..write('dueOn: $dueOn, ')
+          ..write('status: $status, ')
+          ..write('completedOn: $completedOn, ')
+          ..write('note: $note, ')
+          ..write('skipReason: $skipReason, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $ScheduledNotificationsTable extends ScheduledNotifications
+    with TableInfo<$ScheduledNotificationsTable, ScheduledNotificationRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $ScheduledNotificationsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _dayMeta = const VerificationMeta('day');
+  @override
+  late final GeneratedColumn<String> day = GeneratedColumn<String>(
+    'day',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _fireAtMeta = const VerificationMeta('fireAt');
+  @override
+  late final GeneratedColumn<DateTime> fireAt = GeneratedColumn<DateTime>(
+    'fire_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _taskCountMeta = const VerificationMeta(
+    'taskCount',
+  );
+  @override
+  late final GeneratedColumn<int> taskCount = GeneratedColumn<int>(
+    'task_count',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [id, day, fireAt, taskCount];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'scheduled_notifications';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<ScheduledNotificationRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('day')) {
+      context.handle(
+        _dayMeta,
+        day.isAcceptableOrUnknown(data['day']!, _dayMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_dayMeta);
+    }
+    if (data.containsKey('fire_at')) {
+      context.handle(
+        _fireAtMeta,
+        fireAt.isAcceptableOrUnknown(data['fire_at']!, _fireAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_fireAtMeta);
+    }
+    if (data.containsKey('task_count')) {
+      context.handle(
+        _taskCountMeta,
+        taskCount.isAcceptableOrUnknown(data['task_count']!, _taskCountMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_taskCountMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  ScheduledNotificationRow map(
+    Map<String, dynamic> data, {
+    String? tablePrefix,
+  }) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return ScheduledNotificationRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      day: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}day'],
+      )!,
+      fireAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}fire_at'],
+      )!,
+      taskCount: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}task_count'],
+      )!,
+    );
+  }
+
+  @override
+  $ScheduledNotificationsTable createAlias(String alias) {
+    return $ScheduledNotificationsTable(attachedDatabase, alias);
+  }
+}
+
+class ScheduledNotificationRow extends DataClass
+    implements Insertable<ScheduledNotificationRow> {
+  final int id;
+  final String day;
+  final DateTime fireAt;
+  final int taskCount;
+  const ScheduledNotificationRow({
+    required this.id,
+    required this.day,
+    required this.fireAt,
+    required this.taskCount,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['day'] = Variable<String>(day);
+    map['fire_at'] = Variable<DateTime>(fireAt);
+    map['task_count'] = Variable<int>(taskCount);
+    return map;
+  }
+
+  ScheduledNotificationsCompanion toCompanion(bool nullToAbsent) {
+    return ScheduledNotificationsCompanion(
+      id: Value(id),
+      day: Value(day),
+      fireAt: Value(fireAt),
+      taskCount: Value(taskCount),
+    );
+  }
+
+  factory ScheduledNotificationRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return ScheduledNotificationRow(
+      id: serializer.fromJson<int>(json['id']),
+      day: serializer.fromJson<String>(json['day']),
+      fireAt: serializer.fromJson<DateTime>(json['fireAt']),
+      taskCount: serializer.fromJson<int>(json['taskCount']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'day': serializer.toJson<String>(day),
+      'fireAt': serializer.toJson<DateTime>(fireAt),
+      'taskCount': serializer.toJson<int>(taskCount),
+    };
+  }
+
+  ScheduledNotificationRow copyWith({
+    int? id,
+    String? day,
+    DateTime? fireAt,
+    int? taskCount,
+  }) => ScheduledNotificationRow(
+    id: id ?? this.id,
+    day: day ?? this.day,
+    fireAt: fireAt ?? this.fireAt,
+    taskCount: taskCount ?? this.taskCount,
+  );
+  ScheduledNotificationRow copyWithCompanion(
+    ScheduledNotificationsCompanion data,
+  ) {
+    return ScheduledNotificationRow(
+      id: data.id.present ? data.id.value : this.id,
+      day: data.day.present ? data.day.value : this.day,
+      fireAt: data.fireAt.present ? data.fireAt.value : this.fireAt,
+      taskCount: data.taskCount.present ? data.taskCount.value : this.taskCount,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ScheduledNotificationRow(')
+          ..write('id: $id, ')
+          ..write('day: $day, ')
+          ..write('fireAt: $fireAt, ')
+          ..write('taskCount: $taskCount')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, day, fireAt, taskCount);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is ScheduledNotificationRow &&
+          other.id == this.id &&
+          other.day == this.day &&
+          other.fireAt == this.fireAt &&
+          other.taskCount == this.taskCount);
+}
+
+class ScheduledNotificationsCompanion
+    extends UpdateCompanion<ScheduledNotificationRow> {
+  final Value<int> id;
+  final Value<String> day;
+  final Value<DateTime> fireAt;
+  final Value<int> taskCount;
+  const ScheduledNotificationsCompanion({
+    this.id = const Value.absent(),
+    this.day = const Value.absent(),
+    this.fireAt = const Value.absent(),
+    this.taskCount = const Value.absent(),
+  });
+  ScheduledNotificationsCompanion.insert({
+    this.id = const Value.absent(),
+    required String day,
+    required DateTime fireAt,
+    required int taskCount,
+  }) : day = Value(day),
+       fireAt = Value(fireAt),
+       taskCount = Value(taskCount);
+  static Insertable<ScheduledNotificationRow> custom({
+    Expression<int>? id,
+    Expression<String>? day,
+    Expression<DateTime>? fireAt,
+    Expression<int>? taskCount,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (day != null) 'day': day,
+      if (fireAt != null) 'fire_at': fireAt,
+      if (taskCount != null) 'task_count': taskCount,
+    });
+  }
+
+  ScheduledNotificationsCompanion copyWith({
+    Value<int>? id,
+    Value<String>? day,
+    Value<DateTime>? fireAt,
+    Value<int>? taskCount,
+  }) {
+    return ScheduledNotificationsCompanion(
+      id: id ?? this.id,
+      day: day ?? this.day,
+      fireAt: fireAt ?? this.fireAt,
+      taskCount: taskCount ?? this.taskCount,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (day.present) {
+      map['day'] = Variable<String>(day.value);
+    }
+    if (fireAt.present) {
+      map['fire_at'] = Variable<DateTime>(fireAt.value);
+    }
+    if (taskCount.present) {
+      map['task_count'] = Variable<int>(taskCount.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ScheduledNotificationsCompanion(')
+          ..write('id: $id, ')
+          ..write('day: $day, ')
+          ..write('fireAt: $fireAt, ')
+          ..write('taskCount: $taskCount')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -3288,6 +4943,10 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $ShortlistEntriesTable shortlistEntries = $ShortlistEntriesTable(
     this,
   );
+  late final $CareRulesTable careRules = $CareRulesTable(this);
+  late final $CareTasksTable careTasks = $CareTasksTable(this);
+  late final $ScheduledNotificationsTable scheduledNotifications =
+      $ScheduledNotificationsTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -3298,6 +4957,9 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     layoutElements,
     plantings,
     shortlistEntries,
+    careRules,
+    careTasks,
+    scheduledNotifications,
   ];
   @override
   StreamQueryUpdateRules get streamUpdateRules => const StreamQueryUpdateRules([
@@ -3328,6 +4990,41 @@ abstract class _$AppDatabase extends GeneratedDatabase {
         limitUpdateKind: UpdateKind.delete,
       ),
       result: [TableUpdate('shortlist_entries', kind: UpdateKind.delete)],
+    ),
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
+        'gardens',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('care_rules', kind: UpdateKind.delete)],
+    ),
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
+        'plantings',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('care_rules', kind: UpdateKind.delete)],
+    ),
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
+        'care_rules',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('care_tasks', kind: UpdateKind.delete)],
+    ),
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
+        'gardens',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('care_tasks', kind: UpdateKind.delete)],
+    ),
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
+        'plantings',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('care_tasks', kind: UpdateKind.delete)],
     ),
   ]);
   @override
@@ -3460,6 +5157,42 @@ final class $$GardensTableReferences
     final cache = $_typedResult.readTableOrNull(
       _shortlistEntriesRefsTable($_db),
     );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<$CareRulesTable, List<CareRuleRow>>
+  _careRulesRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.careRules,
+    aliasName: $_aliasNameGenerator(db.gardens.id, db.careRules.gardenId),
+  );
+
+  $$CareRulesTableProcessedTableManager get careRulesRefs {
+    final manager = $$CareRulesTableTableManager(
+      $_db,
+      $_db.careRules,
+    ).filter((f) => f.gardenId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_careRulesRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<$CareTasksTable, List<CareTaskRow>>
+  _careTasksRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.careTasks,
+    aliasName: $_aliasNameGenerator(db.gardens.id, db.careTasks.gardenId),
+  );
+
+  $$CareTasksTableProcessedTableManager get careTasksRefs {
+    final manager = $$CareTasksTableTableManager(
+      $_db,
+      $_db.careTasks,
+    ).filter((f) => f.gardenId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_careTasksRefsTable($_db));
     return ProcessedTableManager(
       manager.$state.copyWith(prefetchedData: cache),
     );
@@ -3676,6 +5409,56 @@ class $$GardensTableFilterComposer
           }) => $$ShortlistEntriesTableFilterComposer(
             $db: $db,
             $table: $db.shortlistEntries,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> careRulesRefs(
+    Expression<bool> Function($$CareRulesTableFilterComposer f) f,
+  ) {
+    final $$CareRulesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.careRules,
+      getReferencedColumn: (t) => t.gardenId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$CareRulesTableFilterComposer(
+            $db: $db,
+            $table: $db.careRules,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> careTasksRefs(
+    Expression<bool> Function($$CareTasksTableFilterComposer f) f,
+  ) {
+    final $$CareTasksTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.careTasks,
+      getReferencedColumn: (t) => t.gardenId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$CareTasksTableFilterComposer(
+            $db: $db,
+            $table: $db.careTasks,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
@@ -3972,6 +5755,56 @@ class $$GardensTableAnnotationComposer
     );
     return f(composer);
   }
+
+  Expression<T> careRulesRefs<T extends Object>(
+    Expression<T> Function($$CareRulesTableAnnotationComposer a) f,
+  ) {
+    final $$CareRulesTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.careRules,
+      getReferencedColumn: (t) => t.gardenId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$CareRulesTableAnnotationComposer(
+            $db: $db,
+            $table: $db.careRules,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<T> careTasksRefs<T extends Object>(
+    Expression<T> Function($$CareTasksTableAnnotationComposer a) f,
+  ) {
+    final $$CareTasksTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.careTasks,
+      getReferencedColumn: (t) => t.gardenId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$CareTasksTableAnnotationComposer(
+            $db: $db,
+            $table: $db.careTasks,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
 }
 
 class $$GardensTableTableManager
@@ -3992,6 +5825,8 @@ class $$GardensTableTableManager
             bool layoutElementsRefs,
             bool plantingsRefs,
             bool shortlistEntriesRefs,
+            bool careRulesRefs,
+            bool careTasksRefs,
           })
         > {
   $$GardensTableTableManager(_$AppDatabase db, $GardensTable table)
@@ -4111,6 +5946,8 @@ class $$GardensTableTableManager
                 layoutElementsRefs = false,
                 plantingsRefs = false,
                 shortlistEntriesRefs = false,
+                careRulesRefs = false,
+                careTasksRefs = false,
               }) {
                 return PrefetchHooks(
                   db: db,
@@ -4119,6 +5956,8 @@ class $$GardensTableTableManager
                     if (layoutElementsRefs) db.layoutElements,
                     if (plantingsRefs) db.plantings,
                     if (shortlistEntriesRefs) db.shortlistEntries,
+                    if (careRulesRefs) db.careRules,
+                    if (careTasksRefs) db.careTasks,
                   ],
                   addJoins: null,
                   getPrefetchedDataCallback: (items) async {
@@ -4207,6 +6046,48 @@ class $$GardensTableTableManager
                               ),
                           typedResults: items,
                         ),
+                      if (careRulesRefs)
+                        await $_getPrefetchedData<
+                          GardenRow,
+                          $GardensTable,
+                          CareRuleRow
+                        >(
+                          currentTable: table,
+                          referencedTable: $$GardensTableReferences
+                              ._careRulesRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$GardensTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).careRulesRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.gardenId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                      if (careTasksRefs)
+                        await $_getPrefetchedData<
+                          GardenRow,
+                          $GardensTable,
+                          CareTaskRow
+                        >(
+                          currentTable: table,
+                          referencedTable: $$GardensTableReferences
+                              ._careTasksRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$GardensTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).careTasksRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.gardenId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
                     ];
                   },
                 );
@@ -4232,6 +6113,8 @@ typedef $$GardensTableProcessedTableManager =
         bool layoutElementsRefs,
         bool plantingsRefs,
         bool shortlistEntriesRefs,
+        bool careRulesRefs,
+        bool careTasksRefs,
       })
     >;
 typedef $$GardenPhotosTableCreateCompanionBuilder =
@@ -5126,6 +7009,42 @@ final class $$PlantingsTableReferences
       manager.$state.copyWith(prefetchedData: [item]),
     );
   }
+
+  static MultiTypedResultKey<$CareRulesTable, List<CareRuleRow>>
+  _careRulesRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.careRules,
+    aliasName: $_aliasNameGenerator(db.plantings.id, db.careRules.plantingId),
+  );
+
+  $$CareRulesTableProcessedTableManager get careRulesRefs {
+    final manager = $$CareRulesTableTableManager(
+      $_db,
+      $_db.careRules,
+    ).filter((f) => f.plantingId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_careRulesRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<$CareTasksTable, List<CareTaskRow>>
+  _careTasksRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.careTasks,
+    aliasName: $_aliasNameGenerator(db.plantings.id, db.careTasks.plantingId),
+  );
+
+  $$CareTasksTableProcessedTableManager get careTasksRefs {
+    final manager = $$CareTasksTableTableManager(
+      $_db,
+      $_db.careTasks,
+    ).filter((f) => f.plantingId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_careTasksRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
 }
 
 class $$PlantingsTableFilterComposer
@@ -5204,6 +7123,56 @@ class $$PlantingsTableFilterComposer
           ),
     );
     return composer;
+  }
+
+  Expression<bool> careRulesRefs(
+    Expression<bool> Function($$CareRulesTableFilterComposer f) f,
+  ) {
+    final $$CareRulesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.careRules,
+      getReferencedColumn: (t) => t.plantingId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$CareRulesTableFilterComposer(
+            $db: $db,
+            $table: $db.careRules,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> careTasksRefs(
+    Expression<bool> Function($$CareTasksTableFilterComposer f) f,
+  ) {
+    final $$CareTasksTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.careTasks,
+      getReferencedColumn: (t) => t.plantingId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$CareTasksTableFilterComposer(
+            $db: $db,
+            $table: $db.careTasks,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
   }
 }
 
@@ -5346,6 +7315,56 @@ class $$PlantingsTableAnnotationComposer
     );
     return composer;
   }
+
+  Expression<T> careRulesRefs<T extends Object>(
+    Expression<T> Function($$CareRulesTableAnnotationComposer a) f,
+  ) {
+    final $$CareRulesTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.careRules,
+      getReferencedColumn: (t) => t.plantingId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$CareRulesTableAnnotationComposer(
+            $db: $db,
+            $table: $db.careRules,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<T> careTasksRefs<T extends Object>(
+    Expression<T> Function($$CareTasksTableAnnotationComposer a) f,
+  ) {
+    final $$CareTasksTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.careTasks,
+      getReferencedColumn: (t) => t.plantingId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$CareTasksTableAnnotationComposer(
+            $db: $db,
+            $table: $db.careTasks,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
 }
 
 class $$PlantingsTableTableManager
@@ -5361,7 +7380,11 @@ class $$PlantingsTableTableManager
           $$PlantingsTableUpdateCompanionBuilder,
           (PlantingRow, $$PlantingsTableReferences),
           PlantingRow,
-          PrefetchHooks Function({bool gardenId})
+          PrefetchHooks Function({
+            bool gardenId,
+            bool careRulesRefs,
+            bool careTasksRefs,
+          })
         > {
   $$PlantingsTableTableManager(_$AppDatabase db, $PlantingsTable table)
     : super(
@@ -5434,47 +7457,98 @@ class $$PlantingsTableTableManager
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({gardenId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (gardenId) {
-                      state =
-                          state.withJoin(
-                                currentTable: table,
-                                currentColumn: table.gardenId,
-                                referencedTable: $$PlantingsTableReferences
-                                    ._gardenIdTable(db),
-                                referencedColumn: $$PlantingsTableReferences
-                                    ._gardenIdTable(db)
-                                    .id,
-                              )
-                              as T;
-                    }
+          prefetchHooksCallback:
+              ({
+                gardenId = false,
+                careRulesRefs = false,
+                careTasksRefs = false,
+              }) {
+                return PrefetchHooks(
+                  db: db,
+                  explicitlyWatchedTables: [
+                    if (careRulesRefs) db.careRules,
+                    if (careTasksRefs) db.careTasks,
+                  ],
+                  addJoins:
+                      <
+                        T extends TableManagerState<
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic
+                        >
+                      >(state) {
+                        if (gardenId) {
+                          state =
+                              state.withJoin(
+                                    currentTable: table,
+                                    currentColumn: table.gardenId,
+                                    referencedTable: $$PlantingsTableReferences
+                                        ._gardenIdTable(db),
+                                    referencedColumn: $$PlantingsTableReferences
+                                        ._gardenIdTable(db)
+                                        .id,
+                                  )
+                                  as T;
+                        }
 
-                    return state;
+                        return state;
+                      },
+                  getPrefetchedDataCallback: (items) async {
+                    return [
+                      if (careRulesRefs)
+                        await $_getPrefetchedData<
+                          PlantingRow,
+                          $PlantingsTable,
+                          CareRuleRow
+                        >(
+                          currentTable: table,
+                          referencedTable: $$PlantingsTableReferences
+                              ._careRulesRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$PlantingsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).careRulesRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.plantingId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                      if (careTasksRefs)
+                        await $_getPrefetchedData<
+                          PlantingRow,
+                          $PlantingsTable,
+                          CareTaskRow
+                        >(
+                          currentTable: table,
+                          referencedTable: $$PlantingsTableReferences
+                              ._careTasksRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$PlantingsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).careTasksRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.plantingId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                    ];
                   },
-              getPrefetchedDataCallback: (items) async {
-                return [];
+                );
               },
-            );
-          },
         ),
       );
 }
@@ -5491,7 +7565,11 @@ typedef $$PlantingsTableProcessedTableManager =
       $$PlantingsTableUpdateCompanionBuilder,
       (PlantingRow, $$PlantingsTableReferences),
       PlantingRow,
-      PrefetchHooks Function({bool gardenId})
+      PrefetchHooks Function({
+        bool gardenId,
+        bool careRulesRefs,
+        bool careTasksRefs,
+      })
     >;
 typedef $$ShortlistEntriesTableCreateCompanionBuilder =
     ShortlistEntriesCompanion Function({
@@ -5783,6 +7861,1433 @@ typedef $$ShortlistEntriesTableProcessedTableManager =
       ShortlistRow,
       PrefetchHooks Function({bool gardenId})
     >;
+typedef $$CareRulesTableCreateCompanionBuilder =
+    CareRulesCompanion Function({
+      required String id,
+      required String gardenId,
+      required String plantingId,
+      required CareTaskType type,
+      required String kind,
+      Value<int?> days,
+      required String startOn,
+      Value<String?> weekdays,
+      Value<int?> month,
+      Value<int?> day,
+      Value<bool> enabled,
+      required String createdOn,
+      Value<int> rowid,
+    });
+typedef $$CareRulesTableUpdateCompanionBuilder =
+    CareRulesCompanion Function({
+      Value<String> id,
+      Value<String> gardenId,
+      Value<String> plantingId,
+      Value<CareTaskType> type,
+      Value<String> kind,
+      Value<int?> days,
+      Value<String> startOn,
+      Value<String?> weekdays,
+      Value<int?> month,
+      Value<int?> day,
+      Value<bool> enabled,
+      Value<String> createdOn,
+      Value<int> rowid,
+    });
+
+final class $$CareRulesTableReferences
+    extends BaseReferences<_$AppDatabase, $CareRulesTable, CareRuleRow> {
+  $$CareRulesTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static $GardensTable _gardenIdTable(_$AppDatabase db) => db.gardens
+      .createAlias($_aliasNameGenerator(db.careRules.gardenId, db.gardens.id));
+
+  $$GardensTableProcessedTableManager get gardenId {
+    final $_column = $_itemColumn<String>('garden_id')!;
+
+    final manager = $$GardensTableTableManager(
+      $_db,
+      $_db.gardens,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_gardenIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+
+  static $PlantingsTable _plantingIdTable(_$AppDatabase db) =>
+      db.plantings.createAlias(
+        $_aliasNameGenerator(db.careRules.plantingId, db.plantings.id),
+      );
+
+  $$PlantingsTableProcessedTableManager get plantingId {
+    final $_column = $_itemColumn<String>('planting_id')!;
+
+    final manager = $$PlantingsTableTableManager(
+      $_db,
+      $_db.plantings,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_plantingIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+
+  static MultiTypedResultKey<$CareTasksTable, List<CareTaskRow>>
+  _careTasksRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.careTasks,
+    aliasName: $_aliasNameGenerator(db.careRules.id, db.careTasks.ruleId),
+  );
+
+  $$CareTasksTableProcessedTableManager get careTasksRefs {
+    final manager = $$CareTasksTableTableManager(
+      $_db,
+      $_db.careTasks,
+    ).filter((f) => f.ruleId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_careTasksRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+}
+
+class $$CareRulesTableFilterComposer
+    extends Composer<_$AppDatabase, $CareRulesTable> {
+  $$CareRulesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<CareTaskType, CareTaskType, String> get type =>
+      $composableBuilder(
+        column: $table.type,
+        builder: (column) => ColumnWithTypeConverterFilters(column),
+      );
+
+  ColumnFilters<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get days => $composableBuilder(
+    column: $table.days,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get startOn => $composableBuilder(
+    column: $table.startOn,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get weekdays => $composableBuilder(
+    column: $table.weekdays,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get month => $composableBuilder(
+    column: $table.month,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get day => $composableBuilder(
+    column: $table.day,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get enabled => $composableBuilder(
+    column: $table.enabled,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get createdOn => $composableBuilder(
+    column: $table.createdOn,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$GardensTableFilterComposer get gardenId {
+    final $$GardensTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.gardenId,
+      referencedTable: $db.gardens,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$GardensTableFilterComposer(
+            $db: $db,
+            $table: $db.gardens,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$PlantingsTableFilterComposer get plantingId {
+    final $$PlantingsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.plantingId,
+      referencedTable: $db.plantings,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PlantingsTableFilterComposer(
+            $db: $db,
+            $table: $db.plantings,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  Expression<bool> careTasksRefs(
+    Expression<bool> Function($$CareTasksTableFilterComposer f) f,
+  ) {
+    final $$CareTasksTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.careTasks,
+      getReferencedColumn: (t) => t.ruleId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$CareTasksTableFilterComposer(
+            $db: $db,
+            $table: $db.careTasks,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+}
+
+class $$CareRulesTableOrderingComposer
+    extends Composer<_$AppDatabase, $CareRulesTable> {
+  $$CareRulesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get type => $composableBuilder(
+    column: $table.type,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get days => $composableBuilder(
+    column: $table.days,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get startOn => $composableBuilder(
+    column: $table.startOn,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get weekdays => $composableBuilder(
+    column: $table.weekdays,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get month => $composableBuilder(
+    column: $table.month,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get day => $composableBuilder(
+    column: $table.day,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get enabled => $composableBuilder(
+    column: $table.enabled,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get createdOn => $composableBuilder(
+    column: $table.createdOn,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$GardensTableOrderingComposer get gardenId {
+    final $$GardensTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.gardenId,
+      referencedTable: $db.gardens,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$GardensTableOrderingComposer(
+            $db: $db,
+            $table: $db.gardens,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$PlantingsTableOrderingComposer get plantingId {
+    final $$PlantingsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.plantingId,
+      referencedTable: $db.plantings,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PlantingsTableOrderingComposer(
+            $db: $db,
+            $table: $db.plantings,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$CareRulesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $CareRulesTable> {
+  $$CareRulesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<CareTaskType, String> get type =>
+      $composableBuilder(column: $table.type, builder: (column) => column);
+
+  GeneratedColumn<String> get kind =>
+      $composableBuilder(column: $table.kind, builder: (column) => column);
+
+  GeneratedColumn<int> get days =>
+      $composableBuilder(column: $table.days, builder: (column) => column);
+
+  GeneratedColumn<String> get startOn =>
+      $composableBuilder(column: $table.startOn, builder: (column) => column);
+
+  GeneratedColumn<String> get weekdays =>
+      $composableBuilder(column: $table.weekdays, builder: (column) => column);
+
+  GeneratedColumn<int> get month =>
+      $composableBuilder(column: $table.month, builder: (column) => column);
+
+  GeneratedColumn<int> get day =>
+      $composableBuilder(column: $table.day, builder: (column) => column);
+
+  GeneratedColumn<bool> get enabled =>
+      $composableBuilder(column: $table.enabled, builder: (column) => column);
+
+  GeneratedColumn<String> get createdOn =>
+      $composableBuilder(column: $table.createdOn, builder: (column) => column);
+
+  $$GardensTableAnnotationComposer get gardenId {
+    final $$GardensTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.gardenId,
+      referencedTable: $db.gardens,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$GardensTableAnnotationComposer(
+            $db: $db,
+            $table: $db.gardens,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$PlantingsTableAnnotationComposer get plantingId {
+    final $$PlantingsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.plantingId,
+      referencedTable: $db.plantings,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PlantingsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.plantings,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  Expression<T> careTasksRefs<T extends Object>(
+    Expression<T> Function($$CareTasksTableAnnotationComposer a) f,
+  ) {
+    final $$CareTasksTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.careTasks,
+      getReferencedColumn: (t) => t.ruleId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$CareTasksTableAnnotationComposer(
+            $db: $db,
+            $table: $db.careTasks,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+}
+
+class $$CareRulesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $CareRulesTable,
+          CareRuleRow,
+          $$CareRulesTableFilterComposer,
+          $$CareRulesTableOrderingComposer,
+          $$CareRulesTableAnnotationComposer,
+          $$CareRulesTableCreateCompanionBuilder,
+          $$CareRulesTableUpdateCompanionBuilder,
+          (CareRuleRow, $$CareRulesTableReferences),
+          CareRuleRow,
+          PrefetchHooks Function({
+            bool gardenId,
+            bool plantingId,
+            bool careTasksRefs,
+          })
+        > {
+  $$CareRulesTableTableManager(_$AppDatabase db, $CareRulesTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$CareRulesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$CareRulesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$CareRulesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> gardenId = const Value.absent(),
+                Value<String> plantingId = const Value.absent(),
+                Value<CareTaskType> type = const Value.absent(),
+                Value<String> kind = const Value.absent(),
+                Value<int?> days = const Value.absent(),
+                Value<String> startOn = const Value.absent(),
+                Value<String?> weekdays = const Value.absent(),
+                Value<int?> month = const Value.absent(),
+                Value<int?> day = const Value.absent(),
+                Value<bool> enabled = const Value.absent(),
+                Value<String> createdOn = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => CareRulesCompanion(
+                id: id,
+                gardenId: gardenId,
+                plantingId: plantingId,
+                type: type,
+                kind: kind,
+                days: days,
+                startOn: startOn,
+                weekdays: weekdays,
+                month: month,
+                day: day,
+                enabled: enabled,
+                createdOn: createdOn,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String gardenId,
+                required String plantingId,
+                required CareTaskType type,
+                required String kind,
+                Value<int?> days = const Value.absent(),
+                required String startOn,
+                Value<String?> weekdays = const Value.absent(),
+                Value<int?> month = const Value.absent(),
+                Value<int?> day = const Value.absent(),
+                Value<bool> enabled = const Value.absent(),
+                required String createdOn,
+                Value<int> rowid = const Value.absent(),
+              }) => CareRulesCompanion.insert(
+                id: id,
+                gardenId: gardenId,
+                plantingId: plantingId,
+                type: type,
+                kind: kind,
+                days: days,
+                startOn: startOn,
+                weekdays: weekdays,
+                month: month,
+                day: day,
+                enabled: enabled,
+                createdOn: createdOn,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $$CareRulesTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback:
+              ({gardenId = false, plantingId = false, careTasksRefs = false}) {
+                return PrefetchHooks(
+                  db: db,
+                  explicitlyWatchedTables: [if (careTasksRefs) db.careTasks],
+                  addJoins:
+                      <
+                        T extends TableManagerState<
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic
+                        >
+                      >(state) {
+                        if (gardenId) {
+                          state =
+                              state.withJoin(
+                                    currentTable: table,
+                                    currentColumn: table.gardenId,
+                                    referencedTable: $$CareRulesTableReferences
+                                        ._gardenIdTable(db),
+                                    referencedColumn: $$CareRulesTableReferences
+                                        ._gardenIdTable(db)
+                                        .id,
+                                  )
+                                  as T;
+                        }
+                        if (plantingId) {
+                          state =
+                              state.withJoin(
+                                    currentTable: table,
+                                    currentColumn: table.plantingId,
+                                    referencedTable: $$CareRulesTableReferences
+                                        ._plantingIdTable(db),
+                                    referencedColumn: $$CareRulesTableReferences
+                                        ._plantingIdTable(db)
+                                        .id,
+                                  )
+                                  as T;
+                        }
+
+                        return state;
+                      },
+                  getPrefetchedDataCallback: (items) async {
+                    return [
+                      if (careTasksRefs)
+                        await $_getPrefetchedData<
+                          CareRuleRow,
+                          $CareRulesTable,
+                          CareTaskRow
+                        >(
+                          currentTable: table,
+                          referencedTable: $$CareRulesTableReferences
+                              ._careTasksRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$CareRulesTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).careTasksRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.ruleId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                    ];
+                  },
+                );
+              },
+        ),
+      );
+}
+
+typedef $$CareRulesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $CareRulesTable,
+      CareRuleRow,
+      $$CareRulesTableFilterComposer,
+      $$CareRulesTableOrderingComposer,
+      $$CareRulesTableAnnotationComposer,
+      $$CareRulesTableCreateCompanionBuilder,
+      $$CareRulesTableUpdateCompanionBuilder,
+      (CareRuleRow, $$CareRulesTableReferences),
+      CareRuleRow,
+      PrefetchHooks Function({
+        bool gardenId,
+        bool plantingId,
+        bool careTasksRefs,
+      })
+    >;
+typedef $$CareTasksTableCreateCompanionBuilder =
+    CareTasksCompanion Function({
+      required String id,
+      required String ruleId,
+      required String gardenId,
+      required String plantingId,
+      required CareTaskType type,
+      required String dueOn,
+      required TaskStatus status,
+      Value<String?> completedOn,
+      Value<String?> note,
+      Value<SkipReason?> skipReason,
+      Value<int> rowid,
+    });
+typedef $$CareTasksTableUpdateCompanionBuilder =
+    CareTasksCompanion Function({
+      Value<String> id,
+      Value<String> ruleId,
+      Value<String> gardenId,
+      Value<String> plantingId,
+      Value<CareTaskType> type,
+      Value<String> dueOn,
+      Value<TaskStatus> status,
+      Value<String?> completedOn,
+      Value<String?> note,
+      Value<SkipReason?> skipReason,
+      Value<int> rowid,
+    });
+
+final class $$CareTasksTableReferences
+    extends BaseReferences<_$AppDatabase, $CareTasksTable, CareTaskRow> {
+  $$CareTasksTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static $CareRulesTable _ruleIdTable(_$AppDatabase db) => db.careRules
+      .createAlias($_aliasNameGenerator(db.careTasks.ruleId, db.careRules.id));
+
+  $$CareRulesTableProcessedTableManager get ruleId {
+    final $_column = $_itemColumn<String>('rule_id')!;
+
+    final manager = $$CareRulesTableTableManager(
+      $_db,
+      $_db.careRules,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_ruleIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+
+  static $GardensTable _gardenIdTable(_$AppDatabase db) => db.gardens
+      .createAlias($_aliasNameGenerator(db.careTasks.gardenId, db.gardens.id));
+
+  $$GardensTableProcessedTableManager get gardenId {
+    final $_column = $_itemColumn<String>('garden_id')!;
+
+    final manager = $$GardensTableTableManager(
+      $_db,
+      $_db.gardens,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_gardenIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+
+  static $PlantingsTable _plantingIdTable(_$AppDatabase db) =>
+      db.plantings.createAlias(
+        $_aliasNameGenerator(db.careTasks.plantingId, db.plantings.id),
+      );
+
+  $$PlantingsTableProcessedTableManager get plantingId {
+    final $_column = $_itemColumn<String>('planting_id')!;
+
+    final manager = $$PlantingsTableTableManager(
+      $_db,
+      $_db.plantings,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_plantingIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$CareTasksTableFilterComposer
+    extends Composer<_$AppDatabase, $CareTasksTable> {
+  $$CareTasksTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<CareTaskType, CareTaskType, String> get type =>
+      $composableBuilder(
+        column: $table.type,
+        builder: (column) => ColumnWithTypeConverterFilters(column),
+      );
+
+  ColumnFilters<String> get dueOn => $composableBuilder(
+    column: $table.dueOn,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<TaskStatus, TaskStatus, String> get status =>
+      $composableBuilder(
+        column: $table.status,
+        builder: (column) => ColumnWithTypeConverterFilters(column),
+      );
+
+  ColumnFilters<String> get completedOn => $composableBuilder(
+    column: $table.completedOn,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get note => $composableBuilder(
+    column: $table.note,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<SkipReason?, SkipReason, String>
+  get skipReason => $composableBuilder(
+    column: $table.skipReason,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  $$CareRulesTableFilterComposer get ruleId {
+    final $$CareRulesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.ruleId,
+      referencedTable: $db.careRules,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$CareRulesTableFilterComposer(
+            $db: $db,
+            $table: $db.careRules,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$GardensTableFilterComposer get gardenId {
+    final $$GardensTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.gardenId,
+      referencedTable: $db.gardens,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$GardensTableFilterComposer(
+            $db: $db,
+            $table: $db.gardens,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$PlantingsTableFilterComposer get plantingId {
+    final $$PlantingsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.plantingId,
+      referencedTable: $db.plantings,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PlantingsTableFilterComposer(
+            $db: $db,
+            $table: $db.plantings,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$CareTasksTableOrderingComposer
+    extends Composer<_$AppDatabase, $CareTasksTable> {
+  $$CareTasksTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get type => $composableBuilder(
+    column: $table.type,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get dueOn => $composableBuilder(
+    column: $table.dueOn,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get completedOn => $composableBuilder(
+    column: $table.completedOn,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get note => $composableBuilder(
+    column: $table.note,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get skipReason => $composableBuilder(
+    column: $table.skipReason,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$CareRulesTableOrderingComposer get ruleId {
+    final $$CareRulesTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.ruleId,
+      referencedTable: $db.careRules,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$CareRulesTableOrderingComposer(
+            $db: $db,
+            $table: $db.careRules,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$GardensTableOrderingComposer get gardenId {
+    final $$GardensTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.gardenId,
+      referencedTable: $db.gardens,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$GardensTableOrderingComposer(
+            $db: $db,
+            $table: $db.gardens,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$PlantingsTableOrderingComposer get plantingId {
+    final $$PlantingsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.plantingId,
+      referencedTable: $db.plantings,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PlantingsTableOrderingComposer(
+            $db: $db,
+            $table: $db.plantings,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$CareTasksTableAnnotationComposer
+    extends Composer<_$AppDatabase, $CareTasksTable> {
+  $$CareTasksTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<CareTaskType, String> get type =>
+      $composableBuilder(column: $table.type, builder: (column) => column);
+
+  GeneratedColumn<String> get dueOn =>
+      $composableBuilder(column: $table.dueOn, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<TaskStatus, String> get status =>
+      $composableBuilder(column: $table.status, builder: (column) => column);
+
+  GeneratedColumn<String> get completedOn => $composableBuilder(
+    column: $table.completedOn,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get note =>
+      $composableBuilder(column: $table.note, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<SkipReason?, String> get skipReason =>
+      $composableBuilder(
+        column: $table.skipReason,
+        builder: (column) => column,
+      );
+
+  $$CareRulesTableAnnotationComposer get ruleId {
+    final $$CareRulesTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.ruleId,
+      referencedTable: $db.careRules,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$CareRulesTableAnnotationComposer(
+            $db: $db,
+            $table: $db.careRules,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$GardensTableAnnotationComposer get gardenId {
+    final $$GardensTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.gardenId,
+      referencedTable: $db.gardens,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$GardensTableAnnotationComposer(
+            $db: $db,
+            $table: $db.gardens,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$PlantingsTableAnnotationComposer get plantingId {
+    final $$PlantingsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.plantingId,
+      referencedTable: $db.plantings,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PlantingsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.plantings,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$CareTasksTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $CareTasksTable,
+          CareTaskRow,
+          $$CareTasksTableFilterComposer,
+          $$CareTasksTableOrderingComposer,
+          $$CareTasksTableAnnotationComposer,
+          $$CareTasksTableCreateCompanionBuilder,
+          $$CareTasksTableUpdateCompanionBuilder,
+          (CareTaskRow, $$CareTasksTableReferences),
+          CareTaskRow,
+          PrefetchHooks Function({bool ruleId, bool gardenId, bool plantingId})
+        > {
+  $$CareTasksTableTableManager(_$AppDatabase db, $CareTasksTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$CareTasksTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$CareTasksTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$CareTasksTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> ruleId = const Value.absent(),
+                Value<String> gardenId = const Value.absent(),
+                Value<String> plantingId = const Value.absent(),
+                Value<CareTaskType> type = const Value.absent(),
+                Value<String> dueOn = const Value.absent(),
+                Value<TaskStatus> status = const Value.absent(),
+                Value<String?> completedOn = const Value.absent(),
+                Value<String?> note = const Value.absent(),
+                Value<SkipReason?> skipReason = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => CareTasksCompanion(
+                id: id,
+                ruleId: ruleId,
+                gardenId: gardenId,
+                plantingId: plantingId,
+                type: type,
+                dueOn: dueOn,
+                status: status,
+                completedOn: completedOn,
+                note: note,
+                skipReason: skipReason,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String ruleId,
+                required String gardenId,
+                required String plantingId,
+                required CareTaskType type,
+                required String dueOn,
+                required TaskStatus status,
+                Value<String?> completedOn = const Value.absent(),
+                Value<String?> note = const Value.absent(),
+                Value<SkipReason?> skipReason = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => CareTasksCompanion.insert(
+                id: id,
+                ruleId: ruleId,
+                gardenId: gardenId,
+                plantingId: plantingId,
+                type: type,
+                dueOn: dueOn,
+                status: status,
+                completedOn: completedOn,
+                note: note,
+                skipReason: skipReason,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $$CareTasksTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback:
+              ({ruleId = false, gardenId = false, plantingId = false}) {
+                return PrefetchHooks(
+                  db: db,
+                  explicitlyWatchedTables: [],
+                  addJoins:
+                      <
+                        T extends TableManagerState<
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic
+                        >
+                      >(state) {
+                        if (ruleId) {
+                          state =
+                              state.withJoin(
+                                    currentTable: table,
+                                    currentColumn: table.ruleId,
+                                    referencedTable: $$CareTasksTableReferences
+                                        ._ruleIdTable(db),
+                                    referencedColumn: $$CareTasksTableReferences
+                                        ._ruleIdTable(db)
+                                        .id,
+                                  )
+                                  as T;
+                        }
+                        if (gardenId) {
+                          state =
+                              state.withJoin(
+                                    currentTable: table,
+                                    currentColumn: table.gardenId,
+                                    referencedTable: $$CareTasksTableReferences
+                                        ._gardenIdTable(db),
+                                    referencedColumn: $$CareTasksTableReferences
+                                        ._gardenIdTable(db)
+                                        .id,
+                                  )
+                                  as T;
+                        }
+                        if (plantingId) {
+                          state =
+                              state.withJoin(
+                                    currentTable: table,
+                                    currentColumn: table.plantingId,
+                                    referencedTable: $$CareTasksTableReferences
+                                        ._plantingIdTable(db),
+                                    referencedColumn: $$CareTasksTableReferences
+                                        ._plantingIdTable(db)
+                                        .id,
+                                  )
+                                  as T;
+                        }
+
+                        return state;
+                      },
+                  getPrefetchedDataCallback: (items) async {
+                    return [];
+                  },
+                );
+              },
+        ),
+      );
+}
+
+typedef $$CareTasksTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $CareTasksTable,
+      CareTaskRow,
+      $$CareTasksTableFilterComposer,
+      $$CareTasksTableOrderingComposer,
+      $$CareTasksTableAnnotationComposer,
+      $$CareTasksTableCreateCompanionBuilder,
+      $$CareTasksTableUpdateCompanionBuilder,
+      (CareTaskRow, $$CareTasksTableReferences),
+      CareTaskRow,
+      PrefetchHooks Function({bool ruleId, bool gardenId, bool plantingId})
+    >;
+typedef $$ScheduledNotificationsTableCreateCompanionBuilder =
+    ScheduledNotificationsCompanion Function({
+      Value<int> id,
+      required String day,
+      required DateTime fireAt,
+      required int taskCount,
+    });
+typedef $$ScheduledNotificationsTableUpdateCompanionBuilder =
+    ScheduledNotificationsCompanion Function({
+      Value<int> id,
+      Value<String> day,
+      Value<DateTime> fireAt,
+      Value<int> taskCount,
+    });
+
+class $$ScheduledNotificationsTableFilterComposer
+    extends Composer<_$AppDatabase, $ScheduledNotificationsTable> {
+  $$ScheduledNotificationsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get day => $composableBuilder(
+    column: $table.day,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get fireAt => $composableBuilder(
+    column: $table.fireAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get taskCount => $composableBuilder(
+    column: $table.taskCount,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$ScheduledNotificationsTableOrderingComposer
+    extends Composer<_$AppDatabase, $ScheduledNotificationsTable> {
+  $$ScheduledNotificationsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get day => $composableBuilder(
+    column: $table.day,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get fireAt => $composableBuilder(
+    column: $table.fireAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get taskCount => $composableBuilder(
+    column: $table.taskCount,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$ScheduledNotificationsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $ScheduledNotificationsTable> {
+  $$ScheduledNotificationsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get day =>
+      $composableBuilder(column: $table.day, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get fireAt =>
+      $composableBuilder(column: $table.fireAt, builder: (column) => column);
+
+  GeneratedColumn<int> get taskCount =>
+      $composableBuilder(column: $table.taskCount, builder: (column) => column);
+}
+
+class $$ScheduledNotificationsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $ScheduledNotificationsTable,
+          ScheduledNotificationRow,
+          $$ScheduledNotificationsTableFilterComposer,
+          $$ScheduledNotificationsTableOrderingComposer,
+          $$ScheduledNotificationsTableAnnotationComposer,
+          $$ScheduledNotificationsTableCreateCompanionBuilder,
+          $$ScheduledNotificationsTableUpdateCompanionBuilder,
+          (
+            ScheduledNotificationRow,
+            BaseReferences<
+              _$AppDatabase,
+              $ScheduledNotificationsTable,
+              ScheduledNotificationRow
+            >,
+          ),
+          ScheduledNotificationRow,
+          PrefetchHooks Function()
+        > {
+  $$ScheduledNotificationsTableTableManager(
+    _$AppDatabase db,
+    $ScheduledNotificationsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$ScheduledNotificationsTableFilterComposer(
+                $db: db,
+                $table: table,
+              ),
+          createOrderingComposer: () =>
+              $$ScheduledNotificationsTableOrderingComposer(
+                $db: db,
+                $table: table,
+              ),
+          createComputedFieldComposer: () =>
+              $$ScheduledNotificationsTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<String> day = const Value.absent(),
+                Value<DateTime> fireAt = const Value.absent(),
+                Value<int> taskCount = const Value.absent(),
+              }) => ScheduledNotificationsCompanion(
+                id: id,
+                day: day,
+                fireAt: fireAt,
+                taskCount: taskCount,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required String day,
+                required DateTime fireAt,
+                required int taskCount,
+              }) => ScheduledNotificationsCompanion.insert(
+                id: id,
+                day: day,
+                fireAt: fireAt,
+                taskCount: taskCount,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$ScheduledNotificationsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $ScheduledNotificationsTable,
+      ScheduledNotificationRow,
+      $$ScheduledNotificationsTableFilterComposer,
+      $$ScheduledNotificationsTableOrderingComposer,
+      $$ScheduledNotificationsTableAnnotationComposer,
+      $$ScheduledNotificationsTableCreateCompanionBuilder,
+      $$ScheduledNotificationsTableUpdateCompanionBuilder,
+      (
+        ScheduledNotificationRow,
+        BaseReferences<
+          _$AppDatabase,
+          $ScheduledNotificationsTable,
+          ScheduledNotificationRow
+        >,
+      ),
+      ScheduledNotificationRow,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -5797,4 +9302,13 @@ class $AppDatabaseManager {
       $$PlantingsTableTableManager(_db, _db.plantings);
   $$ShortlistEntriesTableTableManager get shortlistEntries =>
       $$ShortlistEntriesTableTableManager(_db, _db.shortlistEntries);
+  $$CareRulesTableTableManager get careRules =>
+      $$CareRulesTableTableManager(_db, _db.careRules);
+  $$CareTasksTableTableManager get careTasks =>
+      $$CareTasksTableTableManager(_db, _db.careTasks);
+  $$ScheduledNotificationsTableTableManager get scheduledNotifications =>
+      $$ScheduledNotificationsTableTableManager(
+        _db,
+        _db.scheduledNotifications,
+      );
 }

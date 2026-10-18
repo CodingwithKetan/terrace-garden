@@ -10,6 +10,7 @@ import 'generated/schema_v1.dart' as v1;
 import 'generated/schema_v2.dart' as v2;
 import 'generated/schema_v3.dart' as v3;
 import 'generated/schema_v4.dart' as v4;
+import 'generated/schema_v5.dart' as v5;
 
 void main() {
   driftRuntimeOptions.dontWarnAboutMultipleDatabases = true;
@@ -96,6 +97,52 @@ void main() {
         expect(await newDb.select(newDb.gardens).get(), hasLength(1));
         expect(await newDb.select(newDb.layoutElements).get(), hasLength(1));
         expect(await newDb.select(newDb.plantings).get(), isEmpty);
+      },
+    );
+  });
+
+  test('migration from v4 to v5 keeps plantings', () async {
+    await verifier.testWithDataIntegrity(
+      oldVersion: 4,
+      newVersion: 5,
+      createOld: v4.DatabaseAtV4.new,
+      createNew: v5.DatabaseAtV5.new,
+      openTestedDatabase: AppDatabase.new,
+      createItems: (batch, oldDb) {
+        batch
+          ..insert(
+            oldDb.gardens,
+            v4.GardensCompanion.insert(
+              id: 'g1',
+              name: 'Terrace',
+              spaceType: 'terrace',
+              sun: 'unknown',
+              facing: 'unknown',
+              wind: 'unknown',
+              water: 'unknown',
+              weeklyTime: 'unknown',
+              budget: 'unknown',
+              createdAt: '2026-10-18T00:00:00.000Z',
+              updatedAt: '2026-10-18T00:00:00.000Z',
+            ),
+          )
+          ..insert(
+            oldDb.plantings,
+            v4.PlantingsCompanion.insert(
+              id: 'p1',
+              gardenId: 'g1',
+              speciesId: 'tomato',
+              quantity: 1,
+              plantedOn: '2026-10-18',
+              startedFrom: 'seed',
+              createdAt: '2026-10-18T00:00:00.000Z',
+              updatedAt: '2026-10-18T00:00:00.000Z',
+            ),
+          );
+      },
+      validateItems: (newDb) async {
+        expect(await newDb.select(newDb.plantings).get(), hasLength(1));
+        expect(await newDb.select(newDb.careRules).get(), isEmpty);
       },
     );
   });

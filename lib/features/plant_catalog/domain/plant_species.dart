@@ -38,6 +38,15 @@ enum PropagationMethod { transplant, direct, seed, division, cutting }
 
 enum PetSafetyStatus { toxic, nonToxic, notAssessed }
 
+/// How a species likes its soil between waterings, when a source says.
+enum WateringMode {
+  /// Let the mix dry out (completely, for succulents) before watering.
+  dryBetween,
+
+  /// Don't let the soil dry out.
+  keepMoist,
+}
+
 /// Overall completeness of a species record.
 enum DataStatus { verified, partial, unverified }
 
@@ -137,6 +146,14 @@ final class PetSafety {
 }
 
 @immutable
+final class WateringNeed {
+  const WateringNeed({required this.mode, required this.sources});
+
+  final WateringMode mode;
+  final List<String> sources;
+}
+
+@immutable
 final class CareNote {
   const CareNote({required this.text, required this.sources});
 
@@ -187,6 +204,7 @@ final class PlantSpecies {
     this.sowing = const [],
     this.propagation,
     this.careNotes = const [],
+    this.watering,
   });
 
   final String id;
@@ -201,6 +219,9 @@ final class PlantSpecies {
   final List<SowingWindow> sowing;
   final Propagation? propagation;
   final List<CareNote> careNotes;
+
+  /// Null means the general finger test applies (gardening-references §4b).
+  final WateringNeed? watering;
   final PetSafety petSafety;
   final DataStatus dataStatus;
 
@@ -231,6 +252,7 @@ final class PlantSpecies {
     for (final w in sowing) w.source,
     ...?propagation?.sources,
     for (final n in careNotes) ...n.sources,
+    ...?watering?.sources,
     ...petSafety.sources,
   };
 

@@ -12,4 +12,9 @@ abstract interface class SettingsRepository {
   Future<Result<void>> saveUnitSystem(UnitSystem unitSystem);
 
   Future<Result<void>> saveOnboardingCompleted({required bool completed});
+
+  Future<Result<void>> saveReminder({
+    required bool enabled,
+    required int minutes,
+  });
 }

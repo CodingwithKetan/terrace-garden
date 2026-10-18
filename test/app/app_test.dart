@@ -66,6 +66,11 @@ void main() {
     await tester.tap(find.byTooltip('Settings'));
     await tester.pumpAndSettle();
 
+    await tester.scrollUntilVisible(
+      find.text('Image credits'),
+      200,
+      scrollable: find.byType(Scrollable).last,
+    );
     await tester.tap(find.text('Image credits'));
     await tester.pumpAndSettle();
     expect(find.text('Photo by Suresh Khole'), findsWidgets);

@@ -4,6 +4,36 @@ Newest first. Keep entries concise: goal, what was done, checks, next.
 
 ---
 
+## 2026-10-18: Session 1, part 7 (Phase 5: care tracking)
+
+**Done:**
+- **Recurrence engine:** pure, on `LocalDate`, with rules counted from completion, fixed intervals, weekly, yearly and one-off.
+- **`CarePlanner` (ADR-022), sourced defaults only:**
+  - daily soil check (S10, S4), adapted to a new sourced catalogue field, `watering`: dry between waterings or keep moist (S40);
+  - pest check every 3 days (S32);
+  - feed every 28 days (S3, S4);
+  - transplant (S11), harvest may start, and jasmine pruning in Tamil Nadu (S18).
+- **`TaskMaterializer`:** idempotent, with a 30-day horizon for fixed rules.
+- **Schema v5:** `care_rules`, `care_tasks` and `scheduled_notifications`, with migration tests.
+- **`CareSync.reconcile`:** runs on start-up, when plantings change and on resume, and coalesces overlapping calls.
+- **Notifications:** `NotificationPlanner` and diff, plus the flutter_local_notifications adapter with Android setup.
+- **Screens:**
+  - **Today agenda:** done, all done, skip with a reason, move, and a how-to guide with sources;
+  - **care plan editor** on My plants;
+  - **Settings → Reminders:** permission asked in context, with a time picker.
+
+**Bug found while building:** after an interval change or re-enable, a completion-based rule got no new task, because finished tasks were counted as existing. The materialiser now checks for pending tasks and counts from the last finished one. Unit and repository tests cover it.
+
+**Checks:**
+- Format clean, analyze clean, 388 host tests pass.
+- Device integration test: run 1 failed (slow start), run 2 hung (emulator frozen), run 3 passed after a cold boot.
+
+**Recorded:** KI-025 (cross-feature imports since Phase 3), KI-026, KI-027 and KI-028.
+
+**Next:** Phase 6.
+
+---
+
 ## 2026-10-18: Session 1, part 6 (Phase 4: plant catalogue and recommendations)
 
 **Done:**

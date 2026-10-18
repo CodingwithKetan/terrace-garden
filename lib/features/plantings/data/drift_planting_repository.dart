@@ -35,6 +35,10 @@ final class DriftPlantingRepository implements PlantingRepository {
   }
 
   @override
+  Future<List<Planting>> all() async =>
+      (await _db.select(_db.plantings).get()).map(_toDomain).toList();
+
+  @override
   Future<Planting?> find(String id) async {
     final row = await (_db.select(
       _db.plantings,

@@ -20,7 +20,7 @@ void main() {
     expect(row.data.values.single, 1);
   });
 
-  test('is at schema version 4', () {
-    expect(database.schemaVersion, 4);
+  test('is at schema version 5', () {
+    expect(database.schemaVersion, 5);
   });
 }

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:terrace_garden/app/app.dart';
 
-/// P2-08 + P4: onboarding → garden created → plant added from the ideas
-/// screen → app restarted → garden and planting still there.
+/// P2-08 + P4 + P5-09: onboarding → garden created → plant added from the
+/// ideas screen → app restarted → the soil check is on Today and completes →
+/// the daily digest is scheduled with the platform → garden and planting
+/// still there.
 ///
 /// Runs against the real database, storage and bundled catalogue on a device
 /// or emulator. Onboarding only appears on first launch, so the app must not
@@ -21,6 +24,8 @@ void main() {
     await pumpUntilFound(
       tester,
       find.text('Grow a garden that suits your terrace'),
+      // A first debug launch on a busy emulator can take a while.
+      timeout: const Duration(minutes: 2),
     );
     await tester.tap(find.text('Set up my garden'));
     await tester.pumpAndSettle();
@@ -57,7 +62,33 @@ void main() {
     await tester.pumpWidget(const SizedBox());
     await tester.pumpAndSettle();
     await tester.pumpWidget(const ProviderScope(child: TerraceGardenApp()));
-    await pumpUntilFound(tester, find.text('Your garden day starts here'));
+
+    // P5: the planting's care plan put a soil check on Today. Completing it
+    // schedules the next one (from completion).
+    await pumpUntilFound(tester, find.text('Check the soil'));
+    await tester.tap(find.byTooltip('Mark done').first);
+    await pumpUntilFound(tester, find.text('Done today'));
+
+    // Turning on the daily digest reaches the real platform scheduler.
+    // Grant POST_NOTIFICATIONS first (adb shell pm grant …) so Android 13+
+    // doesn't show its permission dialog.
+    await tester.tap(find.byTooltip('Settings'));
+    await pumpUntilFound(tester, find.text('Measurement units'));
+    await tester.scrollUntilVisible(
+      find.text('Daily care digest'),
+      200,
+      scrollable: find.byType(Scrollable).last,
+    );
+    await tester.tap(find.text('Daily care digest'));
+    await pumpUntilFound(
+      tester,
+      find.byWidgetPredicate((w) => w is Switch && w.value),
+    );
+    final pending = await pumpUntilPending();
+    expect(pending, isNotEmpty);
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+
     await tester.tap(find.text('Garden'));
     await pumpUntilFound(tester, find.text('Rooftop test'));
     await tester.tap(find.text('Rooftop test'));
@@ -94,4 +125,18 @@ Future<void> pumpUntilFound(
       .whereType<String>()
       .join(' | ');
   throw TestFailure('Timed out waiting for $finder. Visible text: $visible');
+}
+
+/// Waits for the digest to reach the platform; scheduling runs in the
+/// background after the setting is saved.
+Future<List<PendingNotificationRequest>> pumpUntilPending() async {
+  final plugin = FlutterLocalNotificationsPlugin();
+  final end = DateTime.now().add(const Duration(seconds: 15));
+  var pending = <PendingNotificationRequest>[];
+  while (DateTime.now().isBefore(end)) {
+    pending = await plugin.pendingNotificationRequests();
+    if (pending.isNotEmpty) break;
+    await Future<void>.delayed(const Duration(milliseconds: 200));
+  }
+  return pending;
 }

@@ -13,6 +13,8 @@ final class SharedPreferencesSettingsRepository implements SettingsRepository {
   static const themeKey = 'settings.themePreference';
   static const unitsKey = 'settings.unitSystem';
   static const onboardingKey = 'settings.onboardingCompleted';
+  static const reminderEnabledKey = 'settings.reminderEnabled';
+  static const reminderMinutesKey = 'settings.reminderMinutes';
 
   final SharedPreferencesAsync _prefs;
   final AppLogger _logger;
@@ -23,6 +25,8 @@ final class SharedPreferencesSettingsRepository implements SettingsRepository {
       final theme = await _prefs.getString(themeKey);
       final units = await _prefs.getString(unitsKey);
       final onboarded = await _prefs.getBool(onboardingKey);
+      final reminder = await _prefs.getBool(reminderEnabledKey);
+      final minutes = await _prefs.getInt(reminderMinutesKey);
       return AppSettings(
         themePreference: _byName(
           ThemePreference.values,
@@ -35,6 +39,10 @@ final class SharedPreferencesSettingsRepository implements SettingsRepository {
           AppSettings.defaults.unitSystem,
         ),
         onboardingCompleted: onboarded ?? false,
+        reminderEnabled: reminder ?? false,
+        reminderMinutes: (minutes != null && minutes >= 0 && minutes < 24 * 60)
+            ? minutes
+            : AppSettings.defaultReminderMinutes,
       );
     } on Object catch (error, stackTrace) {
       _logger.error(
@@ -64,6 +72,25 @@ final class SharedPreferencesSettingsRepository implements SettingsRepository {
     } on Object catch (error, stackTrace) {
       _logger.error(
         'Failed to save onboarding state',
+        error: error,
+        stackTrace: stackTrace,
+      );
+      return Err(StorageFailure(error));
+    }
+  }
+
+  @override
+  Future<Result<void>> saveReminder({
+    required bool enabled,
+    required int minutes,
+  }) async {
+    try {
+      await _prefs.setBool(reminderEnabledKey, enabled);
+      await _prefs.setInt(reminderMinutesKey, minutes);
+      return const Ok(null);
+    } on Object catch (error, stackTrace) {
+      _logger.error(
+        'Failed to save reminder settings',
         error: error,
         stackTrace: stackTrace,
       );

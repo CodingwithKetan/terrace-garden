@@ -8,6 +8,9 @@ abstract interface class PlantingRepository {
   /// Every planting in every garden, oldest first.
   Stream<List<Planting>> watchAll();
 
+  /// Every planting, as a one-off read.
+  Future<List<Planting>> all();
+
   Future<Planting?> find(String id);
 
   Future<Result<Planting>> create(PlantingDraft draft);

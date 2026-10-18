@@ -4,11 +4,11 @@ Last updated: 2026-10-18
 
 ## Phase
 
-**Phase 4 (plant catalogue and recommendations): complete (2026-10-18).** Phases 0–3 are complete, plus the v0.2 visual refresh. Next: Phase 5 (care tracking).
+**Phase 5 (care tracking): complete (2026-10-18).** Phases 0–4 are complete, plus the v0.2 visual refresh. Next: Phase 6 (progress and refinement).
 
 ## State of the repository
 
-- **App:** runs on the local Flutter 3.44.8 (ADR-001). Phase 2 added onboarding, gardens, photos and the terrace checklist. Phase 3 added the dimension-aware layout designer. Phase 4 added the sourced 25-species catalogue (bundled JSON, ADR-021), plant detail, recommendations with reasons and a shortlist, and plantings in containers with fit warnings (drift schema v4).
+- **App:** runs on the local Flutter 3.44.8 (ADR-001). Phase 2 added onboarding, gardens, photos and the terrace checklist. Phase 3 added the dimension-aware layout designer. Phase 4 added the sourced 25-species catalogue (bundled JSON, ADR-021), plant detail, recommendations with reasons and a shortlist, and plantings in containers with fit warnings (drift schema v4). Phase 5 added sourced care plans (ADR-022), the Today agenda with task actions, per-planting care plan editing, and an opt-in daily digest notification (drift schema v5).
   - Riverpod 3 bootstrap, go_router shell with four tabs (Today, Garden, Plants, Journal) and an adaptive NavigationBar/NavigationRail.
   - A working Settings screen: theme and units, persisted; licences page.
   - Tabs show honest empty states; features arrive in Phases 2–6.
@@ -16,7 +16,7 @@ Last updated: 2026-10-18
 - **Core** (`lib/core/`):
   - `Result`/`AppFailure`, `AppLogger`, `Clock`, `IdGenerator`, `LocalDate`, `Length`/`Area`/`Volume` + formatter;
   - 11 shared widgets (`lib/core/widgets/`);
-  - drift `AppDatabase` v4 (gardens, garden_photos, layout_elements, plantings, shortlist_entries) with schema snapshots and migration tests.
+  - drift `AppDatabase` v5 (gardens, garden_photos, layout_elements, plantings, shortlist_entries, care_rules, care_tasks, scheduled_notifications) with schema snapshots and migration tests.
 - **Localisation:** gen-l10n, `lib/l10n/app_en.arb`.
 - **Git:** `main`. Phase 0 is on GitHub (`CodingwithKetan/terrace-garden`). **Later commits are local only**: pushes fail on this network (KI-006), so push from another network.
 
@@ -31,34 +31,34 @@ Last updated: 2026-10-18
 
 ## Last completed tasks
 
-P4-DATA-01, P4-DATA-02, P4-01 (as ADR-021), P4-02, P4-03, P4-04, P4-06 and the Phase 4 gate. Deferred: P4-05 compare (P1), P4-DATA-03 research gaps and P4-DATA-04 plant images (P1, block public release only). Still open from earlier: P1-02 (Android licences; non-blocking).
+P5-01 → P5-05, P5-07 → P5-09 and the Phase 5 gate; P5-06 partly (care plan editor done, month calendar deferred, KI-028). Deferred from Phase 4: P4-05 compare, P4-DATA-03 research gaps, P4-DATA-04 plant images (P1). Still open from earlier: P1-02 (Android licences; non-blocking).
 
 ## Exact next steps
 
-1. **Phase 5 (care tracking):**
-   - P5-01: recurrence engine (pure, exhaustive tests).
-   - P5-02: CarePlanner from sourced rules only (check-the-soil watering, conservative feeding, pest checks; gardening-references §4–§6).
-   - P5-03 → P5-05: task tables (schema v5), materialiser, task actions, Today agenda.
-   - P5-07/P5-08: notifications (needs a notifications plugin; daily digest per ADR-008).
+1. **Phase 6 (progress and refinement):**
+   - P6-01 journal entries with photos and milestones; completed tasks in the timeline.
+   - P6-03 delete all data (P0) and export (P1).
+   - P6-05 accessibility audit, P6-06 responsive pass, P6-07 performance profiling, P6-08 end-to-end suite.
+   - KI-025: per-feature public APIs and an import-boundary check.
 
 ## Checks run (latest, 2026-10-18, Windows host)
 
-- Quality gate (Phase 4):
+- Quality gate (Phase 5):
   - `dart format --set-exit-if-changed`: 0 changed.
   - `flutter analyze`: **no issues**.
-  - `flutter test`: **324 passed**. New tests cover:
-    - catalogue validation on the real assets, plus parser rejection cases;
-    - the recommendation engine and the planting fit check;
-    - the plantings repository and the v3→v4 migration with data;
-    - 5 plant journeys;
-    - a bottom-sheet keyboard regression test.
-  - Integration test `integration_test/garden_setup_test.dart` on the Android 16 emulator, extended to add a plant from the ideas screen and check it after a restart:
-    - **First run failed.** The log wasn't captured; most likely an old install with onboarding already done.
-    - **The next two runs passed.**
-  - Manual check on the emulator:
-    - **Bug found:** the keyboard covered bottom-sheet content, so city search results couldn't be tapped. Fixed in `showAppBottomSheet`, covered by a test, and confirmed on the device.
-    - **Stopped early:** the emulator became overloaded (load average ~22, ANR dialog; KI-009), so the ideas, detail and planting screens were not reviewed visually on the device.
-- `flutter build apk --debug`: **passed** (about 38 s, incremental).
+  - `flutter test`: **388 passed**. New tests cover:
+    - the recurrence engine (month ends, leap days, rollover);
+    - the care planner on the real catalogue, and the materialiser;
+    - the notification planner and diff;
+    - the care repository, including the v4→v5 migration;
+    - `CareSync` and `NotificationSync`;
+    - 6 Today, care-plan and reminder journeys.
+  - Integration test on the Android 16 emulator, extended for P5-09 (soil check on Today, mark done, digest pending with the platform):
+    - **Run 1 failed:** the app didn't appear within 15 s on an overloaded emulator (load ~13–27).
+    - **Run 2 hung** for more than 80 minutes; the emulator stopped responding.
+    - **Run 3 passed** in 18 s, after a cold boot (`emulator -no-snapshot-load`) and with a 2-minute first-launch timeout. POST_NOTIFICATIONS was granted with `adb shell pm grant` while the test ran.
+  - The Phase 4 screens still haven't been reviewed by eye on the device (KI-009).
+- `flutter build apk --debug`: **passed** with flutter_local_notifications and core library desugaring (391 s, including first-time Gradle downloads).
 - `dart analyze`: no issues (riverpod_lint removed, KI-008).
 
 ## Working in a Claude Code cloud session (optional)

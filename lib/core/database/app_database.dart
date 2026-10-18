@@ -1,6 +1,8 @@
 import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
 import 'package:terrace_garden/core/database/app_database.steps.dart';
+import 'package:terrace_garden/features/care/data/care_tables.dart';
+import 'package:terrace_garden/features/care/domain/care.dart';
 import 'package:terrace_garden/features/garden/data/garden_tables.dart';
 import 'package:terrace_garden/features/garden/domain/garden_enums.dart';
 import 'package:terrace_garden/features/garden/domain/region.dart';
@@ -25,6 +27,9 @@ part 'app_database.g.dart';
     LayoutElements,
     Plantings,
     ShortlistEntries,
+    CareRules,
+    CareTasks,
+    ScheduledNotifications,
   ],
 )
 class AppDatabase extends _$AppDatabase {
@@ -35,7 +40,7 @@ class AppDatabase extends _$AppDatabase {
       AppDatabase(driftDatabase(name: 'terrace_garden'));
 
   @override
-  int get schemaVersion => 4;
+  int get schemaVersion => 5;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -51,6 +56,11 @@ class AppDatabase extends _$AppDatabase {
       from3To4: (m, schema) async {
         await m.createTable(schema.plantings);
         await m.createTable(schema.shortlistEntries);
+      },
+      from4To5: (m, schema) async {
+        await m.createTable(schema.careRules);
+        await m.createTable(schema.careTasks);
+        await m.createTable(schema.scheduledNotifications);
       },
     ),
     beforeOpen: (details) async {

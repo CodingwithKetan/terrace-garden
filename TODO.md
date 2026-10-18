@@ -142,26 +142,22 @@ Every phase ends with the **gate**: `dart format --output=none --set-exit-if-cha
 
 ## Phase 5: Care tracking
 
-- [ ] **P5-01 · P0 · Recurrence engine.**
-  - Work: from-completion, fixed-calendar, weekly, seasonal window, one-off (ADR-009).
-  - Tests: exhaustive unit tests incl. month ends and DST-zone cases.
-- [ ] **P5-02 · P0 · CarePlanner.**
-  - Work: instantiate rules from templates + stage + container modifiers (gardening-references §4c, §5, §6, §9); check-first guidance; sources.
-  - Tests: unit tests.
-- [ ] **P5-03 · P0 · Task materialiser.**
-  - Work: rolling window; unique (ruleId, dueOn); idempotent regeneration.
-  - Tests: unit + repository tests.
-- [ ] **P5-04 · P0 · Task actions.**
-  - Work: complete (note/photo), skip (reason), reschedule; recalculation per anchor.
-  - Tests: unit tests (PRD FR-F).
-- [ ] **P5-05 · P0 · Today agenda (HOME-01).** Overdue/today/upcoming, grouping, bulk "watered all".
-- [ ] **P5-06 · P1 · Calendar view (CARE-02)** and per-planting care plan editor (CARE-04).
-- [ ] **P5-07 · P0 · NotificationPlanner (pure) + scheduler adapter.**
-  - Work: daily digest; optional per-task reminders; quiet hours; cap 50; diff apply (ADR-008).
-  - Tests: unit tests (no duplicates, cancellation, digest time change).
-- [ ] **P5-08 · P0 · Notification permission flow (CARE-05)** and Android channels; deep link on tap.
-- [ ] **P5-09 · P0 · Integration test:** add plant → care plan → complete task → next task recalculated → notification planned.
-- [ ] **P5-GATE**
+- [x] **P5-01 · P0 · Recurrence engine.** *Done:* sealed `Recurrence` (`FromCompletion`, `FixedInterval`, `Weekly`, `Yearly`, `Once`) on `LocalDate` (no DST shifts), with tests for month ends, leap days, 29 Feb in common years and year rollover. A separate seasonal-window type wasn't needed; `Yearly` covers the sourced seasonal job.
+- [x] **P5-02 · P0 · CarePlanner.** *Done (ADR-022):* sourced defaults only, as listed below. Every task guide shows its sources. Not done: stage-based and container-material modifiers, since there are no numeric sources for them (gardening-references §4c is qualitative).
+  - Daily soil check, adapted to the species' `watering` mode (S40).
+  - Pest check every 3 days (S32).
+  - Feed every 28 days for edibles and flowers (S3, S4).
+  - Transplant after the nursery days (S11).
+  - Harvest may start at the minimum days to harvest.
+  - Jasmine pruning in Tamil Nadu (S18).
+- [x] **P5-03 · P0 · Task materialiser.** *Done:* 30-day horizon for fixed rules, one pending task for completion-based rules (counted from the last finished task), unique (ruleId, dueOn), idempotent. `CareSync.reconcile` back-fills plans for existing plantings.
+- [x] **P5-04 · P0 · Task actions.** *Done:* complete (with note), skip (reason), reschedule. Completion-based rules recalculate from the finish date; disabling or changing a rule replaces its pending tasks. Not done: a photo on completion, which moves to the Phase 6 journal.
+- [x] **P5-05 · P0 · Today agenda (HOME-01).** *Done:* overdue, today (grouped by type with "Mark all done"), done today, next 7 days; skip reasons; move to tomorrow or a date; how-to guide; refresh on resume.
+- [~] **P5-06 · P1 · Calendar view (CARE-02)** and per-planting care plan editor (CARE-04). *Done:* the care plan editor (switch rules off, change repeating intervals) from My plants. *Deferred:* the month calendar (KI-028).
+- [x] **P5-07 · P0 · NotificationPlanner (pure) + scheduler adapter.** *Done:* daily digest only (14-day horizon, cap 50, stable ids per day), a diff against `scheduled_notifications`, and `LocalNotificationScheduler` (inexact, no exact-alarm permission). Not done: per-task reminders and quiet hours; the single digest time covers the MVP.
+- [x] **P5-08 · P0 · Notification permission flow (CARE-05).** *Done:* Settings → Reminders. Permission is asked when the user turns the digest on; a denial is explained; there is a time picker. Android channel `care_digest`, plus manifest receivers and desugaring. A notification tap opens the app on Today (no per-task deep link, KI-028).
+- [x] **P5-09 · P0 · Integration test:** add plant → care plan → complete task → next task recalculated → notification planned. *Done:* host (`today_flows_test`, `care_sync_test`) and device (`integration_test/garden_setup_test.dart`: soil check on Today, mark done, digest pending with the platform via `pendingNotificationRequests`, restart).
+- [x] **P5-GATE** (2026-10-18). Format clean, analyze clean, 388 host tests, device integration test passed (after an emulator cold boot).
 
 ## Phase 6: Progress and refinement
 

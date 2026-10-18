@@ -39,6 +39,15 @@ class SettingsController extends _$SettingsController {
     (repository) => repository.saveOnboardingCompleted(completed: true),
   );
 
+  Future<Result<void>> setReminder({
+    required bool enabled,
+    required int minutes,
+  }) => _update(
+    (settings) =>
+        settings.copyWith(reminderEnabled: enabled, reminderMinutes: minutes),
+    (repository) => repository.saveReminder(enabled: enabled, minutes: minutes),
+  );
+
   Future<Result<void>> _update(
     AppSettings Function(AppSettings) change,
     Future<Result<void>> Function(SettingsRepository) save,

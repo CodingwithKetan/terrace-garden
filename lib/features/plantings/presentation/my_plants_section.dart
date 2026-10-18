@@ -13,6 +13,7 @@ import 'package:terrace_garden/core/widgets/app_card.dart';
 import 'package:terrace_garden/core/widgets/dialogs.dart';
 import 'package:terrace_garden/core/widgets/error_state.dart';
 import 'package:terrace_garden/core/widgets/section_header.dart';
+import 'package:terrace_garden/features/care/presentation/care_sheets.dart';
 import 'package:terrace_garden/features/garden_designer/data/designer_providers.dart';
 import 'package:terrace_garden/features/garden_designer/domain/layout.dart';
 import 'package:terrace_garden/features/plant_catalog/data/catalogue_providers.dart';
@@ -251,6 +252,14 @@ class _PlantingTile extends ConsumerWidget {
       trailing: PopupMenuButton<void>(
         tooltip: l10n.moreActions,
         itemBuilder: (_) => [
+          PopupMenuItem(
+            onTap: () => showCarePlanSheet(
+              context,
+              plantingId: planting.id,
+              plantName: name,
+            ),
+            child: Text(l10n.carePlan),
+          ),
           if (s != null)
             PopupMenuItem(
               onTap: () =>

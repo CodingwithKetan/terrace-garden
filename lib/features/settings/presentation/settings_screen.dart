@@ -8,12 +8,13 @@ import 'package:terrace_garden/core/units/measurements.dart';
 import 'package:terrace_garden/core/widgets/async_state_view.dart';
 import 'package:terrace_garden/core/widgets/error_state.dart';
 import 'package:terrace_garden/core/widgets/section_header.dart';
+import 'package:terrace_garden/features/care/presentation/reminder_settings.dart';
 import 'package:terrace_garden/features/settings/application/settings_controller.dart';
 import 'package:terrace_garden/features/settings/domain/app_settings.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
-/// SET-01. Theme and units work end to end; more settings arrive with their
-/// features (notifications in Phase 5, data export in Phase 6).
+/// SET-01. Theme, units and the daily care reminder; data export arrives
+/// in Phase 6.
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
@@ -122,6 +123,8 @@ class _SettingsList extends ConsumerWidget {
                 () => controller.setUnitSystem(selection.single),
               ),
             ),
+            const SizedBox(height: AppSpacing.xxl),
+            ReminderSettingsSection(settings: settings),
             const SizedBox(height: AppSpacing.xxl),
             SectionHeader(title: l10n.settingsAbout),
             ListTile(
