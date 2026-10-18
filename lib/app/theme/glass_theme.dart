@@ -15,20 +15,22 @@ class GlassTheme extends ThemeExtension<GlassTheme> {
     required this.onPhoto,
   });
 
+  // Living Terrace drops frosted glass for solid paper on limestone: the
+  // tokens stay so existing surfaces switch over in one place.
   static const light = GlassTheme(
-    tint: Color(0xA8FFFFFF), // white at 66%
-    border: Color(0x8CFFFFFF),
-    blurSigma: 20,
-    photoScrim: Color(0x8C000000), // black at 55%, behind white text on photos
-    onPhoto: Colors.white,
+    tint: Color(0xFFFBFAF7),
+    border: Color(0xFFE5E1D6),
+    blurSigma: 0,
+    photoScrim: Color(0x00000000),
+    onPhoto: Color(0xFF17301F),
   );
 
   static const dark = GlassTheme(
-    tint: Color(0xB8121815), // forest at 72%
-    border: Color(0x1FFFFFFF),
-    blurSigma: 20,
-    photoScrim: Color(0x9E000000),
-    onPhoto: Colors.white,
+    tint: Color(0xFF18301F),
+    border: Color(0xFF24402D),
+    blurSigma: 0,
+    photoScrim: Color(0x00000000),
+    onPhoto: Color(0xFFECE8DE),
   );
 
   /// Translucent fill drawn over the blurred backdrop.

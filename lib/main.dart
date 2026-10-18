@@ -13,7 +13,7 @@ void main() {
 /// Bundled fonts are OFL-licensed; their licences appear on the licences page.
 void _registerFontLicenses() {
   LicenseRegistry.addLicense(() async* {
-    for (final family in ['Inter', 'Fraunces']) {
+    for (final family in ['SchibstedGrotesk', 'YoungSerif']) {
       final text = await rootBundle.loadString(
         'assets/fonts/$family-OFL.txt',
       );

@@ -61,28 +61,28 @@ flutter:
 
   assets:
     # Font licences, registered with LicenseRegistry at startup.
-    - assets/fonts/Inter-OFL.txt
-    - assets/fonts/Fraunces-OFL.txt
+    - assets/fonts/SchibstedGrotesk-OFL.txt
+    - assets/fonts/YoungSerif-OFL.txt
     - assets/images/photos/
     # Sourced plant catalogue (ADR-021); validated by catalogue_test.
     - assets/catalogue/
 
   # Bundled so typography works offline (ADR-012). SIL Open Font License 1.1.
   fonts:
-    - family: Inter
+    - family: SchibstedGrotesk
       fonts:
-        - asset: assets/fonts/Inter_18pt-Regular.ttf
+        - asset: assets/fonts/SchibstedGrotesk-Regular.ttf
           weight: 400
-        - asset: assets/fonts/Inter_18pt-Italic.ttf
+        - asset: assets/fonts/SchibstedGrotesk-Italic.ttf
           weight: 400
           style: italic
-        - asset: assets/fonts/Inter_18pt-Medium.ttf
+        - asset: assets/fonts/SchibstedGrotesk-Medium.ttf
           weight: 500
-        - asset: assets/fonts/Inter_18pt-SemiBold.ttf
+        - asset: assets/fonts/SchibstedGrotesk-SemiBold.ttf
           weight: 600
-    - family: Fraunces
+        - asset: assets/fonts/SchibstedGrotesk-Bold.ttf
+          weight: 700
+    - family: YoungSerif
       fonts:
-        - asset: assets/fonts/Fraunces_72pt-Regular.ttf
+        - asset: assets/fonts/YoungSerif-Regular.ttf
           weight: 400
-        - asset: assets/fonts/Fraunces_72pt-SemiBold.ttf
-          weight: 600

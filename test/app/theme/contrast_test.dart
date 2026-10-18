@@ -121,24 +121,25 @@ void main() {
         );
       }
 
-      test('$name: text on photos over the scrim meets 4.5:1 '
-          '(worst case: white photo)', () {
-        final scrimmed = Color.alphaBlend(glass.photoScrim, Colors.white);
+      // Living Terrace has no photo backdrops: "on photo" text sits on the
+      // plain screen background.
+      test('$name: header text on the screen background meets 4.5:1', () {
         expect(
-          contrastRatio(glass.onPhoto, scrimmed),
+          contrastRatio(glass.onPhoto, scheme.surface),
           greaterThanOrEqualTo(bodyText),
         );
       });
     }
   });
 
-  test('decorative marigold is not used for text on light surfaces', () {
-    // Guard against regressions: if marigold ever becomes a text colour it
-    // must pass contrast, which it currently does not.
+  test('decorative haldi and terracotta are not text colours', () {
+    // Guard against regressions: the decorative tones fail body-text
+    // contrast, so text uses their deep variants.
     expect(
-      contrastRatio(AppPalette.marigold, AppPalette.paper),
+      contrastRatio(AppPalette.haldi, AppPalette.paper),
       lessThan(bodyText),
     );
-    expect(AppColorSchemes.light.tertiary, AppPalette.marigoldDeep);
+    expect(AppColorSchemes.light.tertiary, AppPalette.haldiDeep);
+    expect(AppColorSchemes.light.secondary, AppPalette.terracottaDeep);
   });
 }

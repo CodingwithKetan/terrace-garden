@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:terrace_garden/app/theme/app_imagery.dart';
+import 'package:terrace_garden/app/theme/app_theme.dart';
+import 'package:terrace_garden/app/theme/glass_theme.dart';
 import 'package:terrace_garden/core/widgets/glass_icon_button.dart';
 import 'package:terrace_garden/core/widgets/glass_panel.dart';
 import 'package:terrace_garden/core/widgets/immersive_empty_state.dart';
@@ -9,10 +11,26 @@ import '../../helpers/pump_app.dart';
 
 void main() {
   group('GlassPanel', () {
-    testWidgets('blurs its backdrop by default', (tester) async {
+    testWidgets('is solid paper by default (Living Terrace)', (tester) async {
       await tester.pumpLocalized(const GlassPanel(child: Text('Hello')));
-      expect(find.byType(BackdropFilter), findsOneWidget);
+      expect(find.byType(BackdropFilter), findsNothing);
       expect(find.text('Hello'), findsOneWidget);
+    });
+
+    testWidgets('blurs its backdrop when the theme asks for it', (
+      tester,
+    ) async {
+      final theme = AppTheme.light();
+      await tester.pumpLocalized(
+        const GlassPanel(child: Text('Hello')),
+        theme: theme.copyWith(
+          extensions: [
+            ...theme.extensions.values.where((e) => e is! GlassTheme),
+            GlassTheme.light.copyWith(blurSigma: 20),
+          ],
+        ),
+      );
+      expect(find.byType(BackdropFilter), findsOneWidget);
     });
 
     testWidgets('renders an opaque surface when high contrast is on', (

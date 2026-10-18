@@ -18,15 +18,15 @@ class CareColors extends ThemeExtension<CareColors> {
   });
 
   static const light = CareColors(
-    water: Color(0xFF2F6F9F),
-    fertilise: Color(0xFF6B7F2A),
+    water: Color(0xFF2E6FB0),
+    fertilise: Color(0xFF855B00),
     prune: Color(0xFF7A5C99),
-    repot: Color(0xFFA4532F),
-    inspect: Color(0xFF9A6B00),
-    sow: Color(0xFF3F7D5B),
+    repot: Color(0xFFA4471F),
+    inspect: Color(0xFFA4471F),
+    sow: Color(0xFF2B6530),
     harvest: Color(0xFFA8700F),
-    success: Color(0xFF2E7D4F),
-    warning: Color(0xFF9A6B00),
+    success: Color(0xFF2B6530),
+    warning: Color(0xFF855B00),
   );
 
   static const dark = CareColors(

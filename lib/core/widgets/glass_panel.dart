@@ -3,17 +3,16 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:terrace_garden/app/theme/glass_theme.dart';
 
-/// A frosted-glass surface: blurs whatever is behind it and draws a
-/// translucent tint with a hairline edge (design-system.md §2.4).
+/// A card surface (design-system.md §2.4). In Living Terrace it is solid
+/// paper on the limestone background; the tokens still allow a blurred,
+/// translucent variant over imagery when `blurSigma` is above zero.
 ///
-/// Use it over photography, not over flat colour (where blur adds cost but no
-/// effect). When the platform requests high contrast, it renders as an opaque
-/// surface instead.
+/// When the platform requests high contrast it always renders opaque.
 class GlassPanel extends StatelessWidget {
   const GlassPanel({
     required this.child,
     this.padding = const EdgeInsets.all(20),
-    this.borderRadius = const BorderRadius.all(Radius.circular(28)),
+    this.borderRadius = const BorderRadius.all(Radius.circular(24)),
     super.key,
   });
 
@@ -35,8 +34,8 @@ class GlassPanel extends StatelessWidget {
         borderRadius: borderRadius,
         border: Border.all(color: glass.border),
       ),
-      // A transparent Material above the tint so ink ripples from InkWell and
-      // ListTile children paint on top of the glass instead of under it.
+      // A transparent Material above the fill so ink ripples from InkWell and
+      // ListTile children paint on top of it instead of under it.
       child: Material(
         type: MaterialType.transparency,
         borderRadius: borderRadius,
@@ -45,7 +44,7 @@ class GlassPanel extends StatelessWidget {
       ),
     );
 
-    if (highContrast) return panel;
+    if (highContrast || glass.blurSigma <= 0) return panel;
     return ClipRRect(
       borderRadius: borderRadius,
       child: BackdropFilter(

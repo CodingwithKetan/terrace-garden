@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-/// Type scale (design-system.md §3): Fraunces for display and headlines,
-/// Inter for UI and body text. Both are bundled assets (ADR-012).
+/// Type scale (design-system.md §3): Young Serif for display, headlines and
+/// plant names (like herbarium labels); Schibsted Grotesk for UI and body
+/// text. Both are bundled OFL assets (ADR-012, ADR-025).
 abstract final class AppTypography {
-  static const String display = 'Fraunces';
-  static const String ui = 'Inter';
+  static const String display = 'YoungSerif';
+  static const String ui = 'SchibstedGrotesk';
 
   static TextTheme textTheme(ColorScheme colors) {
     TextStyle style(

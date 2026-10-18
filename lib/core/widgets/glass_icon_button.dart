@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:terrace_garden/core/widgets/glass_panel.dart';
 
-/// A circular glass button for actions placed over photography.
+/// A circular paper button for header actions.
 class GlassIconButton extends StatelessWidget {
   const GlassIconButton({
     required this.icon,
@@ -18,7 +18,6 @@ class GlassIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GlassPanel(
       padding: EdgeInsets.zero,
-      borderRadius: const BorderRadius.all(Radius.circular(24)),
       child: IconButton(
         tooltip: tooltip,
         icon: Icon(icon),

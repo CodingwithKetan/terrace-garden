@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:terrace_garden/app/theme/app_tokens.dart';
-import 'package:terrace_garden/core/widgets/glass_panel.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
 /// The top-level scaffold with the four main destinations
@@ -38,36 +37,26 @@ class AppShell extends StatelessWidget {
 
     final width = MediaQuery.sizeOf(context).width;
     if (width < AppBreakpoints.medium) {
-      // A floating glass bar; screens draw their photos underneath it
-      // (extendBody) and pad their content by MediaQuery.padding.bottom.
+      // A solid paper bar with a hairline above it (Living Terrace).
+      final colors = Theme.of(context).colorScheme;
       return Scaffold(
-        extendBody: true,
         body: navigationShell,
-        bottomNavigationBar: SafeArea(
-          minimum: const EdgeInsets.fromLTRB(
-            AppSpacing.lg,
-            0,
-            AppSpacing.lg,
-            AppSpacing.md,
+        bottomNavigationBar: DecoratedBox(
+          decoration: BoxDecoration(
+            border: Border(top: BorderSide(color: colors.outlineVariant)),
           ),
-          child: GlassPanel(
-            padding: EdgeInsets.zero,
-            borderRadius: const BorderRadius.all(Radius.circular(32)),
-            child: NavigationBar(
-              height: 72,
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              selectedIndex: navigationShell.currentIndex,
-              onDestinationSelected: _onSelect,
-              destinations: [
-                for (final (icon, selectedIcon, label) in destinations)
-                  NavigationDestination(
-                    icon: Icon(icon),
-                    selectedIcon: Icon(selectedIcon),
-                    label: label,
-                  ),
-              ],
-            ),
+          child: NavigationBar(
+            height: 72,
+            selectedIndex: navigationShell.currentIndex,
+            onDestinationSelected: _onSelect,
+            destinations: [
+              for (final (icon, selectedIcon, label) in destinations)
+                NavigationDestination(
+                  icon: Icon(icon),
+                  selectedIcon: Icon(selectedIcon),
+                  label: label,
+                ),
+            ],
           ),
         ),
       );
