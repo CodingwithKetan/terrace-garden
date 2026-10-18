@@ -72,7 +72,7 @@ class _Overview extends ConsumerWidget {
         .deleteGarden(garden.id);
     switch (result) {
       case Ok():
-        router.go(AppRoutes.garden);
+        router.go(AppRoutes.today);
         messenger.showSnackBar(SnackBar(content: Text(l10n.gardenDeleted)));
       case Err(:final failure):
         messenger.showSnackBar(

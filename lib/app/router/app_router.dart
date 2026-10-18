@@ -18,32 +18,30 @@ import 'package:terrace_garden/features/onboarding/presentation/onboarding_scree
 import 'package:terrace_garden/features/plant_catalog/presentation/plant_detail_screen.dart';
 import 'package:terrace_garden/features/plant_catalog/presentation/plants_home_screen.dart';
 import 'package:terrace_garden/features/plant_catalog/presentation/recommendations_screen.dart';
+import 'package:terrace_garden/features/plant_catalog/presentation/seasons_screen.dart';
 import 'package:terrace_garden/features/settings/application/settings_controller.dart';
 import 'package:terrace_garden/features/settings/presentation/image_credits_screen.dart';
 import 'package:terrace_garden/features/settings/presentation/settings_screen.dart';
 
 part 'app_router.g.dart';
 
-/// Route paths. Screens inside a tab (keeping the navigation bar) live under
-/// the tab's path, e.g. `/garden/...`. Full-screen pages (forms, viewers)
-/// are top-level routes, e.g. `/gardens/...`, so they sit on the root
-/// navigator and system back always targets them rather than the tab's
-/// navigator underneath. Tested in garden_flows_test ("Discard changes?").
+/// Route paths. The four tabs (Today, Plants, Seasons, Journal) keep the
+/// navigation bar. Everything else is a full-screen, top-level route on the
+/// root navigator, so system back always targets it. Gardens are reached
+/// from the garden name on Today (Living Terrace navigation, ADR-026).
 abstract final class AppRoutes {
   static const onboarding = '/onboarding';
   static const today = '/today';
-  static const garden = '/garden';
+  static const gardens = '/gardens';
   static const plants = '/plants';
+  static const seasons = '/seasons';
   static const journal = '/journal';
   static const settings = '/settings';
   static const imageCredits = '/settings/credits';
 
-  // In the Garden tab.
-  static String gardenDetail(String id) => '/garden/$id';
-  static String gardenPhotos(String id) => '/garden/$id/photos';
-  static String gardenChecklist(String id) => '/garden/$id/checklist';
-
-  // Full screen.
+  static String gardenDetail(String id) => '/gardens/$id';
+  static String gardenPhotos(String id) => '/gardens/$id/photos';
+  static String gardenChecklist(String id) => '/gardens/$id/checklist';
   static const gardenNew = '/gardens/new';
   static String gardenEdit(String id) => '/gardens/$id/edit';
   static String gardenDesign(String id) => '/gardens/$id/design';
@@ -115,39 +113,8 @@ GoRouter appRouter(Ref ref) {
             AppShell(navigationShell: navigationShell),
         branches: [
           _branch(AppRoutes.today, const TodayScreen()),
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: AppRoutes.garden,
-                pageBuilder: (context, state) =>
-                    appPage(state, const GardenHomeScreen()),
-                routes: [
-                  GoRoute(
-                    path: ':gardenId',
-                    pageBuilder: (context, state) => appPage(
-                      state,
-                      GardenOverviewScreen(gardenId: _gardenId(state)),
-                    ),
-                    routes: [
-                      GoRoute(
-                        path: 'photos',
-                        pageBuilder: (context, state) => appPage(
-                          state,
-                          PhotoGalleryScreen(gardenId: _gardenId(state)),
-                        ),
-                      ),
-                      GoRoute(
-                        path: 'checklist',
-                        pageBuilder: (context, state) =>
-                            appPage(state, const TerraceChecklistScreen()),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
           _branch(AppRoutes.plants, const PlantsHomeScreen()),
+          _branch(AppRoutes.seasons, const SeasonsScreen()),
           _branch(AppRoutes.journal, const JournalScreen()),
         ],
       ),
@@ -156,6 +123,26 @@ GoRouter appRouter(Ref ref) {
         path: AppRoutes.gardenNew,
         pageBuilder: (context, state) =>
             appPage(state, const GardenFormScreen()),
+      ),
+      GoRoute(
+        path: AppRoutes.gardens,
+        pageBuilder: (context, state) =>
+            appPage(state, const GardenHomeScreen()),
+      ),
+      GoRoute(
+        path: '/gardens/:gardenId',
+        pageBuilder: (context, state) =>
+            appPage(state, GardenOverviewScreen(gardenId: _gardenId(state))),
+      ),
+      GoRoute(
+        path: '/gardens/:gardenId/photos',
+        pageBuilder: (context, state) =>
+            appPage(state, PhotoGalleryScreen(gardenId: _gardenId(state))),
+      ),
+      GoRoute(
+        path: '/gardens/:gardenId/checklist',
+        pageBuilder: (context, state) =>
+            appPage(state, const TerraceChecklistScreen()),
       ),
       GoRoute(
         path: '/gardens/:gardenId/edit',

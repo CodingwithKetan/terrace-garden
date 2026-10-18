@@ -119,8 +119,7 @@ void main() {
     }
 
     Future<void> openIdeas(WidgetTester tester) async {
-      await tester.tap(find.text('Garden'));
-      await tester.pumpAndSettle();
+      // The garden name on Today opens the garden.
       await tester.tap(find.text('Terrace'));
       await tester.pumpAndSettle();
       await tester.tap(find.text('Plant ideas').first);

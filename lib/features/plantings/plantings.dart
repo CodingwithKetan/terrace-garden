@@ -5,4 +5,5 @@ library;
 
 export 'data/planting_providers.dart';
 export 'presentation/my_plants_section.dart';
+export 'presentation/planting_labels.dart';
 export 'presentation/planting_sheet.dart';

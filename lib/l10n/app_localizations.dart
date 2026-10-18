@@ -112,6 +112,12 @@ abstract class AppLocalizations {
   /// **'Garden'**
   String get navGarden;
 
+  /// No description provided for @navSeasons.
+  ///
+  /// In en, this message translates to:
+  /// **'Seasons'**
+  String get navSeasons;
+
   /// No description provided for @navPlants.
   ///
   /// In en, this message translates to:
@@ -3087,6 +3093,258 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Selected'**
   String get compareSelected;
+
+  /// No description provided for @todayHeadlineSoil.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 plant would like a soil check} other{{count} plants would like a soil check}}'**
+  String todayHeadlineSoil(int count);
+
+  /// No description provided for @todayHeadlineTasks.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 thing to do today} other{{count} things to do today}}'**
+  String todayHeadlineTasks(int count);
+
+  /// No description provided for @todayHeadlineDone.
+  ///
+  /// In en, this message translates to:
+  /// **'All done for today'**
+  String get todayHeadlineDone;
+
+  /// No description provided for @todayWaterTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Check in the morning: it is the best time to water · Royal Horticultural Society'**
+  String get todayWaterTip;
+
+  /// No description provided for @todayDrawTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s draw your terrace'**
+  String get todayDrawTitle;
+
+  /// No description provided for @todayDrawBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Measure the floor once. We\'ll suggest plants that fit your pots, your sun and your city\'s season, and remind you to check the soil.'**
+  String get todayDrawBody;
+
+  /// No description provided for @todayDrawStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with my terrace'**
+  String get todayDrawStart;
+
+  /// No description provided for @todayDrawExplore.
+  ///
+  /// In en, this message translates to:
+  /// **'Look at plants first'**
+  String get todayDrawExplore;
+
+  /// No description provided for @todayNoLayoutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Draw your terrace to see it here'**
+  String get todayNoLayoutTitle;
+
+  /// No description provided for @todayNoLayoutBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your pots and grow bags to scale. Your plants and their checks will appear on the plan.'**
+  String get todayNoLayoutBody;
+
+  /// No description provided for @todayDesignLayout.
+  ///
+  /// In en, this message translates to:
+  /// **'Design your layout'**
+  String get todayDesignLayout;
+
+  /// No description provided for @todayEditLayout.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit layout'**
+  String get todayEditLayout;
+
+  /// No description provided for @todayGardenDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Garden details'**
+  String get todayGardenDetails;
+
+  /// No description provided for @todaySwitchGarden.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch garden'**
+  String get todaySwitchGarden;
+
+  /// No description provided for @todayAllGardens.
+  ///
+  /// In en, this message translates to:
+  /// **'All gardens'**
+  String get todayAllGardens;
+
+  /// No description provided for @todayPlanLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan of {garden}'**
+  String todayPlanLabel(String garden);
+
+  /// No description provided for @planDue.
+  ///
+  /// In en, this message translates to:
+  /// **'check due'**
+  String get planDue;
+
+  /// No description provided for @planDone.
+  ///
+  /// In en, this message translates to:
+  /// **'done today'**
+  String get planDone;
+
+  /// No description provided for @planEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'empty'**
+  String get planEmpty;
+
+  /// No description provided for @checkedToday.
+  ///
+  /// In en, this message translates to:
+  /// **'checked today'**
+  String get checkedToday;
+
+  /// No description provided for @checkedYesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'checked yesterday'**
+  String get checkedYesterday;
+
+  /// No description provided for @checkedDaysAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'checked {days} days ago'**
+  String checkedDaysAgo(int days);
+
+  /// No description provided for @checkedNever.
+  ///
+  /// In en, this message translates to:
+  /// **'first check'**
+  String get checkedNever;
+
+  /// No description provided for @dueSince.
+  ///
+  /// In en, this message translates to:
+  /// **'due since {date}'**
+  String dueSince(String date);
+
+  /// No description provided for @soilSheetLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Soil check · {container}'**
+  String soilSheetLabel(String container);
+
+  /// No description provided for @soilDry.
+  ///
+  /// In en, this message translates to:
+  /// **'It was dry, I watered'**
+  String get soilDry;
+
+  /// No description provided for @soilMoist.
+  ///
+  /// In en, this message translates to:
+  /// **'Still moist, skip today'**
+  String get soilMoist;
+
+  /// No description provided for @soilMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Morning is the best time to water · Royal Horticultural Society'**
+  String get soilMorning;
+
+  /// No description provided for @soilDiagramLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cross-section of a pot: a finger pushed 2 to 3 centimetres into the soil, where the top layer is drier'**
+  String get soilDiagramLabel;
+
+  /// No description provided for @soilDryOnTop.
+  ///
+  /// In en, this message translates to:
+  /// **'Dry on top?'**
+  String get soilDryOnTop;
+
+  /// No description provided for @soilFeelBelow.
+  ///
+  /// In en, this message translates to:
+  /// **'Feel below it'**
+  String get soilFeelBelow;
+
+  /// No description provided for @seasonsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Seasons'**
+  String get seasonsTitle;
+
+  /// No description provided for @seasonsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{city} · {region} calendar'**
+  String seasonsSubtitle(String city, String region);
+
+  /// No description provided for @seasonsSowNow.
+  ///
+  /// In en, this message translates to:
+  /// **'sow now'**
+  String get seasonsSowNow;
+
+  /// No description provided for @seasonsNothingNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing in the catalogue has a sowing window this month for your region.'**
+  String get seasonsNothingNow;
+
+  /// No description provided for @seasonsYourPlants.
+  ///
+  /// In en, this message translates to:
+  /// **'Your plants and saved'**
+  String get seasonsYourPlants;
+
+  /// No description provided for @seasonsWindowLegend.
+  ///
+  /// In en, this message translates to:
+  /// **'sowing window'**
+  String get seasonsWindowLegend;
+
+  /// No description provided for @seasonsNoCalendar.
+  ///
+  /// In en, this message translates to:
+  /// **'No sowing calendar in our sources'**
+  String get seasonsNoCalendar;
+
+  /// No description provided for @seasonsNoRegion.
+  ///
+  /// In en, this message translates to:
+  /// **'Your city has no sourced sowing calendar yet, so seasons can\'t be shown. North India, South India, Telangana, Tamil Nadu and Kerala are covered.'**
+  String get seasonsNoRegion;
+
+  /// No description provided for @seasonsNoGarden.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a garden with your city to see what to sow each month.'**
+  String get seasonsNoGarden;
+
+  /// No description provided for @seasonsFootnote.
+  ///
+  /// In en, this message translates to:
+  /// **'Windows come from sourced regional tables. Exact dates depend on variety and weather.'**
+  String get seasonsFootnote;
+
+  /// No description provided for @seasonsEmptyPlants.
+  ///
+  /// In en, this message translates to:
+  /// **'Plants you add or save will appear here with their sowing months.'**
+  String get seasonsEmptyPlants;
 
   /// No description provided for @settingsData.
   ///

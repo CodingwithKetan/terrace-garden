@@ -18,7 +18,7 @@ void main() {
   final now = DateTime(2026, 10, 18, 6);
   final today = LocalDate.fromDateTime(now);
 
-  setUp(() => app = TestApp(now: now));
+  setUp(() => app = TestApp(now: now, surface: const Size(412, 915)));
 
   Future<void> seed({String speciesId = 'tomato'}) async {
     final clock = FixedClock(now);
@@ -58,7 +58,7 @@ void main() {
     await seed();
     await app.pump(tester);
 
-    expect(find.text('2 tasks due today'), findsOneWidget);
+    expect(find.text('1 plant would like a soil check'), findsOneWidget);
     expect(find.text('Check the soil'), findsOneWidget);
     expect(find.text('Look for pests'), findsOneWidget);
     expect(find.text('Tomato'), findsNWidgets(2));
@@ -78,9 +78,13 @@ void main() {
       find.descendant(of: soilRow.first, matching: find.byTooltip('Mark done')),
     );
     await tester.pumpAndSettle();
+    // The soil check asks what the user found before recording it.
+    expect(find.text('It was dry, I watered'), findsOneWidget);
+    await tester.tap(find.text('It was dry, I watered'));
+    await tester.pumpAndSettle();
     expect(find.text('Marked done'), findsOneWidget);
     expect(find.text('Done today'), findsOneWidget);
-    expect(find.text('1 task due today'), findsOneWidget);
+    expect(find.text('1 thing to do today'), findsOneWidget);
 
     final rows = await tasks();
     expect(
@@ -112,6 +116,8 @@ void main() {
           .first,
       matching: find.byTooltip('Task options'),
     );
+    await tester.ensureVisible(pestMenu);
+    await tester.pumpAndSettle();
     await tester.tap(pestMenu);
     await tester.pumpAndSettle();
     await tester.tap(find.text('Skip'));
@@ -233,8 +239,7 @@ void main() {
   testWidgets('the care plan can switch a check off', (tester) async {
     await seed();
     await app.pump(tester);
-    await tester.tap(find.text('Garden'));
-    await tester.pumpAndSettle();
+    // Gardens are reached from the garden name on Today.
     await tester.tap(find.text('Home garden'));
     await tester.pumpAndSettle();
 

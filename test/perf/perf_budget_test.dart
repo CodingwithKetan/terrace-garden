@@ -56,13 +56,20 @@ void main() {
     elements: elements,
   );
 
-  Duration time(void Function() body, {int runs = 20}) {
+  /// The median of [runs] timed runs after a warm-up. The median, not the
+  /// mean, so a run preempted while the rest of the suite runs in parallel
+  /// does not fail the budget.
+  Duration time(void Function() body, {int runs = 21}) {
     body(); // warm up
-    final watch = Stopwatch()..start();
-    for (var i = 0; i < runs; i++) {
-      body();
-    }
-    return watch.elapsed ~/ runs;
+    final samples = <Duration>[
+      for (var i = 0; i < runs; i++)
+        (() {
+          final watch = Stopwatch()..start();
+          body();
+          return watch.elapsed;
+        })(),
+    ]..sort();
+    return samples[runs ~/ 2];
   }
 
   test('validating 100 objects stays well under one frame', () {

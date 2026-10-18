@@ -3,7 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:terrace_garden/app/theme/app_tokens.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
-/// The top-level scaffold with the four main destinations
+/// The top-level scaffold with the four main destinations (Today, Plants,
+/// Seasons, Journal)
 /// (screen-inventory.md): a bottom navigation bar on compact screens and a
 /// navigation rail from medium width (design-system.md §4).
 class AppShell extends StatelessWidget {
@@ -21,12 +22,16 @@ class AppShell extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final destinations = [
-      (Icons.wb_sunny_outlined, Icons.wb_sunny_rounded, l10n.navToday),
-      (Icons.yard_outlined, Icons.yard_rounded, l10n.navGarden),
+      (Icons.yard_outlined, Icons.yard_rounded, l10n.navToday),
       (
         Icons.local_florist_outlined,
         Icons.local_florist_rounded,
         l10n.navPlants,
+      ),
+      (
+        Icons.calendar_month_outlined,
+        Icons.calendar_month_rounded,
+        l10n.navSeasons,
       ),
       (
         Icons.photo_library_outlined,

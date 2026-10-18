@@ -7,3 +7,4 @@ export 'data/care_providers.dart';
 export 'presentation/care_labels.dart';
 export 'presentation/care_sheets.dart';
 export 'presentation/reminder_settings.dart';
+export 'presentation/soil_check_sheet.dart';

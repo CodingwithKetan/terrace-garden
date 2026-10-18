@@ -31,8 +31,7 @@ void main() {
   }
 
   Future<void> openDesigner(WidgetTester tester) async {
-    await tester.tap(find.text('Garden'));
-    await tester.pumpAndSettle();
+    // The garden name on Today opens the garden.
     await tester.tap(find.text('Balcony'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Design your layout'));

@@ -19,7 +19,7 @@ void main() {
   final now = DateTime(2026, 10, 18, 9);
   final today = LocalDate.fromDateTime(now);
 
-  setUp(() => app = TestApp(now: now));
+  setUp(() => app = TestApp(now: now, surface: const Size(412, 915)));
 
   Future<void> seed() async {
     final clock = FixedClock(now);
@@ -137,6 +137,8 @@ void main() {
         matching: find.byTooltip('Mark done'),
       ),
     );
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('It was dry, I watered'));
     await tester.pumpAndSettle();
 
     await openJournal(tester);

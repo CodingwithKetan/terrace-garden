@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path/path.dart' as p;
+import 'package:terrace_garden/app/router/app_router.dart';
 import 'package:terrace_garden/core/errors/result.dart';
 import 'package:terrace_garden/features/garden/domain/garden_enums.dart';
 import 'package:terrace_garden/features/garden/domain/region.dart';
@@ -106,8 +107,7 @@ void main() {
     Future<TestApp> openGardenTab(WidgetTester tester) async {
       final app = TestApp();
       await app.pump(tester);
-      await tester.tap(find.text('Garden'));
-      await tester.pumpAndSettle();
+      await app.open(tester, AppRoutes.gardens);
       return app;
     }
 
@@ -213,7 +213,8 @@ void main() {
       await tester.tap(find.widgetWithText(FilledButton, 'Delete'));
       await tester.pumpAndSettle();
 
-      expect(find.text('Plan your terrace or balcony'), findsOneWidget);
+      // Back on Today, which invites drawing a terrace again.
+      expect(find.text("Let's draw your terrace"), findsOneWidget);
       expect(await app.database.select(app.database.gardens).get(), isEmpty);
     });
 

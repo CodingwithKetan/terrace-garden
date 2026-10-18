@@ -117,7 +117,7 @@ void main() {
   testWidgets('Garden overview', (tester) async {
     final app = await seeded();
     await app.pump(tester);
-    await go(tester, 'Garden');
+    await go(tester, 'Today');
     await tester.tap(find.text('Home garden'));
     await tester.pumpAndSettle();
     await expectGuidelines(tester);
@@ -136,7 +136,7 @@ void main() {
   testWidgets('Plant ideas', (tester) async {
     final app = await seeded();
     await app.pump(tester);
-    await go(tester, 'Garden');
+    await go(tester, 'Today');
     await tester.tap(find.text('Home garden'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Plant ideas').first);
@@ -199,7 +199,7 @@ void main() {
     await tester.pageBack();
     await tester.pumpAndSettle();
 
-    await go(tester, 'Garden');
+    await go(tester, 'Today');
     await tapText('Home garden');
     expect(tester.takeException(), isNull, reason: 'Garden overview');
     await tapText('Plant ideas');

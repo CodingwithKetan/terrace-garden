@@ -24,9 +24,12 @@ void main() {
     await pumpApp(tester);
     expect(find.text('Your garden day starts here'), findsOneWidget);
 
-    await tester.tap(find.text('Garden'));
+    await tester.tap(find.text('Seasons'));
     await tester.pumpAndSettle();
-    expect(find.text('Plan your terrace or balcony'), findsOneWidget);
+    expect(
+      find.text('Add a garden with your city to see what to sow each month.'),
+      findsOneWidget,
+    );
 
     await tester.tap(find.text('Plants'));
     await tester.pumpAndSettle();

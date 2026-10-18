@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:drift/drift.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_riverpod/misc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:terrace_garden/app/app.dart';
 import 'package:terrace_garden/app/di/core_providers.dart';
+import 'package:terrace_garden/app/router/app_router.dart';
 import 'package:terrace_garden/core/database/app_database.dart';
 import 'package:terrace_garden/core/database/database_provider.dart';
 import 'package:terrace_garden/core/errors/result.dart';
@@ -43,6 +45,7 @@ class TestApp {
   TestApp({
     AppSettings settings = const AppSettings(onboardingCompleted: true),
     this.now,
+    this.surface,
   }) : settings = FakeSettingsRepository(settings),
        database = AppDatabase(
          DatabaseConnection(
@@ -64,6 +67,10 @@ class TestApp {
   /// When set, the app clock is fixed at this time (e.g. for season checks).
   final DateTime? now;
 
+  /// When set, the test window is this size in logical pixels (e.g. a
+  /// portrait phone) instead of the 800 × 600 default.
+  final Size? surface;
+
   List<Override> get overrides => [
     settingsRepositoryProvider.overrideWithValue(settings),
     appDatabaseProvider.overrideWithValue(database),
@@ -77,6 +84,12 @@ class TestApp {
   ];
 
   Future<void> pump(WidgetTester tester) async {
+    if (surface case final size?) {
+      tester.view
+        ..physicalSize = size
+        ..devicePixelRatio = 1;
+      addTearDown(tester.view.reset);
+    }
     addTearDown(() async {
       // Unmount first so stream subscriptions end before the database
       // closes; otherwise a failing test can hang instead of failing.
@@ -86,6 +99,16 @@ class TestApp {
     await tester.pumpWidget(
       ProviderScope(overrides: overrides, child: const TerraceGardenApp()),
     );
+    await tester.pumpAndSettle();
+  }
+
+  /// Pushes [location] (e.g. the gardens list, which is reached from
+  /// Today rather than a tab) and settles.
+  Future<void> open(WidgetTester tester, String location) async {
+    final container = ProviderScope.containerOf(
+      tester.element(find.byType(TerraceGardenApp)),
+    );
+    unawaited(container.read(appRouterProvider).push<void>(location));
     await tester.pumpAndSettle();
   }
 

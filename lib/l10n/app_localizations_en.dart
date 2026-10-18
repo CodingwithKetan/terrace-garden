@@ -18,6 +18,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navGarden => 'Garden';
 
   @override
+  String get navSeasons => 'Seasons';
+
+  @override
   String get navPlants => 'Plants';
 
   @override
@@ -1742,6 +1745,168 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get compareSelected => 'Selected';
+
+  @override
+  String todayHeadlineSoil(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count plants would like a soil check',
+      one: '1 plant would like a soil check',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String todayHeadlineTasks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count things to do today',
+      one: '1 thing to do today',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get todayHeadlineDone => 'All done for today';
+
+  @override
+  String get todayWaterTip =>
+      'Check in the morning: it is the best time to water · Royal Horticultural Society';
+
+  @override
+  String get todayDrawTitle => 'Let\'s draw your terrace';
+
+  @override
+  String get todayDrawBody =>
+      'Measure the floor once. We\'ll suggest plants that fit your pots, your sun and your city\'s season, and remind you to check the soil.';
+
+  @override
+  String get todayDrawStart => 'Start with my terrace';
+
+  @override
+  String get todayDrawExplore => 'Look at plants first';
+
+  @override
+  String get todayNoLayoutTitle => 'Draw your terrace to see it here';
+
+  @override
+  String get todayNoLayoutBody =>
+      'Add your pots and grow bags to scale. Your plants and their checks will appear on the plan.';
+
+  @override
+  String get todayDesignLayout => 'Design your layout';
+
+  @override
+  String get todayEditLayout => 'Edit layout';
+
+  @override
+  String get todayGardenDetails => 'Garden details';
+
+  @override
+  String get todaySwitchGarden => 'Switch garden';
+
+  @override
+  String get todayAllGardens => 'All gardens';
+
+  @override
+  String todayPlanLabel(String garden) {
+    return 'Plan of $garden';
+  }
+
+  @override
+  String get planDue => 'check due';
+
+  @override
+  String get planDone => 'done today';
+
+  @override
+  String get planEmpty => 'empty';
+
+  @override
+  String get checkedToday => 'checked today';
+
+  @override
+  String get checkedYesterday => 'checked yesterday';
+
+  @override
+  String checkedDaysAgo(int days) {
+    return 'checked $days days ago';
+  }
+
+  @override
+  String get checkedNever => 'first check';
+
+  @override
+  String dueSince(String date) {
+    return 'due since $date';
+  }
+
+  @override
+  String soilSheetLabel(String container) {
+    return 'Soil check · $container';
+  }
+
+  @override
+  String get soilDry => 'It was dry, I watered';
+
+  @override
+  String get soilMoist => 'Still moist, skip today';
+
+  @override
+  String get soilMorning =>
+      'Morning is the best time to water · Royal Horticultural Society';
+
+  @override
+  String get soilDiagramLabel =>
+      'Cross-section of a pot: a finger pushed 2 to 3 centimetres into the soil, where the top layer is drier';
+
+  @override
+  String get soilDryOnTop => 'Dry on top?';
+
+  @override
+  String get soilFeelBelow => 'Feel below it';
+
+  @override
+  String get seasonsTitle => 'Seasons';
+
+  @override
+  String seasonsSubtitle(String city, String region) {
+    return '$city · $region calendar';
+  }
+
+  @override
+  String get seasonsSowNow => 'sow now';
+
+  @override
+  String get seasonsNothingNow =>
+      'Nothing in the catalogue has a sowing window this month for your region.';
+
+  @override
+  String get seasonsYourPlants => 'Your plants and saved';
+
+  @override
+  String get seasonsWindowLegend => 'sowing window';
+
+  @override
+  String get seasonsNoCalendar => 'No sowing calendar in our sources';
+
+  @override
+  String get seasonsNoRegion =>
+      'Your city has no sourced sowing calendar yet, so seasons can\'t be shown. North India, South India, Telangana, Tamil Nadu and Kerala are covered.';
+
+  @override
+  String get seasonsNoGarden =>
+      'Add a garden with your city to see what to sow each month.';
+
+  @override
+  String get seasonsFootnote =>
+      'Windows come from sourced regional tables. Exact dates depend on variety and weather.';
+
+  @override
+  String get seasonsEmptyPlants =>
+      'Plants you add or save will appear here with their sowing months.';
 
   @override
   String get settingsData => 'Your data';

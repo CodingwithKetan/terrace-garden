@@ -3,6 +3,7 @@
 /// `domain/`, which is always shared.
 library;
 
+export 'application/current_garden.dart';
 export 'data/garden_providers.dart';
 export 'presentation/garden_labels.dart';
 export 'presentation/photo_actions.dart';

@@ -86,7 +86,8 @@ void main() {
           expect(row.left, greaterThan(300));
         }
         await visit('Journal');
-        await visit('Garden');
+        await visit('Seasons');
+        await visit('Today');
         await tester.tap(find.text('Home garden'));
         await tester.pumpAndSettle();
         expect(tester.takeException(), isNull, reason: 'Garden overview');
