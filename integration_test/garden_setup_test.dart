@@ -5,10 +5,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:terrace_garden/app/app.dart';
 
-/// P2-08 + P4 + P5-09: onboarding → garden created → plant added from the
-/// ideas screen → app restarted → the soil check is on Today and completes →
-/// the daily digest is scheduled with the platform → garden and planting
-/// still there.
+/// End-to-end journey (P2-08, P4, P5-09, P6-08): onboarding → garden → plant
+/// added from the ideas screen → app restarted → the soil check is on Today
+/// and completes → the daily digest is scheduled with the platform → the
+/// garden and planting are still there → the designer adds a pot → a journal
+/// entry saves next to the completed care.
 ///
 /// Runs against the real database, storage and bundled catalogue on a device
 /// or emulator. Onboarding only appears on first launch, so the app must not
@@ -100,6 +101,53 @@ void main() {
       scrollable: find.byType(Scrollable).first,
     );
     expect(find.textContaining('1 plant · since'), findsOneWidget);
+
+    // P3 on device: the designer adds a pot and autosaves it (the overview
+    // shows the saved count once the designer closes and flushes).
+    await tester.scrollUntilVisible(
+      find.text('Design your layout'),
+      -200,
+      scrollable: find.byType(Scrollable).first,
+    );
+    await tester.tap(find.text('Design your layout'));
+    // Onboarding skipped the size, so the designer asks for it first.
+    await pumpUntilFound(tester, find.text("Add your garden's size"));
+    await tester.enterText(find.byType(TextField).at(0), '3');
+    await tester.enterText(find.byType(TextField).at(1), '2');
+    FocusManager.instance.primaryFocus?.unfocus();
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Start designing'));
+    await pumpUntilFound(tester, find.widgetWithText(FilledButton, 'Add'));
+    await tester.tap(find.widgetWithText(FilledButton, 'Add'));
+    await pumpUntilFound(tester, find.text('Round pot'));
+    await tester.tap(find.text('Round pot'));
+    await tester.pumpAndSettle();
+    await tester.pageBack();
+    await pumpUntilFound(tester, find.text('1 object in your layout'));
+
+    // P6-01 on device: a journal entry saves and shows on the timeline.
+    await tester.tap(find.text('Journal'));
+    await pumpUntilFound(tester, find.textContaining('Check the soil · '));
+    await tester.tap(find.byTooltip('New entry'));
+    await pumpUntilFound(tester, find.text('New journal entry'));
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Note'),
+      'Device journal check',
+    );
+    FocusManager.instance.primaryFocus?.unfocus();
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(
+      find.text('Save entry'),
+      300,
+      scrollable: find
+          .descendant(
+            of: find.byType(ListView),
+            matching: find.byType(Scrollable),
+          )
+          .first,
+    );
+    await tester.tap(find.text('Save entry'));
+    await pumpUntilFound(tester, find.text('Device journal check'));
   });
 }
 

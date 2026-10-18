@@ -4,6 +4,28 @@ Newest first. Keep entries concise: goal, what was done, checks, next.
 
 ---
 
+## 2026-10-18: Session 1, part 8 (Phase 6: progress and refinement)
+
+**Done:**
+- **Journal** (schema v6): entries with photos stored in the garden's folder (so deleting a garden removes them), milestones and harvest amounts. The timeline merges entries with completed care and filters by garden and plant.
+- **Delete all data:** cancels notifications, deletes rows and photos, resets settings, returns to onboarding.
+- **Accessibility guideline tests** on every main screen, light and dark, with a 200%-text walk. They found two contrast issues, both fixed.
+- **Responsive tests** at three sizes. List content is now centred at a readable width, and photo headers are capped at 40% of the height (found on landscape phones).
+- **Host performance budgets**, with the numbers in KI-029.
+- **ADR-023:** per-feature public API files plus an architecture test, which resolves KI-025 (38 cross-feature internal imports).
+- **User-testing kit.**
+- **End-to-end device test** extended through the designer and the journal.
+
+**Environment:** the emulator froze during the Phase 5 device runs. Cold boots (`emulator -no-snapshot-load`) recovered it. Quick-boot snapshots carried the overload over.
+
+**Checks:**
+- Format clean, analyze clean, 424 host tests pass.
+- End-to-end device test passed after two runs failed because of test assumptions (no garden size; the first idea isn't always Tomato).
+
+**Next:** moderated user tests, then P6-07 profiling on a real phone, then the release prerequisites (see current-status).
+
+---
+
 ## 2026-10-18: Session 1, part 7 (Phase 5: care tracking)
 
 **Done:**

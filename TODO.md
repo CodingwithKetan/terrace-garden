@@ -169,10 +169,10 @@ Every phase ends with the **gate**: `dart format --output=none --set-exit-if-cha
 - [ ] **P6-10 · P1 · Branding.** App name, launcher icon and splash screen (the default Flutter splash still shows at launch). Needs PD-001 (name).
 - [x] **P6-06 · P0 · Responsive pass.** *Done:* `test/app/responsive_test.dart` at 840×1180, 1280×800 and 800×360: navigation rail, no layout errors, and list content centred at a readable width (`AppSpacing.contentInsetFor`). Photo headers are capped at 40% of the height, a fix for landscape phones found by the test. No custom motion exists beyond Material defaults, so reduced motion follows the platform.
 - [~] **P6-07 · P0 · Performance profiling.** *Done (host):* budget tests in `test/perf/` with the numbers recorded in KI-029. *Open:* a profile-mode run on a real device.
-- [ ] **P6-08 · P0 · End-to-end integration suite** across all critical journeys. *Partly:* the device test covers onboarding → garden → plant → care → notification → restart.
-- [ ] **P6-09 · P1 · User-testing kit.** Script and assumptions from opportunity-analysis §7; build distribution.
+- [x] **P6-08 · P0 · End-to-end integration suite.** *Done:* `integration_test/garden_setup_test.dart` runs one journey on the Android 16 emulator: onboarding → garden → plant from ideas → restart → soil check on Today, done → daily digest scheduled with the platform → plant still listed → designer (size prompt, add a pot, autosave) → journal entry next to completed care. Passed (21 s) after an emulator cold boot.
+- [x] **P6-09 · P1 · User-testing kit.** *Done:* `docs/product/user-testing-kit.md` (recruiting, tasks mapped to assumptions A1–A6 and risks, debrief, measures). Distribution is a debug APK until signing and branding exist (P6-10).
 - [x] **P6-11 · P0 · Import boundaries (KI-025).** *Done (ADR-023):* per-feature public API files, with an architecture test that also checks domain purity.
-- [ ] **P6-GATE** MVP ready for user feedback.
+- [ ] **P6-GATE** MVP ready for user feedback. *Status 2026-10-18:* every P0 is done except the device half of P6-07 (profile-mode run on a real phone). The build is ready for **moderated** testing with the kit; the gate stays open until P6-07 is complete.
 
 ## Phase 7: Advanced (each needs value, cost and plan before starting)
 

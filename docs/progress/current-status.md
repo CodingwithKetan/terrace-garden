@@ -4,19 +4,18 @@ Last updated: 2026-10-18
 
 ## Phase
 
-**Phase 5 (care tracking): complete (2026-10-18).** Phases 0–4 are complete, plus the v0.2 visual refresh. Next: Phase 6 (progress and refinement).
+**Phase 6 (progress and refinement): all P0 tasks done except a device profile run (P6-07); ready for moderated user testing (2026-10-18).** Phases 0–5 are complete. Open: P6-07 device profiling, and P1 items (export, photo comparison and stats, kit preset, branding).
 
 ## State of the repository
 
-- **App:** runs on the local Flutter 3.44.8 (ADR-001). Phase 2 added onboarding, gardens, photos and the terrace checklist. Phase 3 added the dimension-aware layout designer. Phase 4 added the sourced 25-species catalogue (bundled JSON, ADR-021), plant detail, recommendations with reasons and a shortlist, and plantings in containers with fit warnings (drift schema v4). Phase 5 added sourced care plans (ADR-022), the Today agenda with task actions, per-planting care plan editing, and an opt-in daily digest notification (drift schema v5).
+- **App:** runs on the local Flutter 3.44.8 (ADR-001). Phase 2 added onboarding, gardens, photos and the terrace checklist. Phase 3 added the dimension-aware layout designer. Phase 4 added the sourced 25-species catalogue (bundled JSON, ADR-021), plant detail, recommendations with reasons and a shortlist, and plantings in containers with fit warnings (drift schema v4). Phase 5 added sourced care plans (ADR-022), the Today agenda with task actions, per-planting care plan editing, and an opt-in daily digest notification (drift schema v5). Phase 6 added the journal (entries with photos, milestones and harvests, plus a timeline with completed care; schema v6), delete all data, accessibility and responsive fixes, performance budgets, and enforced feature boundaries (ADR-023).
   - Riverpod 3 bootstrap, go_router shell with four tabs (Today, Garden, Plants, Journal) and an adaptive NavigationBar/NavigationRail.
-  - A working Settings screen: theme and units, persisted; licences page.
-  - Tabs show honest empty states; features arrive in Phases 2–6.
+  - Settings: theme, units, daily reminder, delete all data, image credits, licences.
 - **Design system in code** (`lib/app/theme/`): tokens, light/dark colour schemes, `CareColors` and `GlassTheme` extensions, component themes, bundled Inter + Fraunces fonts. **Visual direction v0.2 "real, modern, translucent"**: photo backdrops, glass panels, floating glass navigation (design-system §2.4).
 - **Core** (`lib/core/`):
   - `Result`/`AppFailure`, `AppLogger`, `Clock`, `IdGenerator`, `LocalDate`, `Length`/`Area`/`Volume` + formatter;
   - 11 shared widgets (`lib/core/widgets/`);
-  - drift `AppDatabase` v5 (gardens, garden_photos, layout_elements, plantings, shortlist_entries, care_rules, care_tasks, scheduled_notifications) with schema snapshots and migration tests.
+  - drift `AppDatabase` v6 (gardens, garden_photos, layout_elements, plantings, shortlist_entries, care_rules, care_tasks, scheduled_notifications, journal_entries, journal_photos) with schema snapshots and migration tests.
 - **Localisation:** gen-l10n, `lib/l10n/app_en.arb`.
 - **Git:** `main`. Phase 0 is on GitHub (`CodingwithKetan/terrace-garden`). **Later commits are local only**: pushes fail on this network (KI-006), so push from another network.
 
@@ -31,21 +30,30 @@ Last updated: 2026-10-18
 
 ## Last completed tasks
 
-P5-01 → P5-05, P5-07 → P5-09 and the Phase 5 gate; P5-06 partly (care plan editor done, month calendar deferred, KI-028). Deferred from Phase 4: P4-05 compare, P4-DATA-03 research gaps, P4-DATA-04 plant images (P1). Still open from earlier: P1-02 (Android licences; non-blocking).
+P6-01, P6-03 (delete all data), P6-05, P6-06, P6-07 (host part), P6-08, P6-09 and P6-11 (import boundaries, ADR-023). Earlier deferrals: P4-05, P4-DATA-03, P4-DATA-04, P5-06 calendar. Still open from earlier: P1-02 (Android licences; non-blocking).
 
 ## Exact next steps
 
-1. **Phase 6 (progress and refinement):**
-   - P6-01 journal entries with photos and milestones; completed tasks in the timeline.
-   - P6-03 delete all data (P0) and export (P1).
-   - P6-05 accessibility audit, P6-06 responsive pass, P6-07 performance profiling, P6-08 end-to-end suite.
-   - KI-025: per-feature public APIs and an import-boundary check.
+1. **Run moderated user tests** with `docs/product/user-testing-kit.md` (5–8 participants).
+2. **P6-07:** profile on a real Android phone (`flutter run --profile`): cold start, designer fps with 100 objects, journal image grid.
+3. **Before public release:** horticulturist review (R2), research gaps KI-010..KI-013, plant images (KI-016), product name and branding (PD-001, P6-10), signing, iOS build (KI-003).
+4. **P1 backlog:** data export (P6-03), photo comparison and stats (P6-02), month calendar (KI-028), re-plan on planting edit (KI-027).
+5. **Push** the local commits from a network that allows GitHub (KI-006).
 
 ## Checks run (latest, 2026-10-18, Windows host)
 
-- Quality gate (Phase 5):
+- Quality gate (Phase 6):
   - `dart format --set-exit-if-changed`: 0 changed.
   - `flutter analyze`: **no issues**.
+  - `flutter test`: **424 passed**. Phase 6 added tests for:
+    - the journal repository, timeline and flows;
+    - delete all data;
+    - accessibility guidelines on every main screen (light and dark) and a 200%-text walk;
+    - responsive layouts at three sizes;
+    - performance budgets;
+    - architecture boundaries.
+  - End-to-end device test (Android 16 emulator, after a cold boot): **passed** (21 s) through onboarding, plant, restart, care, notification, designer and journal. Two earlier runs failed because of test assumptions: no garden size, and the first idea not being Tomato. The test was corrected.
+- Phase 5 gate (earlier):
   - `flutter test`: **388 passed**. New tests cover:
     - the recurrence engine (month ends, leap days, rollover);
     - the care planner on the real catalogue, and the materialiser;
