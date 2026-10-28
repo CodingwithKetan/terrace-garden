@@ -2426,4 +2426,31 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get reportShareFailed =>
       'रिपोर्ट की तस्वीर नहीं बन सकी। कृपया फिर से कोशिश करें।';
+
+  @override
+  String get propagationLayering => 'लेयरिंग (गूटी)';
+
+  @override
+  String get propagationGrafting => 'ग्राफ़्टिंग या बडिंग';
+
+  @override
+  String get plantSectionSkin => 'त्वचा पर उपयोग';
+
+  @override
+  String get skinUseIntro =>
+      'स्वास्थ्य संस्थाएँ (WHO, यूरोपीय संघ की EMA और अमेरिका की NCCIH) क्या कहती हैं, और कहाँ उन्हें कोई प्रमाण नहीं मिला।';
+
+  @override
+  String get skinUseCautions => 'सावधानी';
+
+  @override
+  String get skinUseDisclaimer =>
+      'यह चिकित्सा सलाह नहीं है। पौधों से एलर्जी हो सकती है: त्वचा पर कोई पौधा लगाने से पहले डॉक्टर या फ़ार्मासिस्ट से पूछें, और त्वचा पर कोई प्रतिक्रिया हो तो इस्तेमाल बंद कर दें।';
+
+  @override
+  String get plantsFilterSkinUse => 'त्वचा पर उपयोग';
+
+  @override
+  String get plantsSkinUseNote =>
+      'जिन पौधों के त्वचा पर उपयोग के बारे में स्वास्थ्य संस्थाओं की जानकारी है। कुछ के लिए यह बताती है कि प्रमाण कमज़ोर हैं या नहीं हैं।';
 }

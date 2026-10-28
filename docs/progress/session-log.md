@@ -4,6 +4,47 @@ Newest first. Keep entries concise: goal, what was done, checks, next.
 
 ---
 
+## 2026-10-29: Session 1, part 11 (Plus, pest guide, report, 73 plants, skin use)
+
+**Goal:** the user asked for:
+- more plant data;
+- an affordable subscription, with some services free and others paid, priced after competitor research;
+- the features competitors have that we lack;
+- then more fruits, vegetables and skin-care plants, with their research.
+
+**Done:**
+- **Competitor research** (competitor-analysis Part E): free vs paid at 12 apps, missing features, and billing complaints.
+- **Terrace Garden Plus** (ADR-028, monetisation.md):
+  - prices ₹49/month, ₹399/year and ₹999 lifetime, with no trial;
+  - Play billing, restore, a manage link and plain renewal terms;
+  - four gates with a calm upgrade sheet;
+  - the plan loads at launch, so Plus users never see a limit while it loads.
+- **Pest guide** (free) and **garden report** (Plus).
+- **Catalogue 25 → 73 species**, in commit `8a65a6e` (26) and this commit (22):
+  - Sources S75–S154 come from research agents with exact quotes, spot-checked against the live pages.
+  - Fruit category; layering and grafting propagation.
+  - Hindi names and art for every species.
+- **Skin use** (ADR-029):
+  - WHO, EMA and NCCIH only, enforced by a test;
+  - 8 plants, including where the evidence is weak or missing (turmeric, tulsi);
+  - an "On the skin" section with a not-medical-advice note, and a "Skin use" filter.
+
+**Checks:** format 0 changed, analyze no issues, **476 tests passed**. The `plant_art` golden was regenerated.
+
+**Failures met and fixed:**
+- The plan loaded after a Plus user's first tap, which showed the upgrade sheet. Fixed by warming the plan at launch and awaiting it in `requirePlus`.
+- Tests broke when layouts grew; fixed with a drag-until-built helper and `ensureVisible`.
+- The perf budget was flaky under load; it now uses the minimum of 21 runs (KI-031).
+- The 400-day harvest cap rejected lime; the fact is now a care note.
+- Rose cited S8, which was missing from `sources.json`.
+- The skin research file had one malformed JSON line; it was parsed line by line instead.
+
+**Left out on purpose:** MedlinePlus herb pages (withdrawn 2025-07-29), NC State's vetiver acne note, hill-only seasons and genus-level stand-ins. Details in gardening-references §1g–1i.
+
+**Next:** M-07 device re-run and visual check; M-02 Play Console setup before selling.
+
+---
+
 ## 2026-10-18: Session 1, part 10 (Hindi, pet-friendly filter, catalogue completion)
 
 **Goal:** the user asked for Hindi support, proper information for all the plants, and a pet-friendly filter.

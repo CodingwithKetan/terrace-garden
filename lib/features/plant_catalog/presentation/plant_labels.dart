@@ -81,6 +81,8 @@ extension PropagationMethodLabel on PropagationMethod {
     PropagationMethod.seed => l10n.propagationSeed,
     PropagationMethod.division => l10n.propagationDivision,
     PropagationMethod.cutting => l10n.propagationCutting,
+    PropagationMethod.layering => l10n.propagationLayering,
+    PropagationMethod.grafting => l10n.propagationGrafting,
   };
 }
 

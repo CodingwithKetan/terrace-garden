@@ -255,6 +255,71 @@ Research agent readings with exact quotes. Pet safety uses ASPCA exact-species p
 | S111 | Syngonium podophyllum (plant profile) | https://www.rhs.org.uk/plants/17899/syngonium-podophyllum/details | RHS | Cuttings | A | F | as S4 |
 | S112 | Chrysanthemum cultivation (Indian Horticulture, Sep–Oct 2025) | https://epubs.icar.org.in/index.php/IndHort/article/download/166667/62685/490505 | ICAR (PAU authors) | Pot mix 2:1:1, cuttings, pinching at 4 and 7 weeks, staking, disbudding, aphids and thrips | A | F | Cite facts |
 
+### 1g. Added 2026-10-29 (fruits for pots and drums)
+
+Research agent readings with exact quotes; spot-checked against the live pages. Mulberry and strawberry pet safety use ASPCA genus-level pages (*Morus*, *Fragaria*).
+
+| ID | Source | URL | Publisher | Good for | Rel. | Ver. | Licensing / reuse notes |
+|---|---|---|---|---|---|---|---|
+| S113 | How to grow strawberries | https://www.rhs.org.uk/fruit/strawberries/grow-your-own | Royal Horticultural Society | Strawberries in pots, troughs and baskets; runners | A | F | as S4 |
+| S114 | Nutrition security: mass plantation drive for fruit crops (Indian Horticulture, 2025) | https://epubs.icar.org.in/index.php/IndHort/article/download/151026/62683/490500 | ICAR (Indian Horticulture) | Strawberry on terraces and in containers | A | F | Cite facts |
+| S115 | Punica granatum (Plant Finder) | https://plantfinder.mobot.org/PlantFinderDetails.aspx?taxonid=286059 | Missouri Botanical Garden | Pomegranate sun, containers, watering, suckers | A | F | Cite |
+| S116 | Guava Growing in the Florida Home Landscape (HS4, archival) | https://journals.flvc.org/edis/article/download/116066/114249 | UF/IFAS Extension | Guava full sun | A | F | Cite |
+| S117 | How to grow figs | https://www.rhs.org.uk/fruit/figs/grow-your-own | Royal Horticultural Society | Figs in containers (root restriction) | A | F | as S4 |
+| S118 | Dragon fruit: a potentially healthy niche fruit crop (Indian Horticulture, 2020) | https://epubs.icar.org.in/index.php/IndHort/article/download/107290/42259/277997 | ICAR-IIHR | Dragon fruit sun, cuttings, support post | A | F | Cite facts |
+| S120 | Dragon fruit cultivation for the north-eastern hill region (Indian Farming, 2025) | https://epubs.icar.org.in/index.php/IndFarm/article/download/174026/63862/503179 | ICAR Research Complex for NEH Region | Dragon fruit pruning and support | A | F | Cite facts |
+| S121 | Carica papaya (Plant Finder) | https://plantfinder.mobot.org/PlantFinderDetails.aspx?kempercode=d374 | Missouri Botanical Garden | Papaya sun and containers | A | F | Cite |
+| S122 | How to grow mulberries | https://www.rhs.org.uk/fruit/mulberries/grow-your-own | Royal Horticultural Society | Mulberry in containers; fruiting | A | F | as S4 |
+| S124 | Edible Ornamental Landscaping Guide for North-Central Florida (ENH1354) | https://journals.flvc.org/edis/article/download/138194/145769/286968 | UF/IFAS Extension | Mulberry pruning to keep it small | A | F | Cite |
+| S125 | How to grow banana plants | https://www.rhs.org.uk/plants/banana/growing-guide | Royal Horticultural Society | Dwarf banana in containers | A | F | as S4 |
+
+### 1h. Added 2026-10-29 (more vegetables)
+
+| ID | Source | URL | Publisher | Good for | Rel. | Ver. | Licensing / reuse notes |
+|---|---|---|---|---|---|---|---|
+| S126 | How to grow cabbages | https://www.rhs.org.uk/vegetables/cabbages/grow-your-own | Royal Horticultural Society | Cabbage containers, netting | A | F | as S4 |
+| S127 | How to grow calabrese | https://www.rhs.org.uk/vegetables/calabrese/grow-your-own | Royal Horticultural Society | Broccoli (calabrese) harvest timing | A | F | as S4 |
+| S128 | How to grow potatoes | https://www.rhs.org.uk/vegetables/potatoes/grow-your-own | Royal Horticultural Society | Potatoes in bags and pots, earthing up, watering | A | F | as S4 |
+| S129 | How to grow onions | https://www.rhs.org.uk/vegetables/onions/grow-your-own | Royal Horticultural Society | Onions in containers | A | F | as S4 |
+| S130 | How to grow pumpkins | https://www.rhs.org.uk/vegetables/pumpkins/grow-your-own | Royal Horticultural Society | Compact pumpkins in pots, supports | A | F | as S4 |
+| S131 | Luffa (Gardening Solutions) | https://gardeningsolutions.ifas.ufl.edu/plants/edibles/vegetables/luffa/ | UF/IFAS Extension | Luffa sun and container size (2–5 gal) | A | F | Cite |
+| S132 | Moringa oleifera (Miracle tree) | https://ucanr.edu/site/ucce-central-sierra-agriculture/article/moringa-oleifera-miracle-tree | UC Cooperative Extension Central Sierra (UC ANR) | Moringa pruning for leaves vs pods | A | F | Cite |
+| S133 | How to grow sweet potatoes | https://www.rhs.org.uk/vegetables/sweet-potatoes/grow-your-own | Royal Horticultural Society | Sweet potato in containers | A | F | as S4 |
+
+### 1i. Added 2026-10-29 (skin-care plants and skin use)
+
+**Rule for skin claims:** only WHO monographs, the EU's EMA (HMPC) and the US NCCIH are cited. The app reports what they accept and what they could not confirm, never a treatment, and shows a "not medical advice, patch-test first" note (ADR-029). Quotes were checked against the live NCCIH and EMA pages and the downloaded EMA rose and PAU PDFs.
+
+**Left out on purpose:**
+- MedlinePlus herb pages: their natural-medicine content was withdrawn on 2025-07-29 and now only links to NCCIH and ODS.
+- NC State's ethnobotany note on vetiver for acne, which is not a health authority. Vetiver has no skin entry.
+- Lavender planting months from the HPKV hill note, because hill seasons are out of scope.
+- Neem and gotu kola harvest days: no source gives them.
+
+| ID | Source | URL | Publisher | Good for | Rel. | Ver. | Licensing / reuse notes |
+|---|---|---|---|---|---|---|---|
+| S134 | TNAU Agritech: Turmeric | https://agritech.tnau.ac.in/horticulture/horti_spice%20crops_turmeric.html | Tamil Nadu Agricultural University | Turmeric season, duration and planting material (Tamil Nadu) | A | F | Cite |
+| S135 | Package of Practices: Ornamental Crops (2022) | https://pau.edu/content/ccil/pf/pp_flower.pdf | Punjab Agricultural University | Calendula transplanting months and bloom period (Punjab) | A | F | Cite |
+| S136 | Turmeric | https://www.nccih.nih.gov/health/turmeric | National Center for Complementary and Integrative Health (NIH) | Turmeric evidence summary and safety, incl. skin reactions | A | F | Cite |
+| S137 | WHO monographs on selected medicinal plants, Volume 1 | https://iris.who.int/server/api/core/bitstreams/6e21eaaa-d157-421d-a136-eb61964de18c/content | World Health Organization | Skin uses and safety: aloe vera gel, turmeric, gotu kola (plus vernacular names) | A | F | Cite facts |
+| S138 | WHO monographs on selected medicinal plants, Volume 2 | https://iris.who.int/server/api/core/bitstreams/3d613749-d5e9-4286-96db-7b3abc5dfdbe/content | World Health Organization | Skin uses and safety: calendula, holy basil | A | F | Cite facts |
+| S139 | WHO monographs on selected medicinal plants, Volume 3 | https://iris.who.int/server/api/core/bitstreams/f4e276e8-6a1a-4ea4-979f-776a7ddfe2d1/content | World Health Organization | Skin uses and safety: neem leaf, lavender | A | F | Cite facts |
+| S140 | Curcumae longae rhizoma (herbal medicine overview) | https://www.ema.europa.eu/en/medicines/herbal/curcumae-longae-rhizoma | European Medicines Agency | Turmeric EU indication (digestive only) | A | F | Cite facts |
+| S141 | Azadirachta indica (Plant Finder) | https://www.missouribotanicalgarden.org/PlantFinder/PlantFinderDetails.aspx?taxonid=282701 | Missouri Botanical Garden | Neem sun, pots with pruning, cold limit, self-seeding | A | F | Cite |
+| S142 | TNAU Agritech: Neem nursery technology | https://agritech.tnau.ac.in/forestry/forestry_nursery_azadirachta_indica.html | Tamil Nadu Agricultural University | Neem seed viability and germination | A | F | Cite |
+| S143 | Calendula | https://www.rhs.org.uk/plants/calendula | Royal Horticultural Society | Calendula sun, soil, containers | A | F | as S4 |
+| S144 | Calendula officinalis (plant details) | https://www.rhs.org.uk/plants/62350/calendula-officinalis/details | Royal Horticultural Society | Calendula sowing in situ, deadheading, pinching | A | F | as S4 |
+| S145 | Calendulae flos (herbal medicine overview) | https://www.ema.europa.eu/en/medicines/herbal/calendulae-flos | European Medicines Agency | Calendula EU skin indication (traditional use), age limit, sensitisation | A | F | Cite facts |
+| S146 | TNAU Agritech: Vallarai (Centella asiatica) | https://agritech.tnau.ac.in/horticulture/horti_medicinal%20crops_vallarai.html | Tamil Nadu Agricultural University | Gotu kola shade, planting month, cuttings, picking | A | F | Cite |
+| S147 | TNAU Agritech: Brahmi (Bacopa monnieri) | https://agritech.tnau.ac.in/horticulture/horti_medicinal%20crops_brahmi.html | Tamil Nadu Agricultural University | Brahmi is Bacopa monnieri (naming) | A | F | Cite |
+| S148 | EU herbal monograph on Centella asiatica, herba (Rev. 1) | https://www.ema.europa.eu/en/documents/herbal-monograph/european-union-herbal-monograph-centella-asiatica-l-urb-herba-revision-1_en.pdf | European Medicines Agency | Gotu kola EU wound indication, contraindications | A | F | Cite facts |
+| S149 | Lavender growing guide | https://www.rhs.org.uk/plants/lavender/growing-guide | Royal Horticultural Society | Lavender sun, drainage, containers, pruning, cuttings | A | F | as S4 |
+| S150 | Lavender | https://www.nccih.nih.gov/health/lavender | National Center for Complementary and Integrative Health (NIH) | Lavender evidence summary and topical safety | A | F | Cite |
+| S151 | TNAU Agritech: Vetiver | https://agritech.tnau.ac.in/horticulture/horti_aromatic%20crops_vetiver.html | Tamil Nadu Agricultural University | Vetiver slips, planting season, root harvest, termites | A | F | Cite |
+| S152 | Aloe vera | https://www.nccih.nih.gov/health/aloe-vera | National Center for Complementary and Integrative Health (NIH) | Aloe gel evidence (acne, burns) and topical safety | A | F | Cite |
+| S153 | Community herbal monograph on Rosa gallica, R. centifolia, R. damascena, flos | https://www.ema.europa.eu/en/documents/herbal-monograph/final-community-herbal-monograph-rosa-gallica-l-rosa-centifolia-l-rosa-damascena-mill-flos_en.pdf | European Medicines Agency | Rose petal EU skin indication, age and pregnancy limits | A | F | Cite facts |
+| S154 | Rosae flos (herbal medicine overview) | https://www.ema.europa.eu/en/medicines/herbal/rosae-flos | European Medicines Agency | Rose flower: no side effects reported at assessment | A | F | Cite facts |
+
 ## 2. Container guidance per crop
 
 ### 2a. Base extension data (fetched)

@@ -1,10 +1,10 @@
 # Current Status
 
-Last updated: 2026-10-18
+Last updated: 2026-10-29
 
 ## Phase
 
-**Phase 6 done except a device profile run (P6-07). The app is in English and Hindi, with a pet-friendly filter and a fuller catalogue (2026-10-18). Living Terrace redesign built (R-01..R-07, ADR-025/026; 2026-10-18); ready for moderated user testing of the new design.** Phases 0–5 are complete. Open: P6-07 device profiling; P6-04 kit preset (needs KI-014 verification); P6-10 branding (needs the app name, PD-001).
+**2026-10-29: Terrace Garden Plus is built but not on sale (ADR-028, KI-038). Also added: a free pest guide, a Plus garden report, a 73-species catalogue, and health authority skin-use notes (ADR-029).** Phase 6 done except a device profile run (P6-07). The app is in English and Hindi, with a pet-friendly filter and a fuller catalogue (2026-10-18). Living Terrace redesign built (R-01..R-07, ADR-025/026; 2026-10-18); ready for moderated user testing of the new design.** Phases 0–5 are complete. Open: P6-07 device profiling; P6-04 kit preset (needs KI-014 verification); P6-10 branding (needs the app name, PD-001).
 
 ## State of the repository
 
@@ -16,8 +16,10 @@ Last updated: 2026-10-18
   - `Result`/`AppFailure`, `AppLogger`, `Clock`, `IdGenerator`, `LocalDate`, `Length`/`Area`/`Volume` + formatter;
   - 11 shared widgets (`lib/core/widgets/`);
   - drift `AppDatabase` v6 (gardens, garden_photos, layout_elements, plantings, shortlist_entries, care_rules, care_tasks, scheduled_notifications, journal_entries, journal_photos) with schema snapshots and migration tests.
-- **Localisation:** gen-l10n, `lib/l10n/app_en.arb`.
-- **Git:** `main`. Phase 0 is on GitHub (`CodingwithKetan/terrace-garden`). Pushed to GitHub through the redesign docs commit (2026-10-18).
+- **Localisation:** gen-l10n, `lib/l10n/app_en.arb` and `app_hi.arb` (ADR-027).
+- **Plus (ADR-028):** `lib/features/subscription/`. Play billing via `in_app_purchase`, with entitlements in the domain. Free and paid features and prices are in `docs/product/monetisation.md`.
+- **Catalogue:** 73 species, 129 sources (S1–S154, all "F" in the register). Optional `skinUse` cites only WHO, EMA and NCCIH (ADR-029).
+- **Git:** `main`. Phase 0 is on GitHub (`CodingwithKetan/terrace-garden`). Pushed to GitHub through `ecedac7` (Hindi). `8a65a6e` (Plus) and the 2026-10-29 catalogue/skin-use commit are pushed with this session if the network allows (see session log).
 
 ## Toolchain (verified 2026-10-18)
 
@@ -30,18 +32,31 @@ Last updated: 2026-10-18
 
 ## Last completed tasks
 
-**Hindi, pet-friendly filter and catalogue completion (L-01..L-03, ADR-027).** Before that, the **Living Terrace redesign (R-01..R-07):** foundation, plant art, terrace plan, navigation + Today + soil-check sheet + Seasons, plant detail with sourced journey, ideas shelf, container picker on the plan, journal, welcome and garden overview. Before that: P6-01, P6-03 (delete all data), P6-05, P6-06, P6-07 (host part), P6-08, P6-09 and P6-11 (import boundaries, ADR-023). Earlier deferrals: P4-05, P4-DATA-03, P4-DATA-04, P5-06 calendar. Still open from earlier: P1-02 (Android licences; non-blocking).
+**2026-10-29 (M-01, M-03..M-06):**
+- Terrace Garden Plus with Play billing.
+- Pest guide and garden report.
+- Catalogue 25 → 73 species: fruit, more vegetables, houseplants and skin-care plants.
+- Skin-use notes from WHO, EMA and NCCIH, with an "On the skin" section and a "Skin use" filter.
+- Monetisation doc, ADR-028 and ADR-029, KI-037..KI-040.
+
+Earlier: **Hindi, pet-friendly filter and catalogue completion (L-01..L-03, ADR-027).** Before that, the **Living Terrace redesign (R-01..R-07):** foundation, plant art, terrace plan, navigation + Today + soil-check sheet + Seasons, plant detail with sourced journey, ideas shelf, container picker on the plan, journal, welcome and garden overview. Before that: P6-01, P6-03 (delete all data), P6-05, P6-06, P6-07 (host part), P6-08, P6-09 and P6-11 (import boundaries, ADR-023). Earlier deferrals: P4-05, P4-DATA-03, P4-DATA-04, P5-06 calendar. Still open from earlier: P1-02 (Android licences; non-blocking).
 
 ## Exact next steps
 
+0. **M-07:** re-run the device test, and look at the Plus screen, the upgrade sheet, the pest guide, the report and "On the skin" on the emulator.
+   - **M-02 before selling:** Play Console products, release signing, licence-tester purchases (KI-038).
 1. **Run moderated user tests of the new design** with `docs/product/user-testing-kit.md` (5–8 participants). Watch whether people find their gardens from Today and use the soil-check answers.
    - R-08 follow-ups (P1): persist the selected garden (KI-030), an evening headline naming the plant still waiting, a current-month band in Seasons, long names in plan tags.
 2. **P6-07:** profile on a real Android phone (`flutter run --profile`): cold start, designer fps with 100 objects, journal image grid.
 3. **Before public release:** horticulturist review (R2), research gaps KI-010..KI-013, plant images (KI-016), product name and branding (PD-001, P6-10), signing, iOS build (KI-003).
 4. **P1 backlog:** plant comparison (P4-05), importing an export (ADR-024), notification deep links (KI-028), photo on task completion.
 
-## Checks run (latest, 2026-10-18, Windows host)
+## Checks run (latest, 2026-10-29, Windows host)
 
+- **Plus / catalogue / skin-use gate (2026-10-29):** `dart format --set-exit-if-changed` 0 changed; `flutter analyze` no issues; `flutter test` **476 passed**. Earlier, at `8a65a6e`: 473 passed.
+  - New tests: skin use cites only health authorities; the parser rejects skin use without evidence or sources; the `skinUseOnly` search; the Skin use filter and the "On the skin" section.
+  - The `plant_art` golden was regenerated for 73 species and checked by eye.
+  - Not run: the device integration test (M-07).
 - **Hindi / pet filter / catalogue gate (2026-10-18):** format 0 changed; analyze no issues; `flutter test` **460 passed**. The device test was not re-run for this batch (the host suite covers it); re-run at the next device session.
 
 - **Living Terrace redesign gate (2026-10-18):**

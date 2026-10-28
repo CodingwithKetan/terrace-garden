@@ -4195,6 +4195,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Couldn\'t create the report image. Please try again.'**
   String get reportShareFailed;
+
+  /// No description provided for @propagationLayering.
+  ///
+  /// In en, this message translates to:
+  /// **'Layering (air layering)'**
+  String get propagationLayering;
+
+  /// No description provided for @propagationGrafting.
+  ///
+  /// In en, this message translates to:
+  /// **'Grafting or budding'**
+  String get propagationGrafting;
+
+  /// No description provided for @plantSectionSkin.
+  ///
+  /// In en, this message translates to:
+  /// **'On the skin'**
+  String get plantSectionSkin;
+
+  /// No description provided for @skinUseIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'What health authorities (WHO, the EU\'s EMA and the US NCCIH) say, including when they found no evidence.'**
+  String get skinUseIntro;
+
+  /// No description provided for @skinUseCautions.
+  ///
+  /// In en, this message translates to:
+  /// **'Take care'**
+  String get skinUseCautions;
+
+  /// No description provided for @skinUseDisclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'Not medical advice. Plants can cause allergic reactions: ask a doctor or pharmacist before using one on your skin, and stop if your skin reacts.'**
+  String get skinUseDisclaimer;
+
+  /// No description provided for @plantsFilterSkinUse.
+  ///
+  /// In en, this message translates to:
+  /// **'Skin use'**
+  String get plantsFilterSkinUse;
+
+  /// No description provided for @plantsSkinUseNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Plants with health authority information on skin use. For some, it says the evidence is weak or missing.'**
+  String get plantsSkinUseNote;
 }
 
 class _AppLocalizationsDelegate

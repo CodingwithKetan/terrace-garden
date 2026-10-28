@@ -105,6 +105,43 @@ void main() {
         catalogue.byId('jasmine')!.petSafety.status,
         PetSafetyStatus.nonToxic,
       );
+      expect(
+        catalogue.byId('lavender')!.petSafety.status,
+        PetSafetyStatus.toxic,
+      );
+      expect(
+        catalogue.byId('ridgeGourd')!.container.status,
+        EvidenceStatus.proxy,
+      );
+    });
+
+    // Skin claims are health claims: only WHO, EMA and NCCIH (ADR-029).
+    test('skin use cites only health authorities', () {
+      const authorities = {
+        'World Health Organization',
+        'European Medicines Agency',
+        'National Center for Complementary and Integrative Health (NIH)',
+      };
+      final withSkinUse = catalogue.species.where((s) => s.skinUse != null);
+      expect(
+        withSkinUse.map((s) => s.id),
+        containsAll(['aloeVera', 'calendula', 'turmeric', 'tulsi']),
+      );
+      for (final s in withSkinUse) {
+        final use = s.skinUse!;
+        expect(use.evidence, isNotEmpty, reason: s.id);
+        for (final note in [...use.evidence, ...use.cautions]) {
+          for (final id in note.sources) {
+            expect(
+              authorities,
+              contains(catalogue.sources[id]!.publisher),
+              reason: '${s.id} cites $id for a skin claim',
+            );
+          }
+        }
+      }
+      // No authority covers vetiver, so it has no skin entry at all.
+      expect(catalogue.byId('vetiver')!.skinUse, isNull);
     });
   });
 
@@ -195,6 +232,26 @@ void main() {
       );
     });
 
+    test('skin use without evidence, or a skin note without sources', () {
+      final r = tomatoRecord()
+        ..['skinUse'] = {'evidence': <Object?>[], 'cautions': <Object?>[]};
+      expect(
+        () => parse(plants: withSpecies([r])),
+        throwsA(isA<FormatException>()),
+      );
+      final r2 = tomatoRecord()
+        ..['skinUse'] = {
+          'evidence': [
+            {'text': 'Claim', 'sources': <String>[]},
+          ],
+          'cautions': <Object?>[],
+        };
+      expect(
+        () => parse(plants: withSpecies([r2])),
+        throwsA(isA<FormatException>()),
+      );
+    });
+
     test('a toxicity claim without a source', () {
       final r = tomatoRecord();
       (r['petSafety']! as Map<String, Object?>)['sources'] = <String>[];
@@ -220,5 +277,9 @@ void main() {
       ]..sort(),
     );
     expect(herbs.every((s) => s.category == PlantCategory.herb), isTrue);
+    final skin = catalogue.search(skinUseOnly: true);
+    expect(skin.every((s) => s.skinUse != null), isTrue);
+    expect(skin.map((s) => s.id), isNot(contains('tomato')));
+    expect(catalogue.search(query: 'khus').single.id, 'vetiver');
   });
 }

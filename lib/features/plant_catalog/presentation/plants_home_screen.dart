@@ -24,6 +24,7 @@ class _PlantsHomeScreenState extends ConsumerState<PlantsHomeScreen> {
   String _query = '';
   PlantCategory? _category;
   bool _petFriendly = false;
+  bool _skinUse = false;
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +53,7 @@ class _PlantsHomeScreenState extends ConsumerState<PlantsHomeScreen> {
       query: _query,
       category: _category,
       petFriendlyOnly: _petFriendly,
+      skinUseOnly: _skinUse,
     );
 
     return CustomScrollView(
@@ -141,6 +143,13 @@ class _PlantsHomeScreenState extends ConsumerState<PlantsHomeScreen> {
                       setState(() => _petFriendly = !_petFriendly),
                 ),
                 _CategoryChip(
+                  key: const Key('skinUseFilter'),
+                  label: l10n.plantsFilterSkinUse,
+                  icon: Icons.spa_outlined,
+                  selected: _skinUse,
+                  onSelected: () => setState(() => _skinUse = !_skinUse),
+                ),
+                _CategoryChip(
                   label: l10n.plantsFilterAll,
                   selected: _category == null,
                   onSelected: () => setState(() => _category = null),
@@ -158,7 +167,10 @@ class _PlantsHomeScreenState extends ConsumerState<PlantsHomeScreen> {
             ),
           ),
         ),
-        if (_petFriendly)
+        for (final note in [
+          if (_petFriendly) l10n.plantsPetFriendlyNote,
+          if (_skinUse) l10n.plantsSkinUseNote,
+        ])
           SliverPadding(
             padding: EdgeInsets.fromLTRB(
               gutter,
@@ -178,7 +190,7 @@ class _PlantsHomeScreenState extends ConsumerState<PlantsHomeScreen> {
                   const SizedBox(width: AppSpacing.sm),
                   Expanded(
                     child: Text(
-                      l10n.plantsPetFriendlyNote,
+                      note,
                       style: theme.textTheme.bodySmall,
                     ),
                   ),

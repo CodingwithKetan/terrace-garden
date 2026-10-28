@@ -105,6 +105,33 @@ void main() {
     expect(find.text('Aloe vera'), findsNothing);
   });
 
+  testWidgets('skin use lists plants with health authority information', (
+    tester,
+  ) async {
+    final app = TestApp();
+    await app.pump(tester);
+    await tester.tap(find.text('Plants'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byKey(const Key('skinUseFilter')));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('evidence is weak or missing'), findsOneWidget);
+    expect(find.text('Aloe vera'), findsOneWidget);
+    expect(find.text('Tomato'), findsNothing);
+
+    await tester.tap(find.text('Calendula (pot marigold)'));
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(
+      find.textContaining('Not medical advice'),
+      300,
+      scrollable: detailScroll(),
+    );
+    expect(find.text('On the skin'), findsOneWidget);
+    expect(find.textContaining('minor skin inflammation'), findsOneWidget);
+    expect(find.text('Take care'), findsOneWidget);
+    expect(find.textContaining('daisy family (Asteraceae)'), findsOneWidget);
+  });
+
   group('ideas and plantings', () {
     late TestApp app;
     late String gardenId;

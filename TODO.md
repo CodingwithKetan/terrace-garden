@@ -194,6 +194,25 @@ User feedback on the photo-and-glass look: "looks like an AI generated app". Dir
 - [x] **L-03 · P0 · Catalogue completion.** Research across ASPCA, NC State, RHS, UMD, Alabama Extension, PAU, KAU and TNAU (27 new sources, S48–S74, all registered "F"). Now all 25 species have sun, propagation and care notes; sowing windows 36→58; days to harvest 14→17; containers 15→17; pet status 8→11. Remaining gaps in KI-036.
 - [ ] **L-04 · P1 · Catalogue prose in Hindi** (KI-034) and native review of the UI translation (KI-035).
 
+## Plus, pest guide, report, catalogue expansion, skin use (2026-10-29)
+
+- [x] **M-01 · P1 · Terrace Garden Plus (PD-002, ADR-028).** Done (`8a65a6e`):
+  - Google Play billing behind `PurchaseService`: monthly, yearly and lifetime, with prices from Play.
+  - Plus screen with renewal terms, restore and a manage link.
+  - Upgrade sheet.
+  - Gates for gardens > 1, journal photos > 60, comparison and the report.
+  - Monetisation write-up in `docs/product/monetisation.md`.
+  - Tests: `plan_test`, `subscription_flows_test`.
+- [ ] **M-02 · P0 before selling · Put Plus on sale** (KI-038): Play Console products, release signing, internal testing with licence testers, store terms and privacy policy. Decide on server verification (KI-037).
+- [x] **M-03 · P1 · Pest guide (free).** Six pests, spray cautions and KAU's neem–garlic recipe, all sourced; no synthetic doses. Reached from Plants and the pest-check sheet. (`8a65a6e`)
+- [x] **M-04 · P1 · Garden report (Plus).** Plan, plants, 30 days of care and harvests, shared as an image. (`8a65a6e`)
+- [x] **M-05 · P1 · Catalogue 25 → 73 species.** Vegetables, fruit (new category), herbs, flowers, houseplants and skin-care plants. Sources S75–S154, all registered "F" (§1e–1i) and spot-checked live. Hindi names and art for all; the pet-friendly list grows to 15. Gaps: KI-040.
+- [x] **M-06 · P1 · Skin use (ADR-029).** Optional `skinUse` in the catalogue, citing only WHO, EMA and NCCIH (enforced by `catalogue_test`). Also:
+  - an "On the skin" section on the plant page, with a not-medical-advice note;
+  - a "Skin use" filter on Plants;
+  - 8 plants with entries: aloe vera, rose, tulsi, turmeric, neem, calendula, gotu kola, lavender.
+- [ ] **M-07 · P1 · Re-run the device test** after M-01..M-06, and check the Plus screen and the upgrade sheet on the emulator.
+
 ## Phase 7: Advanced (each needs value, cost and plan before starting)
 
 - [ ] P7-01 Weather-aware care via `WeatherService` (Open-Meteo; licence/commercial check, ADR-020)

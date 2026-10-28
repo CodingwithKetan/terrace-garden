@@ -70,7 +70,7 @@ Notification permission is **not** requested during onboarding; it's requested i
 | ID | Screen | Purpose | Key content / actions | States |
 |---|---|---|---|---|
 | PLT-01 | Catalogue | Browse/search plants | Search, filter chips (category, sun, container size, difficulty, season), plant image cards | Empty search, loading, error |
-| PLT-02 | Plant detail | Trustworthy plant info | Photo, names (common/local/scientific), quick facts (sun, water, container size, days to harvest), care summary, seasons for region, safety, **sources** section, "Add to garden"/"Shortlist" | Missing data shown as "Not documented" |
+| PLT-02 | Plant detail | Trustworthy plant info | Photo, names (common/local/scientific), quick facts (sun, water, container size, days to harvest), care summary, seasons for region, safety, "On the skin" (WHO/EMA/NCCIH only, with a not-medical-advice note; ADR-029), **sources** section, "Add to garden"/"Shortlist" | Missing data shown as "Not documented" |
 | REC-01 | Recommendations | Plants for this garden | Ranked list with "Why this plant" reasons and "Watch out" caveats, filters by goal/style, shortlist toggle | Not enough profile data → prompts to add sun/location, empty |
 | REC-02 | Compare | Decide between shortlisted plants | 2–3 columns: sun, water, container, effort, harvest time, fit score breakdown | <2 items |
 | REC-03 | Shortlist | Saved suggestions | List, remove, replace with alternative, add to layout | Empty |
@@ -103,6 +103,10 @@ Notification permission is **not** requested during onboarding; it's requested i
 |---|---|---|
 | SET-01 | Settings | Units (metric/imperial), theme, language, notification preferences (quiet hours, daily digest time), data export/delete, about & sources, licences |
 | SET-02 | About & sources | Gardening references, image attributions, open-source licences, disclaimers |
+| SET-03 | Terrace Garden Plus (2026-10-29, ADR-028) | Always-free list, what Plus adds, monthly/yearly/lifetime prices from Play, renewal terms, restore, manage subscription, "never move a free feature" promise; "not on sale yet" state |
+| SET-04 | Upgrade sheet (overlay) | Shown when a Plus feature is tapped: what it adds, "See Plus", "Not now"; never mid-task |
+| CARE-06 | Pest guide (free, 2026-10-29) | Six common pests: look for, first steps, sources; before-you-spray cautions; KAU neem–garlic recipe; no chemical doses |
+| GRD-REP | Garden report (Plus, 2026-10-29) | One page: plan, plants with days since planting, 30 days of care, harvests; shared as an image |
 
 ## Shared overlays
 

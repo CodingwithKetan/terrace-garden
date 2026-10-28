@@ -232,3 +232,36 @@ Change process: add a new ADR (or mark one *Superseded by ADR-0xx*) instead of s
   - `test/architecture/arb_keys_test.dart` fails if a translation misses a key or changes a placeholder, and if any ARB file repeats a key.
 - **Not translated yet:** catalogue prose (care notes, container, harvest and pet notes) is still English inside the Hindi UI (KI-034). The translations need a native-speaker review before release (KI-035).
 - **Why a map, not a `hindiName` field:** further languages (Tamil, Telugu, Kannada…) can be added as data without a schema change.
+
+## ADR-028: Terrace Garden Plus and Google Play billing (2026-10-29)
+- **Context:** the user asked for an affordable paid tier, with some services free and others paid (PD-002). Competitors charge ₹500–1,000/month and lock care features. Users complain most about trials that convert, constant prompts and free features moved behind a paywall (competitor-analysis Part E).
+- **Decision:**
+  - **Free:** care, catalogue, pest guide, pet and skin safety, one garden with its layout, 60 journal photos, export/delete, Hindi.
+  - **Plus:** unlimited gardens, unlimited journal photos, photo comparison, the garden report.
+  - **Prices:** ₹49/month, ₹399/year, ₹999 lifetime (planned; Play sets the displayed price). No trial, no weekly plan. Details and rationale in `docs/product/monetisation.md`.
+  - **Code:**
+    - a new `subscription` feature with public API `subscription.dart`;
+    - `Plan`, `PlusFeature`, `PlanLimits` and `Entitlements` are pure domain policy;
+    - the `PurchaseService` interface has a `PlayPurchaseService` (`in_app_purchase`) implementation;
+    - subscriptions and the lifetime product are both bought as non-consumables;
+    - the cached plan lives in SharedPreferencesAsync;
+    - gates go through `requirePlus()`, which shows an upgrade sheet and never interrupts a task half-done.
+  - **Binding rule:** a feature that has shipped free is never moved behind Plus. Safety information, data export/deletion and languages are never paywalled.
+- **Consequences:**
+  - Entitlements are checked on the device only, with no server receipt verification (KI-037).
+  - Selling needs Play Console products and a signed release build (KI-038).
+  - Tests use `FakePurchaseService`; `TestApp(plan:)` sets the plan.
+
+## ADR-029: Skin-use information only from health authorities (2026-10-29)
+- **Context:** the user asked for skin-care plants and their research. Skin use is a health claim, and claims online range from traditional use to unsupported marketing.
+- **Decision:**
+  - The catalogue has an optional `skinUse {evidence[], cautions[]}`. Each note is `{text, sources}`, and `evidence` must not be empty.
+  - Skin notes cite only WHO monographs, the EU's EMA (HMPC) or the US NCCIH. `catalogue_test` fails on any other publisher. Gardening sources stay for growing facts.
+  - The notes report what an authority accepts (e.g. EMA's traditional-use indications), what it found, and where it found no evidence or no skin use (turmeric, tulsi). They report reactions and who should not use the plant.
+  - They give no recipes, doses or treatment instructions.
+  - The plant page shows the section "On the skin" with a fixed note: not medical advice, ask a doctor or pharmacist, and stop if your skin reacts. A "Skin use" filter on Plants lists these plants and says some entries record weak or missing evidence.
+  - Plants without authority coverage get no skin entry (vetiver), even when folk use is common.
+- **Consequences:**
+  - Some popular plants show "no evidence" rather than benefits. This is intended.
+  - MedlinePlus withdrew its herb pages on 2025-07-29, so it is not used.
+  - The notes are English inside the Hindi UI, as for other catalogue prose (KI-034).

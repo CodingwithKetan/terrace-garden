@@ -102,14 +102,7 @@ abstract final class CatalogueParser {
           sources: _sources(o, id, required: true),
         );
       }),
-      careNotes: [
-        for (final raw in _list(r, 'careNotes', id))
-          if (_object(raw, '$id.careNotes') case final o)
-            CareNote(
-              text: _string(o, 'text', id),
-              sources: _sources(o, id, required: true),
-            ),
-      ],
+      careNotes: _notes(r, 'careNotes', id),
       petSafety: _petSafety(_object(r['petSafety'], '$id.petSafety'), id),
       watering: _optionalObject(
         r,
@@ -120,9 +113,30 @@ abstract final class CatalogueParser {
           sources: _sources(o, id, required: true),
         ),
       ),
+      skinUse: _optionalObject(r, 'skinUse', id, (o) {
+        final use = SkinUse(
+          evidence: _notes(o, 'evidence', id),
+          cautions: _notes(o, 'cautions', id),
+        );
+        if (use.evidence.isEmpty) {
+          throw FormatException('$id: skinUse needs evidence');
+        }
+        return use;
+      }),
       dataStatus: _enum(DataStatus.values, r, 'dataStatus', id),
     );
   }
+
+  /// A list of sourced notes under [key].
+  static List<CareNote> _notes(Map<String, Object?> o, String key, String id) =>
+      [
+        for (final raw in _list(o, key, id))
+          if (_object(raw, '$id.$key') case final n)
+            CareNote(
+              text: _string(n, 'text', id),
+              sources: _sources(n, id, required: true),
+            ),
+      ];
 
   static ContainerNeed _container(Map<String, Object?> o, String id) {
     final status = _enum(EvidenceStatus.values, o, 'status', id);

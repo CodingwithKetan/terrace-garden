@@ -260,6 +260,14 @@
         { "text": "Self-seeds readily; a container helps keep it in check.", "sources": ["S40"] }
       ],
       "petSafety": { "status": "notAssessed", "note": "Basil (Ocimum basilicum) is listed as non-toxic; tulsi itself has not been assessed.", "sources": ["S39"] },
+      "skinUse": {
+        "evidence": [
+          { "text": "WHO lists no use supported by clinical data, and no skin use among its traditional uses.", "sources": ["S138"] }
+        ],
+        "cautions": [
+          { "text": "WHO advises against holy basil leaf preparations in pregnancy and while breastfeeding.", "sources": ["S138"] }
+        ]
+      },
       "dataStatus": "partial"
     },
     {
@@ -517,6 +525,15 @@
         { "text": "When pruning, cut about 5 mm above an outward-facing bud, and remove dead, diseased, spindly and crossing stems.", "sources": ["S65"] }
       ],
       "petSafety": { "status": "nonToxic", "note": "Non-toxic to dogs, cats and horses; thorns are a physical hazard.", "sources": ["S39"] },
+      "skinUse": {
+        "evidence": [
+          { "text": "The EU herbal committee accepts an infusion of rose petals, used as a wet dressing, for relief of minor skin inflammation, on the basis of long traditional use.", "sources": ["S153", "S154"] },
+          { "text": "This covers petals of Rosa gallica, R. centifolia and R. damascena (damask rose), not every garden rose.", "sources": ["S153"] }
+        ],
+        "cautions": [
+          { "text": "Not recommended for children under 12, or in pregnancy or while breastfeeding.", "sources": ["S153"] }
+        ]
+      },
       "dataStatus": "partial"
     },
     {
@@ -539,6 +556,17 @@
       ],
       "petSafety": { "status": "toxic", "note": "Toxic to dogs, cats and horses (saponins, anthraquinones).", "sources": ["S39"] },
       "watering": { "mode": "dryBetween", "sources": ["S40"] },
+      "skinUse": {
+        "evidence": [
+          { "text": "NCCIH: two small studies suggest aloe gel on the skin, alongside other treatment, may improve acne.", "sources": ["S152"] },
+          { "text": "NCCIH: clinical research suggests aloe gel on the skin may speed burn healing and reduce burn pain.", "sources": ["S152"] },
+          { "text": "There isn't enough reliable information to say whether it helps eczema.", "sources": ["S152"] },
+          { "text": "WHO lists no use supported by clinical data; minor wounds, burns and skin irritation are traditional uses.", "sources": ["S137"] }
+        ],
+        "cautions": [
+          { "text": "Gel on the skin is generally well tolerated, but burning, itching, rash and eczema have occasionally been reported.", "sources": ["S152"] }
+        ]
+      },
       "dataStatus": "partial"
     },
     {
@@ -646,8 +674,8 @@
       "scientificName": "Luffa acutangula",
       "category": "climber",
       "lifecycle": "annual",
-      "sun": null,
-      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No container size was found in the sources.", "sources": [] },
+      "sun": { "level": "full", "minHours": null, "sources": ["S131"] },
+      "container": { "status": "proxy", "minVolumeL": 7.6, "recommendedVolumeL": 18.9, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "UF/IFAS gives 2–5 gallons (7.6–19 L) for luffas in general.", "sources": ["S131"] },
       "daysToHarvest": null,
       "sowing": [
         { "region": "telangana", "months": [2, 3, 4, 5, 7, 8, 9, 10], "source": "S13" },
@@ -1159,6 +1187,590 @@
         { "text": "It flowers as days shorten, from about October to December.", "sources": ["S112"] }
       ],
       "petSafety": { "status": "toxic", "note": "Chrysanthemums are listed as toxic to dogs, cats and horses.", "sources": ["S39"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "strawberry",
+      "commonName": "Strawberry",
+      "localNames": [],
+      "names": { "hi": "स्ट्रॉबेरी" },
+      "scientificName": "Fragaria × ananassa",
+      "category": "fruit",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No size was given. Strawberries grow well in pots, troughs and hanging baskets, plants about 20 cm apart, including on terraces.", "sources": ["S113", "S114"] },
+      "daysToHarvest": { "min": 90, "max": 90, "note": "Tamil Nadu (a hill crop there): fruiting about 3 months after planting. In Punjab, plants set out in mid-October fruit from about February to April.", "sources": ["S51", "S96"] },
+      "sowing": [
+        { "region": "northIndia", "months": [10], "source": "S96" }
+      ],
+      "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S96"] },
+      "careNotes": [
+        { "text": "Shallow roots: check the soil often and water lightly; it is very sensitive to waterlogging.", "sources": ["S96"] },
+        { "text": "New plants grow from runners.", "sources": ["S96", "S113"] }
+      ],
+      "petSafety": { "status": "nonToxic", "note": "Strawberry is listed as non-toxic to dogs, cats and horses.", "sources": ["S39"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "pomegranate",
+      "commonName": "Pomegranate",
+      "localNames": ["Anar"],
+      "names": { "hi": "अनार" },
+      "scientificName": "Punica granatum",
+      "category": "fruit",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": null, "sources": ["S115"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "Suitable for containers; no size was given.", "sources": ["S115"] },
+      "daysToHarvest": null,
+      "sowing": [
+        { "region": "northIndia", "months": [1], "source": "S96" },
+        { "region": "tamilNadu", "months": [6, 7, 8, 9, 10, 11, 12], "source": "S51" }
+      ],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S96", "S51"] },
+      "careNotes": [
+        { "text": "Let the soil dry out almost completely, then water thoroughly.", "sources": ["S115"] },
+        { "text": "Train to a single stem with 3–4 main branches. After harvest, cut each past season's shoot back by a third.", "sources": ["S51"] },
+        { "text": "Remove suckers from the base as they appear.", "sources": ["S115"] },
+        { "text": "Thinning the flower clusters gives bigger fruit; fruits ripen 4–5 months after flowering.", "sources": ["S51"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "guava",
+      "commonName": "Guava",
+      "localNames": ["Amrood"],
+      "names": { "hi": "अमरूद" },
+      "scientificName": "Psidium guajava",
+      "category": "fruit",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": null, "sources": ["S116"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No growing container size was found in the sources.", "sources": [] },
+      "daysToHarvest": null,
+      "sowing": [
+        { "region": "northIndia", "months": [2, 3, 8, 9], "source": "S96" },
+        { "region": "tamilNadu", "months": [6, 7, 8, 9, 10, 11, 12], "source": "S51" },
+        { "region": "kerala", "months": [6, 7], "source": "S50" }
+      ],
+      "propagation": { "method": "layering", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S50", "S51"] },
+      "careNotes": [
+        { "text": "Grafted or layered plants start fruiting in about 2–3 years.", "sources": ["S51"] },
+        { "text": "Fruit forms on the current season's growth: tip-prune lightly (up to 10 cm) after harvest and remove dead or crossing branches.", "sources": ["S96"] },
+        { "text": "For the rainy-season crop, hang fruit-fly traps in the first week of July.", "sources": ["S96"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "fig",
+      "commonName": "Fig",
+      "localNames": ["Anjeer"],
+      "names": { "hi": "अंजीर" },
+      "scientificName": "Ficus carica",
+      "category": "fruit",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
+      "container": { "status": "verified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": 30, "recommendedDepthCm": null, "plantsPerContainer": 1, "note": "A pot about 30 cm wide and deep; figs fruit better with their roots restricted. Never leave the pot standing in water.", "sources": ["S117"] },
+      "daysToHarvest": null,
+      "sowing": [
+        { "region": "northIndia", "months": [1, 2], "source": "S96" }
+      ],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S96"] },
+      "careNotes": [
+        { "text": "Keep moisture even while fruits develop; a sudden heavy watering at ripening makes them split.", "sources": ["S96"] },
+        { "text": "Fruits form on new growth: a light winter pruning encourages it.", "sources": ["S96"] },
+        { "text": "Wear gloves when picking: the milky sap irritates skin.", "sources": ["S96"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "dragonFruit",
+      "commonName": "Dragon fruit",
+      "localNames": [],
+      "names": { "hi": "ड्रैगन फ्रूट" },
+      "scientificName": "Selenicereus undatus",
+      "category": "fruit",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": null, "sources": ["S118"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "Suitable for containers; repot every 2–3 years. No size was given.", "sources": ["S40"] },
+      "daysToHarvest": null,
+      "sowing": [],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S118"] },
+      "careNotes": [
+        { "text": "First fruits come about 15–18 months after planting.", "sources": ["S118"] },
+        { "text": "Needs a sturdy post: tie the young stem to it and keep 2–3 main stems.", "sources": ["S118"] },
+        { "text": "Shallow roots: keep the topsoil moist but well drained; too much water brings fungal disease.", "sources": ["S118"] },
+        { "text": "Flowers open at night; hand pollination in the evening (7:30–8:30 pm) improves fruit set.", "sources": ["S120"] }
+      ],
+      "petSafety": { "status": "nonToxic", "note": "Pitaya (Hylocereus undatus) is listed as non-toxic to dogs and cats.", "sources": ["S39"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "papaya",
+      "commonName": "Papaya",
+      "localNames": ["Papita"],
+      "names": { "hi": "पपीता" },
+      "scientificName": "Carica papaya",
+      "category": "fruit",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": null, "sources": ["S121"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No size was given. It can grow in large tubs; dwarf varieties such as Pusa Dwarf suit kitchen gardens.", "sources": ["S121", "S96"] },
+      "daysToHarvest": { "min": 240, "max": 300, "note": "From transplanting (Punjab); Red Lady 786 matures about ten months after planting.", "sources": ["S96"] },
+      "sowing": [
+        { "region": "northIndia", "months": [7, 8, 9], "source": "S96" },
+        { "region": "tamilNadu", "months": [6, 7, 8, 9], "source": "S51" },
+        { "region": "kerala", "months": [2, 3], "source": "S50" }
+      ],
+      "propagation": { "method": "seed", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S50"] },
+      "careNotes": [
+        { "text": "Keep water off the stem (water in a ring, not right at the trunk) to prevent collar rot.", "sources": ["S50"] },
+        { "text": "Very frost-sensitive: in North India cover young plants from November to February.", "sources": ["S96"] },
+        { "text": "Some varieties have separate male and female plants, and only female or bisexual plants fruit.", "sources": ["S51"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "mulberry",
+      "commonName": "Mulberry",
+      "localNames": ["Shahtoot"],
+      "names": { "hi": "शहतूत" },
+      "scientificName": "Morus alba",
+      "category": "fruit",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
+      "container": { "status": "verified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": 50, "recommendedDepthCm": null, "plantsPerContainer": 1, "note": "Compact varieties grow in pots 50 cm across and deep, or larger.", "sources": ["S122"] },
+      "daysToHarvest": null,
+      "sowing": [],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S50"] },
+      "careNotes": [
+        { "text": "Prune only while the tree is dormant; mulberries bleed a lot of sap.", "sources": ["S40", "S122"] },
+        { "text": "It can be pruned into a bush to keep it small and easy to pick.", "sources": ["S124"] },
+        { "text": "Watch for borers and whiteflies.", "sources": ["S40"] }
+      ],
+      "petSafety": { "status": "nonToxic", "note": "Mulberry trees are listed as non-toxic to dogs, cats and horses.", "sources": ["S39"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "banana",
+      "commonName": "Dwarf banana",
+      "localNames": ["Kela"],
+      "names": { "hi": "केला (बौना)" },
+      "scientificName": "Musa acuminata (dwarf types such as Dwarf Cavendish)",
+      "category": "fruit",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No minimum size was given. Use loam-based compost; move young plants up 5–7.5 cm at a time and larger ones 10–15 cm, every 2–3 years.", "sources": ["S125"] },
+      "daysToHarvest": null,
+      "sowing": [
+        { "region": "northIndia", "months": [2, 3], "source": "S96" },
+        { "region": "tamilNadu", "months": [1, 2, 11, 12], "source": "S51" },
+        { "region": "kerala", "months": [4, 5, 8, 9], "source": "S50" }
+      ],
+      "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S51"] },
+      "careNotes": [
+        { "text": "Harvest comes 12–15 months after planting.", "sources": ["S51"] },
+        { "text": "Remove side suckers until the bunch appears, then keep one or two.", "sources": ["S50"] },
+        { "text": "Heavy bunches can topple the plant: support it under the bunch.", "sources": ["S96"] },
+        { "text": "Needs good drainage; give new tissue-culture plants partial shade for about two weeks.", "sources": ["S50"] }
+      ],
+      "petSafety": { "status": "nonToxic", "note": "Banana (Musa acuminata) is listed as non-toxic to dogs, cats and horses.", "sources": ["S39"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "cabbage",
+      "commonName": "Cabbage",
+      "localNames": ["Patta gobhi"],
+      "names": { "hi": "पत्ता गोभी" },
+      "scientificName": "Brassica oleracea var. capitata",
+      "category": "vegetable",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
+      "container": { "status": "verified", "minVolumeL": 15.1, "recommendedVolumeL": 22.7, "minDepthCm": 20, "recommendedDepthCm": 30, "plantsPerContainer": 1, "note": "Medium class: 4–6 gallons (15–23 L), 8–12 in (20–30 cm) deep. RHS: compact varieties, one per 30 cm pot.", "sources": ["S2", "S126"] },
+      "daysToHarvest": { "min": 90, "max": 100, "note": "Days to maturity from ICAR's terrace table.", "sources": ["S11"] },
+      "sowing": [
+        { "region": "northIndia", "months": [9, 10], "source": "S48" },
+        { "region": "southIndia", "months": [6, 7, 10, 11], "source": "S11" },
+        { "region": "telangana", "months": [7, 8, 10, 11], "source": "S13" },
+        { "region": "tamilNadu", "months": [8, 9, 10, 11], "source": "S51" },
+        { "region": "kerala", "months": [10, 11], "source": "S50" }
+      ],
+      "propagation": { "method": "transplant", "nurseryDaysMin": 25, "nurseryDaysMax": 45, "sources": ["S51"] },
+      "careNotes": [
+        { "text": "Earth up the plant about a month after transplanting.", "sources": ["S50"] },
+        { "text": "Cover young plants with insect-proof mesh to keep caterpillars off.", "sources": ["S126"] },
+        { "text": "Harvest as soon as heads reach a usable size and feel hard.", "sources": ["S48"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "verified"
+    },
+    {
+      "id": "broccoli",
+      "commonName": "Broccoli",
+      "localNames": [],
+      "names": { "hi": "ब्रोकली" },
+      "scientificName": "Brassica oleracea var. italica",
+      "category": "vegetable",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
+      "container": { "status": "verified", "minVolumeL": 7.6, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": 1, "note": "At least 2 gallons (7.6 L), one plant per container. No depth was given.", "sources": ["S1"] },
+      "daysToHarvest": { "min": 65, "max": 75, "note": "From transplanting (Punjab).", "sources": ["S48"] },
+      "sowing": [
+        { "region": "northIndia", "months": [8, 9], "source": "S48" },
+        { "region": "southIndia", "months": [8, 9], "source": "S11" }
+      ],
+      "propagation": { "method": "transplant", "nurseryDaysMin": 25, "nurseryDaysMax": 30, "sources": ["S11", "S48"] },
+      "careNotes": [
+        { "text": "Sow on time: broccoli cannot stand high heat, which brings bolting and tiny heads.", "sources": ["S48"] },
+        { "text": "Cut heads while the buds are still tight; they open fast in warm weather.", "sources": ["S127"] },
+        { "text": "After the main head is cut, side shoots give smaller heads in about 10–12 days.", "sources": ["S48"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "verified"
+    },
+    {
+      "id": "potato",
+      "commonName": "Potato",
+      "localNames": ["Aloo"],
+      "names": { "hi": "आलू" },
+      "scientificName": "Solanum tuberosum",
+      "category": "vegetable",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
+      "container": { "status": "verified", "minVolumeL": null, "recommendedVolumeL": 113.6, "minDepthCm": 30, "recommendedDepthCm": 61, "plantsPerContainer": null, "note": "RHS: a pot or grow bag at least 30 cm wide and deep, one seed potato per 30 cm of width. NC State suggests about 30 gallons (114 L) and 2 ft deep for a full crop.", "sources": ["S128", "S40"] },
+      "daysToHarvest": { "min": 70, "max": 120, "note": "From planting, depending on variety (Punjab).", "sources": ["S48"] },
+      "sowing": [
+        { "region": "northIndia", "months": [1, 9, 10], "source": "S48" },
+        { "region": "tamilNadu", "months": [10, 11], "source": "S51" }
+      ],
+      "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S51"] },
+      "careNotes": [
+        { "text": "In a grow bag, start half full and keep adding compost as the stems grow, up to just below the rim.", "sources": ["S128"] },
+        { "text": "Earth up about 25–30 days after planting, and keep tubers covered: tubers turn green in light, and green tubers and leaves must not be eaten.", "sources": ["S48", "S40"] },
+        { "text": "Containers need regular watering all season; leaves can stop rain reaching the compost, so check it.", "sources": ["S128"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "verified"
+    },
+    {
+      "id": "onion",
+      "commonName": "Onion",
+      "localNames": ["Pyaz"],
+      "names": { "hi": "प्याज़" },
+      "scientificName": "Allium cepa",
+      "category": "vegetable",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
+      "container": { "status": "verified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": 45, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "A container at least 45 cm wide and deep, sets 10–15 cm apart.", "sources": ["S129"] },
+      "daysToHarvest": { "min": 120, "max": 145, "note": "From transplanting (Punjab rabi varieties).", "sources": ["S48"] },
+      "sowing": [
+        { "region": "northIndia", "months": [10, 11], "source": "S48" },
+        { "region": "southIndia", "months": [3, 4, 5, 6, 9, 10], "source": "S11" },
+        { "region": "kerala", "months": [9], "source": "S50" }
+      ],
+      "propagation": { "method": "transplant", "nurseryDaysMin": 42, "nurseryDaysMax": 56, "sources": ["S48"] },
+      "careNotes": [
+        { "text": "Onion does not tolerate waterlogging; use a free-draining mix.", "sources": ["S50"] },
+        { "text": "Stop watering about two weeks before harvest. Lift when the tops dry and fall over, then cure the bulbs in shade.", "sources": ["S48"] }
+      ],
+      "petSafety": { "status": "toxic", "note": "Onion is listed as toxic to dogs, cats and horses.", "sources": ["S39"] },
+      "dataStatus": "verified"
+    },
+    {
+      "id": "pumpkin",
+      "commonName": "Pumpkin",
+      "localNames": ["Kaddu"],
+      "names": { "hi": "कद्दू" },
+      "scientificName": "Cucurbita moschata",
+      "category": "climber",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "Full-sized pumpkins don't suit containers. Only very compact bush varieties do: one per pot at least 45 cm wide, or per grow bag.", "sources": ["S130", "S52"] },
+      "daysToHarvest": null,
+      "sowing": [
+        { "region": "northIndia", "months": [2, 3], "source": "S48" },
+        { "region": "southIndia", "months": [1, 6, 7, 12], "source": "S11" },
+        { "region": "tamilNadu", "months": [1, 6, 7, 12], "source": "S51" },
+        { "region": "kerala", "months": [1, 2, 3, 9, 10, 11, 12], "source": "S50" }
+      ],
+      "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S51"] },
+      "careNotes": [
+        { "text": "Keep fruits off damp ground. Smaller types can climb strong supports, with nets to hold the fruits.", "sources": ["S130"] },
+        { "text": "Pick mature fruit when the skin turns pale brown; immature fruit can be picked too.", "sources": ["S48"] },
+        { "text": "Collect and destroy fruits damaged by fruit fly.", "sources": ["S51"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "spongeGourd",
+      "commonName": "Sponge gourd",
+      "localNames": ["Ghiya tori", "Gilki"],
+      "names": { "hi": "गिल्की" },
+      "scientificName": "Luffa aegyptiaca (syn. L. cylindrica)",
+      "category": "climber",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
+      "container": { "status": "proxy", "minVolumeL": 7.6, "recommendedVolumeL": 18.9, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "UF/IFAS gives 2–5 gallons (7.6–19 L) for luffas in general.", "sources": ["S131"] },
+      "daysToHarvest": { "min": 70, "max": 80, "note": "From sowing (Punjab).", "sources": ["S48"] },
+      "sowing": [
+        { "region": "northIndia", "months": [2, 3, 5, 6, 7], "source": "S48" },
+        { "region": "kerala", "months": [2, 3, 5, 6], "source": "S50" }
+      ],
+      "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S48"] },
+      "careNotes": [
+        { "text": "Train the vine over a pandal, stakes or trellis.", "sources": ["S50"] },
+        { "text": "Pick every 3–4 days, only tender medium-sized fruits; older ones turn fibrous.", "sources": ["S48"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "drumstick",
+      "commonName": "Drumstick",
+      "localNames": ["Sahjan", "Moringa"],
+      "names": { "hi": "सहजन" },
+      "scientificName": "Moringa oleifera",
+      "category": "vegetable",
+      "lifecycle": "perennial",
+      "sun": null,
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No container size was found in the sources.", "sources": [] },
+      "daysToHarvest": { "min": 120, "max": 120, "note": "Annual moringa (PKM 1, PKM 2): harvest starts in the fourth month after transplanting.", "sources": ["S51"] },
+      "sowing": [
+        { "region": "tamilNadu", "months": [7, 8, 9, 10], "source": "S51" },
+        { "region": "kerala", "months": [5, 6], "source": "S50" }
+      ],
+      "propagation": { "method": "transplant", "nurseryDaysMin": 35, "nurseryDaysMax": 40, "sources": ["S51"] },
+      "careNotes": [
+        { "text": "Pinch the tip when the seedling is about 75 cm tall to make it branch.", "sources": ["S51"] },
+        { "text": "After harvest, cut the plant back to 90 cm; it crops again in about 4–5 months.", "sources": ["S51"] },
+        { "text": "Regular pruning gives a bushier plant and more leaves; unpruned plants give more pods.", "sources": ["S132"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "sweetPotato",
+      "commonName": "Sweet potato",
+      "localNames": ["Shakarkandi"],
+      "names": { "hi": "शकरकंदी" },
+      "scientificName": "Ipomoea batatas",
+      "category": "vegetable",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No depth was given. RHS: a container at least 30 cm wide, one plant per pot or grow bag.", "sources": ["S133"] },
+      "daysToHarvest": { "min": 110, "max": 120, "note": "From planting (Tamil Nadu).", "sources": ["S51"] },
+      "sowing": [
+        { "region": "northIndia", "months": [4, 5, 6, 7], "source": "S48" },
+        { "region": "tamilNadu", "months": [6, 7, 9], "source": "S51" },
+        { "region": "kerala", "months": [1, 2, 6, 7, 9, 10, 11], "source": "S50" }
+      ],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S51"] },
+      "careNotes": [
+        { "text": "Lift and turn the vines now and then so they don't root at the nodes, which gives small, thin tubers.", "sources": ["S51"] },
+        { "text": "Containers dry out fast: check the compost often (daily in hot weather); tubers won't swell if the plant goes short of water.", "sources": ["S133"] },
+        { "text": "Use pest-free planting material and clear old plant debris against sweet potato weevil.", "sources": ["S51"] }
+      ],
+      "petSafety": { "status": "nonToxic", "note": "Sweet potato vine (Ipomoea batatas) is listed as non-toxic to dogs, cats and horses.", "sources": ["S39"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "turmeric",
+      "commonName": "Turmeric",
+      "localNames": ["Haldi"],
+      "names": { "hi": "हल्दी" },
+      "scientificName": "Curcuma longa",
+      "category": "herb",
+      "lifecycle": "perennial",
+      "sun": { "level": "partial", "minHours": null, "sources": ["S40", "S50"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No size was given. The rhizomes can grow thick enough to split a pot, so use a wide, sturdy one; it needs plenty of water.", "sources": ["S40"] },
+      "daysToHarvest": { "min": 210, "max": 270, "note": "Early varieties 7–8 months, long-duration ones about 9 months (Kerala). Punjab varieties mature in 215–240 days.", "sources": ["S50", "S48", "S134"] },
+      "sowing": [
+        { "region": "northIndia", "months": [4], "source": "S48" },
+        { "region": "tamilNadu", "months": [5, 6], "source": "S134" },
+        { "region": "kerala", "months": [4], "source": "S50" }
+      ],
+      "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S134"] },
+      "careNotes": [
+        { "text": "Plant pieces of the mother or finger rhizomes.", "sources": ["S134"] },
+        { "text": "Mulch after planting and keep the soil moist until the rhizomes sprout.", "sources": ["S48"] },
+        { "text": "It is ready to lift when the whole plant has turned yellow and dried.", "sources": ["S48"] },
+        { "text": "Tolerates low to medium shade, so it suits a partly shaded corner.", "sources": ["S50"] },
+        { "text": "Cut rhizomes stain hands and clothes yellow, and the dye can cause an allergic skin reaction in some people.", "sources": ["S40"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "skinUse": {
+        "evidence": [
+          { "text": "NCCIH: we don't know enough to say whether turmeric or curcumin helps with any health purpose.", "sources": ["S136"] },
+          { "text": "WHO lists skin diseases only as a traditional use, not as a use supported by clinical data.", "sources": ["S137"] },
+          { "text": "The EU herbal committee accepts turmeric only for mild digestive problems, taken by mouth; it lists no skin use.", "sources": ["S140"] }
+        ],
+        "cautions": [
+          { "text": "Curcumin on the skin can cause hives or itching.", "sources": ["S136"] },
+          { "text": "Allergic dermatitis has been reported, most often in people who handle it regularly.", "sources": ["S137"] },
+          { "text": "Turmeric supplements may be unsafe in pregnancy.", "sources": ["S136"] }
+        ]
+      },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "neem",
+      "commonName": "Neem",
+      "localNames": [],
+      "names": { "hi": "नीम" },
+      "scientificName": "Azadirachta indica",
+      "category": "herb",
+      "lifecycle": "perennial",
+      "sun": { "level": "partial", "minHours": null, "sources": ["S141"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "It can grow in a container if pruned to keep its size down; no size was given. Potted trees cope with drought less well than trees in the ground.", "sources": ["S141"] },
+      "daysToHarvest": null,
+      "sowing": [],
+      "propagation": { "method": "seed", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S50", "S142"] },
+      "careNotes": [
+        { "text": "Sow seeds from fresh fruit straight away, with the pulp removed: they stay viable for only about 2 months.", "sources": ["S50", "S142"] },
+        { "text": "A tropical tree: it does not tolerate temperatures below about 4 °C (40 °F).", "sources": ["S141"] },
+        { "text": "Mulch young plants.", "sources": ["S50"] },
+        { "text": "It can spread by self-seeding.", "sources": ["S141"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "skinUse": {
+        "evidence": [
+          { "text": "WHO: neem leaf has been applied to the skin for ringworm, but controlled clinical trials are lacking. Use for skin disorders, septic wounds and boils is traditional.", "sources": ["S139"] }
+        ],
+        "cautions": [
+          { "text": "Contact dermatitis has been reported.", "sources": ["S139"] },
+          { "text": "Never swallow neem leaf: poisoning, including a cardiac arrest, has been reported.", "sources": ["S139"] },
+          { "text": "WHO says neem leaf should not be given in pregnancy or while breastfeeding, or to children under 12.", "sources": ["S139"] }
+        ]
+      },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "calendula",
+      "commonName": "Calendula (pot marigold)",
+      "localNames": ["Gul-e-ashrafi"],
+      "names": { "hi": "गुले अशर्फ़ी (कैलेंडुला)" },
+      "scientificName": "Calendula officinalis",
+      "category": "flower",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": null, "sources": ["S143"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "A good choice for containers; no size was given.", "sources": ["S143"] },
+      "daysToHarvest": null,
+      "sowing": [
+        { "region": "northIndia", "months": [10, 11], "source": "S135" }
+      ],
+      "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S144"] },
+      "careNotes": [
+        { "text": "A winter flower in Punjab: seedlings set out in October–November bloom from December to April, most in March.", "sources": ["S135"] },
+        { "text": "Deadhead regularly to keep it flowering, and pinch out the shoot tips for a bushier plant.", "sources": ["S144"] },
+        { "text": "Very wet or over-rich soil gives poor growth, and it won't flower in deep shade.", "sources": ["S143"] },
+        { "text": "Watch for powdery mildew, aphids and whiteflies, and for slugs and snails on young plants.", "sources": ["S40"] },
+        { "text": "Pot marigold is a different plant from the common marigold (genda, Tagetes).", "sources": ["S39", "S72"] }
+      ],
+      "petSafety": { "status": "nonToxic", "note": "Pot marigold (Calendula officinalis) is listed as non-toxic to dogs and cats.", "sources": ["S39"] },
+      "skinUse": {
+        "evidence": [
+          { "text": "The EU herbal committee accepts calendula flower preparations, on the basis of long traditional use, for minor skin inflammation (such as sunburn) and to help minor wounds heal; only for people over 6.", "sources": ["S145"] },
+          { "text": "The clinical studies it reviewed were too flawed for firm conclusions, and WHO lists no use supported by clinical data.", "sources": ["S145", "S138"] }
+        ],
+        "cautions": [
+          { "text": "Skin sensitisation has been reported. Don't use it if you are allergic to the daisy family (Asteraceae).", "sources": ["S145"] }
+        ]
+      },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "gotuKola",
+      "commonName": "Gotu kola",
+      "localNames": ["Vallarai", "Mandukaparni"],
+      "names": { "hi": "मंडूकपर्णी (गोटू कोला)" },
+      "scientificName": "Centella asiatica",
+      "category": "herb",
+      "lifecycle": "perennial",
+      "sun": { "level": "partial", "minHours": null, "sources": ["S146", "S40"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "Suits a container; no size was given.", "sources": ["S40"] },
+      "daysToHarvest": null,
+      "sowing": [
+        { "region": "tamilNadu", "months": [10], "source": "S146" }
+      ],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S146"] },
+      "careNotes": [
+        { "text": "Grows very well in shade; about 50% shade gave the best yields in Tamil Nadu.", "sources": ["S146"] },
+        { "text": "Likes moist soil, but roots rot in soil that drains poorly.", "sources": ["S146", "S40"] },
+        { "text": "Spreads by runners that root where they touch the soil, and can turn weedy.", "sources": ["S146", "S40"] },
+        { "text": "From October planting, pick the outer leaves every two weeks from January.", "sources": ["S146"] },
+        { "text": "Sometimes also called brahmi, a name more often used for a different plant, Bacopa monnieri.", "sources": ["S137", "S147"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "skinUse": {
+        "evidence": [
+          { "text": "The EU herbal committee accepts it, on the basis of long traditional use, as a dressing or powder to help minor wounds heal (adults).", "sources": ["S148"] },
+          { "text": "WHO lists treating wounds, burns and ulcerous skin conditions, and preventing keloid scars, as uses supported by clinical data.", "sources": ["S137"] }
+        ],
+        "cautions": [
+          { "text": "Don't use it if you are allergic to the carrot family (Apiaceae).", "sources": ["S148"] },
+          { "text": "Not established for under-18s, and not recommended in pregnancy or while breastfeeding.", "sources": ["S148"] }
+        ]
+      },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "lavender",
+      "commonName": "Lavender",
+      "localNames": [],
+      "names": { "hi": "लैवेंडर" },
+      "scientificName": "Lavandula angustifolia",
+      "category": "herb",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": null, "sources": ["S149"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "A large container 30–40 cm across, with large drainage holes.", "sources": ["S149"] },
+      "daysToHarvest": null,
+      "sowing": [],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S149"] },
+      "careNotes": [
+        { "text": "Needs lots of sun and fast-draining soil; it won't last long in shady, damp soil.", "sources": ["S149"] },
+        { "text": "Pots dry out quickly in summer, so check them often.", "sources": ["S149"] },
+        { "text": "Trim every year just after flowering to keep it compact; don't cut into old, bare wood.", "sources": ["S149"] },
+        { "text": "Seed from named varieties won't come true; take cuttings instead.", "sources": ["S149"] }
+      ],
+      "petSafety": { "status": "toxic", "note": "Toxic to dogs, cats and horses (linalool, linalyl acetate). Signs include nausea and vomiting.", "sources": ["S39"] },
+      "skinUse": {
+        "evidence": [
+          { "text": "NCCIH: lavender is promoted for use on the skin, but more high-quality research is needed for reliable conclusions about any of its uses.", "sources": ["S150"] },
+          { "text": "WHO lists external use on burns and wounds only as a traditional use.", "sources": ["S139"] }
+        ],
+        "cautions": [
+          { "text": "Lavender products on the skin may cause allergic reactions in some people.", "sources": ["S150"] },
+          { "text": "A few cases of breast swelling were reported in children using lavender skin products; it isn't clear lavender caused them.", "sources": ["S150"] }
+        ]
+      },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "vetiver",
+      "commonName": "Vetiver",
+      "localNames": ["Khus"],
+      "names": { "hi": "खस" },
+      "scientificName": "Chrysopogon zizanioides",
+      "category": "ornamental",
+      "lifecycle": "perennial",
+      "sun": { "level": "partial", "minHours": null, "sources": ["S40"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "Suitable for containers; no size was given.", "sources": ["S40"] },
+      "daysToHarvest": null,
+      "sowing": [
+        { "region": "southIndia", "months": [6, 7], "source": "S151" },
+        { "region": "kerala", "months": [6, 7], "source": "S50" }
+      ],
+      "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S151"] },
+      "careNotes": [
+        { "text": "Grown from slips (divisions). Cut the tops back before planting so they lose less water.", "sources": ["S151"] },
+        { "text": "Grows in most soils; a rich, well-drained sandy loam is best.", "sources": ["S50"] },
+        { "text": "Tolerates salt and drought.", "sources": ["S40"] },
+        { "text": "For the fragrant roots, the whole plant is dug up about 18 months after planting, in the dry season.", "sources": ["S151"] },
+        { "text": "In dry areas termites may attack the roots.", "sources": ["S151"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
       "dataStatus": "partial"
     }
   ]

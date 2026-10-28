@@ -1,6 +1,6 @@
 # Known Issues, Risks and Blockers
 
-Last updated: 2026-10-18 (Phase 4).
+Last updated: 2026-10-29 (Plus, catalogue to 73 plants, skin use).
 
 ## Blockers
 
@@ -52,7 +52,11 @@ Last updated: 2026-10-18 (Phase 4).
 | KI-033 | The Living Terrace art (`PlantArtSpec`) is stylised, not botanical reference: shapes and colours suggest each plant but are not identification aids | Keep the plant name beside every drawing; a horticulturist can review with R2 |
 | KI-034 | In Hindi, catalogue prose (care notes; container, harvest and pet notes) is still shown in English; only UI strings and plant names are translated | Add per-language note text to the catalogue (same `names`-style maps), translated and reviewed |
 | KI-035 | The Hindi UI translation (595 strings) has not been reviewed by a native speaker. It follows a glossary, and a test checks placeholders, but wording and tone need a human check | Native review before release; include Hindi users in the moderated tests |
-| KI-036 | Catalogue gaps after the 2026-10-18 research: no sourced container size for curry leaf, lemongrass, marigold, hibiscus, jasmine, aloe vera, money plant or snake plant; no sowing or planting calendar for hibiscus, rose or the houseplants. Pet safety unassessed for 14 species (no ASPCA or NC State statement), so the pet-friendly filter shows only 4 plants | Keep searching first-party sources (ICAR-DFR, state horticulture departments); never fill from blogs or nurseries |
+| ~~KI-036~~ | **Superseded by KI-040 (2026-10-29).** Catalogue gaps after the 2026-10-18 research: no sourced container size for curry leaf, lemongrass, marigold, hibiscus, jasmine, aloe vera, money plant or snake plant; no sowing or planting calendar for hibiscus, rose or the houseplants. Pet safety unassessed for 14 species (no ASPCA or NC State statement), so the pet-friendly filter shows only 4 plants | Keep searching first-party sources (ICAR-DFR, state horticulture departments); never fill from blogs or nurseries |
+| KI-040 | **Catalogue gaps after the 2026-10-29 research (73 species):**<br>• No sourced container size for 38 species, mostly flowers, houseplants, fruit trees and the skin-care plants. Their pages say "not documented" and give only notes such as "suitable for containers".<br>• No sowing calendar for 21 species (houseplants, perennials, dragon fruit, mulberry, neem, lavender).<br>• Pet safety is unassessed for 39 species; the pet-friendly filter shows 15.<br>• Lavender's only Indian season is a hill note, which was left out. | Keep to first-party sources; never fill from blogs or nurseries |
+| KI-037 | Plus entitlements are checked on the device only (`queryPastPurchases`). There is no server receipt verification, so a rooted device could fake Plus | Acceptable for a ₹49 tier at launch; add Play Developer API verification behind a small server if abuse shows up (ADR-028) |
+| KI-038 | **Plus is not on sale:**<br>• The Play Console products (`terrace_plus_monthly`, `terrace_plus_yearly`, `terrace_plus_lifetime`) don't exist yet.<br>• There is no release signing key.<br>• Purchase, restore and cancel have only been tested with `FakePurchaseService`.<br>The app shows "Plus isn't on sale yet" | Create the products, upload a signed internal-testing build, test with licence testers on a device (monetisation.md §4) |
+| KI-039 | Skin-use notes rely on WHO, EMA and NCCIH, which cover only some plants. Vetiver, rose water and neem oil have no entry, and rose covers only *R. gallica*, *R. centifolia* and *R. damascena* petals | Add entries only when an authority publishes one (ADR-029) |
 
 ## Research evidence gaps
 
@@ -68,5 +72,5 @@ Last updated: 2026-10-18 (Phase 4).
 | ID | Decision | Default |
 |---|---|---|
 | PD-001 | Product name and application ID | Working name "Terrace Garden"; final name and app ID to be confirmed before first store upload |
-| PD-002 | Monetisation | MVP free; explore commerce/partnerships and premium weather/AI later |
+| PD-002 | Monetisation | **Decided 2026-10-29:** a free core plus optional Terrace Garden Plus at ₹49/month, ₹399/year or ₹999 lifetime (ADR-028, monetisation.md) |
 | PD-003 | First non-English language | Hindi: **shipped 2026-10-18** (ADR-027) |

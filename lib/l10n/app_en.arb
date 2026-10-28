@@ -1295,5 +1295,13 @@
     }
   },
   "reportFooter": "Made with Terrace Garden. Plant facts in the app cite their sources.",
-  "reportShareFailed": "Couldn't create the report image. Please try again."
+  "reportShareFailed": "Couldn't create the report image. Please try again.",
+  "propagationLayering": "Layering (air layering)",
+  "propagationGrafting": "Grafting or budding",
+  "plantSectionSkin": "On the skin",
+  "skinUseIntro": "What health authorities (WHO, the EU's EMA and the US NCCIH) say, including when they found no evidence.",
+  "skinUseCautions": "Take care",
+  "skinUseDisclaimer": "Not medical advice. Plants can cause allergic reactions: ask a doctor or pharmacist before using one on your skin, and stop if your skin reacts.",
+  "plantsFilterSkinUse": "Skin use",
+  "plantsSkinUseNote": "Plants with health authority information on skin use. For some, it says the evidence is weak or missing."
 }

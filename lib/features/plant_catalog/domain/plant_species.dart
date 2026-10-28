@@ -42,7 +42,19 @@ enum EvidenceStatus {
   unverified,
 }
 
-enum PropagationMethod { transplant, direct, seed, division, cutting }
+enum PropagationMethod {
+  transplant,
+  direct,
+  seed,
+  division,
+  cutting,
+
+  /// Air layering (gootee) or ground layering.
+  layering,
+
+  /// Grafting or budding onto a rootstock.
+  grafting,
+}
 
 enum PetSafetyStatus { toxic, nonToxic, notAssessed }
 
@@ -169,6 +181,21 @@ final class CareNote {
   final List<String> sources;
 }
 
+/// What health authorities (WHO, the EU's EMA, the US NCCIH) say about using
+/// a plant on the skin, including when they find no evidence. It is shown as
+/// information with a "not medical advice" note, never as a treatment
+/// (ADR-029).
+@immutable
+final class SkinUse {
+  const SkinUse({required this.evidence, required this.cautions});
+
+  /// What the authorities accept, have found or have not found.
+  final List<CareNote> evidence;
+
+  /// Reported reactions and who should not use it.
+  final List<CareNote> cautions;
+}
+
 /// A published source a catalogue fact cites.
 @immutable
 final class SourceRef {
@@ -214,6 +241,7 @@ final class PlantSpecies {
     this.propagation,
     this.careNotes = const [],
     this.watering,
+    this.skinUse,
   });
 
   final String id;
@@ -239,6 +267,9 @@ final class PlantSpecies {
   /// Null means the general finger test applies (gardening-references §4b).
   final WateringNeed? watering;
   final PetSafety petSafety;
+
+  /// Null when no health authority information is recorded.
+  final SkinUse? skinUse;
   final DataStatus dataStatus;
 
   /// Sowing data for [region]: the state's own window when a source gives
@@ -270,6 +301,8 @@ final class PlantSpecies {
     for (final n in careNotes) ...n.sources,
     ...?watering?.sources,
     ...petSafety.sources,
+    for (final n in [...?skinUse?.evidence, ...?skinUse?.cautions])
+      ...n.sources,
   };
 
   /// Matches the common, local or scientific name (case-insensitive).
@@ -299,14 +332,15 @@ final class PlantCatalogue {
 
   PlantSpecies? byId(String id) => species.where((s) => s.id == id).firstOrNull;
 
-  /// Species matching [query] and, when given, [category], by common name.
-  /// Species matching [query] and [category]. With [petFriendlyOnly], only
-  /// species a source lists as non-toxic to pets; unassessed ones are left
-  /// out rather than assumed safe.
+  /// Species matching [query] and [category], by common name. With
+  /// [petFriendlyOnly], only species a source lists as non-toxic to pets;
+  /// unassessed ones are left out rather than assumed safe. With
+  /// [skinUseOnly], only species with health authority skin information.
   List<PlantSpecies> search({
     String query = '',
     PlantCategory? category,
     bool petFriendlyOnly = false,
+    bool skinUseOnly = false,
   }) =>
       species
           .where((s) => category == null || s.category == category)
@@ -315,6 +349,7 @@ final class PlantCatalogue {
                 !petFriendlyOnly ||
                 s.petSafety.status == PetSafetyStatus.nonToxic,
           )
+          .where((s) => !skinUseOnly || s.skinUse != null)
           .where((s) => s.matches(query))
           .toList()
         ..sort((a, b) => a.commonName.compareTo(b.commonName));

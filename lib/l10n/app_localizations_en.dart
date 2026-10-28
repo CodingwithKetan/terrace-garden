@@ -2424,4 +2424,31 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get reportShareFailed =>
       'Couldn\'t create the report image. Please try again.';
+
+  @override
+  String get propagationLayering => 'Layering (air layering)';
+
+  @override
+  String get propagationGrafting => 'Grafting or budding';
+
+  @override
+  String get plantSectionSkin => 'On the skin';
+
+  @override
+  String get skinUseIntro =>
+      'What health authorities (WHO, the EU\'s EMA and the US NCCIH) say, including when they found no evidence.';
+
+  @override
+  String get skinUseCautions => 'Take care';
+
+  @override
+  String get skinUseDisclaimer =>
+      'Not medical advice. Plants can cause allergic reactions: ask a doctor or pharmacist before using one on your skin, and stop if your skin reacts.';
+
+  @override
+  String get plantsFilterSkinUse => 'Skin use';
+
+  @override
+  String get plantsSkinUseNote =>
+      'Plants with health authority information on skin use. For some, it says the evidence is weak or missing.';
 }

@@ -332,16 +332,7 @@ class _Detail extends ConsumerWidget {
                   title: l10n.plantSectionCare,
                   icon: Icons.tips_and_updates_outlined,
                   sources: _refs([for (final n in s.careNotes) ...n.sources]),
-                  children: [
-                    for (final n in s.careNotes)
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: AppSpacing.xs),
-                        child: Text(
-                          '• ${n.text}',
-                          style: theme.textTheme.bodyLarge,
-                        ),
-                      ),
-                  ],
+                  children: [_Bullets(s.careNotes)],
                 ),
               _FactSection(
                 title: l10n.plantSectionPets,
@@ -370,6 +361,31 @@ class _Detail extends ConsumerWidget {
                   _Note(l10n.petScopeNote),
                 ],
               ),
+              if (s.skinUse case final use?)
+                _FactSection(
+                  key: const Key('skinUseSection'),
+                  title: l10n.plantSectionSkin,
+                  icon: Icons.spa_outlined,
+                  sources: _refs([
+                    for (final n in [...use.evidence, ...use.cautions])
+                      ...n.sources,
+                  ]),
+                  children: [
+                    Text(l10n.skinUseIntro, style: theme.textTheme.bodyMedium),
+                    const SizedBox(height: AppSpacing.sm),
+                    _Bullets(use.evidence),
+                    if (use.cautions.isNotEmpty) ...[
+                      const SizedBox(height: AppSpacing.sm),
+                      Text(
+                        l10n.skinUseCautions,
+                        style: theme.textTheme.titleSmall,
+                      ),
+                      const SizedBox(height: AppSpacing.xs),
+                      _Bullets(use.cautions),
+                    ],
+                    _Note(l10n.skinUseDisclaimer),
+                  ],
+                ),
               _SourcesSection(sources: cited),
             ],
           ),
@@ -810,6 +826,7 @@ class _FactSection extends StatelessWidget {
     required this.icon,
     required this.sources,
     required this.children,
+    super.key,
   });
 
   final String title;
@@ -898,6 +915,28 @@ class _Pair extends StatelessWidget {
           Flexible(child: _Value(value)),
         ],
       ),
+    );
+  }
+}
+
+/// Sourced notes as a bulleted list.
+class _Bullets extends StatelessWidget {
+  const _Bullets(this.notes);
+
+  final List<CareNote> notes;
+
+  @override
+  Widget build(BuildContext context) {
+    final style = Theme.of(context).textTheme.bodyLarge;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        for (final n in notes)
+          Padding(
+            padding: const EdgeInsets.only(bottom: AppSpacing.xs),
+            child: Text('• ${n.text}', style: style),
+          ),
+      ],
     );
   }
 }
