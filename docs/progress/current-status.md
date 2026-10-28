@@ -19,7 +19,7 @@ Last updated: 2026-10-29
 - **Localisation:** gen-l10n, `lib/l10n/app_en.arb` and `app_hi.arb` (ADR-027).
 - **Plus (ADR-028):** `lib/features/subscription/`. Play billing via `in_app_purchase`, with entitlements in the domain. Free and paid features and prices are in `docs/product/monetisation.md`.
 - **Catalogue:** 73 species, 129 sources (S1–S154, all "F" in the register). Optional `skinUse` cites only WHO, EMA and NCCIH (ADR-029).
-- **Git:** `main`. Phase 0 is on GitHub (`CodingwithKetan/terrace-garden`). Pushed to GitHub through `ecedac7` (Hindi). `8a65a6e` (Plus) and the 2026-10-29 catalogue/skin-use commit are pushed with this session if the network allows (see session log).
+- **Git:** `main`. Phase 0 is on GitHub (`CodingwithKetan/terrace-garden`). Pushed to GitHub through `d9eec3a` (2026-10-29: Plus, catalogue to 73 plants, skin use).
 
 ## Toolchain (verified 2026-10-18)
 
