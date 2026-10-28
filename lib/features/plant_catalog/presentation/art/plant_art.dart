@@ -63,6 +63,10 @@ final class PlantArtSpec {
           accent: Color(0xFFF08C1A),
         ),
         PlantCategory.ornamental => const PlantArtSpec(PlantForm.succulent),
+        PlantCategory.fruit => const PlantArtSpec(
+          PlantForm.fruiting,
+          accent: Color(0xFF8DBA2E),
+        ),
         null => const PlantArtSpec(PlantForm.cluster),
       };
   final PlantForm form;
@@ -79,6 +83,96 @@ final class PlantArtSpec {
 
   static const Map<String, PlantArtSpec> _bySpecies = {
     'tomato': PlantArtSpec(PlantForm.fruiting, accent: _red),
+    'bougainvillea': PlantArtSpec(
+      PlantForm.flowering,
+      accent: Color(0xFFC2185B),
+    ),
+    'adenium': PlantArtSpec(PlantForm.flowering, accent: Color(0xFFE94E77)),
+    'jadePlant': PlantArtSpec(
+      PlantForm.succulent,
+      leafDark: Color(0xFF2E6B3A),
+      leafMid: Color(0xFF4F8F4A),
+      leafLight: Color(0xFF8CC07A),
+    ),
+    'peaceLily': PlantArtSpec(PlantForm.flowering, accent: Color(0xFFF7F7F2)),
+    'rubberPlant': PlantArtSpec(
+      PlantForm.palmate,
+      leafDark: Color(0xFF1F3B2A),
+      leafMid: Color(0xFF2F5A3C),
+      leafLight: Color(0xFF5E7F52),
+    ),
+    'zzPlant': PlantArtSpec(
+      PlantForm.cluster,
+      leafDark: Color(0xFF1F4D2B),
+      leafMid: Color(0xFF2E6B3A),
+      leafLight: Color(0xFF4F8F4A),
+    ),
+    'syngonium': PlantArtSpec(
+      PlantForm.trailing,
+      leafDark: Color(0xFF4F8A4A),
+      leafMid: Color(0xFF8DBF7A),
+      leafLight: Color(0xFFDDEFD0),
+    ),
+    'chrysanthemum': PlantArtSpec(
+      PlantForm.flowering,
+      accent: Color(0xFFF2C230),
+    ),
+    'capsicum': PlantArtSpec(PlantForm.fruiting, accent: Color(0xFF3E9B3A)),
+    'cucumber': PlantArtSpec(PlantForm.palmate, accent: Color(0xFFF2D24B)),
+    'ridgeGourd': PlantArtSpec(PlantForm.palmate, accent: Color(0xFFF5D547)),
+    'clusterBean': PlantArtSpec(
+      PlantForm.fruiting,
+      accent: Color(0xFF7DB34A),
+    ),
+    'cowpea': PlantArtSpec(PlantForm.trailing, accent: Color(0xFFB98ACB)),
+    'peas': PlantArtSpec(PlantForm.trailing, accent: Color(0xFFF4F1F6)),
+    'cauliflower': PlantArtSpec(
+      PlantForm.rosette,
+      leafDark: Color(0xFF3F6E52),
+      leafMid: Color(0xFF5C8C6A),
+      leafLight: Color(0xFFF1EAD2),
+    ),
+    'beetroot': PlantArtSpec(PlantForm.root, rootColor: Color(0xFF8E1F45)),
+    'springOnion': PlantArtSpec(
+      PlantForm.grass,
+      leafDark: Color(0xFF3F7D3A),
+      leafMid: Color(0xFF5E9E48),
+      leafLight: Color(0xFF8DC26A),
+    ),
+    'garlic': PlantArtSpec(
+      PlantForm.grass,
+      leafDark: Color(0xFF557A4A),
+      leafMid: Color(0xFF759A62),
+      leafLight: Color(0xFFA2BF84),
+    ),
+    'ginger': PlantArtSpec(
+      PlantForm.grass,
+      leafDark: Color(0xFF2E6B3A),
+      leafMid: Color(0xFF4C8A4A),
+      leafLight: Color(0xFF7DB065),
+    ),
+    'acidLime': PlantArtSpec(PlantForm.fruiting, accent: Color(0xFF9CC63B)),
+    'basil': PlantArtSpec(
+      PlantForm.cluster,
+      leafDark: Color(0xFF3E8E3E),
+      leafMid: Color(0xFF5DAA4E),
+      leafLight: Color(0xFF8FD06B),
+    ),
+    'spiderPlant': PlantArtSpec(
+      PlantForm.grass,
+      leafDark: Color(0xFF4F8A4A),
+      leafMid: Color(0xFF7CB36A),
+      leafLight: Color(0xFFE9F2D8),
+    ),
+    'arecaPalm': PlantArtSpec(
+      PlantForm.grass,
+      leafDark: Color(0xFF6E9A3E),
+      leafMid: Color(0xFF94BC52),
+      leafLight: Color(0xFFC4DC7C),
+    ),
+    'aparajita': PlantArtSpec(PlantForm.trailing, accent: Color(0xFF2F4FB5)),
+    'portulaca': PlantArtSpec(PlantForm.flowering, accent: Color(0xFFE6408C)),
+    'periwinkle': PlantArtSpec(PlantForm.flowering, accent: Color(0xFFE77FB0)),
     'chilli': PlantArtSpec(PlantForm.fruiting, accent: Color(0xFFC8311E)),
     'brinjal': PlantArtSpec(PlantForm.fruiting, accent: _purple),
     'frenchBean': PlantArtSpec(

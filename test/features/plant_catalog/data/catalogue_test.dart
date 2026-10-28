@@ -208,7 +208,10 @@ void main() {
   test('search matches local and scientific names, sorted', () {
     final catalogue = parse();
     expect(catalogue.search(query: 'bhindi').single.id, 'okra');
-    expect(catalogue.search(query: 'ocimum').single.id, 'tulsi');
+    expect(
+      catalogue.search(query: 'ocimum').map((s) => s.id),
+      unorderedEquals(['tulsi', 'basil']),
+    );
     final herbs = catalogue.search(category: PlantCategory.herb);
     expect(
       herbs.map((s) => s.commonName).toList(),

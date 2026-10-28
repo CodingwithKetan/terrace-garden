@@ -23,6 +23,8 @@ import 'package:terrace_garden/features/journal/domain/timeline.dart';
 import 'package:terrace_garden/features/journal/presentation/journal_labels.dart';
 import 'package:terrace_garden/features/plant_catalog/plant_catalog.dart';
 import 'package:terrace_garden/features/plantings/plantings.dart';
+import 'package:terrace_garden/features/subscription/domain/plan.dart';
+import 'package:terrace_garden/features/subscription/subscription.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
 /// JRN-01, Living Terrace: proof that it's growing. The first and latest
@@ -54,9 +56,15 @@ class _JournalScreenState extends ConsumerState<JournalScreen> {
     void newEntry() => context.push(
       AppRoutes.journalNew(gardenId: _gardenId, plantingId: _plantingId),
     );
-    void compare() => context.push(
-      AppRoutes.journalCompare(gardenId: _gardenId, plantingId: _plantingId),
-    );
+    Future<void> compare() async {
+      if (!await requirePlus(context, ref, PlusFeature.photoComparison)) {
+        return;
+      }
+      if (!context.mounted) return;
+      await context.push(
+        AppRoutes.journalCompare(gardenId: _gardenId, plantingId: _plantingId),
+      );
+    }
 
     if (gardens.isEmpty || (entries.isEmpty && done.isEmpty)) {
       return Scaffold(

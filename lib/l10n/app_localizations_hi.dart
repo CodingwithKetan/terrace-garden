@@ -2114,4 +2114,316 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get journalEntryShort => 'एंट्री';
+
+  @override
+  String get plusTitle => 'Terrace Garden Plus';
+
+  @override
+  String get plusTagline =>
+      'आपके हर बगीचे के लिए जगह। पौधों को ज़िंदा रखने वाली हर चीज़ मुफ़्त रहती है।';
+
+  @override
+  String get plusFreeHeading => 'हमेशा मुफ़्त';
+
+  @override
+  String get plusFreeCare => 'मिट्टी की जाँच और देखभाल के रिमाइंडर';
+
+  @override
+  String get plusFreeLibrary =>
+      'स्रोतों वाली पौधों की जानकारी, कीट गाइड, पालतू-सुरक्षा और मौसम';
+
+  @override
+  String get plusFreeLayout => 'एक बगीचा, उसका लेआउट और पौधों के सुझाव';
+
+  @override
+  String plusFreeJournal(int count) {
+    return '$count फ़ोटो तक की डायरी';
+  }
+
+  @override
+  String get plusFreeData => 'अपना डेटा कभी भी एक्सपोर्ट करें या हटाएँ';
+
+  @override
+  String get plusPaidHeading => 'Plus में और भी';
+
+  @override
+  String get plusPaidGardens =>
+      'जितने चाहें उतने बगीचे: छत, बालकनी, माता-पिता की छत';
+
+  @override
+  String get plusPaidPhotos => 'डायरी में अनगिनत फ़ोटो';
+
+  @override
+  String get plusPaidCompare => 'पहले और अब की फ़ोटो की तुलना';
+
+  @override
+  String get plusPaidReport => 'प्रिंट या शेयर करने के लिए बगीचे की रिपोर्ट';
+
+  @override
+  String get plusMonthly => 'मासिक';
+
+  @override
+  String get plusYearly => 'सालाना';
+
+  @override
+  String get plusLifetime => 'हमेशा के लिए';
+
+  @override
+  String plusPerMonth(String price) {
+    return '$price प्रति माह';
+  }
+
+  @override
+  String plusPerYear(String price) {
+    return '$price प्रति वर्ष';
+  }
+
+  @override
+  String plusOnce(String price) {
+    return '$price, एक बार';
+  }
+
+  @override
+  String get plusChoose => 'चुनें';
+
+  @override
+  String get plusNotOnSale =>
+      'Plus अभी बिक्री पर नहीं है। ऊपर की हर चीज़ मुफ़्त रहती है।';
+
+  @override
+  String get plusActive => 'आपके पास Plus है। ऐप का साथ देने के लिए धन्यवाद।';
+
+  @override
+  String get plusManage => 'सब्सक्रिप्शन मैनेज करें';
+
+  @override
+  String get plusRestore => 'पिछली ख़रीदारी वापस लाएँ';
+
+  @override
+  String get plusRestored => 'Google Play से ख़रीदारी जाँच ली गई';
+
+  @override
+  String get plusTerms =>
+      'मासिक और सालाना प्लान तब तक अपने-आप रिन्यू होते हैं जब तक आप रद्द न करें। Google Play में \'पेमेंट और सब्सक्रिप्शन\' से कभी भी रद्द करें; जिस अवधि का भुगतान किया है, उसके अंत तक Plus चालू रहेगा। \'हमेशा के लिए\' एक ही बार का भुगतान है। आपके देश के लिए कीमत Google Play तय करता है।';
+
+  @override
+  String get plusPromise =>
+      'हम किसी मुफ़्त सुविधा को कभी Plus में नहीं डालेंगे।';
+
+  @override
+  String get plusBuyFailed =>
+      'Google Play ख़रीदारी शुरू नहीं कर सका। कृपया फिर से कोशिश करें।';
+
+  @override
+  String get settingsPlan => 'आपका प्लान';
+
+  @override
+  String get settingsPlanFree => 'मुफ़्त';
+
+  @override
+  String get settingsPlanPlus => 'Plus';
+
+  @override
+  String get upgradeGardensTitle => 'Plus के साथ एक और बगीचा जोड़ें';
+
+  @override
+  String get upgradeGardensBody =>
+      'मुफ़्त प्लान में एक बगीचे के लिए सब कुछ है। Plus से आप जितने चाहें उतने बगीचे संभाल सकते हैं।';
+
+  @override
+  String upgradePhotosTitle(int count) {
+    return 'आपकी डायरी में $count फ़ोटो हैं';
+  }
+
+  @override
+  String get upgradePhotosBody =>
+      'यह मुफ़्त सीमा है। Plus में अनगिनत फ़ोटो रख सकते हैं। आपकी मौजूदा फ़ोटो बनी रहेंगी, और आप नोट्स लिखते रह सकते हैं।';
+
+  @override
+  String get upgradeCompareTitle => 'Plus के साथ फ़ोटो की तुलना करें';
+
+  @override
+  String get upgradeCompareBody =>
+      'बगीचे को बढ़ते देखने के लिए दो फ़ोटो साथ-साथ देखें। आपकी फ़ोटो और डायरी मुफ़्त रहती हैं।';
+
+  @override
+  String get upgradeReportTitle => 'Plus के साथ बगीचे की रिपोर्ट';
+
+  @override
+  String get upgradeReportBody =>
+      'आपके बगीचे, पौधों, देखभाल और फसल का एक पेज का सार, प्रिंट या शेयर करने के लिए।';
+
+  @override
+  String get upgradeSeePlus => 'Plus देखें';
+
+  @override
+  String get upgradeNotNow => 'अभी नहीं';
+
+  @override
+  String get categoryFruit => 'फलदार पौधे';
+
+  @override
+  String get pestGuideTitle => 'कीट गाइड';
+
+  @override
+  String get pestGuideSubtitle => 'क्या देखें, और पहले के हल्के उपाय';
+
+  @override
+  String get pestGuideIntro =>
+      'गमलों के पौधों पर भी वही कीट लगते हैं जो बगीचे में। मिट्टी जाँचते समय पत्तियों के नीचे और नई बढ़त को भी देखें।';
+
+  @override
+  String get pestLookFor => 'क्या देखें';
+
+  @override
+  String get pestWhatToDo => 'क्या करें';
+
+  @override
+  String get pestAphidsName => 'माहू (एफिड)';
+
+  @override
+  String get pestAphidsSigns =>
+      'पत्तियों के नीचे और नई टहनियों पर झुंड में छोटे, मुलायम कीड़े, अक्सर आसपास चींटियाँ।';
+
+  @override
+  String get pestAphidsActions =>
+      'सुबह-सुबह पानी की तेज़ धार से उन्हें गिरा दें। पौधे तेज़ी से बढ़ रहे हों तो हफ़्ते में कम से कम दो बार देखें, और चींटियों को रोकें। साबुन या तेल का स्प्रे (नीम भी) वहीं असर करता है जहाँ लगता है: पत्तियों के नीचे तक छिड़कें और दोहराएँ।';
+
+  @override
+  String get pestMitesName => 'मकड़ी (माइट)';
+
+  @override
+  String get pestMitesSigns =>
+      'पत्तियों पर हल्के धब्बे या पीलापन, कभी-कभी महीन जाला। सफ़ेद काग़ज़ पर पत्ती थपथपाएँ तो छोटे माइट दिखेंगे। गर्म, सूखे, धूल भरे मौसम में ज़्यादा।';
+
+  @override
+  String get pestMitesActions =>
+      'पत्तियों पर नियमित पानी छिड़कें और पौधों को प्यासा न रहने दें। हर तरह के कीड़े मारने वाले कीटनाशकों से बचें: वे माइट के प्राकृतिक दुश्मनों को मार देते हैं और प्रकोप बढ़ाते हैं।';
+
+  @override
+  String get pestWhiteflyName => 'सफ़ेद मक्खी';
+
+  @override
+  String get pestWhiteflySigns =>
+      'पत्तियों के नीचे छोटे सफ़ेद कीड़े, जो पौधा हिलाने पर उड़ जाते हैं।';
+
+  @override
+  String get pestWhiteflyActions =>
+      'पौधों के पास, सीधी धूप से दूर, पीले चिपचिपे ट्रैप लटकाएँ। पानी से धो दें। साबुन, तेल और नीम सफ़ेद मक्खी कम करते हैं पर पूरी तरह ख़त्म नहीं करते; हर तरह के कीड़े मारने वाले स्प्रे से बचें।';
+
+  @override
+  String get pestMealybugName => 'मिलीबग';
+
+  @override
+  String get pestMealybugSigns =>
+      'तने के जोड़ जैसी छिपी जगहों पर सफ़ेद, मोम जैसे, रुई जैसे गुच्छे; चिपचिपे रस पर चींटियाँ।';
+
+  @override
+  String get pestMealybugActions =>
+      'उन्हें हाथ से हटाएँ या संक्रमित हिस्से काट दें; बहुत ज़्यादा संक्रमित पौधे हटा दें। स्प्रे छोटे मिलीबग पर सबसे अच्छा असर करते हैं। पौधों, गमलों और सहारे की डंडियों को देखते रहें।';
+
+  @override
+  String get pestBorerName => 'बैंगन का तना और फल छेदक';
+
+  @override
+  String get pestBorerSigns =>
+      'टहनियों की नोक मुरझाकर सूख जाती है; टहनियों और फलों में छेद।';
+
+  @override
+  String get pestBorerActions =>
+      'फेरोमोन ट्रैप लगाएँ। TNAU रोपाई के एक महीने बाद से हर 15 दिन में नीम बीज गिरी अर्क (NSKE) 5% की सलाह देता है। सिंथेटिक पाइरेथ्रॉइड से बचें, और फल पकते या तोड़ने के समय स्प्रे न करें।';
+
+  @override
+  String get pestLeafMinerName => 'लीफ़ माइनर और इल्लियाँ';
+
+  @override
+  String get pestLeafMinerSigns =>
+      'पत्तियों के अंदर टेढ़ी-मेढ़ी हल्की सुरंगें (लीफ़ माइनर); कुतरी पत्तियाँ, फलों और पत्तियों पर अंडों के गुच्छे या इल्लियाँ।';
+
+  @override
+  String get pestLeafMinerActions =>
+      'अंडों के गुच्छे, ग्रब और इल्लियाँ हाथ से हटाएँ। पीले चिपचिपे ट्रैप लीफ़ माइनर में मदद करते हैं। KAU के जैविक उपायों में नीचे दिया गया 2% नीम-लहसुन घोल भी है।';
+
+  @override
+  String get pestSprayTitle => 'स्प्रे करने से पहले';
+
+  @override
+  String get pestSprayHeat =>
+      'प्यासे पौधों पर या लगभग 32 °C से ज़्यादा गर्मी में साबुन या तेल का स्प्रे न करें। सुबह जल्दी या शाम को छिड़कें।';
+
+  @override
+  String get pestSprayTest =>
+      'पहले कुछ पत्तियों पर आज़माएँ। बारिश होने वाली हो या हवा में बहुत नमी हो तो न करें।';
+
+  @override
+  String get pestSprayCover =>
+      'स्प्रे केवल उन्हीं कीटों को मारते हैं जिन पर पड़ते हैं, और तेल उन मददगार कीड़ों को भी नुकसान पहुँचाते हैं जिन पर लगते हैं: सिर्फ़ वहीं छिड़कें जहाँ कीट हों।';
+
+  @override
+  String get pestSprayNeem =>
+      'नीम पक्षियों, स्तनधारियों और मधुमक्खियों के लिए लगभग हानिरहित है, पर मछलियों के लिए थोड़ा विषैला है और आँखों व त्वचा में जलन कर सकता है। पालतू जानवरों पर नीम उत्पाद कभी न लगाएँ: नीम वाले पिस्सू उत्पादों से कुछ बिल्लियों पर बुरा असर हुआ।';
+
+  @override
+  String get pestNeemRecipeTitle => 'KAU नीम-लहसुन घोल (2%)';
+
+  @override
+  String get pestNeemRecipe =>
+      '50 ग्राम कपड़े धोने का साबुन 500 मिली गुनगुने पानी में घोलें। 200 ग्राम लहसुन 300 मिली पानी में पीसकर छान लें। साबुन का घोल धीरे-धीरे 200 मिली नीम तेल में मिलाते हुए चलाएँ, फिर लहसुन का अर्क डालें। इससे 1 लीटर स्टॉक बनता है: इस्तेमाल से पहले इसे 9 लीटर पानी में मिलाएँ।';
+
+  @override
+  String get pestChemicals =>
+      'हम रासायनिक कीटनाशकों की मात्रा नहीं बताते। उत्पाद के लेबल का पालन करें, या अपने नज़दीकी KVK या कृषि विभाग से पूछें।';
+
+  @override
+  String pestSourcesLine(String sources) {
+    return 'स्रोत: $sources';
+  }
+
+  @override
+  String get pestOpenGuide => 'कीट गाइड खोलें';
+
+  @override
+  String get reportTitle => 'बगीचे की रिपोर्ट';
+
+  @override
+  String get reportSubtitle => 'प्रिंट या शेयर करने के लिए एक पेज का सार';
+
+  @override
+  String reportHeading(String garden, String date) {
+    return '$garden · $date';
+  }
+
+  @override
+  String get reportPlants => 'पौधे';
+
+  @override
+  String get reportNoPlants => 'अभी कोई पौधा नहीं।';
+
+  @override
+  String get reportCare => 'पिछले 30 दिनों की देखभाल';
+
+  @override
+  String get reportCareNone => 'पिछले 30 दिनों में कोई देखभाल दर्ज नहीं।';
+
+  @override
+  String get reportHarvests => 'फसल';
+
+  @override
+  String get reportHarvestsNone => 'अभी कोई फसल दर्ज नहीं।';
+
+  @override
+  String get reportShare => 'शेयर करें';
+
+  @override
+  String reportShareSubject(String garden) {
+    return '$garden: बगीचे की रिपोर्ट';
+  }
+
+  @override
+  String get reportFooter =>
+      'Terrace Garden से बनाया गया। ऐप में पौधों की हर जानकारी के स्रोत दिए हैं।';
+
+  @override
+  String get reportShareFailed =>
+      'रिपोर्ट की तस्वीर नहीं बन सकी। कृपया फिर से कोशिश करें।';
 }

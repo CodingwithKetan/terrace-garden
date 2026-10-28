@@ -100,7 +100,7 @@ Facts are not copyrightable, so the app can state facts with attribution. **Do n
 | S24 | TNAU Agritech: "Do It Yourself" rooftop kit scheme | https://agritech.tnau.ac.in/horticulture/horti_schemes_doit_yourself.html | TNAU / TN Horticulture Dept. scheme | Official kit: 24×18 in grow bags with 2 kg cocopeat each | B (last updated Oct 2014) | F | as above |
 | S25 | TNAU Agritech: Organic farming preparations (Jivamirtham, Panchagavya) | https://agritech.tnau.ac.in/org_farm/orgfarm_farming_practices_treatment_preperation.html | TNAU | Recipes only (no container dose) | B | F | as above |
 | S26 | TNAU Agritech: Coir pith compost | https://agritech.tnau.ac.in/ta/org_farm/orgfarm_coircompost.html | TNAU | 20% composted coir pith in pot/polybag mixes | B | SS | as above |
-| S27 | TNAU Agritech: Brinjal pests | https://agritech.tnau.ac.in/crop_protection/crop_prot_crop_insect-veg_brinjal_pest&disease.html | TNAU | Shoot and fruit borer: cultural control, NSKE 5% | A | SS | as above |
+| S27 | TNAU Agritech: Brinjal pests | https://agritech.tnau.ac.in/crop_protection/crop_prot_crop_insect-veg_brinjal_pest&disease.html | TNAU | Shoot and fruit borer: cultural control, NSKE 5% | A | F (2026-10-29: symptoms, pheromone traps, NSKE 5% from one month after planting every 15 days, avoid pyrethroids and sprays near harvest, re-read) | as above |
 | S28 | ICAR-IIHR news: composting and home gardening demo (27 Mar 2022) | https://www.iihr.res.in/node/25504 | ICAR-IIHR Bengaluru | IIHR soilless terrace/utility-area production using Arka Fermented Cocopeat | B | F | Cite. |
 | S29 | ICAR-IIHR: Arka Sasya Poshak Ras | https://iihr.res.in/node/25063 ; dosage page https://atic.iihr.res.in/?p=34 | ICAR-IIHR | Liquid nutrient for cocopeat soilless vegetables; dose per crop group | A | node F (no dose); dose page SS only (DNS failure on fetch) | Product of IIHR; cite. |
 | S30 | ICAR-IIHR product/sales listing (Arka Fermented Cocopeat, Arka Urban Horti-Kit) | https://iihr.res.in/node/25027 | ICAR-IIHR | Existence of the products | B | SS | Cite. |
@@ -186,6 +186,74 @@ Found by research agents that read each page or PDF and returned exact quotes; s
 | S74 | How to grow jasmine | https://www.rhs.org.uk/plants/jasmine/growing-guide | RHS | Containers need regular watering in the growing season | A | F | as S4 |
 
 Pet safety (2026-10-18, S39/S40): coriander (cilantro) and garden carrot are listed as non-toxic by ASPCA; brinjal is flagged as a problem for dogs, cats and horses by NC State (leaves, flowers, stems, roots). Not assessed: chilli, okra, palak, leaf amaranth (ASPCA lists only *A. hypochondriacus*), methi, curry leaf, tulsi (ASPCA's basil page is *O. basilicum*), gourds, French bean, radish, lettuce, marigold (ASPCA's "marigold" pages are *Calendula*), hibiscus (ASPCA's page is *H. syriacus*).
+
+### 1e. Added 2026-10-29 (18 new species)
+
+Found by research agents that read each page or PDF and returned exact quotes. Spot-checked by hand against the live pages: ASPCA cucumber, spider plant, areca palm and beets (non-toxic); Alabama cauliflower ("1 plant per 5- to 7-gallon container"); RHS garlic (25 cm); UMD basil (picked about 6 weeks after planting). All matched. Clemson's spider-plant page returned 403 to the manual check; the agent read it directly, and NC State gives the same light advice.
+
+**Left out on purpose:**
+- a generic luffa blog for ridge-gourd sun;
+- Telangana "growing tips" month lists, where only the proper sowing tables were used;
+- Kerala and Tamil Nadu hill or high-range seasons;
+- bulb-onion seasons used as spring-onion seasons;
+- a university practical manual (BUAT) as a sowing calendar;
+- ASPCA pages for related species: *Portulaca oleracea* for portulaca, sweet pea for garden peas, and Calendula for marigold.
+
+| ID | Source | URL | Publisher | Good for | Rel. | Ver. | Licensing / reuse notes |
+|---|---|---|---|---|---|---|---|
+| S75 | Vegetable Gardening in Containers (EHT-062) | https://aggie-horticulture.tamu.edu/vegetable/files/2013/09/EHT-062.pdf | Texas A&M AgriLife Extension | Days from seeding to harvest (pepper 90–120, cucumber 50–70) | A | F | Cite |
+| S76 | How to grow sweet peppers | https://www.rhs.org.uk/vegetables/peppers/grow-your-own | RHS | Canes for container peppers | A | F | as S4 |
+| S77 | How to grow cucumbers | https://www.rhs.org.uk/vegetables/cucumbers/grow-your-own | RHS | Containers at least 30 cm wide and deep | A | F | as S4 |
+| S78 | How to grow peas | https://www.rhs.org.uk/vegetables/peas/grow-your-own | RHS | Pick pods regularly; containers at least 45 cm wide | A | F | as S4 |
+| S79 | Growing Basil in a Home Garden | https://extension.umd.edu/resource/growing-basil-home-garden | University of Maryland Extension | Full sun ≥6 h; first picking about 6 weeks after planting | A | F | Cite |
+| S80 | How to grow basil | https://www.rhs.org.uk/herbs/basil/grow-your-own | RHS | Container at least 20 cm wide and deep; water in the morning | A | F | as S4 |
+| S82 | Spider Plant (HGIC 1513) | https://hgic.clemson.edu/factsheet/spider-plant/ | Clemson Cooperative Extension | Bright indirect light; dry briefly between waterings; leaf-tip burn | A | F | Cite |
+| S83 | Chlorophytum comosum (plant profile) | https://www.rhs.org.uk/plants/3761/chlorophytum-comosum/details | RHS | Trim finished flower spikes | A | F | as S4 |
+| S84 | Clitoria ternatea (Plant Finder) | https://plantfinder.mobot.org/PlantFinderDetails.aspx?taxonid=280445 | Missouri Botanical Garden | Trellis; afternoon shade in hot climates; easy from seed | A | F | Cite |
+| S85 | TNAU Agritech: Landscaping, plant components | https://agritech.tnau.ac.in/horticulture/horti_Landscaping_plant%20components.html | TNAU | Clitoria in pots, hanging baskets, low trellises | A | F | Cite facts |
+| S86 | Catharanthus roseus (Plant Finder) | https://plantfinder.mobot.org/PlantFinderDetails.aspx?kempercode=a569 | Missouri Botanical Garden | Drainage is the key; containers | A | F | Cite |
+| S87 | TNAU Agritech: Periwinkle | https://agritech.tnau.ac.in/horticulture/horti_medicinal%20crops_periwinkle.html | TNAU | 45–60-day seedlings transplanted June–July, Sept–Oct | A | F | Cite facts |
+| S88 | Periwinkles (Gardening Solutions) | https://gardeningsolutions.ifas.ufl.edu/plants/ornamentals/periwinkle/ | UF/IFAS Extension | Keep on the dry side; roots rot if watered too often | A | F | Cite |
+| S89 | Grow More Cauliflower | https://www.aces.edu/blog/topics/lawn-garden/grow-more-cauliflower/ | Alabama Cooperative Extension System | Full sun 6–8 h; 1 plant per 5–7 gal | A | F | Cite |
+| S90 | How to grow beetroot | https://www.rhs.org.uk/vegetables/beetroot/grow-your-own | RHS | Harvest roots young | A | F | as S4 |
+| S91 | How to grow salad onions | https://www.rhs.org.uk/vegetables/salad-onions/grow-your-own | RHS | Direct sowing; small batches every couple of weeks | A | F | as S4 |
+| S92 | How to grow garlic | https://www.rhs.org.uk/vegetables/garlic/grow-your-own | RHS | Containers at least 25 cm deep; check compost | A | F | as S4 |
+| S93 | Ginger cultivation in bags (Indian Farming 76(7), 2026) | https://epubs.icar.org.in/index.php/IndFarm/article/view/175020 | ICAR (Indian Farming; Malda KVK) | 30 × 30 cm bags, three plants | A | F | Cite facts |
+| S94 | How to grow tropical ginger for at-home spice | https://extension.illinois.edu/news-releases/how-grow-tropical-ginger-home-spice | University of Illinois Extension | Headroom for rising rhizomes; brown tips | A | F | Cite |
+| S95 | Growing Citrus in Sacramento (GN 127) | https://ucanr.edu/sites/default/files/2013-07/72239.pdf | UC Cooperative Extension | Container size for limes and small citrus (proxy); feel test 6–8 in down | A | F | Cite |
+| S96 | Package of Practices for Cultivation of Fruits 2021 | https://www.pau.edu/content/ccil/pf/pp_fruits.pdf | Punjab Agricultural University | Citrus planting months; propagation | A | F | Cite facts |
+| S97 | How to grow citrus | https://www.rhs.org.uk/fruit/citrus/grow-your-own | RHS | Pots never standing in water; regular feeding (no dose) | A | F | as S4 |
+
+Pet safety added 2026-10-29 (S39): cucumber, basil (*O. basilicum*), spider plant, areca palm and beets are non-toxic. Spring onion (*Allium cepa*), garlic, lime (*Citrus aurantifolia*) and periwinkle (listed as *Vinca rosea*, a synonym of *Catharanthus roseus*) are toxic.
+
+### 1f. Added 2026-10-29 (ornamentals and houseplants)
+
+Research agent readings with exact quotes. Pet safety uses ASPCA exact-species pages, except where noted:
+- *Crassula argentea* (a synonym of *C. ovata*);
+- genus-level *Spathiphyllum* and *Chrysanthemum* pages;
+- an ASPCA news article for ZZ plant.
+
+**Left out on purpose:**
+- the ASPCA "rubber plant" pages, which are *Ficus benjamina* and *Ficus* sp., not *F. elastica*;
+- bougainvillea planting months, because the ICAR article names no region;
+- NC State's calendar watering schedule for ZZ plant, which conflicts with the check rule.
+
+| ID | Source | URL | Publisher | Good for | Rel. | Ver. | Licensing / reuse notes |
+|---|---|---|---|---|---|---|---|
+| S98 | Bougainvillea: an ideal ornamental plant (Indian Horticulture, Jul–Aug 2022) | https://epubs.icar.org.in/index.php/IndHort/article/download/123598/47514/472853 | ICAR | Soil, cuttings, pruning in North India (May–June), watering in flower, fertiliser excess | A | F | Cite facts |
+| S99 | Bougainvillea (Plant Finder) | https://plantfinder.mobot.org/PlantFinderDetails.aspx?taxonid=264583 | Missouri Botanical Garden | Pests | A | F | Cite |
+| S100 | Adenium obesum (Plant Finder) | https://plantfinder.mobot.org/PlantFinderDetails.aspx?taxonid=276116 | Missouri Botanical Garden | Drainage, dormancy, poisonous sap | A | F | Cite |
+| S101 | How do I care for my jade plant? (FAQ) | https://www.missouribotanicalgarden.org/gardens-gardening/your-garden/help-for-the-home-gardener/advice-tips-resources/gardening-help-faqs/question/1550/how-do-i-care-for-my-jade-plant | Missouri Botanical Garden | 4 h direct sun or 12 h bright indirect light | A | F | Cite |
+| S102 | Crassula ovata (plant profile) | https://www.rhs.org.uk/plants/4739/crassula-ovata/details | RHS | Cactus compost | A | F | as S4 |
+| S103 | Spathiphyllum (Plant Finder) | https://plantfinder.mobot.org/PlantFinderDetails.aspx?kempercode=b568 | Missouri Botanical Garden | Bright filtered light; pests | A | F | Cite |
+| S104 | How to grow peace lilies | https://www.rhs.org.uk/plants/peace-lilies/how-to-grow-peace-lilies | RHS | Watering check, repotting, division, light for flowering | A | F | as S4 |
+| S106 | Ficus elastica (Plant Finder) | https://plantfinder.mobot.org/PlantFinderDetails.aspx?kempercode=b597 | Missouri Botanical Garden | Light, pruning, pests | A | F | Cite |
+| S107 | Ficus elastica (plant profile) | https://www.rhs.org.uk/plants/95720/ficus-elastica/details | RHS | Compost, repotting, cuttings | A | F | as S4 |
+| S108 | Care tips for low-light tolerant houseplants (RHS Urban Show 2024) | https://www.rhs.org.uk/shows-events/rhs-urban-show/houseplant-profiles/houseplants-for-shade | RHS | ZZ plant watering and repotting | A | F | as S4 |
+| S109 | These houseplants can cause trouble for your pets (Oct 2025) | https://www.aspca.org/news/these-houseplants-can-cause-trouble-your-pets | ASPCA | ZZ plant: calcium-oxalate houseplants, toxic to pets, low severity | A | F | Cite |
+| S110 | Syngonium podophyllum (Plant Finder) | https://plantfinder.mobot.org/PlantFinderDetails.aspx?taxonid=276453 | Missouri Botanical Garden | Light, mix, moss pole, pests | A | F | Cite |
+| S111 | Syngonium podophyllum (plant profile) | https://www.rhs.org.uk/plants/17899/syngonium-podophyllum/details | RHS | Cuttings | A | F | as S4 |
+| S112 | Chrysanthemum cultivation (Indian Horticulture, Sep–Oct 2025) | https://epubs.icar.org.in/index.php/IndHort/article/download/166667/62685/490505 | ICAR (PAU authors) | Pot mix 2:1:1, cuttings, pinching at 4 and 7 weeks, staking, disbudding, aphids and thrips | A | F | Cite facts |
 
 ## 2. Container guidance per crop
 

@@ -145,4 +145,4 @@ final class CareAutomationProvider extends $FunctionalProvider<void, void, void>
   }
 }
 
-String _$careAutomationHash() => r'bcbf195d3288c23725df8716cd856e1b2fe3ce74';
+String _$careAutomationHash() => r'8561caaa0a674d9e4d27549ac5b601fa2cd68e87';

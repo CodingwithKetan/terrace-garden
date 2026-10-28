@@ -2113,4 +2113,315 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get journalEntryShort => 'Entry';
+
+  @override
+  String get plusTitle => 'Terrace Garden Plus';
+
+  @override
+  String get plusTagline =>
+      'Room for every garden you look after. Everything that keeps your plants alive stays free.';
+
+  @override
+  String get plusFreeHeading => 'Always free';
+
+  @override
+  String get plusFreeCare => 'Soil checks and care reminders';
+
+  @override
+  String get plusFreeLibrary =>
+      'The sourced plant library, pest guide, pet safety and seasons';
+
+  @override
+  String get plusFreeLayout => 'One garden with its layout and plant ideas';
+
+  @override
+  String plusFreeJournal(int count) {
+    return 'A journal with up to $count photos';
+  }
+
+  @override
+  String get plusFreeData => 'Export or delete your data, any time';
+
+  @override
+  String get plusPaidHeading => 'Plus adds';
+
+  @override
+  String get plusPaidGardens =>
+      'Unlimited gardens: terrace, balcony, a parent\'s roof';
+
+  @override
+  String get plusPaidPhotos => 'Unlimited journal photos';
+
+  @override
+  String get plusPaidCompare => 'Then-and-now photo comparison';
+
+  @override
+  String get plusPaidReport => 'A garden report to print or share';
+
+  @override
+  String get plusMonthly => 'Monthly';
+
+  @override
+  String get plusYearly => 'Yearly';
+
+  @override
+  String get plusLifetime => 'Lifetime';
+
+  @override
+  String plusPerMonth(String price) {
+    return '$price a month';
+  }
+
+  @override
+  String plusPerYear(String price) {
+    return '$price a year';
+  }
+
+  @override
+  String plusOnce(String price) {
+    return '$price, paid once';
+  }
+
+  @override
+  String get plusChoose => 'Choose';
+
+  @override
+  String get plusNotOnSale =>
+      'Plus isn\'t on sale yet. Everything above stays free.';
+
+  @override
+  String get plusActive => 'You have Plus. Thank you for supporting the app.';
+
+  @override
+  String get plusManage => 'Manage subscription';
+
+  @override
+  String get plusRestore => 'Restore purchases';
+
+  @override
+  String get plusRestored => 'Purchases checked with Google Play';
+
+  @override
+  String get plusTerms =>
+      'Monthly and yearly plans renew automatically until you cancel. Cancel any time in Google Play under Payments and subscriptions; Plus stays on until the end of the period you paid for. Lifetime is a single payment. Google Play sets the price for your country.';
+
+  @override
+  String get plusPromise => 'We will never move a free feature behind Plus.';
+
+  @override
+  String get plusBuyFailed =>
+      'Google Play couldn\'t start the purchase. Please try again.';
+
+  @override
+  String get settingsPlan => 'Your plan';
+
+  @override
+  String get settingsPlanFree => 'Free';
+
+  @override
+  String get settingsPlanPlus => 'Plus';
+
+  @override
+  String get upgradeGardensTitle => 'Add another garden with Plus';
+
+  @override
+  String get upgradeGardensBody =>
+      'The free plan covers one garden with everything it needs. Plus lets you look after as many as you like.';
+
+  @override
+  String upgradePhotosTitle(int count) {
+    return 'Your journal has $count photos';
+  }
+
+  @override
+  String get upgradePhotosBody =>
+      'That is the free limit. Plus keeps unlimited photos. The photos you have stay, and you can still write notes.';
+
+  @override
+  String get upgradeCompareTitle => 'Compare photos with Plus';
+
+  @override
+  String get upgradeCompareBody =>
+      'See two photos side by side to watch your garden grow. Your photos and journal stay free.';
+
+  @override
+  String get upgradeReportTitle => 'Garden report with Plus';
+
+  @override
+  String get upgradeReportBody =>
+      'A one-page summary of your garden, plants, care and harvests to print or share.';
+
+  @override
+  String get upgradeSeePlus => 'See Plus';
+
+  @override
+  String get upgradeNotNow => 'Not now';
+
+  @override
+  String get categoryFruit => 'Fruit trees';
+
+  @override
+  String get pestGuideTitle => 'Pest guide';
+
+  @override
+  String get pestGuideSubtitle => 'What to look for, and gentle first steps';
+
+  @override
+  String get pestGuideIntro =>
+      'Container plants get the same pests as garden plants. When you check the soil, look under the leaves and at new growth too.';
+
+  @override
+  String get pestLookFor => 'Look for';
+
+  @override
+  String get pestWhatToDo => 'What to do';
+
+  @override
+  String get pestAphidsName => 'Aphids';
+
+  @override
+  String get pestAphidsSigns =>
+      'Small soft insects in groups under leaves and on new shoots, often with ants around them.';
+
+  @override
+  String get pestAphidsActions =>
+      'Knock them off with a strong spray of water early in the day. Check at least twice a week while plants grow fast, and deal with the ants. Soap or oil sprays (neem too) only work where they touch: cover leaf undersides and repeat.';
+
+  @override
+  String get pestMitesName => 'Spider mites';
+
+  @override
+  String get pestMitesSigns =>
+      'Pale speckled or yellowing leaves, sometimes fine webbing. Tap a leaf over white paper to see the tiny mites. Worse in hot, dry, dusty weather.';
+
+  @override
+  String get pestMitesActions =>
+      'Spray the leaves with water regularly and don\'t let plants go thirsty. Avoid broad-spectrum insecticides: they kill the mites\' natural enemies and make outbreaks worse.';
+
+  @override
+  String get pestWhiteflyName => 'Whitefly';
+
+  @override
+  String get pestWhiteflySigns =>
+      'Tiny white insects under the leaves that fly up when you disturb the plant.';
+
+  @override
+  String get pestWhiteflyActions =>
+      'Hang yellow sticky traps near the plants, out of direct sun. Wash them off with water. Soaps, oils and neem reduce whitefly but don\'t wipe it out; avoid broad-spectrum sprays.';
+
+  @override
+  String get pestMealybugName => 'Mealybugs';
+
+  @override
+  String get pestMealybugSigns =>
+      'White, waxy, cotton-like clusters in sheltered spots such as stem joints; ants feeding on the sticky honeydew.';
+
+  @override
+  String get pestMealybugActions =>
+      'Pick them off or prune the infested parts; throw away badly infested plants. Sprays work best on young mealybugs. Keep checking plants, pots and stakes.';
+
+  @override
+  String get pestBorerName => 'Brinjal shoot and fruit borer';
+
+  @override
+  String get pestBorerSigns =>
+      'Shoot tips wilt and dry; bore holes in shoots and fruits.';
+
+  @override
+  String get pestBorerActions =>
+      'Use pheromone traps. TNAU recommends neem seed kernel extract (NSKE) 5% from one month after planting, every 15 days. Avoid synthetic pyrethroids, and don\'t spray when fruits are maturing or ready to pick.';
+
+  @override
+  String get pestLeafMinerName => 'Leaf miner and caterpillars';
+
+  @override
+  String get pestLeafMinerSigns =>
+      'Wavy pale tunnels inside leaves (leaf miner); chewed leaves, egg masses or caterpillars on fruits and leaves.';
+
+  @override
+  String get pestLeafMinerActions =>
+      'Pick off egg masses, grubs and caterpillars by hand. Yellow sticky traps help with leaf miner. KAU\'s organic options include the 2% neem–garlic emulsion below.';
+
+  @override
+  String get pestSprayTitle => 'Before you spray';
+
+  @override
+  String get pestSprayHeat =>
+      'Don\'t spray soap or oil on thirsty plants or when it is hotter than about 32 °C. Spray early in the morning or in the evening.';
+
+  @override
+  String get pestSprayTest =>
+      'Try it on a few leaves first. Skip it if rain is due or the air stays very humid.';
+
+  @override
+  String get pestSprayCover =>
+      'Sprays only kill pests they touch, and oils also harm helpful insects they coat: spray only where the pests are.';
+
+  @override
+  String get pestSprayNeem =>
+      'Neem is practically non-toxic to birds, mammals and bees, but slightly toxic to fish and can irritate eyes and skin. Never use neem products on pets: some cats reacted badly to neem flea products.';
+
+  @override
+  String get pestNeemRecipeTitle => 'KAU neem–garlic emulsion (2%)';
+
+  @override
+  String get pestNeemRecipe =>
+      'Dissolve 50 g bar soap in 500 ml lukewarm water. Grind 200 g garlic in 300 ml water and strain. Stir the soap solution slowly into 200 ml neem oil, then add the garlic extract. This makes 1 L of stock: mix it with 9 L of water before use.';
+
+  @override
+  String get pestChemicals =>
+      'We don\'t give doses for chemical pesticides. Follow the product label, or ask your local KVK or agriculture department.';
+
+  @override
+  String pestSourcesLine(String sources) {
+    return 'Sources: $sources';
+  }
+
+  @override
+  String get pestOpenGuide => 'Open the pest guide';
+
+  @override
+  String get reportTitle => 'Garden report';
+
+  @override
+  String get reportSubtitle => 'A one-page summary to print or share';
+
+  @override
+  String reportHeading(String garden, String date) {
+    return '$garden · $date';
+  }
+
+  @override
+  String get reportPlants => 'Plants';
+
+  @override
+  String get reportNoPlants => 'No plants yet.';
+
+  @override
+  String get reportCare => 'Care in the last 30 days';
+
+  @override
+  String get reportCareNone => 'No care recorded in the last 30 days.';
+
+  @override
+  String get reportHarvests => 'Harvests';
+
+  @override
+  String get reportHarvestsNone => 'No harvests recorded yet.';
+
+  @override
+  String get reportShare => 'Share';
+
+  @override
+  String reportShareSubject(String garden) {
+    return '$garden: garden report';
+  }
+
+  @override
+  String get reportFooter =>
+      'Made with Terrace Garden. Plant facts in the app cite their sources.';
+
+  @override
+  String get reportShareFailed =>
+      'Couldn\'t create the report image. Please try again.';
 }

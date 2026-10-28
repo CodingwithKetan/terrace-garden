@@ -20,8 +20,11 @@ import 'package:terrace_garden/core/time/clock.dart';
 import 'package:terrace_garden/features/care/data/care_providers.dart';
 import 'package:terrace_garden/features/settings/application/settings_controller.dart';
 import 'package:terrace_garden/features/settings/domain/app_settings.dart';
+import 'package:terrace_garden/features/subscription/data/subscription_providers.dart';
+import 'package:terrace_garden/features/subscription/domain/plan.dart';
 
 import 'fake_notification_scheduler.dart';
+import 'fake_purchase_service.dart';
 import 'fake_settings_repository.dart';
 import 'test_images.dart';
 
@@ -46,6 +49,7 @@ class TestApp {
     AppSettings settings = const AppSettings(onboardingCompleted: true),
     this.now,
     this.surface,
+    Plan plan = Plan.free,
   }) : settings = FakeSettingsRepository(settings),
        database = AppDatabase(
          DatabaseConnection(
@@ -55,13 +59,15 @@ class TestApp {
        ),
        photoRoot = Directory.systemTemp.createTempSync('app_test'),
        picker = FakePhotoPicker(),
-       compressor = CopyingImageCompressor();
+       compressor = CopyingImageCompressor(),
+       purchases = FakePurchaseService(plan: plan);
 
   final FakeSettingsRepository settings;
   final AppDatabase database;
   final Directory photoRoot;
   final FakePhotoPicker picker;
   final CopyingImageCompressor compressor;
+  final FakePurchaseService purchases;
   final FakeNotificationScheduler notifications = FakeNotificationScheduler();
 
   /// When set, the app clock is fixed at this time (e.g. for season checks).
@@ -80,6 +86,7 @@ class TestApp {
     ),
     photoPickerProvider.overrideWithValue(picker),
     notificationSchedulerProvider.overrideWithValue(notifications),
+    purchaseServiceProvider.overrideWithValue(purchases),
     if (now != null) clockProvider.overrideWithValue(FixedClock(now!)),
   ];
 

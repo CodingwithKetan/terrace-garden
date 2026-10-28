@@ -63,6 +63,7 @@ void main() {
 
       // Lands on the new garden's overview.
       expect(find.text('My terrace'), findsWidgets);
+      await scrollTo(tester, find.text('Your space'));
       expect(find.text('Your space'), findsOneWidget);
       final gardens = await app.database.select(app.database.gardens).get();
       expect(gardens.single.spaceType, SpaceType.balcony);
@@ -151,6 +152,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text('Rooftop'), findsWidgets);
+      await scrollTo(tester, find.text('Tamil Nadu'));
       expect(find.text('Tamil Nadu'), findsWidgets);
       final row =
           (await app.database.select(app.database.gardens).get()).single;
@@ -160,6 +162,7 @@ void main() {
     testWidgets('shows "Not set · Add" for unknown details', (tester) async {
       await openGardenTab(tester);
       await createGarden(tester, 'Balcony garden');
+      await scrollTo(tester, find.text('Not set · Add'));
       expect(find.text('Not set · Add'), findsWidgets);
     });
 
@@ -281,4 +284,13 @@ void main() {
       expect(find.text('See all'), findsOneWidget);
     });
   });
+}
+
+/// Drags the main list until [finder] has been built (the overview grew a
+/// hero and a report card, so details sit lower on small test screens).
+Future<void> scrollTo(WidgetTester tester, Finder finder) async {
+  for (var i = 0; i < 12 && finder.evaluate().isEmpty; i++) {
+    await tester.drag(find.byType(Scrollable).first, const Offset(0, -250));
+    await tester.pumpAndSettle();
+  }
 }

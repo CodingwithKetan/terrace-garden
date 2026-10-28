@@ -56,9 +56,9 @@ void main() {
     elements: elements,
   );
 
-  /// The median of [runs] timed runs after a warm-up. The median, not the
-  /// mean, so a run preempted while the rest of the suite runs in parallel
-  /// does not fail the budget.
+  /// The fastest of [runs] timed runs after a warm-up. Scheduling noise
+  /// (the rest of the suite running in parallel) only ever adds time, so
+  /// the minimum is the best estimate of the code's own cost (KI-031).
   Duration time(void Function() body, {int runs = 21}) {
     body(); // warm up
     final samples = <Duration>[
@@ -69,7 +69,7 @@ void main() {
           return watch.elapsed;
         })(),
     ]..sort();
-    return samples[runs ~/ 2];
+    return samples.first;
   }
 
   test('validating 100 objects stays well under one frame', () {

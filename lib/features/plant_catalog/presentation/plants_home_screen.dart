@@ -88,6 +88,23 @@ class _PlantsHomeScreenState extends ConsumerState<PlantsHomeScreen> {
                 const SizedBox(height: AppSpacing.md),
               ],
               _Paper(
+                child: ListTile(
+                  minTileHeight: 64,
+                  leading: Icon(
+                    Icons.bug_report_outlined,
+                    color: theme.colorScheme.tertiary,
+                  ),
+                  title: Text(
+                    l10n.pestGuideTitle,
+                    style: theme.textTheme.titleMedium,
+                  ),
+                  subtitle: Text(l10n.pestGuideSubtitle),
+                  trailing: const Icon(Icons.chevron_right_rounded),
+                  onTap: () => context.push(AppRoutes.pests),
+                ),
+              ),
+              const SizedBox(height: AppSpacing.md),
+              _Paper(
                 padding: const EdgeInsets.symmetric(
                   horizontal: AppSpacing.md,
                   vertical: AppSpacing.xs,

@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:terrace_garden/app/router/app_router.dart';
 import 'package:terrace_garden/app/theme/app_imagery.dart';
 import 'package:terrace_garden/app/theme/app_tokens.dart';
-import 'package:terrace_garden/app/theme/glass_theme.dart';
 import 'package:terrace_garden/core/units/measurement_formatter.dart';
 import 'package:terrace_garden/core/units/measurements.dart';
 import 'package:terrace_garden/core/widgets/async_state_view.dart';
@@ -16,6 +15,8 @@ import 'package:terrace_garden/features/garden/domain/garden.dart';
 import 'package:terrace_garden/features/garden/presentation/garden_labels.dart';
 import 'package:terrace_garden/features/garden/presentation/widgets/garden_cover.dart';
 import 'package:terrace_garden/features/settings/settings.dart';
+import 'package:terrace_garden/features/subscription/domain/plan.dart';
+import 'package:terrace_garden/features/subscription/subscription.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
 /// GDN-01. The user's gardens, or an invitation to create the first one.
@@ -28,6 +29,7 @@ class GardenHomeScreen extends ConsumerWidget {
     final gardens = ref.watch(gardensProvider);
 
     return Scaffold(
+      appBar: AppBar(title: Text(l10n.gardensTitle)),
       body: AsyncStateView(
         value: gardens,
         onRetry: () => ref.invalidate(gardensProvider),
@@ -66,21 +68,11 @@ class _GardenList extends ConsumerWidget {
       child: ListView(
         padding: EdgeInsets.fromLTRB(
           gutter,
-          insets.top + AppSpacing.lg,
+          AppSpacing.md,
           gutter,
           insets.bottom + AppSpacing.xl,
         ),
         children: [
-          Semantics(
-            header: true,
-            child: Text(
-              l10n.gardensTitle,
-              style: theme.textTheme.headlineMedium?.copyWith(
-                color: context.glass.onPhoto,
-              ),
-            ),
-          ),
-          const SizedBox(height: AppSpacing.xl),
           for (final garden in gardens) ...[
             _GardenCard(garden: garden),
             const SizedBox(height: AppSpacing.md),
@@ -91,7 +83,20 @@ class _GardenList extends ConsumerWidget {
               minTileHeight: 64,
               leading: const Icon(Icons.add),
               title: Text(l10n.gardenNew, style: theme.textTheme.titleMedium),
-              onTap: () => context.push(AppRoutes.gardenNew),
+              onTap: () async {
+                final allowed = ref
+                    .read(entitlementsProvider)
+                    .canAddGarden(existing: gardens.length);
+                if (!await requirePlus(
+                  context,
+                  ref,
+                  PlusFeature.moreGardens,
+                  allowed: allowed,
+                )) {
+                  return;
+                }
+                if (context.mounted) await context.push(AppRoutes.gardenNew);
+              },
             ),
           ),
         ],

@@ -43,6 +43,7 @@ abstract final class CarePlanner {
     PlantCategory.climber,
     PlantCategory.herb,
     PlantCategory.flower,
+    PlantCategory.fruit,
   };
 
   static const Set<PlantCategory> _edibleCategories = {
@@ -50,6 +51,7 @@ abstract final class CarePlanner {
     PlantCategory.leafyGreen,
     PlantCategory.climber,
     PlantCategory.herb,
+    PlantCategory.fruit,
   };
 
   static List<CareRuleDraft> plan({

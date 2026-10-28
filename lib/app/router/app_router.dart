@@ -3,10 +3,12 @@ import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:terrace_garden/app/router/app_shell.dart';
 import 'package:terrace_garden/features/care/presentation/care_calendar_screen.dart';
+import 'package:terrace_garden/features/care/presentation/pest_guide_screen.dart';
 import 'package:terrace_garden/features/care/presentation/today_screen.dart';
 import 'package:terrace_garden/features/garden/presentation/garden_form_screen.dart';
 import 'package:terrace_garden/features/garden/presentation/garden_home_screen.dart';
 import 'package:terrace_garden/features/garden/presentation/garden_overview_screen.dart';
+import 'package:terrace_garden/features/garden/presentation/garden_report_screen.dart';
 import 'package:terrace_garden/features/garden/presentation/photo_gallery_screen.dart';
 import 'package:terrace_garden/features/garden/presentation/photo_viewer_screen.dart';
 import 'package:terrace_garden/features/garden/presentation/terrace_checklist_screen.dart';
@@ -22,6 +24,7 @@ import 'package:terrace_garden/features/plant_catalog/presentation/seasons_scree
 import 'package:terrace_garden/features/settings/application/settings_controller.dart';
 import 'package:terrace_garden/features/settings/presentation/image_credits_screen.dart';
 import 'package:terrace_garden/features/settings/presentation/settings_screen.dart';
+import 'package:terrace_garden/features/subscription/subscription.dart';
 
 part 'app_router.g.dart';
 
@@ -38,10 +41,13 @@ abstract final class AppRoutes {
   static const journal = '/journal';
   static const settings = '/settings';
   static const imageCredits = '/settings/credits';
+  static const plus = '/plus';
+  static const pests = '/pests';
 
   static String gardenDetail(String id) => '/gardens/$id';
   static String gardenPhotos(String id) => '/gardens/$id/photos';
   static String gardenChecklist(String id) => '/gardens/$id/checklist';
+  static String gardenReport(String id) => '/gardens/$id/report';
   static const gardenNew = '/gardens/new';
   static String gardenEdit(String id) => '/gardens/$id/edit';
   static String gardenDesign(String id) => '/gardens/$id/design';
@@ -145,6 +151,11 @@ GoRouter appRouter(Ref ref) {
             appPage(state, const TerraceChecklistScreen()),
       ),
       GoRoute(
+        path: '/gardens/:gardenId/report',
+        pageBuilder: (context, state) =>
+            appPage(state, GardenReportScreen(gardenId: _gardenId(state))),
+      ),
+      GoRoute(
         path: '/gardens/:gardenId/edit',
         pageBuilder: (context, state) =>
             appPage(state, GardenFormScreen(gardenId: _gardenId(state))),
@@ -205,6 +216,15 @@ GoRouter appRouter(Ref ref) {
             photoId: state.pathParameters['photoId']!,
           ),
         ),
+      ),
+      GoRoute(
+        path: AppRoutes.pests,
+        pageBuilder: (context, state) =>
+            appPage(state, const PestGuideScreen()),
+      ),
+      GoRoute(
+        path: AppRoutes.plus,
+        pageBuilder: (context, state) => appPage(state, const PlusScreen()),
       ),
       GoRoute(
         path: AppRoutes.settings,

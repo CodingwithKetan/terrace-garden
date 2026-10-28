@@ -5,6 +5,7 @@ import 'package:terrace_garden/app/theme/app_theme.dart';
 import 'package:terrace_garden/features/care/application/care_controllers.dart';
 import 'package:terrace_garden/features/settings/application/settings_controller.dart';
 import 'package:terrace_garden/features/settings/domain/app_settings.dart';
+import 'package:terrace_garden/features/subscription/subscription.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
 class TerraceGardenApp extends ConsumerWidget {
@@ -12,8 +13,12 @@ class TerraceGardenApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // Keeps care plans, tasks and digest notifications in step with data.
-    ref.watch(careAutomationProvider);
+    // Keeps care plans, tasks and digest notifications in step with data,
+    // and loads the plan (cache, then store) at launch so a Plus user is
+    // never shown a limit while it is still loading.
+    ref
+      ..watch(careAutomationProvider)
+      ..watch(currentPlanProvider);
     final settings = ref.watch(settingsControllerProvider);
     final themeMode = switch (settings.value?.themePreference) {
       ThemePreference.light => ThemeMode.light,

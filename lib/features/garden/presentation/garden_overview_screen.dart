@@ -26,6 +26,8 @@ import 'package:terrace_garden/features/garden_designer/garden_designer.dart';
 import 'package:terrace_garden/features/plant_catalog/plant_catalog.dart';
 import 'package:terrace_garden/features/plantings/plantings.dart';
 import 'package:terrace_garden/features/settings/settings.dart';
+import 'package:terrace_garden/features/subscription/domain/plan.dart';
+import 'package:terrace_garden/features/subscription/subscription.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
 /// GDN-02. Everything about one garden; unknown details invite completion.
@@ -148,6 +150,8 @@ class _Overview extends ConsumerWidget {
               _DesignCard(garden: garden),
               const SizedBox(height: AppSpacing.md),
               PlantIdeasCard(gardenId: garden.id),
+              const SizedBox(height: AppSpacing.md),
+              _ReportCard(garden: garden),
               const SizedBox(height: AppSpacing.xl),
               _Section(
                 title: l10n.gardenSectionSpace,
@@ -605,6 +609,56 @@ class _Hero extends ConsumerWidget {
             onTapItem: (_) => context.push(AppRoutes.gardenDesign(garden.id)),
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// Opens the garden report (Plus); the free plan sees what Plus adds.
+class _ReportCard extends ConsumerWidget {
+  const _ReportCard({required this.garden});
+
+  final Garden garden;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
+    final theme = Theme.of(context);
+    final plus = ref.watch(entitlementsProvider).isPlus;
+    return AppCard(
+      onTap: () async {
+        if (!await requirePlus(context, ref, PlusFeature.gardenReport)) {
+          return;
+        }
+        if (context.mounted) {
+          await context.push(AppRoutes.gardenReport(garden.id));
+        }
+      },
+      child: Row(
+        children: [
+          Icon(Icons.summarize_outlined, color: theme.colorScheme.primary),
+          const SizedBox(width: AppSpacing.md),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(l10n.reportTitle, style: theme.textTheme.titleMedium),
+                Text(l10n.reportSubtitle, style: theme.textTheme.bodyMedium),
+              ],
+            ),
+          ),
+          if (!plus)
+            Padding(
+              padding: const EdgeInsetsDirectional.only(start: AppSpacing.sm),
+              child: Text(
+                l10n.settingsPlanPlus,
+                style: theme.textTheme.labelMedium?.copyWith(
+                  color: theme.colorScheme.secondary,
+                ),
+              ),
+            ),
+          const Icon(Icons.chevron_right_rounded),
+        ],
       ),
     );
   }

@@ -6,7 +6,15 @@ library;
 import 'package:meta/meta.dart';
 import 'package:terrace_garden/features/garden/domain/region.dart';
 
-enum PlantCategory { vegetable, leafyGreen, herb, climber, flower, ornamental }
+enum PlantCategory {
+  vegetable,
+  leafyGreen,
+  herb,
+  climber,
+  flower,
+  ornamental,
+  fruit,
+}
 
 enum PlantLifecycle { annual, perennial }
 

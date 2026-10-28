@@ -3667,6 +3667,534 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Entry'**
   String get journalEntryShort;
+
+  /// No description provided for @plusTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Terrace Garden Plus'**
+  String get plusTitle;
+
+  /// No description provided for @plusTagline.
+  ///
+  /// In en, this message translates to:
+  /// **'Room for every garden you look after. Everything that keeps your plants alive stays free.'**
+  String get plusTagline;
+
+  /// No description provided for @plusFreeHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Always free'**
+  String get plusFreeHeading;
+
+  /// No description provided for @plusFreeCare.
+  ///
+  /// In en, this message translates to:
+  /// **'Soil checks and care reminders'**
+  String get plusFreeCare;
+
+  /// No description provided for @plusFreeLibrary.
+  ///
+  /// In en, this message translates to:
+  /// **'The sourced plant library, pest guide, pet safety and seasons'**
+  String get plusFreeLibrary;
+
+  /// No description provided for @plusFreeLayout.
+  ///
+  /// In en, this message translates to:
+  /// **'One garden with its layout and plant ideas'**
+  String get plusFreeLayout;
+
+  /// No description provided for @plusFreeJournal.
+  ///
+  /// In en, this message translates to:
+  /// **'A journal with up to {count} photos'**
+  String plusFreeJournal(int count);
+
+  /// No description provided for @plusFreeData.
+  ///
+  /// In en, this message translates to:
+  /// **'Export or delete your data, any time'**
+  String get plusFreeData;
+
+  /// No description provided for @plusPaidHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Plus adds'**
+  String get plusPaidHeading;
+
+  /// No description provided for @plusPaidGardens.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlimited gardens: terrace, balcony, a parent\'s roof'**
+  String get plusPaidGardens;
+
+  /// No description provided for @plusPaidPhotos.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlimited journal photos'**
+  String get plusPaidPhotos;
+
+  /// No description provided for @plusPaidCompare.
+  ///
+  /// In en, this message translates to:
+  /// **'Then-and-now photo comparison'**
+  String get plusPaidCompare;
+
+  /// No description provided for @plusPaidReport.
+  ///
+  /// In en, this message translates to:
+  /// **'A garden report to print or share'**
+  String get plusPaidReport;
+
+  /// No description provided for @plusMonthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly'**
+  String get plusMonthly;
+
+  /// No description provided for @plusYearly.
+  ///
+  /// In en, this message translates to:
+  /// **'Yearly'**
+  String get plusYearly;
+
+  /// No description provided for @plusLifetime.
+  ///
+  /// In en, this message translates to:
+  /// **'Lifetime'**
+  String get plusLifetime;
+
+  /// No description provided for @plusPerMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'{price} a month'**
+  String plusPerMonth(String price);
+
+  /// No description provided for @plusPerYear.
+  ///
+  /// In en, this message translates to:
+  /// **'{price} a year'**
+  String plusPerYear(String price);
+
+  /// No description provided for @plusOnce.
+  ///
+  /// In en, this message translates to:
+  /// **'{price}, paid once'**
+  String plusOnce(String price);
+
+  /// No description provided for @plusChoose.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose'**
+  String get plusChoose;
+
+  /// No description provided for @plusNotOnSale.
+  ///
+  /// In en, this message translates to:
+  /// **'Plus isn\'t on sale yet. Everything above stays free.'**
+  String get plusNotOnSale;
+
+  /// No description provided for @plusActive.
+  ///
+  /// In en, this message translates to:
+  /// **'You have Plus. Thank you for supporting the app.'**
+  String get plusActive;
+
+  /// No description provided for @plusManage.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage subscription'**
+  String get plusManage;
+
+  /// No description provided for @plusRestore.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore purchases'**
+  String get plusRestore;
+
+  /// No description provided for @plusRestored.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchases checked with Google Play'**
+  String get plusRestored;
+
+  /// No description provided for @plusTerms.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly and yearly plans renew automatically until you cancel. Cancel any time in Google Play under Payments and subscriptions; Plus stays on until the end of the period you paid for. Lifetime is a single payment. Google Play sets the price for your country.'**
+  String get plusTerms;
+
+  /// No description provided for @plusPromise.
+  ///
+  /// In en, this message translates to:
+  /// **'We will never move a free feature behind Plus.'**
+  String get plusPromise;
+
+  /// No description provided for @plusBuyFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Google Play couldn\'t start the purchase. Please try again.'**
+  String get plusBuyFailed;
+
+  /// No description provided for @settingsPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Your plan'**
+  String get settingsPlan;
+
+  /// No description provided for @settingsPlanFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Free'**
+  String get settingsPlanFree;
+
+  /// No description provided for @settingsPlanPlus.
+  ///
+  /// In en, this message translates to:
+  /// **'Plus'**
+  String get settingsPlanPlus;
+
+  /// No description provided for @upgradeGardensTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add another garden with Plus'**
+  String get upgradeGardensTitle;
+
+  /// No description provided for @upgradeGardensBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The free plan covers one garden with everything it needs. Plus lets you look after as many as you like.'**
+  String get upgradeGardensBody;
+
+  /// No description provided for @upgradePhotosTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your journal has {count} photos'**
+  String upgradePhotosTitle(int count);
+
+  /// No description provided for @upgradePhotosBody.
+  ///
+  /// In en, this message translates to:
+  /// **'That is the free limit. Plus keeps unlimited photos. The photos you have stay, and you can still write notes.'**
+  String get upgradePhotosBody;
+
+  /// No description provided for @upgradeCompareTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Compare photos with Plus'**
+  String get upgradeCompareTitle;
+
+  /// No description provided for @upgradeCompareBody.
+  ///
+  /// In en, this message translates to:
+  /// **'See two photos side by side to watch your garden grow. Your photos and journal stay free.'**
+  String get upgradeCompareBody;
+
+  /// No description provided for @upgradeReportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Garden report with Plus'**
+  String get upgradeReportTitle;
+
+  /// No description provided for @upgradeReportBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A one-page summary of your garden, plants, care and harvests to print or share.'**
+  String get upgradeReportBody;
+
+  /// No description provided for @upgradeSeePlus.
+  ///
+  /// In en, this message translates to:
+  /// **'See Plus'**
+  String get upgradeSeePlus;
+
+  /// No description provided for @upgradeNotNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Not now'**
+  String get upgradeNotNow;
+
+  /// No description provided for @categoryFruit.
+  ///
+  /// In en, this message translates to:
+  /// **'Fruit trees'**
+  String get categoryFruit;
+
+  /// No description provided for @pestGuideTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pest guide'**
+  String get pestGuideTitle;
+
+  /// No description provided for @pestGuideSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What to look for, and gentle first steps'**
+  String get pestGuideSubtitle;
+
+  /// No description provided for @pestGuideIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Container plants get the same pests as garden plants. When you check the soil, look under the leaves and at new growth too.'**
+  String get pestGuideIntro;
+
+  /// No description provided for @pestLookFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Look for'**
+  String get pestLookFor;
+
+  /// No description provided for @pestWhatToDo.
+  ///
+  /// In en, this message translates to:
+  /// **'What to do'**
+  String get pestWhatToDo;
+
+  /// No description provided for @pestAphidsName.
+  ///
+  /// In en, this message translates to:
+  /// **'Aphids'**
+  String get pestAphidsName;
+
+  /// No description provided for @pestAphidsSigns.
+  ///
+  /// In en, this message translates to:
+  /// **'Small soft insects in groups under leaves and on new shoots, often with ants around them.'**
+  String get pestAphidsSigns;
+
+  /// No description provided for @pestAphidsActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Knock them off with a strong spray of water early in the day. Check at least twice a week while plants grow fast, and deal with the ants. Soap or oil sprays (neem too) only work where they touch: cover leaf undersides and repeat.'**
+  String get pestAphidsActions;
+
+  /// No description provided for @pestMitesName.
+  ///
+  /// In en, this message translates to:
+  /// **'Spider mites'**
+  String get pestMitesName;
+
+  /// No description provided for @pestMitesSigns.
+  ///
+  /// In en, this message translates to:
+  /// **'Pale speckled or yellowing leaves, sometimes fine webbing. Tap a leaf over white paper to see the tiny mites. Worse in hot, dry, dusty weather.'**
+  String get pestMitesSigns;
+
+  /// No description provided for @pestMitesActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Spray the leaves with water regularly and don\'t let plants go thirsty. Avoid broad-spectrum insecticides: they kill the mites\' natural enemies and make outbreaks worse.'**
+  String get pestMitesActions;
+
+  /// No description provided for @pestWhiteflyName.
+  ///
+  /// In en, this message translates to:
+  /// **'Whitefly'**
+  String get pestWhiteflyName;
+
+  /// No description provided for @pestWhiteflySigns.
+  ///
+  /// In en, this message translates to:
+  /// **'Tiny white insects under the leaves that fly up when you disturb the plant.'**
+  String get pestWhiteflySigns;
+
+  /// No description provided for @pestWhiteflyActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Hang yellow sticky traps near the plants, out of direct sun. Wash them off with water. Soaps, oils and neem reduce whitefly but don\'t wipe it out; avoid broad-spectrum sprays.'**
+  String get pestWhiteflyActions;
+
+  /// No description provided for @pestMealybugName.
+  ///
+  /// In en, this message translates to:
+  /// **'Mealybugs'**
+  String get pestMealybugName;
+
+  /// No description provided for @pestMealybugSigns.
+  ///
+  /// In en, this message translates to:
+  /// **'White, waxy, cotton-like clusters in sheltered spots such as stem joints; ants feeding on the sticky honeydew.'**
+  String get pestMealybugSigns;
+
+  /// No description provided for @pestMealybugActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick them off or prune the infested parts; throw away badly infested plants. Sprays work best on young mealybugs. Keep checking plants, pots and stakes.'**
+  String get pestMealybugActions;
+
+  /// No description provided for @pestBorerName.
+  ///
+  /// In en, this message translates to:
+  /// **'Brinjal shoot and fruit borer'**
+  String get pestBorerName;
+
+  /// No description provided for @pestBorerSigns.
+  ///
+  /// In en, this message translates to:
+  /// **'Shoot tips wilt and dry; bore holes in shoots and fruits.'**
+  String get pestBorerSigns;
+
+  /// No description provided for @pestBorerActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Use pheromone traps. TNAU recommends neem seed kernel extract (NSKE) 5% from one month after planting, every 15 days. Avoid synthetic pyrethroids, and don\'t spray when fruits are maturing or ready to pick.'**
+  String get pestBorerActions;
+
+  /// No description provided for @pestLeafMinerName.
+  ///
+  /// In en, this message translates to:
+  /// **'Leaf miner and caterpillars'**
+  String get pestLeafMinerName;
+
+  /// No description provided for @pestLeafMinerSigns.
+  ///
+  /// In en, this message translates to:
+  /// **'Wavy pale tunnels inside leaves (leaf miner); chewed leaves, egg masses or caterpillars on fruits and leaves.'**
+  String get pestLeafMinerSigns;
+
+  /// No description provided for @pestLeafMinerActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick off egg masses, grubs and caterpillars by hand. Yellow sticky traps help with leaf miner. KAU\'s organic options include the 2% neem–garlic emulsion below.'**
+  String get pestLeafMinerActions;
+
+  /// No description provided for @pestSprayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Before you spray'**
+  String get pestSprayTitle;
+
+  /// No description provided for @pestSprayHeat.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t spray soap or oil on thirsty plants or when it is hotter than about 32 °C. Spray early in the morning or in the evening.'**
+  String get pestSprayHeat;
+
+  /// No description provided for @pestSprayTest.
+  ///
+  /// In en, this message translates to:
+  /// **'Try it on a few leaves first. Skip it if rain is due or the air stays very humid.'**
+  String get pestSprayTest;
+
+  /// No description provided for @pestSprayCover.
+  ///
+  /// In en, this message translates to:
+  /// **'Sprays only kill pests they touch, and oils also harm helpful insects they coat: spray only where the pests are.'**
+  String get pestSprayCover;
+
+  /// No description provided for @pestSprayNeem.
+  ///
+  /// In en, this message translates to:
+  /// **'Neem is practically non-toxic to birds, mammals and bees, but slightly toxic to fish and can irritate eyes and skin. Never use neem products on pets: some cats reacted badly to neem flea products.'**
+  String get pestSprayNeem;
+
+  /// No description provided for @pestNeemRecipeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'KAU neem–garlic emulsion (2%)'**
+  String get pestNeemRecipeTitle;
+
+  /// No description provided for @pestNeemRecipe.
+  ///
+  /// In en, this message translates to:
+  /// **'Dissolve 50 g bar soap in 500 ml lukewarm water. Grind 200 g garlic in 300 ml water and strain. Stir the soap solution slowly into 200 ml neem oil, then add the garlic extract. This makes 1 L of stock: mix it with 9 L of water before use.'**
+  String get pestNeemRecipe;
+
+  /// No description provided for @pestChemicals.
+  ///
+  /// In en, this message translates to:
+  /// **'We don\'t give doses for chemical pesticides. Follow the product label, or ask your local KVK or agriculture department.'**
+  String get pestChemicals;
+
+  /// No description provided for @pestSourcesLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Sources: {sources}'**
+  String pestSourcesLine(String sources);
+
+  /// No description provided for @pestOpenGuide.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the pest guide'**
+  String get pestOpenGuide;
+
+  /// No description provided for @reportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Garden report'**
+  String get reportTitle;
+
+  /// No description provided for @reportSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A one-page summary to print or share'**
+  String get reportSubtitle;
+
+  /// No description provided for @reportHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'{garden} · {date}'**
+  String reportHeading(String garden, String date);
+
+  /// No description provided for @reportPlants.
+  ///
+  /// In en, this message translates to:
+  /// **'Plants'**
+  String get reportPlants;
+
+  /// No description provided for @reportNoPlants.
+  ///
+  /// In en, this message translates to:
+  /// **'No plants yet.'**
+  String get reportNoPlants;
+
+  /// No description provided for @reportCare.
+  ///
+  /// In en, this message translates to:
+  /// **'Care in the last 30 days'**
+  String get reportCare;
+
+  /// No description provided for @reportCareNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No care recorded in the last 30 days.'**
+  String get reportCareNone;
+
+  /// No description provided for @reportHarvests.
+  ///
+  /// In en, this message translates to:
+  /// **'Harvests'**
+  String get reportHarvests;
+
+  /// No description provided for @reportHarvestsNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No harvests recorded yet.'**
+  String get reportHarvestsNone;
+
+  /// No description provided for @reportShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get reportShare;
+
+  /// No description provided for @reportShareSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'{garden}: garden report'**
+  String reportShareSubject(String garden);
+
+  /// No description provided for @reportFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'Made with Terrace Garden. Plant facts in the app cite their sources.'**
+  String get reportFooter;
+
+  /// No description provided for @reportShareFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t create the report image. Please try again.'**
+  String get reportShareFailed;
 }
 
 class _AppLocalizationsDelegate

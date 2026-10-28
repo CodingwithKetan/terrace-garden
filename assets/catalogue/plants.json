@@ -1,5 +1,5 @@
 {
-  "catalogueVersion": 1,
+  "catalogueVersion": 2,
   "note": "Every value cites sources listed in sources.json (gardening-references.md §1, fully verified 'F' sources only). Values without a solid source are null and the record is marked partial or unverified. Gallon and inch figures are converted to litres and centimetres (1 US gal = 3.785 L, 1 in = 2.54 cm).",
   "species": [
     {
@@ -585,6 +585,580 @@
       ],
       "petSafety": { "status": "toxic", "note": "Toxic to dogs and cats (saponins).", "sources": ["S39"] },
       "watering": { "mode": "dryBetween", "sources": ["S40"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "capsicum",
+      "commonName": "Capsicum",
+      "localNames": ["Shimla mirch"],
+      "names": { "hi": "शिमला मिर्च" },
+      "scientificName": "Capsicum annuum (sweet pepper)",
+      "category": "vegetable",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S52"] },
+      "container": { "status": "verified", "minVolumeL": 7.6, "recommendedVolumeL": 18.9, "minDepthCm": 30, "recommendedDepthCm": 41, "plantsPerContainer": 1, "note": "Peppers: at least a 2-gallon (7.6 L) container 12–16 in (30–41 cm) deep, one plant each; 5 gallons (19 L) suits them best.", "sources": ["S52", "S75"] },
+      "daysToHarvest": { "min": 90, "max": 120, "note": "From seed. Punjab gives about 3 months after transplanting.", "sources": ["S75", "S48"] },
+      "sowing": [
+        { "region": "northIndia", "months": [10], "source": "S48" },
+        { "region": "tamilNadu", "months": [1, 2, 9, 10, 11, 12], "source": "S51" },
+        { "region": "kerala", "months": [9, 10], "source": "S50" }
+      ],
+      "propagation": { "method": "transplant", "nurseryDaysMin": 30, "nurseryDaysMax": 45, "sources": ["S51", "S50"] },
+      "careNotes": [
+        { "text": "Pinch young plants to make them bushy. The roots dislike being disturbed.", "sources": ["S40"] },
+        { "text": "Add a cane so the plant stays upright in its pot.", "sources": ["S76"] },
+        { "text": "Pick when fruits are full-sized but still green and shining.", "sources": ["S48"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "verified"
+    },
+    {
+      "id": "cucumber",
+      "commonName": "Cucumber",
+      "localNames": ["Kheera"],
+      "names": { "hi": "खीरा" },
+      "scientificName": "Cucumis sativus",
+      "category": "climber",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
+      "container": { "status": "verified", "minVolumeL": 3.8, "recommendedVolumeL": null, "minDepthCm": 20, "recommendedDepthCm": 30, "plantsPerContainer": 1, "note": "At least a 1-gallon (3.8 L) container 8 in (20 cm) deep, one plant each; RHS suggests 30 cm wide and deep.", "sources": ["S52", "S77"] },
+      "daysToHarvest": { "min": 50, "max": 70, "note": "From seed.", "sources": ["S75"] },
+      "sowing": [
+        { "region": "northIndia", "months": [2, 3], "source": "S48" },
+        { "region": "telangana", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "source": "S13" },
+        { "region": "tamilNadu", "months": [1, 2, 3, 4, 6], "source": "S51" },
+        { "region": "kerala", "months": [1, 2, 3, 9, 10, 11, 12], "source": "S50" }
+      ],
+      "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S50", "S51"] },
+      "careNotes": [
+        { "text": "Train it up a trellis: more air, less disease and straighter fruits.", "sources": ["S40"] },
+        { "text": "Pick often to keep fruits coming; yellow fruits are overripe.", "sources": ["S40"] },
+        { "text": "Needs steady moisture and good drainage. Water the soil, not the leaves.", "sources": ["S40"] }
+      ],
+      "petSafety": { "status": "nonToxic", "note": "Cucumber is listed as non-toxic to dogs, cats and horses.", "sources": ["S39"] },
+      "dataStatus": "verified"
+    },
+    {
+      "id": "ridgeGourd",
+      "commonName": "Ridge gourd",
+      "localNames": ["Turai", "Tori"],
+      "names": { "hi": "तुरई" },
+      "scientificName": "Luffa acutangula",
+      "category": "climber",
+      "lifecycle": "annual",
+      "sun": null,
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No container size was found in the sources.", "sources": [] },
+      "daysToHarvest": null,
+      "sowing": [
+        { "region": "telangana", "months": [2, 3, 4, 5, 7, 8, 9, 10], "source": "S13" },
+        { "region": "tamilNadu", "months": [1, 7], "source": "S51" },
+        { "region": "kerala", "months": [2, 3, 5, 6], "source": "S50" }
+      ],
+      "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S51"] },
+      "careNotes": [{ "text": "Give the vine a pandal or trellis about 2 m high to climb.", "sources": ["S51", "S50"] }],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "clusterBean",
+      "commonName": "Cluster bean",
+      "localNames": ["Guar"],
+      "names": { "hi": "ग्वार फली" },
+      "scientificName": "Cyamopsis tetragonoloba",
+      "category": "vegetable",
+      "lifecycle": "annual",
+      "sun": null,
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No container size was found in the sources.", "sources": [] },
+      "daysToHarvest": { "min": 45, "max": 100, "note": "Early varieties from about 45 days after sowing, late ones from about 100.", "sources": ["S51"] },
+      "sowing": [
+        { "region": "telangana", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "source": "S13" },
+        { "region": "tamilNadu", "months": [6, 7, 10, 11], "source": "S51" },
+        { "region": "kerala", "months": [2, 3, 6, 7], "source": "S50" }
+      ],
+      "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S51"] },
+      "careNotes": [{ "text": "Some tall varieties (such as MDU 1) need staking.", "sources": ["S51"] }],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "cowpea",
+      "commonName": "Cowpea",
+      "localNames": ["Lobia"],
+      "names": { "hi": "लोबिया" },
+      "scientificName": "Vigna unguiculata",
+      "category": "vegetable",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No container size was found in the sources.", "sources": [] },
+      "daysToHarvest": { "min": 40, "max": 50, "note": "Tender pods, from sowing.", "sources": ["S51", "S48"] },
+      "sowing": [
+        { "region": "northIndia", "months": [2, 6, 7], "source": "S48" },
+        { "region": "tamilNadu", "months": [2, 3, 6, 7], "source": "S51" },
+        { "region": "kerala", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S50" }
+      ],
+      "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S50"] },
+      "careNotes": [
+        { "text": "Pinch the tendrils a few times before flowering for a bushier plant.", "sources": ["S51"] },
+        { "text": "Yard-long types need a sturdy trellis; pick the pods daily.", "sources": ["S40"] },
+        { "text": "Pick often, before the pods turn fibrous.", "sources": ["S48"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "peas",
+      "commonName": "Peas",
+      "localNames": ["Matar"],
+      "names": { "hi": "मटर" },
+      "scientificName": "Pisum sativum",
+      "category": "vegetable",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
+      "container": { "status": "verified", "minVolumeL": 7.6, "recommendedVolumeL": null, "minDepthCm": 30, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "At least a 2-gallon (7.6 L) container 12 in (30 cm) deep, seeds 2–3 in apart. Dwarf varieties suit containers.", "sources": ["S52", "S78"] },
+      "daysToHarvest": { "min": 60, "max": 90, "note": "From sowing, depending on variety.", "sources": ["S48", "S51"] },
+      "sowing": [
+        { "region": "northIndia", "months": [10, 11], "source": "S48" },
+        { "region": "tamilNadu", "months": [2, 3, 10, 11], "source": "S51" }
+      ],
+      "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S40"] },
+      "careNotes": [
+        { "text": "Stake the plants about 30 days after sowing.", "sources": ["S51"] },
+        { "text": "Climbing varieties need a trellis; bush types need less support.", "sources": ["S40"] },
+        { "text": "Pick pods regularly so more form.", "sources": ["S78"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "verified"
+    },
+    {
+      "id": "basil",
+      "commonName": "Basil",
+      "localNames": ["Sabja"],
+      "names": { "hi": "बेसिल" },
+      "scientificName": "Ocimum basilicum",
+      "category": "herb",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S79"] },
+      "container": { "status": "verified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": 20, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "A container at least 20 cm (8 in) wide and deep, with free-draining compost.", "sources": ["S80"] },
+      "daysToHarvest": { "min": 42, "max": 42, "note": "Leaves can be picked about 6 weeks after planting.", "sources": ["S79"] },
+      "sowing": [],
+      "propagation": { "method": "seed", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S40"] },
+      "careNotes": [
+        { "text": "Pinch the tips of long stems and any flower buds to keep it bushy.", "sources": ["S40"] },
+        { "text": "Water in the morning; basil hates wet roots overnight.", "sources": ["S80"] }
+      ],
+      "petSafety": { "status": "nonToxic", "note": "Sweet basil is listed as non-toxic to dogs and cats.", "sources": ["S39"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "spiderPlant",
+      "commonName": "Spider plant",
+      "localNames": [],
+      "names": { "hi": "स्पाइडर प्लांट" },
+      "scientificName": "Chlorophytum comosum",
+      "category": "ornamental",
+      "lifecycle": "perennial",
+      "sun": { "level": "indirect", "minHours": null, "sources": ["S82"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No size was given. Suits hanging baskets and pots; use a quick-draining general-purpose potting mix.", "sources": ["S40", "S82"] },
+      "daysToHarvest": null,
+      "sowing": [],
+      "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S40"] },
+      "careNotes": [
+        { "text": "Let the soil dry briefly between waterings; check it often.", "sources": ["S82"] },
+        { "text": "Brown leaf tips come from too much fertiliser or salty water.", "sources": ["S82"] },
+        { "text": "Trim finished flower spikes if you don't want new plantlets.", "sources": ["S83"] }
+      ],
+      "petSafety": { "status": "nonToxic", "note": "Spider plant is listed as non-toxic to dogs and cats.", "sources": ["S39"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "arecaPalm",
+      "commonName": "Areca palm",
+      "localNames": [],
+      "names": { "hi": "एरिका पाम" },
+      "scientificName": "Dypsis lutescens",
+      "category": "ornamental",
+      "lifecycle": "perennial",
+      "sun": { "level": "indirect", "minHours": null, "sources": ["S40"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No size was given. Use well-drained potting soil and repot every 2–3 years.", "sources": ["S40"] },
+      "daysToHarvest": null,
+      "sowing": [],
+      "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S40"] },
+      "careNotes": [
+        { "text": "Keep the soil moist but never soggy in the growing season; check before watering.", "sources": ["S40"] },
+        { "text": "Watch for scale, whiteflies and spider mites.", "sources": ["S40"] }
+      ],
+      "petSafety": { "status": "nonToxic", "note": "Areca palm is listed as non-toxic to dogs, cats and horses. The growing tip (heart of palm) should not be eaten.", "sources": ["S39", "S40"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "aparajita",
+      "commonName": "Aparajita",
+      "localNames": ["Butterfly pea", "Shankhpushpi"],
+      "names": { "hi": "अपराजिता" },
+      "scientificName": "Clitoria ternatea",
+      "category": "flower",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No size was given. It grows in pots, kept in shape by training and pruning, or on a low trellis.", "sources": ["S85"] },
+      "daysToHarvest": null,
+      "sowing": [],
+      "propagation": { "method": "seed", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S40", "S84"] },
+      "careNotes": [
+        { "text": "Grow it on a trellis or other support. A little afternoon shade helps in hot weather.", "sources": ["S84"] },
+        { "text": "Watch for spider mites and whiteflies.", "sources": ["S40"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "portulaca",
+      "commonName": "Portulaca",
+      "localNames": ["Nau bajiya", "Moss rose"],
+      "names": { "hi": "नौ बजिया" },
+      "scientificName": "Portulaca grandiflora",
+      "category": "flower",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No size was given. Suits pots and hanging planters in well-drained soil.", "sources": ["S40"] },
+      "daysToHarvest": null,
+      "sowing": [],
+      "propagation": { "method": "seed", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S40"] },
+      "careNotes": [
+        { "text": "Poorly drained soil leads to crown rot.", "sources": ["S40"] },
+        { "text": "Flowers close on cloudy days and at night. Deadheading stops it self-seeding.", "sources": ["S40"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "periwinkle",
+      "commonName": "Periwinkle",
+      "localNames": ["Sadabahar"],
+      "names": { "hi": "सदाबहार" },
+      "scientificName": "Catharanthus roseus",
+      "category": "flower",
+      "lifecycle": "perennial",
+      "sun": { "level": "partial", "minHours": null, "sources": ["S40"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No size was given. Grows in containers and hanging baskets; good drainage is the key.", "sources": ["S40", "S86"] },
+      "daysToHarvest": null,
+      "sowing": [
+        { "region": "tamilNadu", "months": [6, 7, 9, 10], "source": "S87" }
+      ],
+      "propagation": { "method": "transplant", "nurseryDaysMin": 45, "nurseryDaysMax": 60, "sources": ["S87"] },
+      "careNotes": [{ "text": "Keep it on the dry side; the roots rot if watered too often.", "sources": ["S88"] }],
+      "petSafety": { "status": "toxic", "note": "Listed as toxic to dogs, cats and horses (vinca alkaloids), under its older name Vinca rosea.", "sources": ["S39"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "cauliflower",
+      "commonName": "Cauliflower",
+      "localNames": ["Phool gobhi"],
+      "names": { "hi": "फूलगोभी" },
+      "scientificName": "Brassica oleracea var. botrytis",
+      "category": "vegetable",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S89"] },
+      "container": { "status": "verified", "minVolumeL": 18.9, "recommendedVolumeL": 26.5, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": 1, "note": "One plant per 5–7 gallon (19–26 L) container. No depth was given.", "sources": ["S89"] },
+      "daysToHarvest": null,
+      "sowing": [
+        { "region": "northIndia", "months": [6, 7, 8, 9, 10, 11], "source": "S48" },
+        { "region": "telangana", "months": [8, 9, 10, 11], "source": "S13" },
+        { "region": "kerala", "months": [10, 11], "source": "S50" }
+      ],
+      "propagation": { "method": "transplant", "nurseryDaysMin": 25, "nurseryDaysMax": 45, "sources": ["S51"] },
+      "careNotes": [
+        { "text": "Keep the soil steadily moist while the curd forms; check it often.", "sources": ["S50"] },
+        { "text": "Transplant young seedlings: overgrown ones tend to form tiny \"button\" curds.", "sources": ["S51"] },
+        { "text": "Curds discolour in direct sun.", "sources": ["S89"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "beetroot",
+      "commonName": "Beetroot",
+      "localNames": ["Chukandar"],
+      "names": { "hi": "चुकंदर" },
+      "scientificName": "Beta vulgaris",
+      "category": "vegetable",
+      "lifecycle": "annual",
+      "sun": { "level": "partial", "minHours": null, "sources": ["S52"] },
+      "container": { "status": "verified", "minVolumeL": 1.9, "recommendedVolumeL": null, "minDepthCm": 20, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "At least a 2-quart (1.9 L) container 8 in (20 cm) deep, plants 2–3 in apart.", "sources": ["S52"] },
+      "daysToHarvest": { "min": 55, "max": 100, "note": "From sowing: 55–60 days in US extension tables; TNAU's roof-garden table gives 90–100.", "sources": ["S52", "S68"] },
+      "sowing": [
+        { "region": "northIndia", "months": [10, 11], "source": "S11" },
+        { "region": "telangana", "months": [8, 9, 10, 11], "source": "S13" },
+        { "region": "tamilNadu", "months": [10, 11, 12], "source": "S68" }
+      ],
+      "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S51"] },
+      "careNotes": [
+        { "text": "Thin to one seedling per spot about 20 days after sowing.", "sources": ["S51"] },
+        { "text": "Pull roots young, 4–7 cm across; bigger ones turn woody.", "sources": ["S90"] }
+      ],
+      "petSafety": { "status": "nonToxic", "note": "Beets are listed as non-toxic to dogs, cats and horses; large mature leaves contain oxalic acid.", "sources": ["S39"] },
+      "dataStatus": "verified"
+    },
+    {
+      "id": "springOnion",
+      "commonName": "Spring onion",
+      "localNames": ["Hara pyaz"],
+      "names": { "hi": "हरा प्याज़" },
+      "scientificName": "Allium cepa (grown for green leaves)",
+      "category": "vegetable",
+      "lifecycle": "annual",
+      "sun": { "level": "partial", "minHours": null, "sources": ["S52"] },
+      "container": { "status": "verified", "minVolumeL": 1.9, "recommendedVolumeL": null, "minDepthCm": 15, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "At least a 2-quart (1.9 L) container 6 in (15 cm) deep, plants 2–3 in apart.", "sources": ["S52"] },
+      "daysToHarvest": { "min": 60, "max": 80, "note": "From sowing.", "sources": ["S52"] },
+      "sowing": [
+        { "region": "northIndia", "months": [8], "source": "S48" }
+      ],
+      "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S91"] },
+      "careNotes": [{ "text": "Sow a small batch every couple of weeks for a steady supply.", "sources": ["S91"] }],
+      "petSafety": { "status": "toxic", "note": "Onion (Allium cepa) is listed as toxic to dogs, cats and horses.", "sources": ["S39"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "garlic",
+      "commonName": "Garlic",
+      "localNames": ["Lehsun"],
+      "names": { "hi": "लहसुन" },
+      "scientificName": "Allium sativum",
+      "category": "vegetable",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
+      "container": { "status": "verified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": 25, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "A container at least 25 cm (10 in) deep, cloves 15 cm (6 in) apart.", "sources": ["S92"] },
+      "daysToHarvest": { "min": 165, "max": 170, "note": "From planting, for the Punjab variety PG 17.", "sources": ["S48"] },
+      "sowing": [
+        { "region": "northIndia", "months": [9, 10], "source": "S48" }
+      ],
+      "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S50"] },
+      "careNotes": [
+        { "text": "A cool-season crop: it does best in mild weather without extremes.", "sources": ["S48"] },
+        { "text": "Containers dry out quickly; check the compost regularly.", "sources": ["S92"] },
+        { "text": "Harvest when the tops turn yellow and start to dry; stop watering about two weeks before, then cure the bulbs in shade for 5–7 days.", "sources": ["S48"] }
+      ],
+      "petSafety": { "status": "toxic", "note": "Garlic is listed as toxic to dogs, cats and horses.", "sources": ["S39"] },
+      "dataStatus": "verified"
+    },
+    {
+      "id": "ginger",
+      "commonName": "Ginger",
+      "localNames": ["Adrak"],
+      "names": { "hi": "अदरक" },
+      "scientificName": "Zingiber officinale",
+      "category": "herb",
+      "lifecycle": "perennial",
+      "sun": { "level": "partial", "minHours": null, "sources": ["S40"] },
+      "container": { "status": "verified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": 30, "recommendedDepthCm": null, "plantsPerContainer": 3, "note": "Grow bags 30 × 30 cm (12 × 12 in) held three plants in an ICAR demonstration.", "sources": ["S93"] },
+      "daysToHarvest": { "min": 180, "max": 270, "note": "Green ginger from about 6 months; mature rhizomes at 8–9 months after planting.", "sources": ["S50", "S51"] },
+      "sowing": [
+        { "region": "tamilNadu", "months": [5, 6], "source": "S51" },
+        { "region": "kerala", "months": [2, 4], "source": "S50" }
+      ],
+      "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S50"] },
+      "careNotes": [
+        { "text": "Cannot stand waterlogging, but the soil must not dry out completely either; check it.", "sources": ["S50"] },
+        { "text": "Leave room at the top of the pot to add soil as the rhizomes rise.", "sources": ["S94"] },
+        { "text": "Brown leaf tips mean too little water or too much sun.", "sources": ["S94"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "acidLime",
+      "commonName": "Acid lime",
+      "localNames": ["Kagzi nimbu"],
+      "names": { "hi": "कागज़ी नींबू" },
+      "scientificName": "Citrus aurantiifolia",
+      "category": "fruit",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": null, "sources": ["S52"] },
+      "container": { "status": "proxy", "minVolumeL": 56.8, "recommendedVolumeL": null, "minDepthCm": 41, "recommendedDepthCm": null, "plantsPerContainer": 1, "note": "About 15 gallons (57 L), 17 in across and 16 in deep, for limes and other small citrus; not specific to Kagzi lime.", "sources": ["S95"] },
+      "daysToHarvest": null,
+      "sowing": [
+        { "region": "northIndia", "months": [2, 3, 8, 9, 10], "source": "S96" },
+        { "region": "tamilNadu", "months": [6, 7, 8, 9, 10, 11, 12], "source": "S51" }
+      ],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S96"] },
+      "careNotes": [
+        { "text": "A slow start: in Tamil Nadu orchards the first fruit comes 3–4 years after planting.", "sources": ["S51"] },
+        { "text": "Potted citrus can need water daily in hot weather: feel the mix 15–20 cm (6–8 in) down before watering.", "sources": ["S95"] },
+        { "text": "Never leave the pot standing in water.", "sources": ["S97"] },
+        { "text": "Citrus are hungry plants: feed regularly, following the label.", "sources": ["S97"] }
+      ],
+      "petSafety": { "status": "toxic", "note": "Lime (Citrus aurantifolia) is listed as toxic to dogs, cats and horses.", "sources": ["S39"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "bougainvillea",
+      "commonName": "Bougainvillea",
+      "localNames": ["Kagaz phool"],
+      "names": { "hi": "बोगनविलिया" },
+      "scientificName": "Bougainvillea glabra",
+      "category": "flower",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No pot size was given. Needs well-drained, slightly acidic soil that is never constantly wet; dwarf varieties suit containers.", "sources": ["S98"] },
+      "daysToHarvest": null,
+      "sowing": [],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S98"] },
+      "careNotes": [
+        { "text": "Flowers form on new growth: prune after flowering (May–June in North India) and pinch potted plants to keep them bushy.", "sources": ["S98"] },
+        { "text": "Water deeply, then let the soil dry. Too much water while it flowers makes the bracts drop.", "sources": ["S98", "S40"] },
+        { "text": "Too much fertiliser gives leaves instead of flowers.", "sources": ["S98"] },
+        { "text": "Watch for mealybugs, scale and aphids.", "sources": ["S99"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "adenium",
+      "commonName": "Adenium",
+      "localNames": ["Desert rose"],
+      "names": { "hi": "एडेनियम" },
+      "scientificName": "Adenium obesum",
+      "category": "flower",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No size was given. Use cactus and succulent mix in a pot with several drainage holes; sharp drainage prevents rot.", "sources": ["S40", "S100"] },
+      "daysToHarvest": null,
+      "sowing": [],
+      "propagation": { "method": "seed", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S40", "S100"] },
+      "careNotes": [
+        { "text": "Let the soil dry between waterings; soil that stays wet causes rot.", "sources": ["S40"] },
+        { "text": "It often drops its leaves and rests in the cool season.", "sources": ["S100"] },
+        { "text": "Watch for aphids, scale and mealybugs.", "sources": ["S40"] }
+      ],
+      "petSafety": { "status": "toxic", "note": "Desert rose is listed as toxic to dogs, cats and horses (cardiac glycosides). The milky sap is poisonous.", "sources": ["S39", "S100"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "jadePlant",
+      "commonName": "Jade plant",
+      "localNames": [],
+      "names": { "hi": "जेड प्लांट" },
+      "scientificName": "Crassula ovata",
+      "category": "ornamental",
+      "lifecycle": "perennial",
+      "sun": { "level": "partial", "minHours": 4, "sources": ["S101"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No size was given. Use well-drained, loam-rich potting soil or cactus compost.", "sources": ["S40", "S102"] },
+      "daysToHarvest": null,
+      "sowing": [],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S40"] },
+      "careNotes": [
+        { "text": "Water moderately, only when the soil is dry; overwatering causes leaf fall and root rot.", "sources": ["S40"] },
+        { "text": "Needs about 4 hours of direct sun or 12 hours of bright indirect light, with some afternoon shade.", "sources": ["S101"] },
+        { "text": "Watch for aphids, scale, spider mites and mealybugs.", "sources": ["S40"] }
+      ],
+      "petSafety": { "status": "toxic", "note": "Listed (as Crassula argentea, an older name) as toxic to dogs, cats and horses.", "sources": ["S39"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "peaceLily",
+      "commonName": "Peace lily",
+      "localNames": [],
+      "names": { "hi": "पीस लिली" },
+      "scientificName": "Spathiphyllum spp.",
+      "category": "ornamental",
+      "lifecycle": "perennial",
+      "sun": { "level": "indirect", "minHours": null, "sources": ["S103"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No size was given. Repot only when rootbound, into a pot a few centimetres larger.", "sources": ["S104"] },
+      "daysToHarvest": null,
+      "sowing": [],
+      "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S104"] },
+      "careNotes": [
+        { "text": "Water once the top few centimetres of compost are dry; compost kept wet for long causes root rot.", "sources": ["S104"] },
+        { "text": "Keep it in bright, indirect light: too little light is the usual reason it does not flower.", "sources": ["S104"] },
+        { "text": "Watch for mealybugs and scale.", "sources": ["S103"] }
+      ],
+      "petSafety": { "status": "toxic", "note": "Peace lily is listed as toxic to dogs and cats (insoluble calcium oxalates).", "sources": ["S39"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "rubberPlant",
+      "commonName": "Rubber plant",
+      "localNames": [],
+      "names": { "hi": "रबर प्लांट" },
+      "scientificName": "Ficus elastica",
+      "category": "ornamental",
+      "lifecycle": "perennial",
+      "sun": { "level": "indirect", "minHours": null, "sources": ["S106"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No size was given. Use houseplant compost; top-dress every year and repot every 2–3 years.", "sources": ["S107"] },
+      "daysToHarvest": null,
+      "sowing": [],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S107"] },
+      "careNotes": [
+        { "text": "Water regularly but don't overwater; overwatering and cold draughts make it drop leaves. A few yellowing lower leaves are normal.", "sources": ["S40"] },
+        { "text": "Prune the main branches for a bushier plant.", "sources": ["S106"] },
+        { "text": "Watch for scale, aphids, mealybugs, thrips and spider mites.", "sources": ["S106"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "zzPlant",
+      "commonName": "ZZ plant",
+      "localNames": [],
+      "names": { "hi": "ZZ प्लांट" },
+      "scientificName": "Zamioculcas zamiifolia",
+      "category": "ornamental",
+      "lifecycle": "perennial",
+      "sun": { "level": "indirect", "minHours": null, "sources": ["S40"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No size was given. Use well-drained potting soil; repot only every 2–3 years or when root-bound, into a slightly larger pot.", "sources": ["S40", "S108"] },
+      "daysToHarvest": null,
+      "sowing": [],
+      "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S40"] },
+      "careNotes": [
+        { "text": "Water sparingly: let the compost dry out completely between waterings, and never leave it standing in water.", "sources": ["S108"] },
+        { "text": "Direct sun can scorch and brown the leaves.", "sources": ["S40"] },
+        { "text": "Few problems; watch for scale insects.", "sources": ["S40"] }
+      ],
+      "petSafety": { "status": "toxic", "note": "ASPCA lists ZZ plant among calcium-oxalate houseplants that are toxic to pets, usually with low severity.", "sources": ["S109"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "syngonium",
+      "commonName": "Syngonium",
+      "localNames": ["Arrowhead plant"],
+      "names": { "hi": "सिंगोनियम" },
+      "scientificName": "Syngonium podophyllum",
+      "category": "ornamental",
+      "lifecycle": "perennial",
+      "sun": { "level": "indirect", "minHours": null, "sources": ["S110"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No size was given. Use a soil-based potting mix; it can climb a moss pole or trail from a hanging basket.", "sources": ["S110"] },
+      "daysToHarvest": null,
+      "sowing": [],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S111"] },
+      "careNotes": [
+        { "text": "Keep it out of direct sun, which burns or bleaches the leaves.", "sources": ["S40"] },
+        { "text": "Cut off stems as they start to climb to keep the arrowhead-shaped leaves.", "sources": ["S40"] },
+        { "text": "Watch for mealybugs, aphids, scale and spider mites.", "sources": ["S110"] }
+      ],
+      "petSafety": { "status": "toxic", "note": "Arrowhead vine is listed as toxic to dogs, cats and horses (insoluble calcium oxalates).", "sources": ["S39"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "chrysanthemum",
+      "commonName": "Chrysanthemum",
+      "localNames": ["Guldaudi"],
+      "names": { "hi": "गुलदाउदी" },
+      "scientificName": "Chrysanthemum × morifolium",
+      "category": "flower",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No size was given. ICAR's pot mix: garden soil, sand and leaf mould or well-rotted manure (2:1:1), one rooted cutting per pot; it needs good drainage.", "sources": ["S112"] },
+      "daysToHarvest": null,
+      "sowing": [
+        { "region": "tamilNadu", "months": [4, 5, 6, 7], "source": "S51" }
+      ],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S112"] },
+      "careNotes": [
+        { "text": "Pinch the shoot tips 4 and 7 weeks after planting for more side branches.", "sources": ["S112"] },
+        { "text": "Stake potted plants; standard varieties are disbudded in August–September.", "sources": ["S112"] },
+        { "text": "Aphids and thrips stop buds opening; washing the plants with soapy water works well.", "sources": ["S112"] },
+        { "text": "It flowers as days shorten, from about October to December.", "sources": ["S112"] }
+      ],
+      "petSafety": { "status": "toxic", "note": "Chrysanthemums are listed as toxic to dogs, cats and horses.", "sources": ["S39"] },
       "dataStatus": "partial"
     }
   ]

@@ -16,6 +16,7 @@ extension PlantCategoryLabel on PlantCategory {
     PlantCategory.climber => l10n.categoryClimber,
     PlantCategory.flower => l10n.categoryFlower,
     PlantCategory.ornamental => l10n.categoryOrnamental,
+    PlantCategory.fruit => l10n.categoryFruit,
   };
 
   IconData get icon => switch (this) {
@@ -25,6 +26,7 @@ extension PlantCategoryLabel on PlantCategory {
     PlantCategory.climber => Icons.fence_outlined,
     PlantCategory.flower => Icons.local_florist_outlined,
     PlantCategory.ornamental => Icons.spa_outlined,
+    PlantCategory.fruit => Icons.park_outlined,
   };
 }
 

@@ -14,6 +14,7 @@ import 'package:terrace_garden/core/widgets/section_header.dart';
 import 'package:terrace_garden/features/care/care.dart';
 import 'package:terrace_garden/features/settings/application/settings_controller.dart';
 import 'package:terrace_garden/features/settings/domain/app_settings.dart';
+import 'package:terrace_garden/features/subscription/subscription.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
 /// SET-01. Theme, units and the daily care reminder; data export arrives
@@ -113,6 +114,20 @@ class _SettingsList extends ConsumerWidget {
             AppSpacing.xxl,
           ),
           children: [
+            ListTile(
+              key: const Key('yourPlan'),
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.workspace_premium_outlined),
+              title: Text(l10n.settingsPlan),
+              subtitle: Text(
+                ref.watch(entitlementsProvider).isPlus
+                    ? l10n.settingsPlanPlus
+                    : l10n.settingsPlanFree,
+              ),
+              trailing: const Icon(Icons.chevron_right_rounded),
+              onTap: () => context.push(AppRoutes.plus),
+            ),
+            const SizedBox(height: AppSpacing.lg),
             SectionHeader(title: l10n.settingsAppearance),
             Text(l10n.settingsTheme, style: theme.textTheme.titleSmall),
             const SizedBox(height: AppSpacing.sm),

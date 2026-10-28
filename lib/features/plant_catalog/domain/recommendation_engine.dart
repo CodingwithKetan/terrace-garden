@@ -367,5 +367,6 @@ abstract final class RecommendationEngine {
     PlantCategory.herb => GardenGoal.herbs,
     PlantCategory.flower => GardenGoal.flowers,
     PlantCategory.ornamental => GardenGoal.ornamental,
+    PlantCategory.fruit => GardenGoal.fruit,
   };
 }

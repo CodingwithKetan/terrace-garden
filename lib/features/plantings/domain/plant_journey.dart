@@ -88,6 +88,7 @@ final class PlantJourney {
     PlantCategory.leafyGreen,
     PlantCategory.climber,
     PlantCategory.herb,
+    PlantCategory.fruit,
   };
 
   final List<JourneyMilestone> milestones;

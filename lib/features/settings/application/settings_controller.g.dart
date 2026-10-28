@@ -89,7 +89,7 @@ final class SettingsControllerProvider
 }
 
 String _$settingsControllerHash() =>
-    r'982609156fe14ad58f7b48900caa35d06cc6b391';
+    r'360292e664a5b44048eac0a28c4dd90847ec7e87';
 
 /// App-wide settings state. Updates are optimistic: the UI changes at once and
 /// rolls back if saving fails.

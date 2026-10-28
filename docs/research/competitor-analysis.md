@@ -1339,3 +1339,53 @@ Lead with *local outcomes* (what to grow now, how many bags, will my roof cope).
 - S56. Citizen Matters – home gardening lessons from Hyderabad (2021): https://citizenmatters.in/guide-to-home-gardening-lessons-from-hyderabad
 - S57. Livingetc – container gardening mistakes: https://livingetc.com/advice/container-gardening-mistakes-to-avoid ; Planters Place: https://plantersplace.com/container-gardening/container-corner/common-mistakes-when-gardening-in-containers
 - S58. IBEF – urban farming in metro cities: https://www.ibef.org/blogs/how-urban-farming-is-gaining-ground-in-india-s-metro-cities
+
+---
+
+# Part E: What competitors charge for (research date 2026-10-29)
+
+**Method:** official sites, help centres and App Store listings (US and India storefronts); Google Play pages did not render for the researcher. Plan lengths on App Store listings are often unlabelled; (3P) marks third-party sources and (UNVERIFIED) marks claims not confirmed on a page read directly.
+
+## E1. Free vs paid
+
+| App | Free | Paid | Price as listed | Sources |
+|---|---|---|---|---|
+| Planta | "limited access"; watering reminders | ID, care schedules other than watering, Dr. Planta, light meter, recommendations | India ₹649/month, ₹1,649–4,999/year; US $7.99–9.99/month, $35.99–47.99/year | support.getplanta.com/do-planta-offer-a-free-trial-of-premium; apps.apple.com/in/app/id1410126781 |
+| Greg | Plant ID ("for free!"), communities | Precision watering, smart reminders, light gauge, weather-adapted "Seasonal Updates" | US $29.99/year (7-day trial); India ₹619–4,999 | apps.apple.com/us/app/id1512912236; apps.apple.com/in/app/id1512912236 |
+| PictureThis | A few IDs via credits (3P) | Unlimited ID, care tips, diagnosis; Family Plan | US $39.99 (most SKUs), Family $49.99 | apps.apple.com/app/1252497129; commonsensemedia.org (3P) |
+| Blossom | 3–4 trial uses (review) | Unlimited ID and diagnosis, water calculator, AI botanist | India ₹599/month, ₹4,999–6,900/year, weekly ₹499–799 | apps.apple.com/in/app/id1487453649 |
+| Planter | 1 garden, calendar, custom plants, seed box | Unlimited gardens, no ads, notes and events, web app | $24.99/year, $99.99 lifetime; India ₹1,199–2,499/year, ₹7,900–9,900 lifetime | planter.garden; apps.apple.com/in/app/id1542642210 |
+| GrowVeg / Almanac | 7-day trial only | Everything (planner, rotation, succession, reminders, journal) | $35/year | growveg.com/subscribeinfo.aspx |
+| Fryd | Library, magazine, community | Planning, tasks and journal ("Super Fryd") | €10/month, €40/year, €165 lifetime; India ₹999/month, ₹4,999/year | fryd.app/en/support/is-fryd-free; apps.apple.com/in/app/id1492138640 |
+| Seedtime | Frost dates, plans, weekly tasks, 8 beds, journal | Custom crops, AI credits, weather; unlimited layouts, harvest tracking | $7 or $14/month billed yearly | seedtime.us/pages/free |
+| Gardenize | Basic functions; unlimited plants and areas | ID, zone care, variety database, **export** (inferred from table) | India ₹619/month, ₹3,199/year | gardenize.com/de/abonnement/; apps.apple.com/in/app/id1118448120 |
+| Seed to Spoon | 10 plants, 3 bot questions/day (3P) | Unlimited tracking, plans, free shipping | $4.99/month, $46.99/year | apps.apple.com/us/app/id1312538762 |
+| Plantix | Everything (diagnosis, community, calculator, marketplace) | none for users (B2B revenue) | Free | plantix.net; agritechobservatory.review.fao.org/en/plantix-crop-doctor |
+| KhetiBuddy Home Gardening (India) | 1 plant schedule, reminders, 5 advisory queries | Unlimited schedules, video consultation, expert advice | Prices not shown | gardening.khetibuddy.com/pricing-1 |
+
+## E2. Features we lack, most common first
+
+1. Plant ID from a photo (paid or capped; needs a server or on-device model).
+2. Disease and pest diagnosis from a photo (paid except Plantix; server; risky under our no-invented-facts rule).
+3. Weather-adjusted care (paid; needs a weather API).
+4. Expert or botanist help (paid; human or AI cost).
+5. Cloud backup, sync, web access (paid or account-based; server).
+6. Family or shared care (paid; server).
+7. Community (free; server plus moderation).
+8. Planning helpers: companion, rotation, succession, ready-made plans (mixed; on-device, needs sourcing).
+9. Light meter, watering calculator (paid; on-device; a watering amount conflicts with our "check the soil" rule).
+10. AI chat, shop links (server; partnerships).
+
+**Where we are ahead:** free data export (Gardenize charges for it), a free unlimited to-scale layout (Planter: 1 garden free; GrowVeg: trial only), sourced Indian regional data and Hindi (only Plantix offers Indian languages).
+
+## E3. Complaints about paywalls and billing
+
+- Charged for a full year right after a trial; no renewal reminder (PictureThis, Trustpilot, 2026).
+- "Advertised as free", trial converts, price rises; constant prompts (Blossom).
+- Weekly plans and core features locked (Greg, 2025).
+- No trial, accidental charges (Planta, App Store India).
+- **Free features moved behind the paywall** (Seed to Spoon: tracking was free in beta).
+- Export locked, data "held hostage" (Gardenize, 3P, UNVERIFIED).
+- One-time or lifetime purchases are praised (Planter, Seedtime).
+
+**Implications:** price well below the ₹500–1,000/month band; no weekly plans or trial traps; never move a released free feature behind the paywall; keep export free; offer a one-time lifetime option.

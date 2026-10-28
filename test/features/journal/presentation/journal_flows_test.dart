@@ -12,6 +12,8 @@ import 'package:terrace_garden/features/journal/domain/journal_entry.dart';
 import 'package:terrace_garden/features/plantings/data/drift_planting_repository.dart';
 import 'package:terrace_garden/features/plantings/domain/planting.dart';
 
+import 'package:terrace_garden/features/subscription/domain/plan.dart';
+
 import '../../../helpers/test_app.dart';
 
 void main() {
@@ -149,6 +151,8 @@ void main() {
   testWidgets('stats sum harvests; two photos can be compared', (
     tester,
   ) async {
+    // Photo comparison is a Plus feature (ADR-028).
+    app.purchases.plan = Plan.plus;
     await seed();
     final gardenId =
         (await app.database.select(app.database.gardens).getSingle()).id;

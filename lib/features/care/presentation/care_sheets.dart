@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:terrace_garden/app/di/core_providers.dart';
+import 'package:terrace_garden/app/router/app_router.dart';
 import 'package:terrace_garden/app/theme/app_tokens.dart';
 import 'package:terrace_garden/app/theme/care_colors.dart';
 import 'package:terrace_garden/core/time/local_date.dart';
@@ -47,8 +49,8 @@ Future<void> showTaskGuide(
     title: species == null
         ? type.label(l10n)
         : '${type.label(l10n)} · ${species.name(l10n)}',
-    builder: (context) {
-      final theme = Theme.of(context);
+    builder: (sheet) {
+      final theme = Theme.of(sheet);
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -63,6 +65,17 @@ Future<void> showTaskGuide(
               style: theme.textTheme.bodySmall?.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
               ),
+            ),
+          ],
+          if (type == CareTaskType.inspectPests) ...[
+            const SizedBox(height: AppSpacing.sm),
+            TextButton.icon(
+              icon: const Icon(Icons.bug_report_outlined),
+              label: Text(l10n.pestOpenGuide),
+              onPressed: () {
+                Navigator.of(sheet).pop();
+                unawaited(context.push(AppRoutes.pests));
+              },
             ),
           ],
         ],

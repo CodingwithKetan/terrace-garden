@@ -21,6 +21,8 @@ import 'package:terrace_garden/features/journal/presentation/journal_labels.dart
 import 'package:terrace_garden/features/plant_catalog/plant_catalog.dart';
 import 'package:terrace_garden/features/plantings/domain/planting.dart';
 import 'package:terrace_garden/features/plantings/plantings.dart';
+import 'package:terrace_garden/features/subscription/domain/plan.dart';
+import 'package:terrace_garden/features/subscription/subscription.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
 /// JRN-02. A dated note with optional photos, plant, milestone and harvest.
@@ -66,6 +68,25 @@ class _JournalEntryScreenState extends ConsumerState<JournalEntryScreen> {
   Future<void> _addPhotos() async {
     final l10n = context.l10n;
     final messenger = ScaffoldMessenger.of(context);
+    // Free plan: a journal-wide photo limit (ADR-028); photos already
+    // saved always stay.
+    final saved = [
+      for (final e
+          in ref.read(journalEntriesProvider).value ?? const <JournalEntry>[])
+        ...e.photos,
+    ].length;
+    final entitlements = ref.read(entitlementsProvider);
+    final inUse = saved + _photos.length;
+    if (!await requirePlus(
+      context,
+      ref,
+      PlusFeature.morePhotos,
+      allowed: entitlements.canAddJournalPhotos(existing: inUse, adding: 1),
+      count: inUse,
+    )) {
+      return;
+    }
+    if (!mounted) return;
     final source = await showPhotoSourceSheet(context);
     if (source == null) return;
     final picked = await ref
@@ -79,8 +100,9 @@ class _JournalEntryScreenState extends ConsumerState<JournalEntryScreen> {
           SnackBar(content: Text(ErrorState.messageFor(l10n, failure))),
         );
       case Ok(value: final paths):
+        final left = entitlements.journalPhotosLeft(existing: inUse);
         setState(() {
-          _photos.addAll(paths);
+          _photos.addAll(left == null ? paths : paths.take(left));
           if (_photos.length > DriftJournalRepository.maxPhotos) {
             _photos.removeRange(
               DriftJournalRepository.maxPhotos,

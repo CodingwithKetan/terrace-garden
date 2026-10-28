@@ -47,7 +47,7 @@ final class SelectedGardenIdProvider
   }
 }
 
-String _$selectedGardenIdHash() => r'008dfbd5d7a668485acac1fec71755c4d6c3bb45';
+String _$selectedGardenIdHash() => r'2c80c07d9bd6ea087462856e3d4265c44807ded7';
 
 /// The garden Today and Seasons show. Null until the user picks one, which
 /// means "the first garden".

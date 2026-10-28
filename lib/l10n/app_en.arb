@@ -1,9 +1,9 @@
 {
   "@@locale": "en",
-
   "appTitle": "Terrace Garden",
-  "@appTitle": { "description": "Working product name shown in the app bar and task switcher." },
-
+  "@appTitle": {
+    "description": "Working product name shown in the app bar and task switcher."
+  },
   "navToday": "Today",
   "navGarden": "Garden",
   "navSeasons": "Seasons",
@@ -11,14 +11,12 @@
   "navJournal": "Journal",
   "settingsTitle": "Settings",
   "settingsTooltip": "Settings",
-
   "todayEmptyTitle": "Your garden day starts here",
   "todayEmptyBody": "Once you've set up a garden and added plants, your care tasks for today will appear here, with a reminder to check the soil before you water.",
   "gardenEmptyTitle": "Plan your terrace or balcony",
   "gardenEmptyBody": "Describe your space, add photos and keep everything about your terrace in one place.",
   "journalEmptyTitle": "Watch your garden grow",
   "journalEmptyBody": "Progress photos, notes and harvests will collect here once your garden is growing.",
-
   "greetingMorning": "Good morning",
   "greetingAfternoon": "Good afternoon",
   "greetingEvening": "Good evening",
@@ -27,8 +25,9 @@
   "tipWateringTitle": "Before you water",
   "tipWateringBody": "Push a finger about 2–3 cm into the soil. Water only if it feels dry, then water slowly until it drains from the bottom of the pot.",
   "tipWateringSource": "Source: Royal Horticultural Society",
-  "@tipWateringSource": { "description": "Provenance for the watering tip (gardening-references S5, S6)." },
-
+  "@tipWateringSource": {
+    "description": "Provenance for the watering tip (gardening-references S5, S6)."
+  },
   "onbWelcomeTitle": "Grow a garden that suits your terrace",
   "onbBenefitPlan": "Plan your real space with pots and grow bags to scale",
   "onbBenefitSeason": "Plant ideas for your city and season",
@@ -36,7 +35,16 @@
   "onbStart": "Set up my garden",
   "onbExplore": "I'll explore first",
   "onbStepOf": "Step {step} of {total}",
-  "@onbStepOf": { "placeholders": { "step": { "type": "int" }, "total": { "type": "int" } } },
+  "@onbStepOf": {
+    "placeholders": {
+      "step": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "onbSpaceTitle": "Tell us about your space",
   "onbLightTitle": "Light and location",
   "onbOptionalHint": "Everything here is optional. Choose \"Not sure\" if you don't know.",
@@ -44,7 +52,6 @@
   "onbReadyTitle": "Ready to create your garden",
   "onbReadyBody": "You can add photos, measurements and plants at any time.",
   "onbCreateGarden": "Create my garden",
-
   "actionContinue": "Continue",
   "actionSkip": "Skip",
   "actionSave": "Save",
@@ -54,7 +61,6 @@
   "notSure": "Not sure",
   "notSet": "Not set",
   "notSetAdd": "Not set · Add",
-
   "fieldGardenName": "Garden name",
   "defaultGardenName": "My terrace",
   "fieldSpaceType": "Type of space",
@@ -128,13 +134,11 @@
   "errNameRequired": "Give your garden a name",
   "errNameTooLong": "Use 60 characters or fewer",
   "errDimension": "Enter a size above 0 and up to 200 m (656 ft)",
-
   "regionNorthIndia": "North India",
   "regionSouthIndia": "South India",
   "regionTelangana": "Telangana",
   "regionTamilNadu": "Tamil Nadu",
   "regionKerala": "Kerala",
-
   "gardensTitle": "Your gardens",
   "gardenCreateAction": "Create your garden",
   "gardenNew": "New garden",
@@ -145,14 +149,29 @@
   "gardenSize": "Size",
   "gardenArea": "Area",
   "gardenSizeValue": "{length} × {width}",
-  "@gardenSizeValue": { "placeholders": { "length": { "type": "String" }, "width": { "type": "String" } } },
+  "@gardenSizeValue": {
+    "placeholders": {
+      "length": {
+        "type": "String"
+      },
+      "width": {
+        "type": "String"
+      }
+    }
+  },
   "gardenLocation": "Location",
   "gardenRegion": "Growing region",
   "gardenPhotos": "Photos",
   "gardenPhotosEmpty": "Add photos of your space from a few angles. Photos are for your records; measurements always come from what you enter.",
   "gardenDelete": "Delete garden",
   "gardenDeleteTitle": "Delete {name}?",
-  "@gardenDeleteTitle": { "placeholders": { "name": { "type": "String" } } },
+  "@gardenDeleteTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "gardenDeleteBody": "This removes the garden, its photos and everything recorded for it. This can't be undone.",
   "gardenDeleted": "Garden deleted",
   "gardenSaved": "Garden saved",
@@ -160,7 +179,6 @@
   "unsavedBody": "Your changes to this garden haven't been saved.",
   "unsavedDiscard": "Discard",
   "moreActions": "More actions",
-
   "photosTitle": "Photos",
   "photoAdd": "Add photo",
   "photoTake": "Take a photo",
@@ -177,8 +195,13 @@
   "photoPermission": "Allow camera or photo access for Terrace Garden in your phone's settings, or choose a photo from your gallery instead.",
   "photoAdding": "Adding photo…",
   "photoCount": "{count, plural, =0{No photos} =1{1 photo} other{{count} photos}}",
-  "@photoCount": { "placeholders": { "count": { "type": "int" } } },
-
+  "@photoCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "checklistTitle": "Terrace care checklist",
   "checklistSubtitle": "Weight, drainage, waterproofing, monsoon and heat",
   "checklistIntro": "Practical points for terraces and balconies. This is general guidance, not a structural assessment of your building.",
@@ -200,11 +223,16 @@
   "checkHeatTitle": "Protect plants from summer heat",
   "checkHeatBody": "Small, dark and metal pots heat up and dry out fast, and south- and west-facing spots dry quickest. Group pots together, mulch the soil, and water early in the morning.",
   "checkHeatSources": "Sources: Royal Horticultural Society; University of Maryland Extension",
-
   "designOpen": "Design your layout",
   "designOpenSubtitle": "Arrange pots, grow bags and beds to scale",
   "layoutObjectCount": "{count, plural, =1{1 object in your layout} other{{count} objects in your layout}}",
-  "@layoutObjectCount": { "placeholders": { "count": { "type": "int" } } },
+  "@layoutObjectCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "designerTitle": "Layout",
   "designerAdd": "Add",
   "designerUndo": "Undo",
@@ -222,9 +250,21 @@
   "designerNeedsSizeBody": "The layout uses real measurements, so it needs the length and width of the usable floor.",
   "designerStart": "Start designing",
   "designerProblems": "{count, plural, =1{1 problem} other{{count} problems}}",
-  "@designerProblems": { "placeholders": { "count": { "type": "int" } } },
+  "@designerProblems": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "designerCanvasLabel": "Garden layout, {count, plural, =0{no objects} =1{1 object} other{{count} objects}}. Use the Objects list to review and edit them.",
-  "@designerCanvasLabel": { "placeholders": { "count": { "type": "int" } } },
+  "@designerCanvasLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "issueOutOfBounds": "Outside the garden",
   "issueOverlap": "Overlaps another object",
   "issueOnPath": "Standing on a path",
@@ -247,7 +287,13 @@
   "fieldLabel": "Label (optional)",
   "fieldLabelHint": "e.g. Tomatoes",
   "degreesValue": "{degrees}°",
-  "@degreesValue": { "placeholders": { "degrees": { "type": "int" } } },
+  "@degreesValue": {
+    "placeholders": {
+      "degrees": {
+        "type": "int"
+      }
+    }
+  },
   "actionRotate": "Rotate 90°",
   "actionDuplicate": "Duplicate",
   "actionDone": "Done",
@@ -257,12 +303,17 @@
   "summaryGardenArea": "Garden area",
   "summaryContainerArea": "Covered by containers",
   "summaryContainerShare": "{percent}% of the floor",
-  "@summaryContainerShare": { "placeholders": { "percent": { "type": "int" } } },
+  "@summaryContainerShare": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
   "summaryWalkway": "Paths",
   "summarySoil": "Soil needed",
   "summaryCounts": "Objects",
   "summaryNote": "Soil is each container's footprint × the soil depth you entered. Fill grow bags to about three quarters (Kerala Agricultural University) and check the weight guidance in the terrace checklist.",
-
   "settingsAppearance": "Appearance",
   "settingsTheme": "Theme",
   "themeSystem": "System",
@@ -277,8 +328,13 @@
   "imageCreditsTitle": "Image credits",
   "imageCreditsSubtitle": "Photographers and licences for the photos in this app",
   "imageCreditsBy": "Photo by {author}",
-  "@imageCreditsBy": { "placeholders": { "author": { "type": "String" } } },
-
+  "@imageCreditsBy": {
+    "placeholders": {
+      "author": {
+        "type": "String"
+      }
+    }
+  },
   "errorGenericTitle": "Something went wrong",
   "errorGenericBody": "Please try again. If it keeps happening, restart the app.",
   "errorNotFound": "We couldn't find that item. It may have been deleted.",
@@ -290,7 +346,6 @@
   "actionDelete": "Delete",
   "actionOpenSettings": "Open settings",
   "loadingLabel": "Loading",
-
   "plantsTitle": "Plants",
   "plantsSearchHint": "Search, e.g. bhindi or tulsi",
   "plantsFilterAll": "All",
@@ -308,7 +363,13 @@
   "plantsNoResultsBody": "Try a common name, a local name or a different category.",
   "plantsCatalogueNote": "Every fact is linked to its source. Anything not documented is shown as such, never guessed.",
   "plantsIdeasFor": "Ideas for {garden}",
-  "@plantsIdeasFor": { "placeholders": { "garden": { "type": "String" } } },
+  "@plantsIdeasFor": {
+    "placeholders": {
+      "garden": {
+        "type": "String"
+      }
+    }
+  },
   "plantsIdeasSubtitle": "Ranked for your space, season and containers",
   "lifecycleAnnual": "Annual",
   "lifecyclePerennial": "Perennial",
@@ -316,14 +377,25 @@
   "dataStatusPartial": "Partly documented",
   "dataStatusUnverified": "Few sourced facts",
   "notDocumented": "Not documented",
-
   "plantSectionSun": "Sunlight",
   "sunFull": "Full sun",
   "sunFullHours": "Full sun, at least {hours} hours a day",
-  "@sunFullHours": { "placeholders": { "hours": { "type": "int" } } },
+  "@sunFullHours": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
   "sunPartial": "Tolerates partial shade",
   "sunPartialHours": "Sun or partial shade, at least {hours} hours of direct sun",
-  "@sunPartialHours": { "placeholders": { "hours": { "type": "int" } } },
+  "@sunPartialHours": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
   "sunIndirect": "Bright indirect light",
   "plantSectionContainer": "Container",
   "containerMinSoil": "Minimum soil",
@@ -336,13 +408,37 @@
   "evidenceUnverified": "Size not documented",
   "plantSectionHarvest": "Time to first harvest",
   "harvestDays": "{min}–{max} days",
-  "@harvestDays": { "placeholders": { "min": { "type": "int" }, "max": { "type": "int" } } },
+  "@harvestDays": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
   "harvestDaysSingle": "About {days} days",
-  "@harvestDaysSingle": { "placeholders": { "days": { "type": "int" } } },
+  "@harvestDaysSingle": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
   "plantSectionSowing": "Sowing or planting months",
   "sowingYearRound": "All year",
   "sowingFallback": "No {state} table for this plant; showing {region} months.",
-  "@sowingFallback": { "placeholders": { "state": { "type": "String" }, "region": { "type": "String" } } },
+  "@sowingFallback": {
+    "placeholders": {
+      "state": {
+        "type": "String"
+      },
+      "region": {
+        "type": "String"
+      }
+    }
+  },
   "sowingNone": "No sourced sowing calendar for this plant.",
   "plantSectionPropagation": "How to start",
   "propagationTransplant": "Raise seedlings, then transplant",
@@ -351,7 +447,16 @@
   "propagationDivision": "By dividing a clump",
   "propagationCutting": "From cuttings",
   "propagationNursery": "Transplant after {min}–{max} days in a nursery tray",
-  "@propagationNursery": { "placeholders": { "min": { "type": "int" }, "max": { "type": "int" } } },
+  "@propagationNursery": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
   "plantSectionCare": "Care notes",
   "plantSectionPets": "Pets",
   "petToxic": "Toxic to pets",
@@ -362,10 +467,18 @@
   "plantSourcesNote": "Facts are summarised from these publications.",
   "plantAddToGarden": "Add to a garden",
   "plantNotFound": "This plant is no longer in the catalogue.",
-
   "recTitle": "Plant ideas",
   "recSubtitle": "For {garden} in {month}",
-  "@recSubtitle": { "placeholders": { "garden": { "type": "String" }, "month": { "type": "String" } } },
+  "@recSubtitle": {
+    "placeholders": {
+      "garden": {
+        "type": "String"
+      },
+      "month": {
+        "type": "String"
+      }
+    }
+  },
   "recDisclaimer": "Ranked from your garden profile and sourced plant data. A starting point, not a promise of success.",
   "recCompleteProfile": "Add your sun hours and city to sharpen these ideas.",
   "recGroupGoodNow": "Good choices now",
@@ -379,13 +492,31 @@
   "recSunSpeciesUnknown": "Light needs not documented",
   "recSowNow": "Sow now",
   "recSowSoon": "Sow from {month}",
-  "@recSowSoon": { "placeholders": { "month": { "type": "String" } } },
+  "@recSowSoon": {
+    "placeholders": {
+      "month": {
+        "type": "String"
+      }
+    }
+  },
   "recSowLater": "Next sowing: {month}",
-  "@recSowLater": { "placeholders": { "month": { "type": "String" } } },
+  "@recSowLater": {
+    "placeholders": {
+      "month": {
+        "type": "String"
+      }
+    }
+  },
   "recNoRegion": "No sourced sowing calendar for your city yet",
   "recNoSeasonData": "No sowing data for your region",
   "recContainerFits": "{count, plural, =1{1 of your containers is big enough} other{{count} of your containers are big enough}}",
-  "@recContainerFits": { "placeholders": { "count": { "type": "int" } } },
+  "@recContainerFits": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "recContainerTooSmall": "None of your containers is big enough yet",
   "recNoContainers": "Add containers in the designer to check size",
   "recContainerUnknown": "Container size not documented",
@@ -398,11 +529,22 @@
   "recShortlistRemove": "Remove from shortlist",
   "recShortlistOnly": "Shortlist",
   "recShortlistEmpty": "Nothing shortlisted yet. Tap the bookmark on any idea to save it.",
-
   "plantingAddTitle": "Add {plant}",
-  "@plantingAddTitle": { "placeholders": { "plant": { "type": "String" } } },
+  "@plantingAddTitle": {
+    "placeholders": {
+      "plant": {
+        "type": "String"
+      }
+    }
+  },
   "plantingEditTitle": "Edit {plant}",
-  "@plantingEditTitle": { "placeholders": { "plant": { "type": "String" } } },
+  "@plantingEditTitle": {
+    "placeholders": {
+      "plant": {
+        "type": "String"
+      }
+    }
+  },
   "plantingGarden": "Garden",
   "plantingContainer": "Container",
   "plantingNotPlaced": "Not placed yet",
@@ -417,34 +559,93 @@
   "plantingSave": "Add planting",
   "plantingUpdate": "Save changes",
   "plantingAdded": "{plant} added to {garden}",
-  "@plantingAdded": { "placeholders": { "plant": { "type": "String" }, "garden": { "type": "String" } } },
+  "@plantingAdded": {
+    "placeholders": {
+      "plant": {
+        "type": "String"
+      },
+      "garden": {
+        "type": "String"
+      }
+    }
+  },
   "plantingNoGardens": "Create a garden first, then add plants to it.",
   "plantingIssueLowVolume": "This container holds about {actual}; this plant needs at least {required}.",
-  "@plantingIssueLowVolume": { "placeholders": { "actual": { "type": "String" }, "required": { "type": "String" } } },
+  "@plantingIssueLowVolume": {
+    "placeholders": {
+      "actual": {
+        "type": "String"
+      },
+      "required": {
+        "type": "String"
+      }
+    }
+  },
   "plantingIssueShallow": "This container is {actual} deep; this plant needs at least {required}.",
-  "@plantingIssueShallow": { "placeholders": { "actual": { "type": "String" }, "required": { "type": "String" } } },
+  "@plantingIssueShallow": {
+    "placeholders": {
+      "actual": {
+        "type": "String"
+      },
+      "required": {
+        "type": "String"
+      }
+    }
+  },
   "plantingIssueCrowded": "Rough guide: about {capacity} of these plants fit this container (scaled from the source's per-container figure).",
-  "@plantingIssueCrowded": { "placeholders": { "capacity": { "type": "int" } } },
+  "@plantingIssueCrowded": {
+    "placeholders": {
+      "capacity": {
+        "type": "int"
+      }
+    }
+  },
   "plantingIssueShared": "{count, plural, =1{1 other planting already uses this container.} other{{count} other plantings already use this container.}}",
-  "@plantingIssueShared": { "placeholders": { "count": { "type": "int" } } },
+  "@plantingIssueShared": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "plantingIssueNoDepth": "Set this container's soil depth in the designer to check its size.",
   "quantityDecrease": "Fewer",
   "quantityIncrease": "More",
   "myPlantsTitle": "My plants",
   "myPlantsEmpty": "No plants yet. Find ideas that suit this space.",
   "plantingSummary": "{count, plural, =1{1 plant} other{{count} plants}} · since {date}",
-  "@plantingSummary": { "placeholders": { "count": { "type": "int" }, "date": { "type": "String" } } },
+  "@plantingSummary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "plantingContainerMissing": "Its container was removed from the layout",
   "plantingRemove": "Remove planting",
   "plantingRemoveTitle": "Remove {plant}?",
-  "@plantingRemoveTitle": { "placeholders": { "plant": { "type": "String" } } },
+  "@plantingRemoveTitle": {
+    "placeholders": {
+      "plant": {
+        "type": "String"
+      }
+    }
+  },
   "plantingRemoveBody": "This removes the planting from this garden.",
   "plantingRemoved": "Planting removed",
   "plantingUnknownSpecies": "Unknown plant",
-
   "digestTitle": "Your garden today",
   "digestBody": "{count, plural, =1{1 care task is due. Check the soil before you water.} other{{count} care tasks are due. Check the soil before you water.}}",
-  "@digestBody": { "placeholders": { "count": { "type": "int" } } },
+  "@digestBody": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "taskCheckSoil": "Check the soil",
   "taskInspectPests": "Look for pests",
   "taskFeed": "Feed",
@@ -460,7 +661,13 @@
   "guideHarvest": "By the sourced timeline this crop may be ready to start harvesting. Timing varies with variety and season and is counted from sowing, so plants started as seedlings may be ready sooner.",
   "guidePrune": "In Tamil Nadu, jasmine (Jasminum sambac) is cut back to about 50 cm in the last week of November.",
   "guideSources": "Sources: {publishers}",
-  "@guideSources": { "placeholders": { "publishers": { "type": "String" } } },
+  "@guideSources": {
+    "placeholders": {
+      "publishers": {
+        "type": "String"
+      }
+    }
+  },
   "todayOverdue": "Overdue",
   "todayDueToday": "Today",
   "todayUpcoming": "Coming up",
@@ -468,7 +675,13 @@
   "todayAllDone": "All done for today",
   "todayAllDoneBody": "Nothing else is due today. Upcoming tasks are below.",
   "todayTasksDue": "{count, plural, =0{No tasks due today} =1{1 task due today} other{{count} tasks due today}}",
-  "@todayTasksDue": { "placeholders": { "count": { "type": "int" } } },
+  "@todayTasksDue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "taskMarkAllDone": "Mark all done",
   "taskDone": "Mark done",
   "taskSkip": "Skip",
@@ -477,7 +690,13 @@
   "taskHowTo": "How to",
   "taskActions": "Task options",
   "taskDueOn": "Due {date}",
-  "@taskDueOn": { "placeholders": { "date": { "type": "String" } } },
+  "@taskDueOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "skipReasonTitle": "Why skip it?",
   "skipRained": "It rained",
   "skipSoilMoist": "Soil is still moist",
@@ -486,19 +705,55 @@
   "taskCompleted": "Marked done",
   "taskSkipped": "Skipped",
   "taskMoved": "Moved to {date}",
-  "@taskMoved": { "placeholders": { "date": { "type": "String" } } },
+  "@taskMoved": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "carePlan": "Care plan",
   "carePlanTitle": "Care plan: {plant}",
-  "@carePlanTitle": { "placeholders": { "plant": { "type": "String" } } },
+  "@carePlanTitle": {
+    "placeholders": {
+      "plant": {
+        "type": "String"
+      }
+    }
+  },
   "carePlanAfterDone": "{days, plural, =1{Every day after the last one is done} other{Every {days} days after the last one is done}}",
-  "@carePlanAfterDone": { "placeholders": { "days": { "type": "int" } } },
+  "@carePlanAfterDone": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
   "carePlanEvery": "{days, plural, =1{Every day} other{Every {days} days}}",
-  "@carePlanEvery": { "placeholders": { "days": { "type": "int" } } },
+  "@carePlanEvery": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
   "carePlanWeekly": "Every week",
   "carePlanOnce": "Once, on {date}",
-  "@carePlanOnce": { "placeholders": { "date": { "type": "String" } } },
+  "@carePlanOnce": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "carePlanYearly": "Every year on {date}",
-  "@carePlanYearly": { "placeholders": { "date": { "type": "String" } } },
+  "@carePlanYearly": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "carePlanNote": "Defaults come from the sources in each task's guide. Adjust them to your plants and weather; the soil check always comes first.",
   "carePlanEmpty": "The care plan appears a moment after the plant is added.",
   "intervalShorter": "Shorter interval",
@@ -509,15 +764,26 @@
   "calendarPrevMonth": "Previous month",
   "calendarNextMonth": "Next month",
   "calendarTasksOn": "{count, plural, =1{1 task} other{{count} tasks}}",
-  "@calendarTasksOn": { "placeholders": { "count": { "type": "int" } } },
+  "@calendarTasksOn": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "settingsReminders": "Reminders",
   "reminderDaily": "Daily care digest",
   "reminderDailySubtitle": "One notification at {time} on days with tasks",
-  "@reminderDailySubtitle": { "placeholders": { "time": { "type": "String" } } },
+  "@reminderDailySubtitle": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "reminderTime": "Reminder time",
   "reminderPermissionDenied": "Notifications are turned off for this app. You can allow them in the system settings.",
   "reminderNote": "Reminders can arrive a few minutes late. The Today screen is always up to date.",
-
   "journalTitle": "Journal",
   "journalAddEntry": "New entry",
   "journalNewTitle": "New journal entry",
@@ -539,23 +805,53 @@
   "journalAddPhoto": "Add photo",
   "journalRemovePhoto": "Remove photo",
   "journalPhotoLimit": "Up to {max} photos per entry",
-  "@journalPhotoLimit": { "placeholders": { "max": { "type": "int" } } },
+  "@journalPhotoLimit": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
   "journalHarvestAmount": "Harvest amount",
   "unitGrams": "Grams",
   "unitPieces": "Pieces",
   "unitBunches": "Bunches",
   "journalHarvestGrams": "{amount} g",
-  "@journalHarvestGrams": { "placeholders": { "amount": { "type": "String" } } },
+  "@journalHarvestGrams": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
   "journalHarvestPieces": "{amount} pieces",
-  "@journalHarvestPieces": { "placeholders": { "amount": { "type": "String" } } },
+  "@journalHarvestPieces": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
   "journalHarvestBunches": "{amount} bunches",
-  "@journalHarvestBunches": { "placeholders": { "amount": { "type": "String" } } },
+  "@journalHarvestBunches": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
   "journalSave": "Save entry",
   "journalSaved": "Entry saved",
   "journalEmptyError": "Add a note, a milestone or a photo.",
   "journalQuantityError": "Enter an amount above zero and choose a unit.",
   "journalCareDone": "{count, plural, =1{1 care task done} other{{count} care tasks done}}",
-  "@journalCareDone": { "placeholders": { "count": { "type": "int" } } },
+  "@journalCareDone": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "journalDeleteTitle": "Delete this entry?",
   "journalDeleteBody": "Its photos will be deleted from this device too.",
   "journalDeleted": "Entry deleted",
@@ -573,11 +869,22 @@
   "compareNeedTwo": "Add at least two photos to compare progress.",
   "compareAgain": "Choose other photos",
   "compareSelected": "Selected",
-
   "todayHeadlineSoil": "{count, plural, =1{1 plant would like a soil check} other{{count} plants would like a soil check}}",
-  "@todayHeadlineSoil": { "placeholders": { "count": { "type": "int" } } },
+  "@todayHeadlineSoil": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "todayHeadlineTasks": "{count, plural, =1{1 thing to do today} other{{count} things to do today}}",
-  "@todayHeadlineTasks": { "placeholders": { "count": { "type": "int" } } },
+  "@todayHeadlineTasks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "todayHeadlineDone": "All done for today",
   "todayWaterTip": "Check in the morning: it is the best time to water · Royal Horticultural Society",
   "todayDrawTitle": "Let's draw your terrace",
@@ -592,19 +899,43 @@
   "todaySwitchGarden": "Switch garden",
   "todayAllGardens": "All gardens",
   "todayPlanLabel": "Plan of {garden}",
-  "@todayPlanLabel": { "placeholders": { "garden": { "type": "String" } } },
+  "@todayPlanLabel": {
+    "placeholders": {
+      "garden": {
+        "type": "String"
+      }
+    }
+  },
   "planDue": "check due",
   "planDone": "done today",
   "planEmpty": "empty",
   "checkedToday": "checked today",
   "checkedYesterday": "checked yesterday",
   "checkedDaysAgo": "checked {days} days ago",
-  "@checkedDaysAgo": { "placeholders": { "days": { "type": "int" } } },
+  "@checkedDaysAgo": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
   "checkedNever": "first check",
   "dueSince": "due since {date}",
-  "@dueSince": { "placeholders": { "date": { "type": "String" } } },
+  "@dueSince": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "soilSheetLabel": "Soil check · {container}",
-  "@soilSheetLabel": { "placeholders": { "container": { "type": "String" } } },
+  "@soilSheetLabel": {
+    "placeholders": {
+      "container": {
+        "type": "String"
+      }
+    }
+  },
   "soilDry": "It was dry, I watered",
   "soilMoist": "Still moist, skip today",
   "soilMorning": "Morning is the best time to water · Royal Horticultural Society",
@@ -613,7 +944,16 @@
   "soilFeelBelow": "Feel below it",
   "seasonsTitle": "Seasons",
   "seasonsSubtitle": "{city} · {region} calendar",
-  "@seasonsSubtitle": { "placeholders": { "city": { "type": "String" }, "region": { "type": "String" } } },
+  "@seasonsSubtitle": {
+    "placeholders": {
+      "city": {
+        "type": "String"
+      },
+      "region": {
+        "type": "String"
+      }
+    }
+  },
   "seasonsSowNow": "sow now",
   "seasonsNothingNow": "Nothing in the catalogue has a sowing window this month for your region.",
   "seasonsYourPlants": "Your plants and saved",
@@ -623,7 +963,6 @@
   "seasonsNoGarden": "Add a garden with your city to see what to sow each month.",
   "seasonsFootnote": "Windows come from sourced regional tables. Exact dates depend on variety and weather.",
   "seasonsEmptyPlants": "Plants you add or save will appear here with their sowing months.",
-
   "settingsData": "Your data",
   "exportData": "Export my data",
   "exportDataSubtitle": "A ZIP file with your gardens, plants, care history, journal and photos",
@@ -638,9 +977,21 @@
   "deleteAllFailed": "Some data could not be deleted. Please try again.",
   "plantSoilCheckDue": "Soil check due",
   "journeyDay": "Day {day}",
-  "@journeyDay": { "placeholders": { "day": { "type": "int" } } },
+  "@journeyDay": {
+    "placeholders": {
+      "day": {
+        "type": "int"
+      }
+    }
+  },
   "journeyStartsOn": "Starts {date}",
-  "@journeyStartsOn": { "placeholders": { "date": { "type": "String" } } },
+  "@journeyStartsOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "journeySown": "Sown",
   "journeyPlanted": "Planted",
   "journeyTransplant": "Transplant",
@@ -648,46 +999,301 @@
   "journeyVaries": "Varieties and weather differ.",
   "journeyUndocumented": "Our sources don't document the next steps for this plant yet.",
   "journeyLabel": "{plant} journey: {steps}",
-  "@journeyLabel": { "placeholders": { "plant": { "type": "String" }, "steps": { "type": "String" } } },
+  "@journeyLabel": {
+    "placeholders": {
+      "plant": {
+        "type": "String"
+      },
+      "steps": {
+        "type": "String"
+      }
+    }
+  },
   "careRhythm": "Care rhythm",
   "rhythmToday": "Today",
   "rhythmTomorrow": "Tomorrow",
   "rhythmInDays": "In {count} days",
-  "@rhythmInDays": { "placeholders": { "count": { "type": "int" } } },
+  "@rhythmInDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "factSoil": "{volume}+ of soil",
-  "@factSoil": { "placeholders": { "volume": { "type": "String" } } },
+  "@factSoil": {
+    "placeholders": {
+      "volume": {
+        "type": "String"
+      }
+    }
+  },
   "plantArtLabel": "Illustration of {plant}",
-  "@plantArtLabel": { "placeholders": { "plant": { "type": "String" } } },
+  "@plantArtLabel": {
+    "placeholders": {
+      "plant": {
+        "type": "String"
+      }
+    }
+  },
   "plantSourcesCount": "{count, plural, =1{1 source} other{{count} sources}}",
-  "@plantSourcesCount": { "placeholders": { "count": { "type": "int" } } },
+  "@plantSourcesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "plantingWhichContainer": "Which container?",
   "plantingNeedsBoth": "{plant} needs at least {volume} and {depth} of soil.",
-  "@plantingNeedsBoth": { "placeholders": { "plant": { "type": "String" }, "volume": { "type": "String" }, "depth": { "type": "String" } } },
+  "@plantingNeedsBoth": {
+    "placeholders": {
+      "plant": {
+        "type": "String"
+      },
+      "volume": {
+        "type": "String"
+      },
+      "depth": {
+        "type": "String"
+      }
+    }
+  },
   "plantingNeedsVolume": "{plant} needs at least {volume} of soil.",
-  "@plantingNeedsVolume": { "placeholders": { "plant": { "type": "String" }, "volume": { "type": "String" } } },
+  "@plantingNeedsVolume": {
+    "placeholders": {
+      "plant": {
+        "type": "String"
+      },
+      "volume": {
+        "type": "String"
+      }
+    }
+  },
   "plantingNeedsDepth": "{plant} needs soil at least {depth} deep.",
-  "@plantingNeedsDepth": { "placeholders": { "plant": { "type": "String" }, "depth": { "type": "String" } } },
+  "@plantingNeedsDepth": {
+    "placeholders": {
+      "plant": {
+        "type": "String"
+      },
+      "depth": {
+        "type": "String"
+      }
+    }
+  },
   "plantingNeedsUnknown": "Our sources don't give a container size for {plant}, so we can't check the fit.",
-  "@plantingNeedsUnknown": { "placeholders": { "plant": { "type": "String" } } },
+  "@plantingNeedsUnknown": {
+    "placeholders": {
+      "plant": {
+        "type": "String"
+      }
+    }
+  },
   "plantingPlanLabel": "Choose a container on the plan of {garden}",
-  "@plantingPlanLabel": { "placeholders": { "garden": { "type": "String" } } },
+  "@plantingPlanLabel": {
+    "placeholders": {
+      "garden": {
+        "type": "String"
+      }
+    }
+  },
   "plantingSaveIn": "Plant in {container}",
-  "@plantingSaveIn": { "placeholders": { "container": { "type": "String" } } },
+  "@plantingSaveIn": {
+    "placeholders": {
+      "container": {
+        "type": "String"
+      }
+    }
+  },
   "fitFits": "fits",
   "fitTooSmall": "too small",
   "fitTooShallow": "too shallow",
   "fitFull": "full",
   "fitUnknown": "not checked",
   "fitHas": "has {plant}",
-  "@fitHas": { "placeholders": { "plant": { "type": "String" } } },
+  "@fitHas": {
+    "placeholders": {
+      "plant": {
+        "type": "String"
+      }
+    }
+  },
   "recBestMatch": "Best match",
   "recSowNowFilter": "All ideas",
   "recSowIn": "Sow in {months}",
-  "@recSowIn": { "placeholders": { "months": { "type": "String" } } },
+  "@recSowIn": {
+    "placeholders": {
+      "months": {
+        "type": "String"
+      }
+    }
+  },
   "recReadyIn": "Ready in {min}–{max} days",
-  "@recReadyIn": { "placeholders": { "min": { "type": "int" }, "max": { "type": "int" } } },
+  "@recReadyIn": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
   "journalThenNow": "Then and now",
   "journalThenNowLabel": "Photo from {date}",
-  "@journalThenNowLabel": { "placeholders": { "date": { "type": "String" } } },
-  "journalEntryShort": "Entry"
+  "@journalThenNowLabel": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "journalEntryShort": "Entry",
+  "plusTitle": "Terrace Garden Plus",
+  "plusTagline": "Room for every garden you look after. Everything that keeps your plants alive stays free.",
+  "plusFreeHeading": "Always free",
+  "plusFreeCare": "Soil checks and care reminders",
+  "plusFreeLibrary": "The sourced plant library, pest guide, pet safety and seasons",
+  "plusFreeLayout": "One garden with its layout and plant ideas",
+  "plusFreeJournal": "A journal with up to {count} photos",
+  "@plusFreeJournal": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "plusFreeData": "Export or delete your data, any time",
+  "plusPaidHeading": "Plus adds",
+  "plusPaidGardens": "Unlimited gardens: terrace, balcony, a parent's roof",
+  "plusPaidPhotos": "Unlimited journal photos",
+  "plusPaidCompare": "Then-and-now photo comparison",
+  "plusPaidReport": "A garden report to print or share",
+  "plusMonthly": "Monthly",
+  "plusYearly": "Yearly",
+  "plusLifetime": "Lifetime",
+  "plusPerMonth": "{price} a month",
+  "@plusPerMonth": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "plusPerYear": "{price} a year",
+  "@plusPerYear": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "plusOnce": "{price}, paid once",
+  "@plusOnce": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "plusChoose": "Choose",
+  "plusNotOnSale": "Plus isn't on sale yet. Everything above stays free.",
+  "plusActive": "You have Plus. Thank you for supporting the app.",
+  "plusManage": "Manage subscription",
+  "plusRestore": "Restore purchases",
+  "plusRestored": "Purchases checked with Google Play",
+  "plusTerms": "Monthly and yearly plans renew automatically until you cancel. Cancel any time in Google Play under Payments and subscriptions; Plus stays on until the end of the period you paid for. Lifetime is a single payment. Google Play sets the price for your country.",
+  "plusPromise": "We will never move a free feature behind Plus.",
+  "plusBuyFailed": "Google Play couldn't start the purchase. Please try again.",
+  "settingsPlan": "Your plan",
+  "settingsPlanFree": "Free",
+  "settingsPlanPlus": "Plus",
+  "upgradeGardensTitle": "Add another garden with Plus",
+  "upgradeGardensBody": "The free plan covers one garden with everything it needs. Plus lets you look after as many as you like.",
+  "upgradePhotosTitle": "Your journal has {count} photos",
+  "@upgradePhotosTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "upgradePhotosBody": "That is the free limit. Plus keeps unlimited photos. The photos you have stay, and you can still write notes.",
+  "upgradeCompareTitle": "Compare photos with Plus",
+  "upgradeCompareBody": "See two photos side by side to watch your garden grow. Your photos and journal stay free.",
+  "upgradeReportTitle": "Garden report with Plus",
+  "upgradeReportBody": "A one-page summary of your garden, plants, care and harvests to print or share.",
+  "upgradeSeePlus": "See Plus",
+  "upgradeNotNow": "Not now",
+  "categoryFruit": "Fruit trees",
+  "pestGuideTitle": "Pest guide",
+  "pestGuideSubtitle": "What to look for, and gentle first steps",
+  "pestGuideIntro": "Container plants get the same pests as garden plants. When you check the soil, look under the leaves and at new growth too.",
+  "pestLookFor": "Look for",
+  "pestWhatToDo": "What to do",
+  "pestAphidsName": "Aphids",
+  "pestAphidsSigns": "Small soft insects in groups under leaves and on new shoots, often with ants around them.",
+  "pestAphidsActions": "Knock them off with a strong spray of water early in the day. Check at least twice a week while plants grow fast, and deal with the ants. Soap or oil sprays (neem too) only work where they touch: cover leaf undersides and repeat.",
+  "pestMitesName": "Spider mites",
+  "pestMitesSigns": "Pale speckled or yellowing leaves, sometimes fine webbing. Tap a leaf over white paper to see the tiny mites. Worse in hot, dry, dusty weather.",
+  "pestMitesActions": "Spray the leaves with water regularly and don't let plants go thirsty. Avoid broad-spectrum insecticides: they kill the mites' natural enemies and make outbreaks worse.",
+  "pestWhiteflyName": "Whitefly",
+  "pestWhiteflySigns": "Tiny white insects under the leaves that fly up when you disturb the plant.",
+  "pestWhiteflyActions": "Hang yellow sticky traps near the plants, out of direct sun. Wash them off with water. Soaps, oils and neem reduce whitefly but don't wipe it out; avoid broad-spectrum sprays.",
+  "pestMealybugName": "Mealybugs",
+  "pestMealybugSigns": "White, waxy, cotton-like clusters in sheltered spots such as stem joints; ants feeding on the sticky honeydew.",
+  "pestMealybugActions": "Pick them off or prune the infested parts; throw away badly infested plants. Sprays work best on young mealybugs. Keep checking plants, pots and stakes.",
+  "pestBorerName": "Brinjal shoot and fruit borer",
+  "pestBorerSigns": "Shoot tips wilt and dry; bore holes in shoots and fruits.",
+  "pestBorerActions": "Use pheromone traps. TNAU recommends neem seed kernel extract (NSKE) 5% from one month after planting, every 15 days. Avoid synthetic pyrethroids, and don't spray when fruits are maturing or ready to pick.",
+  "pestLeafMinerName": "Leaf miner and caterpillars",
+  "pestLeafMinerSigns": "Wavy pale tunnels inside leaves (leaf miner); chewed leaves, egg masses or caterpillars on fruits and leaves.",
+  "pestLeafMinerActions": "Pick off egg masses, grubs and caterpillars by hand. Yellow sticky traps help with leaf miner. KAU's organic options include the 2% neem–garlic emulsion below.",
+  "pestSprayTitle": "Before you spray",
+  "pestSprayHeat": "Don't spray soap or oil on thirsty plants or when it is hotter than about 32 °C. Spray early in the morning or in the evening.",
+  "pestSprayTest": "Try it on a few leaves first. Skip it if rain is due or the air stays very humid.",
+  "pestSprayCover": "Sprays only kill pests they touch, and oils also harm helpful insects they coat: spray only where the pests are.",
+  "pestSprayNeem": "Neem is practically non-toxic to birds, mammals and bees, but slightly toxic to fish and can irritate eyes and skin. Never use neem products on pets: some cats reacted badly to neem flea products.",
+  "pestNeemRecipeTitle": "KAU neem–garlic emulsion (2%)",
+  "pestNeemRecipe": "Dissolve 50 g bar soap in 500 ml lukewarm water. Grind 200 g garlic in 300 ml water and strain. Stir the soap solution slowly into 200 ml neem oil, then add the garlic extract. This makes 1 L of stock: mix it with 9 L of water before use.",
+  "pestChemicals": "We don't give doses for chemical pesticides. Follow the product label, or ask your local KVK or agriculture department.",
+  "pestSourcesLine": "Sources: {sources}",
+  "@pestSourcesLine": {
+    "placeholders": {
+      "sources": {
+        "type": "String"
+      }
+    }
+  },
+  "pestOpenGuide": "Open the pest guide",
+  "reportTitle": "Garden report",
+  "reportSubtitle": "A one-page summary to print or share",
+  "reportHeading": "{garden} · {date}",
+  "@reportHeading": {
+    "placeholders": {
+      "garden": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "reportPlants": "Plants",
+  "reportNoPlants": "No plants yet.",
+  "reportCare": "Care in the last 30 days",
+  "reportCareNone": "No care recorded in the last 30 days.",
+  "reportHarvests": "Harvests",
+  "reportHarvestsNone": "No harvests recorded yet.",
+  "reportShare": "Share",
+  "reportShareSubject": "{garden}: garden report",
+  "@reportShareSubject": {
+    "placeholders": {
+      "garden": {
+        "type": "String"
+      }
+    }
+  },
+  "reportFooter": "Made with Terrace Garden. Plant facts in the app cite their sources.",
+  "reportShareFailed": "Couldn't create the report image. Please try again."
 }

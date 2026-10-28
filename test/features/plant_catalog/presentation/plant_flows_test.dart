@@ -89,7 +89,17 @@ void main() {
     await tester.tap(find.byKey(const Key('petFriendlyFilter')));
     await tester.pumpAndSettle();
     expect(find.textContaining('left out, not assumed safe'), findsOneWidget);
-    expect(find.text('Jasmine'), findsOneWidget);
+    expect(find.text('Areca palm'), findsOneWidget);
+    await tester.scrollUntilVisible(
+      find.text('Spider plant'),
+      200,
+      scrollable: find
+          .byWidgetPredicate(
+            (w) => w is Scrollable && w.axisDirection == AxisDirection.down,
+          )
+          .first,
+    );
+    expect(find.text('Spider plant'), findsOneWidget);
     // Toxic (ASPCA) and unassessed plants are both hidden.
     expect(find.text('Tomato'), findsNothing);
     expect(find.text('Aloe vera'), findsNothing);
