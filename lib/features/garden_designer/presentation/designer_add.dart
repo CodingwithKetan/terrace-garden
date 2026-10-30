@@ -156,6 +156,17 @@ Future<Placement?> showSizePicker(
   );
 }
 
+/// The add sheet's groups, in order.
+enum _Group { containers, structures, sunShape, other }
+
+_Group _groupOf(ElementKind k) => switch (k.role) {
+  ElementRole.container => _Group.containers,
+  ElementRole.structure => _Group.structures,
+  ElementRole.zone || ElementRole.cutOut => _Group.sunShape,
+  ElementRole.marker when k == ElementKind.northArrow => _Group.sunShape,
+  ElementRole.walkway || ElementRole.marker => _Group.other,
+};
+
 /// DSN-02. Every kind, grouped and drawn as it looks; kinds with shop sizes
 /// then ask for one in the same sheet.
 Future<Placement?> showAddSheet(
@@ -167,10 +178,23 @@ Future<Placement?> showAddSheet(
   builder: (context) => _AddSheetBody(format: format),
 );
 
+/// Sun areas, cut-outs and the north arrow, with how to use them.
+Future<Placement?> showSunShapeSheet(
+  BuildContext context,
+  MeasurementFormatter format,
+) => showAppBottomSheet<Placement>(
+  context,
+  title: context.l10n.paletteSunShape,
+  builder: (context) => _AddSheetBody(format: format, only: _Group.sunShape),
+);
+
 class _AddSheetBody extends StatefulWidget {
-  const _AddSheetBody({required this.format});
+  const _AddSheetBody({required this.format, this.only});
 
   final MeasurementFormatter format;
+
+  /// Shows just this group, with its explanation.
+  final _Group? only;
 
   @override
   State<_AddSheetBody> createState() => _AddSheetBodyState();
@@ -207,31 +231,43 @@ class _AddSheetBodyState extends State<_AddSheetBody> {
         ],
       );
     }
+    final only = widget.only;
     final groups = [
-      (l10n.paletteContainers, ElementRole.container),
-      (l10n.paletteStructures, ElementRole.structure),
-      (l10n.paletteOther, null),
+      for (final g in _Group.values)
+        if (only == null || g == only)
+          (
+            switch (g) {
+              _Group.containers => l10n.paletteContainers,
+              _Group.structures => l10n.paletteStructures,
+              _Group.sunShape => l10n.paletteSunShape,
+              _Group.other => l10n.paletteOther,
+            },
+            g,
+          ),
     ];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        for (final (title, role) in groups) ...[
+        if (only == _Group.sunShape)
           Padding(
-            padding: const EdgeInsets.only(
-              top: AppSpacing.md,
-              bottom: AppSpacing.sm,
-            ),
-            child: Text(title, style: theme.textTheme.titleSmall),
+            padding: const EdgeInsets.only(bottom: AppSpacing.md),
+            child: Text(l10n.sunShapeNote, style: theme.textTheme.bodyMedium),
           ),
+        for (final (title, group) in groups) ...[
+          if (only == null)
+            Padding(
+              padding: const EdgeInsets.only(
+                top: AppSpacing.md,
+                bottom: AppSpacing.sm,
+              ),
+              child: Text(title, style: theme.textTheme.titleSmall),
+            ),
           Wrap(
             spacing: AppSpacing.sm,
             runSpacing: AppSpacing.sm,
             children: [
               for (final kind in ElementKind.values.where(
-                (k) => role == null
-                    ? k.role == ElementRole.walkway ||
-                          k.role == ElementRole.marker
-                    : k.role == role,
+                (k) => _groupOf(k) == group,
               ))
                 KindTile(
                   placement: (kind: kind, preset: null),

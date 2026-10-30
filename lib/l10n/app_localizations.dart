@@ -1472,6 +1472,84 @@ abstract class AppLocalizations {
   /// **'Drain'**
   String get kindDrain;
 
+  /// No description provided for @kindNorthArrow.
+  ///
+  /// In en, this message translates to:
+  /// **'North arrow'**
+  String get kindNorthArrow;
+
+  /// No description provided for @kindSunFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Full sun area'**
+  String get kindSunFull;
+
+  /// No description provided for @kindSunPart.
+  ///
+  /// In en, this message translates to:
+  /// **'Part sun area'**
+  String get kindSunPart;
+
+  /// No description provided for @kindShade.
+  ///
+  /// In en, this message translates to:
+  /// **'Shade area'**
+  String get kindShade;
+
+  /// No description provided for @kindCutOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Not floor'**
+  String get kindCutOut;
+
+  /// No description provided for @paletteSunShape.
+  ///
+  /// In en, this message translates to:
+  /// **'Sun and shape'**
+  String get paletteSunShape;
+
+  /// No description provided for @sunShapeNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark where the sun falls as you see it over a day: full sun is 6 hours or more of direct sun, part sun 3 to 6, shade under 3. The app goes by your marks and never guesses sun from the map. Use Not floor to cut away corners of an L-shaped terrace or a stairwell, and turn the north arrow to point north.'**
+  String get sunShapeNote;
+
+  /// No description provided for @sunHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Sun here: {hours}'**
+  String sunHere(String hours);
+
+  /// No description provided for @designerMarkSun.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark sun and shade'**
+  String get designerMarkSun;
+
+  /// No description provided for @templateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Or start from a layout sized to your terrace'**
+  String get templateTitle;
+
+  /// No description provided for @templateRailing.
+  ///
+  /// In en, this message translates to:
+  /// **'Planters along the railing'**
+  String get templateRailing;
+
+  /// No description provided for @templateBagRows.
+  ///
+  /// In en, this message translates to:
+  /// **'Grow bag rows with a path'**
+  String get templateBagRows;
+
+  /// No description provided for @templateBedsBags.
+  ///
+  /// In en, this message translates to:
+  /// **'Raised beds and grow bags'**
+  String get templateBedsBags;
+
   /// No description provided for @presetInches.
   ///
   /// In en, this message translates to:

@@ -61,12 +61,15 @@ final class LayoutIssue {
 /// walls, railings, tanks, seating) must not overlap each other; a container
 /// on a path is a warning, and so is a solid where a door opens or over a
 /// drain; other markers never conflict. Hanging pots only conflict with each
-/// other, since they hang above the floor.
+/// other, since they hang above the floor. Sun areas never conflict, and
+/// anything on a cut-out is outside the garden.
 List<LayoutIssue> validateLayout(LayoutDocument doc) {
   final issues = <LayoutIssue>[];
   final elements = doc.elements;
 
   for (final e in elements) {
+    // Sun areas are marks, not objects; one may overhang the edge.
+    if (e.kind.role == ElementRole.zone) continue;
     if (!insideGarden(e.shape, doc.length, doc.width)) {
       issues.add(LayoutIssue(elementId: e.id, type: IssueType.outOfBounds));
     }
@@ -76,6 +79,24 @@ List<LayoutIssue> validateLayout(LayoutDocument doc) {
     for (var j = i + 1; j < elements.length; j++) {
       final a = elements[i];
       final b = elements[j];
+      if (a.kind.role == ElementRole.zone || b.kind.role == ElementRole.zone) {
+        continue;
+      }
+      final aCut = a.kind.role == ElementRole.cutOut;
+      final bCut = b.kind.role == ElementRole.cutOut;
+      if (aCut || bCut) {
+        // Standing on a cut-out is standing outside the usable floor.
+        if (aCut == bCut || !shapesOverlap(a.shape, b.shape)) continue;
+        final (on, cut) = aCut ? (b, a) : (a, b);
+        issues.add(
+          LayoutIssue(
+            elementId: on.id,
+            type: IssueType.outOfBounds,
+            otherElementId: cut.id,
+          ),
+        );
+        continue;
+      }
       if (a.kind.overhead != b.kind.overhead) continue;
       if (_isSolid(a) && _isSolid(b)) {
         if (!shapesOverlap(a.shape, b.shape)) continue;

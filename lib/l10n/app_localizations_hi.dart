@@ -765,6 +765,48 @@ class AppLocalizationsHi extends AppLocalizations {
   String get kindDrain => 'नाली';
 
   @override
+  String get kindNorthArrow => 'उत्तर दिशा का तीर';
+
+  @override
+  String get kindSunFull => 'पूरी धूप वाली जगह';
+
+  @override
+  String get kindSunPart => 'आंशिक धूप वाली जगह';
+
+  @override
+  String get kindShade => 'छाया वाली जगह';
+
+  @override
+  String get kindCutOut => 'फ़र्श नहीं';
+
+  @override
+  String get paletteSunShape => 'धूप और आकार';
+
+  @override
+  String get sunShapeNote =>
+      'दिन भर जहाँ धूप पड़ती दिखे, वैसे ही चिह्नित करें: पूरी धूप यानी 6 घंटे या ज़्यादा सीधी धूप, आंशिक धूप 3 से 6 घंटे, छाया 3 घंटे से कम। ऐप आपके निशानों के हिसाब से चलता है और नक्शे से धूप का अंदाज़ा कभी नहीं लगाता। L आकार की छत के कोने या सीढ़ी की जगह हटाने के लिए फ़र्श नहीं इस्तेमाल करें, और तीर को उत्तर की ओर घुमाएँ।';
+
+  @override
+  String sunHere(String hours) {
+    return 'यहाँ धूप: $hours';
+  }
+
+  @override
+  String get designerMarkSun => 'धूप और छाया चिह्नित करें';
+
+  @override
+  String get templateTitle => 'या अपनी छत के नाप का लेआउट चुनें';
+
+  @override
+  String get templateRailing => 'रेलिंग के साथ प्लांटर';
+
+  @override
+  String get templateBagRows => 'रास्ते के साथ ग्रो बैग की कतारें';
+
+  @override
+  String get templateBedsBags => 'ऊँची क्यारियाँ और ग्रो बैग';
+
+  @override
   String presetInches(String size) {
     return '$size इंच';
   }

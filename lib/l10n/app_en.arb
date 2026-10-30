@@ -290,6 +290,26 @@
   "kindDoor": "Door",
   "kindWaterPoint": "Water tap",
   "kindDrain": "Drain",
+  "kindNorthArrow": "North arrow",
+  "kindSunFull": "Full sun area",
+  "kindSunPart": "Part sun area",
+  "kindShade": "Shade area",
+  "kindCutOut": "Not floor",
+  "paletteSunShape": "Sun and shape",
+  "sunShapeNote": "Mark where the sun falls as you see it over a day: full sun is 6 hours or more of direct sun, part sun 3 to 6, shade under 3. The app goes by your marks and never guesses sun from the map. Use Not floor to cut away corners of an L-shaped terrace or a stairwell, and turn the north arrow to point north.",
+  "sunHere": "Sun here: {hours}",
+  "@sunHere": {
+    "placeholders": {
+      "hours": {
+        "type": "String"
+      }
+    }
+  },
+  "designerMarkSun": "Mark sun and shade",
+  "templateTitle": "Or start from a layout sized to your terrace",
+  "templateRailing": "Planters along the railing",
+  "templateBagRows": "Grow bag rows with a path",
+  "templateBedsBags": "Raised beds and grow bags",
   "presetInches": "{size} in",
   "@presetInches": {
     "placeholders": {

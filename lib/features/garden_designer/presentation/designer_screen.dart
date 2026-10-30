@@ -21,6 +21,8 @@ import 'package:terrace_garden/features/garden_designer/data/designer_providers.
 import 'package:terrace_garden/features/garden_designer/domain/container_presets.dart';
 import 'package:terrace_garden/features/garden_designer/domain/geometry.dart';
 import 'package:terrace_garden/features/garden_designer/domain/layout.dart';
+import 'package:terrace_garden/features/garden_designer/domain/layout_templates.dart';
+import 'package:terrace_garden/features/garden_designer/domain/sun_areas.dart';
 import 'package:terrace_garden/features/garden_designer/presentation/designer_add.dart';
 import 'package:terrace_garden/features/garden_designer/presentation/designer_canvas.dart';
 import 'package:terrace_garden/features/garden_designer/presentation/designer_labels.dart';
@@ -307,6 +309,32 @@ class _DesignerViewState extends ConsumerState<_DesignerView> {
     if (placement != null && mounted) _place(placement);
   }
 
+  Future<void> _markSun(UnitSystem units) async {
+    final placement = await showSunShapeSheet(context, _format(units));
+    if (placement != null && mounted) _place(placement);
+  }
+
+  /// Templates that fit this terrace, with what they would place.
+  List<(LayoutTemplate, String, List<LayoutElement>)> _templates(
+    AppLocalizations l10n,
+  ) => [
+    for (final t in LayoutTemplate.values)
+      (
+        t,
+        switch (t) {
+          LayoutTemplate.railingPlanters => l10n.templateRailing,
+          LayoutTemplate.growBagRows => l10n.templateBagRows,
+          LayoutTemplate.bedsAndBags => l10n.templateBedsBags,
+        },
+        buildTemplate(
+          t,
+          length: _c.document.length,
+          width: _c.document.width,
+          newId: ref.read(idGeneratorProvider).newId,
+        ),
+      ),
+  ].where((t) => t.$3.isNotEmpty).toList();
+
   Future<void> _openObjects(UnitSystem units) async {
     final id = await showObjectsList(context, _c, _format(units));
     if (id == null || !mounted) return;
@@ -390,17 +418,19 @@ class _DesignerViewState extends ConsumerState<_DesignerView> {
               ),
             ],
           ),
-          body: Stack(
-            children: [
-              Positioned.fill(
-                child: DragTarget<Placement>(
-                  onAcceptWithDetails: (details) {
-                    final at = _canvasKey.currentState?.worldAtGlobal(
-                      details.offset,
-                    );
-                    if (at != null) _place(details.data, at: at);
-                  },
-                  builder: (context, _, _) => DesignerCanvas(
+          // The whole body accepts drops, so an object let go over the
+          // empty-state card or a chip still lands on the terrace beneath.
+          body: DragTarget<Placement>(
+            onAcceptWithDetails: (details) {
+              final at = _canvasKey.currentState?.worldAtGlobal(
+                details.offset,
+              );
+              if (at != null) _place(details.data, at: at);
+            },
+            builder: (context, _, _) => Stack(
+              children: [
+                Positioned.fill(
+                  child: DesignerCanvas(
                     key: _canvasKey,
                     controller: _c,
                     unitSystem: units,
@@ -416,82 +446,127 @@ class _DesignerViewState extends ConsumerState<_DesignerView> {
                     ),
                   ),
                 ),
-              ),
-              Positioned(
-                top: AppSpacing.md,
-                right: AppSpacing.md,
-                child: SegmentedButton<CanvasStyle>(
-                  showSelectedIcon: false,
-                  style: const ButtonStyle(
-                    visualDensity: VisualDensity.compact,
-                  ),
-                  segments: [
-                    ButtonSegment(
-                      value: CanvasStyle.garden,
-                      icon: const Icon(Icons.yard_outlined),
-                      label: Text(l10n.designerViewGarden),
-                    ),
-                    ButtonSegment(
-                      value: CanvasStyle.blueprint,
-                      icon: const Icon(Icons.architecture),
-                      label: Text(l10n.designerViewBlueprint),
-                    ),
-                  ],
-                  selected: {_style},
-                  onSelectionChanged: (s) => setState(() => _style = s.first),
-                ),
-              ),
-              if (_c.errorCount > 0)
                 Positioned(
                   top: AppSpacing.md,
-                  left: AppSpacing.md,
-                  child: ActionChip(
-                    avatar: Icon(
-                      Icons.warning_amber_rounded,
-                      color: theme.colorScheme.error,
+                  right: AppSpacing.md,
+                  child: SegmentedButton<CanvasStyle>(
+                    showSelectedIcon: false,
+                    style: const ButtonStyle(
+                      visualDensity: VisualDensity.compact,
                     ),
-                    label: Text(l10n.designerProblems(_c.errorCount)),
-                    onPressed: () => _openObjects(units),
+                    segments: [
+                      ButtonSegment(
+                        value: CanvasStyle.garden,
+                        icon: const Icon(Icons.yard_outlined),
+                        label: Text(l10n.designerViewGarden),
+                      ),
+                      ButtonSegment(
+                        value: CanvasStyle.blueprint,
+                        icon: const Icon(Icons.architecture),
+                        label: Text(l10n.designerViewBlueprint),
+                      ),
+                    ],
+                    selected: {_style},
+                    onSelectionChanged: (s) => setState(() => _style = s.first),
                   ),
                 ),
-              Positioned(
-                right: AppSpacing.md,
-                bottom: AppSpacing.md,
-                child: Column(
-                  children: [
-                    IconButton.filledTonal(
-                      tooltip: l10n.designerSnap,
-                      isSelected: _c.snapEnabled,
-                      icon: const Icon(Icons.grid_off),
-                      selectedIcon: const Icon(Icons.grid_on),
-                      onPressed: () => _c.snapEnabled = !_c.snapEnabled,
-                    ),
-                    const SizedBox(height: AppSpacing.sm),
-                    IconButton.filledTonal(
-                      tooltip: l10n.designerFit,
-                      icon: const Icon(Icons.fit_screen_outlined),
-                      onPressed: () => _fitRequest.value++,
-                    ),
-                  ],
-                ),
-              ),
-              if (_c.document.elements.isEmpty)
                 Positioned(
-                  left: AppSpacing.xl,
-                  right: AppSpacing.xl,
                   top: AppSpacing.huge,
-                  child: Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(AppSpacing.lg),
-                      child: Text(
-                        l10n.designerEmptyHint,
-                        textAlign: TextAlign.center,
-                        style: theme.textTheme.bodyLarge,
+                  left: AppSpacing.md,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (_c.errorCount > 0)
+                        ActionChip(
+                          avatar: Icon(
+                            Icons.warning_amber_rounded,
+                            color: theme.colorScheme.error,
+                          ),
+                          label: Text(l10n.designerProblems(_c.errorCount)),
+                          onPressed: () => _openObjects(units),
+                        ),
+                      // Sun areas matter once there is something to grow.
+                      if (_c.document.elements.any((e) => e.kind.isContainer) &&
+                          !_c.document.elements.any(
+                            (e) => e.kind.role == ElementRole.zone,
+                          ))
+                        Padding(
+                          padding: const EdgeInsets.only(top: AppSpacing.sm),
+                          child: ActionChip(
+                            avatar: const Icon(Icons.wb_sunny_outlined),
+                            label: Text(l10n.designerMarkSun),
+                            onPressed: () => _markSun(units),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+                Positioned(
+                  right: AppSpacing.md,
+                  bottom: AppSpacing.md,
+                  child: Column(
+                    children: [
+                      IconButton.filledTonal(
+                        tooltip: l10n.designerSnap,
+                        isSelected: _c.snapEnabled,
+                        icon: const Icon(Icons.grid_off),
+                        selectedIcon: const Icon(Icons.grid_on),
+                        onPressed: () => _c.snapEnabled = !_c.snapEnabled,
+                      ),
+                      const SizedBox(height: AppSpacing.sm),
+                      IconButton.filledTonal(
+                        tooltip: l10n.designerFit,
+                        icon: const Icon(Icons.fit_screen_outlined),
+                        onPressed: () => _fitRequest.value++,
+                      ),
+                    ],
+                  ),
+                ),
+                if (_c.document.elements.isEmpty)
+                  Positioned(
+                    left: AppSpacing.xl,
+                    right: AppSpacing.xl,
+                    top: AppSpacing.huge,
+                    child: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(AppSpacing.lg),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              l10n.designerEmptyHint,
+                              textAlign: TextAlign.center,
+                              style: theme.textTheme.bodyLarge,
+                            ),
+                            if (_templates(l10n) case final templates
+                                when templates.isNotEmpty) ...[
+                              const SizedBox(height: AppSpacing.lg),
+                              Text(
+                                l10n.templateTitle,
+                                textAlign: TextAlign.center,
+                                style: theme.textTheme.titleSmall,
+                              ),
+                              const SizedBox(height: AppSpacing.sm),
+                              Wrap(
+                                alignment: WrapAlignment.center,
+                                spacing: AppSpacing.sm,
+                                runSpacing: AppSpacing.sm,
+                                children: [
+                                  for (final (_, label, elements) in templates)
+                                    ActionChip(
+                                      label: Text(label),
+                                      onPressed: () => _c.addAll(elements),
+                                    ),
+                                ],
+                              ),
+                            ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-            ],
+              ],
+            ),
           ),
           bottomNavigationBar: Material(
             color: theme.colorScheme.surface,
@@ -507,7 +582,12 @@ class _DesignerViewState extends ConsumerState<_DesignerView> {
                     )
                   : _SelectionBar(
                       element: selected,
-                      size: _sizeText(selected, _format(units)),
+                      size: [
+                        _sizeText(selected, _format(units)),
+                        if (selected.kind.isContainer)
+                          if (sunFor(_c.document, selected) case final sun?)
+                            l10n.sunHere(sun.label(l10n)),
+                      ].join(' · '),
                       onEdit: () => showInspector(context, _c, units),
                       onDeselect: () => _c.select(null),
                     ),

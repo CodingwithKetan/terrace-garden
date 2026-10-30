@@ -10,6 +10,7 @@ import 'package:terrace_garden/features/garden_designer/domain/layout.dart';
 import 'package:terrace_garden/features/garden_designer/domain/layout_history.dart';
 import 'package:terrace_garden/features/garden_designer/domain/layout_repository.dart';
 import 'package:terrace_garden/features/garden_designer/domain/layout_validator.dart';
+import 'package:terrace_garden/features/garden_designer/domain/sun_areas.dart';
 
 enum SaveStatus { saved, pending, saving, failed }
 
@@ -76,23 +77,30 @@ class LayoutEditorController extends ChangeNotifier {
   }
 
   /// Topmost element under [world], with [tolerance] cm of slack so small
-  /// objects stay easy to tap.
+  /// objects stay easy to tap. Objects, even a near miss, win over the sun
+  /// areas and cut-outs beneath them.
   LayoutElement? hitTest(Vec2 world, {double tolerance = 0}) {
     final topFirst = _document.drawOrder.reversed;
-    for (final e in topFirst) {
+    final objects = topFirst.where((e) => !e.kind.isBackground);
+    for (final e in objects) {
       if (e.shape.contains(world)) return e;
     }
-    if (tolerance <= 0) return null;
-    LayoutElement? nearest;
-    var best = tolerance;
-    for (final e in topFirst) {
-      final d = (e.center - world).length - _halfMinSide(e);
-      if (d <= best) {
-        best = d;
-        nearest = e;
+    if (tolerance > 0) {
+      LayoutElement? nearest;
+      var best = tolerance;
+      for (final e in objects) {
+        final d = (e.center - world).length - _halfMinSide(e);
+        if (d <= best) {
+          best = d;
+          nearest = e;
+        }
       }
+      if (nearest != null) return nearest;
     }
-    return nearest;
+    for (final e in topFirst.where((e) => e.kind.isBackground)) {
+      if (e.shape.contains(world)) return e;
+    }
+    return null;
   }
 
   static double _halfMinSide(LayoutElement e) =>
@@ -115,7 +123,26 @@ class LayoutEditorController extends ChangeNotifier {
   LayoutElement addPreset(ElementPreset preset, Vec2 at) =>
       _place(preset.toElement(id: _ids.newId(), center: at));
 
+  /// Adds [elements] (e.g. a template) as one undo step, selecting nothing.
+  void addAll(List<LayoutElement> elements) {
+    if (elements.isEmpty) return;
+    var next = _document;
+    for (final e in elements) {
+      next = next.upsert(e);
+    }
+    _selectedId = null;
+    _commit(next);
+  }
+
   LayoutElement _place(LayoutElement element) {
+    // A layout has one north arrow; adding another selects the existing one.
+    if (element.kind == ElementKind.northArrow) {
+      final existing = northArrowOf(_document);
+      if (existing != null) {
+        select(existing.id);
+        return existing;
+      }
+    }
     final placed = element.copyWith(
       center: _snapCenter(element, element.center),
     );

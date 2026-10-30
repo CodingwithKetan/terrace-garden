@@ -183,6 +183,7 @@ class GardenCanvasPainter extends CustomPainter {
       colors.marker.withValues(alpha: 0.25),
       colors.marker,
     ),
+    ElementRole.zone || ElementRole.cutOut => (colors.outside, colors.boundary),
   };
 
   void _drawShape(Canvas canvas, LayoutElement e, Paint paint) {
@@ -213,6 +214,16 @@ class GardenCanvasPainter extends CustomPainter {
   }
 
   void _paintElement(Canvas canvas, LayoutElement e) {
+    // Sun areas, cut-outs and the north arrow look the same in both styles.
+    if (e.kind.isBackground || e.kind == ElementKind.northArrow) {
+      final origin = _o(Vec2.zero);
+      canvas
+        ..save()
+        ..translate(origin.dx, origin.dy);
+      TerraceArtist.paintElement(canvas, e, _scale);
+      canvas.restore();
+      return;
+    }
     final (fill, stroke) = _styleFor(e.kind);
     _drawShape(canvas, e, Paint()..color = fill);
     _drawShape(
@@ -316,13 +327,23 @@ class GardenCanvasPainter extends CustomPainter {
     final w = format.length(Length.cm(e.width));
     final h = format.length(Length.cm(e.height));
     final sizeText = e.kind.round ? 'Ø $w' : '$w × $h';
+    final d = distancesToEdges(e.shape, doc.length, doc.width);
+    // The size goes on the side away from the vertical distance guide, so
+    // the two labels never overlap.
+    final guideUp = d.top <= d.bottom && d.top > 0.5;
+    final guideDown = !guideUp && d.bottom > 0.5;
     _pill(
       canvas,
       sizeText,
-      _o(Vec2(e.center.x, b.bottom)) + const Offset(0, 16),
+      guideDown
+          ? _o(Vec2(e.center.x, b.top)) -
+                Offset(
+                  0,
+                  e.kind.round ? 16 : SelectionHandles.rotateHandleGapPx + 20,
+                )
+          : _o(Vec2(e.center.x, b.bottom)) + const Offset(0, 16),
     );
 
-    final d = distancesToEdges(e.shape, doc.length, doc.width);
     final guide = Paint()
       ..color = colors.selection.withValues(alpha: 0.7)
       ..strokeWidth = 1;
@@ -333,9 +354,9 @@ class GardenCanvasPainter extends CustomPainter {
     } else if (d.right > 0.5) {
       _guide(canvas, Vec2(b.right, cy), Vec2(doc.length, cy), d.right, guide);
     }
-    if (d.top <= d.bottom && d.top > 0.5) {
+    if (guideUp) {
       _guide(canvas, Vec2(cx, 0), Vec2(cx, b.top), d.top, guide);
-    } else if (d.bottom > 0.5) {
+    } else if (guideDown) {
       _guide(canvas, Vec2(cx, b.bottom), Vec2(cx, doc.width), d.bottom, guide);
     }
   }

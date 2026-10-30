@@ -764,6 +764,48 @@ class AppLocalizationsEn extends AppLocalizations {
   String get kindDrain => 'Drain';
 
   @override
+  String get kindNorthArrow => 'North arrow';
+
+  @override
+  String get kindSunFull => 'Full sun area';
+
+  @override
+  String get kindSunPart => 'Part sun area';
+
+  @override
+  String get kindShade => 'Shade area';
+
+  @override
+  String get kindCutOut => 'Not floor';
+
+  @override
+  String get paletteSunShape => 'Sun and shape';
+
+  @override
+  String get sunShapeNote =>
+      'Mark where the sun falls as you see it over a day: full sun is 6 hours or more of direct sun, part sun 3 to 6, shade under 3. The app goes by your marks and never guesses sun from the map. Use Not floor to cut away corners of an L-shaped terrace or a stairwell, and turn the north arrow to point north.';
+
+  @override
+  String sunHere(String hours) {
+    return 'Sun here: $hours';
+  }
+
+  @override
+  String get designerMarkSun => 'Mark sun and shade';
+
+  @override
+  String get templateTitle => 'Or start from a layout sized to your terrace';
+
+  @override
+  String get templateRailing => 'Planters along the railing';
+
+  @override
+  String get templateBagRows => 'Grow bag rows with a path';
+
+  @override
+  String get templateBedsBags => 'Raised beds and grow bags';
+
+  @override
   String presetInches(String size) {
     return '$size in';
   }

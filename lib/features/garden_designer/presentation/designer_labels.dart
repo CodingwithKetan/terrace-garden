@@ -22,6 +22,11 @@ extension ElementKindLabel on ElementKind {
     ElementKind.door => l10n.kindDoor,
     ElementKind.waterPoint => l10n.kindWaterPoint,
     ElementKind.drain => l10n.kindDrain,
+    ElementKind.northArrow => l10n.kindNorthArrow,
+    ElementKind.sunFull => l10n.kindSunFull,
+    ElementKind.sunPart => l10n.kindSunPart,
+    ElementKind.shade => l10n.kindShade,
+    ElementKind.cutOut => l10n.kindCutOut,
   };
 
   IconData get icon => switch (this) {
@@ -42,6 +47,11 @@ extension ElementKindLabel on ElementKind {
     ElementKind.door => Icons.door_front_door_outlined,
     ElementKind.waterPoint => Icons.water_drop_outlined,
     ElementKind.drain => Icons.adjust,
+    ElementKind.northArrow => Icons.navigation_outlined,
+    ElementKind.sunFull => Icons.wb_sunny_outlined,
+    ElementKind.sunPart => Icons.wb_cloudy_outlined,
+    ElementKind.shade => Icons.beach_access_outlined,
+    ElementKind.cutOut => Icons.block,
   };
 }
 

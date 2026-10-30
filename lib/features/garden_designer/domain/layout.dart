@@ -18,6 +18,13 @@ enum ElementRole {
 
   /// Small markers (e.g. a tap) that may sit anywhere.
   marker,
+
+  /// Areas the user marks as sunny or shady; they never conflict.
+  zone,
+
+  /// Part of the rectangle that is not usable floor (an L-shaped terrace,
+  /// a stairwell). Nothing may stand on it.
+  cutOut,
 }
 
 /// Element types for the designer (PRD FR-C2). Default sizes are starting
@@ -55,7 +62,16 @@ enum ElementKind {
   waterPoint(ElementRole.marker, round: true, w: 15, h: 15),
 
   /// A floor drain or outlet, which should stay uncovered.
-  drain(ElementRole.marker, round: true, w: 15, h: 15);
+  drain(ElementRole.marker, round: true, w: 15, h: 15),
+
+  /// Points north; the user rotates it. One per layout.
+  northArrow(ElementRole.marker, w: 40, h: 40),
+
+  /// Sun areas, as the user observes them (never computed).
+  sunFull(ElementRole.zone, w: 150, h: 100),
+  sunPart(ElementRole.zone, w: 150, h: 100),
+  shade(ElementRole.zone, w: 150, h: 100),
+  cutOut(ElementRole.cutOut, w: 100, h: 100);
 
   const ElementKind(
     this.role, {
@@ -83,16 +99,26 @@ enum ElementKind {
 
   bool get isContainer => role == ElementRole.container;
 
-  /// Back-to-front layer for drawing and hit testing: walkways, structures,
-  /// markers, containers, then hanging pots. Within a layer, later elements
-  /// are on top.
-  int get drawLayer => overhead
-      ? 4
+  /// Lies under everything else: a tap selects it only when nothing else is
+  /// there, and a drag that starts on it pans the view unless it is
+  /// already selected.
+  bool get isBackground =>
+      role == ElementRole.zone || role == ElementRole.cutOut;
+
+  /// Back-to-front layer for drawing and hit testing: sun areas, cut-outs,
+  /// walkways, structures, markers, containers, hanging pots, then the north
+  /// arrow. Within a layer, later elements are on top.
+  int get drawLayer => this == northArrow
+      ? 7
+      : overhead
+      ? 6
       : switch (role) {
-          ElementRole.walkway => 0,
-          ElementRole.structure => 1,
-          ElementRole.marker => 2,
-          ElementRole.container => 3,
+          ElementRole.zone => 0,
+          ElementRole.cutOut => 1,
+          ElementRole.walkway => 2,
+          ElementRole.structure => 3,
+          ElementRole.marker => 4,
+          ElementRole.container => 5,
         };
 
   /// Smallest side accepted (cm), to keep elements tappable and meaningful.
@@ -195,6 +221,7 @@ class LayoutSummary {
     var containers = 0.0;
     var walkways = 0.0;
     var soil = 0.0;
+    var cutOut = 0.0;
     final counts = <ElementKind, int>{};
     for (final e in doc.elements) {
       counts[e.kind] = (counts[e.kind] ?? 0) + 1;
@@ -204,12 +231,15 @@ class LayoutSummary {
           soil += e.soilLitres ?? 0;
         case ElementRole.walkway:
           walkways += e.footprintArea;
-        case ElementRole.structure || ElementRole.marker:
+        case ElementRole.cutOut:
+          cutOut += e.footprintArea;
+        case ElementRole.structure || ElementRole.marker || ElementRole.zone:
           break;
       }
     }
     return LayoutSummary(
-      gardenArea: doc.area,
+      // Usable floor: the rectangle less its cut-outs.
+      gardenArea: math.max(0, doc.area - cutOut),
       containerArea: containers,
       walkwayArea: walkways,
       soilLitres: soil,

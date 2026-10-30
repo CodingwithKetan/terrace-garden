@@ -365,8 +365,152 @@ abstract final class TerraceArtist {
           canvas.drawLine(Offset(-r, y), Offset(r, y), bar);
         }
         canvas.restore();
+      case ElementKind.sunFull || ElementKind.sunPart || ElementKind.shade:
+        _sunArea(canvas, e.kind, body);
+      case ElementKind.cutOut:
+        canvas
+          ..save()
+          ..clipRect(body)
+          ..drawRect(body, Paint()..color = parapet);
+        final hatch = Paint()
+          ..color = const Color(0x3317301F)
+          ..strokeWidth = 1.5;
+        for (var x = -h; x < w + h; x += 8) {
+          canvas.drawLine(
+            Offset(body.left + x, body.top),
+            Offset(body.left + x + h, body.bottom),
+            hatch,
+          );
+        }
+        canvas
+          ..restore()
+          ..drawRect(
+            body,
+            Paint()
+              ..color = const Color(0xFFB3AA97)
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = 2,
+          );
+      case ElementKind.northArrow:
+        _northArrow(canvas, math.min(w, h) / 2);
     }
     canvas.restore();
+  }
+
+  static const _sunFill = Color(0x40F2B92E);
+  static const _sunInk = Color(0xFFB7860B);
+  static const _shadeFill = Color(0x383D5566);
+  static const _shadeInk = Color(0xFF3D5566);
+
+  /// A sun area: a soft tint, a dashed edge and a glyph in the middle.
+  static void _sunArea(Canvas canvas, ElementKind kind, Rect body) {
+    final (fill, ink) = switch (kind) {
+      ElementKind.sunFull => (_sunFill, _sunInk),
+      ElementKind.sunPart => (const Color(0x26F2B92E), _sunInk),
+      _ => (_shadeFill, _shadeInk),
+    };
+    final rr = RRect.fromRectAndRadius(body, const Radius.circular(10));
+    canvas.drawRRect(rr, Paint()..color = fill);
+    final edge = Paint()
+      ..color = ink.withValues(alpha: .7)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.5;
+    for (final metric in (Path()..addRRect(rr)).computeMetrics()) {
+      for (var d = 0.0; d < metric.length; d += 10) {
+        canvas.drawPath(metric.extractPath(d, d + 5), edge);
+      }
+    }
+    final r = math.min(14, math.min(body.width, body.height) / 5).toDouble();
+    if (r < 4) return;
+    final glyph = Paint()
+      ..color = ink
+      ..strokeWidth = math.max(1.2, r * .16)
+      ..strokeCap = StrokeCap.round;
+    switch (kind) {
+      case ElementKind.sunFull:
+        canvas.drawCircle(Offset.zero, r * .5, glyph);
+        for (var i = 0; i < 8; i++) {
+          final a = i * math.pi / 4;
+          final dir = Offset(math.cos(a), math.sin(a));
+          canvas.drawLine(dir * (r * .72), dir * r, glyph);
+        }
+      case ElementKind.sunPart:
+        // A sun half behind a cloud.
+        canvas.drawCircle(Offset(-r * .25, -r * .2), r * .5, glyph);
+        final cloud = Paint()..color = const Color(0xFFF7F5EF);
+        canvas
+          ..drawCircle(Offset(r * .05, r * .25), r * .42, cloud)
+          ..drawCircle(Offset(r * .45, r * .3), r * .34, cloud)
+          ..drawRRect(
+            RRect.fromRectAndRadius(
+              Rect.fromLTRB(-r * .3, r * .25, r * .8, r * .64),
+              Radius.circular(r * .2),
+            ),
+            cloud,
+          );
+      case _:
+        // An umbrella: canopy and handle.
+        final canopy = Path()
+          ..moveTo(-r, 0)
+          ..arcToPoint(Offset(r, 0), radius: Radius.circular(r))
+          ..close();
+        canvas
+          ..drawPath(canopy, glyph)
+          ..drawLine(
+            Offset.zero,
+            Offset(0, r * .9),
+            glyph..style = PaintingStyle.stroke,
+          );
+    }
+  }
+
+  /// A compass needle pointing up (north, before the element's rotation),
+  /// with an N above it.
+  static void _northArrow(Canvas canvas, double r) {
+    canvas
+      ..drawCircle(Offset.zero, r, Paint()..color = const Color(0xF2FBFAF7))
+      ..drawCircle(
+        Offset.zero,
+        r,
+        Paint()
+          ..color = ink
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1.5,
+      );
+    final north = Path()
+      ..moveTo(0, -r * .46)
+      ..lineTo(r * .26, r * .1)
+      ..lineTo(-r * .26, r * .1)
+      ..close();
+    final south = Path()
+      ..moveTo(0, r * .62)
+      ..lineTo(r * .26, r * .1)
+      ..lineTo(-r * .26, r * .1)
+      ..close();
+    canvas
+      ..drawPath(north, Paint()..color = terracottaDark)
+      ..drawPath(
+        south,
+        Paint()
+          ..color = ink
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1.2,
+      );
+    // The letter N drawn as strokes, just inside the top of the ring.
+    final s = r * .17;
+    final top = -r * .88;
+    canvas.drawPath(
+      Path()
+        ..moveTo(-s, top + 2 * s)
+        ..lineTo(-s, top)
+        ..lineTo(s, top + 2 * s)
+        ..lineTo(s, top),
+      Paint()
+        ..color = ink
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = math.max(1, r * .08)
+        ..strokeJoin = StrokeJoin.round,
+    );
   }
 
   /// Draws the plants' top-view art inside a container's soil area.

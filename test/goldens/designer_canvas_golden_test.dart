@@ -169,6 +169,67 @@ void main() {
       ),
     ],
   );
+  // An L-shaped terrace: a cut-out corner, sun areas and a north arrow.
+  const lShaped = LayoutDocument(
+    gardenId: 'g',
+    length: 400,
+    width: 300,
+    elements: [
+      LayoutElement(
+        id: 'sun',
+        kind: ElementKind.sunFull,
+        center: Vec2(110, 90),
+        width: 200,
+        height: 160,
+      ),
+      LayoutElement(
+        id: 'part',
+        kind: ElementKind.sunPart,
+        center: Vec2(110, 240),
+        width: 200,
+        height: 100,
+      ),
+      LayoutElement(
+        id: 'shade',
+        kind: ElementKind.shade,
+        center: Vec2(305, 245),
+        width: 170,
+        height: 90,
+      ),
+      LayoutElement(
+        id: 'cut',
+        kind: ElementKind.cutOut,
+        center: Vec2(320, 90),
+        width: 160,
+        height: 180,
+      ),
+      LayoutElement(
+        id: 'bag1',
+        kind: ElementKind.roundGrowBag,
+        center: Vec2(60, 60),
+        width: 38,
+        height: 38,
+        depthCm: 38,
+      ),
+      LayoutElement(
+        id: 'bag2',
+        kind: ElementKind.roundGrowBag,
+        center: Vec2(110, 60),
+        width: 38,
+        height: 38,
+        depthCm: 38,
+      ),
+      LayoutElement(
+        id: 'arrow',
+        kind: ElementKind.northArrow,
+        center: Vec2(200, 40),
+        width: 40,
+        height: 40,
+        rotationDeg: 30,
+      ),
+    ],
+  );
+
   const plants = {
     'bag1': [PlantArtSpec(PlantForm.fruiting, accent: Color(0xFFD7402B))],
     'bag2': [PlantArtSpec(PlantForm.cluster)],
@@ -259,6 +320,23 @@ void main() {
               select: 'long',
               style: CanvasStyle.garden,
               dusk: true,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'L-shaped, sun areas, north arrow selected',
+            child: canvas(
+              CanvasColors.light,
+              document: lShaped,
+              select: 'arrow',
+              style: CanvasStyle.garden,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'L-shaped in blueprint',
+            child: canvas(
+              CanvasColors.light,
+              document: lShaped,
+              select: 'none',
             ),
           ),
           GoldenTestScenario(

@@ -87,6 +87,13 @@ void main() {
     }
   }
 
+  Future<void> openMore(WidgetTester tester) async {
+    await tester.ensureVisible(find.text('More'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('More'));
+    await tester.pumpAndSettle();
+  }
+
   Future<List<LayoutElement>> savedElements() => DriftLayoutRepository(
     app.database,
     const DeveloperLogger(),
@@ -260,10 +267,11 @@ void main() {
     await app.pump(tester);
     await openDesigner(tester);
 
-    await tester.tap(find.text('More'));
-    await tester.pumpAndSettle();
+    await openMore(tester);
     expect(find.text('Water tank'), findsOneWidget);
     expect(find.text('Drain'), findsOneWidget);
+    await tester.ensureVisible(find.text('Door'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Door'));
     await tester.pumpAndSettle();
     expect(document(tester).elements.single.kind, ElementKind.door);
@@ -343,5 +351,67 @@ void main() {
     await tester.tap(find.text('Blueprint'));
     await tester.pumpAndSettle();
     expect(canvas(tester).widget.style, CanvasStyle.blueprint);
+  });
+
+  testWidgets('marks sun on the map and shows it for the selected pot', (
+    tester,
+  ) async {
+    tester.setScreenSize(const Size(420, 860));
+    await createGarden(length: Length.metres(3), width: Length.metres(1.2));
+    await app.pump(tester);
+    await openDesigner(tester);
+    expect(find.text('Mark sun and shade'), findsNothing);
+
+    await addObject(tester, 'Round pot');
+    await deselect(tester);
+    await tester.tap(find.text('Mark sun and shade'));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('never guesses sun'), findsOneWidget);
+    await tester.tap(find.text('Full sun area'));
+    await tester.pumpAndSettle();
+    expect(find.text('Mark sun and shade'), findsNothing);
+
+    // Select the pot (on top of the area) and read its sun.
+    await deselect(tester);
+    await tester.tapAt(screenOf(tester, const Vec2(150, 60)));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('Sun here: 6+ hours'), findsOneWidget);
+  });
+
+  testWidgets('dragging on an unselected sun area pans instead of moving it', (
+    tester,
+  ) async {
+    tester.setScreenSize(const Size(420, 860));
+    await createGarden(length: Length.metres(3), width: Length.metres(1.2));
+    await app.pump(tester);
+    await openDesigner(tester);
+    await openMore(tester);
+    await tester.ensureVisible(find.text('Shade area'));
+    await tester.tap(find.text('Shade area'));
+    await tester.pumpAndSettle();
+    await deselect(tester);
+    final before = document(tester).elements.single.center;
+
+    await dragObject(tester, before, const Vec2(40, 0));
+    expect(document(tester).elements.single.center, before);
+  });
+
+  testWidgets('starts from a template sized to the terrace', (tester) async {
+    await createGarden(length: Length.metres(3), width: Length.metres(1.2));
+    await app.pump(tester);
+    await openDesigner(tester);
+
+    expect(find.text('Grow bag rows with a path'), findsOneWidget);
+    await tester.tap(find.text('Grow bag rows with a path'));
+    await tester.pumpAndSettle();
+    final elements = document(tester).elements;
+    expect(
+      elements.where((e) => e.kind == ElementKind.roundGrowBag),
+      isNotEmpty,
+    );
+    expect(find.textContaining('problem'), findsNothing);
+    await tester.tap(find.byTooltip('Undo'));
+    await tester.pumpAndSettle();
+    expect(document(tester).elements, isEmpty);
   });
 }

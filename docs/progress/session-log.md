@@ -19,7 +19,9 @@ Newest first. Keep entries concise: goal, what was done, checks, next.
 
 **Checks:** format 0 changed; analyze clean; 493 tests passed. Goldens: new garden-style golden, blueprint golden regenerated, plan golden unchanged. Real-font renders checked by eye. Device test updated, not run.
 
-**Next:** U-B sun and shape.
+**Then (U-B, ADR-031):** committed U-A on a new branch `map-upgrade` (`8600781`), with the user's go-ahead. Added sun areas (user-marked; never computed), a north arrow, "Not floor" cut-outs for L-shaped terraces, background gestures, three templates sized to the terrace and "Sun here" for the selected container. Checks: format 0 changed, analyze clean, 513 tests passed; goldens and real-font renders checked by eye. Not committed yet.
+
+**Next:** U-C plant in place.
 
 ---
 

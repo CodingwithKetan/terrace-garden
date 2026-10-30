@@ -196,7 +196,9 @@ class TerracePlanPainter extends CustomPainter {
       width: widthCm,
       elements: [for (final i in items) i.element],
     );
+    // Sun areas are planning marks for the designer, not shown on plans.
     for (final e in doc.drawOrder) {
+      if (e.kind.role == ElementRole.zone) continue;
       TerraceArtist.paintElement(canvas, e, k, plants: byId[e.id]!.plants);
     }
 

@@ -181,7 +181,11 @@ class DesignerCanvasState extends State<DesignerCanvas> {
       t.screenToWorld(screen),
       tolerance: t.screenToWorldDistance(12),
     );
-    if (hit != null) {
+    // Sun areas and cut-outs cover large parts of the floor; dragging on one
+    // pans the view unless it is the selected object.
+    final movable =
+        hit != null && (!hit.kind.isBackground || hit.id == c.selectedId);
+    if (movable) {
       c
         ..select(hit.id)
         ..beginGesture();

@@ -241,6 +241,56 @@ void main() {
     });
   });
 
+  group('sun areas, cut-outs and the north arrow', () {
+    test('a near miss on a pot beats the sun area under it', () {
+      final c = controller()..add(ElementKind.sunFull, const Vec2(100, 60));
+      final pot = c.add(ElementKind.roundPot, const Vec2(100, 60));
+      // 18 cm from the centre: just outside the 15 cm radius.
+      expect(
+        c.hitTest(const Vec2(118, 60), tolerance: 5)?.id,
+        pot.id,
+      );
+      expect(c.hitTest(const Vec2(160, 60))?.kind, ElementKind.sunFull);
+    });
+
+    test('one north arrow per layout', () {
+      final c = controller();
+      final first = c.add(ElementKind.northArrow, const Vec2(20, 20));
+      c.select(null);
+      final again = c.add(ElementKind.northArrow, const Vec2(200, 60));
+      expect(again.id, first.id);
+      expect(c.selectedId, first.id);
+      expect(
+        c.document.elements.where((e) => e.kind == ElementKind.northArrow),
+        hasLength(1),
+      );
+    });
+
+    test('adds a template as one undo step', () {
+      final c = controller()
+        ..addAll([
+          const LayoutElement(
+            id: 'a',
+            kind: ElementKind.roundPot,
+            center: Vec2(50, 50),
+            width: 30,
+            height: 30,
+          ),
+          const LayoutElement(
+            id: 'b',
+            kind: ElementKind.roundPot,
+            center: Vec2(100, 50),
+            width: 30,
+            height: 30,
+          ),
+        ]);
+      expect(c.document.elements, hasLength(2));
+      expect(c.selectedId, isNull);
+      c.undo();
+      expect(c.document.elements, isEmpty);
+    });
+  });
+
   group('autosave', () {
     test('debounces bursts of changes into one save', () {
       fakeAsync((async) {
