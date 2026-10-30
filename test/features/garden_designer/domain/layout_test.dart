@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:terrace_garden/features/garden_designer/domain/container_presets.dart';
 import 'package:terrace_garden/features/garden_designer/domain/geometry.dart';
 import 'package:terrace_garden/features/garden_designer/domain/layout.dart';
 import 'package:terrace_garden/features/garden_designer/domain/layout_history.dart';
@@ -141,6 +142,107 @@ void main() {
         isEmpty,
       );
     });
+
+    test('anything solid where a door opens is a warning', () {
+      final doc = balcony([
+        el('door', ElementKind.door, 45, 45),
+        el('p', ElementKind.roundPot, 40, 40),
+        el('bench', ElementKind.seating, 60, 30),
+      ]);
+      final issues = validateLayout(doc).where(
+        (i) => i.type == IssueType.blocksDoor,
+      );
+      expect(issues.map((i) => i.elementId), unorderedEquals(['p', 'bench']));
+      expect(issues.first.severity, IssueSeverity.warning);
+    });
+
+    test('a container over a drain is a warning; a tap is not', () {
+      final doc = balcony([
+        el('drain', ElementKind.drain, 20, 20),
+        el('tap', ElementKind.waterPoint, 100, 20),
+        el('a', ElementKind.roundPot, 20, 20),
+        el('b', ElementKind.roundPot, 100, 20),
+      ]);
+      final issue = validateLayout(doc).single;
+      expect(issue.elementId, 'a');
+      expect(issue.type, IssueType.coversDrain);
+    });
+
+    test('hanging pots only clash with each other', () {
+      final doc = balcony([
+        el('bag', ElementKind.growBag, 100, 60),
+        el('h1', ElementKind.hangingPot, 100, 60),
+        el('h2', ElementKind.hangingPot, 110, 60),
+      ]);
+      final issues = validateLayout(doc);
+      expect(issues.map((i) => i.elementId), unorderedEquals(['h1', 'h2']));
+      expect(issues.every((i) => i.type == IssueType.overlap), isTrue);
+    });
+
+    test('a water tank is solid', () {
+      final doc = balcony([
+        el('tank', ElementKind.waterTank, 60, 60),
+        el('p', ElementKind.roundPot, 60, 60),
+      ]);
+      expect(validateLayout(doc), hasLength(2));
+    });
+  });
+
+  group('drawOrder', () {
+    test('back to front by layer, then list order', () {
+      final doc = balcony([
+        el('hang', ElementKind.hangingPot, 50, 50),
+        el('pot', ElementKind.roundPot, 50, 50),
+        el('drain', ElementKind.drain, 50, 50),
+        el('tank', ElementKind.waterTank, 200, 60),
+        el('path', ElementKind.path, 50, 60),
+        el('door', ElementKind.door, 250, 60),
+      ]);
+      expect(doc.drawOrder.map((e) => e.id), [
+        'path',
+        'door',
+        'tank',
+        'drain',
+        'pot',
+        'hang',
+      ]);
+    });
+  });
+
+  group('ElementPreset', () {
+    test('converts shop inches to centimetres', () {
+      const bag = ElementPreset(
+        ElementKind.growBag,
+        widthIn: 24,
+        heightIn: 12,
+        depthIn: 9,
+      );
+      final e = bag.toElement(id: 'b', center: Vec2.zero);
+      expect(e.width, closeTo(60.96, 1e-9));
+      expect(e.height, closeTo(30.48, 1e-9));
+      expect(e.depthCm, closeTo(22.86, 1e-9));
+      expect(bag.sizeLabel, '24 × 12 × 9');
+    });
+
+    test('round presets are as tall as they are wide', () {
+      const pot = ElementPreset(ElementKind.roundPot, widthIn: 12, depthIn: 12);
+      expect(pot.heightCm, pot.widthCm);
+      expect(pot.sizeLabel, '12 × 12');
+    });
+
+    test(
+      'every preset matches its kind and container presets have a depth',
+      () {
+        for (final MapEntry(key: kind, value: presets)
+            in elementPresets.entries) {
+          for (final p in presets) {
+            expect(p.kind, kind);
+            expect(p.kind.round, p.heightIn == null);
+            if (kind.isContainer) expect(p.depthIn, isNotNull);
+          }
+        }
+      },
+    );
   });
 
   group('LayoutSummary', () {

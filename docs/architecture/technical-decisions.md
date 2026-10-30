@@ -265,3 +265,17 @@ Change process: add a new ADR (or mark one *Superseded by ADR-0xx*) instead of s
   - Some popular plants show "no evidence" rather than benefits. This is intended.
   - MedlinePlus withdrew its herb pages on 2025-07-29, so it is not used.
   - The notes are English inside the Hindi UI, as for other catalogue prose (KI-034).
+
+## ADR-030: One illustrated map, edited directly (Designer 2.0, 2026-10-30)
+- **Context:** the user found the map layout weak. The designer was a plain grid of outlined boxes with no plants, while the illustrated `TerracePlan` could only be viewed. You built the terrace in one tool and saw it in another. Indian terraces also have features the designer couldn't show (overhead tank, door, drain, stairs), and containers are sold in inch sizes the designer didn't offer. The user chose to merge the two views (2026-10-30).
+- **Decision:**
+  - **One renderer.** `TerraceArtist` draws the floor, objects and plants at any scale. `TerracePlanPainter` (read-only plans on Today, the garden overview, the report and onboarding) and the designer's `GardenCanvasPainter` both use it. The designer has two styles: **Garden** (default; the illustrated terrace with the garden's plantings in their containers, and a dusk tint in dark mode) and **Blueprint** (the earlier white grid for measuring).
+  - **New kinds:** round grow bag, hanging pot, trellis, water tank, stairs or room, seating, door, drain. Kinds are stored by name (`textEnum`), so there is no migration.
+  - **Validation:** solids where a door opens (`blocksDoor`) or over a drain (`coversDrain`) are warnings, like a container on a path. Hanging pots (`ElementKind.overhead`) only collide with each other.
+  - **Layers:** `ElementKind.drawLayer` puts paths and doors at the back, then structures, markers, containers and hanging pots. Drawing and hit testing share `LayoutDocument.drawOrder`, so what looks on top is what a tap selects.
+  - **Shop sizes:** `elementPresets` lists grow bags, pots and raised beds the way Indian shops label them (inches; diameter × height for round bags, L × W × H for rectangular ones). The size sheet shows centimetres and soil litres for each. These are product sizes the user edits, not horticultural advice. A pot's depth varies by maker, so it starts equal to its diameter.
+  - **Interaction:** a quick-add tray (tap for a size, or drag onto the terrace at the last size used); a More sheet with every kind drawn as it looks; a toolbar that floats by the selection (rotate, duplicate, repeat in a row, delete); a bottom bar naming the selection and its size, with Edit; floating Snap and Fit buttons. "Repeat in a row" adds N copies with a set gap as one undo step.
+- **Consequences:**
+  - The designer and every plan look the same, and the plan golden was unchanged by the refactor.
+  - Problem badges now draw above all objects, so a covered drain still shows its badge (blueprint golden updated).
+  - Not yet (next slices): marking sun and shade areas, a north arrow, L-shaped boundaries and cut-outs, templates, and choosing plants by tapping a container (roadmap slices B–C).

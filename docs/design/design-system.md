@@ -209,6 +209,10 @@ Every data-driven screen implements all applicable states explicitly using share
 
 ## 12. Garden canvas visual language
 
+The designer has two styles (ADR-030). **Garden** (the default) draws the terrace exactly as the read-only plans do, through `TerraceArtist`: tiled limestone floor (a line every 50 cm), a parapet around the usable floor, terracotta pots, dark fabric grow bags, the plantings' top-view art inside each container, and a dusk tint in dark mode. Features are drawn as seen from above: the water tank as a black ridged drum, stairs or a room as concrete with treads, seating as wooden planks, a trellis as slats, a door as the architect's symbol (frame, open leaf and dashed swing), and a drain as a grate. A hanging pot shows its three cords meeting at the hook. **Blueprint** is the measuring view below. In both styles, problems, selection, handles and dimension labels are drawn on top.
+
+Blueprint style:
+
 | Element | Visual |
 |---|---|
 | Garden boundary | 2dp `ink` stroke, interior `paperBright`; outside area `paperDim` |

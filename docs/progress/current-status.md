@@ -1,8 +1,10 @@
 # Current Status
 
-Last updated: 2026-10-29
+Last updated: 2026-10-30
 
 ## Phase
+
+**2026-10-30: map, catalogue and UI upgrade started (TODO "U-" items). Slice U-A, Designer 2.0, is done (ADR-030): the designer now edits the illustrated terrace directly, with plants, Indian shop sizes, terrace features (tank, door, drain, stairs, seating, trellis, hanging pots), a drag-in tray and repeat in a row.** Next: U-B sun and shape, then U-C plant in place, U-D catalogue depth, U-E UI polish.
 
 **2026-10-29: Terrace Garden Plus is built but not on sale (ADR-028, KI-038). Also added: a free pest guide, a Plus garden report, a 73-species catalogue, and health authority skin-use notes (ADR-029).** Phase 6 done except a device profile run (P6-07). The app is in English and Hindi, with a pet-friendly filter and a fuller catalogue (2026-10-18). Living Terrace redesign built (R-01..R-07, ADR-025/026; 2026-10-18); ready for moderated user testing of the new design.** Phases 0–5 are complete. Open: P6-07 device profiling; P6-04 kit preset (needs KI-014 verification); P6-10 branding (needs the app name, PD-001).
 
@@ -32,6 +34,8 @@ Last updated: 2026-10-29
 
 ## Last completed tasks
 
+**2026-10-30 (U-A, Designer 2.0):** shared `TerraceArtist` renderer; Garden/Blueprint styles; 8 new kinds with door, drain and hanging-pot rules; shop-size presets; quick-add tray with drag-to-place; More sheet; floating selection toolbar; repeat in a row; ADR-030, KI-041, KI-042.
+
 **2026-10-29 (M-01, M-03..M-06):**
 - Terrace Garden Plus with Play billing.
 - Pest guide and garden report.
@@ -43,6 +47,8 @@ Earlier: **Hindi, pet-friendly filter and catalogue completion (L-01..L-03, ADR-
 
 ## Exact next steps
 
+0. **U-B sun and shape** (user decisions 2026-10-30): a north arrow the user sets, sun areas the user marks (full sun, part sun, shade), L-shaped boundaries and cut-outs, starter templates. Then U-C (plant in place), U-D (catalogue depth: container size, harvest, sowing and watering gaps; West/Central/East India regions; spacing), U-E (UI polish).
+   - In the next device session also re-run the integration test and try drag-from-tray on a touchscreen (KI-041).
 0. **M-07:** re-run the device test, and look at the Plus screen, the upgrade sheet, the pest guide, the report and "On the skin" on the emulator.
    - **M-02 before selling:** Play Console products, release signing, licence-tester purchases (KI-038).
 1. **Run moderated user tests of the new design** with `docs/product/user-testing-kit.md` (5–8 participants). Watch whether people find their gardens from Today and use the soil-check answers.
@@ -51,8 +57,9 @@ Earlier: **Hindi, pet-friendly filter and catalogue completion (L-01..L-03, ADR-
 3. **Before public release:** horticulturist review (R2), research gaps KI-010..KI-013, plant images (KI-016), product name and branding (PD-001, P6-10), signing, iOS build (KI-003).
 4. **P1 backlog:** plant comparison (P4-05), importing an export (ADR-024), notification deep links (KI-028), photo on task completion.
 
-## Checks run (latest, 2026-10-29, Windows host)
+## Checks run (latest, 2026-10-30, Windows host)
 
+- **Designer 2.0 gate (2026-10-30):** `dart format --set-exit-if-changed` 0 changed; `flutter analyze` no issues; `flutter test` **493 passed** (17 new). New golden `designer_canvas_garden.png`; `designer_canvas.png` regenerated (problem badges now draw above all objects) and checked by eye; `terrace_plan.png` unchanged after the renderer refactor. Real-font renders of the designer (garden light and dark, size sheet, selection, More sheet, blueprint) were checked by eye with a throwaway test that is not committed. Failures along the way, all fixed: a selection bar that grew to full screen height (caught by the flow tests), an expected-volume mistake in a new test, and uneven tray tiles. Not run: the device integration test (updated for the tray).
 - **Plus / catalogue / skin-use gate (2026-10-29):** `dart format --set-exit-if-changed` 0 changed; `flutter analyze` no issues; `flutter test` **476 passed**. Earlier, at `8a65a6e`: 473 passed.
   - New tests: skin use cites only health authorities; the parser rejects skin use without evidence or sources; the `skinUseOnly` search; the Skin use filter and the "On the skin" section.
   - The `plant_art` golden was regenerated for 73 species and checked by eye.

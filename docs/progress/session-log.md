@@ -4,6 +4,25 @@ Newest first. Keep entries concise: goal, what was done, checks, next.
 
 ---
 
+## 2026-10-30: Session 2, part 1 (map, catalogue and UI upgrade; Designer 2.0)
+
+**Goal:** the user wasn't satisfied with the UX and asked for big improvements to the map layout, the plant database and the UI.
+
+**Audit (start of session):**
+- Map: built in a plain box editor but shown as an illustrated read-only plan; no sun or north arrow; rectangle-only boundary; 9 kinds without tank, door or drain; one-at-a-time adding with no shop sizes; tapping a container doesn't help choose plants.
+- Catalogue: 73 species but only 14 fully verified; container size missing for 38, days to harvest for 36, sowing for 21, watering style for 68; sowing covers only 5 regions (no Mumbai, Pune, Ahmedabad, Kolkata, Jaipur); no height, spread or spacing; about 15 drawing templates shared by 73 species.
+- UI: the designer looked like a utility; other screens to be reviewed with real fonts before changes.
+
+**Decisions (user):** map first; merge designer and plan; sun areas marked by the user; catalogue depth before breadth.
+
+**Done (U-A, ADR-030):** `TerraceArtist` shared renderer; Garden/Blueprint styles with plantings drawn in containers; 8 new kinds and validation rules (`blocksDoor`, `coversDrain`, hanging pots overhead); `drawOrder` for drawing and hit testing; `elementPresets` (Indian shop sizes in inches, with cm and litres in the sheet); quick-add tray (tap for a size, drag to place at the last size); More sheet with drawn tiles; floating selection toolbar; repeat in a row (one undo step). English and Hindi strings.
+
+**Checks:** format 0 changed; analyze clean; 493 tests passed. Goldens: new garden-style golden, blueprint golden regenerated, plan golden unchanged. Real-font renders checked by eye. Device test updated, not run.
+
+**Next:** U-B sun and shape.
+
+---
+
 ## 2026-10-29: Session 1, part 11 (Plus, pest guide, report, 73 plants, skin use)
 
 **Goal:** the user asked for:

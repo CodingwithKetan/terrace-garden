@@ -13,6 +13,12 @@ enum IssueType {
 
   /// A container stands on a path.
   onPath,
+
+  /// Something solid stands where a door opens.
+  blocksDoor,
+
+  /// Something solid covers a floor drain.
+  coversDrain,
 }
 
 @immutable
@@ -29,7 +35,9 @@ final class LayoutIssue {
 
   IssueSeverity get severity => switch (type) {
     IssueType.outOfBounds || IssueType.overlap => IssueSeverity.error,
-    IssueType.onPath => IssueSeverity.warning,
+    IssueType.onPath ||
+    IssueType.blocksDoor ||
+    IssueType.coversDrain => IssueSeverity.warning,
   };
 
   @override
@@ -50,8 +58,10 @@ final class LayoutIssue {
 /// reported on both elements.
 ///
 /// Rules: anything outside the garden is an error; solids (containers,
-/// walls, railings) must not overlap each other; a container on a path is a
-/// warning; markers never conflict.
+/// walls, railings, tanks, seating) must not overlap each other; a container
+/// on a path is a warning, and so is a solid where a door opens or over a
+/// drain; other markers never conflict. Hanging pots only conflict with each
+/// other, since they hang above the floor.
 List<LayoutIssue> validateLayout(LayoutDocument doc) {
   final issues = <LayoutIssue>[];
   final elements = doc.elements;
@@ -62,42 +72,49 @@ List<LayoutIssue> validateLayout(LayoutDocument doc) {
     }
   }
 
-  bool isSolid(LayoutElement e) =>
-      e.kind.role == ElementRole.container ||
-      e.kind.role == ElementRole.structure;
-
   for (var i = 0; i < elements.length; i++) {
     for (var j = i + 1; j < elements.length; j++) {
       final a = elements[i];
       final b = elements[j];
-      final IssueType? type;
-      if (isSolid(a) && isSolid(b)) {
-        type = IssueType.overlap;
-      } else if (_isContainerOnPath(a, b) || _isContainerOnPath(b, a)) {
-        type = IssueType.onPath;
-      } else {
-        type = null;
-      }
-      if (type == null || !shapesOverlap(a.shape, b.shape)) continue;
-      if (type == IssueType.onPath) {
-        final container = a.kind.isContainer ? a : b;
-        final path = a.kind.isContainer ? b : a;
-        issues.add(
-          LayoutIssue(
-            elementId: container.id,
-            type: type,
-            otherElementId: path.id,
-          ),
-        );
-      } else {
+      if (a.kind.overhead != b.kind.overhead) continue;
+      if (_isSolid(a) && _isSolid(b)) {
+        if (!shapesOverlap(a.shape, b.shape)) continue;
         issues
-          ..add(LayoutIssue(elementId: a.id, type: type, otherElementId: b.id))
-          ..add(LayoutIssue(elementId: b.id, type: type, otherElementId: a.id));
+          ..add(
+            LayoutIssue(
+              elementId: a.id,
+              type: IssueType.overlap,
+              otherElementId: b.id,
+            ),
+          )
+          ..add(
+            LayoutIssue(
+              elementId: b.id,
+              type: IssueType.overlap,
+              otherElementId: a.id,
+            ),
+          );
+        continue;
       }
+      final issue = _keepClearIssue(a, b) ?? _keepClearIssue(b, a);
+      if (issue != null && shapesOverlap(a.shape, b.shape)) issues.add(issue);
     }
   }
   return issues;
 }
 
-bool _isContainerOnPath(LayoutElement a, LayoutElement b) =>
-    a.kind.isContainer && b.kind.role == ElementRole.walkway;
+bool _isSolid(LayoutElement e) =>
+    e.kind.role == ElementRole.container ||
+    e.kind.role == ElementRole.structure;
+
+/// The warning for [a] standing on [b], when [b] is an area to keep clear.
+LayoutIssue? _keepClearIssue(LayoutElement a, LayoutElement b) {
+  final type = switch (b.kind) {
+    ElementKind.door when _isSolid(a) => IssueType.blocksDoor,
+    ElementKind.drain when _isSolid(a) => IssueType.coversDrain,
+    ElementKind.path when a.kind.isContainer => IssueType.onPath,
+    _ => null,
+  };
+  if (type == null) return null;
+  return LayoutIssue(elementId: a.id, type: type, otherElementId: b.id);
+}

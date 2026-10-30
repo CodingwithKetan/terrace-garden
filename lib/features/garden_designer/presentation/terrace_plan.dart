@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:terrace_garden/features/garden_designer/domain/layout.dart';
+import 'package:terrace_garden/features/garden_designer/presentation/terrace_artist.dart';
 import 'package:terrace_garden/features/plant_catalog/plant_catalog.dart';
 
 /// What a container on the plan is flagged with.
@@ -162,17 +163,10 @@ class TerracePlanPainter extends CustomPainter {
   final TextScaler textScaler;
   final TextStyle tagStyle;
 
-  static const _floor = Color(0xFFE4DFD3);
-  static const _tileLine = Color(0xFFD3CDBF);
-  static const _parapet = Color(0xFFCFC8B8);
-  static const _terracotta = Color(0xFFC2592B);
-  static const _terracottaDark = Color(0xFFA9461F);
-  static const _soil = Color(0xFF5A3E2B);
-  static const _bag = Color(0xFF2F3A35);
-  static const _water = Color(0xFF2E6FB0);
-  static const _leaf = Color(0xFF2B6530);
+  static const Color _leaf = TerraceArtist.leaf;
+  static const Color _water = TerraceArtist.water;
+  static const Color _ink = TerraceArtist.ink;
   static const _tagFill = Color(0xF0FBFAF7);
-  static const _ink = Color(0xFF17301F);
   static const _dim = Color(0xB8F2F0EA);
   static const _unsuitableText = Color(0xFF7A2E12);
 
@@ -181,37 +175,29 @@ class TerracePlanPainter extends CustomPainter {
     final k = size.width / lengthCm;
     final rect = Offset.zero & size;
 
-    // Floor and tiles (one tile per 50 cm).
     canvas
       ..save()
-      ..clipRRect(RRect.fromRectAndRadius(rect, const Radius.circular(20)))
-      ..drawRect(rect, Paint()..color = _floor);
-    final tile = Paint()
-      ..color = _tileLine
-      ..strokeWidth = 1;
-    for (var x = 50.0; x < lengthCm; x += 50) {
-      canvas.drawLine(Offset(x * k, 0), Offset(x * k, size.height), tile);
-    }
-    for (var y = 50.0; y < widthCm; y += 50) {
-      canvas.drawLine(Offset(0, y * k), Offset(size.width, y * k), tile);
-    }
+      ..clipRRect(RRect.fromRectAndRadius(rect, const Radius.circular(20)));
+    TerraceArtist.paintFloor(canvas, lengthCm, widthCm, k);
     // Parapet.
     final wall = math.max(8, math.min(size.width, size.height) * .04);
     canvas.drawRect(
       rect.deflate(wall / 2),
       Paint()
-        ..color = _parapet
+        ..color = TerraceArtist.parapet
         ..style = PaintingStyle.stroke
         ..strokeWidth = wall.toDouble(),
     );
 
-    // Walkways and structures first, then containers.
-    final ordered = [
-      ...items.where((i) => !i.element.kind.isContainer),
-      ...items.where((i) => i.element.kind.isContainer),
-    ];
-    for (final item in ordered) {
-      _drawElement(canvas, item, k);
+    final byId = {for (final i in items) i.element.id: i};
+    final doc = LayoutDocument(
+      gardenId: '',
+      length: lengthCm,
+      width: widthCm,
+      elements: [for (final i in items) i.element],
+    );
+    for (final e in doc.drawOrder) {
+      TerraceArtist.paintElement(canvas, e, k, plants: byId[e.id]!.plants);
     }
 
     if (dusk) {
@@ -233,149 +219,6 @@ class TerracePlanPainter extends CustomPainter {
       _drawOverlay(canvas, item, k);
     }
     canvas.restore();
-  }
-
-  void _drawElement(Canvas canvas, PlanItem item, double k) {
-    final e = item.element;
-    final c = Offset(e.center.x * k, e.center.y * k);
-    final w = e.width * k;
-    final h = e.height * k;
-    canvas
-      ..save()
-      ..translate(c.dx, c.dy);
-    if (!e.kind.round) canvas.rotate(e.rotationDeg * math.pi / 180);
-    final body = Rect.fromCenter(center: Offset.zero, width: w, height: h);
-    final shadow = Paint()
-      ..color = const Color(0x472B2418)
-      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4);
-
-    switch (e.kind) {
-      case ElementKind.roundPot:
-        final r = w / 2;
-        canvas
-          ..drawCircle(Offset(r * .12, r * .16), r, shadow)
-          ..drawCircle(
-            Offset.zero,
-            r,
-            Paint()
-              ..shader = const RadialGradient(
-                center: Alignment(-.2, -.3),
-                colors: [Color(0xFFD8774A), _terracottaDark],
-              ).createShader(Rect.fromCircle(center: Offset.zero, radius: r)),
-          )
-          ..drawCircle(Offset.zero, r * .82, Paint()..color = _soil);
-        _plants(canvas, item, Size.square(r * 1.64));
-      case ElementKind.rectPlanter || ElementKind.raisedBed:
-        final rr = RRect.fromRectAndRadius(body, Radius.circular(h * .14));
-        final rim = math.min(w, h) * .12;
-        canvas
-          ..drawRRect(rr.shift(Offset(w * .03, h * .08)), shadow)
-          ..drawRRect(rr, Paint()..color = _terracotta)
-          ..drawRRect(
-            RRect.fromRectAndRadius(
-              body.deflate(rim),
-              Radius.circular(h * .08),
-            ),
-            Paint()..color = _soil,
-          );
-        _plants(canvas, item, body.deflate(rim).size);
-      case ElementKind.growBag:
-        final rr = RRect.fromRectAndRadius(body, Radius.circular(h * .18));
-        final rim = math.min(w, h) * .09;
-        canvas
-          ..drawRRect(rr.shift(Offset(w * .04, h * .08)), shadow)
-          ..drawRRect(rr, Paint()..color = _bag)
-          ..drawRRect(
-            RRect.fromRectAndRadius(
-              body.deflate(rim),
-              Radius.circular(h * .12),
-            ),
-            Paint()..color = _soil,
-          );
-        _plants(canvas, item, body.deflate(rim).size);
-      case ElementKind.verticalPlanter:
-        canvas.drawRRect(
-          RRect.fromRectAndRadius(body, const Radius.circular(4)),
-          Paint()..color = const Color(0xFF4A5A4E),
-        );
-        for (var i = -1; i <= 1; i++) {
-          canvas.drawCircle(
-            Offset(i * w / 3.2, 0),
-            math.min(w / 8, h / 3),
-            Paint()..color = _soil,
-          );
-        }
-        _plants(canvas, item, Size(w * .8, h * .8));
-      case ElementKind.wall || ElementKind.railing:
-        canvas.drawRect(
-          body,
-          Paint()
-            ..color = e.kind == ElementKind.wall
-                ? const Color(0xFFB8AE99)
-                : const Color(0xFF8C8472),
-        );
-      case ElementKind.path:
-        canvas
-          ..save()
-          ..clipRect(body)
-          ..drawRect(body, Paint()..color = const Color(0xFFDCD5C5));
-        final hatch = Paint()
-          ..color = const Color(0x2E17301F)
-          ..strokeWidth = 2;
-        for (var x = -h; x < w + h; x += 9) {
-          canvas.drawLine(
-            Offset(body.left + x, body.bottom),
-            Offset(body.left + x + h, body.top),
-            hatch,
-          );
-        }
-        canvas.restore();
-      case ElementKind.waterPoint:
-        final r = math.max(10, w / 2).toDouble();
-        canvas
-          ..drawCircle(Offset.zero, r, Paint()..color = const Color(0xFFF7F5EF))
-          ..drawCircle(
-            Offset.zero,
-            r,
-            Paint()
-              ..color = const Color(0xFF8C8472)
-              ..style = PaintingStyle.stroke
-              ..strokeWidth = 1.5,
-          );
-        final drop = Path()
-          ..moveTo(0, -r * .5)
-          ..cubicTo(-r * .4, -r * .05, -r * .45, r * .15, -r * .45, r * .25)
-          ..arcToPoint(
-            Offset(r * .45, r * .25),
-            radius: Radius.circular(r * .45),
-            clockwise: false,
-          )
-          ..cubicTo(r * .45, r * .15, r * .4, -r * .05, 0, -r * .5)
-          ..close();
-        canvas.drawPath(drop, Paint()..color = _water);
-    }
-    canvas.restore();
-  }
-
-  /// Draws the plantings' top-view art inside a container's soil area.
-  void _plants(Canvas canvas, PlanItem item, Size soil) {
-    if (item.plants.isEmpty) return;
-    final long = soil.width >= soil.height;
-    final n = item.plants.length;
-    final cell = long
-        ? Size(soil.width / n, soil.height)
-        : Size(soil.width, soil.height / n);
-    final d = math.min(cell.width, cell.height) * 1.08;
-    for (var i = 0; i < n; i++) {
-      final offset = long
-          ? Offset(-soil.width / 2 + cell.width * (i + .5), 0)
-          : Offset(0, -soil.height / 2 + cell.height * (i + .5));
-      canvas
-        ..save()
-        ..translate(offset.dx - d / 2, offset.dy - d / 2);
-      PlantTopPainter(item.plants[i]).paint(canvas, Size.square(d));
-      canvas.restore();
-    }
   }
 
   void _drawOverlay(Canvas canvas, PlanItem item, double k) {

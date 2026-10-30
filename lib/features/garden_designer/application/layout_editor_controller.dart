@@ -4,6 +4,7 @@ import 'dart:math' as math;
 import 'package:flutter/foundation.dart';
 import 'package:terrace_garden/core/errors/result.dart';
 import 'package:terrace_garden/core/ids/id_generator.dart';
+import 'package:terrace_garden/features/garden_designer/domain/container_presets.dart';
 import 'package:terrace_garden/features/garden_designer/domain/geometry.dart';
 import 'package:terrace_garden/features/garden_designer/domain/layout.dart';
 import 'package:terrace_garden/features/garden_designer/domain/layout_history.dart';
@@ -77,13 +78,14 @@ class LayoutEditorController extends ChangeNotifier {
   /// Topmost element under [world], with [tolerance] cm of slack so small
   /// objects stay easy to tap.
   LayoutElement? hitTest(Vec2 world, {double tolerance = 0}) {
-    for (final e in _document.elements.reversed) {
+    final topFirst = _document.drawOrder.reversed;
+    for (final e in topFirst) {
       if (e.shape.contains(world)) return e;
     }
     if (tolerance <= 0) return null;
     LayoutElement? nearest;
     var best = tolerance;
-    for (final e in _document.elements.reversed) {
+    for (final e in topFirst) {
       final d = (e.center - world).length - _halfMinSide(e);
       if (d <= best) {
         best = d;
@@ -96,21 +98,57 @@ class LayoutEditorController extends ChangeNotifier {
   static double _halfMinSide(LayoutElement e) =>
       math.min(e.width, e.kind.round ? e.width : e.height) / 2;
 
-  /// Adds an element of [kind] at [at] (snapped) and selects it.
-  LayoutElement add(ElementKind kind, Vec2 at) {
-    var element = LayoutElement(
+  /// Adds an element of [kind] at its default size at [at] (snapped) and
+  /// selects it.
+  LayoutElement add(ElementKind kind, Vec2 at) => _place(
+    LayoutElement(
       id: _ids.newId(),
       kind: kind,
       center: at,
       width: kind.w,
       height: kind.round ? kind.w : kind.h,
       depthCm: kind.depth,
+    ),
+  );
+
+  /// Adds an element of [preset]'s size at [at] (snapped) and selects it.
+  LayoutElement addPreset(ElementPreset preset, Vec2 at) =>
+      _place(preset.toElement(id: _ids.newId(), center: at));
+
+  LayoutElement _place(LayoutElement element) {
+    final placed = element.copyWith(
+      center: _snapCenter(element, element.center),
     );
-    element = element.copyWith(center: _snapCenter(element, at));
-    _commit(_document.upsert(element));
-    _selectedId = element.id;
+    _commit(_document.upsert(placed));
+    _selectedId = placed.id;
     notifyListeners();
-    return element;
+    return placed;
+  }
+
+  /// Places [count] copies of the selected element in a row after it,
+  /// [gapCm] apart edge to edge: to the right, or downwards when [down].
+  /// One undo point; the last copy ends up selected.
+  void repeatSelected({
+    required int count,
+    required double gapCm,
+    bool down = false,
+  }) {
+    final current = selected;
+    if (current == null || count < 1) return;
+    final b = current.shape.bounds;
+    final step = down ? Vec2(0, b.height + gapCm) : Vec2(b.width + gapCm, 0);
+    var next = _document;
+    LayoutElement? last;
+    for (var i = 1; i <= count; i++) {
+      last = current.copyWith(
+        id: _ids.newId(),
+        center: current.center + step * i.toDouble(),
+      );
+      next = next.upsert(last);
+    }
+    _commit(next);
+    _selectedId = last!.id;
+    notifyListeners();
   }
 
   // --- Gestures -----------------------------------------------------------

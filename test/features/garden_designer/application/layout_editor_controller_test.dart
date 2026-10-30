@@ -13,6 +13,7 @@ import 'package:terrace_garden/features/garden/data/drift_garden_repository.dart
 import 'package:terrace_garden/features/garden/domain/garden_draft.dart';
 import 'package:terrace_garden/features/garden_designer/application/layout_editor_controller.dart';
 import 'package:terrace_garden/features/garden_designer/data/drift_layout_repository.dart';
+import 'package:terrace_garden/features/garden_designer/domain/container_presets.dart';
 import 'package:terrace_garden/features/garden_designer/domain/geometry.dart';
 import 'package:terrace_garden/features/garden_designer/domain/layout.dart';
 import 'package:terrace_garden/features/garden_designer/domain/layout_repository.dart';
@@ -199,6 +200,44 @@ void main() {
       expect(c.selected!.depthCm, 40);
       expect(c.selected!.label, 'Tomatoes');
       expect(c.selected!.rotationDeg, 0);
+    });
+  });
+
+  group('presets, rows and layers', () {
+    test('adds a preset at its shop size, snapped', () {
+      final c = controller();
+      const bag = ElementPreset(
+        ElementKind.roundGrowBag,
+        widthIn: 12,
+        depthIn: 12,
+      );
+      final e = c.addPreset(bag, const Vec2(101, 59));
+      expect(e.width, closeTo(30.48, 1e-9));
+      expect(e.depthCm, closeTo(30.48, 1e-9));
+      expect(e.center, const Vec2(100, 60));
+      expect(c.selectedId, e.id);
+    });
+
+    test('repeats the selection in a row as one undo step', () {
+      final c = controller();
+      c.add(ElementKind.growBag, const Vec2(40, 30));
+      c.repeatSelected(count: 2, gapCm: 5, down: true);
+      final ys = c.document.elements.map((e) => e.center.y).toList();
+      // 45 cm deep bags with a 5 cm gap: 50 cm apart.
+      expect(ys, [30, 80, 130]);
+      expect(c.selectedId, c.document.elements.last.id);
+      c.undo();
+      expect(c.document.elements, hasLength(1));
+    });
+
+    test('a hanging pot is picked before the bag beneath it', () {
+      final c = controller();
+      final bag = c.add(ElementKind.growBag, const Vec2(100, 60));
+      final hang = c.add(ElementKind.hangingPot, const Vec2(100, 60));
+      expect(c.hitTest(const Vec2(100, 60))?.id, hang.id);
+      // A path added later still sits under the bag.
+      c.add(ElementKind.path, const Vec2(100, 60));
+      expect(c.hitTest(const Vec2(80, 60))?.id, bag.id);
     });
   });
 

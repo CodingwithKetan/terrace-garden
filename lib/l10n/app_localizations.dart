@@ -1289,7 +1289,7 @@ abstract class AppLocalizations {
   /// No description provided for @designerEmptyHint.
   ///
   /// In en, this message translates to:
-  /// **'Tap Add to place pots, grow bags, beds and more.'**
+  /// **'Tap or drag a pot from the tray below. Tap More for beds, a water tank, doors and drains.'**
   String get designerEmptyHint;
 
   /// No description provided for @designerNeedsSizeTitle.
@@ -1340,6 +1340,18 @@ abstract class AppLocalizations {
   /// **'Standing on a path'**
   String get issueOnPath;
 
+  /// No description provided for @issueBlocksDoor.
+  ///
+  /// In en, this message translates to:
+  /// **'In front of a door'**
+  String get issueBlocksDoor;
+
+  /// No description provided for @issueCoversDrain.
+  ///
+  /// In en, this message translates to:
+  /// **'Covers the drain'**
+  String get issueCoversDrain;
+
   /// No description provided for @paletteContainers.
   ///
   /// In en, this message translates to:
@@ -1363,6 +1375,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Round pot'**
   String get kindRoundPot;
+
+  /// No description provided for @kindRoundGrowBag.
+  ///
+  /// In en, this message translates to:
+  /// **'Round grow bag'**
+  String get kindRoundGrowBag;
 
   /// No description provided for @kindRectPlanter.
   ///
@@ -1388,6 +1406,12 @@ abstract class AppLocalizations {
   /// **'Vertical planter'**
   String get kindVerticalPlanter;
 
+  /// No description provided for @kindHangingPot.
+  ///
+  /// In en, this message translates to:
+  /// **'Hanging pot'**
+  String get kindHangingPot;
+
   /// No description provided for @kindWall.
   ///
   /// In en, this message translates to:
@@ -1400,17 +1424,149 @@ abstract class AppLocalizations {
   /// **'Railing'**
   String get kindRailing;
 
+  /// No description provided for @kindTrellis.
+  ///
+  /// In en, this message translates to:
+  /// **'Trellis'**
+  String get kindTrellis;
+
+  /// No description provided for @kindWaterTank.
+  ///
+  /// In en, this message translates to:
+  /// **'Water tank'**
+  String get kindWaterTank;
+
+  /// No description provided for @kindStairs.
+  ///
+  /// In en, this message translates to:
+  /// **'Stairs or room'**
+  String get kindStairs;
+
+  /// No description provided for @kindSeating.
+  ///
+  /// In en, this message translates to:
+  /// **'Seating'**
+  String get kindSeating;
+
   /// No description provided for @kindPath.
   ///
   /// In en, this message translates to:
   /// **'Path'**
   String get kindPath;
 
+  /// No description provided for @kindDoor.
+  ///
+  /// In en, this message translates to:
+  /// **'Door'**
+  String get kindDoor;
+
   /// No description provided for @kindWaterPoint.
   ///
   /// In en, this message translates to:
   /// **'Water tap'**
   String get kindWaterPoint;
+
+  /// No description provided for @kindDrain.
+  ///
+  /// In en, this message translates to:
+  /// **'Drain'**
+  String get kindDrain;
+
+  /// No description provided for @presetInches.
+  ///
+  /// In en, this message translates to:
+  /// **'{size} in'**
+  String presetInches(String size);
+
+  /// No description provided for @presetDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard size'**
+  String get presetDefault;
+
+  /// No description provided for @presetChooseSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a size'**
+  String get presetChooseSize;
+
+  /// No description provided for @presetNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Sizes as shops sell them. You can change the size and soil depth after placing it.'**
+  String get presetNote;
+
+  /// No description provided for @designerViewGarden.
+  ///
+  /// In en, this message translates to:
+  /// **'Garden'**
+  String get designerViewGarden;
+
+  /// No description provided for @designerViewBlueprint.
+  ///
+  /// In en, this message translates to:
+  /// **'Blueprint'**
+  String get designerViewBlueprint;
+
+  /// No description provided for @designerMore.
+  ///
+  /// In en, this message translates to:
+  /// **'More'**
+  String get designerMore;
+
+  /// No description provided for @designerTrayHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to add, or drag onto your terrace'**
+  String get designerTrayHint;
+
+  /// No description provided for @designerRepeat.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat in a row'**
+  String get designerRepeat;
+
+  /// No description provided for @repeatCount.
+  ///
+  /// In en, this message translates to:
+  /// **'How many more'**
+  String get repeatCount;
+
+  /// No description provided for @repeatGap.
+  ///
+  /// In en, this message translates to:
+  /// **'Gap between them'**
+  String get repeatGap;
+
+  /// No description provided for @repeatRight.
+  ///
+  /// In en, this message translates to:
+  /// **'To the right'**
+  String get repeatRight;
+
+  /// No description provided for @repeatDown.
+  ///
+  /// In en, this message translates to:
+  /// **'Downwards'**
+  String get repeatDown;
+
+  /// No description provided for @repeatFewer.
+  ///
+  /// In en, this message translates to:
+  /// **'Fewer'**
+  String get repeatFewer;
+
+  /// No description provided for @repeatMoreCopies.
+  ///
+  /// In en, this message translates to:
+  /// **'More'**
+  String get repeatMoreCopies;
+
+  /// No description provided for @repeatAction.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Add 1} other{Add {count}}}'**
+  String repeatAction(int count);
 
   /// No description provided for @inspectorTitle.
   ///

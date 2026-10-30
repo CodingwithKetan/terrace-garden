@@ -121,10 +121,11 @@ void main() {
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.pumpAndSettle();
     await tester.tap(find.text('Start designing'));
-    await pumpUntilFound(tester, find.widgetWithText(FilledButton, 'Add'));
-    await tester.tap(find.widgetWithText(FilledButton, 'Add'));
+    // The tray: pick a pot, then its standard size.
     await pumpUntilFound(tester, find.text('Round pot'));
     await tester.tap(find.text('Round pot'));
+    await pumpUntilFound(tester, find.text('Standard size'));
+    await tester.tap(find.text('Standard size'));
     await tester.pumpAndSettle();
     await tester.pageBack();
     await pumpUntilFound(tester, find.text('1 object in your layout'));

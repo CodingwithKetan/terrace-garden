@@ -1,6 +1,6 @@
 # TODO
 
-Single source of truth for implementation progress. Last updated: 2026-10-18 (Living Terrace redesign).
+Single source of truth for implementation progress. Last updated: 2026-10-30 (Designer 2.0).
 
 Legend: `[ ]` not started · `[~]` in progress · `[x]` completed (acceptance criteria met and checks run) · `[!]` blocked (reason given).
 Priority: **P0** must (MVP-critical) · **P1** should · **P2** could.
@@ -212,6 +212,16 @@ User feedback on the photo-and-glass look: "looks like an AI generated app". Dir
   - a "Skin use" filter on Plants;
   - 8 plants with entries: aloe vera, rose, tulsi, turmeric, neem, calendula, gotu kola, lavender.
 - [ ] **M-07 · P1 · Re-run the device test** after M-01..M-06, and check the Plus screen and the upgrade sheet on the emulator.
+
+## Map, catalogue and UI upgrade (2026-10-30)
+
+The user asked for a much better map layout, a deeper plant database and a stronger UI. Audit findings and the plan are in the 2026-10-30 session log. Decisions (user, 2026-10-30): map first; merge the designer and the plan into one map edited directly; sun areas are marked by the user (never computed and shown as fact); catalogue depth before breadth.
+
+- [x] **U-A · P1 · Designer 2.0 (ADR-030).** One renderer (`TerraceArtist`) for the designer and every plan; Garden and Blueprint styles; plants shown in their containers while editing; 8 new kinds (round grow bag, hanging pot, trellis, water tank, stairs or room, seating, door, drain) with door, drain and hanging-pot rules; shared draw and hit-test layers; shop sizes in inches with cm and litres; a quick-add tray with tap-for-size and drag-to-place; a More sheet drawn as the objects look; a toolbar floating by the selection; repeat in a row. Tests: 17 new (domain, controller, 5 flows), a garden-style golden. Device test updated for the tray but **not re-run** (M-07).
+- [ ] **U-B · P1 · Sun and shape.** North arrow set by the user; sun areas (full sun, part sun, shade) the user marks from what they see; L-shaped boundaries and cut-outs; starter templates.
+- [ ] **U-C · P1 · Plant in place.** Tap a container to see plants ranked by its size, its sun area and the season, then plant it there; crowding warnings once spacing data exists.
+- [ ] **U-D · P1 · Catalogue depth.** Fill container size (38 missing), days to harvest (36 missing), sowing (21 missing) and watering for the existing 73 from first-party sources; add West, Central and East India sowing regions (KI-017); add sourced height, spread and spacing. Then grow towards about 120 species.
+- [ ] **U-E · P1 · UI polish.** Render and review every screen in light and dark with real fonts; give every species a distinct drawing (about 15 shared templates today); motion and empty states.
 
 ## Phase 7: Advanced (each needs value, cost and plan before starting)
 

@@ -11,9 +11,20 @@ import 'package:terrace_garden/features/garden_designer/domain/layout.dart';
 import 'package:terrace_garden/features/garden_designer/domain/layout_validator.dart';
 import 'package:terrace_garden/features/garden_designer/presentation/designer_labels.dart';
 import 'package:terrace_garden/features/garden_designer/presentation/selection_handles.dart';
+import 'package:terrace_garden/features/garden_designer/presentation/terrace_artist.dart';
+import 'package:terrace_garden/features/plant_catalog/plant_catalog.dart';
 
-/// Draws the garden, grid, objects, problems and selection
-/// (design-system.md §12). Repaints whenever the controller notifies.
+/// How the designer draws the terrace.
+enum CanvasStyle {
+  /// The illustrated terrace with plants, as on every other screen.
+  garden,
+
+  /// A measuring view: white floor, grid and outlined shapes.
+  blueprint,
+}
+
+/// Draws the garden, objects, problems and selection (design-system.md
+/// §12). Repaints whenever the controller notifies.
 class GardenCanvasPainter extends CustomPainter {
   GardenCanvasPainter({
     required this.controller,
@@ -22,6 +33,9 @@ class GardenCanvasPainter extends CustomPainter {
     required this.format,
     required this.labelStyle,
     required this.unitSystem,
+    this.style = CanvasStyle.blueprint,
+    this.plants = const {},
+    this.dusk = false,
   }) : super(repaint: controller);
 
   final LayoutEditorController controller;
@@ -30,6 +44,13 @@ class GardenCanvasPainter extends CustomPainter {
   final MeasurementFormatter format;
   final TextStyle labelStyle;
   final UnitSystem unitSystem;
+  final CanvasStyle style;
+
+  /// Plant drawings by container id (garden style only).
+  final Map<String, List<PlantArtSpec>> plants;
+
+  /// Dims the garden style for the dark theme, like the plan's dusk look.
+  final bool dusk;
 
   Offset _o(Vec2 v) {
     final s = transform.worldToScreen(v);
@@ -49,21 +70,78 @@ class GardenCanvasPainter extends CustomPainter {
       _o(Vec2.zero),
       _o(Vec2(doc.length, doc.width)),
     );
-    canvas.drawRect(garden, Paint()..color = colors.garden);
-    _paintGrid(canvas, garden);
-    canvas.drawRect(
-      garden,
-      Paint()
-        ..color = colors.boundary
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 2,
-    );
-
-    for (final element in doc.elements) {
-      _paintElement(canvas, element);
+    switch (style) {
+      case CanvasStyle.garden:
+        _paintGarden(canvas, garden, doc);
+      case CanvasStyle.blueprint:
+        canvas.drawRect(garden, Paint()..color = colors.garden);
+        _paintGrid(canvas, garden);
+        canvas.drawRect(
+          garden,
+          Paint()
+            ..color = colors.boundary
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 2,
+        );
+        for (final element in doc.drawOrder) {
+          _paintElement(canvas, element);
+        }
+    }
+    for (final element in doc.drawOrder) {
+      _paintIssues(canvas, element);
     }
     final selected = controller.selected;
     if (selected != null) _paintSelection(canvas, selected, doc);
+  }
+
+  void _paintGarden(Canvas canvas, Rect garden, LayoutDocument doc) {
+    // The parapet sits outside the usable floor, about a brick (23 cm) thick.
+    final wall = (23 * _scale).clamp(6, 18).toDouble();
+    canvas
+      ..drawRRect(
+        RRect.fromRectAndRadius(
+          garden.inflate(wall / 2),
+          Radius.circular(wall / 2),
+        ),
+        Paint()
+          ..color = TerraceArtist.parapet
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = wall,
+      )
+      ..save()
+      ..clipRect(garden)
+      ..translate(garden.left, garden.top);
+    TerraceArtist.paintFloor(canvas, doc.length, doc.width, _scale);
+    canvas
+      ..restore()
+      ..save()
+      ..translate(garden.left, garden.top);
+    for (final e in doc.drawOrder) {
+      TerraceArtist.paintElement(
+        canvas,
+        e,
+        _scale,
+        plants: plants[e.id] ?? const [],
+      );
+    }
+    canvas.restore();
+    if (dusk) {
+      canvas.drawRect(
+        garden.inflate(wall),
+        Paint()..color = const Color(0x660B1A12),
+      );
+    }
+    for (final e in doc.elements) {
+      final b = e.shape.bounds;
+      final minSidePx = math.min(b.width, b.height) * _scale;
+      if (e.label != null && minSidePx >= 24) {
+        _pill(
+          canvas,
+          e.label!,
+          _o(Vec2(e.center.x, b.bottom)) + const Offset(0, 10),
+        );
+      }
+    }
   }
 
   void _paintGrid(Canvas canvas, Rect garden) {
@@ -146,22 +224,6 @@ class GardenCanvasPainter extends CustomPainter {
         ..strokeWidth = 1.5,
     );
 
-    final issues = controller.issuesFor(e.id);
-    final hasError = issues.any((i) => i.severity == IssueSeverity.error);
-    if (issues.isNotEmpty) {
-      final color = hasError ? colors.error : colors.warning;
-      _drawShape(
-        canvas,
-        e,
-        Paint()
-          ..color = color
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 3,
-      );
-      final b = e.shape.bounds;
-      _badge(canvas, _o(Vec2(b.right, b.top)), color);
-    }
-
     // Icon in the middle when the object is big enough on screen.
     final b = e.shape.bounds;
     final minSidePx = math.min(b.width, b.height) * _scale;
@@ -175,7 +237,9 @@ class GardenCanvasPainter extends CustomPainter {
           fontFamily: icon.fontFamily,
           package: icon.fontPackage,
           fontSize: math.min(24, minSidePx * 0.45),
-          color: stroke,
+          // Structures are filled solid, so their icon is drawn in the floor
+          // colour to stay visible.
+          color: e.kind.role == ElementRole.structure ? colors.garden : stroke,
         ),
       );
     }
@@ -186,6 +250,25 @@ class GardenCanvasPainter extends CustomPainter {
         _o(e.center) + Offset(0, math.min(24, minSidePx * 0.45) * 0.9),
       );
     }
+  }
+
+  /// Problem outline and badge, drawn above every object so a covered
+  /// element still shows its problem.
+  void _paintIssues(Canvas canvas, LayoutElement e) {
+    final issues = controller.issuesFor(e.id);
+    if (issues.isEmpty) return;
+    final hasError = issues.any((i) => i.severity == IssueSeverity.error);
+    final color = hasError ? colors.error : colors.warning;
+    _drawShape(
+      canvas,
+      e,
+      Paint()
+        ..color = color
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 3,
+    );
+    final b = e.shape.bounds;
+    _badge(canvas, _o(Vec2(b.right, b.top)), color);
   }
 
   void _paintSelection(Canvas canvas, LayoutElement e, LayoutDocument doc) {
@@ -309,5 +392,8 @@ class GardenCanvasPainter extends CustomPainter {
       oldDelegate.transform != transform ||
       oldDelegate.colors != colors ||
       oldDelegate.unitSystem != unitSystem ||
-      oldDelegate.controller != controller;
+      oldDelegate.controller != controller ||
+      oldDelegate.style != style ||
+      oldDelegate.plants != plants ||
+      oldDelegate.dusk != dusk;
 }

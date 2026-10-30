@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:terrace_garden/app/di/core_providers.dart';
 import 'package:terrace_garden/app/theme/app_tokens.dart';
@@ -16,10 +18,16 @@ import 'package:terrace_garden/features/garden/domain/garden_draft.dart';
 import 'package:terrace_garden/features/garden/garden.dart';
 import 'package:terrace_garden/features/garden_designer/application/layout_editor_controller.dart';
 import 'package:terrace_garden/features/garden_designer/data/designer_providers.dart';
+import 'package:terrace_garden/features/garden_designer/domain/container_presets.dart';
+import 'package:terrace_garden/features/garden_designer/domain/geometry.dart';
 import 'package:terrace_garden/features/garden_designer/domain/layout.dart';
+import 'package:terrace_garden/features/garden_designer/presentation/designer_add.dart';
 import 'package:terrace_garden/features/garden_designer/presentation/designer_canvas.dart';
 import 'package:terrace_garden/features/garden_designer/presentation/designer_labels.dart';
 import 'package:terrace_garden/features/garden_designer/presentation/designer_sheets.dart';
+import 'package:terrace_garden/features/garden_designer/presentation/garden_canvas_painter.dart';
+import 'package:terrace_garden/features/plant_catalog/plant_catalog.dart';
+import 'package:terrace_garden/features/plantings/plantings.dart';
 import 'package:terrace_garden/features/settings/settings.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
@@ -244,8 +252,22 @@ class _DesignerView extends ConsumerStatefulWidget {
 }
 
 class _DesignerViewState extends ConsumerState<_DesignerView> {
+  /// The tray's quick picks, most used first.
+  static const List<ElementKind> _trayKinds = [
+    ElementKind.roundGrowBag,
+    ElementKind.roundPot,
+    ElementKind.growBag,
+    ElementKind.rectPlanter,
+    ElementKind.raisedBed,
+    ElementKind.hangingPot,
+  ];
+
   final _canvasKey = GlobalKey<DesignerCanvasState>();
   final _fitRequest = ValueNotifier<int>(0);
+  CanvasStyle _style = CanvasStyle.garden;
+
+  /// The size last placed for each kind, which dragging from the tray uses.
+  final Map<ElementKind, ElementPreset?> _lastSize = {};
 
   LayoutEditorController get _c => widget.controller;
 
@@ -260,13 +282,29 @@ class _DesignerViewState extends ConsumerState<_DesignerView> {
     locale: Localizations.localeOf(context).toLanguageTag(),
   );
 
-  Future<void> _add() async {
-    final kind = await showElementPalette(context);
-    if (kind == null) return;
-    final at =
+  void _place(Placement p, {Vec2? at}) {
+    final where =
+        at ??
         _canvasKey.currentState?.viewportCenterWorld ??
         gardenCenter(_c.document);
-    _c.add(kind, at);
+    final preset = p.preset;
+    if (preset == null) {
+      _c.add(p.kind, where);
+    } else {
+      _c.addPreset(preset, where);
+    }
+    _lastSize[p.kind] = preset;
+    unawaited(HapticFeedback.lightImpact());
+  }
+
+  Future<void> _pickSize(ElementKind kind, UnitSystem units) async {
+    final placement = await showSizePicker(context, kind, _format(units));
+    if (placement != null && mounted) _place(placement);
+  }
+
+  Future<void> _more(UnitSystem units) async {
+    final placement = await showAddSheet(context, _format(units));
+    if (placement != null && mounted) _place(placement);
   }
 
   Future<void> _openObjects(UnitSystem units) async {
@@ -283,6 +321,25 @@ class _DesignerViewState extends ConsumerState<_DesignerView> {
     SaveStatus.failed => l10n.designerSaveFailed,
   };
 
+  /// Plant drawings for each container, from the garden's plantings.
+  Map<String, List<PlantArtSpec>> _plants() {
+    final plantings =
+        ref.watch(gardenPlantingsProvider(widget.garden.id)).value ?? const [];
+    final catalogue = ref.watch(plantCatalogueProvider).value;
+    final byElement = <String, List<PlantArtSpec>>{};
+    for (final p in plantings) {
+      final id = p.elementId;
+      if (id == null) continue;
+      (byElement[id] ??= []).add(
+        PlantArtSpec.of(
+          p.speciesId,
+          category: catalogue?.byId(p.speciesId)?.category,
+        ),
+      );
+    }
+    return byElement;
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -290,6 +347,7 @@ class _DesignerViewState extends ConsumerState<_DesignerView> {
     final units =
         ref.watch(settingsControllerProvider).value?.unitSystem ??
         UnitSystem.metric;
+    final plants = _plants();
 
     return ListenableBuilder(
       listenable: _c,
@@ -335,11 +393,52 @@ class _DesignerViewState extends ConsumerState<_DesignerView> {
           body: Stack(
             children: [
               Positioned.fill(
-                child: DesignerCanvas(
-                  key: _canvasKey,
-                  controller: _c,
-                  unitSystem: units,
-                  fitRequest: _fitRequest,
+                child: DragTarget<Placement>(
+                  onAcceptWithDetails: (details) {
+                    final at = _canvasKey.currentState?.worldAtGlobal(
+                      details.offset,
+                    );
+                    if (at != null) _place(details.data, at: at);
+                  },
+                  builder: (context, _, _) => DesignerCanvas(
+                    key: _canvasKey,
+                    controller: _c,
+                    unitSystem: units,
+                    fitRequest: _fitRequest,
+                    style: _style,
+                    plants: plants,
+                    selectionToolbar: (e) => _FloatingTools(
+                      element: e,
+                      onRotate: _c.rotateSelectedBy90,
+                      onDuplicate: _c.duplicateSelected,
+                      onRepeat: () => showRepeatSheet(context, _c, units),
+                      onDelete: _c.deleteSelected,
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: AppSpacing.md,
+                right: AppSpacing.md,
+                child: SegmentedButton<CanvasStyle>(
+                  showSelectedIcon: false,
+                  style: const ButtonStyle(
+                    visualDensity: VisualDensity.compact,
+                  ),
+                  segments: [
+                    ButtonSegment(
+                      value: CanvasStyle.garden,
+                      icon: const Icon(Icons.yard_outlined),
+                      label: Text(l10n.designerViewGarden),
+                    ),
+                    ButtonSegment(
+                      value: CanvasStyle.blueprint,
+                      icon: const Icon(Icons.architecture),
+                      label: Text(l10n.designerViewBlueprint),
+                    ),
+                  ],
+                  selected: {_style},
+                  onSelectionChanged: (s) => setState(() => _style = s.first),
                 ),
               ),
               if (_c.errorCount > 0)
@@ -355,11 +454,32 @@ class _DesignerViewState extends ConsumerState<_DesignerView> {
                     onPressed: () => _openObjects(units),
                   ),
                 ),
+              Positioned(
+                right: AppSpacing.md,
+                bottom: AppSpacing.md,
+                child: Column(
+                  children: [
+                    IconButton.filledTonal(
+                      tooltip: l10n.designerSnap,
+                      isSelected: _c.snapEnabled,
+                      icon: const Icon(Icons.grid_off),
+                      selectedIcon: const Icon(Icons.grid_on),
+                      onPressed: () => _c.snapEnabled = !_c.snapEnabled,
+                    ),
+                    const SizedBox(height: AppSpacing.sm),
+                    IconButton.filledTonal(
+                      tooltip: l10n.designerFit,
+                      icon: const Icon(Icons.fit_screen_outlined),
+                      onPressed: () => _fitRequest.value++,
+                    ),
+                  ],
+                ),
+              ),
               if (_c.document.elements.isEmpty)
                 Positioned(
                   left: AppSpacing.xl,
                   right: AppSpacing.xl,
-                  top: AppSpacing.xl,
+                  top: AppSpacing.huge,
                   child: Card(
                     child: Padding(
                       padding: const EdgeInsets.all(AppSpacing.lg),
@@ -373,24 +493,22 @@ class _DesignerViewState extends ConsumerState<_DesignerView> {
                 ),
             ],
           ),
-          bottomNavigationBar: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(AppSpacing.md),
+          bottomNavigationBar: Material(
+            color: theme.colorScheme.surface,
+            elevation: 3,
+            child: SafeArea(
               child: selected == null
-                  ? _ToolBar(
-                      snap: _c.snapEnabled,
-                      onAdd: _add,
-                      onToggleSnap: () => _c.snapEnabled = !_c.snapEnabled,
-                      onFit: () => _fitRequest.value++,
+                  ? _AddTray(
+                      kinds: _trayKinds,
+                      lastSize: _lastSize,
+                      pxPerCm: _canvasKey.currentState?.transform?.pxPerCm ?? 1,
+                      onTap: (kind) => _pickSize(kind, units),
+                      onMore: () => _more(units),
                     )
                   : _SelectionBar(
                       element: selected,
+                      size: _sizeText(selected, _format(units)),
                       onEdit: () => showInspector(context, _c, units),
-                      onRotate: selected.kind.round
-                          ? null
-                          : _c.rotateSelectedBy90,
-                      onDuplicate: _c.duplicateSelected,
-                      onDelete: _c.deleteSelected,
                       onDeselect: () => _c.select(null),
                     ),
             ),
@@ -399,42 +517,193 @@ class _DesignerViewState extends ConsumerState<_DesignerView> {
       },
     );
   }
+
+  static String _sizeText(LayoutElement e, MeasurementFormatter format) {
+    final w = format.length(Length.cm(e.width));
+    if (e.kind.round) return 'Ø $w';
+    return '$w × ${format.length(Length.cm(e.height))}';
+  }
 }
 
-class _ToolBar extends StatelessWidget {
-  const _ToolBar({
-    required this.snap,
-    required this.onAdd,
-    required this.onToggleSnap,
-    required this.onFit,
+/// Quick picks along the bottom: tap to choose a size, or drag one straight
+/// onto the terrace at the size last used.
+class _AddTray extends StatelessWidget {
+  const _AddTray({
+    required this.kinds,
+    required this.lastSize,
+    required this.pxPerCm,
+    required this.onTap,
+    required this.onMore,
   });
 
-  final bool snap;
-  final VoidCallback onAdd;
-  final VoidCallback onToggleSnap;
-  final VoidCallback onFit;
+  final List<ElementKind> kinds;
+  final Map<ElementKind, ElementPreset?> lastSize;
+  final double pxPerCm;
+  final ValueChanged<ElementKind> onTap;
+  final VoidCallback onMore;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    return Row(
+    final theme = Theme.of(context);
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        FilterChip(
-          label: Text(l10n.designerSnap),
-          avatar: const Icon(Icons.grid_on, size: 18),
-          showCheckmark: false,
-          selected: snap,
-          onSelected: (_) => onToggleSnap(),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(
+            AppSpacing.lg,
+            AppSpacing.sm,
+            AppSpacing.lg,
+            AppSpacing.xs,
+          ),
+          child: Text(
+            l10n.designerTrayHint,
+            style: theme.textTheme.labelMedium?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
+          ),
         ),
-        const SizedBox(width: AppSpacing.sm),
-        IconButton(
-          tooltip: l10n.designerFit,
-          icon: const Icon(Icons.fit_screen_outlined),
-          onPressed: onFit,
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.fromLTRB(
+            AppSpacing.md,
+            AppSpacing.xs,
+            AppSpacing.md,
+            AppSpacing.md,
+          ),
+          child: IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                for (final kind in kinds) ...[
+                  _draggable(context, (kind: kind, preset: lastSize[kind])),
+                  const SizedBox(width: AppSpacing.sm),
+                ],
+                SizedBox(
+                  width: KindTile.width,
+                  child: Material(
+                    color: theme.colorScheme.secondaryContainer,
+                    borderRadius: AppRadii.mdAll,
+                    clipBehavior: Clip.antiAlias,
+                    child: InkWell(
+                      onTap: onMore,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: AppSpacing.md,
+                        ),
+                        child: Column(
+                          children: [
+                            Icon(
+                              Icons.add,
+                              size: 32,
+                              color: theme.colorScheme.onSecondaryContainer,
+                            ),
+                            const SizedBox(height: AppSpacing.xs),
+                            Text(
+                              l10n.designerMore,
+                              style: theme.textTheme.labelMedium?.copyWith(
+                                color: theme.colorScheme.onSecondaryContainer,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
-        const Spacer(),
-        AppButton(label: l10n.designerAdd, icon: Icons.add, onPressed: onAdd),
       ],
+    );
+  }
+
+  Widget _draggable(BuildContext context, Placement placement) {
+    final preset = placement.preset;
+    final element = placementElement(placement);
+    final b = element.shape.bounds;
+    // The dragged object is shown at its real size on the current zoom.
+    final side = (math.max(b.width, b.height) * pxPerCm / .9).clamp(
+      24.0,
+      320.0,
+    );
+    return Draggable<Placement>(
+      data: placement,
+      affinity: Axis.vertical,
+      dragAnchorStrategy: pointerDragAnchorStrategy,
+      feedback: FractionalTranslation(
+        translation: const Offset(-.5, -.5),
+        child: Opacity(
+          opacity: .85,
+          child: ElementThumbnail(element: element, size: side),
+        ),
+      ),
+      child: KindTile(
+        placement: placement,
+        caption: preset == null
+            ? null
+            : context.l10n.presetInches(preset.sizeLabel),
+        onTap: () => onTap(placement.kind),
+      ),
+    );
+  }
+}
+
+/// Quick actions floating next to the selected object.
+class _FloatingTools extends StatelessWidget {
+  const _FloatingTools({
+    required this.element,
+    required this.onRotate,
+    required this.onDuplicate,
+    required this.onRepeat,
+    required this.onDelete,
+  });
+
+  final LayoutElement element;
+  final VoidCallback onRotate;
+  final VoidCallback onDuplicate;
+  final VoidCallback onRepeat;
+  final VoidCallback onDelete;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final theme = Theme.of(context);
+    return Material(
+      elevation: 4,
+      color: theme.colorScheme.surface,
+      shape: const StadiumBorder(),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xs),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (!element.kind.round)
+              IconButton(
+                tooltip: l10n.actionRotate,
+                icon: const Icon(Icons.rotate_90_degrees_cw_outlined),
+                onPressed: onRotate,
+              ),
+            IconButton(
+              tooltip: l10n.actionDuplicate,
+              icon: const Icon(Icons.copy_outlined),
+              onPressed: onDuplicate,
+            ),
+            IconButton(
+              tooltip: l10n.designerRepeat,
+              icon: const Icon(Icons.view_week_outlined),
+              onPressed: onRepeat,
+            ),
+            IconButton(
+              tooltip: l10n.actionDelete,
+              icon: Icon(Icons.delete_outline, color: theme.colorScheme.error),
+              onPressed: onDelete,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -442,55 +711,53 @@ class _ToolBar extends StatelessWidget {
 class _SelectionBar extends StatelessWidget {
   const _SelectionBar({
     required this.element,
+    required this.size,
     required this.onEdit,
-    required this.onRotate,
-    required this.onDuplicate,
-    required this.onDelete,
     required this.onDeselect,
   });
 
   final LayoutElement element;
+  final String size;
   final VoidCallback onEdit;
-  final VoidCallback? onRotate;
-  final VoidCallback onDuplicate;
-  final VoidCallback onDelete;
   final VoidCallback onDeselect;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    return Row(
-      children: [
-        IconButton(
-          tooltip: l10n.actionDone,
-          icon: const Icon(Icons.close),
-          onPressed: onDeselect,
-        ),
-        Expanded(
-          child: Text(
-            element.label ?? element.kind.label(l10n),
-            style: Theme.of(context).textTheme.titleSmall,
-            overflow: TextOverflow.ellipsis,
+    final theme = Theme.of(context);
+    return Padding(
+      padding: const EdgeInsets.all(AppSpacing.md),
+      child: Row(
+        children: [
+          IconButton(
+            tooltip: l10n.actionDone,
+            icon: const Icon(Icons.close),
+            onPressed: onDeselect,
           ),
-        ),
-        IconButton(
-          tooltip: l10n.actionRotate,
-          icon: const Icon(Icons.rotate_90_degrees_cw_outlined),
-          onPressed: onRotate,
-        ),
-        IconButton(
-          tooltip: l10n.actionDuplicate,
-          icon: const Icon(Icons.copy_outlined),
-          onPressed: onDuplicate,
-        ),
-        IconButton(
-          tooltip: l10n.actionDelete,
-          icon: const Icon(Icons.delete_outline),
-          onPressed: onDelete,
-        ),
-        const SizedBox(width: AppSpacing.xs),
-        AppButton.secondary(label: l10n.actionEdit, onPressed: onEdit),
-      ],
+          ElementThumbnail(element: element),
+          const SizedBox(width: AppSpacing.md),
+          Expanded(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  element.label ?? element.kind.label(l10n),
+                  style: theme.textTheme.titleSmall,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Text(
+                  size,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          AppButton.secondary(label: l10n.actionEdit, onPressed: onEdit),
+        ],
+      ),
     );
   }
 }

@@ -12,40 +12,117 @@ import 'package:terrace_garden/features/garden_designer/domain/layout_validator.
 import 'package:terrace_garden/features/garden_designer/presentation/designer_labels.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
-/// DSN-02. Resolves to the chosen kind, or null if dismissed.
-Future<ElementKind?> showElementPalette(BuildContext context) {
-  final l10n = context.l10n;
-  final groups = [
-    (l10n.paletteContainers, ElementRole.container),
-    (l10n.paletteStructures, ElementRole.structure),
-    (l10n.paletteOther, null),
-  ];
-  return showAppBottomSheet<ElementKind>(
-    context,
-    title: l10n.designerAdd,
-    builder: (context) => Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+/// Copies of the selected object in a row: how many, the gap and the
+/// direction. Applied as one undo step.
+Future<void> showRepeatSheet(
+  BuildContext context,
+  LayoutEditorController controller,
+  UnitSystem unitSystem,
+) => showAppBottomSheet<void>(
+  context,
+  title: context.l10n.designerRepeat,
+  builder: (context) =>
+      _RepeatBody(controller: controller, unitSystem: unitSystem),
+);
+
+class _RepeatBody extends StatefulWidget {
+  const _RepeatBody({required this.controller, required this.unitSystem});
+
+  final LayoutEditorController controller;
+  final UnitSystem unitSystem;
+
+  @override
+  State<_RepeatBody> createState() => _RepeatBodyState();
+}
+
+class _RepeatBodyState extends State<_RepeatBody> {
+  static const _maxCount = 20;
+
+  int _count = 2;
+  late Length _gap = widget.unitSystem == UnitSystem.metric
+      ? const Length.cm(10)
+      : Length.inches(4);
+  bool _down = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final theme = Theme.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        for (final (title, role) in groups) ...[
-          Padding(
-            padding: const EdgeInsets.only(top: AppSpacing.md),
-            child: Text(title, style: Theme.of(context).textTheme.titleSmall),
-          ),
-          for (final kind in ElementKind.values.where(
-            (k) => role == null
-                ? k.role == ElementRole.walkway || k.role == ElementRole.marker
-                : k.role == role,
-          ))
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              leading: Icon(kind.icon),
-              title: Text(kind.label(l10n)),
-              onTap: () => Navigator.of(context).pop(kind),
+        Row(
+          children: [
+            Expanded(
+              child: Text(l10n.repeatCount, style: theme.textTheme.titleSmall),
             ),
-        ],
+            IconButton.outlined(
+              tooltip: l10n.repeatFewer,
+              icon: const Icon(Icons.remove),
+              onPressed: _count > 1 ? () => setState(() => _count--) : null,
+            ),
+            SizedBox(
+              width: AppSpacing.xxxl,
+              child: Text(
+                '$_count',
+                textAlign: TextAlign.center,
+                style: theme.textTheme.titleLarge,
+              ),
+            ),
+            IconButton.outlined(
+              tooltip: l10n.repeatMoreCopies,
+              icon: const Icon(Icons.add),
+              onPressed: _count < _maxCount
+                  ? () => setState(() => _count++)
+                  : null,
+            ),
+          ],
+        ),
+        const SizedBox(height: AppSpacing.lg),
+        DimensionField(
+          fine: true,
+          label: l10n.repeatGap,
+          unitSystem: widget.unitSystem,
+          unitLabel: widget.unitSystem == UnitSystem.metric
+              ? l10n.unitCmShort
+              : l10n.unitInShort,
+          value: _gap,
+          onChanged: (v) {
+            if (v != null && v.cm >= 0) setState(() => _gap = v);
+          },
+        ),
+        const SizedBox(height: AppSpacing.lg),
+        SegmentedButton<bool>(
+          segments: [
+            ButtonSegment(
+              value: false,
+              icon: const Icon(Icons.east),
+              label: Text(l10n.repeatRight),
+            ),
+            ButtonSegment(
+              value: true,
+              icon: const Icon(Icons.south),
+              label: Text(l10n.repeatDown),
+            ),
+          ],
+          selected: {_down},
+          onSelectionChanged: (s) => setState(() => _down = s.first),
+        ),
+        const SizedBox(height: AppSpacing.xl),
+        FilledButton(
+          onPressed: () {
+            widget.controller.repeatSelected(
+              count: _count,
+              gapCm: _gap.cm,
+              down: _down,
+            );
+            Navigator.of(context).pop();
+          },
+          child: Text(l10n.repeatAction(_count)),
+        ),
       ],
-    ),
-  );
+    );
+  }
 }
 
 /// DSN-03. Precise edits of the selected element, applied live.

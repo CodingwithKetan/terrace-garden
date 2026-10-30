@@ -20,24 +20,49 @@ enum ElementRole {
   marker,
 }
 
-/// Element types for the MVP designer (PRD FR-C2). Default sizes are
-/// starting points the user edits; they are not recommendations.
+/// Element types for the designer (PRD FR-C2). Default sizes are starting
+/// points the user edits; they are not recommendations. Kinds are stored by
+/// name, so new values need no migration.
 enum ElementKind {
   roundPot(ElementRole.container, round: true, w: 30, h: 30, depth: 30),
+  roundGrowBag(ElementRole.container, round: true, w: 30, h: 30, depth: 30),
   rectPlanter(ElementRole.container, w: 60, h: 25, depth: 25),
   growBag(ElementRole.container, w: 60, h: 45, depth: 30),
   raisedBed(ElementRole.container, w: 120, h: 60, depth: 30),
   verticalPlanter(ElementRole.container, w: 60, h: 30, depth: 20),
+
+  /// Hangs from a hook or railing above the floor.
+  hangingPot(
+    ElementRole.container,
+    round: true,
+    overhead: true,
+    w: 25,
+    h: 25,
+    depth: 15,
+  ),
   wall(ElementRole.structure, w: 100, h: 10),
   railing(ElementRole.structure, w: 100, h: 5),
+  trellis(ElementRole.structure, w: 100, h: 5),
+  waterTank(ElementRole.structure, round: true, w: 110, h: 110),
+
+  /// A staircase head room, lift room or any built block on the terrace.
+  stairs(ElementRole.structure, w: 120, h: 240),
+  seating(ElementRole.structure, w: 120, h: 45),
   path(ElementRole.walkway, w: 100, h: 60),
-  waterPoint(ElementRole.marker, round: true, w: 15, h: 15);
+
+  /// The space a door opens into, which should stay clear.
+  door(ElementRole.walkway, w: 90, h: 90),
+  waterPoint(ElementRole.marker, round: true, w: 15, h: 15),
+
+  /// A floor drain or outlet, which should stay uncovered.
+  drain(ElementRole.marker, round: true, w: 15, h: 15);
 
   const ElementKind(
     this.role, {
     required this.w,
     required this.h,
     this.round = false,
+    this.overhead = false,
     this.depth,
   });
 
@@ -45,6 +70,9 @@ enum ElementKind {
 
   /// Circular footprint: `width` is the diameter and rotation is ignored.
   final bool round;
+
+  /// Hangs above the floor, so it never collides with floor objects.
+  final bool overhead;
 
   /// Default footprint in cm.
   final double w;
@@ -54,6 +82,18 @@ enum ElementKind {
   final double? depth;
 
   bool get isContainer => role == ElementRole.container;
+
+  /// Back-to-front layer for drawing and hit testing: walkways, structures,
+  /// markers, containers, then hanging pots. Within a layer, later elements
+  /// are on top.
+  int get drawLayer => overhead
+      ? 4
+      : switch (role) {
+          ElementRole.walkway => 0,
+          ElementRole.structure => 1,
+          ElementRole.marker => 2,
+          ElementRole.container => 3,
+        };
 
   /// Smallest side accepted (cm), to keep elements tappable and meaningful.
   static const double minSide = 5;
@@ -113,6 +153,17 @@ abstract class LayoutDocument with _$LayoutDocument {
 
   LayoutElement? elementById(String id) =>
       elements.where((e) => e.id == id).firstOrNull;
+
+  /// [elements] back to front, by [ElementKind.drawLayer] and then list
+  /// order.
+  List<LayoutElement> get drawOrder {
+    final indexed = [...elements.indexed]
+      ..sort((a, b) {
+        final byLayer = a.$2.kind.drawLayer.compareTo(b.$2.kind.drawLayer);
+        return byLayer != 0 ? byLayer : a.$1.compareTo(b.$1);
+      });
+    return [for (final (_, e) in indexed) e];
+  }
 
   /// Replaces the element with the same id, or appends it (on top).
   LayoutDocument upsert(LayoutElement element) {

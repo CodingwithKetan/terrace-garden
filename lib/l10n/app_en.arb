@@ -245,7 +245,7 @@
   "designerSaving": "Saving…",
   "designerNotSaved": "Not saved yet",
   "designerSaveFailed": "Couldn't save. Your changes are kept and will be saved again.",
-  "designerEmptyHint": "Tap Add to place pots, grow bags, beds and more.",
+  "designerEmptyHint": "Tap or drag a pot from the tray below. Tap More for beds, a water tank, doors and drains.",
   "designerNeedsSizeTitle": "Add your garden's size",
   "designerNeedsSizeBody": "The layout uses real measurements, so it needs the length and width of the usable floor.",
   "designerStart": "Start designing",
@@ -268,18 +268,58 @@
   "issueOutOfBounds": "Outside the garden",
   "issueOverlap": "Overlaps another object",
   "issueOnPath": "Standing on a path",
+  "issueBlocksDoor": "In front of a door",
+  "issueCoversDrain": "Covers the drain",
   "paletteContainers": "Containers",
   "paletteStructures": "Structures",
   "paletteOther": "Other",
   "kindRoundPot": "Round pot",
+  "kindRoundGrowBag": "Round grow bag",
   "kindRectPlanter": "Planter box",
   "kindGrowBag": "Grow bag",
   "kindRaisedBed": "Raised bed",
   "kindVerticalPlanter": "Vertical planter",
+  "kindHangingPot": "Hanging pot",
   "kindWall": "Wall",
   "kindRailing": "Railing",
+  "kindTrellis": "Trellis",
+  "kindWaterTank": "Water tank",
+  "kindStairs": "Stairs or room",
+  "kindSeating": "Seating",
   "kindPath": "Path",
+  "kindDoor": "Door",
   "kindWaterPoint": "Water tap",
+  "kindDrain": "Drain",
+  "presetInches": "{size} in",
+  "@presetInches": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "presetDefault": "Standard size",
+  "presetChooseSize": "Choose a size",
+  "presetNote": "Sizes as shops sell them. You can change the size and soil depth after placing it.",
+  "designerViewGarden": "Garden",
+  "designerViewBlueprint": "Blueprint",
+  "designerMore": "More",
+  "designerTrayHint": "Tap to add, or drag onto your terrace",
+  "designerRepeat": "Repeat in a row",
+  "repeatCount": "How many more",
+  "repeatGap": "Gap between them",
+  "repeatRight": "To the right",
+  "repeatDown": "Downwards",
+  "repeatFewer": "Fewer",
+  "repeatMoreCopies": "More",
+  "repeatAction": "{count, plural, =1{Add 1} other{Add {count}}}",
+  "@repeatAction": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "inspectorTitle": "Edit object",
   "fieldDiameter": "Diameter",
   "fieldDepth": "Soil depth",

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,8 +9,10 @@ import 'package:terrace_garden/core/units/measurements.dart';
 import 'package:terrace_garden/features/garden_designer/application/layout_editor_controller.dart';
 import 'package:terrace_garden/features/garden_designer/domain/canvas_transform.dart';
 import 'package:terrace_garden/features/garden_designer/domain/geometry.dart';
+import 'package:terrace_garden/features/garden_designer/domain/layout.dart';
 import 'package:terrace_garden/features/garden_designer/presentation/garden_canvas_painter.dart';
 import 'package:terrace_garden/features/garden_designer/presentation/selection_handles.dart';
+import 'package:terrace_garden/features/plant_catalog/plant_catalog.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
 enum _Mode { none, move, resize, rotate, pan, zoom }
@@ -23,6 +26,9 @@ class DesignerCanvas extends StatefulWidget {
     required this.controller,
     required this.unitSystem,
     this.fitRequest,
+    this.style = CanvasStyle.garden,
+    this.plants = const {},
+    this.selectionToolbar,
     super.key,
   });
 
@@ -31,6 +37,14 @@ class DesignerCanvas extends StatefulWidget {
 
   /// Each notification re-fits the garden to the viewport.
   final Listenable? fitRequest;
+  final CanvasStyle style;
+
+  /// Plant drawings by container id.
+  final Map<String, List<PlantArtSpec>> plants;
+
+  /// Floats above the selected object (or below it near the top edge);
+  /// hidden while a gesture is in progress.
+  final Widget Function(LayoutElement selected)? selectionToolbar;
 
   @override
   State<DesignerCanvas> createState() => DesignerCanvasState();
@@ -54,6 +68,17 @@ class DesignerCanvasState extends State<DesignerCanvas> {
     final v = _viewport;
     if (t == null || v == null) return null;
     return t.screenToWorld(Vec2(v.width / 2, v.height / 2));
+  }
+
+  /// World point under the [global] screen position, or null when it is
+  /// outside the canvas (e.g. an object dropped back on the tray).
+  Vec2? worldAtGlobal(Offset global) {
+    final t = _transform;
+    final box = context.findRenderObject() as RenderBox?;
+    if (t == null || box == null || !box.hasSize) return null;
+    final local = box.globalToLocal(global);
+    if (!(Offset.zero & box.size).contains(local)) return null;
+    return t.screenToWorld(_v(local));
   }
 
   @override
@@ -202,8 +227,43 @@ class DesignerCanvasState extends State<DesignerCanvas> {
     if (_mode case _Mode.move || _Mode.resize || _Mode.rotate) {
       widget.controller.endGesture();
     }
-    _mode = _Mode.none;
+    setState(() => _mode = _Mode.none);
     _gestureStartTransform = null;
+  }
+
+  /// The toolbar above the selected object, or below it when there is no
+  /// room above; kept inside the viewport.
+  Widget? _toolbar(Size viewport) {
+    final builder = widget.selectionToolbar;
+    final selected = widget.controller.selected;
+    final t = _transform;
+    if (builder == null || selected == null || t == null) return null;
+    if (_mode != _Mode.none) return null;
+    final b = selected.shape.bounds;
+    final topLeft = t.worldToScreen(Vec2(b.left, b.top));
+    final bottomRight = t.worldToScreen(Vec2(b.right, b.bottom));
+    const height = 56.0;
+    // Leaves room for the rotate handle above rectangles.
+    final above = topLeft.y - SelectionHandles.rotateHandleGapPx - height - 12;
+    final top = above >= 8
+        ? above
+        : math.min(bottomRight.y + 36, viewport.height - height - 8);
+    final centerX = (topLeft.x + bottomRight.x) / 2;
+    return Positioned(
+      top: top,
+      left: 0,
+      right: 0,
+      child: Align(
+        alignment: Alignment(
+          ((centerX / viewport.width) * 2 - 1).clamp(-1.0, 1.0),
+          0,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: builder(selected),
+        ),
+      ),
+    );
   }
 
   @override
@@ -217,37 +277,52 @@ class DesignerCanvasState extends State<DesignerCanvas> {
           _viewport = size;
           _transform = _fitted(size);
         }
-        return Semantics(
-          label: l10n.designerCanvasLabel(
-            widget.controller.document.elements.length,
-          ),
-          child: Listener(
-            onPointerDown: (event) => _downPosition = _v(event.localPosition),
-            child: GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTapUp: _onTapUp,
-              onScaleStart: _onScaleStart,
-              onScaleUpdate: _onScaleUpdate,
-              onScaleEnd: _onScaleEnd,
-              child: CustomPaint(
-                size: size,
-                painter: GardenCanvasPainter(
-                  controller: widget.controller,
-                  transform: _transform!,
-                  colors: context.canvasColors,
-                  unitSystem: widget.unitSystem,
-                  format: MeasurementFormatter(
-                    widget.unitSystem,
-                    locale: Localizations.localeOf(context).toLanguageTag(),
-                  ),
-                  labelStyle: (theme.textTheme.labelMedium ?? const TextStyle())
-                      .copyWith(
-                        fontFeatures: const [FontFeature.tabularFigures()],
+        final toolbar = _toolbar(size);
+        return Stack(
+          children: [
+            Semantics(
+              label: l10n.designerCanvasLabel(
+                widget.controller.document.elements.length,
+              ),
+              child: Listener(
+                onPointerDown: (event) =>
+                    _downPosition = _v(event.localPosition),
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTapUp: _onTapUp,
+                  onScaleStart: _onScaleStart,
+                  onScaleUpdate: _onScaleUpdate,
+                  onScaleEnd: _onScaleEnd,
+                  child: CustomPaint(
+                    size: size,
+                    painter: GardenCanvasPainter(
+                      controller: widget.controller,
+                      transform: _transform!,
+                      colors: context.canvasColors,
+                      unitSystem: widget.unitSystem,
+                      style: widget.style,
+                      plants: widget.plants,
+                      dusk: theme.brightness == Brightness.dark,
+                      format: MeasurementFormatter(
+                        widget.unitSystem,
+                        locale: Localizations.localeOf(
+                          context,
+                        ).toLanguageTag(),
                       ),
+                      labelStyle:
+                          (theme.textTheme.labelMedium ?? const TextStyle())
+                              .copyWith(
+                                fontFeatures: const [
+                                  FontFeature.tabularFigures(),
+                                ],
+                              ),
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
+            ?toolbar,
+          ],
         );
       },
     );

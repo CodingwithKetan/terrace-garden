@@ -653,7 +653,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get designerEmptyHint =>
-      'Tap Add to place pots, grow bags, beds and more.';
+      'Tap or drag a pot from the tray below. Tap More for beds, a water tank, doors and drains.';
 
   @override
   String get designerNeedsSizeTitle => 'Add your garden\'s size';
@@ -698,6 +698,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get issueOnPath => 'Standing on a path';
 
   @override
+  String get issueBlocksDoor => 'In front of a door';
+
+  @override
+  String get issueCoversDrain => 'Covers the drain';
+
+  @override
   String get paletteContainers => 'Containers';
 
   @override
@@ -708,6 +714,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get kindRoundPot => 'Round pot';
+
+  @override
+  String get kindRoundGrowBag => 'Round grow bag';
 
   @override
   String get kindRectPlanter => 'Planter box';
@@ -722,16 +731,96 @@ class AppLocalizationsEn extends AppLocalizations {
   String get kindVerticalPlanter => 'Vertical planter';
 
   @override
+  String get kindHangingPot => 'Hanging pot';
+
+  @override
   String get kindWall => 'Wall';
 
   @override
   String get kindRailing => 'Railing';
 
   @override
+  String get kindTrellis => 'Trellis';
+
+  @override
+  String get kindWaterTank => 'Water tank';
+
+  @override
+  String get kindStairs => 'Stairs or room';
+
+  @override
+  String get kindSeating => 'Seating';
+
+  @override
   String get kindPath => 'Path';
 
   @override
+  String get kindDoor => 'Door';
+
+  @override
   String get kindWaterPoint => 'Water tap';
+
+  @override
+  String get kindDrain => 'Drain';
+
+  @override
+  String presetInches(String size) {
+    return '$size in';
+  }
+
+  @override
+  String get presetDefault => 'Standard size';
+
+  @override
+  String get presetChooseSize => 'Choose a size';
+
+  @override
+  String get presetNote =>
+      'Sizes as shops sell them. You can change the size and soil depth after placing it.';
+
+  @override
+  String get designerViewGarden => 'Garden';
+
+  @override
+  String get designerViewBlueprint => 'Blueprint';
+
+  @override
+  String get designerMore => 'More';
+
+  @override
+  String get designerTrayHint => 'Tap to add, or drag onto your terrace';
+
+  @override
+  String get designerRepeat => 'Repeat in a row';
+
+  @override
+  String get repeatCount => 'How many more';
+
+  @override
+  String get repeatGap => 'Gap between them';
+
+  @override
+  String get repeatRight => 'To the right';
+
+  @override
+  String get repeatDown => 'Downwards';
+
+  @override
+  String get repeatFewer => 'Fewer';
+
+  @override
+  String get repeatMoreCopies => 'More';
+
+  @override
+  String repeatAction(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Add $count',
+      one: 'Add 1',
+    );
+    return '$_temp0';
+  }
 
   @override
   String get inspectorTitle => 'Edit object';

@@ -654,7 +654,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get designerEmptyHint =>
-      'गमले, ग्रो बैग, क्यारियाँ और बहुत कुछ रखने के लिए जोड़ें पर टैप करें।';
+      'नीचे से गमला टैप करें या खींचकर रखें। क्यारी, पानी की टंकी, दरवाज़े और नाली के लिए और पर टैप करें।';
 
   @override
   String get designerNeedsSizeTitle => 'अपने बगीचे का आकार जोड़ें';
@@ -699,6 +699,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get issueOnPath => 'रास्ते पर रखा है';
 
   @override
+  String get issueBlocksDoor => 'दरवाज़े के आगे रखा है';
+
+  @override
+  String get issueCoversDrain => 'नाली को ढक रहा है';
+
+  @override
   String get paletteContainers => 'कंटेनर';
 
   @override
@@ -709,6 +715,9 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get kindRoundPot => 'गोल गमला';
+
+  @override
+  String get kindRoundGrowBag => 'गोल ग्रो बैग';
 
   @override
   String get kindRectPlanter => 'प्लांटर बॉक्स';
@@ -723,16 +732,96 @@ class AppLocalizationsHi extends AppLocalizations {
   String get kindVerticalPlanter => 'वर्टिकल प्लांटर';
 
   @override
+  String get kindHangingPot => 'लटकने वाला गमला';
+
+  @override
   String get kindWall => 'दीवार';
 
   @override
   String get kindRailing => 'रेलिंग';
 
   @override
+  String get kindTrellis => 'बेल की जाली';
+
+  @override
+  String get kindWaterTank => 'पानी की टंकी';
+
+  @override
+  String get kindStairs => 'सीढ़ी या कमरा';
+
+  @override
+  String get kindSeating => 'बैठने की जगह';
+
+  @override
   String get kindPath => 'रास्ता';
 
   @override
+  String get kindDoor => 'दरवाज़ा';
+
+  @override
   String get kindWaterPoint => 'पानी का नल';
+
+  @override
+  String get kindDrain => 'नाली';
+
+  @override
+  String presetInches(String size) {
+    return '$size इंच';
+  }
+
+  @override
+  String get presetDefault => 'सामान्य साइज़';
+
+  @override
+  String get presetChooseSize => 'साइज़ चुनें';
+
+  @override
+  String get presetNote =>
+      'दुकानों में मिलने वाले साइज़। रखने के बाद आप साइज़ और मिट्टी की गहराई बदल सकते हैं।';
+
+  @override
+  String get designerViewGarden => 'बगीचा';
+
+  @override
+  String get designerViewBlueprint => 'नक्शा';
+
+  @override
+  String get designerMore => 'और';
+
+  @override
+  String get designerTrayHint => 'जोड़ने के लिए टैप करें, या खींचकर छत पर रखें';
+
+  @override
+  String get designerRepeat => 'कतार में दोहराएँ';
+
+  @override
+  String get repeatCount => 'कितने और';
+
+  @override
+  String get repeatGap => 'बीच की दूरी';
+
+  @override
+  String get repeatRight => 'दाईं ओर';
+
+  @override
+  String get repeatDown => 'नीचे की ओर';
+
+  @override
+  String get repeatFewer => 'कम';
+
+  @override
+  String get repeatMoreCopies => 'ज़्यादा';
+
+  @override
+  String repeatAction(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count जोड़ें',
+      one: '1 जोड़ें',
+    );
+    return '$_temp0';
+  }
 
   @override
   String get inspectorTitle => 'चीज़ बदलें';
