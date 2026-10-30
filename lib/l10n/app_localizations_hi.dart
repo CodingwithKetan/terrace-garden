@@ -807,6 +807,74 @@ class AppLocalizationsHi extends AppLocalizations {
   String get templateBedsBags => 'ऊँची क्यारियाँ और ग्रो बैग';
 
   @override
+  String get growHereTitle => 'यहाँ क्या उगाएँ';
+
+  @override
+  String get growHereAction => 'लगाएँ';
+
+  @override
+  String get growHereNow => 'अभी यहाँ अच्छा रहेगा';
+
+  @override
+  String get growHereLater => 'साल में बाद में यहाँ अच्छा रहेगा';
+
+  @override
+  String growHereNot(int count) {
+    return 'इस जगह के लिए नहीं ($count)';
+  }
+
+  @override
+  String spotDepth(String depth) {
+    return '$depth गहरा';
+  }
+
+  @override
+  String spotSunUnmarked(String hours) {
+    return 'यहाँ धूप चिह्नित नहीं है, इसलिए आपके बगीचे की धूप ली गई है: $hours।';
+  }
+
+  @override
+  String get spotSunUnknown =>
+      'यहाँ धूप चिह्नित नहीं है। बेहतर सुझावों के लिए नक्शे पर धूप और छाया चिह्नित करें।';
+
+  @override
+  String spotGrowing(String names) {
+    return 'यहाँ उग रहे हैं: $names';
+  }
+
+  @override
+  String get spotSunMatches => 'यहाँ की धूप ठीक है';
+
+  @override
+  String get spotSunNeedsMore => 'इस जगह से ज़्यादा धूप चाहिए';
+
+  @override
+  String get spotSunTooShady => 'यहाँ बहुत छाया है';
+
+  @override
+  String get spotSunPrefersIndirect => 'इस जगह से हल्की रोशनी पसंद है';
+
+  @override
+  String get spotSunNotKnown => 'यहाँ की धूप पता नहीं';
+
+  @override
+  String get spotFits => 'इस कंटेनर में आ जाएगा';
+
+  @override
+  String spotTooSmall(String need) {
+    return 'बड़ा कंटेनर चाहिए: $need';
+  }
+
+  @override
+  String spotAtLeast(String amount) {
+    return 'कम से कम $amount';
+  }
+
+  @override
+  String get spotNoSize =>
+      'फ़िट जाँचने के लिए इस कंटेनर की मिट्टी की गहराई डालें';
+
+  @override
   String presetInches(String size) {
     return '$size इंच';
   }

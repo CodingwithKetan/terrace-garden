@@ -29,6 +29,7 @@ import 'package:terrace_garden/features/garden_designer/domain/layout_validator.
 import 'package:terrace_garden/features/garden_designer/presentation/garden_canvas_painter.dart';
 import 'package:terrace_garden/features/plant_catalog/data/catalogue_parser.dart';
 import 'package:terrace_garden/features/plant_catalog/domain/recommendation_engine.dart';
+import 'package:terrace_garden/features/plant_catalog/plant_catalog.dart';
 import 'package:terrace_garden/features/plantings/data/drift_planting_repository.dart';
 import 'package:terrace_garden/features/plantings/domain/planting.dart';
 
@@ -106,6 +107,43 @@ void main() {
       recorder.endRecording().dispose();
     });
     printOnFailure('paint 100: ${t.inMicroseconds} µs');
+    expect(t, lessThan(const Duration(milliseconds: 16)));
+    controller.dispose();
+  });
+
+  testWidgets('painting 100 objects in the garden style, with plants, stays '
+      'under the frame budget', (tester) async {
+    const size = Size(800, 800);
+    final controller = LayoutEditorController(
+      initial: doc,
+      repository: _NoopLayouts(),
+      ids: SequentialIdGenerator(),
+    );
+    final painter = GardenCanvasPainter(
+      controller: controller,
+      transform: CanvasTransform.fit(
+        gardenLength: doc.length,
+        gardenWidth: doc.width,
+        viewportWidth: size.width,
+        viewportHeight: size.height,
+      ),
+      colors: CanvasColors.light,
+      format: MeasurementFormatter(UnitSystem.metric, locale: 'en'),
+      labelStyle: const TextStyle(fontSize: 11),
+      unitSystem: UnitSystem.metric,
+      style: CanvasStyle.garden,
+      plants: {
+        for (final e in doc.elements)
+          if (e.kind.isContainer)
+            e.id: const [PlantArtSpec(PlantForm.fruiting)],
+      },
+    );
+    final t = time(() {
+      final recorder = PictureRecorder();
+      painter.paint(Canvas(recorder), size);
+      recorder.endRecording().dispose();
+    });
+    printOnFailure('garden paint 100: ${t.inMicroseconds} µs');
     expect(t, lessThan(const Duration(milliseconds: 16)));
     controller.dispose();
   });

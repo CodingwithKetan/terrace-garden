@@ -326,4 +326,67 @@ void main() {
       );
     });
   });
+
+  group('rankForSpot', () {
+    final tomato = _species(id: 'tomato');
+    final fern = _species(
+      id: 'fern',
+      sun: const SunNeed(level: SunLevel.indirect, sources: ['S40']),
+      container: const ContainerNeed(
+        status: EvidenceStatus.verified,
+        minVolumeL: 5,
+        sources: ['S1'],
+      ),
+    );
+
+    test('uses the sun marked at the spot over the garden profile', () {
+      final ranked = RecommendationEngine.rankForSpot(
+        garden: _garden(),
+        species: [tomato, fern],
+        container: _bigPot,
+        spotSun: SunExposure.lessThan3Hours,
+        month: 7,
+      );
+      expect(ranked.every((r) => r.sunSource == SunSource.spot), isTrue);
+      final byId = {for (final r in ranked) r.species.id: r.recommendation};
+      expect(byId['tomato']!.sun.reason, SunReason.tooShady);
+      expect(byId['tomato']!.group, RecommendationGroup.notSuited);
+      expect(byId['fern']!.sun.fit, Fit.good);
+      expect(ranked.first.species.id, 'fern');
+    });
+
+    test('falls back to the garden sun when the spot is unmarked', () {
+      final ranked = RecommendationEngine.rankForSpot(
+        garden: _garden(),
+        species: [tomato],
+        container: _bigPot,
+        spotSun: null,
+        month: 7,
+      );
+      expect(ranked.single.sunSource, SunSource.garden);
+      expect(ranked.single.recommendation.sun.fit, Fit.good);
+    });
+
+    test('judges only this container', () {
+      final small = RecommendationEngine.rankForSpot(
+        garden: _garden(),
+        species: [tomato],
+        container: _smallPot,
+        spotSun: SunExposure.moreThan6Hours,
+        month: 7,
+      ).single.recommendation;
+      expect(small.container.reason, ContainerReason.tooSmall);
+      expect(small.group, RecommendationGroup.notSuited);
+
+      final unknown = RecommendationEngine.rankForSpot(
+        garden: _garden(),
+        species: [tomato],
+        container: null,
+        spotSun: SunExposure.moreThan6Hours,
+        month: 7,
+      ).single.recommendation;
+      expect(unknown.container.fit, Fit.unknown);
+      expect(unknown.group, RecommendationGroup.goodNow);
+    });
+  });
 }

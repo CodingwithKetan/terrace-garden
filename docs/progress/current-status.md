@@ -4,7 +4,7 @@ Last updated: 2026-10-30
 
 ## Phase
 
-**2026-10-30: map, catalogue and UI upgrade (TODO "U-" items) on branch `map-upgrade`. Done: U-A Designer 2.0 (ADR-030, commit `8600781`) and U-B sun and shape (ADR-031): sun areas the user marks, a north arrow, "Not floor" cut-outs for L-shaped terraces, and templates sized to the terrace.** Next: U-C plant in place, then U-D catalogue depth, U-E UI polish.
+**2026-10-30: map, catalogue and UI upgrade (TODO "U-" items) on branch `map-upgrade`. Done: U-A Designer 2.0 (ADR-030, `8600781`), U-B sun and shape (ADR-031, `976e669`) and U-C plant in place (ADR-032): a selected container offers "What to grow here", ranked for its size, its marked sun and the season.** Next: U-D catalogue depth, then U-E UI polish.
 
 **2026-10-29: Terrace Garden Plus is built but not on sale (ADR-028, KI-038). Also added: a free pest guide, a Plus garden report, a 73-species catalogue, and health authority skin-use notes (ADR-029).** Phase 6 done except a device profile run (P6-07). The app is in English and Hindi, with a pet-friendly filter and a fuller catalogue (2026-10-18). Living Terrace redesign built (R-01..R-07, ADR-025/026; 2026-10-18); ready for moderated user testing of the new design.** Phases 0–5 are complete. Open: P6-07 device profiling; P6-04 kit preset (needs KI-014 verification); P6-10 branding (needs the app name, PD-001).
 
@@ -34,6 +34,8 @@ Last updated: 2026-10-30
 
 ## Last completed tasks
 
+**2026-10-30 (U-C, plant in place):** `rankForSpot`; "What to grow here" sheet; add-plant sheet opens with the container chosen; garden-style paint budget; ADR-032.
+
 **2026-10-30 (U-B, sun and shape):** sun areas with `sunAt`/`sunFor`; north arrow; cut-outs; background gestures; three templates; "Sun here"; ADR-031. Fixed: lost drops over the empty-state card; overlapping selection labels.
 
 **2026-10-30 (U-A, Designer 2.0):** shared `TerraceArtist` renderer; Garden/Blueprint styles; 8 new kinds with door, drain and hanging-pot rules; shop-size presets; quick-add tray with drag-to-place; More sheet; floating selection toolbar; repeat in a row; ADR-030, KI-041, KI-042.
@@ -49,7 +51,7 @@ Earlier: **Hindi, pet-friendly filter and catalogue completion (L-01..L-03, ADR-
 
 ## Exact next steps
 
-0. **U-C plant in place:** tap a container to see plants ranked by its size (volume, depth), its marked sun (`sunFor`) and the season, then plant it there. Then U-D (catalogue depth: container size, harvest, sowing and watering gaps; West/Central/East India regions; spacing), U-E (UI polish).
+0. **U-D catalogue depth** (user decision: depth before breadth): fill container size (38 missing), days to harvest (36), sowing (21) and watering for the 73 species from first-party sources only; add West, Central and East India sowing regions (KI-017); add sourced height, spread and spacing (then crowding warnings in "What to grow here"). Then U-E (UI polish). Earlier list: U-D (catalogue depth: container size, harvest, sowing and watering gaps; West/Central/East India regions; spacing), U-E (UI polish).
    - In the next device session also re-run the integration test and try drag-from-tray on a touchscreen (KI-041).
 0. **M-07:** re-run the device test, and look at the Plus screen, the upgrade sheet, the pest guide, the report and "On the skin" on the emulator.
    - **M-02 before selling:** Play Console products, release signing, licence-tester purchases (KI-038).
@@ -61,6 +63,7 @@ Earlier: **Hindi, pet-friendly filter and catalogue completion (L-01..L-03, ADR-
 
 ## Checks run (latest, 2026-10-30, Windows host)
 
+- **Plant in place gate (2026-10-30):** format 0 changed; analyze no issues; `flutter test` **518 passed** (5 new). The first full run failed one perf budget under parallel load (KI-031); it passed alone and in the next full run. Real-font renders of the selection bar with Plant and the "What to grow here" sheet checked by eye.
 - **Sun and shape gate (2026-10-30):** format 0 changed; analyze no issues; `flutter test` **513 passed** (20 new). `designer_canvas_garden.png` regenerated with L-shaped scenarios (garden and blueprint) and checked by eye; real-font renders of the empty state with templates, a template result, the sun sheet and "Sun here" checked by eye (throwaway test). Failures along the way, all fixed: a pot dropped over the empty-state card was lost; "More" and "Door" were off-screen in tests at phone width; a test sun area overhung the edge (sun areas are now exempt from bounds checks).
 - **Designer 2.0 gate (2026-10-30):** `dart format --set-exit-if-changed` 0 changed; `flutter analyze` no issues; `flutter test` **493 passed** (17 new). New golden `designer_canvas_garden.png`; `designer_canvas.png` regenerated (problem badges now draw above all objects) and checked by eye; `terrace_plan.png` unchanged after the renderer refactor. Real-font renders of the designer (garden light and dark, size sheet, selection, More sheet, blueprint) were checked by eye with a throwaway test that is not committed. Failures along the way, all fixed: a selection bar that grew to full screen height (caught by the flow tests), an expected-volume mistake in a new test, and uneven tray tiles. Not run: the device integration test (updated for the tray).
 - **Plus / catalogue / skin-use gate (2026-10-29):** `dart format --set-exit-if-changed` 0 changed; `flutter analyze` no issues; `flutter test` **476 passed**. Earlier, at `8a65a6e`: 473 passed.

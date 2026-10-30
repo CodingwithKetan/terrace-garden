@@ -26,12 +26,14 @@ import 'package:terrace_garden/features/settings/settings.dart';
 import 'package:terrace_garden/l10n/l10n.dart';
 
 /// PLT-05. Adds [species] to a garden (or edits [existing]), optionally in a
-/// container from the layout, with fit warnings from documented figures.
+/// container from the layout ([elementId] preselects one), with fit warnings
+/// from documented figures.
 /// Shows a confirmation snack bar when saved.
 Future<void> showPlantingSheet(
   BuildContext context, {
   required PlantSpecies species,
   String? gardenId,
+  String? elementId,
   Planting? existing,
 }) async {
   final l10n = context.l10n;
@@ -44,6 +46,7 @@ Future<void> showPlantingSheet(
     builder: (context) => PlantingForm(
       species: species,
       gardenId: existing?.gardenId ?? gardenId,
+      elementId: elementId,
       existing: existing,
     ),
   );
@@ -58,12 +61,16 @@ class PlantingForm extends ConsumerStatefulWidget {
   const PlantingForm({
     required this.species,
     this.gardenId,
+    this.elementId,
     this.existing,
     super.key,
   });
 
   final PlantSpecies species;
   final String? gardenId;
+
+  /// The container to start with, for a new planting.
+  final String? elementId;
   final Planting? existing;
 
   @override
@@ -86,7 +93,7 @@ class _PlantingFormState extends ConsumerState<PlantingForm> {
     super.initState();
     final e = widget.existing;
     _gardenId = widget.gardenId;
-    _elementId = e?.elementId;
+    _elementId = e?.elementId ?? widget.elementId;
     _quantity = e?.quantity ?? 1;
     _plantedOn = e?.plantedOn ?? _today;
     _startedFrom =

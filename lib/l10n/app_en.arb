@@ -310,6 +310,66 @@
   "templateRailing": "Planters along the railing",
   "templateBagRows": "Grow bag rows with a path",
   "templateBedsBags": "Raised beds and grow bags",
+  "growHereTitle": "What to grow here",
+  "growHereAction": "Plant",
+  "growHereNow": "Good here now",
+  "growHereLater": "Good here later in the year",
+  "growHereNot": "Not for this spot ({count})",
+  "@growHereNot": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "spotDepth": "{depth} deep",
+  "@spotDepth": {
+    "placeholders": {
+      "depth": {
+        "type": "String"
+      }
+    }
+  },
+  "spotSunUnmarked": "Sun isn't marked here, so your garden's sun is used: {hours}.",
+  "@spotSunUnmarked": {
+    "placeholders": {
+      "hours": {
+        "type": "String"
+      }
+    }
+  },
+  "spotSunUnknown": "Sun isn't marked here. Mark sun and shade on the map for better matches.",
+  "spotGrowing": "Growing here: {names}",
+  "@spotGrowing": {
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  },
+  "spotSunMatches": "Suits the sun here",
+  "spotSunNeedsMore": "Wants more sun than this spot gets",
+  "spotSunTooShady": "Too shady here",
+  "spotSunPrefersIndirect": "Prefers gentler light than this spot gets",
+  "spotSunNotKnown": "Sun here not known",
+  "spotFits": "Fits this container",
+  "spotTooSmall": "Needs a bigger container: {need}",
+  "@spotTooSmall": {
+    "placeholders": {
+      "need": {
+        "type": "String"
+      }
+    }
+  },
+  "spotAtLeast": "at least {amount}",
+  "@spotAtLeast": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "spotNoSize": "Add this container's soil depth to check the fit",
   "presetInches": "{size} in",
   "@presetInches": {
     "placeholders": {

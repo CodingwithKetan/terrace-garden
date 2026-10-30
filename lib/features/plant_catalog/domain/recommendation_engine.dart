@@ -160,6 +160,26 @@ final class Recommendation {
   final List<Caveat> caveats;
 }
 
+/// Where the sun used for a spot's ranking came from.
+enum SunSource {
+  /// A sun area the user marked covers the spot.
+  spot,
+
+  /// No sun area covers it, so the garden profile's sun was used.
+  garden,
+}
+
+/// A recommendation for one container on the plan ("what to grow here").
+@immutable
+final class SpotRecommendation {
+  const SpotRecommendation(this.recommendation, {required this.sunSource});
+
+  final Recommendation recommendation;
+  final SunSource sunSource;
+
+  PlantSpecies get species => recommendation.species;
+}
+
 /// Ranks catalogue species for one garden (PRD FR-E, P4-03).
 ///
 /// Pure and explainable: each factor produces a structured reason the UI
@@ -188,6 +208,29 @@ abstract final class RecommendationEngine {
       if (byScore != 0) return byScore;
       return a.species.commonName.compareTo(b.species.commonName);
     });
+  }
+
+  /// Ranks species for one container: its own size (null when its soil
+  /// volume is unknown) and the sun the user marked where it stands
+  /// ([spotSun]), falling back to the garden's sun when the spot is not
+  /// marked. Same checks, reasons and order as [rank].
+  static List<SpotRecommendation> rankForSpot({
+    required Garden garden,
+    required List<PlantSpecies> species,
+    required ContainerSpace? container,
+    required SunExposure? spotSun,
+    required int month,
+  }) {
+    final source = spotSun == null ? SunSource.garden : SunSource.spot;
+    return [
+      for (final r in rank(
+        garden: spotSun == null ? garden : garden.copyWith(sun: spotSun),
+        species: species,
+        containers: [?container],
+        month: month,
+      ))
+        SpotRecommendation(r, sunSource: source),
+    ];
   }
 
   static Recommendation evaluate({

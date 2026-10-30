@@ -414,4 +414,61 @@ void main() {
     await tester.pumpAndSettle();
     expect(document(tester).elements, isEmpty);
   });
+
+  testWidgets('a pot suggests what to grow there and plants it in place', (
+    tester,
+  ) async {
+    tester.setScreenSize(const Size(420, 860));
+    await createGarden(length: Length.metres(3), width: Length.metres(1.2));
+    await app.pump(tester);
+    await openDesigner(tester);
+    // A 15 × 15 in bag (43.4 L, 38.1 cm deep) in a full-sun area.
+    await openMore(tester);
+    await tester.ensureVisible(find.text('Full sun area'));
+    await tester.tap(find.text('Full sun area'));
+    await tester.pumpAndSettle();
+    await addObject(tester, 'Round grow bag', size: '15 × 15 in');
+
+    await tester.tap(find.text('Plant'));
+    await tester.pumpAndSettle();
+    expect(find.text('What to grow here'), findsOneWidget);
+    expect(find.textContaining('43.4 L'), findsWidgets);
+    expect(find.text('Sun here: 6+ hours'), findsOneWidget);
+    expect(
+      find.text('Good here now').evaluate().isNotEmpty ||
+          find.text('Good here later in the year').evaluate().isNotEmpty,
+      isTrue,
+    );
+
+    // Tomato needs at least 18.9 L and 30 cm: it fits this bag.
+    final tomato = find.ancestor(
+      of: find.text('Tomato'),
+      matching: find.byType(InkWell),
+    );
+    await tester.ensureVisible(tomato.first);
+    await tester.pumpAndSettle();
+    expect(
+      find.descendant(
+        of: tomato.first,
+        matching: find.text('Fits this container'),
+      ),
+      findsOneWidget,
+    );
+    await tester.tap(
+      find.descendant(of: tomato.first, matching: find.text('Plant')),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('Add Tomato'), findsOneWidget);
+    await tester.ensureVisible(find.textContaining('Plant in Round grow bag'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.textContaining('Plant in Round grow bag'));
+    await tester.pumpAndSettle();
+
+    final plantings = await app.database.select(app.database.plantings).get();
+    final bag = document(tester).elements.firstWhere(
+      (e) => e.kind == ElementKind.roundGrowBag,
+    );
+    expect(plantings.single.speciesId, 'tomato');
+    expect(plantings.single.elementId, bag.id);
+  });
 }

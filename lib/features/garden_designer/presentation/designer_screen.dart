@@ -590,6 +590,14 @@ class _DesignerViewState extends ConsumerState<_DesignerView> {
                       ].join(' · '),
                       onEdit: () => showInspector(context, _c, units),
                       onDeselect: () => _c.select(null),
+                      onPlant: selected.kind.isContainer
+                          ? () => showGrowHereSheet(
+                              context,
+                              gardenId: widget.garden.id,
+                              layout: _c.document,
+                              container: selected,
+                            )
+                          : null,
                     ),
             ),
           ),
@@ -794,12 +802,16 @@ class _SelectionBar extends StatelessWidget {
     required this.size,
     required this.onEdit,
     required this.onDeselect,
+    this.onPlant,
   });
 
   final LayoutElement element;
   final String size;
   final VoidCallback onEdit;
   final VoidCallback onDeselect;
+
+  /// Opens "what to grow here"; containers only.
+  final VoidCallback? onPlant;
 
   @override
   Widget build(BuildContext context) {
@@ -835,7 +847,20 @@ class _SelectionBar extends StatelessWidget {
               ],
             ),
           ),
-          AppButton.secondary(label: l10n.actionEdit, onPressed: onEdit),
+          if (onPlant == null)
+            AppButton.secondary(label: l10n.actionEdit, onPressed: onEdit)
+          else ...[
+            IconButton(
+              tooltip: l10n.actionEdit,
+              icon: const Icon(Icons.tune),
+              onPressed: onEdit,
+            ),
+            AppButton(
+              label: l10n.growHereAction,
+              icon: Icons.local_florist_outlined,
+              onPressed: onPlant,
+            ),
+          ],
         ],
       ),
     );

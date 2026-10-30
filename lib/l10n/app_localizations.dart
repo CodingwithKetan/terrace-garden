@@ -1550,6 +1550,114 @@ abstract class AppLocalizations {
   /// **'Raised beds and grow bags'**
   String get templateBedsBags;
 
+  /// No description provided for @growHereTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What to grow here'**
+  String get growHereTitle;
+
+  /// No description provided for @growHereAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Plant'**
+  String get growHereAction;
+
+  /// No description provided for @growHereNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Good here now'**
+  String get growHereNow;
+
+  /// No description provided for @growHereLater.
+  ///
+  /// In en, this message translates to:
+  /// **'Good here later in the year'**
+  String get growHereLater;
+
+  /// No description provided for @growHereNot.
+  ///
+  /// In en, this message translates to:
+  /// **'Not for this spot ({count})'**
+  String growHereNot(int count);
+
+  /// No description provided for @spotDepth.
+  ///
+  /// In en, this message translates to:
+  /// **'{depth} deep'**
+  String spotDepth(String depth);
+
+  /// No description provided for @spotSunUnmarked.
+  ///
+  /// In en, this message translates to:
+  /// **'Sun isn\'t marked here, so your garden\'s sun is used: {hours}.'**
+  String spotSunUnmarked(String hours);
+
+  /// No description provided for @spotSunUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Sun isn\'t marked here. Mark sun and shade on the map for better matches.'**
+  String get spotSunUnknown;
+
+  /// No description provided for @spotGrowing.
+  ///
+  /// In en, this message translates to:
+  /// **'Growing here: {names}'**
+  String spotGrowing(String names);
+
+  /// No description provided for @spotSunMatches.
+  ///
+  /// In en, this message translates to:
+  /// **'Suits the sun here'**
+  String get spotSunMatches;
+
+  /// No description provided for @spotSunNeedsMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Wants more sun than this spot gets'**
+  String get spotSunNeedsMore;
+
+  /// No description provided for @spotSunTooShady.
+  ///
+  /// In en, this message translates to:
+  /// **'Too shady here'**
+  String get spotSunTooShady;
+
+  /// No description provided for @spotSunPrefersIndirect.
+  ///
+  /// In en, this message translates to:
+  /// **'Prefers gentler light than this spot gets'**
+  String get spotSunPrefersIndirect;
+
+  /// No description provided for @spotSunNotKnown.
+  ///
+  /// In en, this message translates to:
+  /// **'Sun here not known'**
+  String get spotSunNotKnown;
+
+  /// No description provided for @spotFits.
+  ///
+  /// In en, this message translates to:
+  /// **'Fits this container'**
+  String get spotFits;
+
+  /// No description provided for @spotTooSmall.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs a bigger container: {need}'**
+  String spotTooSmall(String need);
+
+  /// No description provided for @spotAtLeast.
+  ///
+  /// In en, this message translates to:
+  /// **'at least {amount}'**
+  String spotAtLeast(String amount);
+
+  /// No description provided for @spotNoSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Add this container\'s soil depth to check the fit'**
+  String get spotNoSize;
+
   /// No description provided for @presetInches.
   ///
   /// In en, this message translates to:

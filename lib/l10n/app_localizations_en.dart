@@ -806,6 +806,74 @@ class AppLocalizationsEn extends AppLocalizations {
   String get templateBedsBags => 'Raised beds and grow bags';
 
   @override
+  String get growHereTitle => 'What to grow here';
+
+  @override
+  String get growHereAction => 'Plant';
+
+  @override
+  String get growHereNow => 'Good here now';
+
+  @override
+  String get growHereLater => 'Good here later in the year';
+
+  @override
+  String growHereNot(int count) {
+    return 'Not for this spot ($count)';
+  }
+
+  @override
+  String spotDepth(String depth) {
+    return '$depth deep';
+  }
+
+  @override
+  String spotSunUnmarked(String hours) {
+    return 'Sun isn\'t marked here, so your garden\'s sun is used: $hours.';
+  }
+
+  @override
+  String get spotSunUnknown =>
+      'Sun isn\'t marked here. Mark sun and shade on the map for better matches.';
+
+  @override
+  String spotGrowing(String names) {
+    return 'Growing here: $names';
+  }
+
+  @override
+  String get spotSunMatches => 'Suits the sun here';
+
+  @override
+  String get spotSunNeedsMore => 'Wants more sun than this spot gets';
+
+  @override
+  String get spotSunTooShady => 'Too shady here';
+
+  @override
+  String get spotSunPrefersIndirect =>
+      'Prefers gentler light than this spot gets';
+
+  @override
+  String get spotSunNotKnown => 'Sun here not known';
+
+  @override
+  String get spotFits => 'Fits this container';
+
+  @override
+  String spotTooSmall(String need) {
+    return 'Needs a bigger container: $need';
+  }
+
+  @override
+  String spotAtLeast(String amount) {
+    return 'at least $amount';
+  }
+
+  @override
+  String get spotNoSize => 'Add this container\'s soil depth to check the fit';
+
+  @override
   String presetInches(String size) {
     return '$size in';
   }
