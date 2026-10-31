@@ -1,0 +1,4 @@
+# Timing tests (test/perf) are tagged `perf`. The gate runs them on their own,
+# after the main suite, so parallel load cannot skew their budgets (KI-045).
+tags:
+  perf:

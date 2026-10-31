@@ -270,8 +270,10 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(find.text('Choose from gallery'));
       // Each file step completes on the real event loop, then continues on
-      // the test's fake clock, so alternate the two.
-      for (var i = 0; i < 20; i++) {
+      // the test's fake clock, so alternate the two until the photo shows.
+      // Polled rather than a fixed count: real I/O is slower under a loaded
+      // parallel run (KI-045). Capped at about 5 s.
+      for (var i = 0; i < 250 && find.text('See all').evaluate().isEmpty; i++) {
         await tester.runAsync(
           () => Future<void>.delayed(const Duration(milliseconds: 20)),
         );

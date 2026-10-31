@@ -11,5 +11,7 @@ dart format --output=none --set-exit-if-changed .
 echo "== analyze"
 flutter analyze
 echo "== test"
-flutter test
+flutter test --exclude-tags perf
+echo "== perf (on its own, KI-045)"
+flutter test --tags perf
 echo "All checks passed."

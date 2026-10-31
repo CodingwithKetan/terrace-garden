@@ -4,6 +4,14 @@ Newest first. Keep entries concise: goal, what was done, checks, next.
 
 ---
 
+## 2026-10-31: Session 2, part 2 (gate split for timing tests; start of U-E)
+
+**Done:** committed U-D (`11392cf`). Closed KI-045 with the user's OK: `test/perf` is tagged `perf` (`dart_test.yaml`) and `tool/check.*` runs it on its own after the main suite (`--exclude-tags perf`, then `--tags perf`). The gallery-photo flow test now polls for the photo (capped at about 5 s) instead of a fixed 400 ms of real I/O. No test or budget was weakened.
+
+**Checks:** `bash tool/check.sh`: format 0 changed; analyze clean; 517 tests passed, then 5 perf tests passed on their own.
+
+---
+
 ## 2026-10-30: Session 2, part 1 (map, catalogue and UI upgrade; Designer 2.0)
 
 **Goal:** the user wasn't satisfied with the UX and asked for big improvements to the map layout, the plant database and the UI.

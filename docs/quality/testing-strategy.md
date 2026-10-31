@@ -59,8 +59,11 @@ Run before marking any phase or substantial task complete:
 ```bash
 dart format --output=none --set-exit-if-changed .
 flutter analyze
-flutter test
+flutter test --exclude-tags perf
+flutter test --tags perf   # timing budgets, run alone so load cannot skew them (KI-045)
 ```
+
+`tool/check.sh` (or `tool/check.ps1`) runs all of these.
 
 Additionally, at phase boundaries:
 

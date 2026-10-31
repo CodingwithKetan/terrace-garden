@@ -12,5 +12,6 @@ function Invoke-Step([string]$name, [scriptblock]$command) {
 Invoke-Step 'codegen' { dart run build_runner build -d }
 Invoke-Step 'format' { dart format --output=none --set-exit-if-changed . }
 Invoke-Step 'analyze' { flutter analyze }
-Invoke-Step 'test' { flutter test }
+Invoke-Step 'test' { flutter test --exclude-tags perf }
+Invoke-Step 'perf (on its own, KI-045)' { flutter test --tags perf }
 Write-Host 'All checks passed.'
