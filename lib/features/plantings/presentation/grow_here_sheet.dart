@@ -90,6 +90,7 @@ class _GrowHereBody extends ConsumerWidget {
               id: container.id,
               soilLitres: litres,
               depthCm: container.depthCm!,
+              widthCm: container.narrowestSide,
             ),
       spotSun: spotSun,
       month: ref.watch(clockProvider).now().month,
@@ -316,6 +317,8 @@ class _SpotTile extends StatelessWidget {
                 l10n.spotAtLeast(format.volume(Volume.litres(v))),
               if (need.minDepthCm case final d?)
                 l10n.spotDepth(format.length(Length.cm(d))),
+              if (need.minWidthCm case final w?)
+                l10n.spotWide(format.length(Length.cm(w))),
             ].join(', '),
           ),
           ContainerReason.noContainers => l10n.spotNoSize,

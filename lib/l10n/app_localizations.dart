@@ -836,6 +836,30 @@ abstract class AppLocalizations {
   /// **'Kerala'**
   String get regionKerala;
 
+  /// No description provided for @regionWesternMaharashtra.
+  ///
+  /// In en, this message translates to:
+  /// **'Western Maharashtra'**
+  String get regionWesternMaharashtra;
+
+  /// No description provided for @regionGujarat.
+  ///
+  /// In en, this message translates to:
+  /// **'Gujarat'**
+  String get regionGujarat;
+
+  /// No description provided for @regionGoa.
+  ///
+  /// In en, this message translates to:
+  /// **'Goa'**
+  String get regionGoa;
+
+  /// No description provided for @regionAssam.
+  ///
+  /// In en, this message translates to:
+  /// **'Assam'**
+  String get regionAssam;
+
   /// No description provided for @gardensTitle.
   ///
   /// In en, this message translates to:
@@ -1658,6 +1682,48 @@ abstract class AppLocalizations {
   /// **'Add this container\'s soil depth to check the fit'**
   String get spotNoSize;
 
+  /// No description provided for @plantSectionSpacing.
+  ///
+  /// In en, this message translates to:
+  /// **'Spacing'**
+  String get plantSectionSpacing;
+
+  /// No description provided for @containerMinWidth.
+  ///
+  /// In en, this message translates to:
+  /// **'Smallest pot width'**
+  String get containerMinWidth;
+
+  /// No description provided for @spotWide.
+  ///
+  /// In en, this message translates to:
+  /// **'{width} wide'**
+  String spotWide(String width);
+
+  /// No description provided for @plantingIssueNarrow.
+  ///
+  /// In en, this message translates to:
+  /// **'This container is {actual} across; this plant needs at least {required}.'**
+  String plantingIssueNarrow(String actual, String required);
+
+  /// No description provided for @spacingBetweenPlants.
+  ///
+  /// In en, this message translates to:
+  /// **'Between plants'**
+  String get spacingBetweenPlants;
+
+  /// No description provided for @spacingBetweenRows.
+  ///
+  /// In en, this message translates to:
+  /// **'Between rows'**
+  String get spacingBetweenRows;
+
+  /// No description provided for @issueTightSpacing.
+  ///
+  /// In en, this message translates to:
+  /// **'Room for about {count} at the {spacing} spacing'**
+  String issueTightSpacing(int count, String spacing);
+
   /// No description provided for @presetInches.
   ///
   /// In en, this message translates to:
@@ -2269,6 +2335,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{min}–{max} days'**
   String harvestDays(int min, int max);
+
+  /// No description provided for @harvestYears.
+  ///
+  /// In en, this message translates to:
+  /// **'{min}–{max} years'**
+  String harvestYears(String min, String max);
+
+  /// No description provided for @harvestYearsSingle.
+  ///
+  /// In en, this message translates to:
+  /// **'About {years} years'**
+  String harvestYearsSingle(String years);
 
   /// No description provided for @harvestDaysSingle.
   ///

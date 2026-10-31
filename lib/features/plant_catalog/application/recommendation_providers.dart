@@ -12,7 +12,12 @@ part 'recommendation_providers.g.dart';
 List<ContainerSpace> containerSpaces(List<LayoutElement> elements) => [
   for (final e in elements)
     if (e.kind.isContainer && e.soilLitres != null)
-      ContainerSpace(id: e.id, soilLitres: e.soilLitres!, depthCm: e.depthCm!),
+      ContainerSpace(
+        id: e.id,
+        soilLitres: e.soilLitres!,
+        depthCm: e.depthCm!,
+        widthCm: e.narrowestSide,
+      ),
 ];
 
 /// Ranked catalogue for one garden, recomputed when the garden, its layout or

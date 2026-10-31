@@ -153,6 +153,9 @@ abstract class LayoutElement with _$LayoutElement {
 
   double get footprintArea => shape.area;
 
+  /// The narrowest side of the footprint (the diameter of a round one), cm.
+  double get narrowestSide => kind.round ? width : math.min(width, height);
+
   /// Soil volume in litres when the element is a container with a depth.
   double? get soilLitres {
     if (!kind.isContainer || depthCm == null) return null;

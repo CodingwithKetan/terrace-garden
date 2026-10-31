@@ -210,6 +210,25 @@ extension FitStyle on Fit {
   }
 }
 
+extension HarvestWindowLabel on HarvestWindow {
+  /// Days under a year ("55–60 days"), years from a year up ("2–3 years",
+  /// to the nearest half year).
+  String label(AppLocalizations l10n) {
+    if (minDays < 365) {
+      return minDays == maxDays
+          ? l10n.harvestDaysSingle(minDays)
+          : l10n.harvestDays(minDays, maxDays);
+    }
+    String years(int days) {
+      final halves = (days / 365 * 2).round();
+      return halves.isEven ? '${halves ~/ 2}' : (halves / 2).toStringAsFixed(1);
+    }
+
+    final (a, b) = (years(minDays), years(maxDays));
+    return a == b ? l10n.harvestYearsSingle(a) : l10n.harvestYears(a, b);
+  }
+}
+
 extension RegionalSowingLabel on RegionalSowing {
   String regionLabel(AppLocalizations l10n) => window.region.label(l10n);
 }

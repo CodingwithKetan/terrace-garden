@@ -23,7 +23,9 @@ Newest first. Keep entries concise: goal, what was done, checks, next.
 
 **Then (U-C, ADR-032):** committed U-B (`976e669`). Added "What to grow here" for a selected container (`rankForSpot`: its size, its marked sun or the garden sun, the season) and planting straight into it. Added a garden-style paint budget. Checks: format 0 changed, analyze clean, 518 tests passed. Not committed yet.
 
-**Next:** U-D catalogue depth.
+**Then (U-D, ADR-033):** committed U-C (`555e734`). Ran seven research agents in parallel (container sizes x2, harvest, spacing, watering and perennial seasons, West and East/Central calendars), reviewed every fact against its quote, and merged with a script that preserves the catalogue's hand formatting (zero-diff round trip). Added `minWidthCm`, `spacing`, multi-year harvests and four regions. An independent fetch spot-checked 10 quotes. Checks: format 0 changed, analyze clean, 522 tests passed. Not committed yet.
+
+**Next:** U-E UI polish.
 
 ---
 

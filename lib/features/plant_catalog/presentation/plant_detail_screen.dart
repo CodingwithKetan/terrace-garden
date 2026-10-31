@@ -269,6 +269,11 @@ class _Detail extends ConsumerWidget {
                         l10n.containerRecommendedDepth,
                         format.length(Length.cm(c.recommendedDepthCm!)),
                       ),
+                    if (c.minWidthCm case final width?)
+                      _Pair(
+                        l10n.containerMinWidth,
+                        format.length(Length.cm(width)),
+                      ),
                     if (c.plantsPerContainer != null)
                       _Pair(l10n.containerPlantsPer, '${c.plantsPerContainer}'),
                   ],
@@ -289,17 +294,33 @@ class _Detail extends ConsumerWidget {
                   if (c.note != null) _Note(c.note!),
                 ],
               ),
+              if (s.spacing case final sp?)
+                _FactSection(
+                  title: l10n.plantSectionSpacing,
+                  icon: Icons.straighten_outlined,
+                  sources: _refs(sp.sources),
+                  children: [
+                    _Pair(
+                      l10n.spacingBetweenPlants,
+                      sp.minCm == sp.maxCm
+                          ? format.length(Length.cm(sp.minCm))
+                          : '${format.length(Length.cm(sp.minCm))}–'
+                                '${format.length(Length.cm(sp.maxCm))}',
+                    ),
+                    if (sp.rowCm case final row?)
+                      _Pair(
+                        l10n.spacingBetweenRows,
+                        format.length(Length.cm(row)),
+                      ),
+                    if (sp.note case final note?) _Note(note),
+                  ],
+                ),
               _FactSection(
                 title: l10n.plantSectionHarvest,
                 icon: Icons.agriculture_outlined,
                 sources: _refs(s.daysToHarvest?.sources),
                 children: [
-                  _Value(switch (s.daysToHarvest) {
-                    null => null,
-                    final h when h.minDays == h.maxDays =>
-                      l10n.harvestDaysSingle(h.minDays),
-                    final h => l10n.harvestDays(h.minDays, h.maxDays),
-                  }),
+                  _Value(s.daysToHarvest?.label(l10n)),
                   if (s.daysToHarvest?.note case final note?) _Note(note),
                 ],
               ),

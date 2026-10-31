@@ -390,6 +390,18 @@ class AppLocalizationsHi extends AppLocalizations {
   String get regionKerala => 'केरल';
 
   @override
+  String get regionWesternMaharashtra => 'पश्चिम महाराष्ट्र';
+
+  @override
+  String get regionGujarat => 'गुजरात';
+
+  @override
+  String get regionGoa => 'गोवा';
+
+  @override
+  String get regionAssam => 'असम';
+
+  @override
   String get gardensTitle => 'आपके बगीचे';
 
   @override
@@ -875,6 +887,33 @@ class AppLocalizationsHi extends AppLocalizations {
       'फ़िट जाँचने के लिए इस कंटेनर की मिट्टी की गहराई डालें';
 
   @override
+  String get plantSectionSpacing => 'दूरी';
+
+  @override
+  String get containerMinWidth => 'गमले की सबसे कम चौड़ाई';
+
+  @override
+  String spotWide(String width) {
+    return '$width चौड़ा';
+  }
+
+  @override
+  String plantingIssueNarrow(String actual, String required) {
+    return 'यह कंटेनर $actual चौड़ा है; इस पौधे को कम से कम $required चाहिए।';
+  }
+
+  @override
+  String get spacingBetweenPlants => 'पौधों के बीच';
+
+  @override
+  String get spacingBetweenRows => 'कतारों के बीच';
+
+  @override
+  String issueTightSpacing(int count, String spacing) {
+    return '$spacing की दूरी पर लगभग $count पौधों की जगह है';
+  }
+
+  @override
   String presetInches(String size) {
     return '$size इंच';
   }
@@ -1212,6 +1251,16 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String harvestDays(int min, int max) {
     return '$min–$max दिन';
+  }
+
+  @override
+  String harvestYears(String min, String max) {
+    return '$min–$max साल';
+  }
+
+  @override
+  String harvestYearsSingle(String years) {
+    return 'लगभग $years साल';
   }
 
   @override

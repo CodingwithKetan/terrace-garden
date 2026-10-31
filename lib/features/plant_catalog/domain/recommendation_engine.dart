@@ -80,11 +80,15 @@ final class ContainerSpace {
     required this.id,
     required this.soilLitres,
     required this.depthCm,
+    this.widthCm,
   });
 
   final String id;
   final double soilLitres;
   final double depthCm;
+
+  /// The narrowest side (or diameter); null when unknown.
+  final double? widthCm;
 }
 
 @immutable
@@ -401,7 +405,10 @@ abstract final class RecommendationEngine {
   /// Whether [space] meets every documented minimum in [need].
   static bool fits(ContainerNeed need, ContainerSpace space) =>
       (need.minVolumeL == null || space.soilLitres >= need.minVolumeL!) &&
-      (need.minDepthCm == null || space.depthCm >= need.minDepthCm!);
+      (need.minDepthCm == null || space.depthCm >= need.minDepthCm!) &&
+      (need.minWidthCm == null ||
+          space.widthCm == null ||
+          space.widthCm! >= need.minWidthCm!);
 
   static GardenGoal goalFor(PlantCategory category) => switch (category) {
     PlantCategory.vegetable ||

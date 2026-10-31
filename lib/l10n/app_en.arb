@@ -139,6 +139,10 @@
   "regionTelangana": "Telangana",
   "regionTamilNadu": "Tamil Nadu",
   "regionKerala": "Kerala",
+  "regionWesternMaharashtra": "Western Maharashtra",
+  "regionGujarat": "Gujarat",
+  "regionGoa": "Goa",
+  "regionAssam": "Assam",
   "gardensTitle": "Your gardens",
   "gardenCreateAction": "Create your garden",
   "gardenNew": "New garden",
@@ -370,6 +374,40 @@
     }
   },
   "spotNoSize": "Add this container's soil depth to check the fit",
+  "plantSectionSpacing": "Spacing",
+  "containerMinWidth": "Smallest pot width",
+  "spotWide": "{width} wide",
+  "@spotWide": {
+    "placeholders": {
+      "width": {
+        "type": "String"
+      }
+    }
+  },
+  "plantingIssueNarrow": "This container is {actual} across; this plant needs at least {required}.",
+  "@plantingIssueNarrow": {
+    "placeholders": {
+      "actual": {
+        "type": "String"
+      },
+      "required": {
+        "type": "String"
+      }
+    }
+  },
+  "spacingBetweenPlants": "Between plants",
+  "spacingBetweenRows": "Between rows",
+  "issueTightSpacing": "Room for about {count} at the {spacing} spacing",
+  "@issueTightSpacing": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "spacing": {
+        "type": "String"
+      }
+    }
+  },
   "presetInches": "{size} in",
   "@presetInches": {
     "placeholders": {
@@ -535,6 +573,25 @@
       },
       "max": {
         "type": "int"
+      }
+    }
+  },
+  "harvestYears": "{min}–{max} years",
+  "@harvestYears": {
+    "placeholders": {
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "harvestYearsSingle": "About {years} years",
+  "@harvestYearsSingle": {
+    "placeholders": {
+      "years": {
+        "type": "String"
       }
     }
   },

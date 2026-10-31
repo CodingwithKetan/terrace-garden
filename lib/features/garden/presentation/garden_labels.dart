@@ -119,5 +119,9 @@ extension GrowingRegionLabel on GrowingRegion {
     GrowingRegion.telangana => l10n.regionTelangana,
     GrowingRegion.tamilNadu => l10n.regionTamilNadu,
     GrowingRegion.kerala => l10n.regionKerala,
+    GrowingRegion.westernMaharashtra => l10n.regionWesternMaharashtra,
+    GrowingRegion.gujarat => l10n.regionGujarat,
+    GrowingRegion.goa => l10n.regionGoa,
+    GrowingRegion.assam => l10n.regionAssam,
   };
 }

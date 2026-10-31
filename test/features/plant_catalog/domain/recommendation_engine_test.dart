@@ -389,4 +389,34 @@ void main() {
       expect(unknown.group, RecommendationGroup.goodNow);
     });
   });
+
+  test('a documented minimum width rules out a narrower container', () {
+    const need = ContainerNeed(
+      status: EvidenceStatus.verified,
+      minWidthCm: 30,
+      sources: ['S4'],
+    );
+    expect(
+      RecommendationEngine.fits(
+        need,
+        const ContainerSpace(id: 'a', soilLitres: 20, depthCm: 25, widthCm: 25),
+      ),
+      isFalse,
+    );
+    expect(
+      RecommendationEngine.fits(
+        need,
+        const ContainerSpace(id: 'b', soilLitres: 20, depthCm: 25, widthCm: 38),
+      ),
+      isTrue,
+    );
+    // An unknown width is not held against the container.
+    expect(
+      RecommendationEngine.fits(
+        need,
+        const ContainerSpace(id: 'c', soilLitres: 20, depthCm: 25),
+      ),
+      isTrue,
+    );
+  });
 }

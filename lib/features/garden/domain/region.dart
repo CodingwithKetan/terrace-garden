@@ -2,10 +2,24 @@
 ///
 /// Only regions with sourced sowing data exist here
 /// (gardening-references §2c: ICAR North/South India tables, plus state
-/// tables for Telangana, Tamil Nadu and Kerala). Cities outside these have no
-/// region yet; recommendations then report the season fit as unknown rather
-/// than guessing.
-enum GrowingRegion { northIndia, southIndia, telangana, tamilNadu, kerala }
+/// tables for Telangana, Tamil Nadu and Kerala; since 2026-10-30 western
+/// Maharashtra, Gujarat, Goa and Assam). Cities outside these have no region
+/// yet; recommendations then report the season fit as unknown rather than
+/// guessing.
+enum GrowingRegion {
+  northIndia,
+  southIndia,
+  telangana,
+  tamilNadu,
+  kerala,
+
+  /// The western Maharashtra plains (Pune, Nashik and around), which MPKV
+  /// Rahuri's calendar covers; not Konkan or Vidarbha.
+  westernMaharashtra,
+  gujarat,
+  goa,
+  assam,
+}
 
 extension GrowingRegionX on GrowingRegion {
   /// The macro region whose data applies when state-level data is missing.
@@ -15,6 +29,11 @@ extension GrowingRegionX on GrowingRegion {
     GrowingRegion.telangana ||
     GrowingRegion.tamilNadu ||
     GrowingRegion.kerala => GrowingRegion.southIndia,
+    // No sourced wider calendar covers these yet.
+    GrowingRegion.westernMaharashtra => GrowingRegion.westernMaharashtra,
+    GrowingRegion.gujarat => GrowingRegion.gujarat,
+    GrowingRegion.goa => GrowingRegion.goa,
+    GrowingRegion.assam => GrowingRegion.assam,
   };
 }
 
@@ -74,20 +93,32 @@ const indianCities = <City>[
   City('Patna', 'Bihar', GrowingRegion.northIndia),
   // Not yet covered by a sourced regional table.
   City('Mumbai', 'Maharashtra', null),
-  City('Pune', 'Maharashtra', null),
+  City('Pune', 'Maharashtra', GrowingRegion.westernMaharashtra),
   City('Nagpur', 'Maharashtra', null),
-  City('Nashik', 'Maharashtra', null),
+  City('Nashik', 'Maharashtra', GrowingRegion.westernMaharashtra),
+  City('Kolhapur', 'Maharashtra', GrowingRegion.westernMaharashtra),
+  City('Satara', 'Maharashtra', GrowingRegion.westernMaharashtra),
+  City('Sangli', 'Maharashtra', GrowingRegion.westernMaharashtra),
+  City('Solapur', 'Maharashtra', GrowingRegion.westernMaharashtra),
+  City('Ahilyanagar', 'Maharashtra', GrowingRegion.westernMaharashtra),
   City('Thane', 'Maharashtra', null),
-  City('Ahmedabad', 'Gujarat', null),
-  City('Surat', 'Gujarat', null),
-  City('Vadodara', 'Gujarat', null),
+  City('Ahmedabad', 'Gujarat', GrowingRegion.gujarat),
+  City('Surat', 'Gujarat', GrowingRegion.gujarat),
+  City('Vadodara', 'Gujarat', GrowingRegion.gujarat),
+  City('Rajkot', 'Gujarat', GrowingRegion.gujarat),
+  City('Gandhinagar', 'Gujarat', GrowingRegion.gujarat),
+  City('Bhavnagar', 'Gujarat', GrowingRegion.gujarat),
   City('Indore', 'Madhya Pradesh', null),
   City('Bhopal', 'Madhya Pradesh', null),
   City('Raipur', 'Chhattisgarh', null),
   City('Kolkata', 'West Bengal', null),
   City('Bhubaneswar', 'Odisha', null),
-  City('Guwahati', 'Assam', null),
-  City('Goa (Panaji)', 'Goa', null),
+  City('Guwahati', 'Assam', GrowingRegion.assam),
+  City('Dibrugarh', 'Assam', GrowingRegion.assam),
+  City('Jorhat', 'Assam', GrowingRegion.assam),
+  City('Silchar', 'Assam', GrowingRegion.assam),
+  City('Goa (Panaji)', 'Goa', GrowingRegion.goa),
+  City('Margao', 'Goa', GrowingRegion.goa),
 ];
 
 /// Case-insensitive search by city or state, ordered by name.

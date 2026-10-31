@@ -194,4 +194,109 @@ void main() {
       expect(ContainerVerdict.fitsShared.suitable, isTrue);
     });
   });
+
+  group('spacing', () {
+    PlantSpecies spaced(double cm) => PlantSpecies(
+      id: 'lettuce',
+      commonName: 'Lettuce',
+      scientificName: 'Lactuca sativa',
+      category: PlantCategory.leafyGreen,
+      lifecycle: PlantLifecycle.annual,
+      container: const ContainerNeed(
+        status: EvidenceStatus.unverified,
+        sources: [],
+      ),
+      spacing: Spacing(minCm: cm, maxCm: cm, sources: const ['S1']),
+      petSafety: const PetSafety(
+        status: PetSafetyStatus.notAssessed,
+        sources: [],
+      ),
+      dataStatus: DataStatus.partial,
+    );
+
+    const bed = LayoutElement(
+      id: 'planter',
+      kind: ElementKind.raisedBed,
+      center: Vec2(100, 100),
+      width: 120,
+      height: 60,
+      depthCm: 30,
+    );
+
+    test('counts a grid at the spacing, at least one', () {
+      // 120 × 60 cm at 25 cm: 4 × 2.
+      expect(PlantingFit.spacingCapacity(bed, 25), 8);
+      expect(PlantingFit.spacingCapacity(bed, 200), 1);
+      // A 38 cm round bag at 15 cm: π/4 · 2.53² ≈ 5.
+      const bag = LayoutElement(
+        id: 'b',
+        kind: ElementKind.roundGrowBag,
+        center: Vec2.zero,
+        width: 38,
+        height: 38,
+      );
+      expect(PlantingFit.spacingCapacity(bag, 15), 5);
+    });
+
+    test('warns past the room the spacing leaves', () {
+      final ok = PlantingFit.check(
+        species: spaced(25),
+        container: bed,
+        quantity: 8,
+        othersInContainer: const [],
+      );
+      expect(_kinds(ok), isNot(contains(PlantingIssueKind.tightSpacing)));
+
+      final tight = PlantingFit.check(
+        species: spaced(25),
+        container: bed,
+        quantity: 6,
+        othersInContainer: [_planting('lettuce', 3)],
+      );
+      final issue = tight.singleWhere(
+        (i) => i.kind == PlantingIssueKind.tightSpacing,
+      );
+      expect(issue.capacity, 8);
+      expect(issue.required, 25);
+      expect(
+        ContainerVerdict.of(tight, species: spaced(25)),
+        ContainerVerdict.full,
+      );
+    });
+  });
+
+  test('a pot narrower than the documented width is too small', () {
+    const wide = PlantSpecies(
+      id: 'chrysanthemum',
+      commonName: 'Chrysanthemum',
+      scientificName: 'Chrysanthemum × morifolium',
+      category: PlantCategory.flower,
+      lifecycle: PlantLifecycle.perennial,
+      container: ContainerNeed(
+        status: EvidenceStatus.verified,
+        minWidthCm: 30,
+        sources: ['S4'],
+      ),
+      petSafety: PetSafety(
+        status: PetSafetyStatus.notAssessed,
+        sources: [],
+      ),
+      dataStatus: DataStatus.partial,
+    );
+    final issues = PlantingFit.check(
+      species: wide,
+      container: _planter(),
+      quantity: 1,
+      othersInContainer: const [],
+    );
+    final narrow = issues.singleWhere(
+      (i) => i.kind == PlantingIssueKind.narrow,
+    );
+    expect(narrow.actual, 20);
+    expect(narrow.required, 30);
+    expect(
+      ContainerVerdict.of(issues, species: wide),
+      ContainerVerdict.tooSmall,
+    );
+  });
 }

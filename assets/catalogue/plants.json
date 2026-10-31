@@ -13,15 +13,20 @@
       "sun": { "level": "full", "minHours": 6, "sources": ["S3"] },
       "container": { "status": "verified", "minVolumeL": 18.9, "recommendedVolumeL": 37.9, "minDepthCm": 30, "recommendedDepthCm": 41, "plantsPerContainer": 1, "note": "One plant per 5-gallon (19 L) container at minimum; large fruiting crops do best in 8–10 gallons (30–38 L), 12–16 in (30–41 cm) deep. Dwarf types can use smaller pots.", "sources": ["S1", "S2"] },
       "daysToHarvest": { "min": 90, "max": 130, "note": "From seed to first harvest; ICAR's terrace table gives about 110–115 days.", "sources": ["S1", "S11"] },
+      "spacing": { "minCm": 45.7, "maxCm": 61, "note": "Raised beds: 18–24 in (45.7–61 cm) between plants (NC State); RHS gives 45–60 cm.", "sources": ["S170", "S171"] },
       "sowing": [
         { "region": "northIndia", "months": [6, 7, 8, 11, 12], "source": "S11" },
         { "region": "southIndia", "months": [1, 2, 6, 7, 10, 11], "source": "S11" },
         { "region": "telangana", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S13" },
         { "region": "tamilNadu", "months": [5, 6, 11, 12], "source": "S51" },
-        { "region": "kerala", "months": [10, 11], "source": "S50" }
+        { "region": "kerala", "months": [10, 11], "source": "S50" },
+        { "region": "westernMaharashtra", "months": [1, 2, 5, 6, 9, 10], "source": "S179" },
+        { "region": "gujarat", "months": [5, 6, 10, 11], "source": "S180" },
+        { "region": "assam", "months": [10, 11], "source": "S182" }
       ],
       "propagation": { "method": "transplant", "nurseryDaysMin": 25, "nurseryDaysMax": 30, "sources": ["S11"] },
       "careNotes": [{ "text": "Stake or cage the plant; a heavy pot keeps a top-heavy tomato from blowing over.", "sources": ["S3"] }],
+      "watering": { "mode": "keepMoist", "sources": ["S171"] },
       "petSafety": { "status": "toxic", "note": "The plant is toxic to dogs, cats and horses (solanine); ripe fruit is non-toxic.", "sources": ["S39"] },
       "dataStatus": "verified"
     },
@@ -36,10 +41,15 @@
       "sun": { "level": "full", "minHours": 6, "sources": ["S3"] },
       "container": { "status": "verified", "minVolumeL": 7.6, "recommendedVolumeL": 18.9, "minDepthCm": 30, "recommendedDepthCm": 41, "plantsPerContainer": 1, "note": "Peppers: at least a 2-gallon (7.6 L) container 12–16 in (30–41 cm) deep, one plant each; 5-gallon (19 L) containers suit most fruiting crops best.", "sources": ["S52", "S1"] },
       "daysToHarvest": { "min": 90, "max": 120, "note": "Pepper figure from seed (proxy for chilli).", "sources": ["S1"] },
+      "spacing": { "minCm": 45, "maxCm": 45, "rowCm": 60, "note": "Plants 45 cm apart in rows 60 cm apart (TNAU).", "sources": ["S51"] },
       "sowing": [
         { "region": "northIndia", "months": [10, 11], "source": "S48" },
         { "region": "tamilNadu", "months": [1, 2, 6, 7, 9, 10], "source": "S19" },
-        { "region": "kerala", "months": [5, 6, 9, 10], "source": "S50" }
+        { "region": "kerala", "months": [5, 6, 9, 10], "source": "S50" },
+        { "region": "westernMaharashtra", "months": [6, 7], "source": "S179" },
+        { "region": "gujarat", "months": [10, 11], "source": "S180" },
+        { "region": "goa", "months": [6, 11], "source": "S181" },
+        { "region": "assam", "months": [9, 10], "source": "S182" }
       ],
       "propagation": { "method": "transplant", "nurseryDaysMin": 25, "nurseryDaysMax": 30, "sources": ["S11"] },
       "careNotes": [
@@ -47,6 +57,7 @@
         { "text": "Chilli cannot stand waterlogged soil for more than a day: use a free-draining mix and a pot with drainage holes.", "sources": ["S48"] },
         { "text": "Shade newly transplanted seedlings for three or four days in summer.", "sources": ["S50"] }
       ],
+      "watering": { "mode": "keepMoist", "sources": ["S40"] },
       "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
       "dataStatus": "partial"
     },
@@ -61,15 +72,21 @@
       "sun": { "level": "full", "minHours": null, "sources": ["S1"] },
       "container": { "status": "verified", "minVolumeL": 18.9, "recommendedVolumeL": 37.9, "minDepthCm": 30, "recommendedDepthCm": 41, "plantsPerContainer": 1, "note": "One plant per 5-gallon (19 L) container; large class 8–10 gallons.", "sources": ["S1", "S2"] },
       "daysToHarvest": { "min": 90, "max": 120, "note": "ICAR's terrace table gives 100–110 days.", "sources": ["S1", "S11"] },
+      "spacing": { "minCm": 45.7, "maxCm": 61, "note": "Raised beds: 18–24 in (45.7–61 cm) between plants (NC State).", "sources": ["S170"] },
       "sowing": [
         { "region": "northIndia", "months": [2, 3, 5, 6, 10], "source": "S11" },
         { "region": "southIndia", "months": [1, 2, 10], "source": "S11" },
         { "region": "telangana", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S13" },
         { "region": "tamilNadu", "months": [1, 5, 6, 12], "source": "S51" },
-        { "region": "kerala", "months": [5, 6, 9, 10], "source": "S50" }
+        { "region": "kerala", "months": [5, 6, 9, 10], "source": "S50" },
+        { "region": "westernMaharashtra", "months": [2, 3, 7, 8], "source": "S179" },
+        { "region": "gujarat", "months": [5, 6, 10, 11], "source": "S180" },
+        { "region": "goa", "months": [6, 11], "source": "S181" },
+        { "region": "assam", "months": [1, 2, 9, 10], "source": "S182" }
       ],
       "propagation": { "method": "transplant", "nurseryDaysMin": 25, "nurseryDaysMax": 30, "sources": ["S11"] },
       "careNotes": [{ "text": "Stake plants if they need support.", "sources": ["S50"] }],
+      "watering": { "mode": "keepMoist", "sources": ["S178"] },
       "petSafety": { "status": "toxic", "note": "Flagged as a problem for dogs, cats and horses: leaves, flowers, stems and roots contain solanine-type alkaloids. The fruit is not listed as a poison part.", "sources": ["S40"] },
       "dataStatus": "verified"
     },
@@ -84,17 +101,23 @@
       "sun": { "level": "full", "minHours": 6, "sources": ["S53"] },
       "container": { "status": "verified", "minVolumeL": 18.9, "recommendedVolumeL": 26.5, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": 1, "note": "One plant per 5–7 gallon (19–26 L) container. No depth was given.", "sources": ["S53"] },
       "daysToHarvest": { "min": 50, "max": 60, "note": null, "sources": ["S11"] },
+      "spacing": { "minCm": 30.5, "maxCm": 45.7, "note": "Raised beds: 12–18 in (30.5–45.7 cm) between plants (NC State).", "sources": ["S170"] },
       "sowing": [
         { "region": "northIndia", "months": [2, 3, 6, 7], "source": "S11" },
         { "region": "southIndia", "months": [1, 2, 5, 6, 10, 11, 12], "source": "S11" },
         { "region": "telangana", "months": [1, 2, 3, 6, 7, 8], "source": "S13" },
-        { "region": "tamilNadu", "months": [2, 6, 7, 8], "source": "S14" }
+        { "region": "tamilNadu", "months": [2, 6, 7, 8], "source": "S14" },
+        { "region": "westernMaharashtra", "months": [1, 2, 6, 7], "source": "S179" },
+        { "region": "gujarat", "months": [2, 3, 6, 7], "source": "S180" },
+        { "region": "goa", "months": [2, 6], "source": "S181" },
+        { "region": "assam", "months": [1, 2, 3, 5, 6, 7], "source": "S182" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S11"] },
       "careNotes": [
         { "text": "Choose dwarf varieties for containers; they are less likely to fall over.", "sources": ["S53"] },
         { "text": "Pick pods at 5–10 cm (2–4 in) long, then every 2–3 days.", "sources": ["S53"] }
       ],
+      "watering": { "mode": "keepMoist", "sources": ["S53"] },
       "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
       "dataStatus": "partial"
     },
@@ -109,13 +132,18 @@
       "sun": { "level": "partial", "minHours": null, "sources": ["S1"] },
       "container": { "status": "proxy", "minVolumeL": 3.8, "recommendedVolumeL": 11.4, "minDepthCm": 10, "recommendedDepthCm": 15, "plantsPerContainer": 2, "note": "Uses spinach data: 2 plants per 1-gallon (3.8 L) container; small class 1–3 gallons, 4–6 in deep. Indian palak may differ botanically from true spinach.", "sources": ["S1", "S2"] },
       "daysToHarvest": { "min": 60, "max": 60, "note": null, "sources": ["S11"] },
+      "spacing": { "minCm": 10.2, "maxCm": 15.2, "note": "True spinach in raised beds: 4–6 in (10.2–15.2 cm) (NC State); RHS spaces young plants 15 cm apart.", "sources": ["S170", "S172"] },
       "sowing": [
         { "region": "northIndia", "months": [2, 9, 10, 11], "source": "S11" },
         { "region": "southIndia", "months": [9, 10, 11], "source": "S11" },
-        { "region": "telangana", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S13" }
+        { "region": "telangana", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S13" },
+        { "region": "westernMaharashtra", "months": [9, 10, 11, 12], "source": "S179" },
+        { "region": "gujarat", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S180" },
+        { "region": "assam", "months": [9, 10, 11, 12], "source": "S182" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S11"] },
       "careNotes": [{ "text": "Leafy crops tolerate more shade than fruiting crops.", "sources": ["S1"] }],
+      "watering": { "mode": "keepMoist", "sources": ["S172"] },
       "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
       "dataStatus": "partial"
     },
@@ -130,10 +158,13 @@
       "sun": { "level": "partial", "minHours": null, "sources": ["S40"] },
       "container": { "status": "proxy", "minVolumeL": 3.8, "recommendedVolumeL": 11.4, "minDepthCm": 10, "recommendedDepthCm": 15, "plantsPerContainer": null, "note": "Uses the small class for salad and Asian greens: 1–3 gallons, 4–6 in deep.", "sources": ["S2"] },
       "daysToHarvest": { "min": 25, "max": 30, "note": "First harvest after sowing, from TNAU's roof-garden table.", "sources": ["S68"] },
+      "spacing": { "minCm": 12, "maxCm": 15, "note": "Thin seedlings to 12–15 cm apart (TNAU).", "sources": ["S51"] },
       "sowing": [
         { "region": "telangana", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S13" },
         { "region": "tamilNadu", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S51" },
-        { "region": "kerala", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S50" }
+        { "region": "kerala", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S50" },
+        { "region": "gujarat", "months": [2, 3], "source": "S180" },
+        { "region": "goa", "months": [6, 11], "source": "S181" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S51"] },
       "careNotes": [
@@ -154,9 +185,13 @@
       "sun": { "level": "partial", "minHours": null, "sources": ["S40"] },
       "container": { "status": "verified", "minVolumeL": 3.8, "recommendedVolumeL": 11.4, "minDepthCm": 10, "recommendedDepthCm": 15, "plantsPerContainer": null, "note": "Small class: 1–3 gallons, 4–6 in deep.", "sources": ["S2"] },
       "daysToHarvest": { "min": 30, "max": 40, "note": "For greens.", "sources": ["S16"] },
+      "spacing": { "minCm": 15, "maxCm": 15, "rowCm": 20, "note": "Seeds sown 15 cm apart in rows 20 cm apart (TNAU).", "sources": ["S16"] },
       "sowing": [
         { "region": "northIndia", "months": [10, 11, 12], "source": "S48" },
-        { "region": "tamilNadu", "months": [6, 7, 10, 11], "source": "S16" }
+        { "region": "tamilNadu", "months": [6, 7, 10, 11], "source": "S16" },
+        { "region": "gujarat", "months": [10, 11], "source": "S180" },
+        { "region": "goa", "months": [5, 6, 10], "source": "S181" },
+        { "region": "assam", "months": [10, 11], "source": "S182" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S16"] },
       "careNotes": [
@@ -165,6 +200,7 @@
         { "text": "Sow where it will grow: coriander dislikes being transplanted, and it does well in free-draining containers.", "sources": ["S56"] },
         { "text": "Runs to seed (bolts) easily in hot weather.", "sources": ["S40"] }
       ],
+      "watering": { "mode": "keepMoist", "sources": ["S56"] },
       "petSafety": { "status": "nonToxic", "note": "Cilantro (Coriandrum sativum) is listed as non-toxic to dogs, cats and horses.", "sources": ["S39"] },
       "dataStatus": "partial"
     },
@@ -178,16 +214,19 @@
       "lifecycle": "perennial",
       "sun": { "level": "partial", "minHours": null, "sources": ["S55"] },
       "container": { "status": "verified", "minVolumeL": 3.8, "recommendedVolumeL": 11.4, "minDepthCm": 10, "recommendedDepthCm": 15, "plantsPerContainer": null, "note": "Small class: 1–3 gallons, 4–6 in deep.", "sources": ["S2"] },
-      "daysToHarvest": null,
+      "daysToHarvest": { "min": 150, "max": 150, "note": "First cut about 5 months after planting rooted cuttings (TNAU, field mint), then every 3 months.", "sources": ["S70"] },
+      "spacing": { "minCm": 40, "maxCm": 45.7, "note": "Rooted cuttings 40 cm apart (TNAU) to 18 in (45.7 cm) (extension); mint spreads quickly.", "sources": ["S70", "S55"] },
       "sowing": [
         { "region": "northIndia", "months": [1, 2], "source": "S49" },
-        { "region": "tamilNadu", "months": [6, 7], "source": "S70" }
+        { "region": "tamilNadu", "months": [6, 7], "source": "S70" },
+        { "region": "goa", "months": [6, 7], "source": "S181" }
       ],
       "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S70"] },
       "careNotes": [
         { "text": "Spreads fast by runners: give it a pot of its own and cut runners that creep out.", "sources": ["S55"] },
         { "text": "Divide and repot every few years.", "sources": ["S57"] }
       ],
+      "watering": { "mode": "keepMoist", "sources": ["S57"] },
       "petSafety": { "status": "toxic", "note": "Toxic to dogs, cats and horses (essential oils); vomiting and diarrhoea mainly with large amounts.", "sources": ["S39"] },
       "dataStatus": "partial"
     },
@@ -202,9 +241,12 @@
       "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
       "container": { "status": "proxy", "minVolumeL": 3.8, "recommendedVolumeL": 11.4, "minDepthCm": 10, "recommendedDepthCm": 15, "plantsPerContainer": null, "note": "Uses the small class for greens: 1–3 gallons, 4–6 in deep.", "sources": ["S2"] },
       "daysToHarvest": { "min": 20, "max": 25, "note": "For greens; 90–100 days for grain.", "sources": ["S17"] },
+      "spacing": { "minCm": 15, "maxCm": 15, "rowCm": 20, "note": "Seeds sown 15 cm apart in rows 20 cm apart (TNAU).", "sources": ["S17"] },
       "sowing": [
         { "region": "telangana", "months": [1, 2, 6, 7, 8, 10, 11, 12], "source": "S13" },
-        { "region": "tamilNadu", "months": [6, 7, 10, 11], "source": "S17" }
+        { "region": "tamilNadu", "months": [6, 7, 10, 11], "source": "S17" },
+        { "region": "gujarat", "months": [9, 10], "source": "S180" },
+        { "region": "assam", "months": [10, 11], "source": "S182" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S17"] },
       "careNotes": [
@@ -227,7 +269,8 @@
       "daysToHarvest": { "min": 300, "max": 365, "note": "The first harvest starts ten to twelve months after planting.", "sources": ["S15"] },
       "sowing": [
         { "region": "tamilNadu", "months": [7, 8], "source": "S15" },
-        { "region": "kerala", "months": [5, 6], "source": "S50" }
+        { "region": "kerala", "months": [5, 6], "source": "S50" },
+        { "region": "goa", "months": [6], "source": "S181" }
       ],
       "propagation": { "method": "seed", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S15"] },
       "careNotes": [
@@ -306,12 +349,17 @@
       "sun": { "level": "partial", "minHours": null, "sources": ["S40"] },
       "container": { "status": "proxy", "minVolumeL": 30.3, "recommendedVolumeL": 37.9, "minDepthCm": 30, "recommendedDepthCm": 41, "plantsPerContainer": null, "note": "Uses vining cucurbits in the large class: 8–10 gallons, 12–16 in deep. Vining crops need considerably more space and a trellis.", "sources": ["S1", "S2"] },
       "daysToHarvest": { "min": 55, "max": 60, "note": null, "sources": ["S11"] },
+      "spacing": { "minCm": 45, "maxCm": 45, "note": "Plants 45 cm apart along a bed (PAU); give the vines a trellis.", "sources": ["S48"] },
       "sowing": [
         { "region": "northIndia", "months": [2, 3, 6, 7], "source": "S11" },
         { "region": "southIndia", "months": [1, 6, 7, 11, 12], "source": "S11" },
         { "region": "telangana", "months": [2, 3, 4, 5, 7, 8, 9, 10], "source": "S13" },
         { "region": "tamilNadu", "months": [1, 7], "source": "S51" },
-        { "region": "kerala", "months": [1, 2, 3, 9, 10, 11, 12], "source": "S50" }
+        { "region": "kerala", "months": [1, 2, 3, 9, 10, 11, 12], "source": "S50" },
+        { "region": "westernMaharashtra", "months": [1, 2, 6, 7], "source": "S179" },
+        { "region": "gujarat", "months": [2, 3, 6, 7], "source": "S180" },
+        { "region": "goa", "months": [6, 11], "source": "S181" },
+        { "region": "assam", "months": [2, 3, 6, 7, 10, 11], "source": "S182" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S11"] },
       "careNotes": [
@@ -332,17 +380,23 @@
       "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
       "container": { "status": "proxy", "minVolumeL": 30.3, "recommendedVolumeL": 37.9, "minDepthCm": 30, "recommendedDepthCm": 41, "plantsPerContainer": null, "note": "Uses vining cucurbits in the large class: 8–10 gallons, 12–16 in deep. Vining crops need considerably more space and a trellis.", "sources": ["S1", "S2"] },
       "daysToHarvest": { "min": 55, "max": 60, "note": null, "sources": ["S11"] },
+      "spacing": { "minCm": 45, "maxCm": 60, "note": "Plants 45–60 cm apart along a bed (PAU); give the vines a trellis.", "sources": ["S48"] },
       "sowing": [
         { "region": "northIndia", "months": [2, 3, 6, 7], "source": "S11" },
         { "region": "southIndia", "months": [1, 6, 7, 11, 12], "source": "S11" },
         { "region": "tamilNadu", "months": [1, 7], "source": "S51" },
-        { "region": "kerala", "months": [1, 2, 3, 9, 10, 11, 12], "source": "S50" }
+        { "region": "kerala", "months": [1, 2, 3, 9, 10, 11, 12], "source": "S50" },
+        { "region": "westernMaharashtra", "months": [1, 2, 6, 7], "source": "S179" },
+        { "region": "gujarat", "months": [2, 6, 7], "source": "S180" },
+        { "region": "goa", "months": [6], "source": "S181" },
+        { "region": "assam", "months": [2, 3, 6, 7, 10, 11], "source": "S182" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S11"] },
       "careNotes": [
         { "text": "The stems are weak: train the vine upwards on ropes or a trellis.", "sources": ["S48"] },
         { "text": "Keep moisture steady, and support the vine so fruits do not lie on the floor.", "sources": ["S40"] }
       ],
+      "watering": { "mode": "keepMoist", "sources": ["S40"] },
       "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
       "dataStatus": "partial"
     },
@@ -357,11 +411,14 @@
       "sun": { "level": "full", "minHours": null, "sources": ["S1"] },
       "container": { "status": "verified", "minVolumeL": 7.6, "recommendedVolumeL": 22.7, "minDepthCm": 20, "recommendedDepthCm": 30, "plantsPerContainer": null, "note": "At least 2 gallons (7.6 L), plants 3 in (8 cm) apart; listed in the medium class (4–6 gallons, 8–12 in deep). Pole types need more space.", "sources": ["S1", "S2"] },
       "daysToHarvest": { "min": 45, "max": 65, "note": "ICAR's terrace table gives 45–50 days.", "sources": ["S1", "S11"] },
+      "spacing": { "minCm": 5.1, "maxCm": 15, "note": "Bush beans in raised beds 2–3 in (5.1–7.6 cm) apart (NC State); RHS says at least 15 cm in blocks.", "sources": ["S170", "S173"] },
       "sowing": [
         { "region": "northIndia", "months": [2, 3], "source": "S11" },
         { "region": "southIndia", "months": [1, 2, 3], "source": "S11" },
         { "region": "telangana", "months": [10, 11], "source": "S13" },
-        { "region": "tamilNadu", "months": [10, 11], "source": "S51" }
+        { "region": "tamilNadu", "months": [10, 11], "source": "S51" },
+        { "region": "westernMaharashtra", "months": [6, 7, 10, 11], "source": "S179" },
+        { "region": "assam", "months": [1, 2, 3, 10, 11, 12], "source": "S182" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S11"] },
       "careNotes": [{ "text": "Climbing types need a support 1–1.5 m tall; put it in when you sow.", "sources": ["S50"] }],
@@ -379,13 +436,19 @@
       "sun": { "level": "partial", "minHours": null, "sources": ["S1"] },
       "container": { "status": "verified", "minVolumeL": 3.8, "recommendedVolumeL": 11.4, "minDepthCm": 10, "recommendedDepthCm": 15, "plantsPerContainer": 3, "note": "Three plants per 1-gallon (3.8 L) container; small class 4–6 in deep. Long Indian radishes need deeper pots.", "sources": ["S1", "S2"] },
       "daysToHarvest": { "min": 40, "max": 45, "note": null, "sources": ["S11"] },
+      "spacing": { "minCm": 2.5, "maxCm": 5, "rowCm": 15, "note": "Seeds 2.5–5 cm apart with 15 cm between rows (RHS, NC State).", "sources": ["S174", "S170"] },
       "sowing": [
         { "region": "northIndia", "months": [1, 8, 9, 10, 11, 12], "source": "S11" },
         { "region": "southIndia", "months": [9, 10, 11], "source": "S11" },
-        { "region": "telangana", "months": [8, 9, 10, 11], "source": "S13" }
+        { "region": "telangana", "months": [8, 9, 10, 11], "source": "S13" },
+        { "region": "westernMaharashtra", "months": [9, 10, 11], "source": "S179" },
+        { "region": "gujarat", "months": [10, 11], "source": "S180" },
+        { "region": "goa", "months": [6, 11], "source": "S181" },
+        { "region": "assam", "months": [8, 9, 10, 11], "source": "S182" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S11"] },
       "careNotes": [{ "text": "Sources differ on light: Texas A&M's table says partial shade is fine, but its text says root crops need more sun than leafy crops.", "sources": ["S1"] }],
+      "watering": { "mode": "keepMoist", "sources": ["S174"] },
       "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
       "dataStatus": "verified"
     },
@@ -400,11 +463,14 @@
       "sun": { "level": "full", "minHours": 6, "sources": ["S54"] },
       "container": { "status": "verified", "minVolumeL": 3.8, "recommendedVolumeL": 22.7, "minDepthCm": 20, "recommendedDepthCm": 30, "plantsPerContainer": 2, "note": "2–3 plants per gallon in a pot 2 in (5 cm) deeper than the carrot's length; Maryland lists carrots in the medium class (4–6 gallons, 8–12 in deep).", "sources": ["S1", "S2"] },
       "daysToHarvest": { "min": 75, "max": 80, "note": null, "sources": ["S11"] },
+      "spacing": { "minCm": 5, "maxCm": 7.6, "note": "Thin to 5–7.5 cm (2–3 in) apart (RHS, NC State).", "sources": ["S175", "S170"] },
       "sowing": [
         { "region": "northIndia", "months": [8, 9, 10], "source": "S11" },
         { "region": "southIndia", "months": [8, 9, 10, 11], "source": "S11" },
         { "region": "telangana", "months": [6, 7, 8, 9, 10, 11], "source": "S13" },
-        { "region": "tamilNadu", "months": [8], "source": "S51" }
+        { "region": "tamilNadu", "months": [8], "source": "S51" },
+        { "region": "gujarat", "months": [10, 11], "source": "S180" },
+        { "region": "assam", "months": [10, 11], "source": "S182" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S11"] },
       "careNotes": [
@@ -426,12 +492,15 @@
       "sun": { "level": "partial", "minHours": null, "sources": ["S1", "S3"] },
       "container": { "status": "verified", "minVolumeL": 3.8, "recommendedVolumeL": 11.4, "minDepthCm": 10, "recommendedDepthCm": 15, "plantsPerContainer": 2, "note": "Two plants per 1-gallon (3.8 L) container; small class.", "sources": ["S1", "S2"] },
       "daysToHarvest": { "min": 45, "max": 60, "note": null, "sources": ["S1", "S11"] },
+      "spacing": { "minCm": 10.2, "maxCm": 30, "note": "Leaf lettuce 4–6 in (10.2–15.2 cm) apart in raised beds (NC State); hearting lettuces about 30 cm (RHS).", "sources": ["S170", "S176"] },
       "sowing": [
         { "region": "northIndia", "months": [9, 10], "source": "S11" },
-        { "region": "southIndia", "months": [10, 11, 12], "source": "S11" }
+        { "region": "southIndia", "months": [10, 11, 12], "source": "S11" },
+        { "region": "assam", "months": [1, 12], "source": "S182" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S11"] },
       "careNotes": [{ "text": "Tolerates part shade and prefers some shade.", "sources": ["S1", "S3"] }],
+      "watering": { "mode": "keepMoist", "sources": ["S176"] },
       "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
       "dataStatus": "verified"
     },
@@ -444,10 +513,13 @@
       "category": "flower",
       "lifecycle": "annual",
       "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
-      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "Recommended for containers; no size was given. Grows 1–4 ft tall and 1–2 ft wide.", "sources": ["S40"] },
-      "daysToHarvest": null,
+      "container": { "status": "proxy", "minVolumeL": 3.8, "minDepthCm": 10.2, "note": "Small flowering annuals: at least 1–3 US gal (3.8–11.4 L) of mix, 4–6 in (10.2–15.2 cm) deep. Large African types may need more. Recommended for containers; no size was given. Grows 1–4 ft tall and 1–2 ft wide.", "sources": ["S2"] },
+      "daysToHarvest": { "min": 60, "max": 75, "note": "First flowers picked 60 days (TNAU) to about 2½ months (PAU) after transplanting.", "sources": ["S72", "S135"] },
+      "spacing": { "minCm": 30.5, "maxCm": 35, "rowCm": 45, "note": "African marigolds about 12 in (30.5 cm) apart (extension); 35 cm on ridges 45 cm apart (TNAU).", "sources": ["S73", "S72"] },
       "sowing": [
-        { "region": "tamilNadu", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S72" }
+        { "region": "tamilNadu", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S72" },
+        { "region": "goa", "months": [2, 3, 6, 7, 9, 10], "source": "S181" },
+        { "region": "assam", "months": [6, 7, 10, 11], "source": "S182" }
       ],
       "propagation": { "method": "transplant", "nurseryDaysMin": 28, "nurseryDaysMax": 28, "sources": ["S72"] },
       "careNotes": [
@@ -457,6 +529,7 @@
         { "text": "Deadhead spent flowers promptly; tall types may need staking or shelter from wind and heavy rain.", "sources": ["S40"] },
         { "text": "In containers, do not crowd plants. Let the soil dry slightly, then water thoroughly.", "sources": ["S73"] }
       ],
+      "watering": { "mode": "keepMoist", "sources": ["S40"] },
       "petSafety": { "status": "notAssessed", "note": "ASPCA has not assessed Tagetes. NC State rates it low: the sap can irritate skin in sunlight.", "sources": ["S40"] },
       "dataStatus": "partial"
     },
@@ -469,7 +542,7 @@
       "category": "flower",
       "lifecycle": "perennial",
       "sun": { "level": "partial", "minHours": 2, "sources": ["S40"] },
-      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": 1, "note": "Grown in large containers; no size was given.", "sources": ["S40"] },
+      "container": { "status": "verified", "minWidthCm": 30.5, "plantsPerContainer": 1, "note": "Large pots at least 12 in (30.5 cm) across. Grown in large containers; no size was given.", "sources": ["S166"] },
       "daysToHarvest": null,
       "sowing": [],
       "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S59", "S40"] },
@@ -493,9 +566,10 @@
       "lifecycle": "perennial",
       "sun": { "level": "partial", "minHours": null, "sources": ["S66"] },
       "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": 1, "note": "No container size was found in the sources.", "sources": [] },
-      "daysToHarvest": null,
+      "daysToHarvest": { "min": 180, "max": 180, "note": "Starts flowering about six months after planting; commercial yields from the third year (NHB).", "sources": ["S159"] },
       "sowing": [
-        { "region": "tamilNadu", "months": [6, 7, 8, 9, 10, 11], "source": "S18" }
+        { "region": "tamilNadu", "months": [6, 7, 8, 9, 10, 11], "source": "S18" },
+        { "region": "kerala", "months": [6, 7, 8], "source": "S50" }
       ],
       "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S18"] },
       "careNotes": [
@@ -517,13 +591,16 @@
       "sun": { "level": "full", "minHours": 6, "sources": ["S67"] },
       "container": { "status": "verified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": 23, "recommendedDepthCm": 35, "plantsPerContainer": 1, "note": "Patio and miniature roses suit containers: fairly small but deep pots, 23–35 cm. Compact climbers need at least 30–45 cm. Few roses tolerate containers, because their roots run deep.", "sources": ["S8"] },
       "daysToHarvest": null,
-      "sowing": [],
+      "sowing": [
+        { "region": "northIndia", "months": [1, 2, 10, 11, 12], "source": "S135" }
+      ],
       "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S67"] },
       "careNotes": [
         { "text": "Do not let a container rose dry out, or it becomes prone to powdery mildew. Shade the pot, not the plant.", "sources": ["S8"] },
         { "text": "Feed with a rose fertiliser as the label directs; every second year replace the top 5 cm of compost.", "sources": ["S8"] },
         { "text": "When pruning, cut about 5 mm above an outward-facing bud, and remove dead, diseased, spindly and crossing stems.", "sources": ["S65"] }
       ],
+      "watering": { "mode": "keepMoist", "sources": ["S8"] },
       "petSafety": { "status": "nonToxic", "note": "Non-toxic to dogs, cats and horses; thorns are a physical hazard.", "sources": ["S39"] },
       "skinUse": {
         "evidence": [
@@ -545,9 +622,11 @@
       "category": "ornamental",
       "lifecycle": "perennial",
       "sun": { "level": "partial", "minHours": 2, "sources": ["S40"] },
-      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": 1, "note": "No size was given. Use a pot with several drainage holes (clay is best) and free-draining cactus or gritty compost.", "sources": ["S40", "S62"] },
-      "daysToHarvest": null,
-      "sowing": [],
+      "container": { "status": "verified", "minWidthCm": 20.3, "plantsPerContainer": 1, "note": "A typical aloe vera, about a foot tall and wide, needs an 8–10 in (20.3–25.4 cm) pot. No size was given. Use a pot with several drainage holes (clay is best) and free-draining cactus or gritty compost.", "sources": ["S169"] },
+      "daysToHarvest": { "min": 180, "max": 210, "note": "First leaf harvest 6–7 months after planting suckers (TNAU).", "sources": ["S160"] },
+      "sowing": [
+        { "region": "tamilNadu", "months": [6, 7, 9, 10], "source": "S160" }
+      ],
       "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S62"] },
       "careNotes": [
         { "text": "Use a very well-drained succulent mix and let the soil dry completely between waterings.", "sources": ["S40"] },
@@ -626,10 +705,12 @@
       "sun": { "level": "full", "minHours": 6, "sources": ["S52"] },
       "container": { "status": "verified", "minVolumeL": 7.6, "recommendedVolumeL": 18.9, "minDepthCm": 30, "recommendedDepthCm": 41, "plantsPerContainer": 1, "note": "Peppers: at least a 2-gallon (7.6 L) container 12–16 in (30–41 cm) deep, one plant each; 5 gallons (19 L) suits them best.", "sources": ["S52", "S75"] },
       "daysToHarvest": { "min": 90, "max": 120, "note": "From seed. Punjab gives about 3 months after transplanting.", "sources": ["S75", "S48"] },
+      "spacing": { "minCm": 38, "maxCm": 45, "note": "Plants 38–45 cm apart depending on the variety (RHS).", "sources": ["S76"] },
       "sowing": [
         { "region": "northIndia", "months": [10], "source": "S48" },
         { "region": "tamilNadu", "months": [1, 2, 9, 10, 11, 12], "source": "S51" },
-        { "region": "kerala", "months": [9, 10], "source": "S50" }
+        { "region": "kerala", "months": [9, 10], "source": "S50" },
+        { "region": "assam", "months": [9, 10], "source": "S182" }
       ],
       "propagation": { "method": "transplant", "nurseryDaysMin": 30, "nurseryDaysMax": 45, "sources": ["S51", "S50"] },
       "careNotes": [
@@ -637,6 +718,7 @@
         { "text": "Add a cane so the plant stays upright in its pot.", "sources": ["S76"] },
         { "text": "Pick when fruits are full-sized but still green and shining.", "sources": ["S48"] }
       ],
+      "watering": { "mode": "keepMoist", "sources": ["S76"] },
       "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
       "dataStatus": "verified"
     },
@@ -651,11 +733,16 @@
       "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
       "container": { "status": "verified", "minVolumeL": 3.8, "recommendedVolumeL": null, "minDepthCm": 20, "recommendedDepthCm": 30, "plantsPerContainer": 1, "note": "At least a 1-gallon (3.8 L) container 8 in (20 cm) deep, one plant each; RHS suggests 30 cm wide and deep.", "sources": ["S52", "S77"] },
       "daysToHarvest": { "min": 50, "max": 70, "note": "From seed.", "sources": ["S75"] },
+      "spacing": { "minCm": 30.5, "maxCm": 30.5, "note": "Raised beds: 12 in (30.5 cm) between plants (NC State); RHS plants one per prepared spot 30 cm apart.", "sources": ["S170", "S77"] },
       "sowing": [
         { "region": "northIndia", "months": [2, 3], "source": "S48" },
         { "region": "telangana", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "source": "S13" },
         { "region": "tamilNadu", "months": [1, 2, 3, 4, 6], "source": "S51" },
-        { "region": "kerala", "months": [1, 2, 3, 9, 10, 11, 12], "source": "S50" }
+        { "region": "kerala", "months": [1, 2, 3, 9, 10, 11, 12], "source": "S50" },
+        { "region": "westernMaharashtra", "months": [1, 2, 6, 7], "source": "S179" },
+        { "region": "gujarat", "months": [2, 3, 6, 7], "source": "S180" },
+        { "region": "goa", "months": [6], "source": "S181" },
+        { "region": "assam", "months": [3, 4, 5, 6, 11, 12], "source": "S182" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S50", "S51"] },
       "careNotes": [
@@ -663,6 +750,7 @@
         { "text": "Pick often to keep fruits coming; yellow fruits are overripe.", "sources": ["S40"] },
         { "text": "Needs steady moisture and good drainage. Water the soil, not the leaves.", "sources": ["S40"] }
       ],
+      "watering": { "mode": "keepMoist", "sources": ["S77"] },
       "petSafety": { "status": "nonToxic", "note": "Cucumber is listed as non-toxic to dogs, cats and horses.", "sources": ["S39"] },
       "dataStatus": "verified"
     },
@@ -676,11 +764,15 @@
       "lifecycle": "annual",
       "sun": { "level": "full", "minHours": null, "sources": ["S131"] },
       "container": { "status": "proxy", "minVolumeL": 7.6, "recommendedVolumeL": 18.9, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "UF/IFAS gives 2–5 gallons (7.6–19 L) for luffas in general.", "sources": ["S131"] },
-      "daysToHarvest": null,
+      "daysToHarvest": { "min": 46, "max": 46, "note": "First picking 46 days after sowing for the early hybrid Arka Vikram (ICAR-IIHR); other varieties may take longer.", "sources": ["S155"] },
       "sowing": [
         { "region": "telangana", "months": [2, 3, 4, 5, 7, 8, 9, 10], "source": "S13" },
         { "region": "tamilNadu", "months": [1, 7], "source": "S51" },
-        { "region": "kerala", "months": [2, 3, 5, 6], "source": "S50" }
+        { "region": "kerala", "months": [2, 3, 5, 6], "source": "S50" },
+        { "region": "westernMaharashtra", "months": [1, 2, 6, 7], "source": "S179" },
+        { "region": "gujarat", "months": [2, 3, 6, 7], "source": "S180" },
+        { "region": "goa", "months": [6], "source": "S181" },
+        { "region": "assam", "months": [1, 2, 3, 4, 5], "source": "S182" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S51"] },
       "careNotes": [{ "text": "Give the vine a pandal or trellis about 2 m high to climb.", "sources": ["S51", "S50"] }],
@@ -696,12 +788,16 @@
       "category": "vegetable",
       "lifecycle": "annual",
       "sun": null,
-      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No container size was found in the sources.", "sources": [] },
+      "container": { "status": "proxy", "minVolumeL": 7.6, "minDepthCm": 20.3, "note": "Bean figures (2 US gal, 7.6 L; 8–10 in, 20.3–25.4 cm deep) used for cluster bean. No container size was found in the sources.", "sources": ["S52", "S1"] },
       "daysToHarvest": { "min": 45, "max": 100, "note": "Early varieties from about 45 days after sowing, late ones from about 100.", "sources": ["S51"] },
+      "spacing": { "minCm": 15, "maxCm": 15, "rowCm": 45, "note": "Seeds 15 cm apart on ridges 45 cm apart (TNAU).", "sources": ["S51"] },
       "sowing": [
         { "region": "telangana", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "source": "S13" },
         { "region": "tamilNadu", "months": [6, 7, 10, 11], "source": "S51" },
-        { "region": "kerala", "months": [2, 3, 6, 7], "source": "S50" }
+        { "region": "kerala", "months": [2, 3, 6, 7], "source": "S50" },
+        { "region": "westernMaharashtra", "months": [1, 2, 6, 7], "source": "S179" },
+        { "region": "gujarat", "months": [2, 3, 6, 7], "source": "S180" },
+        { "region": "goa", "months": [6, 11], "source": "S181" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S51"] },
       "careNotes": [{ "text": "Some tall varieties (such as MDU 1) need staking.", "sources": ["S51"] }],
@@ -717,12 +813,16 @@
       "category": "vegetable",
       "lifecycle": "annual",
       "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
-      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No container size was found in the sources.", "sources": [] },
+      "container": { "status": "proxy", "minVolumeL": 7.6, "minDepthCm": 20.3, "note": "Bean figures (2 US gal, 7.6 L; 8–10 in, 20.3–25.4 cm deep) used for cowpea; climbing types may need more. No container size was found in the sources.", "sources": ["S52", "S1"] },
       "daysToHarvest": { "min": 40, "max": 50, "note": "Tender pods, from sowing.", "sources": ["S51", "S48"] },
+      "spacing": { "minCm": 15, "maxCm": 15, "rowCm": 45, "note": "15 cm between plants and 45 cm between rows (TNAU, PAU).", "sources": ["S51", "S48"] },
       "sowing": [
         { "region": "northIndia", "months": [2, 6, 7], "source": "S48" },
         { "region": "tamilNadu", "months": [2, 3, 6, 7], "source": "S51" },
-        { "region": "kerala", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S50" }
+        { "region": "kerala", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S50" },
+        { "region": "gujarat", "months": [2, 3, 6, 7], "source": "S180" },
+        { "region": "goa", "months": [11], "source": "S181" },
+        { "region": "assam", "months": [3, 4], "source": "S182" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S50"] },
       "careNotes": [
@@ -744,9 +844,12 @@
       "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
       "container": { "status": "verified", "minVolumeL": 7.6, "recommendedVolumeL": null, "minDepthCm": 30, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "At least a 2-gallon (7.6 L) container 12 in (30 cm) deep, seeds 2–3 in apart. Dwarf varieties suit containers.", "sources": ["S52", "S78"] },
       "daysToHarvest": { "min": 60, "max": 90, "note": "From sowing, depending on variety.", "sources": ["S48", "S51"] },
+      "spacing": { "minCm": 2.5, "maxCm": 7.6, "note": "Raised beds: 1–3 in (2.5–7.6 cm) apart (NC State); RHS spaces container peas 7.5 cm apart.", "sources": ["S170", "S78"] },
       "sowing": [
         { "region": "northIndia", "months": [10, 11], "source": "S48" },
-        { "region": "tamilNadu", "months": [2, 3, 10, 11], "source": "S51" }
+        { "region": "tamilNadu", "months": [2, 3, 10, 11], "source": "S51" },
+        { "region": "westernMaharashtra", "months": [10, 11], "source": "S179" },
+        { "region": "assam", "months": [10], "source": "S182" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S40"] },
       "careNotes": [
@@ -768,12 +871,14 @@
       "sun": { "level": "full", "minHours": 6, "sources": ["S79"] },
       "container": { "status": "verified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": 20, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "A container at least 20 cm (8 in) wide and deep, with free-draining compost.", "sources": ["S80"] },
       "daysToHarvest": { "min": 42, "max": 42, "note": "Leaves can be picked about 6 weeks after planting.", "sources": ["S79"] },
+      "spacing": { "minCm": 10, "maxCm": 30.5, "note": "At least 10 cm apart (RHS) to 12 in (30.5 cm) in rows (extension).", "sources": ["S80", "S79"] },
       "sowing": [],
       "propagation": { "method": "seed", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S40"] },
       "careNotes": [
         { "text": "Pinch the tips of long stems and any flower buds to keep it bushy.", "sources": ["S40"] },
         { "text": "Water in the morning; basil hates wet roots overnight.", "sources": ["S80"] }
       ],
+      "watering": { "mode": "keepMoist", "sources": ["S80"] },
       "petSafety": { "status": "nonToxic", "note": "Sweet basil is listed as non-toxic to dogs and cats.", "sources": ["S39"] },
       "dataStatus": "partial"
     },
@@ -795,6 +900,7 @@
         { "text": "Brown leaf tips come from too much fertiliser or salty water.", "sources": ["S82"] },
         { "text": "Trim finished flower spikes if you don't want new plantlets.", "sources": ["S83"] }
       ],
+      "watering": { "mode": "dryBetween", "sources": ["S82"] },
       "petSafety": { "status": "nonToxic", "note": "Spider plant is listed as non-toxic to dogs and cats.", "sources": ["S39"] },
       "dataStatus": "partial"
     },
@@ -815,6 +921,7 @@
         { "text": "Keep the soil moist but never soggy in the growing season; check before watering.", "sources": ["S40"] },
         { "text": "Watch for scale, whiteflies and spider mites.", "sources": ["S40"] }
       ],
+      "watering": { "mode": "keepMoist", "sources": ["S40"] },
       "petSafety": { "status": "nonToxic", "note": "Areca palm is listed as non-toxic to dogs, cats and horses. The growing tip (heart of palm) should not be eaten.", "sources": ["S39", "S40"] },
       "dataStatus": "partial"
     },
@@ -847,7 +954,7 @@
       "category": "flower",
       "lifecycle": "annual",
       "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
-      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No size was given. Suits pots and hanging planters in well-drained soil.", "sources": ["S40"] },
+      "container": { "status": "proxy", "minVolumeL": 3.8, "minDepthCm": 10.2, "note": "Small flowering annuals: at least 1–3 US gal (3.8–11.4 L) of mix, 4–6 in (10.2–15.2 cm) deep. No size was given. Suits pots and hanging planters in well-drained soil.", "sources": ["S2"] },
       "daysToHarvest": null,
       "sowing": [],
       "propagation": { "method": "seed", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S40"] },
@@ -855,6 +962,7 @@
         { "text": "Poorly drained soil leads to crown rot.", "sources": ["S40"] },
         { "text": "Flowers close on cloudy days and at night. Deadheading stops it self-seeding.", "sources": ["S40"] }
       ],
+      "watering": { "mode": "dryBetween", "sources": ["S40"] },
       "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
       "dataStatus": "partial"
     },
@@ -867,13 +975,14 @@
       "category": "flower",
       "lifecycle": "perennial",
       "sun": { "level": "partial", "minHours": null, "sources": ["S40"] },
-      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No size was given. Grows in containers and hanging baskets; good drainage is the key.", "sources": ["S40", "S86"] },
+      "container": { "status": "proxy", "minVolumeL": 3.8, "minDepthCm": 10.2, "note": "Small flowering annuals: at least 1–3 US gal (3.8–11.4 L) of mix, 4–6 in (10.2–15.2 cm) deep. No size was given. Grows in containers and hanging baskets; good drainage is the key.", "sources": ["S2"] },
       "daysToHarvest": null,
       "sowing": [
         { "region": "tamilNadu", "months": [6, 7, 9, 10], "source": "S87" }
       ],
       "propagation": { "method": "transplant", "nurseryDaysMin": 45, "nurseryDaysMax": 60, "sources": ["S87"] },
       "careNotes": [{ "text": "Keep it on the dry side; the roots rot if watered too often.", "sources": ["S88"] }],
+      "watering": { "mode": "dryBetween", "sources": ["S88"] },
       "petSafety": { "status": "toxic", "note": "Listed as toxic to dogs, cats and horses (vinca alkaloids), under its older name Vinca rosea.", "sources": ["S39"] },
       "dataStatus": "partial"
     },
@@ -887,11 +996,15 @@
       "lifecycle": "annual",
       "sun": { "level": "full", "minHours": 6, "sources": ["S89"] },
       "container": { "status": "verified", "minVolumeL": 18.9, "recommendedVolumeL": 26.5, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": 1, "note": "One plant per 5–7 gallon (19–26 L) container. No depth was given.", "sources": ["S89"] },
-      "daysToHarvest": null,
+      "daysToHarvest": { "min": 100, "max": 100, "note": "Curds ready about 100 days after transplanting for the late variety Pusa Snowball-1 (PAU); early varieties mature sooner.", "sources": ["S48"] },
+      "spacing": { "minCm": 38.1, "maxCm": 60, "note": "Raised beds: 15–18 in (38.1–45.7 cm) (NC State); RHS gives 45–60 cm.", "sources": ["S170", "S177"] },
       "sowing": [
         { "region": "northIndia", "months": [6, 7, 8, 9, 10, 11], "source": "S48" },
         { "region": "telangana", "months": [8, 9, 10, 11], "source": "S13" },
-        { "region": "kerala", "months": [10, 11], "source": "S50" }
+        { "region": "kerala", "months": [10, 11], "source": "S50" },
+        { "region": "westernMaharashtra", "months": [6, 7, 8, 9, 10, 11], "source": "S179" },
+        { "region": "gujarat", "months": [10, 11], "source": "S180" },
+        { "region": "assam", "months": [7, 8, 9, 10, 11], "source": "S182" }
       ],
       "propagation": { "method": "transplant", "nurseryDaysMin": 25, "nurseryDaysMax": 45, "sources": ["S51"] },
       "careNotes": [
@@ -899,6 +1012,7 @@
         { "text": "Transplant young seedlings: overgrown ones tend to form tiny \"button\" curds.", "sources": ["S51"] },
         { "text": "Curds discolour in direct sun.", "sources": ["S89"] }
       ],
+      "watering": { "mode": "keepMoist", "sources": ["S89"] },
       "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
       "dataStatus": "partial"
     },
@@ -913,6 +1027,7 @@
       "sun": { "level": "partial", "minHours": null, "sources": ["S52"] },
       "container": { "status": "verified", "minVolumeL": 1.9, "recommendedVolumeL": null, "minDepthCm": 20, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "At least a 2-quart (1.9 L) container 8 in (20 cm) deep, plants 2–3 in apart.", "sources": ["S52"] },
       "daysToHarvest": { "min": 55, "max": 100, "note": "From sowing: 55–60 days in US extension tables; TNAU's roof-garden table gives 90–100.", "sources": ["S52", "S68"] },
+      "spacing": { "minCm": 5.1, "maxCm": 10, "note": "Raised beds: 2–3 in (5.1–7.6 cm) (NC State); RHS spaces plug plants 10 cm apart.", "sources": ["S170", "S90"] },
       "sowing": [
         { "region": "northIndia", "months": [10, 11], "source": "S11" },
         { "region": "telangana", "months": [8, 9, 10, 11], "source": "S13" },
@@ -937,6 +1052,7 @@
       "sun": { "level": "partial", "minHours": null, "sources": ["S52"] },
       "container": { "status": "verified", "minVolumeL": 1.9, "recommendedVolumeL": null, "minDepthCm": 15, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "At least a 2-quart (1.9 L) container 6 in (15 cm) deep, plants 2–3 in apart.", "sources": ["S52"] },
       "daysToHarvest": { "min": 60, "max": 80, "note": "From sowing.", "sources": ["S52"] },
+      "spacing": { "minCm": 2.5, "maxCm": 2.5, "rowCm": 20, "note": "About 2.5 cm apart in rows about 20 cm apart (RHS).", "sources": ["S91"] },
       "sowing": [
         { "region": "northIndia", "months": [8], "source": "S48" }
       ],
@@ -956,8 +1072,12 @@
       "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
       "container": { "status": "verified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": 25, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "A container at least 25 cm (10 in) deep, cloves 15 cm (6 in) apart.", "sources": ["S92"] },
       "daysToHarvest": { "min": 165, "max": 170, "note": "From planting, for the Punjab variety PG 17.", "sources": ["S48"] },
+      "spacing": { "minCm": 7.5, "maxCm": 15, "note": "Cloves 7.5 cm apart (TNAU, PAU) to 15 cm apart (RHS).", "sources": ["S51", "S48", "S92"] },
       "sowing": [
-        { "region": "northIndia", "months": [9, 10], "source": "S48" }
+        { "region": "northIndia", "months": [9, 10], "source": "S48" },
+        { "region": "westernMaharashtra", "months": [10, 11], "source": "S179" },
+        { "region": "gujarat", "months": [10, 11], "source": "S180" },
+        { "region": "assam", "months": [9, 10], "source": "S182" }
       ],
       "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S50"] },
       "careNotes": [
@@ -979,9 +1099,12 @@
       "sun": { "level": "partial", "minHours": null, "sources": ["S40"] },
       "container": { "status": "verified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": 30, "recommendedDepthCm": null, "plantsPerContainer": 3, "note": "Grow bags 30 × 30 cm (12 × 12 in) held three plants in an ICAR demonstration.", "sources": ["S93"] },
       "daysToHarvest": { "min": 180, "max": 270, "note": "Green ginger from about 6 months; mature rhizomes at 8–9 months after planting.", "sources": ["S50", "S51"] },
+      "spacing": { "minCm": 20, "maxCm": 20, "rowCm": 40, "note": "Rhizomes 20 cm apart with 40 cm between rows (TNAU, irrigated crop).", "sources": ["S51"] },
       "sowing": [
         { "region": "tamilNadu", "months": [5, 6], "source": "S51" },
-        { "region": "kerala", "months": [2, 4], "source": "S50" }
+        { "region": "kerala", "months": [2, 4], "source": "S50" },
+        { "region": "goa", "months": [5, 6], "source": "S181" },
+        { "region": "assam", "months": [3, 4], "source": "S182" }
       ],
       "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S50"] },
       "careNotes": [
@@ -1002,7 +1125,7 @@
       "lifecycle": "perennial",
       "sun": { "level": "full", "minHours": null, "sources": ["S52"] },
       "container": { "status": "proxy", "minVolumeL": 56.8, "recommendedVolumeL": null, "minDepthCm": 41, "recommendedDepthCm": null, "plantsPerContainer": 1, "note": "About 15 gallons (57 L), 17 in across and 16 in deep, for limes and other small citrus; not specific to Kagzi lime.", "sources": ["S95"] },
-      "daysToHarvest": null,
+      "daysToHarvest": { "min": 1095, "max": 1460, "note": "Starts bearing 3–4 years after planting (TNAU).", "sources": ["S51"] },
       "sowing": [
         { "region": "northIndia", "months": [2, 3, 8, 9, 10], "source": "S96" },
         { "region": "tamilNadu", "months": [6, 7, 8, 9, 10, 11, 12], "source": "S51" }
@@ -1026,7 +1149,7 @@
       "category": "flower",
       "lifecycle": "perennial",
       "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
-      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No pot size was given. Needs well-drained, slightly acidic soil that is never constantly wet; dwarf varieties suit containers.", "sources": ["S98"] },
+      "container": { "status": "verified", "minVolumeL": 18.9, "note": "Does best in large 5–10 US gal (18.9–37.9 L) containers, or 12 in (30.5 cm) hanging baskets. No pot size was given. Needs well-drained, slightly acidic soil that is never constantly wet; dwarf varieties suit containers.", "sources": ["S167"] },
       "daysToHarvest": null,
       "sowing": [],
       "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S98"] },
@@ -1036,6 +1159,7 @@
         { "text": "Too much fertiliser gives leaves instead of flowers.", "sources": ["S98"] },
         { "text": "Watch for mealybugs, scale and aphids.", "sources": ["S99"] }
       ],
+      "watering": { "mode": "dryBetween", "sources": ["S98"] },
       "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
       "dataStatus": "partial"
     },
@@ -1057,6 +1181,7 @@
         { "text": "It often drops its leaves and rests in the cool season.", "sources": ["S100"] },
         { "text": "Watch for aphids, scale and mealybugs.", "sources": ["S40"] }
       ],
+      "watering": { "mode": "dryBetween", "sources": ["S100"] },
       "petSafety": { "status": "toxic", "note": "Desert rose is listed as toxic to dogs, cats and horses (cardiac glycosides). The milky sap is poisonous.", "sources": ["S39", "S100"] },
       "dataStatus": "partial"
     },
@@ -1078,6 +1203,7 @@
         { "text": "Needs about 4 hours of direct sun or 12 hours of bright indirect light, with some afternoon shade.", "sources": ["S101"] },
         { "text": "Watch for aphids, scale, spider mites and mealybugs.", "sources": ["S40"] }
       ],
+      "watering": { "mode": "dryBetween", "sources": ["S101"] },
       "petSafety": { "status": "toxic", "note": "Listed (as Crassula argentea, an older name) as toxic to dogs, cats and horses.", "sources": ["S39"] },
       "dataStatus": "partial"
     },
@@ -1099,6 +1225,7 @@
         { "text": "Keep it in bright, indirect light: too little light is the usual reason it does not flower.", "sources": ["S104"] },
         { "text": "Watch for mealybugs and scale.", "sources": ["S103"] }
       ],
+      "watering": { "mode": "dryBetween", "sources": ["S104"] },
       "petSafety": { "status": "toxic", "note": "Peace lily is listed as toxic to dogs and cats (insoluble calcium oxalates).", "sources": ["S39"] },
       "dataStatus": "partial"
     },
@@ -1141,6 +1268,7 @@
         { "text": "Direct sun can scorch and brown the leaves.", "sources": ["S40"] },
         { "text": "Few problems; watch for scale insects.", "sources": ["S40"] }
       ],
+      "watering": { "mode": "dryBetween", "sources": ["S40"] },
       "petSafety": { "status": "toxic", "note": "ASPCA lists ZZ plant among calcium-oxalate houseplants that are toxic to pets, usually with low severity.", "sources": ["S109"] },
       "dataStatus": "partial"
     },
@@ -1174,10 +1302,12 @@
       "category": "flower",
       "lifecycle": "perennial",
       "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
-      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No size was given. ICAR's pot mix: garden soil, sand and leaf mould or well-rotted manure (2:1:1), one rooted cutting per pot; it needs good drainage.", "sources": ["S112"] },
-      "daysToHarvest": null,
+      "container": { "status": "verified", "minWidthCm": 30, "note": "A container at least 30 cm (1 ft) across. No size was given. ICAR's pot mix: garden soil, sand and leaf mould or well-rotted manure (2:1:1), one rooted cutting per pot; it needs good drainage.", "sources": ["S168"] },
+      "daysToHarvest": { "min": 76, "max": 144, "note": "Days to flowering after transplanting across PAU-recommended varieties.", "sources": ["S135"] },
       "sowing": [
-        { "region": "tamilNadu", "months": [4, 5, 6, 7], "source": "S51" }
+        { "region": "tamilNadu", "months": [4, 5, 6, 7], "source": "S51" },
+        { "region": "goa", "months": [6, 7], "source": "S181" },
+        { "region": "assam", "months": [7, 8, 9, 10], "source": "S182" }
       ],
       "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S112"] },
       "careNotes": [
@@ -1198,10 +1328,12 @@
       "category": "fruit",
       "lifecycle": "perennial",
       "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
-      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No size was given. Strawberries grow well in pots, troughs and hanging baskets, plants about 20 cm apart, including on terraces.", "sources": ["S113", "S114"] },
+      "container": { "status": "verified", "minDepthCm": 20.3, "minWidthCm": 30.5, "plantsPerContainer": 3, "note": "At least 12 in (30.5 cm) across and 8 in (20.3 cm) deep; a 12 in pot holds 3 or 4 plants. No size was given. Strawberries grow well in pots, troughs and hanging baskets, plants about 20 cm apart, including on terraces.", "sources": ["S165", "S52", "S2"] },
       "daysToHarvest": { "min": 90, "max": 90, "note": "Tamil Nadu (a hill crop there): fruiting about 3 months after planting. In Punjab, plants set out in mid-October fruit from about February to April.", "sources": ["S51", "S96"] },
+      "spacing": { "minCm": 20, "maxCm": 40, "note": "About 20 cm apart in containers; 35–40 cm in the ground (RHS).", "sources": ["S113"] },
       "sowing": [
-        { "region": "northIndia", "months": [10], "source": "S96" }
+        { "region": "northIndia", "months": [10], "source": "S96" },
+        { "region": "assam", "months": [11], "source": "S182" }
       ],
       "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S96"] },
       "careNotes": [
@@ -1221,7 +1353,7 @@
       "lifecycle": "perennial",
       "sun": { "level": "full", "minHours": null, "sources": ["S115"] },
       "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "Suitable for containers; no size was given.", "sources": ["S115"] },
-      "daysToHarvest": null,
+      "daysToHarvest": { "min": 730, "max": 1460, "note": "Comes into bearing in the third year (ICAR-NRCP) or from the fourth year (NHB).", "sources": ["S161", "S162"] },
       "sowing": [
         { "region": "northIndia", "months": [1], "source": "S96" },
         { "region": "tamilNadu", "months": [6, 7, 8, 9, 10, 11, 12], "source": "S51" }
@@ -1233,6 +1365,7 @@
         { "text": "Remove suckers from the base as they appear.", "sources": ["S115"] },
         { "text": "Thinning the flower clusters gives bigger fruit; fruits ripen 4–5 months after flowering.", "sources": ["S51"] }
       ],
+      "watering": { "mode": "dryBetween", "sources": ["S115"] },
       "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
       "dataStatus": "partial"
     },
@@ -1246,7 +1379,7 @@
       "lifecycle": "perennial",
       "sun": { "level": "full", "minHours": null, "sources": ["S116"] },
       "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No growing container size was found in the sources.", "sources": [] },
-      "daysToHarvest": null,
+      "daysToHarvest": { "min": 730, "max": 1460, "note": "Layers start bearing in 2–3 years (TNAU) or 3–4 years (KAU) after planting.", "sources": ["S163", "S50"] },
       "sowing": [
         { "region": "northIndia", "months": [2, 3, 8, 9], "source": "S96" },
         { "region": "tamilNadu", "months": [6, 7, 8, 9, 10, 11, 12], "source": "S51" },
@@ -1271,7 +1404,7 @@
       "lifecycle": "perennial",
       "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
       "container": { "status": "verified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": 30, "recommendedDepthCm": null, "plantsPerContainer": 1, "note": "A pot about 30 cm wide and deep; figs fruit better with their roots restricted. Never leave the pot standing in water.", "sources": ["S117"] },
-      "daysToHarvest": null,
+      "daysToHarvest": { "min": 1095, "max": 1460, "note": "Harvest from the fourth year after planting (TNAU).", "sources": ["S51"] },
       "sowing": [
         { "region": "northIndia", "months": [1, 2], "source": "S96" }
       ],
@@ -1281,6 +1414,7 @@
         { "text": "Fruits form on new growth: a light winter pruning encourages it.", "sources": ["S96"] },
         { "text": "Wear gloves when picking: the milky sap irritates skin.", "sources": ["S96"] }
       ],
+      "watering": { "mode": "keepMoist", "sources": ["S117"] },
       "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
       "dataStatus": "partial"
     },
@@ -1294,7 +1428,7 @@
       "lifecycle": "perennial",
       "sun": { "level": "full", "minHours": null, "sources": ["S118"] },
       "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "Suitable for containers; repot every 2–3 years. No size was given.", "sources": ["S40"] },
-      "daysToHarvest": null,
+      "daysToHarvest": { "min": 365, "max": 548, "note": "Starts bearing 1–1.5 years after planting cuttings; full yield from the third year (AAU).", "sources": ["S164"] },
       "sowing": [],
       "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S118"] },
       "careNotes": [
@@ -1303,6 +1437,7 @@
         { "text": "Shallow roots: keep the topsoil moist but well drained; too much water brings fungal disease.", "sources": ["S118"] },
         { "text": "Flowers open at night; hand pollination in the evening (7:30–8:30 pm) improves fruit set.", "sources": ["S120"] }
       ],
+      "watering": { "mode": "keepMoist", "sources": ["S118"] },
       "petSafety": { "status": "nonToxic", "note": "Pitaya (Hylocereus undatus) is listed as non-toxic to dogs and cats.", "sources": ["S39"] },
       "dataStatus": "partial"
     },
@@ -1320,7 +1455,10 @@
       "sowing": [
         { "region": "northIndia", "months": [7, 8, 9], "source": "S96" },
         { "region": "tamilNadu", "months": [6, 7, 8, 9], "source": "S51" },
-        { "region": "kerala", "months": [2, 3], "source": "S50" }
+        { "region": "kerala", "months": [2, 3], "source": "S50" },
+        { "region": "westernMaharashtra", "months": [2, 3, 6, 7, 9], "source": "S179" },
+        { "region": "goa", "months": [6], "source": "S181" },
+        { "region": "assam", "months": [4, 5, 6], "source": "S182" }
       ],
       "propagation": { "method": "seed", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S50"] },
       "careNotes": [
@@ -1328,6 +1466,7 @@
         { "text": "Very frost-sensitive: in North India cover young plants from November to February.", "sources": ["S96"] },
         { "text": "Some varieties have separate male and female plants, and only female or bisexual plants fruit.", "sources": ["S51"] }
       ],
+      "watering": { "mode": "keepMoist", "sources": ["S121"] },
       "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
       "dataStatus": "partial"
     },
@@ -1389,12 +1528,16 @@
       "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
       "container": { "status": "verified", "minVolumeL": 15.1, "recommendedVolumeL": 22.7, "minDepthCm": 20, "recommendedDepthCm": 30, "plantsPerContainer": 1, "note": "Medium class: 4–6 gallons (15–23 L), 8–12 in (20–30 cm) deep. RHS: compact varieties, one per 30 cm pot.", "sources": ["S2", "S126"] },
       "daysToHarvest": { "min": 90, "max": 100, "note": "Days to maturity from ICAR's terrace table.", "sources": ["S11"] },
+      "spacing": { "minCm": 22.9, "maxCm": 45, "note": "Raised beds: 9–12 in (22.9–30.5 cm) (NC State); RHS gives 30 cm for compact and up to 45 cm for larger varieties.", "sources": ["S170", "S126"] },
       "sowing": [
         { "region": "northIndia", "months": [9, 10], "source": "S48" },
         { "region": "southIndia", "months": [6, 7, 10, 11], "source": "S11" },
         { "region": "telangana", "months": [7, 8, 10, 11], "source": "S13" },
         { "region": "tamilNadu", "months": [8, 9, 10, 11], "source": "S51" },
-        { "region": "kerala", "months": [10, 11], "source": "S50" }
+        { "region": "kerala", "months": [10, 11], "source": "S50" },
+        { "region": "westernMaharashtra", "months": [9, 10], "source": "S179" },
+        { "region": "gujarat", "months": [9, 10, 11], "source": "S180" },
+        { "region": "assam", "months": [9, 10, 11], "source": "S182" }
       ],
       "propagation": { "method": "transplant", "nurseryDaysMin": 25, "nurseryDaysMax": 45, "sources": ["S51"] },
       "careNotes": [
@@ -1416,9 +1559,12 @@
       "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
       "container": { "status": "verified", "minVolumeL": 7.6, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": 1, "note": "At least 2 gallons (7.6 L), one plant per container. No depth was given.", "sources": ["S1"] },
       "daysToHarvest": { "min": 65, "max": 75, "note": "From transplanting (Punjab).", "sources": ["S48"] },
+      "spacing": { "minCm": 15.2, "maxCm": 45, "note": "Raised beds: 6–12 in (15.2–30.5 cm) (NC State); RHS gives 30–45 cm.", "sources": ["S170", "S127"] },
       "sowing": [
         { "region": "northIndia", "months": [8, 9], "source": "S48" },
-        { "region": "southIndia", "months": [8, 9], "source": "S11" }
+        { "region": "southIndia", "months": [8, 9], "source": "S11" },
+        { "region": "westernMaharashtra", "months": [9, 10], "source": "S179" },
+        { "region": "assam", "months": [7, 8, 9, 10, 11, 12], "source": "S182" }
       ],
       "propagation": { "method": "transplant", "nurseryDaysMin": 25, "nurseryDaysMax": 30, "sources": ["S11", "S48"] },
       "careNotes": [
@@ -1440,9 +1586,12 @@
       "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
       "container": { "status": "verified", "minVolumeL": null, "recommendedVolumeL": 113.6, "minDepthCm": 30, "recommendedDepthCm": 61, "plantsPerContainer": null, "note": "RHS: a pot or grow bag at least 30 cm wide and deep, one seed potato per 30 cm of width. NC State suggests about 30 gallons (114 L) and 2 ft deep for a full crop.", "sources": ["S128", "S40"] },
       "daysToHarvest": { "min": 70, "max": 120, "note": "From planting, depending on variety (Punjab).", "sources": ["S48"] },
+      "spacing": { "minCm": 25.4, "maxCm": 37.5, "note": "Raised beds: 10–12 in (25.4–30.5 cm) (NC State); RHS gives 30 cm for earlies and 37.5 cm for maincrops.", "sources": ["S170", "S128"] },
       "sowing": [
         { "region": "northIndia", "months": [1, 9, 10], "source": "S48" },
-        { "region": "tamilNadu", "months": [10, 11], "source": "S51" }
+        { "region": "tamilNadu", "months": [10, 11], "source": "S51" },
+        { "region": "westernMaharashtra", "months": [6, 7, 10, 11], "source": "S179" },
+        { "region": "assam", "months": [10, 11], "source": "S182" }
       ],
       "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S51"] },
       "careNotes": [
@@ -1464,10 +1613,15 @@
       "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
       "container": { "status": "verified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": 45, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "A container at least 45 cm wide and deep, sets 10–15 cm apart.", "sources": ["S129"] },
       "daysToHarvest": { "min": 120, "max": 145, "note": "From transplanting (Punjab rabi varieties).", "sources": ["S48"] },
+      "spacing": { "minCm": 5.1, "maxCm": 15, "note": "Raised beds: 2–4 in (5.1–10.2 cm) (NC State); RHS gives 10–15 cm for larger bulbs.", "sources": ["S170", "S129"] },
       "sowing": [
         { "region": "northIndia", "months": [10, 11], "source": "S48" },
         { "region": "southIndia", "months": [3, 4, 5, 6, 9, 10], "source": "S11" },
-        { "region": "kerala", "months": [9], "source": "S50" }
+        { "region": "kerala", "months": [9], "source": "S50" },
+        { "region": "westernMaharashtra", "months": [7, 8, 9, 10, 11, 12], "source": "S179" },
+        { "region": "gujarat", "months": [11, 12], "source": "S180" },
+        { "region": "goa", "months": [11], "source": "S181" },
+        { "region": "assam", "months": [9, 10], "source": "S182" }
       ],
       "propagation": { "method": "transplant", "nurseryDaysMin": 42, "nurseryDaysMax": 56, "sources": ["S48"] },
       "careNotes": [
@@ -1486,13 +1640,16 @@
       "category": "climber",
       "lifecycle": "annual",
       "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
-      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "Full-sized pumpkins don't suit containers. Only very compact bush varieties do: one per pot at least 45 cm wide, or per grow bag.", "sources": ["S130", "S52"] },
-      "daysToHarvest": null,
+      "container": { "status": "verified", "minWidthCm": 45, "plantsPerContainer": 1, "note": "One plant per grow bag, or one in a container at least 45 cm (18 in) wide. Choose compact varieties. Full-sized pumpkins don't suit containers. Only very compact bush varieties do: one per pot at least 45 cm wide, or per grow bag.", "sources": ["S130"] },
+      "daysToHarvest": { "min": 85, "max": 90, "note": "Well-matured fruits are harvested 85–90 days after sowing (TNAU).", "sources": ["S156"] },
+      "spacing": { "minCm": 61, "maxCm": 150, "note": "Raised beds: 24–36 in (61–91.4 cm) (NC State); RHS gives 90 cm for bush and 1.5 m for trailing varieties.", "sources": ["S170", "S130"] },
       "sowing": [
         { "region": "northIndia", "months": [2, 3], "source": "S48" },
         { "region": "southIndia", "months": [1, 6, 7, 12], "source": "S11" },
         { "region": "tamilNadu", "months": [1, 6, 7, 12], "source": "S51" },
-        { "region": "kerala", "months": [1, 2, 3, 9, 10, 11, 12], "source": "S50" }
+        { "region": "kerala", "months": [1, 2, 3, 9, 10, 11, 12], "source": "S50" },
+        { "region": "goa", "months": [6], "source": "S181" },
+        { "region": "assam", "months": [1, 2, 3, 4, 9, 10], "source": "S182" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S51"] },
       "careNotes": [
@@ -1514,9 +1671,12 @@
       "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
       "container": { "status": "proxy", "minVolumeL": 7.6, "recommendedVolumeL": 18.9, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "UF/IFAS gives 2–5 gallons (7.6–19 L) for luffas in general.", "sources": ["S131"] },
       "daysToHarvest": { "min": 70, "max": 80, "note": "From sowing (Punjab).", "sources": ["S48"] },
+      "spacing": { "minCm": 75, "maxCm": 91.4, "note": "Plants 75–90 cm apart (PAU); UF/IFAS spaces luffa 3 ft (91.4 cm) apart.", "sources": ["S48", "S131"] },
       "sowing": [
         { "region": "northIndia", "months": [2, 3, 5, 6, 7], "source": "S48" },
-        { "region": "kerala", "months": [2, 3, 5, 6], "source": "S50" }
+        { "region": "kerala", "months": [2, 3, 5, 6], "source": "S50" },
+        { "region": "gujarat", "months": [2, 3, 6, 7], "source": "S180" },
+        { "region": "assam", "months": [1, 2, 3, 4, 5], "source": "S182" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S48"] },
       "careNotes": [
@@ -1539,7 +1699,8 @@
       "daysToHarvest": { "min": 120, "max": 120, "note": "Annual moringa (PKM 1, PKM 2): harvest starts in the fourth month after transplanting.", "sources": ["S51"] },
       "sowing": [
         { "region": "tamilNadu", "months": [7, 8, 9, 10], "source": "S51" },
-        { "region": "kerala", "months": [5, 6], "source": "S50" }
+        { "region": "kerala", "months": [5, 6], "source": "S50" },
+        { "region": "goa", "months": [6], "source": "S181" }
       ],
       "propagation": { "method": "transplant", "nurseryDaysMin": 35, "nurseryDaysMax": 40, "sources": ["S51"] },
       "careNotes": [
@@ -1559,12 +1720,16 @@
       "category": "vegetable",
       "lifecycle": "annual",
       "sun": { "level": "full", "minHours": 6, "sources": ["S40"] },
-      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No depth was given. RHS: a container at least 30 cm wide, one plant per pot or grow bag.", "sources": ["S133"] },
+      "container": { "status": "verified", "minWidthCm": 30, "plantsPerContainer": 1, "note": "One plant in a pot at least 30 cm (1 ft) wide, or one per grow bag. No depth was given. RHS: a container at least 30 cm wide, one plant per pot or grow bag.", "sources": ["S133"] },
       "daysToHarvest": { "min": 110, "max": 120, "note": "From planting (Tamil Nadu).", "sources": ["S51"] },
+      "spacing": { "minCm": 30, "maxCm": 30, "note": "At least 30 cm (1 ft) apart, as the stems spread (RHS).", "sources": ["S133"] },
       "sowing": [
         { "region": "northIndia", "months": [4, 5, 6, 7], "source": "S48" },
         { "region": "tamilNadu", "months": [6, 7, 9], "source": "S51" },
-        { "region": "kerala", "months": [1, 2, 6, 7, 9, 10, 11], "source": "S50" }
+        { "region": "kerala", "months": [1, 2, 6, 7, 9, 10, 11], "source": "S50" },
+        { "region": "westernMaharashtra", "months": [1, 2, 6, 9], "source": "S179" },
+        { "region": "gujarat", "months": [10, 11], "source": "S180" },
+        { "region": "assam", "months": [5, 6, 9, 10, 11], "source": "S182" }
       ],
       "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S51"] },
       "careNotes": [
@@ -1572,6 +1737,7 @@
         { "text": "Containers dry out fast: check the compost often (daily in hot weather); tubers won't swell if the plant goes short of water.", "sources": ["S133"] },
         { "text": "Use pest-free planting material and clear old plant debris against sweet potato weevil.", "sources": ["S51"] }
       ],
+      "watering": { "mode": "keepMoist", "sources": ["S133"] },
       "petSafety": { "status": "nonToxic", "note": "Sweet potato vine (Ipomoea batatas) is listed as non-toxic to dogs, cats and horses.", "sources": ["S39"] },
       "dataStatus": "partial"
     },
@@ -1584,12 +1750,16 @@
       "category": "herb",
       "lifecycle": "perennial",
       "sun": { "level": "partial", "minHours": null, "sources": ["S40", "S50"] },
-      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "No size was given. The rhizomes can grow thick enough to split a pot, so use a wide, sturdy one; it needs plenty of water.", "sources": ["S40"] },
+      "container": { "status": "proxy", "minDepthCm": 30.5, "minWidthCm": 30.5, "note": "Ginger grow-bag figure (at least 12 in, 30.5 cm, deep and wide) used for turmeric, another rhizome crop. No size was given. The rhizomes can grow thick enough to split a pot, so use a wide, sturdy one; it needs plenty of water.", "sources": ["S93"] },
       "daysToHarvest": { "min": 210, "max": 270, "note": "Early varieties 7–8 months, long-duration ones about 9 months (Kerala). Punjab varieties mature in 215–240 days.", "sources": ["S50", "S48", "S134"] },
+      "spacing": { "minCm": 15, "maxCm": 15, "rowCm": 45, "note": "15 cm between plants and 45 cm between rows (TNAU, PAU).", "sources": ["S134", "S48"] },
       "sowing": [
         { "region": "northIndia", "months": [4], "source": "S48" },
         { "region": "tamilNadu", "months": [5, 6], "source": "S134" },
-        { "region": "kerala", "months": [4], "source": "S50" }
+        { "region": "kerala", "months": [4], "source": "S50" },
+        { "region": "gujarat", "months": [5, 6], "source": "S180" },
+        { "region": "goa", "months": [5, 6], "source": "S181" },
+        { "region": "assam", "months": [4], "source": "S182" }
       ],
       "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S134"] },
       "careNotes": [
@@ -1599,6 +1769,7 @@
         { "text": "Tolerates low to medium shade, so it suits a partly shaded corner.", "sources": ["S50"] },
         { "text": "Cut rhizomes stain hands and clothes yellow, and the dye can cause an allergic skin reaction in some people.", "sources": ["S40"] }
       ],
+      "watering": { "mode": "keepMoist", "sources": ["S40"] },
       "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
       "skinUse": {
         "evidence": [
@@ -1655,7 +1826,7 @@
       "category": "flower",
       "lifecycle": "annual",
       "sun": { "level": "full", "minHours": null, "sources": ["S143"] },
-      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "A good choice for containers; no size was given.", "sources": ["S143"] },
+      "container": { "status": "proxy", "minVolumeL": 3.8, "minDepthCm": 10.2, "note": "Small flowering annuals: at least 1–3 US gal (3.8–11.4 L) of mix, 4–6 in (10.2–15.2 cm) deep. A good choice for containers; no size was given.", "sources": ["S2"] },
       "daysToHarvest": null,
       "sowing": [
         { "region": "northIndia", "months": [10, 11], "source": "S135" }
@@ -1689,8 +1860,8 @@
       "category": "herb",
       "lifecycle": "perennial",
       "sun": { "level": "partial", "minHours": null, "sources": ["S146", "S40"] },
-      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "Suits a container; no size was given.", "sources": ["S40"] },
-      "daysToHarvest": null,
+      "container": { "status": "proxy", "minVolumeL": 3.8, "minDepthCm": 10.2, "note": "Small herbs: at least 1–3 US gal (3.8–11.4 L) of mix, 4–6 in (10.2–15.2 cm) deep. Suits a container; no size was given.", "sources": ["S2"] },
+      "daysToHarvest": { "min": 150, "max": 200, "note": "First harvest 150–200 days after planting; ICAR-DMAPR trials took the first cut at 5 months.", "sources": ["S157", "S158"] },
       "sowing": [
         { "region": "tamilNadu", "months": [10], "source": "S146" }
       ],
@@ -1702,6 +1873,7 @@
         { "text": "From October planting, pick the outer leaves every two weeks from January.", "sources": ["S146"] },
         { "text": "Sometimes also called brahmi, a name more often used for a different plant, Bacopa monnieri.", "sources": ["S137", "S147"] }
       ],
+      "watering": { "mode": "keepMoist", "sources": ["S40"] },
       "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
       "skinUse": {
         "evidence": [
@@ -1724,7 +1896,7 @@
       "category": "herb",
       "lifecycle": "perennial",
       "sun": { "level": "full", "minHours": null, "sources": ["S149"] },
-      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "A large container 30–40 cm across, with large drainage holes.", "sources": ["S149"] },
+      "container": { "status": "verified", "minVolumeL": 15.1, "minDepthCm": 20.3, "minWidthCm": 30, "note": "Large containers 30–40 cm across (RHS); at least 4–6 US gal (15.1–22.7 L) of mix, 8–12 in (20.3–30.5 cm) deep (UMD). A large container 30–40 cm across, with large drainage holes.", "sources": ["S149", "S2"] },
       "daysToHarvest": null,
       "sowing": [],
       "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S149"] },
@@ -1734,6 +1906,7 @@
         { "text": "Trim every year just after flowering to keep it compact; don't cut into old, bare wood.", "sources": ["S149"] },
         { "text": "Seed from named varieties won't come true; take cuttings instead.", "sources": ["S149"] }
       ],
+      "watering": { "mode": "dryBetween", "sources": ["S149"] },
       "petSafety": { "status": "toxic", "note": "Toxic to dogs, cats and horses (linalool, linalyl acetate). Signs include nausea and vomiting.", "sources": ["S39"] },
       "skinUse": {
         "evidence": [
@@ -1757,7 +1930,7 @@
       "lifecycle": "perennial",
       "sun": { "level": "partial", "minHours": null, "sources": ["S40"] },
       "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "Suitable for containers; no size was given.", "sources": ["S40"] },
-      "daysToHarvest": null,
+      "daysToHarvest": { "min": 540, "max": 540, "note": "Roots harvested 18 months after planting for the most oil (TNAU, KAU).", "sources": ["S151", "S50"] },
       "sowing": [
         { "region": "southIndia", "months": [6, 7], "source": "S151" },
         { "region": "kerala", "months": [6, 7], "source": "S50" }

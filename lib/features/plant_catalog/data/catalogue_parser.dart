@@ -70,12 +70,28 @@ abstract final class CatalogueParser {
       daysToHarvest: _optionalObject(r, 'daysToHarvest', id, (o) {
         final min = _int(o, 'min', id);
         final max = _int(o, 'max', id);
-        if (min <= 0 || max < min || max > 400) {
+        // Up to about four years, for fruit trees grown from grafts.
+        if (min <= 0 || max < min || max > 1500) {
           throw FormatException('$id: daysToHarvest range', '$min–$max');
         }
         return HarvestWindow(
           minDays: min,
           maxDays: max,
+          note: _optionalString(o, 'note', id),
+          sources: _sources(o, id, required: true),
+        );
+      }),
+      spacing: _optionalObject(r, 'spacing', id, (o) {
+        final min = _optionalDouble(o, 'minCm', id) ?? 0;
+        final max = _optionalDouble(o, 'maxCm', id) ?? 0;
+        final row = _optionalDouble(o, 'rowCm', id);
+        if (min <= 0 || max < min || max > 1000 || (row != null && row <= 0)) {
+          throw FormatException('$id: spacing range', '$min–$max');
+        }
+        return Spacing(
+          minCm: min,
+          maxCm: max,
+          rowCm: row,
           note: _optionalString(o, 'note', id),
           sources: _sources(o, id, required: true),
         );
@@ -146,6 +162,7 @@ abstract final class CatalogueParser {
       recommendedVolumeL: _optionalDouble(o, 'recommendedVolumeL', id),
       minDepthCm: _optionalDouble(o, 'minDepthCm', id),
       recommendedDepthCm: _optionalDouble(o, 'recommendedDepthCm', id),
+      minWidthCm: _optionalDouble(o, 'minWidthCm', id),
       plantsPerContainer: _optionalInt(o, 'plantsPerContainer', id),
       note: _optionalString(o, 'note', id),
       sources: _sources(o, id, required: false),
@@ -167,6 +184,7 @@ abstract final class CatalogueParser {
 
     range(need.minVolumeL, need.recommendedVolumeL, 'volume');
     range(need.minDepthCm, need.recommendedDepthCm, 'depth');
+    range(need.minWidthCm, null, 'width');
     return need;
   }
 

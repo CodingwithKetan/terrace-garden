@@ -47,7 +47,15 @@ extension PlantingIssueText on PlantingIssue {
           format.length(Length.cm(actual!)),
           format.length(Length.cm(required!)),
         ),
+        PlantingIssueKind.narrow => l10n.plantingIssueNarrow(
+          format.length(Length.cm(actual!)),
+          format.length(Length.cm(required!)),
+        ),
         PlantingIssueKind.crowded => l10n.plantingIssueCrowded(capacity!),
+        PlantingIssueKind.tightSpacing => l10n.issueTightSpacing(
+          capacity!,
+          format.length(Length.cm(required!)),
+        ),
         PlantingIssueKind.shared => l10n.plantingIssueShared(capacity!),
         PlantingIssueKind.noDepth => l10n.plantingIssueNoDepth,
       };

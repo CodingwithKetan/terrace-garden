@@ -90,6 +90,7 @@ final class ContainerNeed {
     this.recommendedVolumeL,
     this.minDepthCm,
     this.recommendedDepthCm,
+    this.minWidthCm,
     this.plantsPerContainer,
     this.note,
   });
@@ -100,12 +101,16 @@ final class ContainerNeed {
   final double? minDepthCm;
   final double? recommendedDepthCm;
 
+  /// Smallest width (diameter, for a round pot) a source states, cm.
+  final double? minWidthCm;
+
   /// Plants per container of [minVolumeL] when a source states it.
   final int? plantsPerContainer;
   final String? note;
   final List<String> sources;
 
-  bool get hasSize => minVolumeL != null || minDepthCm != null;
+  bool get hasSize =>
+      minVolumeL != null || minDepthCm != null || minWidthCm != null;
 }
 
 @immutable
@@ -124,6 +129,26 @@ final class HarvestWindow {
 }
 
 /// Months (1–12) in which a source recommends sowing or planting in a region.
+/// Distance between plants, as a source states it (cm). [minCm]–[maxCm] is
+/// the spacing within a row or block; [rowCm] the distance between rows,
+/// when given.
+@immutable
+final class Spacing {
+  const Spacing({
+    required this.minCm,
+    required this.maxCm,
+    required this.sources,
+    this.rowCm,
+    this.note,
+  });
+
+  final double minCm;
+  final double maxCm;
+  final double? rowCm;
+  final String? note;
+  final List<String> sources;
+}
+
 @immutable
 final class SowingWindow {
   const SowingWindow({
@@ -237,6 +262,7 @@ final class PlantSpecies {
     this.names = const {},
     this.sun,
     this.daysToHarvest,
+    this.spacing,
     this.sowing = const [],
     this.propagation,
     this.careNotes = const [],
@@ -260,6 +286,9 @@ final class PlantSpecies {
   final SunNeed? sun;
   final ContainerNeed container;
   final HarvestWindow? daysToHarvest;
+
+  /// Null when no source states a spacing.
+  final Spacing? spacing;
   final List<SowingWindow> sowing;
   final Propagation? propagation;
   final List<CareNote> careNotes;
@@ -296,6 +325,7 @@ final class PlantSpecies {
     ...?sun?.sources,
     ...container.sources,
     ...?daysToHarvest?.sources,
+    ...?spacing?.sources,
     for (final w in sowing) w.source,
     ...?propagation?.sources,
     for (final n in careNotes) ...n.sources,

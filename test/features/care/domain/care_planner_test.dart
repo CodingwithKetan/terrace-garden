@@ -85,7 +85,7 @@ void main() {
   });
 
   test('species without documented harvest days get no harvest task', () {
-    expect(plan('mint').keys, isNot(contains(CareTaskType.harvest)));
+    expect(plan('mulberry').keys, isNot(contains(CareTaskType.harvest)));
   });
 
   test('jasmine pruning only in Tamil Nadu (S18)', () {
@@ -263,6 +263,7 @@ void main() {
       catalogue.byId('lemongrass')!.watering!.mode,
       WateringMode.keepMoist,
     );
-    expect(catalogue.byId('tomato')!.watering, isNull);
+    expect(catalogue.byId('tomato')!.watering!.mode, WateringMode.keepMoist);
+    expect(catalogue.byId('curryLeaf')!.watering, isNull);
   });
 }
