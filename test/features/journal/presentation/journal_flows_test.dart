@@ -59,6 +59,8 @@ void main() {
     await app.pump(tester);
     await openJournal(tester);
     expect(find.text('Watch your garden grow'), findsOneWidget);
+    // With plants growing, the empty state suggests a first photo.
+    expect(find.textContaining('Take a photo of your plants'), findsOneWidget);
 
     await tester.tap(find.text('New entry'));
     await tester.pumpAndSettle();

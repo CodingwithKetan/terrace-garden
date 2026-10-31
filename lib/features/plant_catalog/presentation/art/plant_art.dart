@@ -3,8 +3,11 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:terrace_garden/features/plant_catalog/domain/plant_species.dart';
 
+part 'plant_traits.dart';
+
 /// Botanical illustrations drawn in code (Living Terrace). Every species
-/// maps to a growth form plus colours, so all catalogue plants get a
+/// maps to a growth form, a trait (its fruit, head, flower or leaf shape)
+/// and colours, so all catalogue plants get a distinct
 /// drawing — from above for the terrace plan, from the side for cards and
 /// plant pages — without bundling image files (KI-016 stays open for photos).
 enum PlantForm {
@@ -45,6 +48,7 @@ final class PlantArtSpec {
     this.leafMid = const Color(0xFF4E8E3E),
     this.leafLight = const Color(0xFF7DB35A),
     this.rootColor,
+    this.trait = ArtTrait.none,
   });
 
   /// The drawing for a species; falls back on its category.
@@ -78,6 +82,24 @@ final class PlantArtSpec {
   final Color leafLight;
   final Color? rootColor;
 
+  /// What sets the species apart within its form.
+  final ArtTrait trait;
+
+  /// Whether [speciesId] has its own drawing (not its category's).
+  static bool hasOwnDrawing(String speciesId) =>
+      _bySpecies.containsKey(speciesId);
+
+  /// Everything that changes how the drawing looks.
+  Object get look => (
+    form,
+    trait,
+    accent,
+    leafDark,
+    leafMid,
+    leafLight,
+    rootColor,
+  );
+
   static const _red = Color(0xFFD9452B);
   static const _purple = Color(0xFF5B2A6E);
 
@@ -86,117 +108,206 @@ final class PlantArtSpec {
     'bougainvillea': PlantArtSpec(
       PlantForm.flowering,
       accent: Color(0xFFC2185B),
+      trait: ArtTrait.bracts,
     ),
-    'adenium': PlantArtSpec(PlantForm.flowering, accent: Color(0xFFE94E77)),
+    'adenium': PlantArtSpec(
+      PlantForm.flowering,
+      accent: Color(0xFFE94E77),
+      trait: ArtTrait.trumpet,
+    ),
     'jadePlant': PlantArtSpec(
       PlantForm.succulent,
       leafDark: Color(0xFF2E6B3A),
       leafMid: Color(0xFF4F8F4A),
       leafLight: Color(0xFF8CC07A),
+      trait: ArtTrait.coins,
     ),
-    'peaceLily': PlantArtSpec(PlantForm.flowering, accent: Color(0xFFF7F7F2)),
+    'peaceLily': PlantArtSpec(
+      PlantForm.flowering,
+      accent: Color(0xFFF7F7F2),
+      trait: ArtTrait.spathe,
+    ),
     'rubberPlant': PlantArtSpec(
       PlantForm.palmate,
       leafDark: Color(0xFF1F3B2A),
       leafMid: Color(0xFF2F5A3C),
       leafLight: Color(0xFF5E7F52),
+      trait: ArtTrait.bigLeaf,
     ),
     'zzPlant': PlantArtSpec(
       PlantForm.cluster,
       leafDark: Color(0xFF1F4D2B),
       leafMid: Color(0xFF2E6B3A),
       leafLight: Color(0xFF4F8F4A),
+      trait: ArtTrait.glossyPinnate,
     ),
     'syngonium': PlantArtSpec(
       PlantForm.trailing,
       leafDark: Color(0xFF4F8A4A),
       leafMid: Color(0xFF8DBF7A),
       leafLight: Color(0xFFDDEFD0),
+      trait: ArtTrait.arrowhead,
     ),
     'chrysanthemum': PlantArtSpec(
       PlantForm.flowering,
       accent: Color(0xFFF2C230),
+      trait: ArtTrait.rays,
     ),
-    'capsicum': PlantArtSpec(PlantForm.fruiting, accent: Color(0xFF3E9B3A)),
-    'cucumber': PlantArtSpec(PlantForm.palmate, accent: Color(0xFFF2D24B)),
-    'ridgeGourd': PlantArtSpec(PlantForm.palmate, accent: Color(0xFFF5D547)),
+    'capsicum': PlantArtSpec(
+      PlantForm.fruiting,
+      accent: Color(0xFF3E9B3A),
+      trait: ArtTrait.fruitBell,
+    ),
+    'cucumber': PlantArtSpec(
+      PlantForm.palmate,
+      accent: Color(0xFFF2D24B),
+      trait: ArtTrait.gourdCucumber,
+    ),
+    'ridgeGourd': PlantArtSpec(
+      PlantForm.palmate,
+      accent: Color(0xFFF5D547),
+      trait: ArtTrait.gourdRidged,
+    ),
     'clusterBean': PlantArtSpec(
       PlantForm.fruiting,
       accent: Color(0xFF7DB34A),
+      trait: ArtTrait.fruitPodCluster,
     ),
-    'cowpea': PlantArtSpec(PlantForm.trailing, accent: Color(0xFFB98ACB)),
-    'peas': PlantArtSpec(PlantForm.trailing, accent: Color(0xFFF4F1F6)),
+    'cowpea': PlantArtSpec(
+      PlantForm.trailing,
+      accent: Color(0xFFB98ACB),
+      trait: ArtTrait.longPods,
+    ),
+    'peas': PlantArtSpec(
+      PlantForm.trailing,
+      accent: Color(0xFFF4F1F6),
+      trait: ArtTrait.tendril,
+    ),
     'cauliflower': PlantArtSpec(
       PlantForm.rosette,
       leafDark: Color(0xFF3F6E52),
       leafMid: Color(0xFF5C8C6A),
       leafLight: Color(0xFFF1EAD2),
+      trait: ArtTrait.curd,
     ),
-    'beetroot': PlantArtSpec(PlantForm.root, rootColor: Color(0xFF8E1F45)),
+    'beetroot': PlantArtSpec(
+      PlantForm.root,
+      rootColor: Color(0xFF8E1F45),
+      trait: ArtTrait.redStems,
+    ),
     'springOnion': PlantArtSpec(
       PlantForm.grass,
       leafDark: Color(0xFF3F7D3A),
       leafMid: Color(0xFF5E9E48),
       leafLight: Color(0xFF8DC26A),
+      trait: ArtTrait.tubular,
     ),
     'garlic': PlantArtSpec(
       PlantForm.grass,
       leafDark: Color(0xFF557A4A),
       leafMid: Color(0xFF759A62),
       leafLight: Color(0xFFA2BF84),
+      trait: ArtTrait.flatBlade,
     ),
     'ginger': PlantArtSpec(
       PlantForm.grass,
       leafDark: Color(0xFF2E6B3A),
       leafMid: Color(0xFF4C8A4A),
       leafLight: Color(0xFF7DB065),
+      trait: ArtTrait.broadBlade,
     ),
-    'acidLime': PlantArtSpec(PlantForm.fruiting, accent: Color(0xFF9CC63B)),
+    'acidLime': PlantArtSpec(
+      PlantForm.fruiting,
+      accent: Color(0xFF9CC63B),
+      trait: ArtTrait.fruitCitrus,
+    ),
     'basil': PlantArtSpec(
       PlantForm.cluster,
       leafDark: Color(0xFF3E8E3E),
       leafMid: Color(0xFF5DAA4E),
       leafLight: Color(0xFF8FD06B),
+      trait: ArtTrait.spike,
     ),
     'spiderPlant': PlantArtSpec(
       PlantForm.grass,
       leafDark: Color(0xFF4F8A4A),
       leafMid: Color(0xFF7CB36A),
       leafLight: Color(0xFFE9F2D8),
+      trait: ArtTrait.striped,
     ),
     'arecaPalm': PlantArtSpec(
       PlantForm.grass,
       leafDark: Color(0xFF6E9A3E),
       leafMid: Color(0xFF94BC52),
       leafLight: Color(0xFFC4DC7C),
+      trait: ArtTrait.frond,
     ),
-    'aparajita': PlantArtSpec(PlantForm.trailing, accent: Color(0xFF2F4FB5)),
-    'portulaca': PlantArtSpec(PlantForm.flowering, accent: Color(0xFFE6408C)),
-    'periwinkle': PlantArtSpec(PlantForm.flowering, accent: Color(0xFFE77FB0)),
-    'chilli': PlantArtSpec(PlantForm.fruiting, accent: Color(0xFFC8311E)),
-    'brinjal': PlantArtSpec(PlantForm.fruiting, accent: _purple),
+    'aparajita': PlantArtSpec(
+      PlantForm.trailing,
+      accent: Color(0xFF2F4FB5),
+      trait: ArtTrait.vineFlowers,
+    ),
+    'portulaca': PlantArtSpec(
+      PlantForm.flowering,
+      accent: Color(0xFFE6408C),
+      trait: ArtTrait.cup,
+    ),
+    'periwinkle': PlantArtSpec(
+      PlantForm.flowering,
+      accent: Color(0xFFE77FB0),
+      trait: ArtTrait.pinwheel,
+    ),
+    'chilli': PlantArtSpec(
+      PlantForm.fruiting,
+      accent: Color(0xFFC8311E),
+      trait: ArtTrait.fruitLong,
+    ),
+    'brinjal': PlantArtSpec(
+      PlantForm.fruiting,
+      accent: _purple,
+      trait: ArtTrait.fruitOblong,
+    ),
     'frenchBean': PlantArtSpec(
       PlantForm.fruiting,
       accent: Color(0xFF8CBF4E),
+      trait: ArtTrait.fruitPod,
     ),
-    'okra': PlantArtSpec(PlantForm.palmate, accent: Color(0xFFE9D46B)),
-    'bitterGourd': PlantArtSpec(PlantForm.palmate, accent: Color(0xFFF2C94C)),
-    'bottleGourd': PlantArtSpec(PlantForm.palmate, accent: Color(0xFFF7F3E8)),
+    'okra': PlantArtSpec(
+      PlantForm.palmate,
+      accent: Color(0xFFE9D46B),
+      trait: ArtTrait.uprightPod,
+    ),
+    'bitterGourd': PlantArtSpec(
+      PlantForm.palmate,
+      accent: Color(0xFFF2C94C),
+      trait: ArtTrait.gourdWarty,
+    ),
+    'bottleGourd': PlantArtSpec(
+      PlantForm.palmate,
+      accent: Color(0xFFF7F3E8),
+      trait: ArtTrait.gourdBottle,
+    ),
     'palak': PlantArtSpec(PlantForm.rosette),
     'lettuce': PlantArtSpec(
       PlantForm.rosette,
       leafDark: Color(0xFF6AA84F),
       leafMid: Color(0xFF8FC566),
       leafLight: Color(0xFFC8E68E),
+      trait: ArtTrait.ruffled,
     ),
     'amaranth': PlantArtSpec(
       PlantForm.rosette,
       leafDark: Color(0xFF7A2E4A),
       leafMid: Color(0xFF9E3D5C),
       leafLight: Color(0xFF6E9E50),
+      trait: ArtTrait.plume,
     ),
     'radish': PlantArtSpec(PlantForm.root, rootColor: Color(0xFFF3EEE6)),
-    'carrot': PlantArtSpec(PlantForm.root, rootColor: Color(0xFFE67E22)),
+    'carrot': PlantArtSpec(
+      PlantForm.root,
+      rootColor: Color(0xFFE67E22),
+      trait: ArtTrait.feathery,
+    ),
     'mint': PlantArtSpec(
       PlantForm.cluster,
       leafDark: Color(0xFF3F8A42),
@@ -208,19 +319,22 @@ final class PlantArtSpec {
       leafDark: Color(0xFF3B6B3A),
       leafMid: Color(0xFF6B4A6E),
       leafLight: Color(0xFF7FAE5E),
+      trait: ArtTrait.spike,
     ),
-    'curryLeaf': PlantArtSpec(PlantForm.cluster),
+    'curryLeaf': PlantArtSpec(PlantForm.cluster, trait: ArtTrait.pinnate),
     'coriander': PlantArtSpec(
       PlantForm.cluster,
       leafDark: Color(0xFF4F9A45),
       leafMid: Color(0xFF6DB257),
       leafLight: Color(0xFF9ACF7C),
+      trait: ArtTrait.lacy,
     ),
     'methi': PlantArtSpec(
       PlantForm.cluster,
       leafDark: Color(0xFF4A8F3E),
       leafMid: Color(0xFF68AA52),
       leafLight: Color(0xFF94C978),
+      trait: ArtTrait.trifoliate,
     ),
     'lemongrass': PlantArtSpec(
       PlantForm.grass,
@@ -228,60 +342,118 @@ final class PlantArtSpec {
       leafMid: Color(0xFF86B356),
       leafLight: Color(0xFFB6D57E),
     ),
-    'marigold': PlantArtSpec(PlantForm.flowering, accent: Color(0xFFF08C1A)),
-    'hibiscus': PlantArtSpec(PlantForm.flowering, accent: Color(0xFFD7263D)),
-    'jasmine': PlantArtSpec(PlantForm.flowering, accent: Color(0xFFFFFFFF)),
-    'rose': PlantArtSpec(PlantForm.flowering, accent: Color(0xFFD8456B)),
+    'marigold': PlantArtSpec(
+      PlantForm.flowering,
+      accent: Color(0xFFF08C1A),
+      trait: ArtTrait.pompom,
+    ),
+    'hibiscus': PlantArtSpec(
+      PlantForm.flowering,
+      accent: Color(0xFFD7263D),
+      trait: ArtTrait.bigPetals,
+    ),
+    'jasmine': PlantArtSpec(
+      PlantForm.flowering,
+      accent: Color(0xFFFFFFFF),
+      trait: ArtTrait.star,
+    ),
+    'rose': PlantArtSpec(
+      PlantForm.flowering,
+      accent: Color(0xFFD8456B),
+      trait: ArtTrait.spiral,
+    ),
     'aloeVera': PlantArtSpec(
       PlantForm.succulent,
       leafDark: Color(0xFF5E8C6A),
       leafMid: Color(0xFF7FAA86),
       leafLight: Color(0xFFA9CBAE),
     ),
-    'strawberry': PlantArtSpec(PlantForm.fruiting, accent: Color(0xFFD7263D)),
-    'pomegranate': PlantArtSpec(PlantForm.fruiting, accent: Color(0xFFB3202E)),
-    'guava': PlantArtSpec(PlantForm.fruiting, accent: Color(0xFFA8C94A)),
-    'fig': PlantArtSpec(PlantForm.palmate, accent: Color(0xFF6B3E5E)),
+    'strawberry': PlantArtSpec(
+      PlantForm.fruiting,
+      accent: Color(0xFFD7263D),
+      trait: ArtTrait.fruitBerry,
+    ),
+    'pomegranate': PlantArtSpec(
+      PlantForm.fruiting,
+      accent: Color(0xFFB3202E),
+      trait: ArtTrait.fruitCrowned,
+    ),
+    'guava': PlantArtSpec(
+      PlantForm.fruiting,
+      accent: Color(0xFFA8C94A),
+      trait: ArtTrait.fruitPear,
+    ),
+    'fig': PlantArtSpec(
+      PlantForm.palmate,
+      accent: Color(0xFF6B3E5E),
+      trait: ArtTrait.figFruit,
+    ),
     'dragonFruit': PlantArtSpec(
       PlantForm.succulent,
       leafDark: Color(0xFF3E7D4A),
       leafMid: Color(0xFF5E9E5A),
       leafLight: Color(0xFFE0457B),
+      trait: ArtTrait.cactus,
     ),
-    'papaya': PlantArtSpec(PlantForm.palmate, accent: Color(0xFFF2A33A)),
-    'mulberry': PlantArtSpec(PlantForm.fruiting, accent: Color(0xFF4A1E3A)),
+    'papaya': PlantArtSpec(
+      PlantForm.palmate,
+      accent: Color(0xFFF2A33A),
+      trait: ArtTrait.tree,
+    ),
+    'mulberry': PlantArtSpec(
+      PlantForm.fruiting,
+      accent: Color(0xFF4A1E3A),
+      trait: ArtTrait.fruitBerryCluster,
+    ),
     'banana': PlantArtSpec(
       PlantForm.grass,
       leafDark: Color(0xFF5C9A3E),
       leafMid: Color(0xFF7DB84E),
       leafLight: Color(0xFFB5D77A),
+      trait: ArtTrait.paddle,
     ),
     'cabbage': PlantArtSpec(
       PlantForm.rosette,
       leafDark: Color(0xFF4F7F6A),
       leafMid: Color(0xFF7FA88E),
       leafLight: Color(0xFFBFD8B8),
+      trait: ArtTrait.head,
     ),
     'broccoli': PlantArtSpec(
       PlantForm.rosette,
       leafDark: Color(0xFF2F5E45),
       leafMid: Color(0xFF467A55),
       leafLight: Color(0xFF5E8F4A),
+      trait: ArtTrait.florets,
     ),
-    'potato': PlantArtSpec(PlantForm.root, rootColor: Color(0xFFC9A26B)),
+    'potato': PlantArtSpec(
+      PlantForm.root,
+      rootColor: Color(0xFFC9A26B),
+      trait: ArtTrait.tubers,
+    ),
     'onion': PlantArtSpec(
       PlantForm.grass,
       leafDark: Color(0xFF3A6E46),
       leafMid: Color(0xFF5A8E5E),
       leafLight: Color(0xFF8DB98A),
+      trait: ArtTrait.bulb,
     ),
-    'pumpkin': PlantArtSpec(PlantForm.palmate, accent: Color(0xFFE67E22)),
-    'spongeGourd': PlantArtSpec(PlantForm.palmate, accent: Color(0xFFF7DC5C)),
+    'pumpkin': PlantArtSpec(
+      PlantForm.palmate,
+      accent: Color(0xFFE67E22),
+      trait: ArtTrait.gourdRound,
+    ),
+    'spongeGourd': PlantArtSpec(
+      PlantForm.palmate,
+      accent: Color(0xFFF7DC5C),
+      trait: ArtTrait.gourdLong,
+    ),
     'drumstick': PlantArtSpec(
       PlantForm.cluster,
       leafDark: Color(0xFF4F8A3E),
       leafMid: Color(0xFF76AE5A),
       leafLight: Color(0xFFA7D17E),
+      trait: ArtTrait.bipinnate,
     ),
     'sweetPotato': PlantArtSpec(
       PlantForm.trailing,
@@ -293,19 +465,26 @@ final class PlantArtSpec {
       leafDark: Color(0xFF3E7A3A),
       leafMid: Color(0xFF5E9A4A),
       leafLight: Color(0xFF9CC870),
+      trait: ArtTrait.wideBlade,
     ),
     'neem': PlantArtSpec(
       PlantForm.cluster,
       leafDark: Color(0xFF2F6B32),
       leafMid: Color(0xFF4A8A3A),
       leafLight: Color(0xFF8FC060),
+      trait: ArtTrait.pinnateNarrow,
     ),
-    'calendula': PlantArtSpec(PlantForm.flowering, accent: Color(0xFFF7A21B)),
+    'calendula': PlantArtSpec(
+      PlantForm.flowering,
+      accent: Color(0xFFF7A21B),
+      trait: ArtTrait.daisy,
+    ),
     'gotuKola': PlantArtSpec(
       PlantForm.rosette,
       leafDark: Color(0xFF4F8F3E),
       leafMid: Color(0xFF6FAE55),
       leafLight: Color(0xFFA2D27E),
+      trait: ArtTrait.roundLeaves,
     ),
     'lavender': PlantArtSpec(
       PlantForm.flowering,
@@ -313,6 +492,7 @@ final class PlantArtSpec {
       leafDark: Color(0xFF5E7A62),
       leafMid: Color(0xFF7E9A80),
       leafLight: Color(0xFFB4C7B0),
+      trait: ArtTrait.flowerSpike,
     ),
     'vetiver': PlantArtSpec(
       PlantForm.grass,
@@ -325,6 +505,7 @@ final class PlantArtSpec {
       leafDark: Color(0xFF2F5B3A),
       leafMid: Color(0xFF4F7F4E),
       leafLight: Color(0xFFC9C46A),
+      trait: ArtTrait.swords,
     ),
     'moneyPlant': PlantArtSpec(
       PlantForm.trailing,
@@ -400,25 +581,18 @@ class PlantTopPainter extends CustomPainter {
       ..save()
       ..translate(size.width / 2, size.height / 2);
     final s = spec;
+    if (!s.trait.replacesForm) _paintForm(canvas, r, s);
+    _topTrait(canvas, r, s);
+    canvas.restore();
+  }
+
+  void _paintForm(Canvas canvas, double r, PlantArtSpec s) {
     switch (s.form) {
       case PlantForm.fruiting:
+        // The fruit itself is the trait's (see _topTrait).
         _radial(canvas, 7, r * .95, r * .34, s.leafDark, 0);
         _radial(canvas, 7, r * .72, r * .27, s.leafMid, 26);
         _radial(canvas, 3, r * .38, r * .16, s.leafLight, 60);
-        final fruit = Paint()..color = s.accent ?? s.leafLight;
-        for (final (dx, dy, fr) in const [
-          (.32, -.18, .14),
-          (.45, .05, .12),
-          (-.28, .36, .13),
-        ]) {
-          canvas
-            ..drawCircle(Offset(dx * r, dy * r), fr * r, fruit)
-            ..drawCircle(
-              Offset((dx - .03) * r, (dy - .04) * r),
-              fr * r * .3,
-              Paint()..color = Colors.white.withValues(alpha: .35),
-            );
-        }
       case PlantForm.palmate:
         for (var i = 0; i < 5; i++) {
           _lobed(canvas, _rad(i * 72.0 - 90), r * .95, s.leafMid);
@@ -477,7 +651,7 @@ class PlantTopPainter extends CustomPainter {
         _radial(canvas, 8, r * .9, r * .3, s.leafDark, 0);
         _radial(canvas, 6, r * .6, r * .24, s.leafMid, 30);
         for (final (dx, dy) in const [(.3, -.3), (-.35, -.1), (.1, .38)]) {
-          _flower(canvas, Offset(dx * r, dy * r), r * .2, s.accent!);
+          _bloom(canvas, Offset(dx * r, dy * r), r * .2, s);
         }
       case PlantForm.succulent:
         for (var i = 0; i < 9; i++) {
@@ -499,7 +673,6 @@ class PlantTopPainter extends CustomPainter {
         }
         _heart(canvas, Offset.zero, r * .42, s.leafLight);
     }
-    canvas.restore();
   }
 
   void _radial(
@@ -656,6 +829,13 @@ class PlantSidePainter extends CustomPainter {
     );
 
     // Plant behind the pot rim.
+    if (!s.trait.replacesForm) _paintForm(canvas, s);
+    _sideTrait(canvas, s);
+    _paintPot(canvas);
+    canvas.restore();
+  }
+
+  void _paintForm(Canvas canvas, PlantArtSpec s) {
     const soil = Offset(60, 80);
     switch (s.form) {
       case PlantForm.fruiting:
@@ -686,36 +866,7 @@ class PlantSidePainter extends CustomPainter {
         ]) {
           _leaf(canvas, Offset(x, y), _rad(a), 18, 6, s.leafMid);
         }
-        final fruit = Paint()..color = s.accent ?? s.leafLight;
-        if (s.accent == const Color(0xFF5B2A6E)) {
-          // Brinjal: an oblong hanging fruit.
-          canvas.drawPath(
-            Path()
-              ..moveTo(68, 46)
-              ..cubicTo(82, 48, 86, 64, 80, 74)
-              ..cubicTo(74, 82, 64, 76, 64, 64)
-              ..cubicTo(64, 56, 64, 50, 68, 46),
-            fruit,
-          );
-        } else if (s.accent == const Color(0xFF8CBF4E)) {
-          // Beans: hanging pods.
-          final pod = Paint()
-            ..color = s.accent!
-            ..strokeWidth = 4
-            ..strokeCap = StrokeCap.round;
-          canvas
-            ..drawLine(const Offset(48, 50), const Offset(46, 70), pod)
-            ..drawLine(const Offset(74, 40), const Offset(77, 60), pod)
-            ..drawLine(const Offset(54, 32), const Offset(52, 48), pod);
-        } else {
-          for (final (x, y, fr) in const [
-            (44.0, 62.0, 7.0),
-            (52.0, 66.0, 6.0),
-            (76.0, 40.0, 6.0),
-          ]) {
-            canvas.drawCircle(Offset(x, y), fr, fruit);
-          }
-        }
+      // The fruit itself is the trait's (see _sideTrait).
       case PlantForm.palmate:
         final stem = Paint()
           ..color = const Color(0xFF4B6B3A)
@@ -815,7 +966,7 @@ class PlantSidePainter extends CustomPainter {
           Offset(74, 38),
           Offset(60, 26),
         ]) {
-          _flower(canvas, o, 8, s.accent!);
+          _bloom(canvas, o, 8, s, side: true);
         }
       case PlantForm.succulent:
         for (final (a, l, c) in [
@@ -856,8 +1007,9 @@ class PlantSidePainter extends CustomPainter {
         }
         _heart(canvas, const Offset(60, 66), 14, s.leafLight);
     }
+  }
 
-    // Pot.
+  void _paintPot(Canvas canvas) {
     switch (pot) {
       case PotStyle.terracotta:
         canvas
@@ -909,7 +1061,6 @@ class PlantSidePainter extends CustomPainter {
             Paint()..color = const Color(0xFF5A3E2B),
           );
     }
-    canvas.restore();
   }
 
   @override

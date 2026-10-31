@@ -187,6 +187,7 @@ Every data-driven screen implements all applicable states explicitly using share
 - **Canvas:** dragging is 1:1 with the finger (no easing); snapping animates in 100ms; invalid placement shows a brief error-tinted outline + haptic.
 - **Reduced motion:** respect `MediaQuery.disableAnimationsOf(context)`; replace transitions with fades or instant changes.
 - **Haptics:** light impact on snap, selection and task completion; never continuous.
+- **Lists that change:** task cards ease to their new height when a task leaves or a folded group opens (`AppMotion.medium`, `standard` curve).
 
 ## 10. Accessibility
 
@@ -226,3 +227,10 @@ Blueprint style:
 | Invalid | `error` outline + warning badge; never only colour |
 | Labels | Dimension labels in `labelMedium` with a `paperBright` pill background |
 | Sun direction (when known) | Compass rose/arrow in the corner (N indicator) |
+
+## Addendum (2026-11-01, ADR-034)
+
+- **Plant drawings:** each species is a form plus a trait (its fruit, head, flower or leaf shape) plus colours, so no two catalogue plants look the same in either view.
+- **Plan tags:** short names ("Tulsi", not "Tulsi (holy basil)"), always inside the plan, moved above a container rather than overlapping another tag.
+- **Long task lists:** the first group on Today stays open; later groups over 4 tasks show 3 and "Show N more".
+- **Ranges:** write a shared unit once ("45.7–61 cm"); mixed units stay explicit ("61 cm–1.5 m").

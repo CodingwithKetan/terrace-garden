@@ -218,7 +218,20 @@ class _PlantingTile extends ConsumerWidget {
           ).where((i) => i.kind != PlantingIssueKind.shared).toList();
 
     return ListTile(
-      leading: Icon(s?.category.icon ?? Icons.help_outline),
+      // The same top-view drawing as on Today and the plan.
+      leading: Container(
+        width: 44,
+        height: 44,
+        padding: const EdgeInsets.all(AppSpacing.xxs),
+        decoration: BoxDecoration(
+          color: theme.colorScheme.surfaceContainerHigh,
+          shape: BoxShape.circle,
+        ),
+        child: PlantTopArt(
+          spec: PlantArtSpec.of(planting.speciesId, category: s?.category),
+          size: 36,
+        ),
+      ),
       title: Text(name, style: theme.textTheme.titleMedium),
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

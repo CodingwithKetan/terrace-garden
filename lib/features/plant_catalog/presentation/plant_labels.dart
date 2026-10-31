@@ -237,4 +237,12 @@ extension PlantSpeciesName on PlantSpecies {
   /// The plant's name in the app's language (English when the catalogue
   /// has no name for it).
   String name(AppLocalizations l10n) => nameIn(l10n.localeName);
+
+  /// [name] without a trailing gloss ("Tulsi (holy basil)" → "Tulsi"), for
+  /// tight spaces such as plan tags and calendar rows.
+  String shortName(AppLocalizations l10n) {
+    final full = name(l10n);
+    final cut = full.indexOf(' (');
+    return cut > 0 && full.endsWith(')') ? full.substring(0, cut) : full;
+  }
 }

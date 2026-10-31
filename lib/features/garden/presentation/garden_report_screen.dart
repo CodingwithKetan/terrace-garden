@@ -220,7 +220,9 @@ class _ReportPage extends ConsumerWidget {
                       ],
                       tag: [
                         for (final p in plantings)
-                          if (p.elementId == e.id) plantName(p.speciesId),
+                          if (p.elementId == e.id)
+                            catalogue?.byId(p.speciesId)?.shortName(l10n) ??
+                                l10n.plantingUnknownSpecies,
                       ].firstOrNull,
                     ),
                 ],

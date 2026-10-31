@@ -586,7 +586,13 @@ class _Hero extends ConsumerWidget {
                     category: catalogue?.byId(p.speciesId)?.category,
                   ),
               ],
-              tag: names.isEmpty ? name : names.first,
+              tag: here.isEmpty
+                  ? name
+                  : [
+                      catalogue?.byId(here.first.speciesId)?.shortName(l10n) ??
+                          names.first,
+                      if (names.length > 1) '+${names.length - 1}',
+                    ].join(' '),
               semanticLabel: [...names, name].join(', '),
             );
           }(),

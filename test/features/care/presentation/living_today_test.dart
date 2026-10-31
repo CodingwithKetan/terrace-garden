@@ -70,7 +70,11 @@ void main() {
     return id;
   }
 
-  Future<void> plant(String gardenId, {String? elementId}) async {
+  Future<void> plant(
+    String gardenId, {
+    String? elementId,
+    String speciesId = 'tomato',
+  }) async {
     await DriftPlantingRepository(
       app.database,
       clock,
@@ -79,7 +83,7 @@ void main() {
     ).create(
       PlantingDraft(
         gardenId: gardenId,
-        speciesId: 'tomato',
+        speciesId: speciesId,
         plantedOn: today,
         startedFrom: PlantingStart.seedling,
         elementId: elementId,
@@ -174,5 +178,95 @@ void main() {
     expect(find.text('sow now'), findsOneWidget);
     expect(find.text('YOUR PLANTS AND SAVED'), findsOneWidget);
     expect(find.bySemanticsLabel(RegExp('^Tomato: ')), findsOneWidget);
+  });
+
+  testWidgets('a long later group folds until "Show more" is tapped', (
+    tester,
+  ) async {
+    final id = await garden('Terrace');
+    final repo = DriftPlantingRepository(
+      app.database,
+      clock,
+      SequentialIdGenerator('many'),
+      logger,
+    );
+    for (var i = 0; i < 5; i++) {
+      await repo.create(
+        PlantingDraft(
+          gardenId: id,
+          speciesId: 'tomato',
+          plantedOn: today,
+          startedFrom: PlantingStart.seedling,
+          elementId: 'bag',
+        ),
+      );
+    }
+    await app.pump(tester);
+
+    // The first group (soil checks) stays open; the pest checks fold.
+    final more = find.text('Show 2 more');
+    await tester.scrollUntilVisible(
+      more,
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
+    // Lift the button clear of the floating navigation bar before tapping.
+    await tester.drag(find.byType(Scrollable).first, const Offset(0, -300));
+    await tester.pumpAndSettle();
+    await tester.tap(more);
+    await tester.pumpAndSettle();
+    expect(more, findsNothing);
+  });
+
+  testWidgets("the plant page puts my garden's calendar first", (
+    tester,
+  ) async {
+    final id = await garden('Terrace');
+    await app.pump(tester);
+    await app.open(tester, AppRoutes.plantDetail('tomato', gardenId: id));
+
+    final mine = find.text('Your garden · North India');
+    await tester.scrollUntilVisible(
+      mine,
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
+    expect(mine, findsOneWidget);
+    expect(find.textContaining('other regions'), findsOneWidget);
+    // Other regions stay folded until asked for.
+    expect(find.text('South India'), findsNothing);
+  });
+
+  testWidgets('Seasons asks for a city when the garden has none', (
+    tester,
+  ) async {
+    await DriftGardenRepository(
+      app.database,
+      clock,
+      SequentialIdGenerator('nocity'),
+      logger,
+    ).create(const GardenDraft(name: 'Balcony'));
+    await app.pump(tester);
+    await tester.tap(find.text('Seasons'));
+    await tester.pumpAndSettle();
+
+    expect(
+      find.text('Add your city to this garden to see what to sow each month.'),
+      findsOneWidget,
+    );
+    expect(find.text('Add my city'), findsOneWidget);
+  });
+
+  testWidgets('the almanac uses short names', (tester) async {
+    await plant(await garden('Terrace'), elementId: 'pot', speciesId: 'tulsi');
+    await app.pump(tester);
+    await tester.tap(find.text('Seasons'));
+    await tester.pumpAndSettle();
+    expect(find.text('Tulsi'), findsOneWidget);
+    expect(
+      // Screen readers still get the full name.
+      find.bySemanticsLabel(RegExp(r'^Tulsi \(holy basil\): ')),
+      findsOneWidget,
+    );
   });
 }

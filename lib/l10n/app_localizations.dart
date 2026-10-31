@@ -3773,7 +3773,7 @@ abstract class AppLocalizations {
   /// No description provided for @seasonsNoRegion.
   ///
   /// In en, this message translates to:
-  /// **'Your city has no sourced sowing calendar yet, so seasons can\'t be shown. North India, South India, Telangana, Tamil Nadu and Kerala are covered.'**
+  /// **'We don\'t have a sourced sowing calendar for your city yet, so seasons can\'t be shown. Plant pages still list the calendars we have for other regions.'**
   String get seasonsNoRegion;
 
   /// No description provided for @seasonsNoGarden.
@@ -4663,6 +4663,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Plants with health authority information on skin use. For some, it says the evidence is weak or missing.'**
   String get plantsSkinUseNote;
+
+  /// Folds a long task group on Today; count is the number of hidden tasks.
+  ///
+  /// In en, this message translates to:
+  /// **'Show {count} more'**
+  String todayShowMore(int count);
+
+  /// No description provided for @journalEmptyBodyPlanted.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a photo of your plants today. In a few weeks you can put it side by side with a new one and see how far they have come.'**
+  String get journalEmptyBodyPlanted;
+
+  /// No description provided for @seasonsNoCity.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your city to this garden to see what to sow each month.'**
+  String get seasonsNoCity;
+
+  /// No description provided for @seasonsAddCity.
+  ///
+  /// In en, this message translates to:
+  /// **'Add my city'**
+  String get seasonsAddCity;
+
+  /// Shortened list of source publishers on a plant page.
+  ///
+  /// In en, this message translates to:
+  /// **'{names} and {count} more'**
+  String plantSourcesAndMore(String names, int count);
+
+  /// No description provided for @sowingYourRegion.
+  ///
+  /// In en, this message translates to:
+  /// **'Your garden · {region}'**
+  String sowingYourRegion(String region);
+
+  /// No description provided for @sowingOtherRegions.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 other region} other{{count} other regions}}'**
+  String sowingOtherRegions(int count);
 }
 
 class _AppLocalizationsDelegate

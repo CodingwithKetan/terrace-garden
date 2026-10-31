@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
@@ -175,11 +176,17 @@ class _TodayScreenState extends ConsumerState<TodayScreen> {
       for (final t in d.tasks)
         if (t.isPending && t.dueOn.isAfter(d.today)) t,
     ];
-    return [
+    final groups = [
       for (final type in CareTaskType.values)
         if (due.where((t) => t.type == type).toList() case final group
             when group.isNotEmpty)
-          _TaskGroup(type: type, tasks: group, data: d),
+          (type, group),
+    ];
+    return [
+      // The first group (usually the soil check) stays open; later long
+      // groups start folded so the page stays scannable.
+      for (final (i, (type, group)) in groups.indexed)
+        _TaskGroup(type: type, tasks: group, data: d, foldable: i > 0),
       if (finished.isNotEmpty)
         _SimpleSection(
           title: l10n.todayDoneToday,
@@ -402,11 +409,15 @@ class _PlanSection extends ConsumerWidget {
               l10n.plantingUnknownSpecies,
       ];
       final name = containerName(l10n, e, data.containers);
-      final tag = names.isEmpty
+      final first = here.isEmpty
+          ? null
+          : data.catalogue?.byId(here.first.speciesId)?.shortName(l10n) ??
+                names.first;
+      final tag = first == null
           ? name
           : names.length == 1
-          ? names.first
-          : '${names.first} +${names.length - 1}';
+          ? first
+          : '$first +${names.length - 1}';
       final status = switch (badge) {
         PlanBadge.due => l10n.planDue,
         PlanBadge.done => l10n.planDone,
@@ -742,6 +753,7 @@ Future<void> _runSoilCheck(
     growBag: data.container(task.plantingId)?.kind == ElementKind.growBag,
   );
   if (answer == null) return;
+  unawaited(HapticFeedback.lightImpact());
   final care = ref.read(careRepositoryProvider);
   final result = switch (answer) {
     SoilCheckAnswer.watered => await care.complete(task.id, on: data.today),
@@ -766,19 +778,38 @@ Future<void> _runSoilCheck(
     );
 }
 
-class _TaskGroup extends ConsumerWidget {
+class _TaskGroup extends ConsumerStatefulWidget {
   const _TaskGroup({
     required this.type,
     required this.tasks,
     required this.data,
+    this.foldable = false,
   });
 
   final CareTaskType type;
   final List<CareTask> tasks;
   final _TodayData data;
 
+  /// Starts showing [_foldedRows] rows when the group is longer than
+  /// [_foldAbove].
+  final bool foldable;
+
+  static const _foldAbove = 4;
+  static const _foldedRows = 3;
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_TaskGroup> createState() => _TaskGroupState();
+}
+
+class _TaskGroupState extends ConsumerState<_TaskGroup> {
+  bool _expanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final (type, tasks, data) = (widget.type, widget.tasks, widget.data);
+    final folded =
+        widget.foldable && !_expanded && tasks.length > _TaskGroup._foldAbove;
+    final shown = folded ? tasks.take(_TaskGroup._foldedRows) : tasks;
     final l10n = context.l10n;
     final theme = Theme.of(context);
 
@@ -833,20 +864,51 @@ class _TaskGroup extends ConsumerWidget {
           ),
           const SizedBox(height: AppSpacing.sm),
           _Paper(
-            child: Column(
-              children: [
-                for (final (i, t) in tasks.indexed) ...[
-                  if (i > 0)
-                    Divider(height: 1, color: theme.colorScheme.outlineVariant),
-                  _TaskRow(task: t, data: data),
+            child: _Collapsing(
+              child: Column(
+                children: [
+                  for (final (i, t) in shown.indexed) ...[
+                    if (i > 0)
+                      Divider(
+                        height: 1,
+                        color: theme.colorScheme.outlineVariant,
+                      ),
+                    _TaskRow(task: t, data: data),
+                  ],
+                  if (folded)
+                    Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: TextButton.icon(
+                        onPressed: () => setState(() => _expanded = true),
+                        icon: const Icon(Icons.expand_more),
+                        label: Text(
+                          l10n.todayShowMore(tasks.length - shown.length),
+                        ),
+                      ),
+                    ),
                 ],
-              ],
+              ),
             ),
           ),
         ],
       ),
     );
   }
+}
+
+/// Eases a task card to its new height (instant under reduced motion).
+class _Collapsing extends StatelessWidget {
+  const _Collapsing({required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) => AnimatedSize(
+    duration: AppMotion.of(context, AppMotion.medium),
+    curve: AppMotion.standard,
+    alignment: Alignment.topCenter,
+    child: child,
+  );
 }
 
 class _SimpleSection extends StatelessWidget {
@@ -868,7 +930,9 @@ class _SimpleSection extends StatelessWidget {
             child: Text(title, style: theme.textTheme.titleSmall),
           ),
           const SizedBox(height: AppSpacing.sm),
-          _Paper(child: Column(children: children)),
+          _Paper(
+            child: _Collapsing(child: Column(children: children)),
+          ),
         ],
       ),
     );
@@ -920,6 +984,7 @@ class _TaskRow extends ConsumerWidget {
       if (task.type == CareTaskType.checkSoil) {
         await _runSoilCheck(context, ref, task, data);
       } else {
+        unawaited(HapticFeedback.lightImpact());
         await report(
           await care.complete(task.id, on: data.today),
           l10n.taskCompleted,

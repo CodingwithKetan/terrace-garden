@@ -73,7 +73,9 @@ class _JournalScreenState extends ConsumerState<JournalScreen> {
           image: const AssetImage(AppPhotos.journalTerrace),
           icon: Icons.photo_library_outlined,
           title: l10n.journalEmptyTitle,
-          body: l10n.journalEmptyBody,
+          body: plantings.isEmpty
+              ? l10n.journalEmptyBody
+              : l10n.journalEmptyBodyPlanted,
           actionLabel: gardens.isEmpty ? null : l10n.journalAddEntry,
           onAction: gardens.isEmpty ? null : newEntry,
         ),

@@ -2157,7 +2157,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get seasonsNoRegion =>
-      'आपके शहर के लिए अभी स्रोत वाला बुवाई कैलेंडर नहीं है, इसलिए मौसम नहीं दिखाए जा सकते। उत्तर भारत, दक्षिण भारत, तेलंगाना, तमिलनाडु और केरल शामिल हैं।';
+      'आपके शहर के लिए अभी स्रोत वाला बुवाई कैलेंडर नहीं है, इसलिए मौसम नहीं दिखाए जा सकते। पौधों के पेज पर दूसरे क्षेत्रों के कैलेंडर अब भी दिखते हैं।';
 
   @override
   String get seasonsNoGarden =>
@@ -2701,4 +2701,41 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get plantsSkinUseNote =>
       'जिन पौधों के त्वचा पर उपयोग के बारे में स्वास्थ्य संस्थाओं की जानकारी है। कुछ के लिए यह बताती है कि प्रमाण कमज़ोर हैं या नहीं हैं।';
+
+  @override
+  String todayShowMore(int count) {
+    return '$count और दिखाएँ';
+  }
+
+  @override
+  String get journalEmptyBodyPlanted =>
+      'आज अपने पौधों की एक फ़ोटो लें। कुछ हफ़्तों बाद उसे नई फ़ोटो के साथ रखकर देखें कि वे कितने बढ़े हैं।';
+
+  @override
+  String get seasonsNoCity =>
+      'हर महीने क्या बोना है, यह देखने के लिए इस बगीचे में अपना शहर जोड़ें।';
+
+  @override
+  String get seasonsAddCity => 'मेरा शहर जोड़ें';
+
+  @override
+  String plantSourcesAndMore(String names, int count) {
+    return '$names और $count अन्य';
+  }
+
+  @override
+  String sowingYourRegion(String region) {
+    return 'आपका बगीचा · $region';
+  }
+
+  @override
+  String sowingOtherRegions(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count और क्षेत्र',
+      one: '1 और क्षेत्र',
+    );
+    return '$_temp0';
+  }
 }

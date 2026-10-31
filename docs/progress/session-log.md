@@ -4,11 +4,17 @@ Newest first. Keep entries concise: goal, what was done, checks, next.
 
 ---
 
-## 2026-10-31: Session 2, part 2 (gate split for timing tests; start of U-E)
+## 2026-10-31 to 11-01: Session 2, part 2 (gate split for timing tests; U-E UI polish)
 
 **Done:** committed U-D (`11392cf`). Closed KI-045 with the user's OK: `test/perf` is tagged `perf` (`dart_test.yaml`) and `tool/check.*` runs it on its own after the main suite (`--exclude-tags perf`, then `--tags perf`). The gallery-photo flow test now polls for the photo (capped at about 5 s) instead of a fixed 400 ms of real I/O. No test or budget was weakened.
 
 **Checks:** `bash tool/check.sh`: format 0 changed; analyze clean; 517 tests passed, then 5 perf tests passed on their own.
+
+**U-E (UI polish, ADR-034):** rendered 17 screens (plus empty states and onboarding) in light and dark with the real fonts via a throwaway harness (kept in the scratchpad, not committed; Hindi shows as boxes there only because the harness loads no Devanagari font). Fixed what the review found (see TODO U-E), gave every species a distinct drawing (`ArtTrait`, reviewed in a large gallery render), and added card motion and haptics.
+
+**Checks (U-E):** `bash tool/check.sh`: format 0 changed; analyze clean; 525 tests passed, then 5 perf tests passed on their own. Goldens `plant_art.png` and `terrace_plan.png` regenerated after intended changes and checked by eye.
+
+**Next:** catalogue breadth (~120 species), Konkan and Vidarbha calendars (KI-017), or the device session (M-07, KI-041).
 
 ---
 

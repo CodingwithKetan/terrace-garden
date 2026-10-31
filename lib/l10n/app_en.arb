@@ -1136,7 +1136,7 @@
   "seasonsYourPlants": "Your plants and saved",
   "seasonsWindowLegend": "sowing window",
   "seasonsNoCalendar": "No sowing calendar in our sources",
-  "seasonsNoRegion": "Your city has no sourced sowing calendar yet, so seasons can't be shown. North India, South India, Telangana, Tamil Nadu and Kerala are covered.",
+  "seasonsNoRegion": "We don't have a sourced sowing calendar for your city yet, so seasons can't be shown. Plant pages still list the calendars we have for other regions.",
   "seasonsNoGarden": "Add a garden with your city to see what to sow each month.",
   "seasonsFootnote": "Windows come from sourced regional tables. Exact dates depend on variety and weather.",
   "seasonsEmptyPlants": "Plants you add or save will appear here with their sowing months.",
@@ -1480,5 +1480,45 @@
   "skinUseCautions": "Take care",
   "skinUseDisclaimer": "Not medical advice. Plants can cause allergic reactions: ask a doctor or pharmacist before using one on your skin, and stop if your skin reacts.",
   "plantsFilterSkinUse": "Skin use",
-  "plantsSkinUseNote": "Plants with health authority information on skin use. For some, it says the evidence is weak or missing."
+  "plantsSkinUseNote": "Plants with health authority information on skin use. For some, it says the evidence is weak or missing.",
+  "todayShowMore": "Show {count} more",
+  "@todayShowMore": {
+    "description": "Folds a long task group on Today; count is the number of hidden tasks.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "journalEmptyBodyPlanted": "Take a photo of your plants today. In a few weeks you can put it side by side with a new one and see how far they have come.",
+  "seasonsNoCity": "Add your city to this garden to see what to sow each month.",
+  "seasonsAddCity": "Add my city",
+  "plantSourcesAndMore": "{names} and {count} more",
+  "@plantSourcesAndMore": {
+    "description": "Shortened list of source publishers on a plant page.",
+    "placeholders": {
+      "names": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sowingYourRegion": "Your garden · {region}",
+  "@sowingYourRegion": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "sowingOtherRegions": "{count, plural, =1{1 other region} other{{count} other regions}}",
+  "@sowingOtherRegions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

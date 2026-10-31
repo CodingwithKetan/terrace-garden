@@ -57,6 +57,31 @@ void main() {
     });
   });
 
+  test('ranges write a shared unit once and never merge compound values', () {
+    final metric = MeasurementFormatter(UnitSystem.metric, locale: 'en');
+    final imperial = MeasurementFormatter(UnitSystem.imperial, locale: 'en');
+    expect(
+      metric.lengthRange(const Length.cm(45.7), const Length.cm(61)),
+      '45.7–61 cm',
+    );
+    expect(
+      metric.lengthRange(const Length.cm(61), const Length.cm(150)),
+      '61 cm–1.5 m',
+    );
+    expect(
+      metric.lengthRange(const Length.cm(30), const Length.cm(30)),
+      '30 cm',
+    );
+    expect(
+      imperial.lengthRange(Length.inches(8), Length.inches(40)),
+      '8 in–3 ft 4 in',
+    );
+    expect(
+      imperial.lengthRange(Length.feet(2), Length.feet(3)),
+      '2–3 ft',
+    );
+  });
+
   test('uses locale-specific decimal separators', () {
     final format = MeasurementFormatter(UnitSystem.metric, locale: 'de');
     expect(format.length(const Length.cm(12.5)), '12,5 cm');

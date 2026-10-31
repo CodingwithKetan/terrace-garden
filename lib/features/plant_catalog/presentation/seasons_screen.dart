@@ -52,11 +52,34 @@ class SeasonsScreen extends ConsumerWidget {
     ];
 
     if (garden == null || region == null || catalogue == null) {
+      final noCity = garden != null && garden.cityName == null;
       children.add(
         _Card(
-          child: Text(
-            garden == null ? l10n.seasonsNoGarden : l10n.seasonsNoRegion,
-            style: theme.textTheme.bodyLarge,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                garden == null
+                    ? l10n.seasonsNoGarden
+                    : noCity
+                    ? l10n.seasonsNoCity
+                    : l10n.seasonsNoRegion,
+                style: theme.textTheme.bodyLarge,
+              ),
+              if (garden == null || noCity) ...[
+                const SizedBox(height: AppSpacing.md),
+                FilledButton(
+                  onPressed: () => context.push(
+                    garden == null
+                        ? AppRoutes.gardenNew
+                        : AppRoutes.gardenEdit(garden.id),
+                  ),
+                  child: Text(
+                    garden == null ? l10n.todayDrawStart : l10n.seasonsAddCity,
+                  ),
+                ),
+              ],
+            ],
           ),
         ),
       );
@@ -329,8 +352,8 @@ class _AlmanacRow extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(8),
           onTap: () => context.push(AppRoutes.plantDetail(species.id)),
-          child: SizedBox(
-            height: 32,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(minHeight: 32),
             child: Row(
               children: [
                 SizedBox(
@@ -355,8 +378,8 @@ class _AlmanacRow extends StatelessWidget {
                       const SizedBox(width: AppSpacing.sm),
                       Expanded(
                         child: Text(
-                          species.name(l10n),
-                          maxLines: 1,
+                          species.shortName(l10n),
+                          maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: theme.textTheme.titleSmall?.copyWith(
                             fontFamily:
@@ -386,9 +409,12 @@ class _AlmanacRow extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: window.contains(m)
                               ? colors.primary
-                              : m == month
-                              ? colors.tertiaryContainer
                               : Colors.transparent,
+                          // This month, outlined so it does not read as a
+                          // second kind of window.
+                          border: m == month && !window.contains(m)
+                              ? Border.all(color: colors.tertiary, width: 1.5)
+                              : null,
                           borderRadius: BorderRadius.circular(3),
                         ),
                       ),

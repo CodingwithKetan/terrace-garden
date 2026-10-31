@@ -31,6 +31,18 @@ final class MeasurementFormatter {
         };
   }
 
+  /// A range such as "45.7–61 cm": the unit is written once when both ends
+  /// use the same one ("61 cm–1.5 m" otherwise), and once for equal ends.
+  String lengthRange(Length min, Length max) {
+    final (a, b) = (length(min), length(max));
+    if (a == b) return a;
+    final unit = b.substring(b.lastIndexOf(' '));
+    // "3 ft 4 in" ends in inches but is a compound value: never merge it.
+    final compound = a.contains(' ft ') || b.contains(' ft ');
+    final shared = a.endsWith(unit) && !compound;
+    return shared ? '${a.substring(0, a.length - unit.length)}–$b' : '$a–$b';
+  }
+
   String area(Area area) => switch (system) {
     UnitSystem.metric => '${_twoDecimals.format(area.m2)} m²',
     UnitSystem.imperial => '${_oneDecimal.format(area.sqFt)} sq ft',

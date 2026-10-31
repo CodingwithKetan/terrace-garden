@@ -216,16 +216,28 @@ class TerracePlanPainter extends CustomPainter {
         );
     }
 
-    // Overlays drawn above the dusk tint so they stay legible.
-    for (final item in items.where((i) => i.element.kind.isContainer)) {
-      _drawOverlay(canvas, item, k);
+    // Overlays drawn above the dusk tint so they stay legible; tags last so
+    // no outline or pin covers them.
+    final containers = [
+      for (final i in items)
+        if (i.element.kind.isContainer) i,
+    ];
+    for (final item in containers) {
+      _drawMarks(canvas, item, _box(item, k));
+    }
+    final placed = <Rect>[];
+    for (final item in containers) {
+      _drawTag(canvas, item, _box(item, k), rect.deflate(wall / 2), placed);
     }
     canvas.restore();
   }
 
-  void _drawOverlay(Canvas canvas, PlanItem item, double k) {
+  Rect _box(PlanItem item, double k) {
     final b = item.element.shape.bounds;
-    final box = Rect.fromLTRB(b.left * k, b.top * k, b.right * k, b.bottom * k);
+    return Rect.fromLTRB(b.left * k, b.top * k, b.right * k, b.bottom * k);
+  }
+
+  void _drawMarks(Canvas canvas, PlanItem item, Rect box) {
     final round = item.element.kind.round;
     final selected = selectedId == item.element.id;
 
@@ -300,9 +312,21 @@ class TerracePlanPainter extends CustomPainter {
       case PlanBadge.none:
         break;
     }
+  }
 
+  /// Draws the name tag below the container, or above it when below would
+  /// leave the plan ([floor]) or cover a tag already [placed]; then keeps it
+  /// inside the plan.
+  void _drawTag(
+    Canvas canvas,
+    PlanItem item,
+    Rect box,
+    Rect floor,
+    List<Rect> placed,
+  ) {
     final tag = item.tag;
     if (tag != null) {
+      final selected = selectedId == item.element.id;
       final unsuitable = item.fit == PlanFit.unsuitable;
       final strong = item.fit == PlanFit.fits && selected;
       final tp = TextPainter(
@@ -322,11 +346,33 @@ class TerracePlanPainter extends CustomPainter {
         maxLines: 1,
         ellipsis: '…',
       )..layout(maxWidth: math.max(76, box.width + 48));
-      final pill = Rect.fromCenter(
-        center: Offset(box.center.dx, box.bottom + tp.height / 2 + 7),
-        width: tp.width + 16,
-        height: tp.height + 6,
-      );
+      final size = Size(tp.width + 16, tp.height + 6);
+      Rect inside(double centerY) {
+        final r = Rect.fromCenter(
+          center: Offset(box.center.dx, centerY),
+          width: size.width,
+          height: size.height,
+        );
+        // Shift (not shrink) the tag back onto the floor.
+        final dx = r.left < floor.left
+            ? floor.left - r.left
+            : math.min(0, floor.right - r.right).toDouble();
+        final dy = r.top < floor.top
+            ? floor.top - r.top
+            : math.min(0, floor.bottom - r.bottom).toDouble();
+        return r.shift(Offset(dx, dy));
+      }
+
+      final below = inside(box.bottom + size.height / 2 + 4);
+      final above = inside(box.top - size.height / 2 - 4);
+      bool clear(Rect r) =>
+          !r.overlaps(box.inflate(-2)) && !placed.any(r.overlaps);
+      final pill = clear(below)
+          ? below
+          : clear(above)
+          ? above
+          : below;
+      placed.add(pill);
       canvas.drawRRect(
         RRect.fromRectAndRadius(pill, Radius.circular(pill.height / 2)),
         Paint()..color = strong ? _leaf : _tagFill,

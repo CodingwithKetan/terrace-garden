@@ -2155,7 +2155,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get seasonsNoRegion =>
-      'Your city has no sourced sowing calendar yet, so seasons can\'t be shown. North India, South India, Telangana, Tamil Nadu and Kerala are covered.';
+      'We don\'t have a sourced sowing calendar for your city yet, so seasons can\'t be shown. Plant pages still list the calendars we have for other regions.';
 
   @override
   String get seasonsNoGarden =>
@@ -2699,4 +2699,41 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get plantsSkinUseNote =>
       'Plants with health authority information on skin use. For some, it says the evidence is weak or missing.';
+
+  @override
+  String todayShowMore(int count) {
+    return 'Show $count more';
+  }
+
+  @override
+  String get journalEmptyBodyPlanted =>
+      'Take a photo of your plants today. In a few weeks you can put it side by side with a new one and see how far they have come.';
+
+  @override
+  String get seasonsNoCity =>
+      'Add your city to this garden to see what to sow each month.';
+
+  @override
+  String get seasonsAddCity => 'Add my city';
+
+  @override
+  String plantSourcesAndMore(String names, int count) {
+    return '$names and $count more';
+  }
+
+  @override
+  String sowingYourRegion(String region) {
+    return 'Your garden · $region';
+  }
+
+  @override
+  String sowingOtherRegions(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count other regions',
+      one: '1 other region',
+    );
+    return '$_temp0';
+  }
 }

@@ -1,10 +1,10 @@
 # Current Status
 
-Last updated: 2026-10-30
+Last updated: 2026-11-01
 
 ## Phase
 
-**2026-10-30: map, catalogue and UI upgrade (TODO "U-" items) on branch `map-upgrade`. Done: U-A Designer 2.0 (ADR-030, `8600781`), U-B sun and shape (ADR-031, `976e669`), U-C plant in place (ADR-032, `555e734`) and U-D catalogue depth (ADR-033): container sizes, harvests, spacing and watering for many more species, and calendars for western Maharashtra, Gujarat, Goa and Assam.** Next: U-E UI polish.
+**2026-10-30: map, catalogue and UI upgrade (TODO "U-" items) on branch `map-upgrade`. Done: U-A Designer 2.0 (ADR-030, `8600781`), U-B sun and shape (ADR-031, `976e669`), U-C plant in place (ADR-032, `555e734`) and U-D catalogue depth (ADR-033): container sizes, harvests, spacing and watering for many more species, and calendars for western Maharashtra, Gujarat, Goa and Assam (`11392cf`). U-E UI polish (ADR-034): screens reviewed in light and dark, a distinct drawing per species, folded task groups, plan tags, motion.** Next: catalogue breadth (~120 species) or the device session (M-07, KI-041); both need the user's go-ahead.
 
 **2026-10-29: Terrace Garden Plus is built but not on sale (ADR-028, KI-038). Also added: a free pest guide, a Plus garden report, a 73-species catalogue, and health authority skin-use notes (ADR-029).** Phase 6 done except a device profile run (P6-07). The app is in English and Hindi, with a pet-friendly filter and a fuller catalogue (2026-10-18). Living Terrace redesign built (R-01..R-07, ADR-025/026; 2026-10-18); ready for moderated user testing of the new design.** Phases 0–5 are complete. Open: P6-07 device profiling; P6-04 kit preset (needs KI-014 verification); P6-10 branding (needs the app name, PD-001).
 
@@ -33,6 +33,8 @@ Last updated: 2026-10-30
 | Network | Corporate TLS inspection: curl revocation checks and Java trust fail; PowerShell downloads work; GitHub pushes from this network fail (KI-006) |
 
 ## Last completed tasks
+
+**2026-11-01 (U-E, UI polish):** by-eye review of 17 screens in light and dark; fixes listed in TODO U-E; `ArtTrait` drawings for 64 species; `lengthRange`; `shortName`; ADR-034. The gate now runs `test/perf` on its own (KI-045 closed, `31914e3`).
 
 **2026-10-30 (U-D, catalogue depth):** seven research passes reviewed and merged (S155–S182); `minWidthCm`, `spacing`, multi-year harvests; four regions and 15 cities; ADR-033, KI-043..KI-045.
 

@@ -129,7 +129,20 @@ class _Detail extends ConsumerWidget {
       (t) => t.type == CareTaskType.checkSoil && !t.dueOn.isAfter(today),
     );
     final cited = _refs(s.citedSources.toList());
-    final publishers = cited.map((r) => r.publisher).toSet().join(', ');
+    final allPublishers = cited.map((r) => r.publisher).toSet().toList();
+    final publishers = allPublishers.length <= 3
+        ? allPublishers.join(', ')
+        : l10n.plantSourcesAndMore(
+            allPublishers.take(3).join(', '),
+            allPublishers.length - 3,
+          );
+    // The garden's own calendar comes first on the sowing card.
+    final region =
+        (gardenId == null
+                ? ref.watch(currentGardenProvider)
+                : ref.watch(gardenProvider(gardenId!)).value)
+            ?.region;
+    final yours = region == null ? null : s.sowingFor(region);
 
     final subtitle = [
       ...s.localNames,
@@ -302,10 +315,10 @@ class _Detail extends ConsumerWidget {
                   children: [
                     _Pair(
                       l10n.spacingBetweenPlants,
-                      sp.minCm == sp.maxCm
-                          ? format.length(Length.cm(sp.minCm))
-                          : '${format.length(Length.cm(sp.minCm))}–'
-                                '${format.length(Length.cm(sp.maxCm))}',
+                      format.lengthRange(
+                        Length.cm(sp.minCm),
+                        Length.cm(sp.maxCm),
+                      ),
                     ),
                     if (sp.rowCm case final row?)
                       _Pair(
@@ -331,8 +344,23 @@ class _Detail extends ConsumerWidget {
                 children: [
                   if (s.sowing.isEmpty)
                     _Value(null, notDocumented: l10n.sowingNone)
-                  else
-                    for (final w in s.sowing) _SowingRow(window: w),
+                  else if (yours == null)
+                    for (final w in s.sowing) _SowingRow(window: w)
+                  else ...[
+                    _SowingRow(
+                      window: yours.window,
+                      title: l10n.sowingYourRegion(
+                        yours.window.region.label(l10n),
+                      ),
+                    ),
+                    if (s.sowing.length > 1)
+                      _OtherRegions(
+                        windows: [
+                          for (final w in s.sowing)
+                            if (!identical(w, yours.window)) w,
+                        ],
+                      ),
+                  ],
                 ],
               ),
               _FactSection(
@@ -984,9 +1012,12 @@ class _Note extends StatelessWidget {
 
 /// A region's sowing months as a 12-month strip with a readable summary.
 class _SowingRow extends StatelessWidget {
-  const _SowingRow({required this.window});
+  const _SowingRow({required this.window, this.title});
 
   final SowingWindow window;
+
+  /// Replaces the region name as the heading.
+  final String? title;
 
   @override
   Widget build(BuildContext context) {
@@ -1002,13 +1033,13 @@ class _SowingRow extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: AppSpacing.md),
       child: Semantics(
         container: true,
-        label: '${window.region.label(l10n)}: $months',
+        label: '${title ?? window.region.label(l10n)}: $months',
         child: ExcludeSemantics(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                window.region.label(l10n),
+                title ?? window.region.label(l10n),
                 style: theme.textTheme.labelLarge,
               ),
               const SizedBox(height: AppSpacing.xs),
@@ -1046,6 +1077,28 @@ class _SowingRow extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Other regions' calendars, folded under the garden's own.
+class _OtherRegions extends StatelessWidget {
+  const _OtherRegions({required this.windows});
+
+  final List<SowingWindow> windows;
+
+  @override
+  Widget build(BuildContext context) => Theme(
+    // No divider lines inside the card.
+    data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+    child: ExpansionTile(
+      tilePadding: EdgeInsets.zero,
+      childrenPadding: EdgeInsets.zero,
+      title: Text(
+        context.l10n.sowingOtherRegions(windows.length),
+        style: Theme.of(context).textTheme.labelLarge,
+      ),
+      children: [for (final w in windows) _SowingRow(window: w)],
+    ),
+  );
 }
 
 class _SourcesSection extends StatelessWidget {
