@@ -128,6 +128,11 @@ void main() {
     await app.pump(tester);
     await go(tester, 'Plants');
     await expectGuidelines(tester);
+    await tester.scrollUntilVisible(
+      find.text('Aloe vera'),
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
     await tester.tap(find.text('Aloe vera'));
     await tester.pumpAndSettle();
     await expectGuidelines(tester);

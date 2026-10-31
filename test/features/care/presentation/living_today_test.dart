@@ -178,6 +178,13 @@ void main() {
     expect(find.text('sow now'), findsOneWidget);
     expect(find.text('YOUR PLANTS AND SAVED'), findsOneWidget);
     expect(find.bySemanticsLabel(RegExp('^Tomato: ')), findsOneWidget);
+
+    // A long "sow now" list folds behind a chip that unfolds it.
+    final more = find.textContaining(RegExp(r'^\d+ more$'));
+    expect(more, findsOneWidget);
+    await tester.tap(more);
+    await tester.pumpAndSettle();
+    expect(more, findsNothing);
   });
 
   testWidgets('a long later group folds until "Show more" is tapped', (

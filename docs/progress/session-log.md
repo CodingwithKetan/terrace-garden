@@ -4,6 +4,25 @@ Newest first. Keep entries concise: goal, what was done, checks, next.
 
 ---
 
+## 2026-11-01: Session 2, part 3 (U-F catalogue breadth)
+
+**Goal:** the user chose catalogue breadth next (about 120 species).
+
+**Done:**
+- Picked 50 candidates common on Indian terraces. Eight parallel research agents (one brief: first-party sources, fetched pages, verbatim quotes) covered core facts per group, container and spacing, ASPCA pet safety and two sowing sweeps. WebFetch was reset by the network, so agents downloaded pages with PowerShell and extracted PDFs locally.
+- Merged with a rule-based script plus logged overrides (ADR-035). 49 species added; gongura left out (KI-046). 142 cited sources S183–S324 registered in §1k.
+- KI-044 resolved: palak stays true spinach (renamed "Spinach"), spinach beet added with the windows whose sources mean it; ambiguous "Palak" rows dropped.
+- A corrupted regex (a backspace character from a shell edit) briefly mixed "from sowing" and "from planting" harvest counts. It was caught through the spot check's snake gourd caveat, fixed, and the merge rebuilt from clean files; the repository has no stray control characters outside binaries.
+- Drawings for all 49 (16 new traits), reviewed in a gallery render; Seasons folds a long "sow now" list; an accessibility test now scrolls to its target.
+- Independent spot check: 12 of 12 quotes matched word for word on live pages.
+- Coverage of 122 species: sun 112, container size 72, harvest 80, spacing 69, watering 61, sowing calendars 83 (305 windows), pet safety 57.
+
+**Checks:** `bash tool/check.sh`: format 0 changed; analyze clean; 525 tests passed, then 5 perf tests passed on their own. Golden `plant_art.png` regenerated with the 49 new species and checked by eye.
+
+**Next:** commit U-F on `map-upgrade` when the user agrees; then the device session (M-07), Konkan and Vidarbha calendars (KI-017) or pushing the branch.
+
+---
+
 ## 2026-10-31 to 11-01: Session 2, part 2 (gate split for timing tests; U-E UI polish)
 
 **Done:** committed U-D (`11392cf`). Closed KI-045 with the user's OK: `test/perf` is tagged `perf` (`dart_test.yaml`) and `tool/check.*` runs it on its own after the main suite (`--exclude-tags perf`, then `--tags perf`). The gallery-photo flow test now polls for the photo (capped at about 5 s) instead of a fixed 400 ms of real I/O. No test or budget was weakened.

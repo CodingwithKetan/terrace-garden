@@ -2736,4 +2736,9 @@ class AppLocalizationsEn extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String seasonsMore(int count) {
+    return '$count more';
+  }
 }

@@ -123,7 +123,7 @@
     },
     {
       "id": "palak",
-      "commonName": "Palak (spinach)",
+      "commonName": "Spinach",
       "localNames": ["Palak"],
       "names": { "hi": "पालक" },
       "scientificName": "Spinacia oleracea",
@@ -135,11 +135,7 @@
       "spacing": { "minCm": 10.2, "maxCm": 15.2, "note": "True spinach in raised beds: 4–6 in (10.2–15.2 cm) (NC State); RHS spaces young plants 15 cm apart.", "sources": ["S170", "S172"] },
       "sowing": [
         { "region": "northIndia", "months": [2, 9, 10, 11], "source": "S11" },
-        { "region": "southIndia", "months": [9, 10, 11], "source": "S11" },
-        { "region": "telangana", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S13" },
-        { "region": "westernMaharashtra", "months": [9, 10, 11, 12], "source": "S179" },
-        { "region": "gujarat", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S180" },
-        { "region": "assam", "months": [9, 10, 11, 12], "source": "S182" }
+        { "region": "southIndia", "months": [9, 10, 11], "source": "S11" }
       ],
       "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S11"] },
       "careNotes": [{ "text": "Leafy crops tolerate more shade than fruiting crops.", "sources": ["S1"] }],
@@ -1942,6 +1938,1142 @@
         { "text": "Tolerates salt and drought.", "sources": ["S40"] },
         { "text": "For the fragrant roots, the whole plant is dug up about 18 months after planting, in the dry season.", "sources": ["S151"] },
         { "text": "In dry areas termites may attack the roots.", "sources": ["S151"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "spinachBeet",
+      "commonName": "Spinach beet",
+      "localNames": ["Palak"],
+      "names": { "hi": "पालक (देसी)" },
+      "scientificName": "Beta vulgaris var. bengalensis",
+      "category": "leafyGreen",
+      "lifecycle": "annual",
+      "sun": null,
+      "container": { "status": "proxy", "minVolumeL": 1.9, "recommendedVolumeL": null, "minDepthCm": 20.3, "recommendedDepthCm": null, "plantsPerContainer": null, "note": "Figures for Swiss chard, the same species (Beta vulgaris): at least 1.9 L of mix, 20.3 cm deep (NC State).", "sources": ["S52"] },
+      "daysToHarvest": { "min": 21, "max": 30, "note": "From sowing (PAU, TNAU).", "sources": ["S48", "S51"] },
+      "spacing": { "minCm": 10, "maxCm": 10, "rowCm": 20, "note": "10 cm in rows 20 cm apart (TNAU, field crop).", "sources": ["S51"] },
+      "sowing": [
+        { "region": "northIndia", "months": [2, 3, 4, 9, 10], "source": "S48" },
+        { "region": "westernMaharashtra", "months": [9, 10, 11, 12], "source": "S179" },
+        { "region": "assam", "months": [9, 10, 11, 12], "source": "S182" }
+      ],
+      "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S182"] },
+      "careNotes": [
+        { "text": "Cut the leaves again every 20 to 25 days after the first harvest. In summer, take only one harvest.", "sources": ["S48"] },
+        { "text": "A sowing can give several cuttings: the All Green variety gives about 6 to 7 cuttings, 15 to 18 days apart.", "sources": ["S182"] }
+      ],
+      "petSafety": { "status": "nonToxic", "note": "ASPCA lists it as non-toxic to dogs, cats and horses.", "sources": ["S183"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "malabarSpinach",
+      "commonName": "Malabar spinach",
+      "localNames": ["Poi", "Basale"],
+      "names": { "hi": "पोई" },
+      "scientificName": "Basella alba",
+      "category": "leafyGreen",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S184"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": { "min": 60, "max": 60, "note": "From planting (TNAU).", "sources": ["S51"] },
+      "spacing": { "minCm": 60, "maxCm": 60, "rowCm": 100, "note": "60 cm in rows 100 cm apart (KAU, field crop).", "sources": ["S50"] },
+      "sowing": [
+        { "region": "kerala", "months": [5, 6, 9, 10], "source": "S50" }
+      ],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S50"] },
+      "careNotes": [
+        { "text": "Grow it up a trellis, fence or stakes; it is a vigorous climber.", "sources": ["S51"] },
+        { "text": "Nick or scratch the seed coat before sowing to speed up germination; it needs warm temperatures to sprout.", "sources": ["S184"] }
+      ],
+      "watering": { "mode": "keepMoist", "sources": ["S184"] },
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "mustardGreens",
+      "commonName": "Mustard greens",
+      "localNames": ["Sarson saag"],
+      "names": { "hi": "सरसों का साग" },
+      "scientificName": "Brassica juncea",
+      "category": "leafyGreen",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": null, "sources": ["S185", "S186"] },
+      "container": { "status": "verified", "minVolumeL": 3.8, "recommendedVolumeL": 11.4, "minDepthCm": 10.2, "recommendedDepthCm": 15.2, "plantsPerContainer": null, "note": "At least 3.8 L of mix (11.4 L recommended), 10.2 cm deep (UMD).", "sources": ["S2"] },
+      "daysToHarvest": { "min": 25, "max": 50, "note": "From sowing (Clemson).", "sources": ["S186"] },
+      "spacing": { "minCm": 10.2, "maxCm": 15.2, "note": "10.2–15.2 cm (NC State).", "sources": ["S170"] },
+      "sowing": [],
+      "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S185"] },
+      "careNotes": [
+        { "text": "Pick while young and tender: cut the large outer leaves and leave the inner ones to keep growing.", "sources": ["S185"] },
+        { "text": "Give some shade as the weather turns hot; heat and dry soil make the leaves strong and bitter.", "sources": ["S187"] }
+      ],
+      "watering": { "mode": "keepMoist", "sources": ["S187"] },
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "verified"
+    },
+    {
+      "id": "knolKhol",
+      "commonName": "Knol-khol (kohlrabi)",
+      "localNames": ["Ganth gobhi"],
+      "names": { "hi": "गांठ गोभी" },
+      "scientificName": "Brassica oleracea var. gongylodes",
+      "category": "vegetable",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": null, "sources": ["S188"] },
+      "container": { "status": "verified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": 30, "recommendedDepthCm": null, "minWidthCm": 30, "plantsPerContainer": null, "note": "30 cm deep, 30 cm across (RHS).", "sources": ["S188"] },
+      "daysToHarvest": { "min": 42, "max": 84, "note": "From sowing (UF/IFAS, RHS).", "sources": ["S189", "S188"] },
+      "spacing": { "minCm": 10.2, "maxCm": 15, "note": "10.2 cm (NC State); 15 cm in rows 30 cm apart (RHS).", "sources": ["S170", "S188"] },
+      "sowing": [
+        { "region": "assam", "months": [9, 10, 11], "source": "S182" }
+      ],
+      "propagation": { "method": "transplant", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S182"] },
+      "careNotes": [
+        { "text": "Harvest the swollen stems while young; left too long they turn tough, spongy and stringy.", "sources": ["S182"] },
+        { "text": "In hot, dry spells it can turn woody or bolt, so cooler-season sowings tend to do better.", "sources": ["S188"] }
+      ],
+      "watering": { "mode": "keepMoist", "sources": ["S188"] },
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "verified"
+    },
+    {
+      "id": "turnip",
+      "commonName": "Turnip",
+      "localNames": ["Shalgam"],
+      "names": { "hi": "शलगम" },
+      "scientificName": "Brassica rapa",
+      "category": "vegetable",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S190", "S191"] },
+      "container": { "status": "verified", "minVolumeL": null, "recommendedVolumeL": 7.6, "minDepthCm": null, "recommendedDepthCm": null, "minWidthCm": 40, "plantsPerContainer": 2, "note": "40 cm across, 2 plants per container (Texas A&M, RHS).", "sources": ["S1", "S192"] },
+      "daysToHarvest": { "min": 40, "max": 60, "note": "From sowing (PAU, UF/IFAS).", "sources": ["S48", "S190"] },
+      "spacing": { "minCm": 7.6, "maxCm": 23, "note": "7.6–10.2 cm (NC State); 15–23 cm (RHS).", "sources": ["S170", "S192"] },
+      "sowing": [
+        { "region": "northIndia", "months": [8, 9, 10, 11], "source": "S48" },
+        { "region": "southIndia", "months": [10, 11], "source": "S11" },
+        { "region": "telangana", "months": [10, 11], "source": "S13" }
+      ],
+      "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S190"] },
+      "careNotes": [
+        { "text": "Pull roots at 3 inches (about 7.5 cm) across or smaller; bigger roots turn pungent, pithy and stringy.", "sources": ["S190"] },
+        { "text": "Water and feed steadily; dry soil, low fertility or late harvest make the roots woody.", "sources": ["S191"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "verified"
+    },
+    {
+      "id": "snakeGourd",
+      "commonName": "Snake gourd",
+      "localNames": ["Chichinda", "Padwal"],
+      "names": { "hi": "चिचिंडा" },
+      "scientificName": "Trichosanthes cucumerina",
+      "category": "climber",
+      "lifecycle": "annual",
+      "sun": null,
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": { "min": 55, "max": 55, "note": "From sowing, for KAU's short-fruited variety Baby; longer-fruited varieties may take longer (KAU).", "sources": ["S193"] },
+      "spacing": { "minCm": 75, "maxCm": 75, "rowCm": 75, "note": "75 cm in rows 75 cm apart (Telangana Horticulture, field crop).", "sources": ["S13"] },
+      "sowing": [
+        { "region": "telangana", "months": [2, 3, 4, 5, 6, 7, 8, 9, 10], "source": "S13" },
+        { "region": "tamilNadu", "months": [1, 7], "source": "S51" },
+        { "region": "kerala", "months": [1, 2, 3, 9, 10, 11, 12], "source": "S50" },
+        { "region": "goa", "months": [6], "source": "S181" },
+        { "region": "assam", "months": [4, 5, 6], "source": "S182" }
+      ],
+      "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S194"] },
+      "careNotes": [
+        { "text": "Remove side shoots until the main vine reaches the top of the trellis; for straight fruits, tie a small stone to the flower end with a long string.", "sources": ["S195"] },
+        { "text": "Pick every 2 to 3 days with scissors or a knife while fruits are light green with soft white seeds; left too long they turn spongy and sour.", "sources": ["S196"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "ashGourd",
+      "commonName": "Ash gourd",
+      "localNames": ["Petha"],
+      "names": { "hi": "पेठा" },
+      "scientificName": "Benincasa hispida",
+      "category": "climber",
+      "lifecycle": "annual",
+      "sun": null,
+      "container": { "status": "proxy", "minVolumeL": 30.3, "recommendedVolumeL": 37.9, "minDepthCm": 30.5, "recommendedDepthCm": 40.6, "plantsPerContainer": 1, "note": "Figures for winter squash, the nearest named large-fruited cucurbit vine: at least 30.3 L of mix (37.9 L recommended), 30.5 cm deep, 1 plant per container (UMD).", "sources": ["S2"] },
+      "daysToHarvest": { "min": 80, "max": 150, "note": "From sowing (PAU, KAU).", "sources": ["S48", "S197"] },
+      "spacing": { "minCm": 75, "maxCm": 90, "rowCm": 300, "note": "75–90 cm in rows 300 cm apart (PAU, field crop).", "sources": ["S48"] },
+      "sowing": [
+        { "region": "northIndia", "months": [2, 3, 6, 7], "source": "S48" },
+        { "region": "telangana", "months": [12], "source": "S13" },
+        { "region": "tamilNadu", "months": [1, 7], "source": "S198" },
+        { "region": "kerala", "months": [1, 2, 3, 5, 6, 9, 10, 11, 12], "source": "S50" },
+        { "region": "westernMaharashtra", "months": [1, 6, 7, 12], "source": "S179" },
+        { "region": "assam", "months": [2, 3, 4], "source": "S182" }
+      ],
+      "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S197"] },
+      "careNotes": [{ "text": "Fruits are mature when the stalk joining them to the vine starts to shrivel; cut with secateurs, leaving 3-4 inches (8-10 cm) of stalk.", "sources": ["S197"] }],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "ivyGourd",
+      "commonName": "Ivy gourd",
+      "localNames": ["Tindora", "Kundru"],
+      "names": { "hi": "कुंदरू" },
+      "scientificName": "Coccinia grandis",
+      "category": "climber",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": null, "sources": ["S182"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": { "min": 50, "max": 55, "note": "From planting cuttings (TNAU).", "sources": ["S51"] },
+      "spacing": { "minCm": 200, "maxCm": 200, "rowCm": 200, "note": "200 cm in rows 200 cm apart (TNAU, field crop).", "sources": ["S51"] },
+      "sowing": [
+        { "region": "kerala", "months": [5, 6, 9, 10], "source": "S50" },
+        { "region": "gujarat", "months": [6, 7], "source": "S180" },
+        { "region": "goa", "months": [6, 11], "source": "S181" }
+      ],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S50"] },
+      "careNotes": [
+        { "text": "Grow from cuttings of a fruiting (female) vine; plants raised from seed are often male and bear no fruit.", "sources": ["S182"] },
+        { "text": "Give it a pandal or trellis, pinch the vine back at 5-6 nodes to make it branch, and pick fruits young, as soon as the dried flower falls off.", "sources": ["S182"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "lablab",
+      "commonName": "Lablab bean",
+      "localNames": ["Sem", "Avarai"],
+      "names": { "hi": "सेम" },
+      "scientificName": "Lablab purpureus",
+      "category": "climber",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S199"] },
+      "container": { "status": "proxy", "minVolumeL": 7.6, "recommendedVolumeL": null, "minDepthCm": 20.3, "recommendedDepthCm": 25.4, "plantsPerContainer": null, "note": "Figures for beans in general: at least 7.6 L of mix, 20.3 cm deep (NC State).", "sources": ["S52"] },
+      "daysToHarvest": { "min": 60, "max": 85, "note": "From sowing (TNAU, ICAR).", "sources": ["S51", "S200"] },
+      "spacing": { "minCm": 15, "maxCm": 15, "rowCm": 60, "note": "15 cm in rows 60 cm apart (KAU, field crop).", "sources": ["S50"] },
+      "sowing": [
+        { "region": "tamilNadu", "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "source": "S51" },
+        { "region": "kerala", "months": [7, 8], "source": "S50" },
+        { "region": "westernMaharashtra", "months": [6, 7, 9, 10], "source": "S179" },
+        { "region": "gujarat", "months": [6, 7], "source": "S180" },
+        { "region": "assam", "months": [7, 8], "source": "S182" }
+      ],
+      "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S50"] },
+      "careNotes": [
+        { "text": "Pole types need support: give stakes up to a 2 m pandal or trellis and train the vines onto it.", "sources": ["S51"] },
+        { "text": "Water steadily but not too heavily; heavy watering gives lots of leaves at the expense of pods. Watering at flowering helps pod set.", "sources": ["S201"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "wingedBean",
+      "commonName": "Winged bean",
+      "localNames": [],
+      "names": { "hi": "विंग्ड बीन" },
+      "scientificName": "Psophocarpus tetragonolobus",
+      "category": "climber",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": null, "sources": ["S202"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": null,
+      "spacing": { "minCm": 50, "maxCm": 50, "rowCm": 100, "note": "50 cm in rows 100 cm apart (TNAU, field crop).", "sources": ["S51"] },
+      "sowing": [
+        { "region": "kerala", "months": [8, 9], "source": "S50" }
+      ],
+      "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S202"] },
+      "careNotes": [
+        { "text": "The seed coat is very hard: soak seeds for 12 to 48 hours (and scratch the coat) before sowing for faster, even germination.", "sources": ["S200"] },
+        { "text": "It is not drought tolerant; water in dry weather. It needs little or no fertiliser.", "sources": ["S202"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "sweetCorn",
+      "commonName": "Sweet corn",
+      "localNames": ["Makka"],
+      "names": { "hi": "स्वीट कॉर्न" },
+      "scientificName": "Zea mays var. saccharata",
+      "category": "vegetable",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S203", "S204"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": { "min": 75, "max": 95, "note": "From sowing (AAU, Clemson).", "sources": ["S205", "S204"] },
+      "spacing": { "minCm": 30.5, "maxCm": 45, "note": "30.5 cm (NC State); 34–45 cm (RHS).", "sources": ["S170", "S206"] },
+      "sowing": [
+        { "region": "assam", "months": [10, 11], "source": "S205" }
+      ],
+      "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S205"] },
+      "careNotes": [
+        { "text": "Corn is wind-pollinated: plant in a block or circle of at least 12 plants, not one long row, or ears fill poorly.", "sources": ["S207"] },
+        { "text": "Pick at the milky stage, about 17 to 24 days after the first silks show: husks still green, silks brown and dry, and a pierced kernel gives milky juice.", "sources": ["S203"] }
+      ],
+      "watering": { "mode": "keepMoist", "sources": ["S203"] },
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "colocasia",
+      "commonName": "Colocasia (taro)",
+      "localNames": ["Arbi", "Arvi"],
+      "names": { "hi": "अरबी" },
+      "scientificName": "Colocasia esculenta",
+      "category": "vegetable",
+      "lifecycle": "perennial",
+      "sun": { "level": "partial", "minHours": null, "sources": ["S208", "S51"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": { "min": 175, "max": 240, "note": "From planting (TNAU, PAU).", "sources": ["S51", "S48"] },
+      "spacing": { "minCm": 15, "maxCm": 15, "rowCm": 67.5, "note": "15 cm in rows 67.5 cm apart (PAU, field crop).", "sources": ["S48"] },
+      "sowing": [
+        { "region": "northIndia", "months": [2], "source": "S48" },
+        { "region": "tamilNadu", "months": [4, 5, 6], "source": "S51" },
+        { "region": "kerala", "months": [5, 6], "source": "S50" },
+        { "region": "westernMaharashtra", "months": [6, 9, 10], "source": "S179" },
+        { "region": "assam", "months": [4, 5, 6], "source": "S182" }
+      ],
+      "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S51"] },
+      "careNotes": [
+        { "text": "Mulch the soil soon after planting to keep moisture in and weeds down.", "sources": ["S50"] },
+        { "text": "Harvest when most leaves turn yellow; stop watering 3-4 weeks before you dig the corms.", "sources": ["S50"] }
+      ],
+      "watering": { "mode": "keepMoist", "sources": ["S208"] },
+      "petSafety": { "status": "toxic", "note": "ASPCA lists it as toxic to dogs, cats and horses.", "sources": ["S209", "S210"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "dill",
+      "commonName": "Dill",
+      "localNames": ["Suva", "Shepu"],
+      "names": { "hi": "सोआ" },
+      "scientificName": "Anethum graveolens",
+      "category": "herb",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S211", "S212"] },
+      "container": { "status": "verified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": 30, "recommendedDepthCm": null, "minWidthCm": 30, "plantsPerContainer": null, "note": "30 cm deep, 30 cm across (RHS).", "sources": ["S211"] },
+      "daysToHarvest": { "min": 40, "max": 55, "note": "From sowing (RHS, NC State).", "sources": ["S211", "S213"] },
+      "spacing": { "minCm": 20, "maxCm": 20, "rowCm": 30, "note": "20 cm in rows 30 cm apart (RHS).", "sources": ["S211"] },
+      "sowing": [
+        { "region": "northIndia", "months": [10], "source": "S49" }
+      ],
+      "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S211"] },
+      "careNotes": [
+        { "text": "Water during dry spells. In hot, dry weather dill bolts (flowers early) and stops producing leaves, and pots dry out very quickly.", "sources": ["S211"] },
+        { "text": "When picking leaves, take only a few at a time and always leave at least one-third of the plant to keep growing.", "sources": ["S211"] }
+      ],
+      "petSafety": { "status": "nonToxic", "note": "ASPCA lists it as non-toxic to dogs, cats and horses.", "sources": ["S214"] },
+      "dataStatus": "verified"
+    },
+    {
+      "id": "fennel",
+      "commonName": "Fennel",
+      "localNames": ["Saunf"],
+      "names": { "hi": "सौंफ" },
+      "scientificName": "Foeniculum vulgare",
+      "category": "herb",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S215", "S216"] },
+      "container": { "status": "verified", "minVolumeL": 15.1, "recommendedVolumeL": 22.7, "minDepthCm": 20.3, "recommendedDepthCm": 30.5, "minWidthCm": 30, "plantsPerContainer": null, "note": "At least 15.1 L of mix (22.7 L recommended), 20.3 cm deep, 30 cm across (UMD, RHS).", "sources": ["S2", "S215"] },
+      "daysToHarvest": null,
+      "spacing": { "minCm": 30, "maxCm": 30, "note": "30 cm (RHS).", "sources": ["S215"] },
+      "sowing": [
+        { "region": "northIndia", "months": [10, 11], "source": "S49" },
+        { "region": "tamilNadu", "months": [10, 11], "source": "S51" },
+        { "region": "gujarat", "months": [10, 11], "source": "S217" },
+        { "region": "assam", "months": [10, 11], "source": "S182" }
+      ],
+      "propagation": { "method": "transplant", "nurseryDaysMin": 35, "nurseryDaysMax": 42, "sources": ["S218"] },
+      "careNotes": [
+        { "text": "Fennel grows tall, so use a heavy, stable pot in a sheltered spot where it won't blow over.", "sources": ["S215"] },
+        { "text": "If you want leaves rather than seed, cut off the flower stems as they appear so the plant keeps making new leafy growth.", "sources": ["S215"] }
+      ],
+      "watering": { "mode": "keepMoist", "sources": ["S215"] },
+      "petSafety": { "status": "nonToxic", "note": "ASPCA lists it as non-toxic to dogs, cats and horses.", "sources": ["S219"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "indianBorage",
+      "commonName": "Indian borage",
+      "localNames": ["Ajwain patta", "Karpooravalli"],
+      "names": { "hi": "अजवाइन पत्ता" },
+      "scientificName": "Plectranthus amboinicus",
+      "category": "herb",
+      "lifecycle": "perennial",
+      "sun": { "level": "partial", "minHours": null, "sources": ["S220", "S221"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": null,
+      "sowing": [],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S220"] },
+      "careNotes": [
+        { "text": "Use well-drained soil. It needs only occasional watering and very little other care.", "sources": ["S221"] },
+        { "text": "Check for spider mites and mealybugs, which can damage this plant.", "sources": ["S220"] }
+      ],
+      "petSafety": { "status": "toxic", "note": "ASPCA lists it as toxic to dogs, cats and horses.", "sources": ["S222"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "parsley",
+      "commonName": "Parsley",
+      "localNames": [],
+      "names": { "hi": "पार्सले" },
+      "scientificName": "Petroselinum crispum",
+      "category": "herb",
+      "lifecycle": "annual",
+      "sun": { "level": "partial", "minHours": null, "sources": ["S223", "S224"] },
+      "container": { "status": "verified", "minVolumeL": 15.1, "recommendedVolumeL": 22.7, "minDepthCm": 20.3, "recommendedDepthCm": 30.5, "minWidthCm": 25, "plantsPerContainer": null, "note": "At least 15.1 L of mix (22.7 L recommended), 20.3 cm deep, 25 cm across (UMD, RHS).", "sources": ["S2", "S223"] },
+      "daysToHarvest": { "min": 75, "max": 75, "note": "From sowing (NC State).", "sources": ["S213"] },
+      "spacing": { "minCm": 15, "maxCm": 30, "note": "15–30 cm (RHS).", "sources": ["S223"] },
+      "sowing": [],
+      "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S223"] },
+      "careNotes": [
+        { "text": "Parsley seed is slow to come up, often a month or more, so keep the soil moist and be patient.", "sources": ["S223"] },
+        { "text": "In hot, sunny spells, move pots into shade to cut down on watering.", "sources": ["S223"] }
+      ],
+      "watering": { "mode": "keepMoist", "sources": ["S223", "S224"] },
+      "petSafety": { "status": "toxic", "note": "ASPCA lists it as toxic to dogs, cats and horses.", "sources": ["S225"] },
+      "dataStatus": "verified"
+    },
+    {
+      "id": "rosemary",
+      "commonName": "Rosemary",
+      "localNames": [],
+      "names": { "hi": "रोज़मेरी" },
+      "scientificName": "Salvia rosmarinus",
+      "category": "herb",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S226", "S227"] },
+      "container": { "status": "verified", "minVolumeL": 15.1, "recommendedVolumeL": 22.7, "minDepthCm": 20.3, "recommendedDepthCm": 30.5, "minWidthCm": 30, "plantsPerContainer": null, "note": "At least 15.1 L of mix (22.7 L recommended), 20.3 cm deep, 30 cm across (UMD, RHS).", "sources": ["S2", "S227"] },
+      "daysToHarvest": null,
+      "spacing": { "minCm": 45, "maxCm": 45, "note": "45 cm (RHS).", "sources": ["S227"] },
+      "sowing": [],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S227"] },
+      "careNotes": [
+        { "text": "In pots, water during dry spells because the compost dries quickly in hot sun, but never let it become waterlogged. Use a pot with plenty of drainage holes.", "sources": ["S227"] },
+        { "text": "Trim lightly every year after flowering to keep it compact, but don't cut back into old wood.", "sources": ["S227"] }
+      ],
+      "petSafety": { "status": "nonToxic", "note": "ASPCA lists it as non-toxic to dogs, cats and horses.", "sources": ["S228"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "thyme",
+      "commonName": "Thyme",
+      "localNames": [],
+      "names": { "hi": "थाइम" },
+      "scientificName": "Thymus vulgaris",
+      "category": "herb",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S229", "S230"] },
+      "container": { "status": "verified", "minVolumeL": 3.8, "recommendedVolumeL": 11.4, "minDepthCm": 10.2, "recommendedDepthCm": 15.2, "minWidthCm": 15, "plantsPerContainer": null, "note": "At least 3.8 L of mix (11.4 L recommended), 10.2 cm deep, 15 cm across (UMD, RHS).", "sources": ["S2", "S229"] },
+      "daysToHarvest": { "min": 365, "max": 365, "note": "From sowing (RHS).", "sources": ["S229"] },
+      "spacing": { "minCm": 20, "maxCm": 30, "note": "20–30 cm (RHS).", "sources": ["S229"] },
+      "sowing": [],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S230"] },
+      "careNotes": [
+        { "text": "Thyme rarely needs watering except in pots during hot, dry weather. Too much water rots the roots, so use free-draining, gritty compost.", "sources": ["S229"] },
+        { "text": "Trim lightly after flowering to keep plants compact and bushy.", "sources": ["S229"] }
+      ],
+      "petSafety": { "status": "nonToxic", "note": "ASPCA lists it as non-toxic to dogs, cats and horses.", "sources": ["S231"] },
+      "dataStatus": "verified"
+    },
+    {
+      "id": "oregano",
+      "commonName": "Oregano",
+      "localNames": [],
+      "names": { "hi": "ऑरिगैनो" },
+      "scientificName": "Origanum vulgare",
+      "category": "herb",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S232", "S233"] },
+      "container": { "status": "verified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": 15, "recommendedDepthCm": null, "minWidthCm": 15, "plantsPerContainer": 1, "note": "15 cm deep, 15 cm across, 1 plant per container (RHS).", "sources": ["S234"] },
+      "daysToHarvest": null,
+      "spacing": { "minCm": 20, "maxCm": 30, "note": "20–30 cm (RHS).", "sources": ["S234"] },
+      "sowing": [],
+      "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S234"] },
+      "careNotes": [
+        { "text": "Water potted oregano in dry spells, because the compost dries out quickly in hot sun, but never let it become waterlogged.", "sources": ["S234"] },
+        { "text": "Golden or variegated oregano does better with some shade during the hottest part of the day.", "sources": ["S233"] }
+      ],
+      "petSafety": { "status": "toxic", "note": "ASPCA lists it as toxic to dogs, cats and horses.", "sources": ["S235"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "stevia",
+      "commonName": "Stevia",
+      "localNames": [],
+      "names": { "hi": "स्टीविया" },
+      "scientificName": "Stevia rebaudiana",
+      "category": "herb",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S236", "S237"] },
+      "container": { "status": "proxy", "minVolumeL": 3.8, "recommendedVolumeL": 11.4, "minDepthCm": 10.2, "recommendedDepthCm": 15.2, "plantsPerContainer": null, "note": "Figures for small herbs and flowering plants: at least 3.8 L of mix (11.4 L recommended), 10.2 cm deep (UMD).", "sources": ["S2"] },
+      "daysToHarvest": { "min": 90, "max": 110, "note": "From transplanting (ICAR).", "sources": ["S238"] },
+      "spacing": { "minCm": 45, "maxCm": 45, "rowCm": 45, "note": "45 cm in rows 45 cm apart (TNAU, field crop).", "sources": ["S239"] },
+      "sowing": [],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S239"] },
+      "careNotes": [
+        { "text": "Pinch off flower buds as soon as they appear. The leaves are sweetest before the plant flowers.", "sources": ["S237"] },
+        { "text": "When harvesting, cut the stems about 15 cm (6 inches) above the soil so the plant can regrow.", "sources": ["S236"] }
+      ],
+      "watering": { "mode": "keepMoist", "sources": ["S237"] },
+      "petSafety": { "status": "nonToxic", "note": "ASPCA lists it as non-toxic to dogs, cats and horses.", "sources": ["S240"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "betelLeaf",
+      "commonName": "Betel leaf",
+      "localNames": ["Paan"],
+      "names": { "hi": "पान" },
+      "scientificName": "Piper betle",
+      "category": "climber",
+      "lifecycle": "perennial",
+      "sun": { "level": "partial", "minHours": null, "sources": ["S50"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": { "min": 120, "max": 120, "note": "From planting cuttings (KAU).", "sources": ["S50"] },
+      "spacing": { "minCm": 20, "maxCm": 20, "rowCm": 100, "note": "20 cm in rows 100 cm apart (KAU, field crop).", "sources": ["S50"] },
+      "sowing": [
+        { "region": "tamilNadu", "months": [1, 2, 11, 12], "source": "S51" },
+        { "region": "kerala", "months": [5, 6, 8, 9], "source": "S50" },
+        { "region": "westernMaharashtra", "months": [8], "source": "S179" },
+        { "region": "assam", "months": [5, 6, 7, 8], "source": "S182" }
+      ],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S50"] },
+      "careNotes": [
+        { "text": "Shade newly planted cuttings until they establish.", "sources": ["S50"] },
+        { "text": "Give the vine a support and tie it loosely every 15–20 cm as it climbs.", "sources": ["S241"] }
+      ],
+      "watering": { "mode": "keepMoist", "sources": ["S50"] },
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "brahmi",
+      "commonName": "Brahmi",
+      "localNames": [],
+      "names": { "hi": "ब्राह्मी" },
+      "scientificName": "Bacopa monnieri",
+      "category": "herb",
+      "lifecycle": "perennial",
+      "sun": { "level": "partial", "minHours": null, "sources": ["S242"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": { "min": 150, "max": 150, "note": "From planting cuttings (KAU).", "sources": ["S50"] },
+      "spacing": { "minCm": 10, "maxCm": 10, "rowCm": 10, "note": "10 cm in rows 10 cm apart (TNAU, field crop).", "sources": ["S147"] },
+      "sowing": [
+        { "region": "tamilNadu", "months": [7, 8], "source": "S147" }
+      ],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S147"] },
+      "careNotes": [
+        { "text": "To harvest, cut the stems about 4–5 cm above the base and leave the rest to regrow.", "sources": ["S147"] },
+        { "text": "Brahmi suits a hanging basket or trailing over the edge of a pot, and can even grow in shallow water.", "sources": ["S242"] }
+      ],
+      "watering": { "mode": "keepMoist", "sources": ["S50", "S242"] },
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "zinnia",
+      "commonName": "Zinnia",
+      "localNames": [],
+      "names": { "hi": "ज़िनिया" },
+      "scientificName": "Zinnia elegans",
+      "category": "flower",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S243", "S244"] },
+      "container": { "status": "proxy", "minVolumeL": 3.8, "recommendedVolumeL": 11.4, "minDepthCm": 10.2, "recommendedDepthCm": 15.2, "plantsPerContainer": null, "note": "Figures for small flowering annuals (dwarf zinnias; tall ones need more): at least 3.8 L of mix (11.4 L recommended), 10.2 cm deep (UMD).", "sources": ["S2"] },
+      "daysToHarvest": { "min": 56, "max": 84, "note": "From sowing (Clemson).", "sources": ["S243"] },
+      "spacing": { "minCm": 30, "maxCm": 40, "note": "30–40 cm (RHS).", "sources": ["S245"] },
+      "sowing": [
+        { "region": "assam", "months": [3, 4, 10, 11], "source": "S182" }
+      ],
+      "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S246"] },
+      "careNotes": [
+        { "text": "Water at the base of the plant, not over the leaves; wet foliage encourages leaf-spot and fungal disease.", "sources": ["S243"] },
+        { "text": "Remove faded flowers to keep new blooms coming.", "sources": ["S244"] }
+      ],
+      "watering": { "mode": "dryBetween", "sources": ["S243"] },
+      "petSafety": { "status": "nonToxic", "note": "ASPCA lists it as non-toxic to dogs, cats and horses.", "sources": ["S247"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "cosmos",
+      "commonName": "Cosmos",
+      "localNames": [],
+      "names": { "hi": "कॉसमॉस" },
+      "scientificName": "Cosmos bipinnatus",
+      "category": "flower",
+      "lifecycle": "annual",
+      "sun": null,
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": { "min": 60, "max": 90, "note": "From sowing (UF/IFAS).", "sources": ["S248"] },
+      "spacing": { "minCm": 37, "maxCm": 55, "note": "37–55 cm (RHS).", "sources": ["S250"] },
+      "sowing": [],
+      "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S249"] },
+      "careNotes": [
+        { "text": "Don't fertilise cosmos; feeding can stop it from flowering.", "sources": ["S248"] },
+        { "text": "Stems are thin and weak; stake or support taller plants, especially in windy spots.", "sources": ["S248"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "sunflower",
+      "commonName": "Sunflower",
+      "localNames": ["Surajmukhi"],
+      "names": { "hi": "सूरजमुखी" },
+      "scientificName": "Helianthus annuus",
+      "category": "flower",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S251", "S252"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": { "min": 50, "max": 90, "note": "From sowing (UF/IFAS).", "sources": ["S253"] },
+      "spacing": { "minCm": 60, "maxCm": 120, "note": "60–120 cm (RHS).", "sources": ["S250"] },
+      "sowing": [
+        { "region": "northIndia", "months": [1], "source": "S49" }
+      ],
+      "propagation": { "method": "direct", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S252"] },
+      "careNotes": [
+        { "text": "Shelter tall varieties from strong wind; they may need staking.", "sources": ["S252"] },
+        { "text": "Choose dwarf varieties for containers.", "sources": ["S252"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "petunia",
+      "commonName": "Petunia",
+      "localNames": [],
+      "names": { "hi": "पेटूनिया" },
+      "scientificName": "Petunia × atkinsiana",
+      "category": "flower",
+      "lifecycle": "annual",
+      "sun": { "level": "full", "minHours": null, "sources": ["S254", "S255"] },
+      "container": { "status": "proxy", "minVolumeL": 3.8, "recommendedVolumeL": 11.4, "minDepthCm": 10.2, "recommendedDepthCm": 15.2, "plantsPerContainer": null, "note": "Figures for small flowering annuals: at least 3.8 L of mix (11.4 L recommended), 10.2 cm deep (UMD).", "sources": ["S2"] },
+      "daysToHarvest": null,
+      "spacing": { "minCm": 30.5, "maxCm": 45.7, "note": "30.5–45.7 cm (UF/IFAS).", "sources": ["S256"] },
+      "sowing": [
+        { "region": "assam", "months": [3, 4, 10, 11], "source": "S182" }
+      ],
+      "propagation": { "method": "transplant", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S135"] },
+      "careNotes": [
+        { "text": "Pinch off the top 2–3 cm of new plants at planting so they branch well.", "sources": ["S254"] },
+        { "text": "If plants get leggy or stop flowering, cut the shoots back by about half, then feed and water to push new growth.", "sources": ["S254"] }
+      ],
+      "watering": { "mode": "keepMoist", "sources": ["S257"] },
+      "petSafety": { "status": "nonToxic", "note": "ASPCA lists it as non-toxic to dogs, cats and horses.", "sources": ["S258"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "balsam",
+      "commonName": "Balsam",
+      "localNames": ["Gulmehendi"],
+      "names": { "hi": "गुलमेहंदी" },
+      "scientificName": "Impatiens balsamina",
+      "category": "flower",
+      "lifecycle": "annual",
+      "sun": { "level": "partial", "minHours": null, "sources": ["S259", "S260"] },
+      "container": { "status": "proxy", "minVolumeL": 3.8, "recommendedVolumeL": 11.4, "minDepthCm": 10.2, "recommendedDepthCm": 15.2, "plantsPerContainer": null, "note": "Figures for small flowering annuals: at least 3.8 L of mix (11.4 L recommended), 10.2 cm deep (UMD).", "sources": ["S2"] },
+      "daysToHarvest": { "min": 60, "max": 75, "note": "From sowing (AAU).", "sources": ["S182"] },
+      "spacing": { "minCm": 30.5, "maxCm": 35.6, "note": "30.5–35.6 cm (UF/IFAS).", "sources": ["S260"] },
+      "sowing": [
+        { "region": "assam", "months": [4, 5], "source": "S182" }
+      ],
+      "propagation": { "method": "transplant", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S259"] },
+      "careNotes": [
+        { "text": "Pinch back the stems of young plants when they are about 10 cm tall for bushier growth.", "sources": ["S259"] },
+        { "text": "In hot summers give balsam a mostly shaded spot.", "sources": ["S260"] }
+      ],
+      "petSafety": { "status": "nonToxic", "note": "ASPCA lists it as non-toxic to dogs, cats and horses.", "sources": ["S261"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "gerbera",
+      "commonName": "Gerbera",
+      "localNames": [],
+      "names": { "hi": "जरबेरा" },
+      "scientificName": "Gerbera jamesonii",
+      "category": "flower",
+      "lifecycle": "perennial",
+      "sun": { "level": "partial", "minHours": null, "sources": ["S262", "S263"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": { "min": 60, "max": 60, "note": "From planting tissue-culture plants (PAU).", "sources": ["S135"] },
+      "spacing": { "minCm": 30, "maxCm": 30, "note": "30 cm (RHS).", "sources": ["S264"] },
+      "sowing": [
+        { "region": "assam", "months": [9, 10], "source": "S182" }
+      ],
+      "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S265"] },
+      "careNotes": [
+        { "text": "Plant with the crown 1–2 cm above soil level; a buried crown rots.", "sources": ["S135"] },
+        { "text": "Remove spent flowers to keep the plant tidy.", "sources": ["S263"] }
+      ],
+      "petSafety": { "status": "nonToxic", "note": "ASPCA lists it as non-toxic to dogs, cats and horses.", "sources": ["S266"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "dahlia",
+      "commonName": "Dahlia",
+      "localNames": [],
+      "names": { "hi": "डहेलिया" },
+      "scientificName": "Dahlia hybrids",
+      "category": "flower",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S267", "S268"] },
+      "container": { "status": "verified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "minWidthCm": 50, "plantsPerContainer": 1, "note": "50 cm across, 1 plant per container (RHS).", "sources": ["S269"] },
+      "daysToHarvest": { "min": 84, "max": 98, "note": "From sowing (Utah State).", "sources": ["S267"] },
+      "spacing": { "minCm": 60, "maxCm": 60, "note": "60 cm (RHS).", "sources": ["S269"] },
+      "sowing": [
+        { "region": "assam", "months": [9, 10, 11], "source": "S182" }
+      ],
+      "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S267"] },
+      "careNotes": [
+        { "text": "Put a stake in at planting time (except dwarf types); driving one in later can damage the roots.", "sources": ["S267"] },
+        { "text": "Remove spent flowers to encourage more buds.", "sources": ["S268"] }
+      ],
+      "watering": { "mode": "keepMoist", "sources": ["S268", "S267"] },
+      "petSafety": { "status": "toxic", "note": "ASPCA lists it as toxic to dogs, cats and horses.", "sources": ["S270"] },
+      "dataStatus": "verified"
+    },
+    {
+      "id": "tuberose",
+      "commonName": "Tuberose",
+      "localNames": ["Rajnigandha"],
+      "names": { "hi": "रजनीगंधा" },
+      "scientificName": "Polianthes tuberosa",
+      "category": "flower",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": null, "sources": ["S135", "S271"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": null,
+      "spacing": { "minCm": 20, "maxCm": 20, "rowCm": 45, "note": "20 cm in rows 45 cm apart (TNAU, field crop).", "sources": ["S51"] },
+      "sowing": [
+        { "region": "northIndia", "months": [3, 4], "source": "S135" },
+        { "region": "tamilNadu", "months": [6, 7], "source": "S51" },
+        { "region": "kerala", "months": [5, 6, 7], "source": "S50" },
+        { "region": "assam", "months": [3, 4], "source": "S182" }
+      ],
+      "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S135"] },
+      "careNotes": [
+        { "text": "Water well before planting the bulbs, then hold off watering until they sprout.", "sources": ["S51"] },
+        { "text": "When the leaves start to yellow at the end of the season, cut back on watering.", "sources": ["S271"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "crossandra",
+      "commonName": "Crossandra",
+      "localNames": ["Kanakambaram", "Aboli"],
+      "names": { "hi": "अबोली" },
+      "scientificName": "Crossandra infundibuliformis",
+      "category": "flower",
+      "lifecycle": "perennial",
+      "sun": { "level": "partial", "minHours": null, "sources": ["S272", "S273"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": { "min": 30, "max": 90, "note": "From transplanting (TNAU, KAU).", "sources": ["S274", "S50"] },
+      "spacing": { "minCm": 30, "maxCm": 30, "rowCm": 60, "note": "30 cm in rows 60 cm apart (TNAU, field crop).", "sources": ["S51"] },
+      "sowing": [
+        { "region": "tamilNadu", "months": [7, 8, 9, 10], "source": "S274" },
+        { "region": "goa", "months": [7, 8, 9, 10], "source": "S181" }
+      ],
+      "propagation": { "method": "transplant", "nurseryDaysMin": 60, "nurseryDaysMax": 60, "sources": ["S274"] },
+      "careNotes": [
+        { "text": "Pinch off fading flowers to encourage new ones.", "sources": ["S272"] },
+        { "text": "It likes humidity; mist the leaves regularly if growing it indoors.", "sources": ["S272"] }
+      ],
+      "watering": { "mode": "keepMoist", "sources": ["S272"] },
+      "petSafety": { "status": "nonToxic", "note": "ASPCA lists it as non-toxic to dogs, cats and horses.", "sources": ["S275"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "ixora",
+      "commonName": "Ixora",
+      "localNames": [],
+      "names": { "hi": "इक्सोरा" },
+      "scientificName": "Ixora coccinea",
+      "category": "flower",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": 6, "sources": ["S276", "S277"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": null,
+      "sowing": [],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S276"] },
+      "careNotes": [
+        { "text": "Prune lightly; heavy pruning or shearing reduces flowering.", "sources": ["S277"] },
+        { "text": "Use an acidic potting mix; in alkaline soil the new leaves turn yellow (chlorosis).", "sources": ["S277"] }
+      ],
+      "petSafety": { "status": "nonToxic", "note": "ASPCA lists it as non-toxic to dogs, cats and horses.", "sources": ["S278"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "plumeria",
+      "commonName": "Plumeria (frangipani)",
+      "localNames": ["Champa"],
+      "names": { "hi": "चंपा" },
+      "scientificName": "Plumeria rubra",
+      "category": "flower",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": null, "sources": ["S279", "S280"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": null,
+      "sowing": [],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S281"] },
+      "careNotes": [
+        { "text": "Let a fresh cutting dry and callus for about 10 days before potting it in a well-drained mix.", "sources": ["S279"] },
+        { "text": "Avoid high-nitrogen fertiliser; it gives leggy plants with few flowers.", "sources": ["S279"] }
+      ],
+      "watering": { "mode": "dryBetween", "sources": ["S279"] },
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "croton",
+      "commonName": "Croton",
+      "localNames": [],
+      "names": { "hi": "क्रोटन" },
+      "scientificName": "Codiaeum variegatum",
+      "category": "ornamental",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": null, "sources": ["S282", "S283"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": null,
+      "spacing": { "minCm": 61, "maxCm": 91.4, "note": "61–91.4 cm (UF/IFAS).", "sources": ["S283"] },
+      "sowing": [],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S283"] },
+      "careNotes": [
+        { "text": "New leaves wilt when the plant is thirsty, so use that as your cue to water; water often but not excessively.", "sources": ["S283"] },
+        { "text": "The sap from cut leaves or stems can irritate skin and eyes and stains fabric; wash your hands after handling.", "sources": ["S282"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "bostonFern",
+      "commonName": "Boston fern",
+      "localNames": [],
+      "names": { "hi": "बोस्टन फ़र्न" },
+      "scientificName": "Nephrolepis exaltata",
+      "category": "ornamental",
+      "lifecycle": "perennial",
+      "sun": { "level": "indirect", "minHours": null, "sources": ["S284", "S285"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": null,
+      "spacing": { "minCm": 30, "maxCm": 30, "rowCm": 30, "note": "30 cm in rows 30 cm apart (PAU, field crop).", "sources": ["S135"] },
+      "sowing": [],
+      "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S286"] },
+      "careNotes": [
+        { "text": "It likes high humidity: stand the pot on a tray of wet pebbles; dry air invites scale and spider mites.", "sources": ["S284"] },
+        { "text": "If the soil dries out and the fronds shed, cut all fronds back to about 5 cm and the plant will regrow.", "sources": ["S285"] }
+      ],
+      "watering": { "mode": "keepMoist", "sources": ["S284", "S285"] },
+      "petSafety": { "status": "nonToxic", "note": "ASPCA lists it as non-toxic to dogs and cats.", "sources": ["S287"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "anthurium",
+      "commonName": "Anthurium",
+      "localNames": [],
+      "names": { "hi": "एंथूरियम" },
+      "scientificName": "Anthurium andraeanum",
+      "category": "ornamental",
+      "lifecycle": "perennial",
+      "sun": { "level": "indirect", "minHours": null, "sources": ["S288", "S289"] },
+      "container": { "status": "verified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "minWidthCm": 30, "plantsPerContainer": 1, "note": "30 cm across, 1 plant per container (KAU).", "sources": ["S50"] },
+      "daysToHarvest": null,
+      "spacing": { "minCm": 45, "maxCm": 60, "note": "45–60 cm (KAU, field crop).", "sources": ["S50"] },
+      "sowing": [],
+      "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S290"] },
+      "careNotes": [
+        { "text": "Keep it humid: stand an indoor anthurium on a tray of moist gravel.", "sources": ["S289"] },
+        { "text": "Overwatering causes root rot; yellowing leaves can mean too much water or poor drainage.", "sources": ["S288"] }
+      ],
+      "watering": { "mode": "dryBetween", "sources": ["S288"] },
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "aglaonema",
+      "commonName": "Aglaonema",
+      "localNames": [],
+      "names": { "hi": "एग्लोनिमा" },
+      "scientificName": "Aglaonema spp.",
+      "category": "ornamental",
+      "lifecycle": "perennial",
+      "sun": { "level": "indirect", "minHours": null, "sources": ["S291", "S292"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": null,
+      "sowing": [],
+      "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S293"] },
+      "careNotes": [
+        { "text": "It needs little water; overwatering leads to root rot, so let the top of the mix dry first.", "sources": ["S291"] },
+        { "text": "Keep it out of draughts and very dry air, which turn the leaves brown.", "sources": ["S291"] }
+      ],
+      "watering": { "mode": "dryBetween", "sources": ["S293", "S292"] },
+      "petSafety": { "status": "toxic", "note": "ASPCA lists it as toxic to dogs, cats and horses.", "sources": ["S294"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "kalanchoe",
+      "commonName": "Kalanchoe",
+      "localNames": [],
+      "names": { "hi": "कलानचो" },
+      "scientificName": "Kalanchoe blossfeldiana",
+      "category": "ornamental",
+      "lifecycle": "perennial",
+      "sun": null,
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": null,
+      "sowing": [],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S296"] },
+      "careNotes": [
+        { "text": "Remove spent flowers to encourage more blooms.", "sources": ["S295"] },
+        { "text": "To rebloom it needs about six weeks of long nights (14 hours of darkness); keep it away from lights at night.", "sources": ["S295"] }
+      ],
+      "watering": { "mode": "dryBetween", "sources": ["S295", "S296"] },
+      "petSafety": { "status": "toxic", "note": "ASPCA lists it as toxic to dogs and cats.", "sources": ["S297"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "coleus",
+      "commonName": "Coleus",
+      "localNames": [],
+      "names": { "hi": "कोलियस" },
+      "scientificName": "Coleus scutellarioides",
+      "category": "ornamental",
+      "lifecycle": "annual",
+      "sun": { "level": "partial", "minHours": null, "sources": ["S298", "S299"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": null,
+      "sowing": [],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S300"] },
+      "careNotes": [
+        { "text": "Pinch off flower spikes; if left to set seed the plant declines.", "sources": ["S299"] },
+        { "text": "Coleus in pots dries out faster than in beds, so check and water containers often.", "sources": ["S299"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "philodendron",
+      "commonName": "Heartleaf philodendron",
+      "localNames": [],
+      "names": { "hi": "फ़िलोडेंड्रॉन" },
+      "scientificName": "Philodendron hederaceum",
+      "category": "ornamental",
+      "lifecycle": "perennial",
+      "sun": { "level": "indirect", "minHours": null, "sources": ["S301", "S302"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": null,
+      "sowing": [],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S302"] },
+      "careNotes": [
+        { "text": "Yellow lower leaves and dying tips usually mean too little light or too much water.", "sources": ["S302"] },
+        { "text": "It climbs if given support, such as a moss- or bark-covered pole, or trails from a hanging basket.", "sources": ["S302"] }
+      ],
+      "watering": { "mode": "keepMoist", "sources": ["S302", "S301"] },
+      "petSafety": { "status": "toxic", "note": "ASPCA lists it as toxic to dogs, cats and horses.", "sources": ["S303"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "rhapisPalm",
+      "commonName": "Lady palm",
+      "localNames": [],
+      "names": { "hi": "लेडी पाम" },
+      "scientificName": "Rhapis excelsa",
+      "category": "ornamental",
+      "lifecycle": "perennial",
+      "sun": null,
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": null,
+      "sowing": [],
+      "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S304"] },
+      "careNotes": [
+        { "text": "Keep it out of full sun, which can burn the leaves; dappled light or bright indirect light suits it.", "sources": ["S305"] },
+        { "text": "Check regularly for mites, mealybugs and scale, especially on plants kept indoors.", "sources": ["S304"] }
+      ],
+      "watering": { "mode": "keepMoist", "sources": ["S305"] },
+      "petSafety": { "status": "nonToxic", "note": "ASPCA lists it as non-toxic to dogs and cats.", "sources": ["S306", "S307"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "lemon",
+      "commonName": "Lemon",
+      "localNames": [],
+      "names": { "hi": "नींबू (लेमन)" },
+      "scientificName": "Citrus limon",
+      "category": "fruit",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": null, "sources": ["S95", "S97"] },
+      "container": { "status": "proxy", "minVolumeL": 56.8, "recommendedVolumeL": null, "minDepthCm": 40.6, "recommendedDepthCm": null, "minWidthCm": 43.2, "plantsPerContainer": 1, "note": "Figures for potted citrus in general (the lemon named is Meyer lemon): at least 56.8 L of mix, 40.6 cm deep, 43.2 cm across, 1 plant per container (UC ANR).", "sources": ["S95"] },
+      "daysToHarvest": { "min": 548, "max": 730, "note": "From planting (layers) (TNAU).", "sources": ["S51"] },
+      "sowing": [
+        { "region": "assam", "months": [5, 6, 7, 8], "source": "S182" }
+      ],
+      "propagation": { "method": "layering", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S51"] },
+      "careNotes": [
+        { "text": "Potted citrus dries out fast: in hot weather it may need water every day. Check the soil 15-20 cm down by squeezing a handful; water only when it crumbles.", "sources": ["S95"] },
+        { "text": "Don't overwater in the cool season, and never leave the pot standing in water; this rots the roots.", "sources": ["S97"] }
+      ],
+      "watering": { "mode": "keepMoist", "sources": ["S97"] },
+      "petSafety": { "status": "toxic", "note": "ASPCA lists it as toxic to dogs, cats and horses.", "sources": ["S308"] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "sapota",
+      "commonName": "Sapota",
+      "localNames": ["Chikoo"],
+      "names": { "hi": "चीकू" },
+      "scientificName": "Manilkara zapota",
+      "category": "fruit",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": null, "sources": ["S309"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": { "min": 730, "max": 1460, "note": "From planting grafts (KAU, UF/IFAS).", "sources": ["S50", "S309"] },
+      "sowing": [
+        { "region": "northIndia", "months": [2, 3, 9, 10], "source": "S96" },
+        { "region": "tamilNadu", "months": [6, 7, 8, 9, 10, 11, 12], "source": "S51" },
+        { "region": "kerala", "months": [5, 6], "source": "S50" },
+        { "region": "goa", "months": [6], "source": "S181" }
+      ],
+      "propagation": { "method": "grafting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S310"] },
+      "careNotes": [
+        { "text": "Rub off shoots that sprout from the rootstock below the graft, and remove water shoots and crossing branches.", "sources": ["S310"] },
+        { "text": "A single tree may fruit poorly: some varieties need pollen from another sapota variety.", "sources": ["S309"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "mango",
+      "commonName": "Mango",
+      "localNames": ["Aam"],
+      "names": { "hi": "आम" },
+      "scientificName": "Mangifera indica",
+      "category": "fruit",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": null, "sources": ["S311"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": null,
+      "sowing": [
+        { "region": "northIndia", "months": [2, 3, 8, 9, 10], "source": "S96" },
+        { "region": "tamilNadu", "months": [7, 8, 9, 10, 11, 12], "source": "S51" },
+        { "region": "goa", "months": [6], "source": "S181" }
+      ],
+      "propagation": { "method": "grafting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S312"] },
+      "careNotes": [
+        { "text": "On a young grafted mango, pinch off flower clusters as they appear for the first three years so the plant builds its frame first.", "sources": ["S312"] },
+        { "text": "Mango responds well to pruning: prune selectively every year, cutting out strong upright shoots and encouraging sideways growth, to keep the tree small.", "sources": ["S313"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "amla",
+      "commonName": "Amla",
+      "localNames": ["Indian gooseberry"],
+      "names": { "hi": "आंवला" },
+      "scientificName": "Phyllanthus emblica",
+      "category": "fruit",
+      "lifecycle": "perennial",
+      "sun": null,
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": { "min": 1095, "max": 1460, "note": "From planting grafts (KAU).", "sources": ["S50"] },
+      "sowing": [
+        { "region": "northIndia", "months": [2, 3, 8, 9], "source": "S96" },
+        { "region": "tamilNadu", "months": [7, 8], "source": "S51" },
+        { "region": "goa", "months": [6], "source": "S181" }
+      ],
+      "propagation": { "method": "grafting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S314"] },
+      "careNotes": [
+        { "text": "Plant two different amla varieties together for a good crop.", "sources": ["S96"] },
+        { "text": "In March-April, prune and thin out crowded branches to open up more fruiting wood.", "sources": ["S314"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "capeGooseberry",
+      "commonName": "Cape gooseberry",
+      "localNames": ["Rasbhari"],
+      "names": { "hi": "रसभरी" },
+      "scientificName": "Physalis peruviana",
+      "category": "fruit",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": null, "sources": ["S315", "S316"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": null,
+      "sowing": [],
+      "propagation": { "method": "transplant", "nurseryDaysMin": 45, "nurseryDaysMax": 45, "sources": ["S317"] },
+      "careNotes": [
+        { "text": "Don't let the soil dry out while it flowers: dry plants may drop their blossoms. A mulch helps hold moisture.", "sources": ["S316"] },
+        { "text": "The plant sprawls and is easily damaged by wind, so tie the main stems to a stake or wire.", "sources": ["S318"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "passionFruit",
+      "commonName": "Passion fruit",
+      "localNames": [],
+      "names": { "hi": "पैशन फ्रूट" },
+      "scientificName": "Passiflora edulis",
+      "category": "fruit",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": null, "sources": ["S319"] },
+      "container": { "status": "unverified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": null, "note": null, "sources": [] },
+      "daysToHarvest": null,
+      "sowing": [],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S51"] },
+      "careNotes": [
+        { "text": "Train the vine onto a trellis or pandal.", "sources": ["S51"] },
+        { "text": "In the cool season, when the vine isn't actively growing, cut out dead and weak stems back to vigorous ones, using disinfected tools.", "sources": ["S319"] }
+      ],
+      "watering": { "mode": "keepMoist", "sources": ["S319"] },
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "grape",
+      "commonName": "Grape",
+      "localNames": ["Angoor"],
+      "names": { "hi": "अंगूर" },
+      "scientificName": "Vitis vinifera",
+      "category": "fruit",
+      "lifecycle": "perennial",
+      "sun": { "level": "full", "minHours": null, "sources": ["S320", "S96"] },
+      "container": { "status": "verified", "minVolumeL": null, "recommendedVolumeL": null, "minDepthCm": 30, "recommendedDepthCm": null, "minWidthCm": 30, "plantsPerContainer": 1, "note": "30 cm deep, 30 cm across, 1 plant per container (RHS).", "sources": ["S320"] },
+      "daysToHarvest": null,
+      "sowing": [
+        { "region": "northIndia", "months": [1, 2], "source": "S96" },
+        { "region": "tamilNadu", "months": [1, 2, 6, 7], "source": "S51" },
+        { "region": "westernMaharashtra", "months": [1, 6, 7, 12], "source": "S179" }
+      ],
+      "propagation": { "method": "cutting", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S321"] },
+      "careNotes": [
+        { "text": "For the first two years after planting, remove all the flowers so the vine can establish. In year three, let only about three bunches develop.", "sources": ["S320"] },
+        { "text": "A vine in a container needs regular watering through the growing season.", "sources": ["S320"] }
+      ],
+      "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
+      "dataStatus": "partial"
+    },
+    {
+      "id": "pineapple",
+      "commonName": "Pineapple",
+      "localNames": ["Ananas"],
+      "names": { "hi": "अनानास" },
+      "scientificName": "Ananas comosus",
+      "category": "fruit",
+      "lifecycle": "perennial",
+      "sun": null,
+      "container": { "status": "verified", "minVolumeL": 11.4, "recommendedVolumeL": 26.5, "minDepthCm": null, "recommendedDepthCm": null, "plantsPerContainer": 1, "note": "At least 11.4 L of mix (26.5 L recommended), 1 plant per container (UF/IFAS).", "sources": ["S322"] },
+      "daysToHarvest": { "min": 548, "max": 973, "note": "From planting (UF/IFAS).", "sources": ["S322", "S324"] },
+      "sowing": [
+        { "region": "tamilNadu", "months": [7, 8, 9], "source": "S51" },
+        { "region": "kerala", "months": [5, 6], "source": "S50" },
+        { "region": "goa", "months": [6], "source": "S181" },
+        { "region": "assam", "months": [4, 5, 6, 7, 8, 9, 10], "source": "S182" }
+      ],
+      "propagation": { "method": "division", "nurseryDaysMin": null, "nurseryDaysMax": null, "sources": ["S323"] },
+      "careNotes": [
+        { "text": "When the plant flowers and fruits, tie the fruit stalk to a stake so it doesn't topple.", "sources": ["S322"] },
+        { "text": "Avoid frequent watering on a timer: too much water, too often, rots the roots.", "sources": ["S322"] }
       ],
       "petSafety": { "status": "notAssessed", "note": null, "sources": [] },
       "dataStatus": "partial"

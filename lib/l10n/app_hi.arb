@@ -767,5 +767,6 @@
   "seasonsAddCity": "मेरा शहर जोड़ें",
   "plantSourcesAndMore": "{names} और {count} अन्य",
   "sowingYourRegion": "आपका बगीचा · {region}",
-  "sowingOtherRegions": "{count, plural, =1{1 और क्षेत्र} other{{count} और क्षेत्र}}"
+  "sowingOtherRegions": "{count, plural, =1{1 और क्षेत्र} other{{count} और क्षेत्र}}",
+  "seasonsMore": "{count} और"
 }

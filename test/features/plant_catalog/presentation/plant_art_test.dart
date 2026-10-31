@@ -27,7 +27,8 @@ void main() {
 
   test('only a short, deliberate list of species has no trait', () {
     // Species without a trait rely on colour alone; keep that list short
-    // and deliberate (one plain example per form).
+    // and deliberate (a plain example per form, plus close look-alikes:
+    // turnip beside radish, heartleaf philodendron beside money plant).
     final plain = [
       for (final id in ids)
         if (PlantArtSpec.of(id).trait == ArtTrait.none) id,
@@ -44,6 +45,8 @@ void main() {
         'aloeVera',
         'moneyPlant',
         'sweetPotato',
+        'turnip',
+        'philodendron',
       ]),
     );
   });

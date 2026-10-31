@@ -81,7 +81,25 @@ enum ArtTrait {
   arrowhead,
   tendril,
   longPods,
-  vineFlowers;
+  vineFlowers,
+
+  // Added with the catalogue's second wave (ADR-035).
+  knob,
+  gourdSnake,
+  gourdAsh,
+  gourdIvy,
+  corn,
+  elephantEar,
+  woodyHerb,
+  caneHearts,
+  creeping,
+  scalloped,
+  sunflower,
+  floretBall,
+  fanPalm,
+  lantern,
+  grapeBunch,
+  pineapple;
 
   bool get isFruit =>
       index >= fruitLong.index && index <= fruitBerryCluster.index;
@@ -111,6 +129,16 @@ enum ArtTrait {
     tree,
     bigLeaf,
     arrowhead,
+    corn,
+    elephantEar,
+    woodyHerb,
+    caneHearts,
+    creeping,
+    scalloped,
+    sunflower,
+    fanPalm,
+    grapeBunch,
+    pineapple,
   }.contains(this);
 }
 
@@ -348,6 +376,20 @@ void _bloom(
         offsetDeg: 30,
       );
       canvas.drawCircle(centre, r * .14, _fill(const Color(0xFFF6F2E8)));
+    case ArtTrait.floretBall:
+      for (var i = 0; i < 8; i++) {
+        final a = _rad(i * 45.0);
+        _petals(
+          canvas,
+          centre + Offset(math.cos(a), math.sin(a)) * r * .6,
+          4,
+          r * .38,
+          r * .2,
+          i.isEven ? color : _darker(color, .1),
+          offsetDeg: 45,
+        );
+      }
+      _petals(canvas, centre, 4, r * .38, r * .2, color, offsetDeg: 45);
     case _:
       _flower(canvas, centre, r, color);
   }
@@ -917,7 +959,10 @@ void _topTrait(Canvas canvas, double r, PlantArtSpec s) {
         ArtTrait.gourdWarty ||
         ArtTrait.gourdRidged ||
         ArtTrait.gourdLong ||
-        ArtTrait.gourdCucumber:
+        ArtTrait.gourdCucumber ||
+        ArtTrait.gourdSnake ||
+        ArtTrait.gourdAsh ||
+        ArtTrait.gourdIvy:
       _at(canvas, Offset(r * .1, r * .42), _rad(-15), () {
         _gourd(canvas, s.trait, r * .9, horizontal: true);
       });
@@ -1027,6 +1072,223 @@ void _topTrait(Canvas canvas, double r, PlantArtSpec s) {
       for (final (dx, dy) in const [(.4, -.1), (-.35, .35), (-.1, -.45)]) {
         _peaFlower(canvas, Offset(dx * r, dy * r), r * .13, flower);
       }
+    // --- Second wave (ADR-035) ---------------------------------------------
+    case ArtTrait.knob:
+      final stalk = _line(s.leafLight, math.max(1, r * .04));
+      for (var i = 0; i < 6; i++) {
+        final a = _rad(i * 60.0 + 20);
+        canvas.drawLine(
+          Offset.zero,
+          Offset(math.cos(a), math.sin(a)) * r * .5,
+          stalk,
+        );
+      }
+      canvas
+        ..drawCircle(Offset.zero, r * .34, _fill(_lighter(s.leafLight, .25)))
+        ..drawCircle(
+          Offset(-r * .1, -r * .1),
+          r * .1,
+          _fill(Colors.white.withValues(alpha: .3)),
+        );
+    case ArtTrait.corn:
+      for (var i = 0; i < 8; i++) {
+        final a = _rad(i * 45.0 + 10);
+        _leaf(
+          canvas,
+          Offset.zero,
+          a,
+          r * .98,
+          r * .14,
+          i.isEven ? s.leafMid : s.leafDark,
+        );
+        _at(canvas, Offset.zero, a, () {
+          canvas.drawLine(
+            Offset(r * .05, 0),
+            Offset(r * .9, 0),
+            _line(s.leafLight, math.max(.8, r * .025)),
+          );
+        });
+      }
+      _petals(canvas, Offset.zero, 6, r * .3, r * .05, const Color(0xFFD9B95A));
+    case ArtTrait.elephantEar:
+      for (var i = 0; i < 6; i++) {
+        final a = _rad(i * 60.0 + 30);
+        final c = Offset(math.cos(a), math.sin(a)) * r * .45;
+        _at(canvas, c, a + math.pi / 2, () {
+          _heart(
+            canvas,
+            Offset.zero,
+            r * .62,
+            i.isEven ? s.leafMid : s.leafDark,
+          );
+          canvas.drawLine(
+            Offset(0, -r * .12),
+            Offset(0, r * .28),
+            _line(s.leafLight, math.max(.8, r * .025)),
+          );
+        });
+      }
+      canvas.drawCircle(Offset.zero, r * .08, _fill(s.leafLight));
+    case ArtTrait.woodyHerb:
+      final wood = _line(const Color(0xFF7A6A4E), math.max(1, r * .03));
+      for (var i = 0; i < 7; i++) {
+        final a = _rad(i * 360 / 7 + 8);
+        _at(canvas, Offset.zero, a, () {
+          canvas.drawLine(Offset.zero, Offset(r * .9, 0), wood);
+          final needle = _line(
+            i.isEven ? s.leafMid : s.leafDark,
+            math.max(1, r * .04),
+          );
+          for (var j = 1; j < 9; j++) {
+            final x = r * j * .1;
+            canvas
+              ..drawLine(Offset(x, 0), Offset(x + r * .04, -r * .09), needle)
+              ..drawLine(Offset(x, 0), Offset(x + r * .04, r * .09), needle);
+          }
+        });
+      }
+      if (s.accent case final c?) {
+        for (final (dx, dy) in const [
+          (.4, -.2),
+          (-.3, .35),
+          (-.2, -.45),
+          (.25, .45),
+        ]) {
+          canvas.drawCircle(Offset(dx * r, dy * r), r * .05, _fill(c));
+        }
+      }
+    case ArtTrait.caneHearts:
+      for (var i = 0; i < 7; i++) {
+        final a = _rad(i * 360 / 7);
+        _heart(
+          canvas,
+          Offset(math.cos(a), math.sin(a)) * r * .45,
+          r * .6,
+          i.isEven ? s.leafMid : s.leafDark,
+        );
+      }
+      canvas.drawCircle(Offset.zero, r * .1, _fill(const Color(0xFFB59A6A)));
+    case ArtTrait.creeping:
+      final rnd = math.Random(13);
+      for (var i = 0; i < 5; i++) {
+        final a = _rad(i * 72.0);
+        _at(canvas, Offset.zero, a, () {
+          canvas.drawLine(
+            Offset.zero,
+            Offset(r * .9, 0),
+            _line(s.leafDark, math.max(.8, r * .02)),
+          );
+          for (var j = 1; j < 7; j++) {
+            final x = r * j * .14;
+            for (final side in const [-1.0, 1.0]) {
+              _at(canvas, Offset(x, side * r * .07), 0, () {
+                _ellipse(
+                  canvas,
+                  r * .12,
+                  r * .09,
+                  j.isEven ? s.leafMid : s.leafLight,
+                );
+              });
+            }
+          }
+        });
+      }
+      for (var i = 0; i < 6; i++) {
+        final a = rnd.nextDouble() * math.pi * 2;
+        _petals(
+          canvas,
+          Offset(math.cos(a), math.sin(a)) * r * (.3 + rnd.nextDouble() * .5),
+          5,
+          r * .06,
+          r * .04,
+          s.accent ?? const Color(0xFFF7F5EE),
+        );
+      }
+    case ArtTrait.scalloped:
+      for (var i = 0; i < 8; i++) {
+        final a = _rad(i * 45.0 + 10);
+        final c = Offset(math.cos(a), math.sin(a)) * r * (i.isEven ? .55 : .4);
+        _scallopLeaf(canvas, c, r * .26, s, i.isEven);
+      }
+      _scallopLeaf(canvas, Offset.zero, r * .22, s, true);
+    case ArtTrait.sunflower:
+      for (var i = 0; i < 6; i++) {
+        _leaf(canvas, Offset.zero, _rad(i * 60.0), r * .95, r * .34, s.leafMid);
+      }
+      final c = s.accent ?? const Color(0xFFF2C230);
+      _petals(canvas, Offset.zero, 20, r * .62, r * .12, c);
+      canvas
+        ..drawCircle(Offset.zero, r * .32, _fill(const Color(0xFF5A3A1E)))
+        ..drawCircle(Offset.zero, r * .2, _fill(const Color(0xFF6E4A26)));
+    case ArtTrait.fanPalm:
+      for (var i = 0; i < 6; i++) {
+        final a = _rad(i * 60.0 + 15);
+        final tip = Offset(math.cos(a), math.sin(a)) * r * .5;
+        canvas.drawLine(
+          Offset.zero,
+          tip,
+          _line(s.leafLight, math.max(.8, r * .02)),
+        );
+        _at(canvas, tip, a, () {
+          for (var j = -3; j <= 3; j++) {
+            _leaf(
+              canvas,
+              Offset.zero,
+              _rad(j * 18.0),
+              r * .42,
+              r * .06,
+              j.isEven ? s.leafMid : s.leafDark,
+            );
+          }
+        });
+      }
+    case ArtTrait.lantern:
+      for (final (dx, dy, a) in const [
+        (.32, -.2, 30.0),
+        (-.3, .3, 160.0),
+        (.2, .38, 80.0),
+      ]) {
+        _at(canvas, Offset(dx * r, dy * r), _rad(a), () {
+          canvas
+            ..drawPath(leafPath(r * .34, r * .2), _fill(accent))
+            ..drawLine(
+              Offset(r * .03, 0),
+              Offset(r * .3, 0),
+              _line(_darker(accent, .2), math.max(.6, r * .02)),
+            );
+        });
+      }
+      canvas.drawCircle(
+        Offset(r * .05, -r * .02),
+        r * .06,
+        _fill(const Color(0xFFF29A1A)),
+      );
+    case ArtTrait.grapeBunch:
+      for (var i = 0; i < 5; i++) {
+        final a = _rad(i * 72.0);
+        _grapeLeaf(
+          canvas,
+          Offset(math.cos(a), math.sin(a)) * r * .42,
+          r * .5,
+          i.isEven ? s.leafMid : s.leafDark,
+        );
+      }
+      for (final (dx, dy) in const [(.25, .2), (-.3, -.15)]) {
+        _bunch(canvas, Offset(dx * r, dy * r), r * .06, accent);
+      }
+    case ArtTrait.pineapple:
+      for (var i = 0; i < 14; i++) {
+        _leaf(
+          canvas,
+          Offset.zero,
+          _rad(i * 360 / 14),
+          r * .95,
+          r * .09,
+          i.isEven ? s.leafMid : s.leafDark,
+        );
+      }
+      canvas.drawCircle(Offset.zero, r * .26, _fill(accent));
+      _petals(canvas, Offset.zero, 8, r * .3, r * .06, s.leafDark);
     case _:
       break;
   }
@@ -1135,6 +1397,9 @@ const Map<ArtTrait, Color> _gourdColors = {
   ArtTrait.gourdRidged: Color(0xFF6E9A4A),
   ArtTrait.gourdLong: Color(0xFF86B35E),
   ArtTrait.gourdCucumber: Color(0xFF3E7A34),
+  ArtTrait.gourdSnake: Color(0xFFB5D08A),
+  ArtTrait.gourdAsh: Color(0xFF9DB89A),
+  ArtTrait.gourdIvy: Color(0xFF4E8A3A),
 };
 
 /// A gourd hanging down (or lying along +x when [horizontal]), [length]
@@ -1175,6 +1440,49 @@ void _gourd(
           l * .015 + .4,
           _fill(_lighter(color, .5)),
         );
+      }
+    case ArtTrait.gourdSnake:
+      // Very long, thin and curling.
+      canvas.drawPath(
+        Path()
+          ..moveTo(0, 0)
+          ..cubicTo(l * .2, l * .5, -l * .2, l * .9, l * .06, l * 1.0),
+        _line(color, l * .09),
+      );
+      final stripe = _line(_lighter(color, .45), math.max(.6, l * .015));
+      canvas.drawPath(
+        Path()
+          ..moveTo(0, l * .05)
+          ..cubicTo(l * .2, l * .5, -l * .2, l * .9, l * .06, l * .96),
+        stripe,
+      );
+    case ArtTrait.gourdAsh:
+      // A large waxy oval with a pale bloom.
+      canvas.drawOval(
+        Rect.fromLTWH(-l * .26, l * .05, l * .52, l * .8),
+        _fill(color),
+      );
+      for (var i = 0; i < 7; i++) {
+        canvas.drawCircle(
+          Offset((i % 3 - 1) * l * .12, l * (.2 + (i ~/ 3) * .22)),
+          l * .03 + .5,
+          _fill(_lighter(color, .6)),
+        );
+      }
+    case ArtTrait.gourdIvy:
+      // Small striped fruits in a cluster.
+      for (final (dx, dy) in const [(-.1, 0.0), (.12, .08), (0.0, .3)]) {
+        final c = Offset(dx * l, dy * l + l * .15);
+        canvas
+          ..drawOval(
+            Rect.fromCenter(center: c, width: l * .22, height: l * .4),
+            _fill(color),
+          )
+          ..drawLine(
+            c - Offset(0, l * .12),
+            c + Offset(0, l * .12),
+            _line(_lighter(color, .6), math.max(.6, l * .02)),
+          );
       }
     case _:
       final w = t == ArtTrait.gourdLong ? l * .16 : l * .2;
@@ -1861,7 +2169,10 @@ void _sideTrait(Canvas canvas, PlantArtSpec s) {
         ArtTrait.gourdWarty ||
         ArtTrait.gourdRidged ||
         ArtTrait.gourdLong ||
-        ArtTrait.gourdCucumber:
+        ArtTrait.gourdCucumber ||
+        ArtTrait.gourdSnake ||
+        ArtTrait.gourdAsh ||
+        ArtTrait.gourdIvy:
       final curl = _line(s.leafLight, 1.2);
       canvas.drawArc(
         Rect.fromCircle(center: const Offset(44, 24), radius: 4),
@@ -2001,6 +2312,272 @@ void _sideTrait(Canvas canvas, PlantArtSpec s) {
       for (final o in const [Offset(64, 22), Offset(44, 40), Offset(78, 36)]) {
         _peaFlower(canvas, o, 4.5, flower);
       }
+    // --- Second wave (ADR-035) ---------------------------------------------
+    case ArtTrait.knob:
+      canvas
+        ..drawCircle(
+          const Offset(60, 70),
+          12,
+          _fill(_lighter(s.leafLight, .25)),
+        )
+        ..drawCircle(
+          const Offset(56, 66),
+          3.5,
+          _fill(Colors.white.withValues(alpha: .3)),
+        );
+      final stalk = _line(s.leafLight, 1.4);
+      for (final o in const [
+        Offset(48, 66),
+        Offset(72, 66),
+        Offset(54, 60),
+        Offset(66, 60),
+      ]) {
+        canvas.drawLine(o, o + Offset((o.dx - 60) * .5, -12), stalk);
+      }
+    case ArtTrait.corn:
+      canvas.drawLine(
+        const Offset(60, 82),
+        const Offset(60, 10),
+        _line(s.leafLight, 4),
+      );
+      for (final (y, a) in const [
+        (70.0, -160.0),
+        (60.0, -20.0),
+        (48.0, -150.0),
+        (38.0, -30.0),
+        (28.0, -140.0),
+      ]) {
+        _leaf(canvas, Offset(60, y), _rad(a), 30, 5, s.leafMid);
+      }
+      canvas
+        ..drawOval(
+          Rect.fromCenter(center: const Offset(67, 48), width: 8, height: 18),
+          _fill(const Color(0xFFF2D24B)),
+        )
+        ..drawPath(
+          Path()
+            ..moveTo(62, 58)
+            ..quadraticBezierTo(60, 46, 66, 38)
+            ..quadraticBezierTo(64, 50, 70, 58)
+            ..close(),
+          _fill(s.leafLight),
+        )
+        ..drawLine(
+          const Offset(67, 39),
+          const Offset(70, 33),
+          _line(const Color(0xFFB5763A), 1.4),
+        );
+      _petals(canvas, const Offset(60, 10), 5, 8, 1.6, const Color(0xFFD9B95A));
+    case ArtTrait.elephantEar:
+      for (final (x, y, c) in [
+        (36.0, 40.0, s.leafDark),
+        (84.0, 38.0, s.leafDark),
+        (52.0, 26.0, s.leafMid),
+        (70.0, 24.0, s.leafMid),
+      ]) {
+        canvas.drawLine(
+          Offset(60 + (x - 60) * .15, 80),
+          Offset(x, y - 4),
+          _line(s.leafLight, 2),
+        );
+        _at(canvas, Offset(x, y), math.pi, () {
+          _heart(canvas, Offset.zero, 24, c);
+        });
+      }
+    case ArtTrait.woodyHerb:
+      final wood = _line(const Color(0xFF7A6A4E), 1.8);
+      for (final dx in const [-18.0, -8.0, 2.0, 12.0, 20.0]) {
+        final end = Offset(60 + dx, 18 + dx.abs() * .5);
+        canvas.drawLine(Offset(60 + dx * .3, 80), end, wood);
+        final needle = _line(dx < 0 ? s.leafMid : s.leafDark, 1.6);
+        for (var i = 0; i < 7; i++) {
+          final p = Offset.lerp(Offset(60 + dx * .3, 76), end, i / 7)!;
+          canvas
+            ..drawLine(p, p + const Offset(-3.5, -2.5), needle)
+            ..drawLine(p, p + const Offset(3.5, -2.5), needle);
+        }
+        if (s.accent case final c?) canvas.drawCircle(end, 2, _fill(c));
+      }
+    case ArtTrait.caneHearts:
+      canvas.drawLine(
+        const Offset(60, 82),
+        const Offset(60, 4),
+        _line(const Color(0xFFB59A6A), 2.5),
+      );
+      for (final (y, dx) in const [
+        (66.0, -12.0),
+        (52.0, 12.0),
+        (38.0, -12.0),
+        (24.0, 12.0),
+        (12.0, -8.0),
+      ]) {
+        _at(canvas, Offset(60 + dx, y), dx < 0 ? -0.5 : 0.5, () {
+          _heart(canvas, Offset.zero, 20, dx < 0 ? s.leafMid : s.leafDark);
+        });
+      }
+    case ArtTrait.creeping:
+      final stem = _line(s.leafDark, 1.2);
+      for (final (ex, ey) in const [
+        (20.0, 100.0),
+        (100.0, 98.0),
+        (40.0, 66.0),
+        (80.0, 64.0),
+      ]) {
+        final path = Path()
+          ..moveTo(60, 78)
+          ..quadraticBezierTo((60 + ex) / 2, math.min(ey, 70) - 6, ex, ey);
+        canvas.drawPath(path, stem);
+        for (final metric in path.computeMetrics()) {
+          for (var d = 6.0; d < metric.length; d += 6) {
+            final t = metric.getTangentForOffset(d)!;
+            canvas
+              ..drawOval(
+                Rect.fromCenter(
+                  center: t.position + const Offset(0, -2.5),
+                  width: 5,
+                  height: 4,
+                ),
+                _fill(s.leafMid),
+              )
+              ..drawOval(
+                Rect.fromCenter(
+                  center: t.position + const Offset(0, 2.5),
+                  width: 5,
+                  height: 4,
+                ),
+                _fill(s.leafLight),
+              );
+          }
+        }
+      }
+      for (final o in const [Offset(46, 68), Offset(76, 66), Offset(28, 92)]) {
+        _petals(canvas, o, 5, 3, 2, s.accent ?? const Color(0xFFF7F5EE));
+      }
+    case ArtTrait.scalloped:
+      final stem = _line(s.leafDark, 2);
+      for (final dx in const [-12.0, 0.0, 12.0]) {
+        canvas.drawLine(const Offset(60, 80), Offset(60 + dx, 26), stem);
+        for (var i = 0; i < 3; i++) {
+          final y = 66.0 - i * 16;
+          final x = 60 + dx * (80 - y) / 54;
+          _scallopLeaf(canvas, Offset(x - 8, y), 7, s, i.isEven);
+          _scallopLeaf(canvas, Offset(x + 8, y), 7, s, i.isOdd);
+        }
+      }
+    case ArtTrait.sunflower:
+      canvas.drawLine(
+        const Offset(60, 82),
+        const Offset(60, 22),
+        _line(s.leafDark, 3),
+      );
+      for (final (y, a) in const [
+        (68.0, 200.0),
+        (58.0, -20.0),
+        (44.0, 205.0),
+        (34.0, -25.0),
+      ]) {
+        _leaf(canvas, Offset(60, y), _rad(a), 22, 11, s.leafMid);
+      }
+      final c = s.accent ?? const Color(0xFFF2C230);
+      _petals(canvas, const Offset(60, 18), 16, 14, 4, c);
+      canvas.drawCircle(
+        const Offset(60, 18),
+        7.5,
+        _fill(const Color(0xFF5A3A1E)),
+      );
+    case ArtTrait.fanPalm:
+      for (final (dx, ex, ey) in const [
+        (-4.0, 34.0, 26.0),
+        (0.0, 60.0, 10.0),
+        (4.0, 86.0, 28.0),
+      ]) {
+        final tip = Offset(ex, ey);
+        canvas.drawLine(
+          Offset(60 + dx, 80),
+          tip,
+          _line(const Color(0xFF7A6A4E), 2),
+        );
+        for (var j = -3; j <= 3; j++) {
+          _leaf(
+            canvas,
+            tip,
+            _rad(-90 + j * 22.0),
+            16,
+            2.6,
+            j.isEven ? s.leafMid : s.leafDark,
+          );
+        }
+      }
+    case ArtTrait.lantern:
+      for (final (x, y) in const [(46.0, 52.0), (76.0, 44.0), (58.0, 66.0)]) {
+        canvas
+          ..drawPath(
+            Path()
+              ..moveTo(x, y)
+              ..quadraticBezierTo(x + 7, y + 6, x, y + 14)
+              ..quadraticBezierTo(x - 7, y + 6, x, y)
+              ..close(),
+            _fill(accent),
+          )
+          ..drawLine(
+            Offset(x, y + 1),
+            Offset(x, y + 13),
+            _line(_darker(accent, .2), .8),
+          );
+      }
+      canvas.drawCircle(
+        const Offset(58, 74),
+        3,
+        _fill(const Color(0xFFF29A1A)),
+      );
+    case ArtTrait.grapeBunch:
+      final cane = _line(const Color(0xFF8A6A4A), 2.5);
+      canvas
+        ..drawLine(const Offset(60, 82), const Offset(60, 20), cane)
+        ..drawLine(const Offset(30, 20), const Offset(92, 20), cane);
+      for (final o in const [
+        Offset(36, 18),
+        Offset(56, 14),
+        Offset(78, 16),
+        Offset(46, 30),
+        Offset(70, 30),
+      ]) {
+        _grapeLeaf(canvas, o, 20, o.dy < 20 ? s.leafMid : s.leafDark);
+      }
+      for (final o in const [Offset(44, 38), Offset(74, 36)]) {
+        _bunch(canvas, o, 2.6, accent);
+      }
+    case ArtTrait.pineapple:
+      for (final a in const [
+        -170.0,
+        -150.0,
+        -130.0,
+        -110.0,
+        -70.0,
+        -50.0,
+        -30.0,
+        -10.0,
+      ]) {
+        _leaf(
+          canvas,
+          const Offset(60, 78),
+          _rad(a),
+          36,
+          3.5,
+          a.abs() > 90 ? s.leafMid : s.leafDark,
+        );
+      }
+      canvas.drawOval(
+        Rect.fromCenter(center: const Offset(60, 58), width: 18, height: 24),
+        _fill(accent),
+      );
+      final hatch = _line(_darker(accent, .25), .8);
+      for (var i = -2; i <= 2; i++) {
+        canvas
+          ..drawLine(Offset(52 + i * 4.0, 48), Offset(60 + i * 4.0, 68), hatch)
+          ..drawLine(Offset(68 + i * 4.0, 48), Offset(60 + i * 4.0, 68), hatch);
+      }
+      _petals(canvas, const Offset(60, 46), 6, 10, 2.4, s.leafDark);
     case _:
       break;
   }
@@ -2032,3 +2609,47 @@ void _rootShoulder(Canvas canvas, Color color) => canvas.drawPath(
     ..close(),
   _fill(color),
 );
+
+/// A round leaf with a scalloped edge; the spec's accent, when set,
+/// colours the middle (coleus).
+void _scallopLeaf(
+  Canvas canvas,
+  Offset c,
+  double r,
+  PlantArtSpec s,
+  bool alt,
+) {
+  final edge = alt ? s.leafMid : s.leafDark;
+  for (var i = 0; i < 10; i++) {
+    final a = _rad(i * 36.0);
+    canvas.drawCircle(
+      c + Offset(math.cos(a), math.sin(a)) * r * .82,
+      r * .3,
+      _fill(edge),
+    );
+  }
+  canvas
+    ..drawCircle(c, r * .85, _fill(edge))
+    ..drawCircle(c, r * .5, _fill(s.accent ?? s.leafLight));
+}
+
+/// A three-lobed vine leaf pointing up.
+void _grapeLeaf(Canvas canvas, Offset c, double size, Color color) {
+  for (final a in const [-90.0, -150.0, -30.0]) {
+    _leaf(canvas, c, _rad(a), size * (a == -90 ? .55 : .45), size * .28, color);
+  }
+}
+
+/// A hanging bunch of round berries, [r] each.
+void _bunch(Canvas canvas, Offset top, double r, Color color) {
+  for (var row = 0; row < 4; row++) {
+    final n = 4 - row;
+    for (var i = 0; i < n; i++) {
+      canvas.drawCircle(
+        top + Offset((i - (n - 1) / 2) * r * 1.8, row * r * 1.6),
+        r,
+        _fill(i.isEven ? color : _darker(color, .12)),
+      );
+    }
+  }
+}

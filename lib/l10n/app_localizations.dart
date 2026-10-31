@@ -4705,6 +4705,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count, plural, =1{1 other region} other{{count} other regions}}'**
   String sowingOtherRegions(int count);
+
+  /// Chip that unfolds the rest of the "sow now" plants.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} more'**
+  String seasonsMore(int count);
 }
 
 class _AppLocalizationsDelegate

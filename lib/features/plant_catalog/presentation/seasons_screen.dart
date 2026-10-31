@@ -183,15 +183,28 @@ class _Card extends StatelessWidget {
   );
 }
 
-/// The dark "this month" card with what can be sown now.
-class _NowCard extends StatelessWidget {
+/// The dark "this month" card with what can be sown now. Long lists show
+/// [_folded] plants and a chip for the rest.
+class _NowCard extends StatefulWidget {
   const _NowCard({required this.month, required this.species});
 
   final String month;
   final List<PlantSpecies> species;
 
+  static const _folded = 10;
+
+  @override
+  State<_NowCard> createState() => _NowCardState();
+}
+
+class _NowCardState extends State<_NowCard> {
+  bool _expanded = false;
+
   @override
   Widget build(BuildContext context) {
+    final (month, species) = (widget.month, widget.species);
+    final folded = !_expanded && species.length > _NowCard._folded + 1;
+    final shown = folded ? species.take(_NowCard._folded) : species;
     final l10n = context.l10n;
     final theme = Theme.of(context);
     final colors = theme.colorScheme;
@@ -238,7 +251,7 @@ class _NowCard extends StatelessWidget {
               spacing: AppSpacing.sm,
               runSpacing: AppSpacing.sm,
               children: [
-                for (final s in species)
+                for (final s in shown)
                   ActionChip(
                     label: Text(s.name(l10n)),
                     labelStyle: theme.textTheme.labelLarge?.copyWith(
@@ -250,6 +263,19 @@ class _NowCard extends StatelessWidget {
                     ),
                     side: BorderSide.none,
                     onPressed: () => context.push(AppRoutes.plantDetail(s.id)),
+                  ),
+                if (folded)
+                  ActionChip(
+                    avatar: Icon(Icons.expand_more, color: fg, size: 18),
+                    label: Text(
+                      l10n.seasonsMore(species.length - shown.length),
+                    ),
+                    labelStyle: theme.textTheme.labelLarge?.copyWith(
+                      color: fg,
+                    ),
+                    backgroundColor: colors.inverseSurface,
+                    side: BorderSide(color: fg.withValues(alpha: .4)),
+                    onPressed: () => setState(() => _expanded = true),
                   ),
               ],
             ),
